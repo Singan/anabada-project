@@ -55,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin().disable() // 기본설정 (로그인 안 된 상태에서 요청 시 로그인 화면으로 보내기를 하지않음);
                 .authorizeRequests()
                 //.antMatchers(HttpMethod.POST,"/user/login","/user").permitAll()
-                .antMatchers("/swagger-ui","/swagger-ui/index.html").permitAll()
+                .antMatchers("/swagger-ui","/swagger-ui/index.html", "/test").permitAll()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .anyRequest().authenticated()
                 .and()
