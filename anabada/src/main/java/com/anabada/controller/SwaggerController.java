@@ -13,7 +13,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class SwaggerController {
 
-    private final MemberRepository mem;
+
 
     @GetMapping("/swagger-ui")
     public String homeRedirect() {

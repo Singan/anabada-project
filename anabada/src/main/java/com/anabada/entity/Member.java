@@ -12,5 +12,14 @@ import javax.persistence.Id;
 @Setter
 @Entity
 public class Member {
+    @Id
+    @GeneratedValue
+    private Long memberNo;
+
+    private String memberName;
+
+    private String memberId;
+    private String memberPassword;
+
 
 }
