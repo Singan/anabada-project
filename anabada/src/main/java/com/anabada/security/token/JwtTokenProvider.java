@@ -1,5 +1,7 @@
 package com.anabada.security.token;
 
+import com.anabada.dto.MemberDetailDTO;
+import com.anabada.service.MemberService;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,12 +15,12 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
-/*@Component
+@Component
 @RequiredArgsConstructor
 public class JwtTokenProvider {
     private final String secretKey = "DSCache";
     private final long tokenValidTime = 30 * 60 * 10000;
-    private final UserService userService;
+    private final MemberService memberService;
 
     public String createToken(String userId, List<String> roles) {
         Claims claims = Jwts.claims().setSubject(userId); // JWT payload 에 저장되는 정보단위
@@ -34,9 +36,9 @@ public class JwtTokenProvider {
     }
     // JWT 토큰에서 인증 정보 조회
     public Authentication getAuthentication(String token) {
-        UserDetailDTO userDetails = new UserDetailDTO(userService.findByUserId(this.getUserPk(token)));
+        MemberDetailDTO memberDetailDTO = new MemberDetailDTO(memberService.findByUserId(this.getUserPk(token)));
         System.out.println("토큰 인증 조회 =================");
-        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+        return new UsernamePasswordAuthenticationToken(memberDetailDTO, "", memberDetailDTO.getAuthorities());
     }
 
     // 토큰에서 회원 정보 추출
@@ -75,4 +77,3 @@ public class JwtTokenProvider {
         return false;
     }
 }
-*/

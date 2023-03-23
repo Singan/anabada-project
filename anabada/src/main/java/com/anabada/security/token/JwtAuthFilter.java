@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/*@RequiredArgsConstructor
+@RequiredArgsConstructor
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
 
@@ -36,4 +36,3 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
 
 }
-*/

@@ -1,5 +1,7 @@
 package com.anabada.security.token;
 
+import com.anabada.dto.MemberDetailDTO;
+import com.anabada.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -7,19 +9,18 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 
-/*@RequiredArgsConstructor
+@RequiredArgsConstructor
 @Service
-public class CustomUserDetailService implements UserDetailsService {
+public class CustomMemberDetailService implements UserDetailsService {
 
 
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("loadUserByUsername");
-        return new UserDetailDTO(userRepository.findByUserId(username));
+        return new MemberDetailDTO(memberRepository.findByMemberName(username));
     }
 
 
 }
-*/
