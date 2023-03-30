@@ -13,8 +13,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class SwaggerController {
 
-
-
     @GetMapping("/swagger-ui")
     public String homeRedirect() {
         System.out.println("스웨거 진입");
