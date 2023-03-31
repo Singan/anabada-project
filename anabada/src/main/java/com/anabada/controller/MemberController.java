@@ -24,4 +24,9 @@ public class MemberController {
         return "dd";
     }
 
+    public String cc() {
+        return "cc";
+
+    }
+
 }
