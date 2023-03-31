@@ -11,8 +11,8 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping
-    public String bb() {
-        return "bb";
+    public String cc() {
+        return "cc";
     }
 
 }
