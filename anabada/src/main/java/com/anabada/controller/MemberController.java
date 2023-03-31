@@ -20,6 +20,6 @@ public class MemberController {
     }
     @GetMapping
     public String cc() {
-        return "bb";
+        return "cc";
     }
 }
