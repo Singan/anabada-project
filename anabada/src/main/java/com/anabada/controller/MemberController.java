@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class MemberController {
     private final MemberService memberService;
+
     @GetMapping
-    public String aa(){
-        return "aa";
+    public String bb() {
+        return "bb";
     }
+
 }
