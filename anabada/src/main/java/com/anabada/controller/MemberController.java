@@ -18,5 +18,8 @@ public class MemberController {
     public String bb() {
         return "bb";
     }
-
+    @GetMapping
+    public String cc() {
+        return "bb";
+    }
 }
