@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class MemberController {
     private final MemberService memberService;
+
     @GetMapping
     public String aa(){
         return "aa";
@@ -23,10 +24,4 @@ public class MemberController {
     public String dd() {
         return "dd";
     }
-
-    public String cc() {
-        return "cc";
-
-    }
-
 }
