@@ -10,18 +10,4 @@ import org.springframework.web.bind.annotation.RestController;
 public class MemberController {
     private final MemberService memberService;
 
-    @GetMapping
-    public String aa(){
-        return "aa";
-    }
-
-    @GetMapping
-    public String bb() {
-        return "bb";
-    }
-
-    @GetMapping
-    public String dd() {
-        return "dd";
-    }
 }
