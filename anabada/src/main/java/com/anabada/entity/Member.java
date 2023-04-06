@@ -1,9 +1,6 @@
 package com.anabada.entity;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -31,6 +28,27 @@ public class Member {
     private String memberAddr;
     private String memberWishAddr;
     private String memberAccount;
-
-
+    @Builder
+    public Member(Long memberNo, String memberName,
+                  String memberId,
+                  String memberPw,
+                  LocalDate memberBirth,
+                  Integer memberMoney,
+                  Float memberTemper,
+                  String memberDetailAddr,
+                  String memberAddr,
+                  String memberWishAddr,
+                  String memberAccount) {
+        this.memberNo = memberNo;
+        this.memberName = memberName;
+        this.memberId = memberId;
+        this.memberPw = memberPw;
+        this.memberBirth = memberBirth;
+        this.memberMoney = memberMoney;
+        this.memberTemper = memberTemper;
+        this.memberDetailAddr = memberDetailAddr;
+        this.memberAddr = memberAddr;
+        this.memberWishAddr = memberWishAddr;
+        this.memberAccount = memberAccount;
+    }
 }
