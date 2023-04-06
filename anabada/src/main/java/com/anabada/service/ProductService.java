@@ -13,9 +13,9 @@ public class ProductService {
 
 
     public Long productSave(ProductInsertDto productInsertDto){
-      Product product = productInsertDto.getProduct();
-      productRepository.save(product);
-      return product.getProductNo();
+        Product product = productInsertDto.getProduct();
+        productRepository.save(product);
+        return product.getProductNo();
 
     };
 
