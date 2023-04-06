@@ -1,6 +1,7 @@
 package com.anabada.service;
 
 import com.anabada.dto.MemberJoinDto;
+import com.anabada.dto.ProductInsertDto;
 import com.anabada.entity.Member;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,4 +36,5 @@ class MemberServiceTest {
         assertTrue(passwordEncoder.matches(pw,member.getMemberPw()));
         assertEquals(name,member.getMemberName());
     }
+
 }
