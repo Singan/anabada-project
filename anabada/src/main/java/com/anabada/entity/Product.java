@@ -23,8 +23,8 @@ public class Product {
     @Column
     private String productName;
 
-    @OneToOne(mappedBy = "order_no")
-    private Order order;
+    @OneToOne(mappedBy = "product")
+    private Orders orders;
 
 
 

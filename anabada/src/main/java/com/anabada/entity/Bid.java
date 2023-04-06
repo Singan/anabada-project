@@ -27,5 +27,4 @@ public class Bid {
     @Column(name = "bid_bidding")
     private boolean bidding;
 
-    private String bidcol;
 }
