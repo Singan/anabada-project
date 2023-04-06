@@ -1,11 +1,14 @@
 package com.anabada.service;
 
 import com.anabada.dto.ProductInsertDto;
+import com.anabada.entity.Product;
 import com.anabada.repository.ProductRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,9 +31,11 @@ class ProductServiceTest {
 
         productService.productSave(productInsertDto);
 
-        assertThat(productInsertDto.getName()).isEqualTo("아이폰");
-        assertThat(productInsertDto.getDetail()).isEqualTo("아이폰 팝니다");
-        assertThat(productInsertDto.getPrice()).isEqualTo(1400000);
+        Optional<Product> product = productRepository.findById(1L);
+
+        assertThat(productInsertDto.getName()).isEqualTo(product.get().getProductName());
+        assertThat(productInsertDto.getDetail()).isEqualTo(product.get().getProductDetail());
+        assertThat(productInsertDto.getPrice()).isEqualTo(product.get().getProductPrice());
     }
 
 }
