@@ -11,7 +11,6 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Builder
 public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -38,7 +37,7 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="category_no")
     private Category category;
-
+    @Builder
     public Product(Long productNo, Member member, String productName, String productDetail, Integer productPrice, String productUseDate, Category category) {
         this.productNo = productNo;
         this.member = member;

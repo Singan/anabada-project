@@ -4,6 +4,7 @@ import com.anabada.entity.Member;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 @Getter
 @Setter
@@ -19,7 +20,9 @@ public class MemberJoinDto {
 
 
     private String detailAddr;
+//    @NotNull(message = "기본주소지를 입력해주세요")
     private String addr;
+
     private String wishAddr;
 
 
