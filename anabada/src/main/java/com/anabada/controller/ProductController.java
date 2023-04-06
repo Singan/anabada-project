@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/product")
+@RestController("/")
 @RequiredArgsConstructor
 public class ProductController {
 
     private final ProductService productService;
-    @PostMapping("/")
+    @PostMapping("product")
     public Long productSave(@RequestBody ProductInsertDto productInsertDto){
         System.out.printf("하이");
 

@@ -5,6 +5,7 @@ import com.anabada.security.token.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -36,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/swagger-ui/**","/api-docs/**");
+                .antMatchers("/swagger-ui/**","/api-docs/**","/member","/product");
         super.configure(web);
     }
 
@@ -50,13 +51,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.cors().configurationSource(corsConfigurationSource());
+
         httpSecurity.
                 httpBasic().
                 disable()
                 .formLogin().disable() // 기본설정 (로그인 안 된 상태에서 요청 시 로그인 화면으로 보내기를 하지않음);
                 .authorizeRequests()
-                //.antMatchers(HttpMethod.POST,"/user/login","/user").permitAll()
-                .antMatchers("/swagger-ui","/swagger-ui/index.html", "/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/member","/member/login").permitAll()
+                .antMatchers("/swagger-ui","/swagger-ui/index.html", "/*","/product").permitAll()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .anyRequest().authenticated()
                 .and()

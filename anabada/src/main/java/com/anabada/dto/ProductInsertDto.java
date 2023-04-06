@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
+@Setter
 public class ProductInsertDto {
 
     private String name;
@@ -16,14 +17,7 @@ public class ProductInsertDto {
 
     private Long category;
 
-    @Builder
-    public ProductInsertDto(String name, String usingDate, String detail, Integer price, Long category) {
-        this.name = name;
-        this.usingDate = usingDate;
-        this.detail = detail;
-        this.price = price;
-        this.category = category;
-    }
+
 
     public Product getProduct(){
         Product product = Product.builder()

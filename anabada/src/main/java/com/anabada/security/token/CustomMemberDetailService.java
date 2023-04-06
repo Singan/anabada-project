@@ -19,7 +19,7 @@ public class CustomMemberDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("loadUserByUsername");
-        return new MemberDetailDTO(memberRepository.findByMemberName(username));
+        return new MemberDetailDTO(memberRepository.findByMemberId(username).get());
     }
 
 
