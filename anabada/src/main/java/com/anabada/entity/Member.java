@@ -1,25 +1,36 @@
 package com.anabada.entity;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.LocalDate;
 
 @Getter
-@Setter
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberNo;
 
     private String memberName;
 
     private String memberId;
-    private String memberPassword;
+    private String memberPw;
+
+
+    private LocalDate memberBirth;
+    private Integer memberMoney;
+    private Float memberTemper;
+
+
+    private String memberDetailAddr;
+    private String memberAddr;
+    private String memberWishAddr;
+    private String memberAccount;
 
 
 }

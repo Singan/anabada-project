@@ -18,7 +18,7 @@ public class MemberDetailDTO implements UserDetails {
     public MemberDetailDTO(Member member) {
         id = member.getMemberId();
         name = member.getMemberName();
-        password = member.getMemberPassword();
+        password = member.getMemberPw();
     }
 
     @Override
