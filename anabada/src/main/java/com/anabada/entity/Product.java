@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,6 +23,9 @@ public class Product {
 
     @Column
     private String productName;
+
+    @OneToOne(mappedBy = "order_no")
+    private Order order;
 
 
 
