@@ -1,7 +1,7 @@
 package com.anabada.service;
 
 import com.anabada.dto.MemberDetailDTO;
-import com.anabada.dto.MemberJoinDto;
+import com.anabada.dto.request_dto.MemberJoinDto;
 import com.anabada.entity.Member;
 import com.anabada.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,8 +10,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

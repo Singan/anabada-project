@@ -26,8 +26,6 @@ public class Product {
     @OneToOne(mappedBy = "product")
     private Orders orders;
 
-
-
     @Column
     private String productDetail;
     @Column

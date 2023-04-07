@@ -1,28 +1,18 @@
-package com.anabada.dto;
+package com.anabada.dto.request_dto;
 
 import com.anabada.entity.Member;
 import lombok.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
-public class MemberJoinDto {
+public class MemberJoinDto extends MemberLoginDto{
     private String name;
-
-    private String id;
-    private String pw;
-
-
     private LocalDate birth;
-
-
     private String detailAddr;
 //    @NotNull(message = "기본주소지를 입력해주세요")
     private String addr;
-
     private String wishAddr;
 
 

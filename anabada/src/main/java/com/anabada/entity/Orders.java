@@ -1,8 +1,6 @@
 package com.anabada.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -10,6 +8,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name = "orders")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Orders {
 
     @Id

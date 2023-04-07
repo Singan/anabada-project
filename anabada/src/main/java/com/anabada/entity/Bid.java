@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-public class Bid {
+public class Bid {//입찰내역
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bidNo;

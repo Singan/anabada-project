@@ -1,9 +1,8 @@
 package com.anabada.service;
 
-import com.anabada.dto.ProductInsertDto;
+import com.anabada.dto.request_dto.ProductInsertDto;
 import com.anabada.entity.Product;
 import com.anabada.repository.ProductRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class ProductServiceTest {

@@ -1,8 +1,7 @@
 package com.anabada.controller;
 
-import com.anabada.dto.MemberJoinDto;
-import com.anabada.dto.MemberLoginDto;
-import com.anabada.entity.Member;
+import com.anabada.dto.request_dto.MemberJoinDto;
+import com.anabada.dto.request_dto.MemberLoginDto;
 import com.anabada.service.MemberPasswordService;
 import com.anabada.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;

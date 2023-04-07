@@ -1,26 +1,29 @@
-package com.anabada.dto;
+package com.anabada.dto.request_dto;
 
-import com.anabada.entity.Member;
 import com.anabada.entity.Orders;
 import com.anabada.entity.Product;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class OrdersDTO {
+@NoArgsConstructor
+public class OrdersInsertDto {
 
-    private Member member;
-    private Product product;
+    private Long productNo;
     private boolean take;
 
     public Orders getOrders() {
+        Product product = Product
+                .builder()
+                .productNo(productNo)
+                .build();
         Orders orders = Orders.builder()
                 .orderTake(take)
-                .member(member)
                 .product(product)
                 .build();
 
-        return getOrders();
+        return orders;
     }
 }
