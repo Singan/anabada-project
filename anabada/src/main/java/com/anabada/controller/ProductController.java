@@ -13,16 +13,16 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/product")
 public class ProductController {
-    ProductService productService;
+    private final ProductService productService;
 
-    @PostMapping()
+    @PostMapping
     @Operation(description = "상품등록")
     public Long productInsert(@RequestBody ProductInsertDto productInsertDto){
         Product product = productInsertDto.getProduct();
         return product.getProductNo();
     }
 
-    @GetMapping("/detail")
+    @GetMapping
     @Operation(description = "상품 상세 조회") // 필수
     /*
        1. productNo를 넘겨받음 우리가 보여줄 값은 product 전체의 값이 아님 ProductFindOneDto가 우리가 줘야할 부분
