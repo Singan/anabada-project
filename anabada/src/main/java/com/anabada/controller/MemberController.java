@@ -27,10 +27,8 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public void memberLogin(@RequestBody MemberLoginDto memberJoinDto){
+    public void memberLogin(@RequestBody @Valid MemberLoginDto memberLoginDto){
 
-
-        //return memberPasswordService.memberJoin(memberJoinDto);
 
 
     }
