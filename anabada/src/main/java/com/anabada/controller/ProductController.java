@@ -19,6 +19,7 @@ public class ProductController {
     @Operation(description = "상품등록")
     public Long productInsert(@RequestBody ProductInsertDto productInsertDto){
         Product product = productInsertDto.getProduct();
+        productService.productSave(productInsertDto);
         return product.getProductNo();
     }
 
@@ -33,4 +34,6 @@ public class ProductController {
     public ProductFindOneDto productFindOne(@RequestParam Long productNo) {
         return productService.findOneProduct(productNo);
     }
+
+    // 요구사항 분석에 맞춰 보여주는 값 주기 order, all, bid
 }
