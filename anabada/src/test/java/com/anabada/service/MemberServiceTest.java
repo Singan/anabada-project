@@ -11,8 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class MemberServiceTest {
 
-    @Autowired
-    MemberPasswordService memberPasswordService;
+
     @Autowired
     MemberService memberService;
     @Autowired
@@ -28,8 +27,8 @@ class MemberServiceTest {
         memberJoinDto.setId(id);
         memberJoinDto.setPw(pw);
         memberJoinDto.setName(name);
-        memberPasswordService.memberJoin(memberJoinDto);
-        Member member = memberService.findByUserId(id);
+        memberService.memberJoin(memberJoinDto);
+        Member member = memberService.findByMemberId(id);
 
         assertEquals(id,member.getMemberId());
         assertTrue(passwordEncoder.matches(pw,member.getMemberPw()));

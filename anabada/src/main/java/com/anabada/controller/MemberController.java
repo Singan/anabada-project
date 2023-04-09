@@ -2,7 +2,6 @@ package com.anabada.controller;
 
 import com.anabada.dto.request_dto.MemberJoinDto;
 import com.anabada.dto.request_dto.MemberLoginDto;
-import com.anabada.service.MemberPasswordService;
 import com.anabada.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -15,17 +14,16 @@ import javax.validation.Valid;
 @RequestMapping("/member")
 public class MemberController {
     private final MemberService memberService;
-    private final MemberPasswordService memberPasswordService;
 
     @PostMapping
     @Operation(description = "회원가입")
     public Long memberJoin(@RequestBody @Valid MemberJoinDto memberJoinDto) {
-        return memberPasswordService.memberJoin(memberJoinDto);
+        return memberService.memberJoin(memberJoinDto);
     }
 
     @PostMapping("/login")
     public void memberLogin(@RequestBody @Valid MemberLoginDto memberLoginDto) {
-        memberPasswordService.memberLogin(memberLoginDto);
+        memberService.memberLogin(memberLoginDto);
 
 
     }
