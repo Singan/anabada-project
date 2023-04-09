@@ -29,7 +29,7 @@ class MemberServiceTest {
         memberJoinDto.setPw(pw);
         memberJoinDto.setName(name);
         memberPasswordService.memberJoin(memberJoinDto);
-        Member member = memberService.findByUserId(id).get();
+        Member member = memberService.findByUserId(id);
 
         assertEquals(id,member.getMemberId());
         assertTrue(passwordEncoder.matches(pw,member.getMemberPw()));

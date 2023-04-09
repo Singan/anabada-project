@@ -36,7 +36,7 @@ public class JwtTokenProvider {
     }
     // JWT 토큰에서 인증 정보 조회
     public Authentication getAuthentication(String token) {
-        MemberDetailDTO memberDetailDTO = new MemberDetailDTO(memberService.findByUserId(this.getUserPk(token)).get());
+        MemberDetailDTO memberDetailDTO = new MemberDetailDTO(memberService.findByMemberId(this.getUserPk(token)));
         System.out.println("토큰 인증 조회 =================");
         return new UsernamePasswordAuthenticationToken(memberDetailDTO, "", memberDetailDTO.getAuthorities());
     }

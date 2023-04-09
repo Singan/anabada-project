@@ -12,8 +12,14 @@ import java.util.Optional;
 public class MemberService {
     private final MemberRepository memberRepository;
 
-    public Optional<Member> findByUserId(String id){
-        return memberRepository.findByMemberId(id);
-    }
 
+    public boolean existsMemberByMemberId(String id){
+        return memberRepository.existsMemberByMemberId(id);
+    }
+    public Member findByMemberId(String id){
+        if (existsMemberByMemberId(id))
+            throw new RuntimeException("없는 회원입니다.");
+        return memberRepository.findByMemberId(id);
+
+    }
 }

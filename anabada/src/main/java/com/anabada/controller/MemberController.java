@@ -19,15 +19,13 @@ public class MemberController {
 
     @PostMapping
     @Operation(description = "회원가입")
-    public Long memberJoin(@RequestBody @Valid MemberJoinDto memberJoinDto){
-
-
+    public Long memberJoin(@RequestBody @Valid MemberJoinDto memberJoinDto) {
         return memberPasswordService.memberJoin(memberJoinDto);
     }
 
     @PostMapping("/login")
-    public void memberLogin(@RequestBody @Valid MemberLoginDto memberLoginDto){
-
+    public void memberLogin(@RequestBody @Valid MemberLoginDto memberLoginDto) {
+        memberPasswordService.memberLogin(memberLoginDto);
 
 
     }
