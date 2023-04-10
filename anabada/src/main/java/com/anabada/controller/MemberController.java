@@ -2,6 +2,7 @@ package com.anabada.controller;
 
 import com.anabada.dto.request_dto.MemberJoinDto;
 import com.anabada.dto.request_dto.MemberLoginDto;
+import com.anabada.security.token.TokenResultDto;
 import com.anabada.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +23,9 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public void memberLogin(@RequestBody @Valid MemberLoginDto memberLoginDto) {
-        memberService.memberLogin(memberLoginDto);
+    public TokenResultDto memberLogin(@RequestBody @Valid MemberLoginDto memberLoginDto) {
+        System.out.println("오나?");
+        return memberService.memberLogin(memberLoginDto);
 
 
     }

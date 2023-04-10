@@ -54,7 +54,7 @@ public class MemberDetailDTO implements UserDetails {
 
     @Override
     public String getUsername() {
-        return no.toString();
+        return username;
     }
 
     @Override
