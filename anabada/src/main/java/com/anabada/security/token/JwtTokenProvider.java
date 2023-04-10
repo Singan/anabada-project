@@ -92,7 +92,8 @@ public class JwtTokenProvider{
      * @return String
      */
     public String getTokenFromHeader(String header) {
-        return header.split(" ")[1];
+        System.out.println("???");
+        return header.split(".")[1];
     }
 
     /**
@@ -171,6 +172,7 @@ public class JwtTokenProvider{
         Claims claims = getClaimsFormToken(token);
         return claims.get("userId").toString();
     }
+
 }
 
 
