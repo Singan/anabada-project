@@ -1,13 +1,17 @@
 package com.anabada.controller;
 
 import com.anabada.dto.request_dto.ProductInsertDto;
+import com.anabada.dto.response_dto.ProductFindAllDto;
 import com.anabada.dto.response_dto.ProductFindOneDto;
 import com.anabada.entity.Product;
 import com.anabada.repository.ProductRepository;
 import com.anabada.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -36,4 +40,12 @@ public class ProductController {
     }
 
     // 요구사항 분석에 맞춰 보여주는 값 주기 order, all, bid
+
+    // 상품 리스트
+    @GetMapping("/list")
+    @Operation(description = "상품 전체 조회")
+    public List products() {
+        List<ProductFindAllDto> products = productService.getProducts();
+        return products;
+    }
 }

@@ -1,12 +1,15 @@
 package com.anabada.service;
 
 import com.anabada.dto.request_dto.ProductInsertDto;
+import com.anabada.dto.response_dto.ProductFindAllDto;
 import com.anabada.dto.response_dto.ProductFindOneDto;
-import com.anabada.entity.Member;
 import com.anabada.entity.Product;
 import com.anabada.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +22,7 @@ public class ProductService {
         return product.getProductNo();
     };
 
+    // product 세부 정보
     public ProductFindOneDto findOneProduct(Long productNo) {
         Product product = productRepository.findById(productNo).get();
 
@@ -32,5 +36,22 @@ public class ProductService {
                 .build();
 
         return productFindOneDto;
+    }
+
+    // 모든 product
+    public List<ProductFindAllDto> getProducts() {
+        List<Product> products = productRepository.findAll();
+        ArrayList<ProductFindAllDto> productDtoList = new ArrayList<>();
+
+        for (Product product : products) {
+            ProductFindAllDto productFindAllDto = ProductFindAllDto.builder()
+                    .productNo(product.getProductNo())
+                    .productName(product.getProductName())
+                    .memberName(product.getMember().getMemberName())
+                    .price(product.getProductPrice())
+                    .build();
+            productDtoList.add(productFindAllDto);
+        }
+        return productDtoList;
     }
 }
