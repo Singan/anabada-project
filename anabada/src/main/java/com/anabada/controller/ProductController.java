@@ -3,6 +3,7 @@ package com.anabada.controller;
 import com.anabada.dto.request_dto.ProductInsertDto;
 import com.anabada.dto.response_dto.ProductFindAllDto;
 import com.anabada.dto.response_dto.ProductFindOneDto;
+import com.anabada.dto.response_dto.ResultList;
 import com.anabada.entity.Product;
 import com.anabada.repository.ProductRepository;
 import com.anabada.service.ProductService;
@@ -44,8 +45,9 @@ public class ProductController {
     // 상품 리스트
     @GetMapping("/list")
     @Operation(description = "상품 전체 조회")
-    public List products() {
+    public ResultList<String,List<ProductFindAllDto>> productList() {
         List<ProductFindAllDto> products = productService.getProducts();
-        return products;
+        ResultList<String,List<ProductFindAllDto>> result = new ResultList<>("전자",products);
+        return result;
     }
 }

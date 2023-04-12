@@ -24,7 +24,6 @@ public class MemberController {
 
     @PostMapping("/login")
     public TokenResultDto memberLogin(@RequestBody @Valid MemberLoginDto memberLoginDto) {
-        System.out.println("오나?");
         return memberService.memberLogin(memberLoginDto);
 
 
