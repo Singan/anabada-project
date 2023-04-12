@@ -1,14 +1,12 @@
 package com.anabada.controller;
 
 import com.anabada.dto.request_dto.BidInsertDto;
+import com.anabada.dto.response_dto.BidInfoFindDto;
 import com.anabada.entity.Bid;
 import com.anabada.service.BidService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,6 +21,13 @@ public class BidController {
         bidService.bidSave(bidinsertDto);
         // pk를 리턴해주는 이유?
         return bid.getBidNo();
+    }
+
+    @GetMapping
+    @Operation(description = "입찰 정보 보내기")
+    public BidInfoFindDto bidInfo(@RequestParam Long bidNo) {
+        BidInfoFindDto responseBidInfo = bidService.findBidInfo(bidNo);
+        return responseBidInfo;
     }
 
 }

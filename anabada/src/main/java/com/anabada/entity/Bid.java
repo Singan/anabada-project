@@ -1,8 +1,6 @@
 package com.anabada.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -10,6 +8,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Bid {//입찰내역
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +32,6 @@ public class Bid {//입찰내역
     private boolean bidding;
 
     @Builder
-
     public Bid(Long bidNo, Product product, Member member, Integer price, LocalDateTime time, boolean bidding) {
         this.bidNo = bidNo;
         this.product = product;
