@@ -1,5 +1,6 @@
 package com.anabada.controller;
 
+import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.ProductInsertDto;
 import com.anabada.dto.response_dto.ProductFindAllDto;
 import com.anabada.dto.response_dto.ProductFindOneDto;
@@ -9,6 +10,7 @@ import com.anabada.repository.ProductRepository;
 import com.anabada.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,10 +24,9 @@ public class ProductController {
 
     @PostMapping
     @Operation(description = "상품등록")
-    public Long productInsert(@RequestBody ProductInsertDto productInsertDto){
-        Product product = productInsertDto.getProduct();
-        productService.productSave(productInsertDto);
-        return product.getProductNo();
+    public Long productInsert(@RequestBody ProductInsertDto productInsertDto, @AuthenticationPrincipal MemberDetailDTO principal){
+        return productService.productSave(productInsertDto,principal);
+
     }
 
     @GetMapping

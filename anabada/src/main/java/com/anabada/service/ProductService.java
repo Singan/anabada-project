@@ -1,11 +1,13 @@
 package com.anabada.service;
 
+import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.ProductInsertDto;
 import com.anabada.dto.response_dto.ProductFindAllDto;
 import com.anabada.dto.response_dto.ProductFindOneDto;
 import com.anabada.entity.Product;
 import com.anabada.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,8 +18,8 @@ import java.util.List;
 public class ProductService {
     private final ProductRepository productRepository;
 
-    public Long productSave(ProductInsertDto productInsertDto){
-        Product product = productInsertDto.getProduct();
+    public Long productSave(ProductInsertDto productInsertDto,@AuthenticationPrincipal MemberDetailDTO memberDetailDTO){
+        Product product = productInsertDto.getProduct(memberDetailDTO);
         productRepository.save(product);
         return product.getProductNo();
     };

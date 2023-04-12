@@ -29,30 +29,21 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             throws IOException, ServletException {
         System.out.println("여기와?");
         // 1. 토큰이 필요하지 않은 API URL에 대해서 배열로 구성합니다.
-        List<String> list = Arrays.asList(
-                "/member/login",
-                "/member"
-        );
-
-        if (list.contains(request.getRequestURI())) {
-            chain.doFilter(request, response);
-            return;
-        }
 
         String token = request.getHeader("X-AUTH-TOKEN");
 
+        if (token != null && !token.isEmpty()) {
+            if (jwtTokenProvider.isValidToken(token)) {
+                String userId = jwtTokenProvider.getUserIdFromToken(token);
+                logger.debug("[+] userId Check: " + userId);
+                if (userId != null) {
+                    SecurityContextHolder.getContext().setAuthentication(getAuthentication(userId));
+                }
 
-        if (jwtTokenProvider.isValidToken(token)) {
-
-            String userId = jwtTokenProvider.getUserIdFromToken(token);
-            logger.debug("[+] userId Check: " + userId);
-            System.out.println(memberService.existsMemberByMemberId(userId));
-            if (userId != null && memberService.existsMemberByMemberId(userId)) {
-                SecurityContextHolder.getContext().setAuthentication(getAuthentication(userId));
-                chain.doFilter(request, response);
             }
-
         }
+        chain.doFilter(request, response);
+
     }
 
     public Authentication getAuthentication(String id) {
