@@ -32,7 +32,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         String token = request.getHeader("X-AUTH-TOKEN");
 
-        if (token != null && !token.isEmpty()) {
+        if (token != null && !token.isBlank()) {
             if (jwtTokenProvider.isValidToken(token)) {
                 String userId = jwtTokenProvider.getUserIdFromToken(token);
                 logger.debug("[+] userId Check: " + userId);

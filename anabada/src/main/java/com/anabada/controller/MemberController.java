@@ -1,11 +1,15 @@
 package com.anabada.controller;
 
+import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.MemberJoinDto;
 import com.anabada.dto.request_dto.MemberLoginDto;
 import com.anabada.security.token.TokenResultDto;
 import com.anabada.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -24,8 +28,10 @@ public class MemberController {
 
     @PostMapping("/login")
     public TokenResultDto memberLogin(@RequestBody @Valid MemberLoginDto memberLoginDto) {
+
         return memberService.memberLogin(memberLoginDto);
 
 
     }
+
 }
