@@ -129,7 +129,7 @@ export default {
 .------ {
   color: #000000;
   text-align: center;
-  font: 400 14px "Roboto", sans-serif;
+  font: 400 13px "Roboto", sans-serif;
   position: absolute;
   left: 799px;
   top: 653px;
@@ -155,7 +155,7 @@ export default {
 .----2 {
   color: #0075ff;
   text-align: center;
-  font: 700 14px "Roboto", sans-serif;
+  font: 700 13px "Roboto", sans-serif;
   position: absolute;
   left: 1094px;
   top: 653px;

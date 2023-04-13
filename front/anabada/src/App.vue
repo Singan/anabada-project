@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <MainPage></MainPage>
+    <LoginPage></LoginPage>
     
   </div>
 </template>
 
 <script>
-import MainPage from './components/MainPage.vue'
+import LoginPage from './components/LoginPage.vue'
 
 export default {
   components: {
-    'MainPage':MainPage
+    'LoginPage':LoginPage
   }
 }
 </script>
