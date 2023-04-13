@@ -1,4 +1,5 @@
 <template>
+
 <div class="--">
     <div class="--2">
       <div class="--3">경매</div>
@@ -21,7 +22,10 @@
         <div class="----4"></div>
 
         <div class="----5">
-          <div class="_18px2">로그인</div>
+          <div class="_18px2">
+            <a v-bind:href="url">로그인</a>
+          </div>
+          
         </div>
       </div>
     </div>

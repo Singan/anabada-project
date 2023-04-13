@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <MainPage></MainPage>
-    
+
+    <MyPage></MyPage>
   </div>
 </template>
 
 <script>
-import MainPage from './components/MainPage.vue'
+import MyPage from './components/MyPage.vue'
 
 export default {
   components: {
-    'MainPage':MainPage
+    'MyPage':MyPage
   }
 }
 </script>

@@ -26,7 +26,6 @@ public class ProductController {
     @Operation(description = "상품등록")
     public Long productInsert(@RequestBody ProductInsertDto productInsertDto, @AuthenticationPrincipal MemberDetailDTO principal){
         return productService.productSave(productInsertDto,principal);
-
     }
 
     @GetMapping
