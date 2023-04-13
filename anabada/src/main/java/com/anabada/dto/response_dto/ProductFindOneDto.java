@@ -24,12 +24,13 @@ public class ProductFindOneDto {
 
     public ProductFindOneDto(Long productNo, String memberName,
                              String productName, String productDetail,
-                             Integer productPrice, String productUseDate) {
+                             Integer productPrice, String productUseDate, String productCategoryName) {
         this.productNo = productNo;
         this.memberName = memberName;
         this.productName = productName;
         this.productDetail = productDetail;
         this.productPrice = productPrice;
         this.productUseDate = productUseDate;
+        this.productCategoryName = productCategoryName;
     }
 }

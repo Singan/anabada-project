@@ -12,7 +12,7 @@ public class SuccessBidDto {
     private Integer successBidPrice;
     private String memberName;
 
-    public SuccessBidDto successBidDto(Bid bid) {
-        this.setSuccessBidName(bid.getProduct().getProductName());
-    }
+//    public SuccessBidDto successBidDto(Bid bid) {
+//        this.setSuccessBidName(bid.getProduct().getProductName());
+//    }
 }

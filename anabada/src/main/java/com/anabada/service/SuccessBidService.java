@@ -12,13 +12,13 @@ public class SuccessBidService {
 
     private final BidRepository bidRepository;
 
-    public SuccessBidDto getSuccessBid(Long bidNo) {
-
-        Bid bid = bidRepository.findById(bidNo).get();
-        // 입찰한 상품이 낙찰 되었다면
-        if (bid.isBidding()) {
-
-        }
-
-    }
+//    public SuccessBidDto getSuccessBid(Long bidNo) {
+//
+//        Bid bid = bidRepository.findById(bidNo).get();
+//        // 입찰한 상품이 낙찰 되었다면
+//        if (bid.isBidding()) {
+//
+//        }
+//
+//    }
 }

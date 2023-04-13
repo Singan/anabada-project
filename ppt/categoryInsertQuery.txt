@@ -1,9 +1,7 @@
-insert into category (`category_no`, `category_name`) values
-	(1, "clothes"),
-	 (2, "beauty"),
-	(3, "book"),
-	(4, "electronic"),
-	(5, "kitchen"),
-	(6, "stationery");
-
-
+insert into category (`category_name`) values
+	("의류"),
+	("뷰티"),
+	("도서"),
+	("전자제품"),
+	("주방용품"),
+	("문구류");
