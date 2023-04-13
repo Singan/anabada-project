@@ -49,8 +49,6 @@ public class ProductService {
         List<ProductFindAllDto> productDtoList =
                 productList.stream().map(product -> new ProductFindAllDto(product)).collect(Collectors.toList());
 
-
-
         ResultList<String,List<ProductFindAllDto>> result = new ResultList<>("전자",productDtoList);
         return result;
     }

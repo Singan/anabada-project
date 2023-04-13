@@ -13,12 +13,14 @@ public class ProductFindAllDto {
     private String productName;
     private String memberName;
     private Integer price;
+    private String categoryName;
 
     public ProductFindAllDto(Product product) {
         this.setProductName(product.getProductName());
         this.setProductNo(product.getProductNo());
         this.setMemberName(product.getMember().getMemberName());
         this.setPrice(product.getProductPrice());
+        this.setCategoryName(product.getCategory().getCategoryName());
     }
 
 }
