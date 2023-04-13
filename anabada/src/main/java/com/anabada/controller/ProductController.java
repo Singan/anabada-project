@@ -47,8 +47,7 @@ public class ProductController {
     @GetMapping("/list")
     @Operation(description = "상품 전체 조회")
     public ResultList<String,List<ProductFindAllDto>> productList() {
-        List<ProductFindAllDto> products = productService.getProducts();
-        ResultList<String,List<ProductFindAllDto>> result = new ResultList<>("전자",products);
+        ResultList<String,List<ProductFindAllDto>> result = productService.getProducts();
         return result;
     }
 }

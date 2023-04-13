@@ -4,6 +4,7 @@ import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.ProductInsertDto;
 import com.anabada.dto.response_dto.ProductFindAllDto;
 import com.anabada.dto.response_dto.ProductFindOneDto;
+import com.anabada.dto.response_dto.ResultList;
 import com.anabada.entity.Product;
 import com.anabada.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -41,19 +43,15 @@ public class ProductService {
     }
 
     // 모든 product
-    public List<ProductFindAllDto> getProducts() {
-        List<Product> products = productRepository.findAll();
-        ArrayList<ProductFindAllDto> productDtoList = new ArrayList<>();
+    public ResultList<String,List<ProductFindAllDto>> getProducts() {
+        List<Product> productList = productRepository.findAll();
 
-        for (Product product : products) {
-            ProductFindAllDto productFindAllDto = ProductFindAllDto.builder()
-                    .productNo(product.getProductNo())
-                    .productName(product.getProductName())
-                    .memberName(product.getMember().getMemberName())
-                    .price(product.getProductPrice())
-                    .build();
-            productDtoList.add(productFindAllDto);
-        }
-        return productDtoList;
+        List<ProductFindAllDto> productDtoList =
+                productList.stream().map(product -> new ProductFindAllDto(product)).collect(Collectors.toList());
+
+
+
+        ResultList<String,List<ProductFindAllDto>> result = new ResultList<>("전자",productDtoList);
+        return result;
     }
 }

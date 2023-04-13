@@ -1,14 +1,12 @@
 package com.anabada.dto.response_dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.anabada.entity.Product;
+import lombok.*;
 
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
+
 public class ProductFindAllDto {
 
     private Long productNo;
@@ -16,10 +14,11 @@ public class ProductFindAllDto {
     private String memberName;
     private Integer price;
 
-    public ProductFindAllDto(Long no, String productName, String memberName, Integer price) {
-        this.productNo = no;
-        this.productName = productName;
-        this.memberName = memberName;
-        this.price = price;
+    public ProductFindAllDto(Product product) {
+        this.setProductName(product.getProductName());
+        this.setProductNo(product.getProductNo());
+        this.setMemberName(product.getMember().getMemberName());
+        this.setPrice(product.getProductPrice());
     }
+
 }
