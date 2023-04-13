@@ -15,7 +15,6 @@ import java.security.Principal;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
 public class ProductInsertDto {
 
     private String name;
@@ -24,13 +23,11 @@ public class ProductInsertDto {
     private String detail;
     private Integer price;
 
-    private String categoryName;
-
-
+    private Long categoryNo;
 
     public Product getProduct(MemberDetailDTO principal){
         Member member = Member.builder().memberNo(principal.getNo()).build();
-        Category category = Category.builder().categoryName(categoryName).build();
+        Category category = Category.builder().categoryNo(categoryNo).build();
         Product product = Product.builder()
                 .productDetail(detail)
                 .productName(name)

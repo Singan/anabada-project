@@ -32,6 +32,7 @@ public class Product {
     private Integer productPrice;
     @Column
     private String productUseDate;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="category_no")
     private Category category;
