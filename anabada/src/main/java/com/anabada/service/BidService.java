@@ -2,10 +2,15 @@ package com.anabada.service;
 
 import com.anabada.dto.request_dto.BidInsertDto;
 import com.anabada.dto.response_dto.BidInfoFindDto;
+import com.anabada.dto.response_dto.ResultList;
 import com.anabada.entity.Bid;
+import com.anabada.entity.Product;
 import com.anabada.repository.BidRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -19,14 +24,14 @@ public class BidService {
         return bid.getBidNo();
     }
 
-    public BidInfoFindDto findBidInfo(Long bidNo) {
-        Bid bid = bidRepository.findById(bidNo).get();
 
-        BidInfoFindDto bidInfoFindDto = BidInfoFindDto.builder()
-                .price(bid.getPrice())
-                .member(bid.getMember().getMemberName())
-                .build();
+    public ResultList<Integer,List<BidInfoFindDto>> findBidList(Long productNo){
+        Product product = Product.builder().productNo(productNo).build();
+        List<Bid> bidList = bidRepository.findBidByProduct(product);
 
-        return bidInfoFindDto;
+        List<BidInfoFindDto> bidInfoFindDtoList = bidList.stream().map(bid -> new BidInfoFindDto(bid)).collect(Collectors.toList());
+        ResultList resultList = new ResultList<>(bidList.size(),bidInfoFindDtoList);
+        return resultList;
+
     }
 }
