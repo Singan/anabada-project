@@ -1,6 +1,7 @@
 package com.anabada.entity;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -15,9 +16,16 @@ public class Category {
     @Id
     private Long categoryNo;
 
-    @Column
+    @Enumerated(EnumType.STRING)
     private String categoryName;
 
     @OneToMany(mappedBy = "category")
     private List<Product> productList;
+
+    @Builder
+    public Category(Long categoryNo, String categoryName, List<Product> productList) {
+        this.categoryNo = categoryNo;
+        this.categoryName = categoryName;
+        this.productList = productList;
+    }
 }

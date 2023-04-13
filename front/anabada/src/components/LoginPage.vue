@@ -142,12 +142,12 @@ export default {
 .------- {
   color: #000000;
   text-align: center;
-  font: 400 14px "Roboto", sans-serif;
+  font: 400 13px "Roboto", sans-serif;
   position: absolute;
   left: 939px;
   top: 651px;
-  width: 79px;
-  height: 40px;
+  width: 78px;
+  height: 37px;
   display: flex;
   align-items: center;
   justify-content: center;
