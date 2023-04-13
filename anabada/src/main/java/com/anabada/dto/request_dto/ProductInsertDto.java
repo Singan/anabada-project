@@ -25,7 +25,7 @@ public class ProductInsertDto {
 
 
 
-    public Product getProduct(@AuthenticationPrincipal MemberDetailDTO principal){
+    public Product getProduct(MemberDetailDTO principal){
         Member member = Member.builder().memberNo(principal.getNo()).build();
         Product product = Product.builder()
                 .productDetail(detail)
