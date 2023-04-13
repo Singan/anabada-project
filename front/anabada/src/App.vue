@@ -1,17 +1,18 @@
 <template>
   <div id="app">
 
-    <MyPage></MyPage>
+    <router-view />
   </div>
 </template>
 
 <script>
-import MyPage from './components/MyPage.vue'
+import MainPage from './components/MainPage.vue'
 
 export default {
   components: {
-    'MyPage':MyPage
-  }
+    "MainPage": MainPage,
+    
+}
 }
 </script>
 
