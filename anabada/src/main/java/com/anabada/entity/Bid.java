@@ -15,11 +15,11 @@ public class Bid {//입찰내역
     private Long bidNo;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "productNo")
+    @JoinColumn(name = "product_no")
     private Product product;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "memberNo")
+    @JoinColumn(name = "member_no")
     private Member member;
 
     @Column(name = "bid_price")

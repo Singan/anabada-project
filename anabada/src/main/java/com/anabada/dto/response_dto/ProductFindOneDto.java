@@ -20,7 +20,11 @@ public class ProductFindOneDto {
     private String productDetail;
     private Integer productPrice;
     private String productUseDate;
-    public ProductFindOneDto(Long productNo, String memberName, String productName, String productDetail, Integer productPrice, String productUseDate) {
+    private String productCategoryName;
+
+    public ProductFindOneDto(Long productNo, String memberName,
+                             String productName, String productDetail,
+                             Integer productPrice, String productUseDate) {
         this.productNo = productNo;
         this.memberName = memberName;
         this.productName = productName;
