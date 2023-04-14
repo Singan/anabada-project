@@ -22,9 +22,8 @@ public class Category {
     private List<Product> productList;
 
     @Builder
-    public Category(Long categoryNo, String categoryName, List<Product> productList) {
+    public Category(Long categoryNo, String categoryName) {
         this.categoryNo = categoryNo;
         this.categoryName = categoryName;
-        this.productList = productList;
     }
 }

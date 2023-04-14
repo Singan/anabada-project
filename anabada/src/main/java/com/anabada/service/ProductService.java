@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,23 +28,20 @@ public class ProductService {
     };
 
     // product 세부 정보
-    public ProductFindOneDto findOneProduct(Long productNo) {
-        Product product = productRepository.findById(productNo).get();
+    public ProductFindOneDto findProduct(Long productNo) {
+        Optional<Product> product = productRepository.findById(productNo);
 
-        ProductFindOneDto productFindOneDto = ProductFindOneDto.builder()
-                .productNo(product.getProductNo())
-                .productPrice(product.getProductPrice())
-                .productName(product.getProductName())
-                .productDetail(product.getProductDetail())
-                .productUseDate(product.getProductUseDate())
-                .memberName(product.getMember().getMemberName())
-                .build();
+        if (!product.isEmpty()) {
 
-        return productFindOneDto;
+            ProductFindOneDto productFindOneDto = new ProductFindOneDto(product.get());
+
+            return productFindOneDto;
+        }
+        throw new  RuntimeException("에러");
     }
 
     // 모든 product
-    public ResultList<String,List<ProductFindAllDto>> getProducts() {
+    public ResultList<String,List<ProductFindAllDto>> findProductList() {
         List<Product> productList = productRepository.findAll();
 
         List<ProductFindAllDto> productDtoList =

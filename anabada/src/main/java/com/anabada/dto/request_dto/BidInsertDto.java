@@ -1,5 +1,6 @@
 package com.anabada.dto.request_dto;
 
+import com.anabada.dto.MemberDetailDTO;
 import com.anabada.entity.Bid;
 import com.anabada.entity.Member;
 import com.anabada.entity.Product;
@@ -12,21 +13,20 @@ import java.time.LocalDateTime;
 @Setter
 public class BidInsertDto {
 
-//    private String memberName;
     private Integer bidPrice;
-    private LocalDateTime insertDate;
-//    private Long productNo;
+    private Long productNo;
     private boolean bidding;
 
-    public Bid getBid() {
+    public Bid getBid(MemberDetailDTO memberDetailDTO) {
 
-        Member member = Member.builder().memberNo(1L).build();  // member 인위적으로 생성
-        Product product = Product.builder().productNo(1L).build();  // productName 인위적으로 생성
+        Member member = Member.builder().memberNo(memberDetailDTO.getNo()).build();
+        Product product = Product.builder().productNo(productNo).build();
+        LocalDateTime bidTime = LocalDateTime.now();
         Bid bid = Bid.builder()
                 .member(member)
                 .price(bidPrice)
                 .bidding(bidding)
-                .time(insertDate)
+                .time(bidTime)
                 .product(product)
                 .build();
         return bid;

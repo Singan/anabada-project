@@ -1,9 +1,6 @@
 package com.anabada.controller;
 
-import com.anabada.dto.response_dto.SuccessBidDto;
-import com.anabada.service.SuccessBidService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
