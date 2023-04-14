@@ -23,8 +23,8 @@ public class Product {
     @Column
     private String productName;
 
-    @OneToOne(mappedBy = "product")
-    private Orders orders;
+//    @OneToOne(mappedBy = "product", fetch = FetchType.LAZY)
+//    private Orders orders;
 
     @Column
     private String productDetail;

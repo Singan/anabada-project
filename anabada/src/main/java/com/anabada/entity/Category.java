@@ -18,7 +18,7 @@ public class Category {
 
     private String categoryName;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<Product> productList;
 
     @Builder

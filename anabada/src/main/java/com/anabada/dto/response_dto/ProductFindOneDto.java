@@ -1,14 +1,9 @@
 package com.anabada.dto.response_dto;
 
-import com.anabada.entity.Member;
-import com.anabada.entity.Orders;
 import com.anabada.entity.Product;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.persistence.*;
 
 @Getter
 @Setter
