@@ -45,7 +45,6 @@ public class MemberService implements UserDetailsService {
 
     public TokenResultDto memberLogin(MemberLoginDto memberLoginDto) {
         Member member = findByMemberId(memberLoginDto.getId());
-
         if (!passwordEncoder.matches(memberLoginDto.getPw(), member.getMemberPw())) {
             throw new RuntimeException("없는 회원입니다.");
         }

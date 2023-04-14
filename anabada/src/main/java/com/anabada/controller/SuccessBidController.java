@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class SuccessBidController {
 
-    private final SuccessBidService successBidService;
+    //private final SuccessBidService successBidService;
 
     // 낙찰 페이지. 입찰 번호를 받음
 //    @PostMapping("/success")

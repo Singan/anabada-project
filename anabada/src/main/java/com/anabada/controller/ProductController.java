@@ -11,6 +11,8 @@ import com.anabada.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +27,8 @@ public class ProductController {
     @PostMapping
     @Operation(description = "상품등록")
     public Long productInsert(@RequestBody ProductInsertDto productInsertDto, @AuthenticationPrincipal MemberDetailDTO principal){
+
+        //스레드에 MemberDetail을 넣는다.
         return productService.productSave(productInsertDto,principal);
     }
 

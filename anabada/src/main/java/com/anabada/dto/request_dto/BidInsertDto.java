@@ -18,7 +18,7 @@ public class BidInsertDto {
     private boolean bidding;
 
     public Bid getBid(MemberDetailDTO memberDetailDTO) {
-
+        //MemberDetailDTO > Member
         Member member = Member.builder().memberNo(memberDetailDTO.getNo()).build();
         Product product = Product.builder().productNo(productNo).build();
         LocalDateTime bidTime = LocalDateTime.now();

@@ -23,6 +23,7 @@ public class ProductService {
 
     public Long productSave(ProductInsertDto productInsertDto,@AuthenticationPrincipal MemberDetailDTO memberDetailDTO){
         Product product = productInsertDto.getProduct(memberDetailDTO);
+
         productRepository.save(product);
         return product.getProductNo();
     };
@@ -42,6 +43,17 @@ public class ProductService {
 
     // 모든 product
     public ResultList<String,List<ProductFindAllDto>> findProductList() {
+        List<Product> productList = productRepository.findAll();
+
+        List<ProductFindAllDto> productDtoList =
+                productList.stream().map(product -> new ProductFindAllDto(product)).collect(Collectors.toList());
+
+        ResultList<String,List<ProductFindAllDto>> result = new ResultList<>("전자",productDtoList);
+        return result;
+    }
+
+
+    public ResultList<String,List<ProductFindAllDto>> findProductList2() {
         List<Product> productList = productRepository.findAll();
 
         List<ProductFindAllDto> productDtoList =
