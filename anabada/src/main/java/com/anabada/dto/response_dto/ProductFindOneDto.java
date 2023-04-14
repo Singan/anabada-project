@@ -17,17 +17,7 @@ public class ProductFindOneDto {
     private Integer productPrice;
     private String productUseDate;
 
-    public ProductFindOneDto(Long productNo, String memberName,
-                             String productName, String productDetail,
-                             Integer productPrice, String productUseDate ) {
-        this.productNo = productNo;
-        this.memberName = memberName;
-        this.productName = productName;
-        this.productDetail = productDetail;
-        this.productPrice = productPrice;
-        this.productUseDate = productUseDate;
 
-    }
     public ProductFindOneDto(Product product) {
         this.productNo = product.getProductNo();
         this.memberName = product.getMember().getMemberName();
