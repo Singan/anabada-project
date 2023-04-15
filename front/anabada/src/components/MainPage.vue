@@ -2,11 +2,11 @@
 
 <div class="--">
     <div class="--2">
-      <div class="--3" @click="goOff">경매</div>
+      <div class="--3" @click="goAuction">경매</div>
 
       <div class="----">아나바다</div>
 
-      <div class="--4">채팅</div>
+      <div class="--4" @click="goChat">채팅</div>
 
       <div class="---"></div>
 
@@ -132,9 +132,13 @@ export default {
     goLogin() {
       this.$router.push('./login')
     },
-    goOff() {
-      this.$router.push('./off')
+    goAuction() {
+      this.$router.push('./auction')
     },
+    goChat() {
+      this.$router.push('./chat')
+    },
+    
   }
 }
 

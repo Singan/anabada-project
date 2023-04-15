@@ -24,9 +24,14 @@ const routes = [
         component: () => import('@/components/ProductRegistrationPage.vue'),
     },
     {
-        path: '/off',
-        name: 'Off',
-        component: () => import('@/components/Off.vue'),
+        path: '/auction',
+        name: 'Auction',
+        component: () => import('@/components/Auction.vue'),
+    },
+    {
+        path: '/chat',
+        name: 'Chat',
+        component: () => import('@/components/chat.vue'),
     },
 ]
 
