@@ -56,12 +56,16 @@
     </div>
 
     <div class="-------">
-      <div class="rectangle-13"></div>
+      <div class="rectangle-13">
+        <img src="@/assets/bike.jpg" style="width:100%; height:130%;"/>
+      </div>
 
-      <div class="rectangle-14"></div>
+      <div class="rectangle-14">
+        <img src="@/assets/samsung.jpg" style="width:100%; height:100%;"/>
+      </div>
 
       <div class="rectangle-12">
-        <img src="@/assets/iphone14.png" style="width:100%; height:100%;"/>
+        <img src="@/assets/iphone14.jpg" style="width:100%; height:100%;"/>
       </div>
     </div>
 
@@ -73,9 +77,13 @@
 
     <div class="---------4"></div>
 
-    <div class="-------2"></div>
+    <div class="-------2">
+      <img src="@/assets/change2.jpg" style="width:100%; height:100%;"/>
+    </div>
 
-    <div class="-------1"></div>
+    <div class="-------1">
+      <img src="@/assets/change.png" style="width:100%; height:100%;"/>
+    </div>
 
     <div class="-----14---">
       <div class="----7">아이폰 14 프로</div>
