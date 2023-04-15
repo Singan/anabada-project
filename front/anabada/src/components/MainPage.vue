@@ -8,7 +8,7 @@
 
       <div class="--4" @click="goChat">채팅</div>
 
-      <div class="---"></div>
+      <div class="---" contenteditable="true" ></div>
 
       <div class="--5">
         <div class="----2"></div>
@@ -210,6 +210,8 @@ export default {
   position: absolute;
   left: 785px;
   top: 30px;
+  text-align: center;
+  line-height: 40px;
 }
 .--5 {
   width: 130px;
