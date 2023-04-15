@@ -50,10 +50,14 @@
             id:this.id,
             pw:this.pw
           }).then((response)=>{
-            console.log(response.data.accessToken)
+            console.log(response)
+            if(response.status){
             this.$axios.defaults.headers.common[
               'X-AUTH-TOKEN'
-            ] = ` ${response.data.accessToken}`          
+            ] = ` ${response.data.accessToken}`
+            this.$router.push('/')
+          }
+            
           })
 
 
