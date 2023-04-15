@@ -60,7 +60,9 @@
 
       <div class="rectangle-14"></div>
 
-      <div class="rectangle-12"></div>
+      <div class="rectangle-12">
+        <img src="@/assets/iphone14.png" style="width:100%; height:100%;"/>
+      </div>
     </div>
 
     <div class="---------"></div>
