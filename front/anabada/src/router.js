@@ -33,6 +33,12 @@ const routes = [
         name: 'Chat',
         component: () => import('@/components/chat.vue'),
     },
+
+    {
+        path: '/account',
+        name: 'AccountRegister',
+        component: () => import('@/components/AccountRegister.vue'),
+    },
 ]
 
 
