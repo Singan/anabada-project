@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    
     <router-view />
 
   </div>
@@ -13,7 +12,6 @@ import MainPage from './components/MainPage.vue'
 export default {
   components: {
     "MainPage": MainPage,
-    
   }
 
 }
