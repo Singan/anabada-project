@@ -28,6 +28,11 @@ const routes = [
         name: 'Off',
         component: () => import('@/components/Off.vue'),
     },
+    {
+        path: '/chat',
+        name: 'Chat',
+        component: () => import('@/components/chat.vue'),
+    },
 ]
 
 

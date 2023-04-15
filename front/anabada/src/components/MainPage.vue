@@ -6,7 +6,7 @@
 
       <div class="----">아나바다</div>
 
-      <div class="--4">채팅</div>
+      <div class="--4" @click="goChat">채팅</div>
 
       <div class="---"></div>
 
@@ -135,6 +135,10 @@ export default {
     goOff() {
       this.$router.push('./off')
     },
+    goChat() {
+      this.$router.push('./chat')
+    },
+    
   }
 }
 
