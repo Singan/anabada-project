@@ -51,11 +51,9 @@
             pw:this.pw
           }).then((response)=>{
             console.log(response)
-            if(response.status){
-            this.$axios.defaults.headers.common[
-              'X-AUTH-TOKEN'
-            ] = ` ${response.data.accessToken}`
-            this.$router.push('/')
+            if(response.status==200){
+            this.$axios.defaults.headers.common['X-AUTH-TOKEN'] = `${response.data.accessToken}`
+            this.$router.back()
           }
             
           })
