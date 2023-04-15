@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     
-    
     <router-view />
 
   </div>
@@ -9,11 +8,13 @@
 
 <script>
 
-import AccountRegister from './components/AccountRegister.vue'
+
+import MainPage from './components/MainPage.vue'
+
 
 export default {
   components: {
-    "AccountRegister": AccountRegister,
+    "MainPage": MainPage,
     
 }
 
