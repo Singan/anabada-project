@@ -249,7 +249,7 @@ export default {
   text-align: center;
   font: 700 18px "Roboto", sans-serif;
   position: absolute;
-  left: 620px;
+  left: 632px;
   top: 40px;
   width: 40px;
   height: 20px;
@@ -262,7 +262,7 @@ export default {
   text-align: center;
   font: 700 24px "Roboto", sans-serif;
   position: absolute;
-  left: 405px;
+  left: 417px;
   top: 35px;
   width: 140px;
   height: 30px;
@@ -275,7 +275,7 @@ export default {
   text-align: center;
   font: 700 18px "Roboto", sans-serif;
   position: absolute;
-  left: 700px;
+  left: 712px;
   top: 40px;
   width: 40px;
   height: 20px;
@@ -289,7 +289,7 @@ export default {
   width: 450px;
   height: 40px;
   position: absolute;
-  left: 850px;
+  left: 862px;
   top: 30px;
 }
 .----3 {
@@ -298,7 +298,7 @@ export default {
   width: 150px;
   height: 40px;
   position: absolute;
-  left: 1340px;
+  left: 1352px;
   top: 28px;
 }
 .----- {
