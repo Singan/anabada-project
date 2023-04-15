@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     
+    
     <router-view />
 
   </div>
@@ -8,11 +9,11 @@
 
 <script>
 
-import MainPage from './components/MainPage.vue'
+import MyPage from './components/MyPage.vue'
 
 export default {
   components: {
-    "MainPage": MainPage,
+    "MyPage": MyPage,
     
 }
 
