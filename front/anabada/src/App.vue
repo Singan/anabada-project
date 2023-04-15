@@ -1,15 +1,16 @@
 <template>
   <div id="app">
-    <MyPage></MyPage>
+    <NavBar></NavBar>
+    
   </div>
 </template>
 
 <script>
-import MyPage from './components/MyPage.vue'
+import NavBar from './components/NavBar.vue'
 
 export default {
   components: {
-    'MyPage':MyPage
+    'NavBar':NavBar
   }
 }
 </script>
