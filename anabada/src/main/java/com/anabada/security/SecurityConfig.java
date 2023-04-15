@@ -50,7 +50,7 @@ public class SecurityConfig   {
 //    @Bean
 //    public WebSecurityCustomizer configure() {
 //        return (web) -> web.ignoring().mvcMatchers(
-//                "/swagger-ui"
+//                "/swagger-ui","/swagger-ui/index.html"
 //        );
 //    }
     @Bean
@@ -81,6 +81,7 @@ public class SecurityConfig   {
                 .authorizeHttpRequests()
                 .antMatchers(HttpMethod.POST, "/member").permitAll()
                 .antMatchers(HttpMethod.POST, "/member/login").permitAll()
+                .antMatchers("/swagger-ui","/swagger-ui/**","/api-docs/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
 
