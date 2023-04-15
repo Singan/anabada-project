@@ -35,13 +35,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         if (token != null && !token.isBlank()) {
             if (jwtTokenProvider.isValidToken(token)) {
                 String userId = jwtTokenProvider.getUserIdFromToken(token);
-                logger.debug("[+] userId Check: " + userId);
                 if (userId != null) {
                     SecurityContextHolder.getContext().setAuthentication(getAuthentication(userId));
                 }
 
             }
         }
+        System.out.println("필터 검증완료");
         chain.doFilter(request, response);
 
     }

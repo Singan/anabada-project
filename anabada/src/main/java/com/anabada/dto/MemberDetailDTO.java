@@ -76,4 +76,12 @@ public class MemberDetailDTO implements UserDetails {
     public boolean isEnabled() {
         return false;
     }
+
+    public Member getMember(){
+        Member member = Member
+                .builder()
+                .memberNo(no)
+                .build();
+        return member;
+    };
 }

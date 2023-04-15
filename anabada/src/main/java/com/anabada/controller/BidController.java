@@ -28,8 +28,7 @@ public class BidController {
     @GetMapping
     @Operation(description = "입찰 정보 보내기")
     public ResultList<Integer,List<BidInfoFindDto>> bidInfo(@RequestParam Long productNo) {
-        ResultList<Integer, List<BidInfoFindDto>> resultList = bidService.findBidList(productNo);
-        return resultList;
+        return bidService.findBidList(productNo);
     }
 
 }
