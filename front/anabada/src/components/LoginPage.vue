@@ -22,19 +22,25 @@
 
     <div class="----2">회원가입</div>
 
-    <div class="---5">아이디</div>
+    <div class="---5" id="id"><input type="text" value="아이디"></div>
 
-    <div class="----3">비밀번호</div>
+    <div class="----3" id="pw"><input value="비밀번호" type="password"></div>
 
-    <div class="---6">로그인</div>
+    <div class="---6" @click="login">로그인</div>
   </div>
   
 </template>
 
 <script>
-export default {
-  name:"LoginPage"
-}
+  export default {
+    name:"LoginPage",
+    methods: {
+
+        login() {
+          this.$router.push('./login')
+      },
+    }
+  }
 </script>
 
 <style scoped>
