@@ -16,7 +16,16 @@
     <div class="-----">인기 매물</div>
 
     <div class="----5">
-      <div class="rectangle-20"></div>
+      <svg
+        class="rectangle-20"
+        width="160"
+        height="260"
+        viewBox="0 0 160 260"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M0 0H160V260H0V0Z" fill="white" />
+      </svg>
 
       <div class="rectangle-16"></div>
 
@@ -35,12 +44,12 @@
       <div class="_02">0</div>
     </div>
 
-    <div class="----5">
+    <div class="----7">
       <div class="rectangle-202"></div>
 
       <div class="rectangle-162"></div>
 
-      <div class="----7">상품이름</div>
+      <div class="----8">상품이름</div>
 
       <div class="--7">가격</div>
 
@@ -55,12 +64,12 @@
       <div class="_04">0</div>
     </div>
 
-    <div class="----5">
+    <div class="----9">
       <div class="rectangle-203"></div>
 
       <div class="rectangle-163"></div>
 
-      <div class="----8">상품이름</div>
+      <div class="----10">상품이름</div>
 
       <div class="--11">가격</div>
 
@@ -75,12 +84,21 @@
       <div class="_06">0</div>
     </div>
 
-    <div class="----9">
-      <div class="rectangle-204"></div>
+    <div class="----11">
+      <svg
+        class="rectangle-204"
+        width="161"
+        height="260"
+        viewBox="0 0 161 260"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M0.5 0H160.5V260H0.5V0Z" fill="white" />
+      </svg>
 
       <div class="rectangle-164"></div>
 
-      <div class="----10">상품이름</div>
+      <div class="----12">상품이름</div>
 
       <div class="--15">가격</div>
 
@@ -95,12 +113,12 @@
       <div class="_08">0</div>
     </div>
 
-    <div class="----5">
+    <div class="----13">
       <div class="rectangle-205"></div>
 
       <div class="rectangle-165"></div>
 
-      <div class="----11">상품이름</div>
+      <div class="----14">상품이름</div>
 
       <div class="--19">가격</div>
 
@@ -115,12 +133,21 @@
       <div class="_010">0</div>
     </div>
 
-    <div class="----5">
-      <div class="rectangle-206"></div>
+    <div class="----15">
+      <svg
+        class="rectangle-206"
+        width="161"
+        height="260"
+        viewBox="0 0 161 260"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M0.5 0H160.5V260H0.5V0Z" fill="white" />
+      </svg>
 
       <div class="rectangle-166"></div>
 
-      <div class="----12">상품이름</div>
+      <div class="----16">상품이름</div>
 
       <div class="--23">가격</div>
 
@@ -135,12 +162,10 @@
       <div class="_012">0</div>
     </div>
 
-    <div class="----5">
-      <div class="rectangle-207"></div>
-
+    <div class="----17">
       <div class="rectangle-167"></div>
 
-      <div class="----13">상품이름</div>
+      <div class="----18">상품이름</div>
 
       <div class="--27">가격</div>
 
@@ -155,12 +180,12 @@
       <div class="_014">0</div>
     </div>
 
-    <div class="----5">
-      <div class="rectangle-208"></div>
+    <div class="----17">
+      <div class="rectangle-207"></div>
 
       <div class="rectangle-168"></div>
 
-      <div class="----14">상품이름</div>
+      <div class="----19">상품이름</div>
 
       <div class="--31">가격</div>
 
@@ -175,7 +200,7 @@
       <div class="_016">0</div>
     </div>
 
-    <div class="----15">
+    <div class="----20">
       <div class="rectangle-21"></div>
 
       <img class="rectangle-22" src="rectangle-22.png" />
@@ -209,13 +234,13 @@ export default {
 }
 .-----------off {
   background: #ffffff;
-  width: 1440px;
+  width: 1920px;
   height: 1024px;
   position: relative;
   overflow: hidden;
 }
 .---- {
-  width: 1060px;
+  width: 1085px;
   height: 42px;
   position: static;
 }
@@ -224,7 +249,7 @@ export default {
   text-align: center;
   font: 700 18px "Roboto", sans-serif;
   position: absolute;
-  left: 380px;
+  left: 620px;
   top: 40px;
   width: 40px;
   height: 20px;
@@ -237,9 +262,9 @@ export default {
   text-align: center;
   font: 700 24px "Roboto", sans-serif;
   position: absolute;
-  left: 190px;
+  left: 405px;
   top: 35px;
-  width: 90px;
+  width: 140px;
   height: 30px;
   display: flex;
   align-items: center;
@@ -250,7 +275,7 @@ export default {
   text-align: center;
   font: 700 18px "Roboto", sans-serif;
   position: absolute;
-  left: 460px;
+  left: 700px;
   top: 40px;
   width: 40px;
   height: 20px;
@@ -264,7 +289,7 @@ export default {
   width: 450px;
   height: 40px;
   position: absolute;
-  left: 610px;
+  left: 850px;
   top: 30px;
 }
 .----3 {
@@ -273,7 +298,7 @@ export default {
   width: 150px;
   height: 40px;
   position: absolute;
-  left: 1100px;
+  left: 1340px;
   top: 28px;
 }
 .----- {
@@ -281,7 +306,7 @@ export default {
   text-align: center;
   font: 600 24px "Roboto", sans-serif;
   position: absolute;
-  left: 585px;
+  left: 825px;
   top: 161px;
   width: 270px;
   height: 39px;
@@ -290,17 +315,15 @@ export default {
   justify-content: center;
 }
 .----5 {
-  width: 160px;
+  width: 161px;
   height: 262px;
   position: static;
 }
 .rectangle-20 {
-  background: #ffffff;
-  width: 160px;
-  height: 260px;
   position: absolute;
-  left: 278px;
+  left: 385px;
   top: 285px;
+  overflow: visible;
 }
 .rectangle-16 {
   background: #d9d9d9;
@@ -308,7 +331,7 @@ export default {
   width: 160px;
   height: 160px;
   position: absolute;
-  left: 278px;
+  left: 384px;
   top: 285px;
 }
 .----6 {
@@ -316,9 +339,9 @@ export default {
   text-align: left;
   font: 300 16px "Roboto", sans-serif;
   position: absolute;
-  left: 288px;
+  left: 384px;
   top: 445px;
-  width: 148px;
+  width: 160px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -329,9 +352,9 @@ export default {
   text-align: left;
   font: 600 16px "Roboto", sans-serif;
   position: absolute;
-  left: 290px;
+  left: 387px;
   top: 473px;
-  width: 148px;
+  width: 157px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -342,9 +365,9 @@ export default {
   text-align: left;
   font: 400 16px "Roboto", sans-serif;
   position: absolute;
-  left: 290px;
+  left: 387px;
   top: 501px;
-  width: 148px;
+  width: 157px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -355,9 +378,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 290px;
+  left: 386.67px;
   top: 524px;
-  width: 29px;
+  width: 38.67px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -368,9 +391,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 353px;
+  left: 470.67px;
   top: 524px;
-  width: 30px;
+  width: 40px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -381,9 +404,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 390px;
+  left: 520px;
   top: 524px;
-  width: 30px;
+  width: 24px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -394,20 +417,25 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 319px;
+  left: 425.33px;
   top: 524px;
-  width: 30px;
+  width: 40px;
   height: 23px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+}
+.----7 {
+  width: 176px;
+  height: 262px;
+  position: static;
 }
 .rectangle-202 {
   background: #ffffff;
   width: 160px;
   height: 260px;
   position: absolute;
-  left: 278px;
+  left: 385px;
   top: 630px;
 }
 .rectangle-162 {
@@ -416,17 +444,17 @@ export default {
   width: 160px;
   height: 160px;
   position: absolute;
-  left: 278px;
+  left: 384px;
   top: 630px;
 }
-.----7 {
+.----8 {
   color: #000000;
   text-align: left;
   font: 300 16px "Roboto", sans-serif;
   position: absolute;
-  left: 288px;
+  left: 384px;
   top: 790px;
-  width: 148px;
+  width: 160px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -437,9 +465,9 @@ export default {
   text-align: left;
   font: 600 16px "Roboto", sans-serif;
   position: absolute;
-  left: 290px;
+  left: 387px;
   top: 818px;
-  width: 148px;
+  width: 157px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -450,9 +478,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 290px;
+  left: 387px;
   top: 846px;
-  width: 148px;
+  width: 157px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -463,9 +491,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 290px;
+  left: 386.67px;
   top: 869px;
-  width: 29px;
+  width: 38.67px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -476,9 +504,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 353px;
+  left: 470.67px;
   top: 869px;
-  width: 30px;
+  width: 40px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -489,9 +517,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 390px;
+  left: 520px;
   top: 869px;
-  width: 30px;
+  width: 40px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -502,20 +530,25 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 319px;
+  left: 425.33px;
   top: 869px;
-  width: 30px;
+  width: 40px;
   height: 23px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+}
+.----9 {
+  width: 175.67px;
+  height: 262px;
+  position: static;
 }
 .rectangle-203 {
   background: #ffffff;
   width: 160px;
   height: 260px;
   position: absolute;
-  left: 517px;
+  left: 705px;
   top: 285px;
 }
 .rectangle-163 {
@@ -524,17 +557,17 @@ export default {
   width: 160px;
   height: 160px;
   position: absolute;
-  left: 517px;
+  left: 703px;
   top: 285px;
 }
-.----8 {
+.----10 {
   color: #000000;
   text-align: left;
   font: 300 16px "Roboto", sans-serif;
   position: absolute;
-  left: 527px;
+  left: 703px;
   top: 445px;
-  width: 148px;
+  width: 160px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -545,9 +578,9 @@ export default {
   text-align: left;
   font: 600 16px "Roboto", sans-serif;
   position: absolute;
-  left: 529px;
+  left: 705px;
   top: 473px;
-  width: 148px;
+  width: 158px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -558,9 +591,9 @@ export default {
   text-align: left;
   font: 400 16px "Roboto", sans-serif;
   position: absolute;
-  left: 529px;
+  left: 705px;
   top: 501px;
-  width: 148px;
+  width: 158px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -571,9 +604,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 529px;
+  left: 705.33px;
   top: 524px;
-  width: 29px;
+  width: 38.67px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -584,9 +617,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 592px;
+  left: 789.33px;
   top: 524px;
-  width: 30px;
+  width: 40px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -597,9 +630,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 629px;
+  left: 838.67px;
   top: 524px;
-  width: 30px;
+  width: 40px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -610,26 +643,24 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 558px;
+  left: 744px;
   top: 524px;
-  width: 30px;
+  width: 40px;
   height: 23px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
-.----9 {
-  width: 160px;
+.----11 {
+  width: 178.67px;
   height: 263px;
   position: static;
 }
 .rectangle-204 {
-  background: #ffffff;
-  width: 160px;
-  height: 260px;
   position: absolute;
-  left: 517px;
+  left: 700.5px;
   top: 630px;
+  overflow: visible;
 }
 .rectangle-164 {
   background: #d9d9d9;
@@ -637,17 +668,17 @@ export default {
   width: 160px;
   height: 160px;
   position: absolute;
-  left: 517px;
+  left: 700px;
   top: 630px;
 }
-.----10 {
+.----12 {
   color: #000000;
   text-align: left;
   font: 300 16px "Roboto", sans-serif;
   position: absolute;
-  left: 527px;
+  left: 703px;
   top: 790px;
-  width: 148px;
+  width: 157px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -658,9 +689,9 @@ export default {
   text-align: left;
   font: 600 16px "Roboto", sans-serif;
   position: absolute;
-  left: 529px;
+  left: 705px;
   top: 818px;
-  width: 148px;
+  width: 155px;
   height: 24px;
   display: flex;
   align-items: center;
@@ -671,9 +702,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 529px;
+  left: 705px;
   top: 846px;
-  width: 148px;
+  width: 155px;
   height: 24px;
   display: flex;
   align-items: center;
@@ -684,9 +715,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 529px;
+  left: 705.33px;
   top: 869px;
-  width: 29px;
+  width: 38.67px;
   height: 24px;
   display: flex;
   align-items: center;
@@ -697,9 +728,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 592px;
+  left: 789.33px;
   top: 869px;
-  width: 30px;
+  width: 40px;
   height: 24px;
   display: flex;
   align-items: center;
@@ -710,9 +741,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 629px;
+  left: 838.67px;
   top: 869px;
-  width: 30px;
+  width: 40px;
   height: 24px;
   display: flex;
   align-items: center;
@@ -723,20 +754,25 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 558px;
+  left: 744px;
   top: 869px;
-  width: 30px;
+  width: 40px;
   height: 24px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+}
+.----13 {
+  width: 182.33px;
+  height: 262px;
+  position: static;
 }
 .rectangle-205 {
   background: #ffffff;
   width: 160px;
   height: 260px;
   position: absolute;
-  left: 756px;
+  left: 1015px;
   top: 285px;
 }
 .rectangle-165 {
@@ -745,17 +781,17 @@ export default {
   width: 160px;
   height: 160px;
   position: absolute;
-  left: 756px;
+  left: 1015px;
   top: 285px;
 }
-.----11 {
+.----14 {
   color: #000000;
   text-align: left;
   font: 300 16px "Roboto", sans-serif;
   position: absolute;
-  left: 766px;
+  left: 1021px;
   top: 445px;
-  width: 148px;
+  width: 154px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -766,9 +802,9 @@ export default {
   text-align: left;
   font: 600 16px "Roboto", sans-serif;
   position: absolute;
-  left: 768px;
+  left: 1024px;
   top: 473px;
-  width: 148px;
+  width: 151px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -779,9 +815,9 @@ export default {
   text-align: left;
   font: 400 16px "Roboto", sans-serif;
   position: absolute;
-  left: 768px;
+  left: 1024px;
   top: 501px;
-  width: 148px;
+  width: 151px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -792,9 +828,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 768px;
+  left: 1024px;
   top: 524px;
-  width: 29px;
+  width: 38.67px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -805,9 +841,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 831px;
+  left: 1108px;
   top: 524px;
-  width: 30px;
+  width: 40px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -818,9 +854,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 868px;
+  left: 1157.33px;
   top: 524px;
-  width: 30px;
+  width: 40px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -831,21 +867,24 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 797px;
+  left: 1062.67px;
   top: 524px;
-  width: 30px;
+  width: 40px;
   height: 23px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
+.----15 {
+  width: 176.33px;
+  height: 262px;
+  position: static;
+}
 .rectangle-206 {
-  background: #ffffff;
-  width: 160px;
-  height: 260px;
   position: absolute;
-  left: 756px;
+  left: 1023.5px;
   top: 630px;
+  overflow: visible;
 }
 .rectangle-166 {
   background: #d9d9d9;
@@ -853,17 +892,17 @@ export default {
   width: 160px;
   height: 160px;
   position: absolute;
-  left: 756px;
+  left: 1021px;
   top: 630px;
 }
-.----12 {
+.----16 {
   color: #000000;
   text-align: left;
   font: 300 16px "Roboto", sans-serif;
   position: absolute;
-  left: 766px;
+  left: 1021px;
   top: 790px;
-  width: 148px;
+  width: 160px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -874,9 +913,9 @@ export default {
   text-align: left;
   font: 600 16px "Roboto", sans-serif;
   position: absolute;
-  left: 768px;
+  left: 1024px;
   top: 818px;
-  width: 148px;
+  width: 159px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -887,9 +926,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 768px;
+  left: 1024px;
   top: 846px;
-  width: 148px;
+  width: 151px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -900,9 +939,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 768px;
+  left: 1024px;
   top: 869px;
-  width: 29px;
+  width: 38.67px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -913,9 +952,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 831px;
+  left: 1108px;
   top: 869px;
-  width: 30px;
+  width: 40px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -926,9 +965,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 868px;
+  left: 1157.33px;
   top: 869px;
-  width: 30px;
+  width: 40px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -939,21 +978,18 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 797px;
+  left: 1062.67px;
   top: 869px;
-  width: 30px;
+  width: 40px;
   height: 23px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
-.rectangle-207 {
-  background: #ffffff;
-  width: 160px;
-  height: 260px;
-  position: absolute;
-  left: 995px;
-  top: 285px;
+.----17 {
+  width: 180px;
+  height: 262px;
+  position: static;
 }
 .rectangle-167 {
   background: #d9d9d9;
@@ -961,17 +997,17 @@ export default {
   width: 160px;
   height: 160px;
   position: absolute;
-  left: 995px;
+  left: 1336px;
   top: 285px;
 }
-.----13 {
+.----18 {
   color: #000000;
   text-align: left;
   font: 300 16px "Roboto", sans-serif;
   position: absolute;
-  left: 1005px;
+  left: 1340px;
   top: 445px;
-  width: 148px;
+  width: 156px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -982,9 +1018,9 @@ export default {
   text-align: left;
   font: 600 16px "Roboto", sans-serif;
   position: absolute;
-  left: 1007px;
+  left: 1343px;
   top: 473px;
-  width: 148px;
+  width: 153px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -995,9 +1031,9 @@ export default {
   text-align: left;
   font: 400 16px "Roboto", sans-serif;
   position: absolute;
-  left: 1007px;
+  left: 1343px;
   top: 501px;
-  width: 148px;
+  width: 153px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -1008,9 +1044,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 1007px;
+  left: 1342.67px;
   top: 524px;
-  width: 29px;
+  width: 38.67px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -1021,9 +1057,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 1070px;
+  left: 1426.67px;
   top: 524px;
-  width: 30px;
+  width: 40px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -1034,9 +1070,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 1107px;
+  left: 1476px;
   top: 524px;
-  width: 30px;
+  width: 40px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -1047,20 +1083,20 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 1036px;
+  left: 1381.33px;
   top: 524px;
-  width: 30px;
+  width: 40px;
   height: 23px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
-.rectangle-208 {
+.rectangle-207 {
   background: #ffffff;
   width: 160px;
   height: 260px;
   position: absolute;
-  left: 995px;
+  left: 1336px;
   top: 630px;
 }
 .rectangle-168 {
@@ -1069,17 +1105,17 @@ export default {
   width: 160px;
   height: 160px;
   position: absolute;
-  left: 995px;
+  left: 1336px;
   top: 630px;
 }
-.----14 {
+.----19 {
   color: #000000;
   text-align: left;
   font: 300 16px "Roboto", sans-serif;
   position: absolute;
-  left: 1005px;
+  left: 1340px;
   top: 790px;
-  width: 148px;
+  width: 156px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -1090,9 +1126,9 @@ export default {
   text-align: left;
   font: 600 16px "Roboto", sans-serif;
   position: absolute;
-  left: 1007px;
+  left: 1343px;
   top: 818px;
-  width: 148px;
+  width: 153px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -1103,9 +1139,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 1007px;
+  left: 1343px;
   top: 846px;
-  width: 148px;
+  width: 153px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -1116,9 +1152,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 1007px;
+  left: 1342.67px;
   top: 869px;
-  width: 29px;
+  width: 38.67px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -1129,9 +1165,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 1070px;
+  left: 1426.67px;
   top: 869px;
-  width: 30px;
+  width: 40px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -1142,9 +1178,9 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 1107px;
+  left: 1476px;
   top: 869px;
-  width: 30px;
+  width: 40px;
   height: 23px;
   display: flex;
   align-items: center;
@@ -1155,15 +1191,15 @@ export default {
   text-align: left;
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
-  left: 1036px;
+  left: 1381.33px;
   top: 869px;
-  width: 30px;
+  width: 40px;
   height: 23px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
-.----15 {
+.----20 {
   width: 128px;
   height: 28px;
   position: static;
@@ -1177,7 +1213,7 @@ export default {
   width: 100px;
   height: 28px;
   position: absolute;
-  left: 1020px;
+  left: 1368px;
   top: 200px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
@@ -1186,7 +1222,7 @@ export default {
   width: 23.93px;
   height: 28px;
   position: absolute;
-  left: 1124.07px;
+  left: 1472.07px;
   top: 200px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
@@ -1195,7 +1231,7 @@ export default {
   text-align: center;
   font: 600 14px "Roboto", sans-serif;
   position: absolute;
-  left: 1026px;
+  left: 1374px;
   top: 200.65px;
   width: 88.12px;
   height: 27.35px;
