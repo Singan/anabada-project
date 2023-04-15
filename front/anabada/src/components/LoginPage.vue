@@ -50,7 +50,10 @@
             id:this.id,
             pw:this.pw
           }).then((response)=>{
-            console.log(response.data)
+            console.log(response.data.accessToken)
+            this.$axios.defaults.headers.common[
+              'X-AUTH-TOKEN'
+            ] = ` ${response.data.accessToken}`          
           })
 
 

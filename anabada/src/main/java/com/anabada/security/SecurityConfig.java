@@ -76,6 +76,7 @@ public class SecurityConfig   {
         http
                 // [STEP1] 서버에 인증정보를 저장하지 않기에 csrf를 사용하지 않는다.
                 .csrf().disable()
+                .cors().and()
                 // [STEP2] 토큰을 활용하는 경우 모든 요청에 대해 '인가'에 대해서 적용
                 .authorizeHttpRequests()
                 .antMatchers(HttpMethod.POST, "/member").permitAll()

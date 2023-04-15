@@ -5,6 +5,8 @@ import VueRouter from 'vue-router'
 import axios from 'axios'
 Vue.use(VueRouter)
 Vue.prototype.$axios = axios;
+axios.defaults.baseURL = 'http://localhost:8081'
+
 const router = new VueRouter({
   mode:'history',
   routes:routes
