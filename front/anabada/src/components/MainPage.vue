@@ -2,7 +2,7 @@
 
 <div class="--">
     <div class="--2">
-      <div class="--3">경매</div>
+      <div class="--3" @click="goOff">경매</div>
 
       <div class="----">아나바다</div>
 
@@ -22,7 +22,11 @@
         <div class="----4"></div>
 
         <div class="----5">
-          <div class="_18px2">로그인</div>
+          <div class="_18px2" @click="goLogin">
+            
+            로그인
+          </div>
+          
         </div>
       </div>
     </div>
@@ -123,8 +127,18 @@
 
 <script>
 export default {
+  methods: {
 
+    goLogin() {
+      this.$router.push('./login')
+    },
+    goOff() {
+      this.$router.push('./off')
+    },
+  }
 }
+
+
 </script>
 
 <style scoped>

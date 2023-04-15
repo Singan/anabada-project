@@ -1,12 +1,17 @@
 package com.anabada.controller;
 
+import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.BidInsertDto;
 import com.anabada.dto.response_dto.BidInfoFindDto;
+import com.anabada.dto.response_dto.ResultList;
 import com.anabada.entity.Bid;
 import com.anabada.service.BidService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,15 +21,14 @@ public class BidController {
 
     @PostMapping
     @Operation(description = "입찰 정보 등록")
-    public Long bidInsert(@RequestBody BidInsertDto bidinsertDto) {
-        return bidService.bidSave(bidinsertDto);
+    public Long bidInsert(@RequestBody BidInsertDto bidinsertDto, @AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
+        return bidService.bidSave(bidinsertDto,memberDetailDTO);
     }
 
     @GetMapping
     @Operation(description = "입찰 정보 보내기")
-    public BidInfoFindDto bidInfo(@RequestParam Long bidNo) {
-        BidInfoFindDto responseBidInfo = bidService.findBidInfo(bidNo);
-        return responseBidInfo;
+    public ResultList<Integer,List<BidInfoFindDto>> bidInfo(@RequestParam Long productNo) {
+        return bidService.findBidList(productNo);
     }
 
 }

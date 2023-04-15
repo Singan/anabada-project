@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,36 +21,32 @@ import java.util.stream.Collectors;
 public class ProductService {
     private final ProductRepository productRepository;
 
-    public Long productSave(ProductInsertDto productInsertDto,@AuthenticationPrincipal MemberDetailDTO memberDetailDTO){
+    public Long productSave(ProductInsertDto productInsertDto,MemberDetailDTO memberDetailDTO){
         Product product = productInsertDto.getProduct(memberDetailDTO);
+
         productRepository.save(product);
         return product.getProductNo();
-    };
+    }
 
     // product 세부 정보
-    public ProductFindOneDto findOneProduct(Long productNo) {
-        Product product = productRepository.findById(productNo).get();
+    public ProductFindOneDto findProduct(Long productNo) {
+        Optional<Product> product = productRepository.findById(productNo);
 
-        ProductFindOneDto productFindOneDto = ProductFindOneDto.builder()
-                .productNo(product.getProductNo())
-                .productPrice(product.getProductPrice())
-                .productName(product.getProductName())
-                .productDetail(product.getProductDetail())
-                .productUseDate(product.getProductUseDate())
-                .memberName(product.getMember().getMemberName())
-                .build();
+        if (!product.isEmpty()) {
 
-        return productFindOneDto;
+            ProductFindOneDto productFindOneDto = new ProductFindOneDto(product.get());
+
+            return productFindOneDto;
+        }
+        throw new  RuntimeException("에러");
     }
 
     // 모든 product
-    public ResultList<String,List<ProductFindAllDto>> getProducts() {
+    public ResultList<String,List<ProductFindAllDto>> findProductList() {
         List<Product> productList = productRepository.findAll();
 
         List<ProductFindAllDto> productDtoList =
                 productList.stream().map(product -> new ProductFindAllDto(product)).collect(Collectors.toList());
-
-
 
         ResultList<String,List<ProductFindAllDto>> result = new ResultList<>("전자",productDtoList);
         return result;

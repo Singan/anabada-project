@@ -1,0 +1,7 @@
+insert into category (`category_name`) values
+	("의류"),
+	("뷰티"),
+	("도서"),
+	("전자제품"),
+	("주방용품"),
+	("문구류");

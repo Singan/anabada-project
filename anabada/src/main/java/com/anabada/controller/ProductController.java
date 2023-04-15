@@ -11,6 +11,8 @@ import com.anabada.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,8 +27,9 @@ public class ProductController {
     @PostMapping
     @Operation(description = "상품등록")
     public Long productInsert(@RequestBody ProductInsertDto productInsertDto, @AuthenticationPrincipal MemberDetailDTO principal){
-        return productService.productSave(productInsertDto,principal);
 
+        //스레드에 MemberDetail을 넣는다.
+        return productService.productSave(productInsertDto,principal);
     }
 
     @GetMapping
@@ -38,7 +41,7 @@ public class ProductController {
        4. ProductFindOneDto를 builder.build()를 통해 만들고 반환해준다.
      */
     public ProductFindOneDto productFindOne(@RequestParam Long productNo) {
-        return productService.findOneProduct(productNo);
+        return productService.findProduct(productNo);
     }
 
     // 요구사항 분석에 맞춰 보여주는 값 주기 order, all, bid
@@ -47,7 +50,7 @@ public class ProductController {
     @GetMapping("/list")
     @Operation(description = "상품 전체 조회")
     public ResultList<String,List<ProductFindAllDto>> productList() {
-        ResultList<String,List<ProductFindAllDto>> result = productService.getProducts();
+        ResultList<String,List<ProductFindAllDto>> result = productService.findProductList();
         return result;
     }
 }

@@ -16,16 +16,14 @@ public class Category {
     @Id
     private Long categoryNo;
 
-    @Enumerated(EnumType.STRING)
     private String categoryName;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<Product> productList;
 
     @Builder
-    public Category(Long categoryNo, String categoryName, List<Product> productList) {
+    public Category(Long categoryNo, String categoryName) {
         this.categoryNo = categoryNo;
         this.categoryName = categoryName;
-        this.productList = productList;
     }
 }

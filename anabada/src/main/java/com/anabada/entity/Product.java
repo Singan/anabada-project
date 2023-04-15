@@ -23,8 +23,8 @@ public class Product {
     @Column
     private String productName;
 
-    @OneToOne(mappedBy = "product")
-    private Orders orders;
+//    @OneToOne(mappedBy = "product", fetch = FetchType.LAZY)
+//    private Orders orders;
 
     @Column
     private String productDetail;
@@ -32,6 +32,7 @@ public class Product {
     private Integer productPrice;
     @Column
     private String productUseDate;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="category_no")
     private Category category;
