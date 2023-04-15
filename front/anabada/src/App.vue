@@ -9,11 +9,11 @@
 
 <script>
 
-import MyPage from './components/MyPage.vue'
+import MyPage from './components/AccountRegister.vue'
 
 export default {
   components: {
-    "MyPage": MyPage,
+    "AccountRegister": AccountRegister,
     
 }
 
