@@ -2,7 +2,7 @@
 
 <div class="--">
     <div class="--2">
-      <div class="--3">경매</div>
+      <div class="--3" @click="goOff">경매</div>
 
       <div class="----">아나바다</div>
 
@@ -131,6 +131,9 @@ export default {
 
     goLogin() {
       this.$router.push('./login')
+    },
+    goOff() {
+      this.$router.push('./off')
     },
   }
 }

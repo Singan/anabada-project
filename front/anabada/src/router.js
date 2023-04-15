@@ -23,6 +23,11 @@ const routes = [
         name: 'ProductInsert',
         component: () => import('@/components/ProductRegistrationPage.vue'),
     },
+    {
+        path: '/off',
+        name: 'Off',
+        component: () => import('@/components/Off.vue'),
+    },
 ]
 
 
