@@ -562,19 +562,6 @@ export default {
   left: 1013px;
   top: 1680px;
 }
-.----10 {
-  color: #000000;
-  text-align: left;
-  font: 400 16px "Roboto", sans-serif;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  width: 134px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
 .Adress3 {
   width: 240px;
   height: 20px;
