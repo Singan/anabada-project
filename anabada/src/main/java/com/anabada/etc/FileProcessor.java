@@ -12,11 +12,14 @@ import java.io.FileOutputStream;
 public class FileProcessor {
     public String fileSave(MultipartFile multipartFile) {
         System.out.println(multipartFile.equals(null));
-        String fileName = "C:/anabada/image" + multipartFile.getOriginalFilename();
-
+        String fileName = "C:/anabada/image/" ;
         System.out.println("fileName"+fileName);
         try{
+            File file = new File(fileName);
+            file.mkdirs();
+            fileName = fileName+multipartFile.getOriginalFilename();
             multipartFile.transferTo(new File(fileName));
+            System.out.println();
             return fileName;
         } catch (Exception e) {
             throw new RuntimeException("파일 저장 실패");

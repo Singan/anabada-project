@@ -35,10 +35,12 @@ public class MemberService implements UserDetailsService {
     public Long memberJoin(MemberJoinDto memberJoinDto) {
         if (!existsMemberByMemberId(memberJoinDto.getId())) {
             memberJoinDto.setPw(passwordEncoder.encode(memberJoinDto.getPw()));
-            Member member = memberJoinDto.getMember();
-            if(memberJoinDto.getImage().isEmpty()){
-                fileProcessor.fileSave(memberJoinDto.getImage());
+            String profilePath =null;
+            if(!memberJoinDto.getImage().isEmpty()){
+                profilePath = fileProcessor.fileSave(memberJoinDto.getImage());
             }
+            Member member = memberJoinDto.getMember(profilePath);
+
             memberRepository.save(member);
             return member.getMemberNo();
         }
