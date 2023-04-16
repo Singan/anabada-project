@@ -44,6 +44,7 @@ const routes = [
         component: () => import('@/components/ProductRegistrationPage.vue'),
     },
     
+    
 ]
 
 
