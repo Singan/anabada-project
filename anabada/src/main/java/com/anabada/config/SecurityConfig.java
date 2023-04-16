@@ -1,4 +1,4 @@
-package com.anabada.security;
+package com.anabada.config;
 
 import com.anabada.security.token.JwtAuthFilter;
 import com.anabada.security.token.JwtTokenProvider;
@@ -40,19 +40,27 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class SecurityConfig   {
 
     private final JwtAuthFilter jwtAuthFilter;
-
+    private final String[] PERMIT_URL_ARRAY = {
+            "/api-docs/**",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/swagger-ui/**",
+            "/swagger-ui",
+            "/swagger-ui.html",
+            "/api-docs",
+    };
     /**
      * 1. 정적 자원(Resource)에 대해서 인증된 사용자가  정적 자원의 접근에 대해 ‘인가’에 대한 설정을 담당하는 메서드이다.
      *
      * @return WebSecurityCustomizer
      */
 
-//    @Bean
-//    public WebSecurityCustomizer configure() {
-//        return (web) -> web.ignoring().mvcMatchers(
-//                "/swagger-ui","/swagger-ui/index.html"
-//        );
-//    }
+    @Bean
+    public WebSecurityCustomizer configure() {
+        return (web) -> web.ignoring().mvcMatchers(
+                PERMIT_URL_ARRAY
+        );
+    }
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
@@ -81,7 +89,6 @@ public class SecurityConfig   {
                 .authorizeHttpRequests()
                 .antMatchers(HttpMethod.POST, "/member").permitAll()
                 .antMatchers(HttpMethod.POST, "/member/login").permitAll()
-                .antMatchers("/swagger-ui","/swagger-ui/**","/api-docs/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
 

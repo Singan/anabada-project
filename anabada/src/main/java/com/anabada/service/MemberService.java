@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
@@ -36,8 +37,9 @@ public class MemberService implements UserDetailsService {
         if (!existsMemberByMemberId(memberJoinDto.getId())) {
             memberJoinDto.setPw(passwordEncoder.encode(memberJoinDto.getPw()));
             String profilePath =null;
-            if(!memberJoinDto.getImage().isEmpty()){
-                profilePath = fileProcessor.fileSave(memberJoinDto.getImage());
+            MultipartFile file = memberJoinDto.getImage();
+            if(!((file==null)||(file.isEmpty()))){
+                profilePath = fileProcessor.fileSave(file);
             }
             Member member = memberJoinDto.getMember(profilePath);
 
