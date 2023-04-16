@@ -1,33 +1,31 @@
 <template>
-  <div class="--2">
-      <div class="--3" @click="goAuction">경매</div>
-
-      <div class="----">아나바다</div>
-
-      <div class="--4" @click="goChat">채팅</div>
-
-      <div class="---" contenteditable="true" ></div>
-
-      <div class="--5">
-        <div class="----2"></div>
-
-        <div class="----3">
-          <div class="_18px">검색하기</div>
-        </div>
-      </div>
-
-      <div class="---2">
-        <div class="----4"></div>
-
-        <div class="----5">
-          <div class="_18px2" @click="goLogin">
-            
-            로그인
+<div class="Header">
+      <div class="HeaderButton">
+        <div class="AuctionButton" @click="goAuction">경매</div>
+  
+        <div class="Logo">아나바다</div>
+  
+        <div class="ChatButton" @click="goChat">채팅</div>
+  
+        <div class="SearchBox" contenteditable="true" ></div>
+  
+        <div class="Search">
+          <div class="SearchButton"></div>
+          <div class="SearchText">
+            <div class="SearchText1">검색하기</div>
           </div>
-          
+        </div>
+  
+        <div class="Login">
+          <div class="LoginBox"></div>
+          <div class="LoginText">
+            <div class="LoginText1" @click="goLogin">
+              로그인
+            </div>          
+          </div>
         </div>
       </div>
-    </div>
+      </div>
 </template>
 <script>
 export default {

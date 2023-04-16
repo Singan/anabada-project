@@ -33,6 +33,17 @@ const routes = [
         name: 'Chat',
         component: () => import('@/components/chat.vue'),
     },
+    {
+        path: '/memberExit',
+        name: 'MemberExit',
+        component: () => import('@/components/MemberExit.vue'),
+    },
+    {
+        path: '/productRegistrationPage',
+        name: 'ProductRegistrationPage',
+        component: () => import('@/components/ProductRegistrationPage.vue'),
+    },
+    
 ]
 
 
