@@ -1,5 +1,5 @@
 <template>
-<div class="-----">
+  <div class="-----">
     <div class="-----2">사용자이름</div>
 
     <div class="rectangle-4"></div>

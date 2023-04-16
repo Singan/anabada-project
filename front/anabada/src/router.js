@@ -39,21 +39,6 @@ const routes = [
         name: 'AccountRegister',
         component: () => import('@/components/AccountRegister.vue'),
     },
-    {
-        path: '/memberExit',
-        name: 'MemberExit',
-        component: () => import('@/components/MemberExit.vue'),
-    },
-    {
-        path: '/productRegistrationPage',
-        name: 'ProductRegistrationPage',
-        component: () => import('@/components/ProductRegistrationPage.vue'),
-    },
-    {
-        path: '/memberJoin',
-        name: 'MemberJoin',
-        component: () => import('@/components/MemberJoin.vue'),
-    },
 ]
 
 
