@@ -1,32 +1,28 @@
 <template>
 
-<div class="--">
-    <div class="--2">
-      <div class="--3" @click="goAuction">경매</div>
+<div class="Header">
+    <div class="HeaderButton">
+      <div class="AuctionButton" @click="goAuction">경매</div>
 
-      <div class="----">아나바다</div>
+      <div class="Logo">아나바다</div>
 
-      <div class="--4" @click="goChat">채팅</div>
+      <div class="ChatButton" @click="goChat">채팅</div>
 
-      <div class="---" contenteditable="true" ></div>
+      <div class="SearchBox" contenteditable="true" ></div>
 
-      <div class="--5">
-        <div class="----2"></div>
-
-        <div class="----3">
-          <div class="_18px">검색하기</div>
+      <div class="Search">
+        <div class="SearchButton"></div>
+        <div class="SearchText">
+          <div class="Text1">검색하기</div>
         </div>
       </div>
 
-      <div class="---2">
-        <div class="----4"></div>
-
-        <div class="----5">
-          <div class="_18px2" @click="goLogin">
-            
+      <div class="Login">
+        <div class="LoginBox"></div>
+        <div class="LoginText">
+          <div class="Text2" @click="goLogin">
             로그인
-          </div>
-          
+          </div>          
         </div>
       </div>
     </div>
@@ -157,23 +153,23 @@ export default {
 
 <style scoped>
 
-.--,
-.-- * {
+.header,
+.header * {
   box-sizing: border-box;
 }
-.-- {
+.header {
   background: #ffffff;
   width: 1920px;
   height: 1900px;
   position: relative;
   overflow: hidden;
 }
-.--2 {
+.headerButton {
   width: 1130px;
   height: 40px;
   position: static;
 }
-.--3 {
+.AuctionButton {
   color: #0075ff;
   text-align: center;
   font: 700 18px "Roboto", sans-serif;
@@ -186,7 +182,7 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.---- {
+.Logo {
   color: #0075ff;
   text-align: center;
   font: 700 24px "Roboto", sans-serif;
@@ -199,7 +195,7 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.--4 {
+.ChatButton {
   color: #000000;
   text-align: center;
   font: 700 18px "Roboto", sans-serif;
@@ -212,7 +208,7 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.--- {
+.SearchBox {
   background: #d9ecff;
   border-radius: 5px;
   width: 450px;
@@ -223,12 +219,12 @@ export default {
   text-align: center;
   line-height: 40px;
 }
-.--5 {
+.Search {
   width: 130px;
   height: 40px;
   position: static;
 }
-.----2 {
+.SearchButton {
   background: #ffffff;
   border-radius: 5px;
   border-style: solid;
@@ -240,14 +236,14 @@ export default {
   left: 1265px;
   top: 30px;
 }
-.----3 {
+.SearchText {
   width: 80px;
   height: 30px;
   position: absolute;
   left: 1290px;
   top: 35px;
 }
-._18px {
+.Text1 {
   color: #000000;
   text-align: center;
   font: 700 18px "Roboto", sans-serif;
@@ -260,12 +256,12 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.---2 {
+.Login {
   width: 80px;
   height: 40px;
   position: static;
 }
-.----4 {
+.LoginBox {
   background: #0075ff;
   border-radius: 5px;
   width: 80px;
@@ -274,14 +270,14 @@ export default {
   left: 1445px;
   top: 30px;
 }
-.----5 {
+.LoginText {
   width: 80px;
   height: 30px;
   position: absolute;
   left: 1445px;
   top: 35px;
 }
-._18px2 {
+.Text2 {
   color: #ffffff;
   text-align: center;
   font: 700 18px "Roboto", sans-serif;
