@@ -43,8 +43,51 @@ const routes = [
         name: 'ProductRegistrationPage',
         component: () => import('@/components/ProductRegistrationPage.vue'),
     },
-    
-    
+    {
+        path: '/jjim',
+        name: 'Jjim',
+        component: () => import('@/components/Jjim.vue'),
+    },
+    {
+        path: '/productDt',
+        name: 'ProductDt',
+        component: () => import('@/components/ProductDt.vue'),
+    },
+    {
+        path: '/memberChange',
+        name: 'MemberChange',
+        component: () => import('@/components/MemberChange.vue'),
+    },
+    {
+        path: '/evaluation',
+        name: 'Evaluation',
+        component: () => import('@/components/Evaluation.vue'),
+    },
+    {
+        path: '/auctionBid',
+        name: 'AuctionBid',
+        component: () => import('@/components/AuctionBid.vue'),
+    },
+    {
+        path: '/successfulBid',
+        name: 'SuccessfulBid',
+        component: () => import('@/components/SuccessfulBid.vue'),
+    },
+    {
+        path: '/acountRegister',
+        name: 'AcountRegister',
+        component: () => import('@/components/AcountRegister.vue'),
+    },
+    {
+        path: '/transactionDt1',
+        name: 'TransactionDt1',
+        component: () => import('@/components/TransactionDt1.vue'),
+    },
+    {
+        path: '/transactionDt2',
+        name: 'TransactionDt2',
+        component: () => import('@/components/TransactionDt2.vue'),
+    },
 ]
 
 
