@@ -28,6 +28,7 @@ public class Member {
     private String memberAddr;
     private String memberWishAddr;
     private String memberAccount;
+    private String memberImage;
     @Builder
     public Member(Long memberNo, String memberName,
                   String memberId,
@@ -38,7 +39,9 @@ public class Member {
                   String memberDetailAddr,
                   String memberAddr,
                   String memberWishAddr,
-                  String memberAccount) {
+                  String memberAccount,
+                  String memberImage
+    ) {
         this.memberNo = memberNo;
         this.memberName = memberName;
         this.memberId = memberId;
@@ -50,5 +53,6 @@ public class Member {
         this.memberAddr = memberAddr;
         this.memberWishAddr = memberWishAddr;
         this.memberAccount = memberAccount;
+        this.memberImage = memberImage;
     }
 }

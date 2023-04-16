@@ -22,7 +22,7 @@ public class MemberController {
 
     @PostMapping
     @Operation(description = "회원가입")
-    public Long memberJoin(@RequestBody @Valid MemberJoinDto memberJoinDto) {
+    public Long memberJoin(@Valid MemberJoinDto memberJoinDto) {
         return memberService.memberJoin(memberJoinDto);
     }
 

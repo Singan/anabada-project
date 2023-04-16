@@ -26,7 +26,11 @@ public class ProductController {
 
     @PostMapping
     @Operation(description = "상품등록")
-    public Long productInsert(@RequestBody ProductInsertDto productInsertDto, @AuthenticationPrincipal MemberDetailDTO principal){
+    public Long productInsert(
+            @RequestBody ProductInsertDto productInsertDto,
+            @AuthenticationPrincipal MemberDetailDTO principal
+
+    ){
 
         //스레드에 MemberDetail을 넣는다.
         return productService.productSave(productInsertDto,principal);
