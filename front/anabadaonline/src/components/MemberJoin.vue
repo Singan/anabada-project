@@ -17,13 +17,13 @@
 				<label for="birth">생년월일</label>
 				<input type="date" id="birth" v-model="birth" />
 			</div>
+            <div>
+				<label for="addr">주소</label>
+				<input type="text" id="addr" v-model="addr" />
+			</div>
 			<div>
 				<label for="detailaddr">상세주소</label>
 				<input type="text" id="detailaddr" v-model="detailaddr" />
-			</div>
-			<div>
-				<label for="addr">주소</label>
-				<input type="text" id="addr" v-model="addr" />
 			</div>
             <div>
 				<label for="Wishaddr">거래희망지</label>
