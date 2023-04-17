@@ -59,6 +59,7 @@ export default {
 		};
 	},
 	methods: {
+        
 		submitForm() {
 			let form = new FormData()
 			form.append("id",this.id)
@@ -76,6 +77,10 @@ export default {
             }
             ).then((response)=>{
             console.log(response)
+            if(response.status==200){
+                axios.defaults.headers.common['X-AUTH-TOKEN'] = `${response.data.accessToken}`
+                this.$router.push('./login')
+            }
           })
 		},
         onInputImage(e) {
