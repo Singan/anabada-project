@@ -26,7 +26,7 @@ public class ProductInsertDto {
     private Long categoryNo;
 
     public Product getProduct(MemberDetailDTO principal){
-        Member member = Member.builder().memberNo(principal.getNo()).build();
+        Member member = principal.getMember();
         Category category = Category.builder().categoryNo(categoryNo).build();
         Product product = Product.builder()
                 .productDetail(detail)

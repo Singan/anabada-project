@@ -21,12 +21,12 @@ import java.util.stream.Collectors;
 public class ProductService {
     private final ProductRepository productRepository;
 
-    public Long productSave(ProductInsertDto productInsertDto,@AuthenticationPrincipal MemberDetailDTO memberDetailDTO){
+    public Long productSave(ProductInsertDto productInsertDto,MemberDetailDTO memberDetailDTO){
         Product product = productInsertDto.getProduct(memberDetailDTO);
 
         productRepository.save(product);
         return product.getProductNo();
-    };
+    }
 
     // product 세부 정보
     public ProductFindOneDto findProduct(Long productNo) {
@@ -43,17 +43,6 @@ public class ProductService {
 
     // 모든 product
     public ResultList<String,List<ProductFindAllDto>> findProductList() {
-        List<Product> productList = productRepository.findAll();
-
-        List<ProductFindAllDto> productDtoList =
-                productList.stream().map(product -> new ProductFindAllDto(product)).collect(Collectors.toList());
-
-        ResultList<String,List<ProductFindAllDto>> result = new ResultList<>("전자",productDtoList);
-        return result;
-    }
-
-
-    public ResultList<String,List<ProductFindAllDto>> findProductList2() {
         List<Product> productList = productRepository.findAll();
 
         List<ProductFindAllDto> productDtoList =

@@ -25,7 +25,8 @@ public class Product {
 
 //    @OneToOne(mappedBy = "product", fetch = FetchType.LAZY)
 //    private Orders orders;
-
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<ProductImage> productImageList;
     @Column
     private String productDetail;
     @Column
@@ -37,7 +38,7 @@ public class Product {
     @JoinColumn(name="category_no")
     private Category category;
     @Builder
-    public Product(Long productNo, Member member, String productName, String productDetail, Integer productPrice, String productUseDate, Category category) {
+    public Product(Long productNo, Member member, String productName, String productDetail, Integer productPrice, String productUseDate, Category category,List<ProductImage> productImageList) {
         this.productNo = productNo;
         this.member = member;
         this.productName = productName;
@@ -45,5 +46,6 @@ public class Product {
         this.productPrice = productPrice;
         this.productUseDate = productUseDate;
         this.category = category;
+        this.productImageList = productImageList;
     }
 }

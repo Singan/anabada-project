@@ -1,19 +1,22 @@
 import Vue from 'vue'
 import App from './App.vue'
-import VueRouter from 'vue-router'
 import routes from './router'
- 
+import VueRouter from 'vue-router'
+import axios from 'axios'
 Vue.use(VueRouter)
- 
+Vue.prototype.$axios = axios;
+axios.defaults.baseURL = 'http://localhost:8081'
+
 const router = new VueRouter({
-    routes
+  mode:'history',
+  routes:routes
 })
  
 
 Vue.config.productionTip = false
 
 new Vue({
-  router,
+  router:router,
   render: h => h(App),
 }).$mount('#app')
 

@@ -21,20 +21,47 @@
     <div class="-------">비밀번호 찾기</div>
 
     <div class="----2">회원가입</div>
+    <form>
+      <div class="---5" id="id"><input type="text" value="아이디" v-model="id"></div>
 
-    <div class="---5">아이디</div>
-
-    <div class="----3">비밀번호</div>
-
-    <div class="---6">로그인</div>
+      <div class="----3" id="pw"><input value="비밀번호" type="password" v-model="pw"></div>
+    </form>
+    <div class="---6" @click="login">로그인</div>
   </div>
   
 </template>
 
 <script>
-export default {
-  name:"LoginPage"
-}
+  export default {
+    name:"LoginPage",
+    data() {
+      return {
+        id: '',
+        pw: ''
+      }
+    },
+    methods: {
+        
+        login() {
+          console.log(this.id)
+
+          this.$axios.post('/member/login',
+          {
+            id:this.id,
+            pw:this.pw
+          }).then((response)=>{
+            console.log(response)
+            if(response.status==200){
+            this.$axios.defaults.headers.common['X-AUTH-TOKEN'] = `${response.data.accessToken}`
+            this.$router.back()
+          }
+            
+          })
+
+
+      },
+    }
+  }
 </script>
 
 <style scoped>

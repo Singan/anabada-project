@@ -5,6 +5,7 @@ import com.anabada.dto.request_dto.MemberJoinDto;
 import com.anabada.dto.request_dto.MemberLoginDto;
 import com.anabada.dto.response_dto.MyPageFindDto;
 import com.anabada.entity.Member;
+import com.anabada.etc.FileProcessor;
 import com.anabada.repository.MemberRepository;
 import com.anabada.security.token.JwtTokenProvider;
 import com.anabada.security.token.TokenResultDto;
@@ -13,8 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +22,7 @@ public class MemberService implements UserDetailsService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
-
+    private final FileProcessor fileProcessor;
     public boolean existsMemberByMemberId(String id){
         return memberRepository.existsMemberByMemberId(id);
     }
@@ -37,7 +37,13 @@ public class MemberService implements UserDetailsService {
     public Long memberJoin(MemberJoinDto memberJoinDto) {
         if (!existsMemberByMemberId(memberJoinDto.getId())) {
             memberJoinDto.setPw(passwordEncoder.encode(memberJoinDto.getPw()));
-            Member member = memberJoinDto.getMember();
+            String profilePath =null;
+            MultipartFile file = memberJoinDto.getImage();
+            if(!((file==null)||(file.isEmpty()))){
+                profilePath = fileProcessor.fileSave(file);
+            }
+            Member member = memberJoinDto.getMember(profilePath);
+
             memberRepository.save(member);
             return member.getMemberNo();
         }
@@ -60,7 +66,6 @@ public class MemberService implements UserDetailsService {
     public MemberDetailDTO loadUserByUsername(String id) throws UsernameNotFoundException {
         Member member = findByMemberId(id);
         MemberDetailDTO memberDetailDTO = new MemberDetailDTO(member);
-
         return memberDetailDTO;
     }
 
