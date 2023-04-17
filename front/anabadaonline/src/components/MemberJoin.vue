@@ -39,6 +39,8 @@
 </template>
 
 <script>
+import axios from '@/axios';
+
 export default {
 	name: 'SignupForm',
 	data() {
@@ -55,9 +57,12 @@ export default {
 	},
 	methods: {
 		submitForm() {
-			let form = new FormData()
-			form.append("id",this.id)
+			console.log(this)
+			axios.post("/member",{
+				id:this.id,
+				pw:this.pw,
 
+			}, {header: { 'Content-Type': 'multipart/form-data' }});
 		},
         onInputImage(e) {
             this.image = e.target.files[0];
