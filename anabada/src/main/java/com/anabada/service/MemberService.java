@@ -3,6 +3,7 @@ package com.anabada.service;
 import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.MemberJoinDto;
 import com.anabada.dto.request_dto.MemberLoginDto;
+import com.anabada.dto.response_dto.MyPageFindDto;
 import com.anabada.entity.Member;
 import com.anabada.repository.MemberRepository;
 import com.anabada.security.token.JwtTokenProvider;
@@ -61,5 +62,13 @@ public class MemberService implements UserDetailsService {
         MemberDetailDTO memberDetailDTO = new MemberDetailDTO(member);
 
         return memberDetailDTO;
+    }
+
+    public MyPageFindDto myPage(String token) {
+        String memberId = jwtTokenProvider.parseTokenToUserInfo(token);
+        Member member = findByMemberId(memberId);
+        MyPageFindDto myPageFindDto = new MyPageFindDto(member);
+
+        return myPageFindDto;
     }
 }
