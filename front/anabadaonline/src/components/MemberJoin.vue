@@ -61,13 +61,16 @@ export default {
 			form.append("id",this.id)
             form.append("pw",this.pw)
             form.append("name",this.name)
-            form.append("birth",this.birth)
+            // form.append("birth",this.birth)
             form.append("detailaddr",this.detailaddr)
             form.append("addr",this.addr)
             form.append("Wishaddr",this.Wishaddr)
 
             axios.post('/member',
-            form
+            form,
+            {
+                header: { 'Content-Type': 'multipart/form-data' }
+            }
             ).then((response)=>{
             console.log(response)
           })
