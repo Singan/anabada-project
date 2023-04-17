@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '@/axios.js';
 
 export default {
 	name: 'SignupForm',
@@ -59,11 +59,23 @@ export default {
 		submitForm() {
 			let form = new FormData()
 			form.append("id",this.id)
+            form.append("pw",this.pw)
+            form.append("name",this.name)
+            form.append("birth",this.birth)
+            form.append("detailaddr",this.detailaddr)
+            form.append("addr",this.addr)
+            form.append("Wishaddr",this.Wishaddr)
 
+            axios.post('/member',
+            form
+            ).then((response)=>{
+            console.log(response)
+          })
 		},
         onInputImage(e) {
             this.image = e.target.files[0];
         }
+        
 	},
 };
 // 일반
