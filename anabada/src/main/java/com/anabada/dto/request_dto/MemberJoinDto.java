@@ -12,7 +12,6 @@ public class MemberJoinDto extends MemberLoginDto{
     private String name;
     private LocalDate birth;
     private String detailAddr;
-//    @NotNull(message = "기본주소지를 입력해주세요")
     private String addr;
     private String wishAddr;
     private MultipartFile image;

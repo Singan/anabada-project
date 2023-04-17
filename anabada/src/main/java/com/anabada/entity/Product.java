@@ -25,8 +25,7 @@ public class Product {
 
 //    @OneToOne(mappedBy = "product", fetch = FetchType.LAZY)
 //    private Orders orders;
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<ProductImage> productImageList;
+
     @Column
     private String productDetail;
     @Column
@@ -37,6 +36,9 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="category_no")
     private Category category;
+
+    @OneToMany(mappedBy = "product")
+    private List<ProductImage> productImageList;
     @Builder
     public Product(Long productNo, Member member, String productName, String productDetail, Integer productPrice, String productUseDate, Category category,List<ProductImage> productImageList) {
         this.productNo = productNo;
