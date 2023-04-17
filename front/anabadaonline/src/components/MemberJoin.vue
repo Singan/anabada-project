@@ -31,7 +31,7 @@
 			</div>
             <div>
 				<label for="image">프로필 이미지</label>
-				<input multiple @change='onInputImage()' ref="serveyImage" type="file">
+				<input id="image" type="file" @change="onFileChange">
 			</div>
 			<button type="submit">회원가입</button>
 		</form>
@@ -50,7 +50,7 @@ export default {
 			detailaddr: '',
 			addr: '',
             Wishaddr: '',
-            image: '',
+            image: null,
 		};
 	},
 	methods: {
