@@ -31,7 +31,7 @@
 			</div>
             <div>
 				<label for="image">프로필 이미지</label>
-				<input id="image" type="file" @change="onFileChange">
+				<input id="image" type="file" @change="onInputImage" accept="image/*"/>
 			</div>
 			<button type="submit">회원가입</button>
 		</form>
@@ -56,33 +56,18 @@ export default {
 		};
 	},
 	methods: {
-		async submitForm() {
-            const userData = {
-                id: this.id,
-                pw: this.pw,
-                name: this.name,
-                birth: this.birth,
-                detailaddr: this.detailaddr,
-                addr: this.addr,
-                Wishaddr: this.Wishaddr,
-                image: this.image,
-            };         
-            const { data } = await registerUser(userData)
-            this.logMessage = `${data.name} 님이 가입되었습니다.`;
-            // try {
-			// 	const response = await axios.post('/api/member', userData); 
-			// 	if (response.status === 200) {
-			// 		alert('회원가입성공.');
-			// 		this.$router.push('/login');
-			// 	} else {
-			// 		alert(response.data);
-			// 	}
-			// } catch (error) {
-			// 	console.error(error);
-			// }
-        },
+		submitForm() {
+			let form = new FormData()
+			form.append("id",this.id)
+
+		},
+        onInputImage(e) {
+            this.image = e.target.files[0];
+        }
 	},
 };
+// 일반
+//
 </script>
 
 <style scoped></style>
