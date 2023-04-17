@@ -2,6 +2,7 @@ package com.anabada.entity;
 
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -22,4 +23,10 @@ public class ProductImage {
 
     private String imageAddr;
 
+    @Builder
+    public ProductImage(Long productImageNo, Product product, String imageAddr) {
+        this.productImageNo = productImageNo;
+        this.product = product;
+        this.imageAddr = imageAddr;
+    }
 }

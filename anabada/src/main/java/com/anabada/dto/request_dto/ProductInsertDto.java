@@ -4,14 +4,18 @@ import com.anabada.dto.MemberDetailDTO;
 import com.anabada.entity.Category;
 import com.anabada.entity.Member;
 import com.anabada.entity.Product;
+import com.anabada.entity.ProductImage;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -24,10 +28,11 @@ public class ProductInsertDto {
     private Integer price;
 
     private Long categoryNo;
-
+    private MultipartFile[] productImages;
     public Product getProduct(MemberDetailDTO principal){
         Member member = principal.getMember();
         Category category = Category.builder().categoryNo(categoryNo).build();
+
         Product product = Product.builder()
                 .productDetail(detail)
                 .productName(name)

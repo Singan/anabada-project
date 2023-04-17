@@ -37,7 +37,7 @@ public class Product {
     @JoinColumn(name="category_no")
     private Category category;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
     private List<ProductImage> productImageList;
     @Builder
     public Product(Long productNo, Member member, String productName, String productDetail, Integer productPrice, String productUseDate, Category category,List<ProductImage> productImageList) {

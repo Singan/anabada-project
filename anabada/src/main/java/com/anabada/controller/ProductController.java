@@ -7,6 +7,7 @@ import com.anabada.dto.response_dto.ProductFindOneDto;
 import com.anabada.dto.response_dto.ResultList;
 import com.anabada.entity.Product;
 import com.anabada.repository.ProductRepository;
+import com.anabada.service.ProductImageService;
 import com.anabada.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -23,17 +24,15 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
     private final ProductService productService;
-
+    private final ProductImageService imageService;
     @PostMapping
     @Operation(description = "상품등록")
-    public Long productInsert(
-            @RequestBody ProductInsertDto productInsertDto,
-            @AuthenticationPrincipal MemberDetailDTO principal
-
-    ){
-
+    public Long productInsert(ProductInsertDto productInsertDto, @AuthenticationPrincipal MemberDetailDTO principal){
         //스레드에 MemberDetail을 넣는다.
-        return productService.productSave(productInsertDto,principal);
+        Long productNo = productService.productSave(productInsertDto,principal);
+        imageService.productImageSave(productNo,productInsertDto.getProductImages());
+
+        return productNo;
     }
 
     @GetMapping
