@@ -93,6 +93,12 @@ const routes = [
         name: 'MemberJoin',
         component: () => import('@/components/MemberJoin.vue'),
     },
+    {
+        path: '/JoinMember',
+        name: 'JoinMember',
+        component: () => import('@/components/JoinMember.vue'),
+    }
+    
 ]
 
 
