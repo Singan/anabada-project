@@ -12,7 +12,8 @@ import java.io.FileOutputStream;
 public class FileProcessor {
     public String fileSave(MultipartFile multipartFile) {
         System.out.println(multipartFile.equals(null));
-        String fileName = "C:/anabada/image/" ;
+//        String fileName = "C:/anabada/image/" ;
+        String fileName = "/Users/hwi/anabada/image/";
         System.out.println("fileName"+fileName);
         try{
             File file = new File(fileName);

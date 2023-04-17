@@ -13,11 +13,13 @@ public class MyPageFindDto {
 
     private String memberName;
     private Integer memberMoney;
+    private String memberImage;
     // 멤버의 계좌번호
 //    private String memberAccountNum;
 
     public MyPageFindDto (Member member) {
         this.memberName = member.getMemberName();
         this.memberMoney = member.getMemberMoney();
+        this.memberImage = member.getMemberImage();
     }
 }

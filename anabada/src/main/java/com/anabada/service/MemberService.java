@@ -70,10 +70,10 @@ public class MemberService implements UserDetailsService {
     }
 
     public MyPageFindDto myPage(String token) {
-        String memberId = jwtTokenProvider.parseTokenToUserInfo(token);
+
+        String memberId = jwtTokenProvider.getUserIdFromToken(token);
         Member member = findByMemberId(memberId);
         MyPageFindDto myPageFindDto = new MyPageFindDto(member);
-
         return myPageFindDto;
     }
 }

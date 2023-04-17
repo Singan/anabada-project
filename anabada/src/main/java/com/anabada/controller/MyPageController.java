@@ -1,6 +1,7 @@
 package com.anabada.controller;
 
 import com.anabada.dto.response_dto.MyPageFindDto;
+import com.anabada.security.token.JwtTokenProvider;
 import com.anabada.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,9 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class MyPageController {
 
     private final MemberService memberService;
-
     @PostMapping
-    public MyPageFindDto myPageFindDto(@RequestHeader(value = "X-AUTH-TOKEN") String token) {
-        return memberService.myPage(token);
+    public MyPageFindDto myPageFindDto(@RequestHeader("X-AUTH-TOKEN") String header) {
+        return memberService.myPage(header);
     }
 }
