@@ -1,4 +1,4 @@
-<template>
+ <template>
     <div class="----">
       <div class="----2">
         <div class="--">경매</div>

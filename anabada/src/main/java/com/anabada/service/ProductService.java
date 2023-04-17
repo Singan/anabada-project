@@ -6,6 +6,7 @@ import com.anabada.dto.response_dto.ProductFindAllDto;
 import com.anabada.dto.response_dto.ProductFindOneDto;
 import com.anabada.dto.response_dto.ResultList;
 import com.anabada.entity.Product;
+import com.anabada.etc.FileProcessor;
 import com.anabada.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -20,10 +21,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ProductService {
     private final ProductRepository productRepository;
-
     public Long productSave(ProductInsertDto productInsertDto,MemberDetailDTO memberDetailDTO){
         Product product = productInsertDto.getProduct(memberDetailDTO);
-
         productRepository.save(product);
         return product.getProductNo();
     }

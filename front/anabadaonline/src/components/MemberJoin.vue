@@ -4,7 +4,7 @@
 			
 			<div >
 				<label for="id">id</label>
-				<input type="text" id="email" v-model="id" />
+				<input type="text" id="id" v-model="id" />
 			</div>
 			<div >
 				<label for="pw">pw</label>
@@ -32,7 +32,7 @@
 			</div>
             <div >
 				<label for="image">프로필 이미지</label>
-				<input id="image" type="file" @change="onFileChange">
+				<input id="image" type="file" @change="onInputImage" accept="image/*"/>
 			</div>
 			<div>
 			<button type="submit">회원가입</button>
@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import axios from '@/axios.js';
+
 export default {
 	name: 'SignupForm',
 	data() {
@@ -53,19 +55,34 @@ export default {
 			detailaddr: '',
 			addr: '',
             Wishaddr: '',
-            image: null,
+            image: '',
 		};
 	},
 	methods: {
 		submitForm() {
-			console.log('dd');
+			let form = new FormData()
+			form.append("id",this.id)
+            form.append("pw",this.pw)
+            form.append("name",this.name)
+            form.append("birth",this.birth)
+            form.append("detailaddr",this.detailaddr)
+            form.append("addr",this.addr)
+            form.append("Wishaddr",this.Wishaddr)
+
+            axios.post('/member',
+            form
+            ).then((response)=>{
+            console.log(response)
+          })
 		},
-        onInputImage() {
-            this.input.image = this.$refs.serveyImage.files
-            console.log("this.input.image")
+        onInputImage(e) {
+            this.image = e.target.files[0];
         }
+        
 	},
 };
+// 일반
+//
 </script>
 
 <style scoped>
