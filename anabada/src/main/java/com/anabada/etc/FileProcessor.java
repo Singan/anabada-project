@@ -16,6 +16,10 @@ public class FileProcessor {
         String fileName = "C:/anabada/images" ;
         System.out.println("fileName"+fileName);
         try{
+
+            if(!isImageCheck(multipartFile.getOriginalFilename())){
+                throw new RuntimeException(multipartFile.getOriginalFilename()+"은 이미지가 아닙니다.");
+            }
             File file = new File(fileName);
             file.mkdirs();
             fileName = fileName+"/"+multipartFile.getOriginalFilename();
@@ -35,6 +39,9 @@ public class FileProcessor {
         List<String> resultPath = new ArrayList<>();
         for (MultipartFile multipartFile : multipartFiles) {
             try{
+                if(!isImageCheck(multipartFile.getOriginalFilename())){
+                    continue;
+                }
                 String filePath = fileName+multipartFile.getOriginalFilename();
 
                 multipartFile.transferTo(new File(filePath));
@@ -45,5 +52,15 @@ public class FileProcessor {
             }
         }
         return resultPath;
+    }
+
+    public boolean isImageCheck(String fileName){
+        int dot = fileName.lastIndexOf(".");
+        String extension = fileName.substring(dot).toLowerCase();
+        String[] extensionList = {"png","jpg","jpeg","gif","img"};
+        if(List.of(extensionList).contains(extension)){
+            return false;
+        }
+        return true;
     }
 }

@@ -31,7 +31,7 @@
 			</div>
             <div>
 				<label for="image">프로필 이미지</label>
-				<input id="image" type="file" @change="onFileChange">
+				<input id="image" type="file" @change="onInputImage" accept="image/*"/>
 			</div>
 			<button type="submit">회원가입</button>
 		</form>
@@ -55,14 +55,16 @@ export default {
 	},
 	methods: {
 		submitForm() {
-			console.log('dd');
+			let form = new FormData();
+
 		},
-        onInputImage() {
-            this.input.image = this.$refs.serveyImage.files
-            console.log("this.input.image")
+        onInputImage(e) {
+            this.image = e.target.files[0];
         }
 	},
 };
+// 일반
+//
 </script>
 
 <style scoped></style>
