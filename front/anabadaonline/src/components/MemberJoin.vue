@@ -55,7 +55,8 @@ export default {
 	},
 	methods: {
 		submitForm() {
-			let form = new FormData();
+			let form = new FormData()
+			form.append("id",this.id)
 
 		},
         onInputImage(e) {
