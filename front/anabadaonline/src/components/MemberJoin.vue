@@ -3,7 +3,7 @@
 		<form @submit.prevent="submitForm">
 			<div>
 				<label for="id">id</label>
-				<input type="text" id="email" v-model="id" />
+				<input type="text" id="id" v-model="id" />
 			</div>
 			<div>
 				<label for="pw">pw</label>
@@ -39,6 +39,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
 	name: 'SignupForm',
 	data() {
@@ -50,17 +52,35 @@ export default {
 			detailaddr: '',
 			addr: '',
             Wishaddr: '',
-            image: null,
+            image: '',
 		};
 	},
 	methods: {
-		submitForm() {
-			console.log('dd');
-		},
-        onInputImage() {
-            this.input.image = this.$refs.serveyImage.files
-            console.log("this.input.image")
-        }
+		async submitForm() {
+            const userData = {
+                id: this.id,
+                pw: this.pw,
+                name: this.name,
+                birth: this.birth,
+                detailaddr: this.detailaddr,
+                addr: this.addr,
+                Wishaddr: this.Wishaddr,
+                image: this.image,
+            };         
+            const { data } = await registerUser(userData)
+            this.logMessage = `${data.name} 님이 가입되었습니다.`;
+            // try {
+			// 	const response = await axios.post('/api/member', userData); 
+			// 	if (response.status === 200) {
+			// 		alert('회원가입성공.');
+			// 		this.$router.push('/login');
+			// 	} else {
+			// 		alert(response.data);
+			// 	}
+			// } catch (error) {
+			// 	console.error(error);
+			// }
+        },
 	},
 };
 </script>
