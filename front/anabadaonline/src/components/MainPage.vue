@@ -160,9 +160,24 @@
       goChat() {
         this.$router.push('./chat')
       },
-      
-    }
+      searchresultshow(keyword) {
+      if (keyword !== ''){ //검색어를 입력한 경우
+        this.$router.push({
+          name: "SearchPage",
+          params: {
+            keyword: this.keyword,
+            isResultShow: true,
+          },
+        });
+        this.keyword = ''
+        console.log('"',keyword,'"' + ' 검색')
+      } else {
+        alert('검색어를 입력해주세요!')  //검색어를 입력하지 않은 경우
+      }
+    },
   }
+    }
+  
   
   
   </script>
