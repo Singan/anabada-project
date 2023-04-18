@@ -51,8 +51,9 @@
 </template>
 
 <script>
+ import axios from '@/axios.js'
 export default {
-	name: 'SignupForm',
+	name: 'JoinMember',
 	data() {
 		return {
 			id: '',
@@ -66,13 +67,10 @@ export default {
 		};
 	},
 	methods: {
-		submitForm() {
-			console.log('dd');
-		},
-        onInputImage() {
-            this.input.image = this.$refs.serveyImage.files
-            console.log("this.input.image")
-        }
+    onInputImage() {
+      this.input.image = this.$refs.serveyImage.files
+        console.log("this.input.image")
+        },
 	},
 
   methods: {
