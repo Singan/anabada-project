@@ -8,12 +8,28 @@
   
         <div class="ChatButton" @click="goChat">채팅</div>
   
-        <div class="SearchBox" contenteditable="true" ></div>
+        <div class="SearchBox" contenteditable="true" >
+          <b-form-input
+          size="sm"
+          class="mr-sm-2"
+          type="text"
+          placeholder="검색어를 입력해주세요"
+          v-model="keyword"  
+          @keyup.enter="searchresultshow(keyword)"
+        ></b-form-input>
+        </div>
   
         <div class="Search">
           <div class="SearchButton"></div>
           <div class="SearchText">
-            <div class="SearchText1">검색하기</div>
+            <!-- <div class="SearchText1">검색하기</div> -->
+            <b-button
+              size="sm"
+              class="SearchText1"
+              type="submit"
+              @click="goAuction(keyword)" 
+            >검색하기
+            </b-button>
           </div>
         </div>
   
@@ -144,9 +160,24 @@
       goChat() {
         this.$router.push('./chat')
       },
-      
-    }
+      searchresultshow(keyword) {
+      if (keyword !== ''){ //검색어를 입력한 경우
+        this.$router.push({
+          name: "SearchPage",
+          params: {
+            keyword: this.keyword,
+            isResultShow: true,
+          },
+        });
+        this.keyword = ''
+        console.log('"',keyword,'"' + ' 검색')
+      } else {
+        alert('검색어를 입력해주세요!')  //검색어를 입력하지 않은 경우
+      }
+    },
   }
+    }
+  
   
   
   </script>

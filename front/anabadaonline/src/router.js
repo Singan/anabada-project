@@ -19,9 +19,9 @@ const routes = [
         component: () => import('@/components/MyPage.vue'),
     },
     {
-        path: '/product',
-        name: 'ProductInsert',
-        component: () => import('@/components/ProductRegistrationPage.vue'),
+         path: '/product',
+        name: 'Product',
+        component: () => import('@/components/Product.vue'),
     },
     {
         path: '/auction',
@@ -39,9 +39,7 @@ const routes = [
         component: () => import('@/components/MemberExit.vue'),
     },
     {
-        path: '/productRegistrationPage',
-        name: 'ProductRegistrationPage',
-        component: () => import('@/components/ProductRegistrationPage.vue'),
+       
     },
     {
         path: '/jjim',

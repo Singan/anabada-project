@@ -48,6 +48,7 @@ public class SecurityConfig   {
             "/swagger-ui",
             "/swagger-ui.html",
             "/api-docs",
+            "/v3/api-docs/**"
     };
     /**
      * 1. 정적 자원(Resource)에 대해서 인증된 사용자가  정적 자원의 접근에 대해 ‘인가’에 대한 설정을 담당하는 메서드이다.
@@ -87,6 +88,7 @@ public class SecurityConfig   {
                 .cors().and()
                 // [STEP2] 토큰을 활용하는 경우 모든 요청에 대해 '인가'에 대해서 적용
                 .authorizeHttpRequests()
+                .antMatchers("/category").permitAll()
                 .antMatchers(HttpMethod.POST, "/member").permitAll()
                 .antMatchers(HttpMethod.POST, "/member/login").permitAll()
                 .anyRequest().authenticated()
