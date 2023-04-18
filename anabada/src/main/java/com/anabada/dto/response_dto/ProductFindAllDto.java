@@ -11,16 +11,17 @@ public class ProductFindAllDto {
 
     private Long productNo;
     private String productName;
-    private String memberName;
+    private String wishAddr;
     private Integer price;
-    private String categoryName;
-
+    private String productImage;
     public ProductFindAllDto(Product product) {
         this.setProductName(product.getProductName());
         this.setProductNo(product.getProductNo());
-        this.setMemberName(product.getMember().getMemberName());
+        this.setWishAddr(product.getMember().getMemberWishAddr());
         this.setPrice(product.getProductPrice());
-        this.setCategoryName(product.getCategory().getCategoryName());
+        if(!product.getProductImageList().isEmpty()) {
+            this.setProductImage(product.getProductImageList().get(0).getImageAddr());
+        }
     }
 
 }
