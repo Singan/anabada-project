@@ -1,6 +1,7 @@
 package com.anabada.entity;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -18,7 +19,7 @@ public class Member {
     private String memberPw;
     private String memberName;
 
-
+    @DateTimeFormat(pattern = "yyyyMMdd")
     private LocalDate memberBirth;
     private Integer memberMoney;
     private Float memberTemper;

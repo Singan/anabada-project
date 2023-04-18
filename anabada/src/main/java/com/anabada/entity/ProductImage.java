@@ -17,6 +17,7 @@ public class ProductImage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productImageNo;
 
+    // Jpa에서 복합키 설정 찾아보기
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "productNo")
     private Product product;
