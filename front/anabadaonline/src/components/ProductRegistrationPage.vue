@@ -10,22 +10,32 @@
       <div class="---------">
         <div class="---------2"></div>
 
-        <div class="_18px">
-          <div class="_18px2">이미지 변경</div>
+      <form>
+        <div class="image" >
+          <input id="image2" type="file" @change="onInputImage" accept="image/*"/>
+          <div class="image2 ">이미지 변경</div>
+          </div>
+      </form>
+
+      </div>
+
+      
+      <div class="productName" id>
+        <div class="productName2">상품명
         </div>
+        <!-- <div class="---5" id="id"><input type="text" v-model="id"></div> -->
       </div>
-
-      <div class="_20px">
-        <div class="_20px2">상품명</div>
-      </div>
-
-      <div class="group-10">
-        <div class="rectangle-23"></div>
-
-        <div class="sub----">
-          <div class="sub----2">상품 이름을 입력해주세요</div>
+       
+        <form>
+        <div class="productNamebox">
         </div>
-      </div>
+      
+        <div class="productNameText">
+          <div class="productNameText2" contenteditable="true" id="productNameText2">
+            <input type="text" v-model="productNameText2">
+          </div>
+        </div>
+      </form>
 
       <div class="group-18">
         <div class="_20px3">
@@ -36,7 +46,7 @@
           <div class="rectangle-232"></div>
 
           <div class="sub----3">
-            <div class="sub----2">상품 카테고리를 선택해주세요</div>
+            <div class="sub----2"></div>
           </div>
         </div>
       </div>
@@ -49,7 +59,7 @@
         <div class="rectangle-233"></div>
 
         <div class="sub----4">
-          <div class="sub----5">상품에 대한 설명을 간략하게 적어주세요</div>
+          <div class="sub----5"></div>
         </div>
       </div>
       <svg
@@ -178,14 +188,14 @@ export default {
   left: 945px;
   top: 300px;
 }
-._18px {
+.image {
   width: 90px;
   height: 30px;
   position: absolute;
   left: 945px;
   top: 300px;
 }
-._18px2 {
+.image2 {
   color: #ffffff;
   text-align: center;
   font: 700 14px "Roboto", sans-serif;
@@ -198,14 +208,14 @@ export default {
   align-items: center;
   justify-content: center;
 }
-._20px {
+.productName {
   width: 60px;
   height: 23px;
   position: absolute;
   left: 760px;
   top: 347px;
 }
-._20px2 {
+.productName2 {
   color: #000000;
   text-align: left;
   font: 400 16px "Roboto", sans-serif;
@@ -221,7 +231,7 @@ export default {
   height: 30px;
   position: static;
 }
-.rectangle-23 {
+.productNamebox {
   border-radius: 5px;
   border-style: solid;
   border-color: #0075ff;
@@ -232,16 +242,16 @@ export default {
   left: 760px;
   top: 380px;
 }
-.sub---- {
+.productNameText {
   width: 170px;
   height: 19px;
   position: absolute;
   left: 773px;
   top: 386px;
 }
-.sub----2 {
+.productNameText2 {
   color: #797979;
-  text-align: left;
+  text-align: center;
   font: 300 12px "Roboto", sans-serif;
   position: absolute;
   left: 0px;
