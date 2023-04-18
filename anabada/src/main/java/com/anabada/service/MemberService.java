@@ -69,11 +69,8 @@ public class MemberService implements UserDetailsService {
         return memberDetailDTO;
     }
 
-    public MyPageFindDto myPage(String token) {
-
-        String memberId = jwtTokenProvider.getUserIdFromToken(token);
-        Member member = findByMemberId(memberId);
-        MyPageFindDto myPageFindDto = new MyPageFindDto(member);
-        return myPageFindDto;
+    public MyPageFindDto myPage(MemberDetailDTO principal) {
+        MemberDetailDTO memberDetailDTO = new MemberDetailDTO(principal.getMember());
+        return new MyPageFindDto(memberDetailDTO);
     }
 }
