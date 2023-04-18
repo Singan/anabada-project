@@ -8,7 +8,7 @@
       <li>
 			<div class="id" >
 				<label for="id">id</label>
-				<input type="text" id="email" v-model="id" />
+				<input type="text" id="id" v-model="id" />
 			</div>
 			<div class="pw">
 				<label for="pw">pw</label>
@@ -22,7 +22,7 @@
 				<label for="birth">생년월일</label>
 				<input type="date" id="birth" v-model="birth" />
 			</div>
-            <div class="addr">
+      <div class="addr">
 				<label for="addr">주소</label>
 				<input type="text" id="addr" v-model="addr" />
 			</div>
@@ -40,7 +40,7 @@
 			</div>
 			
 			<button type="submit" class="join">회원가입</button>
-      <button class="cancel" v-on:click="Main">취소하기</button>
+      <button class="cancel" @click="goLogin">취소하기</button>
       </li>
      
 
@@ -51,9 +51,9 @@
 </template>
 
 <script>
- import axios from '@/axios.js'
+import axios from '@/axios';
 export default {
-	name: 'JoinMember',
+	name: 'SignupForm',
 	data() {
 		return {
 			id: '',
@@ -63,22 +63,42 @@ export default {
 			detailaddr: '',
 			addr: '',
             Wishaddr: '',
-            image: null,
+            image: '',
 		};
 	},
 	methods: {
-    onInputImage() {
-      this.input.image = this.$refs.serveyImage.files
-        console.log("this.input.image")
-        },
-	},
+        
+		submitForm() {
+			let form = new FormData()
+			form.append("id",this.id)
+            form.append("pw",this.pw)
+            form.append("name",this.name)
+            // form.append("birth",this.birth)
+            form.append("detailaddr",this.detailaddr)
+            form.append("addr",this.addr)
+            form.append("Wishaddr",this.Wishaddr)
 
-  methods: {
-    Main: function() {
-       this.$router.push({ path: '/' })
-      
-    }
-  }
+            axios.post('/member',
+            form,
+            {
+                header: { 'Content-Type': 'multipart/form-data' }
+            }
+            ).then((response)=>{
+            console.log(response)
+            if(response.status==200){
+                axios.defaults.headers.common['X-AUTH-TOKEN'] = `${response.data.accessToken}`
+                this.$router.push('./login')
+            }
+          })
+		  },
+        onInputImage(e) {
+            this.image = e.target.files[0];
+        },
+        goLogin() {
+          this.$router.push('./login')
+        }
+        
+	},
 };
 </script>
 

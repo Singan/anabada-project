@@ -1,6 +1,6 @@
 <template>
  <div class="---">
-    <div class="----">아나바다</div>
+    <div class="----" @click="goMain">아나바다</div>
 
     <div class="rectangle-15"></div>
 
@@ -43,7 +43,10 @@
     },
     methods: {
         goJoin() {
-          this.$router.push('./MemberJoin')
+          this.$router.push('./JoinMember')
+        },
+        goMain() {
+          this.$router.push('./')
         },
         login() {
           console.log(this.id)
@@ -56,7 +59,7 @@
             console.log(response)
             if(response.status==200){
             axios.defaults.headers.common['X-AUTH-TOKEN'] = `${response.data.accessToken}`
-            this.$router.back()
+            this.$router.push('./')
           }
             
           })
@@ -175,8 +178,8 @@
   font: 400 13px "Roboto", sans-serif;
   position: absolute;
   left: 939px;
-  top: 651px;
-  width: 78px;
+  top: 653px;
+  width: 90px;
   height: 37px;
   display: flex;
   align-items: center;
