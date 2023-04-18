@@ -20,7 +20,7 @@
 
     <div class="-------">비밀번호 찾기</div>
 
-    <div class="----2">회원가입</div>
+    <div class="----2" @click="goJoin">회원가입</div>
     <form>
       <div class="---5" id="id"><input type="text" v-model="id"></div>
 
@@ -42,7 +42,9 @@
       }
     },
     methods: {
-        
+        goJoin() {
+          this.$router.push('./MemberJoin')
+        },
         login() {
           console.log(this.id)
 
