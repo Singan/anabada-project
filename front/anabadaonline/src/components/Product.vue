@@ -1,5 +1,5 @@
 <template>
-<div class="------------">
+  <div class="------------">
     <div class="-----"></div>
 
     <div class="group-46">
@@ -10,32 +10,26 @@
       <div class="---------">
         <div class="---------2"></div>
 
-      <form>
-        <div class="image" >
-          <input id="image2" type="file" @change="onInputImage" accept="image/*"/>
-          <div class="image2 ">이미지 변경</div>
-          </div>
-      </form>
-
+        <div class="_18px">
+          <div class="_18px2">이미지 변경</div>
+        </div>
       </div>
 
-      
-      <div class="productName" id>
-        <div class="productName2">상품명
-        </div>
-        <!-- <div class="---5" id="id"><input type="text" v-model="id"></div> -->
+      <div class="_20px">
+        <div class="_20px2">상품명</div>
       </div>
-       
-        <form>
-        <div class="productNamebox">
-        </div>
-      
-        <div class="productNameText">
-          <div class="productNameText2" contenteditable="true" id="productNameText2">
-            <input type="text" v-model="productNameText2">
+
+      <div class="group-10">
+        <div class="rectangle-23"></div>
+
+        <div class="nameBox">
+          <div class="nameText" id="nameText">
+            <input type="text" v-model="nameText">
           </div>
         </div>
-      </form>
+      </div>
+
+      <!-- <div class="---5" id="id"><input type="text" v-model="id"></div> -->
 
       <div class="group-18">
         <div class="_20px3">
@@ -44,9 +38,16 @@
 
         <div class="group-11">
           <div class="rectangle-232"></div>
-
-          <div class="sub----3">
-            <div class="sub----2"></div>
+         
+          <div class="categoryText">
+             <select v-model="categoryType">
+                <option value="cloth">의류</option>
+                <option value="beauty">뷰티</option>
+                <option value="book">도서</option>
+                <option value="electro">전자제품</option>
+                <option value="kitchen">주방용품</option>
+                <option value="office">문구류</option>
+            </select>
           </div>
         </div>
       </div>
@@ -59,55 +60,19 @@
         <div class="rectangle-233"></div>
 
         <div class="sub----4">
-          <div class="sub----5"></div>
+          <div class="sub----5">상품에 대한 설명을 간략하게 적어주세요</div>
         </div>
       </div>
-      <svg
-        class="vector-6"
-        width="20"
-        height="10"
-        viewBox="0 0 20 10"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d="M0 0L10 10L20 0" stroke="black" stroke-linecap="round" />
-      </svg>
 
       <div class="group-17">
+        <div class="pick1">
+            <div class="pick2"> 선택한 것: {{ picked }}
+
+                
+            </div>
+        </div>
         <div class="_20px5">
-          <div class="_20px2">상품 사용기간</div>
-        </div>
-
-        <div class="group-13">
-          <div class="ellipse-13"></div>
-
-          <div class="--3">
-            <div class="----">미사용</div>
-          </div>
-        </div>
-
-        <div class="group-14">
-          <div class="ellipse-132"></div>
-
-          <div class="--4">
-            <div class="----">0 ~ 4주</div>
-          </div>
-        </div>
-
-        <div class="group-15">
-          <div class="ellipse-133"></div>
-
-          <div class="--5">
-            <div class="----">4 ~ 8주</div>
-          </div>
-        </div>
-
-        <div class="group-16">
-          <div class="ellipse-134"></div>
-
-          <div class="--6">
-            <div class="----">4 ~ 8주</div>
-          </div>
+          <div class="useage">상품 사용기간</div>
         </div>
       </div>
 
@@ -122,15 +87,20 @@
       <div class="rectangle-26"></div>
     </div>
   </div>
-  
 </template>
-
 <script>
+
+
 export default {
-
-}
+  name: "",
+  components: {},
+  props: {},
+  data() {
+    picked: []
+    return {};
+  },
+};
 </script>
-
 <style scoped>
 .------------,
 .------------ * {
@@ -188,14 +158,14 @@ export default {
   left: 945px;
   top: 300px;
 }
-.image {
+._18px {
   width: 90px;
   height: 30px;
   position: absolute;
   left: 945px;
   top: 300px;
 }
-.image2 {
+._18px2 {
   color: #ffffff;
   text-align: center;
   font: 700 14px "Roboto", sans-serif;
@@ -208,14 +178,14 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.productName {
+._20px {
   width: 60px;
   height: 23px;
   position: absolute;
   left: 760px;
   top: 347px;
 }
-.productName2 {
+.useage {
   color: #000000;
   text-align: left;
   font: 400 16px "Roboto", sans-serif;
@@ -226,12 +196,20 @@ export default {
   align-items: center;
   justify-content: flex-start;
 }
+
+.pick1 {
+   width: 110px;
+  height: 23px;
+  position: absolute;
+  left: 900px;
+  top: 535px;
+}
 .group-10 {
   width: 470px;
   height: 30px;
   position: static;
 }
-.productNamebox {
+.rectangle-23 {
   border-radius: 5px;
   border-style: solid;
   border-color: #0075ff;
@@ -242,16 +220,16 @@ export default {
   left: 760px;
   top: 380px;
 }
-.productNameText {
+.nameBox {
   width: 170px;
   height: 19px;
   position: absolute;
   left: 773px;
   top: 386px;
 }
-.productNameText2 {
+.nameText {
   color: #797979;
-  text-align: center;
+  text-align: left;
   font: 300 12px "Roboto", sans-serif;
   position: absolute;
   left: 0px;
@@ -288,7 +266,7 @@ export default {
   left: 760px;
   top: 473px;
 }
-.sub----3 {
+.categoryText {
   width: 170px;
   height: 19px;
   position: absolute;
@@ -501,5 +479,4 @@ export default {
   left: 930px;
   top: 167px;
 }
-
 </style>
