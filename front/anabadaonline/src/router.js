@@ -97,7 +97,7 @@ const routes = [
         path: '/JoinMember',
         name: 'JoinMember',
         component: () => import('@/components/JoinMember.vue'),
-    }
+    },
     
 ]
 

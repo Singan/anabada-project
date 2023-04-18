@@ -23,7 +23,11 @@
         <div class="rectangle-23"></div>
 
         <div class="sub----">
-          <div class="sub----2">상품 이름을 입력해주세요</div>
+          <div class="sub----2">
+            
+				      <input type="text" id="name" v-model="name"/>
+			      
+          </div>
         </div>
       </div>
 
@@ -49,7 +53,7 @@
         <div class="rectangle-233"></div>
 
         <div class="sub----4">
-          <div class="sub----5">상품에 대한 설명을 간략하게 적어주세요</div>
+          <div class="sub----5"><input type="text" id="id" v-model="id" class="sub----5"/></div>
         </div>
       </div>
       <svg

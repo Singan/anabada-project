@@ -4,7 +4,6 @@ import com.anabada.entity.Member;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.time.LocalDate;
 @Getter
 @Setter
@@ -14,6 +13,7 @@ public class MemberJoinDto extends MemberLoginDto{
     @DateTimeFormat(pattern = "yyyyMMdd")
     private LocalDate birth;
     private String detailAddr;
+//    @NotNull(message = "기본주소지를 입력해주세요")
     private String addr;
     private String wishAddr;
     private MultipartFile image;

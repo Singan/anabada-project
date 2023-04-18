@@ -9,6 +9,8 @@ import com.anabada.entity.Product;
 import com.anabada.etc.FileProcessor;
 import com.anabada.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 
@@ -41,13 +43,13 @@ public class ProductService {
     }
 
     // 모든 product
-    public ResultList<String,List<ProductFindAllDto>> findProductList() {
-        List<Product> productList = productRepository.findAll();
+    public ResultList<String,List<ProductFindAllDto>> findProductList(Pageable pageable) {
+        List<Product> productList = productRepository.findAllByProductImageListIsNotEmpty(pageable);
 
         List<ProductFindAllDto> productDtoList =
                 productList.stream().map(product -> new ProductFindAllDto(product)).collect(Collectors.toList());
 
-        ResultList<String,List<ProductFindAllDto>> result = new ResultList<>("전자",productDtoList);
+        ResultList<String,List<ProductFindAllDto>> result = new ResultList<>("메인화면",productDtoList);
         return result;
     }
 }

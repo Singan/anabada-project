@@ -11,6 +11,9 @@ import com.anabada.service.ProductImageService;
 import com.anabada.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -46,8 +49,11 @@ public class ProductController {
     // 상품 리스트
     @GetMapping("/list")
     @Operation(description = "상품 전체 조회")
-    public ResultList<String,List<ProductFindAllDto>> productList() {
-        ResultList<String,List<ProductFindAllDto>> result = productService.findProductList();
+    public ResultList<String,List<ProductFindAllDto>> productList(
+            @PageableDefault(sort = "id", size = 3, direction = Sort.Direction.DESC)
+            Pageable pageable
+    ) {
+        ResultList<String,List<ProductFindAllDto>> result = productService.findProductList(pageable);
         return result;
     }
 }
