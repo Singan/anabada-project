@@ -11,6 +11,9 @@ import com.anabada.service.ProductImageService;
 import com.anabada.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -37,12 +40,6 @@ public class ProductController {
 
     @GetMapping
     @Operation(description = "상품 상세 조회") // 필수
-    /*
-       1. productNo를 넘겨받음 우리가 보여줄 값은 product 전체의 값이 아님 ProductFindOneDto가 우리가 줘야할 부분
-       2. productNo를 service 로직으로 넘겨서 ProductFindOneDto로 만들어주어야한다.
-       3. service 로직으로 넘겼으면 ProductRepository에서 productNo(pk)를 가지고 해당 Product를 가져와야 한다.
-       4. ProductFindOneDto를 builder.build()를 통해 만들고 반환해준다.
-     */
     public ProductFindOneDto productFindOne(@RequestParam Long productNo) {
         return productService.findProduct(productNo);
     }
@@ -51,9 +48,12 @@ public class ProductController {
 
     // 상품 리스트
     @GetMapping("/list")
-    @Operation(description = "상품 전체 조회")
-    public ResultList<String,List<ProductFindAllDto>> productList() {
-        ResultList<String,List<ProductFindAllDto>> result = productService.findProductList();
+    @Operation(description = "메인페이지 하단 상품 조회")
+    public ResultList<String,List<ProductFindAllDto>> productList(
+            @PageableDefault(sort = "id", size = 3, direction = Sort.Direction.DESC)
+            Pageable pageable
+    ) {
+        ResultList<String,List<ProductFindAllDto>> result = productService.findProductList(pageable);
         return result;
     }
 }

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -39,8 +40,10 @@ public class Product {
 
     @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
     private List<ProductImage> productImageList;
+    @Column
+    private LocalDateTime createDateTime;
     @Builder
-    public Product(Long productNo, Member member, String productName, String productDetail, Integer productPrice, String productUseDate, Category category,List<ProductImage> productImageList) {
+    public Product(Long productNo, Member member, String productName, String productDetail, Integer productPrice, String productUseDate, Category category, List<ProductImage> productImageList) {
         this.productNo = productNo;
         this.member = member;
         this.productName = productName;
@@ -49,5 +52,6 @@ public class Product {
         this.productUseDate = productUseDate;
         this.category = category;
         this.productImageList = productImageList;
+        this.createDateTime = LocalDateTime.now();
     }
 }
