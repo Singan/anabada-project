@@ -15,37 +15,35 @@
     <div class="group-2">
       <div class="rectangle-52"></div>
 
-      <div class="--">충전</div>
+      <div class="--" @click="goAcount">충전</div>
     </div>
 
     <div class="----2">
       <div class="----3">내 거래</div>
 
-      <div class="-----3">판매 내역</div>
+      <div class="-----3" @click="goDt2">판매 내역</div>
 
-      <div class="----4">상품등록</div>
+      <div class="----5" @click="goProduct">상품등록</div>
 
-      <div class="-----4">구매 내역</div>
+      <div class="-----4" @click="goDt1">구매 내역</div>
 
-      <div class="------2">진행중인거래</div>
+      
 
-      <div class="----5">내 경매</div>
+      
 
-      <div class="----6">내 경매</div>
-
-      <div class="----7">찜 목록</div>
+      <div class="----7" @click="goJjim">찜 목록</div>
 
       <div class="line-1"></div>
 
-      <div class="line-2"></div>
+      
     </div>
 
     <div class="----8">
       <div class="----9">개인정보</div>
 
-      <div class="--------">회원 정보 수정</div>
+      <div class="--------" @click="goChange">회원 정보 수정</div>
 
-      <div class="-----5">회원 탈퇴</div>
+      <div class="-----5" @click="goExit">회원 탈퇴</div>
 
       <div class="line-12"></div>
     </div>
@@ -65,7 +63,7 @@
     <div class="group-5">
       <div class="--3">경매</div>
 
-      <div class="----10">아나바다</div>
+      <div class="----10" @click="goMain">아나바다</div>
 
       <div class="--4">채팅</div>
 
@@ -95,7 +93,33 @@
 
 <script>
 export default {
-
+  methods: {
+  
+  goExit() {
+    this.$router.push('./MemberExit')
+  },
+  goChange() {
+    this.$router.push('./MemberChange')
+  },
+  goProduct() {
+    this.$router.push('./ProductRegistrationPage')
+  },
+  goJjim() {
+    this.$router.push('./Jjim')
+  },
+  goDt1() {
+    this.$router.push('./TransactionDt1')
+  },
+  goDt2() {
+    this.$router.push('./TransactionDt2')
+  },
+  goAcount() {
+    this.$router.push('./AcountRegister')
+  },
+  goMain() {
+    this.$router.push('./')
+  },
+}
 }
 </script>
 
@@ -256,7 +280,7 @@ export default {
   position: absolute;
   left: 817px;
   top: 585px;
-  width: 63px;
+  width: 80px;
   height: 63px;
   display: flex;
   align-items: center;
@@ -280,9 +304,9 @@ export default {
   text-align: left;
   font: 400 16px "Roboto", sans-serif;
   position: absolute;
-  left: 1050px;
+  left: 1040px;
   top: 585px;
-  width: 63px;
+  width: 80px;
   height: 63px;
   display: flex;
   align-items: center;
@@ -306,7 +330,7 @@ export default {
   text-align: right;
   font: 400 16px "Roboto", sans-serif;
   position: absolute;
-  left: 1264px;
+  left: 1230px;
   top: 585px;
   width: 63px;
   height: 63px;
@@ -365,7 +389,7 @@ export default {
   position: absolute;
   left: 598px;
   top: 411px;
-  width: 103px;
+  width: 120px;
   height: 63px;
   display: flex;
   align-items: center;
@@ -378,7 +402,7 @@ export default {
   position: absolute;
   left: 817px;
   top: 411px;
-  width: 63px;
+  width: 80px;
   height: 63px;
   display: flex;
   align-items: center;
@@ -479,7 +503,7 @@ export default {
   position: absolute;
   left: 430px;
   top: 35px;
-  width: 90px;
+  width: 120px;
   height: 30px;
   display: flex;
   align-items: center;

@@ -115,6 +115,7 @@
       // quickfix to have components available to pass as props
       return {};
     },
+    
   };
   </script>
   <style scoped>
