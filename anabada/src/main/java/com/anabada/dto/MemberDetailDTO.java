@@ -27,6 +27,7 @@ public class MemberDetailDTO implements UserDetails {
     private String memberAddr;
     private String memberWishAddr;
     private String memberAccount;
+    private String memberImage;
 
     public MemberDetailDTO(Member member) {
         this.no = member.getMemberNo();
@@ -40,6 +41,7 @@ public class MemberDetailDTO implements UserDetails {
         this.memberAddr = member.getMemberAddr();
         this.memberWishAddr = member.getMemberWishAddr();
         this.memberAccount = member.getMemberAccount();
+        this.memberImage = member.getMemberImage();
     }
 
     @Override
@@ -80,8 +82,12 @@ public class MemberDetailDTO implements UserDetails {
     public Member getMember(){
         Member member = Member
                 .builder()
-                .memberNo(no)
+                .memberName(memberName)
+                .memberMoney(memberMoney)
+                .memberImage(memberImage)
+                .memberBirth(memberBirth)
                 .build();
+
         return member;
     };
 }
