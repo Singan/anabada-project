@@ -6,13 +6,13 @@
   
       <div class="---------3">
         <div class="--2">
-          <span
-            ><span class="--2-span">“</span
-            ><span class="--2-span2">아이폰 14 프로</span
-            ><span class="--2-span3">” 상품이 </span
-            ><span class="--2-span4">낙찰</span
-            ><span class="--2-span5">되었습니다!</span></span
-          >
+          <span>
+            <span class="--2-span">“</span>
+            <span class="--2-span2">아이폰 14 프로</span>
+            <span class="--2-span3">” 상품이 </span>
+            <span class="--2-span4">낙찰</span>
+            <span class="--2-span5">되었습니다!</span>
+          </span>
         </div>
       </div>
   
