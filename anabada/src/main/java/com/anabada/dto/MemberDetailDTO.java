@@ -82,6 +82,7 @@ public class MemberDetailDTO implements UserDetails {
     public Member getMember(){
         Member member = Member
                 .builder()
+                .memberNo(no)
                 .memberName(memberName)
                 .memberMoney(memberMoney)
                 .memberImage(memberImage)
