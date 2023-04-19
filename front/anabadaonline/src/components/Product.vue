@@ -47,10 +47,9 @@
          
           <div class="categoryText">
             
-             <select >
+             <select v-model="selectCategory">
                 
-                <option v-for="item in categoryList " :key="item.categoryNo" 
-                value={{item.categoryNo}}>{{ item.  categoryName }}</option> 
+                <option v-for="item in categoryList " :key="item.categoryNo" :value="item.categoryNo">{{ item.categoryName }}</option> 
                
             </select>
           </div>
@@ -116,7 +115,9 @@
 </template>
 <script>
 import axios from '@/axios.js'
-
+import { useCookies } from "vue3-cookies";
+  const { cookies } = useCookies();
+  console.log(cookies.get('token')) 
 export default {
   name: '',
   components: {},
@@ -130,7 +131,7 @@ export default {
      // usingDate:'',
       detail:'',
      // price:'',
-      categoryNo:'',
+      selectCategory:'',
      // productImages:''
 
     };
@@ -152,18 +153,23 @@ export default {
           //form.append("usingDate", this.usingDate)
           form.append("detail", this.detail)
           //form.append("price", this.price)
-          form.append("categoryNo", this.categoryNo)
+          form.append("categoryNo", this.selectCategory)
           //form.append("productImages", this.productImages)
+          axios.defaults.headers.common["x-auth-token"] = cookies.get('token')
+          console.log(this.selectCategory)
 
           axios.post('/product',
             form,
             {
-              header: { 'Content-Type': 'multipart/form-data' }
+              header: { 
+                'Content-Type': 'multipart/form-data' ,
+                'X-AUTH-TOKEN': cookies.get('token')
+              }
             }
-          ).then((response) => {
+          ).then((response,aa) => {
+            console.log(this.category)
             console.log(response)
             if (response.status == 200) {
-              axios.defaults.headers.common['X-AUTH-TOKEN'] = `${response.data.accessToken}`
               this.$router.push('./ProductDt')
             }
           })
