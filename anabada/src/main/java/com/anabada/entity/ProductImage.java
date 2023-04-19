@@ -17,9 +17,12 @@ public class ProductImage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productImageNo;
 
-    // Jpa에서 복합키 설정 찾아보기
+    // 복합키 설정 미룸
+//    @EmbeddedId
+//    private ProductImagePk productImagePk;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "productNo")
+    @JoinColumn(name = "product_no")
     private Product product;
 
     private String imageAddr;
