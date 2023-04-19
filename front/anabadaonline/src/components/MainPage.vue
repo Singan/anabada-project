@@ -38,15 +38,7 @@
           <img src="@/assets/iphone14.jpg" style="width:100%; height:100%;"/>
         </div>
       </div>
-      <!-- 현재 경매되고있는 상품 -->
-      <div class="ProductImg1">{{ productImage }}</div>
-  
-      <div class="ProductImg2"></div>
-  
-      <div class="ProductImg3"></div>
-  
-      <div class="ProductImg4"></div>
-  
+      
       <div class="Illust2">
         <img src="@/assets/change2.jpg" style="width:100%; height:100%;"/>
       </div>
@@ -54,58 +46,67 @@
       <div class="Illust1">
         <img src="@/assets/change.png" style="width:100%; height:100%;"/>
       </div>
-  
-      <div class="ProductN1">
-        <div class="ProductNT1">{{ productName }}</div>
-        <!-- 상품이름 들어가야함 -->
-      </div>
-  
-      <div class="Adress1">
-        <div class="AdressT1">{{ wishAddr }}</div>
-        <!-- 상품거래지 -->
-      </div>
-  
-      <div class="Price1">
-        <div class="PriceT1">{{ price }}</div>
-        <!-- 상품가격 -->
-      </div>
-  
-      <div class="ProductN2">
-        <div class="ProductNT2">위닉스 제습기</div>
-      </div>
-  
-      <div class="Adress2">
-        <div class="AdressT1">경기도 성남시</div>
-      </div>
-  
-      <div class="Price2">
-        <div class="PriceT1">32,000 원</div>
-      </div>
-  
-      <div class="ProductN3">
-        <div class="ProductNT1">LG 코드제로</div>
-      </div>
-  
-      <div class="Adress3">
-        <div class="AdressT1">경기도 성남시</div>
-      </div>
-  
-      <div class="Price3">
-        <div class="PriceT1">600,000 원</div>
-      </div>
-  
-      <div class="ProductN4">
-        <div class="ProductNT1">갤럭시 s22 울트라 256gb</div>
-      </div>
-  
-      <div class="Adress4">
-        <div class="AdressT1">경기도 성남시</div>
-      </div>
-  
-      <div class="Price4">
-        <div class="PriceT1">900,000 원</div>
-      </div>
+      <ul v-for="item in product" :key="item.id">
+        <div class="ProductN1">
+          <div class="ProductNT1">{{ item.productName }}</div>
+        </div>
+        
+        <div class="Adress1">
+          <div class="AdressT1">{{ item.wishAddr }}</div>
+          <!-- 상품거래지 -->
+        </div>
+
+        <div class="Price1">
+          <div class="PriceT1">{{ item.price }} 원</div>
+          <!-- 상품가격 -->
+        </div>
+
+        <div class="ProductImg1">{{ item.productImage }}</div>
+
+        <div class="ProductN2">
+          <div class="ProductNT2">{{ item.productName }}</div>
+        </div>
+
+        <div class="Adress2">
+          <div class="AdressT1">{{ item.wishAddr }}</div>
+        </div>
+
+        <div class="Price2">
+          <div class="PriceT1">{{ item.price }} 원</div>
+        </div>  
+
+        <div class="ProductImg2">{{ item.productImage }}</div>
+
+
+        <div class="ProductN3">
+          <div class="ProductNT1">{{ item.productName }}</div>
+        </div>
+
+        <div class="Adress3">
+          <div class="AdressT1">{{ item.wishAddr }}</div>
+        </div>
+
+        <div class="Price3">
+          <div class="PriceT1">{{ item.price }} 원</div>
+        </div>
+
+        <div class="ProductImg3">{{ item.productImage }}</div>
+
+        <div class="ProductN4">
+          <div class="ProductNT1">{{ item.productName }}</div>
+        </div>
+        
+        <div class="Adress4">
+          <div class="AdressT1">{{ item.wishAddr }}</div>
+        </div>
     
+        <div class="Price4">
+          <div class="PriceT1">{{ item.price }} 원</div>
+        </div>
+        <!-- 현재 경매되고있는 상품 -->
+        <div class="ProductImg4">{{ item.productImage }}</div>
+    
+    </ul>
   </template>
   
   <script>
