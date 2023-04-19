@@ -35,8 +35,6 @@
         </div>
       </div>
 
-      <!-- <div class="---5" id="id"><input type="text" v-model="id"></div> -->
-
       <div class="group-18">
         <div class="_20px3">
           <div class="_20px2">상품 카테고리</div>
@@ -50,7 +48,7 @@
              <select v-model="selectCategory">
                 
                 <option v-for="item in categoryList " :key="item.categoryNo" :value="item.categoryNo">{{ item.categoryName }}</option> 
-               
+
             </select>
           </div>
         </div>
@@ -85,13 +83,13 @@
                <input type="radio" id="one" class="one" value="하나"  />
               <label for="one">미사용</label>
 
-              <input type="radio" id="two"  value="둘"/>
+              <input type="radio" id="two"  class="two" value="둘"/>
               <label for="two">0 ~ 4주</label>
 
-              <input type="radio" id="three" value="삼"/>
+              <input type="radio" id="three"   class="three" value="삼"/>
                 <label for="two">4 ~ 8주</label>
 
-                <input type="radio" id="four" value="사"/>
+                <input type="radio" id="four"  class="four" value="사"/>
                 <label for="two">8주 이상</label>
 
             </div>
@@ -132,7 +130,7 @@ export default {
       detail:'',
      // price:'',
       selectCategory:'',
-     // productImages:''
+      productImages:''
 
     };
   },
@@ -158,7 +156,7 @@ export default {
           form.append("detail", this.detail)
           //form.append("price", this.price)
           form.append("categoryNo", this.selectCategory)
-          //form.append("productImages", this.productImages)
+          form.append("productImages", this.productImages)
           axios.defaults.headers.common["x-auth-token"] = cookies.get('token')
           console.log(this.selectCategory)
 
