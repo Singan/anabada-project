@@ -13,7 +13,7 @@
           
         <div class="_18px">
           <div class="_18px2">이미지 변경</div>
-          <input id="productImages" type="file" @change="onFileChange" accept="image/*" multiple="multiple">
+          <input id="productImages" type="file" @change="onInputImage" accept="image/*" multiple="multiple">
         </div>
         
       </div>
@@ -132,7 +132,7 @@ export default {
       detail:'',
      // price:'',
       selectCategory:'',
-     // productImages:''
+      productImages:null
 
     };
   },
@@ -178,7 +178,7 @@ export default {
           })
         },
         onInputImage(e) {
-          this.image = e.target.files[0];
+          this.productImages = e.target.files;
         }
         },
 
