@@ -1,4 +1,5 @@
 <template>
+  <form @submit.prevent="productRegister">
   <div class="------------">
     <div class="-----"></div>
 
@@ -9,9 +10,11 @@
 
       <div class="---------">
         <div class="---------2"></div>
-
+          <input id="productImages" type="file" @change="onInputImage" accept="image/*"/>
         <div class="_18px">
+          
           <div class="_18px2">이미지 변경</div>
+      
         </div>
       </div>
 
@@ -23,8 +26,11 @@
         <div class="rectangle-23"></div>
 
         <div class="nameBox">
-          <div class="nameText" id="nameText">
-            <input type="text">
+          <div class="nameText" id="name">
+            <input 
+                type="text"
+                 placeholder="상품명을 입력해주세요"    
+            >
           </div>
         </div>
       </div>
@@ -41,12 +47,10 @@
          
           <div class="categoryText">
             
-             <select>
+             <select >
                 
-                <option >
-                    
-                    
-                </option> 
+                <option v-for="item in categoryList " :key="item.categoryNo" 
+                value={{item.categoryNo}}>{{ item.  categoryName }}</option> 
                
             </select>
           </div>
@@ -61,28 +65,54 @@
         <div class="rectangle-233"></div>
 
         <div class="sub----4">
-          <div class="sub----5">상품에 대한 설명을 간략하게 적어주세요</div>
+          <div class="detail" contenteditable="true">
+            <input
+              type="text"
+              placeholder="상품 설명을 입력해주세요"
+            />
+          </div>
+          
         </div>
       </div>
 
       <div class="group-17">
         
-        <div class="_20px5">
-          <div class="useage">상품 사용기간 선택한 상품 </div>
+
+        <div class="useageBox">
+          <div class="usingDate">상품 사용기간
+            
+            <div class="radioSelect">
+              
+               <input type="radio" id="one" class="one" value="하나"  />
+              <label for="one">미사용</label>
+
+              <input type="radio" id="two"  value="둘"/>
+              <label for="two">0 ~ 4주</label>
+
+              <input type="radio" id="three" value="삼"/>
+                <label for="two">4 ~ 8주</label>
+
+                <input type="radio" id="four" value="사"/>
+                <label for="two">8주 이상</label>
+
+            </div>
+          </div>
         </div>
+        
       </div>
 
       <div class="--7">
         <div class="rectangle-25"></div>
 
         <div class="_18px3">
-          <div class="_18px4">등록하기</div>
+          <button class="_18px4" >등록하기</button>
         </div>
       </div>
 
       <div class="rectangle-26"></div>
     </div>
   </div>
+  </form>
 </template>
 <script>
 import axios from '@/axios.js'
@@ -94,7 +124,15 @@ export default {
   data() {
 
     return {
-      categoryList:''
+      image:'',
+      categoryList:'',
+      name:'',
+     // usingDate:'',
+      detail:'',
+     // price:'',
+      categoryNo:'',
+     // productImages:''
+
     };
   },
 
@@ -106,14 +144,38 @@ export default {
               this.categoryList=response.data
               console.log(this.categoryList)
            })
+        },
+
+        productRegister() {
+          let form = new FormData()
+          form.append("name", this.name)
+          //form.append("usingDate", this.usingDate)
+          form.append("detail", this.detail)
+          //form.append("price", this.price)
+          form.append("categoryNo", this.categoryNo)
+          //form.append("productImages", this.productImages)
+
+          axios.post('/product',
+            form,
+            {
+              header: { 'Content-Type': 'multipart/form-data' }
+            }
+          ).then((response) => {
+            console.log(response)
+            if (response.status == 200) {
+              axios.defaults.headers.common['X-AUTH-TOKEN'] = `${response.data.accessToken}`
+              this.$router.push('./ProductDt')
+            }
+          })
+        },
+        onInputImage(e) {
+          this.image = e.target.files[0];
         }
-    },
+        },
 
-
-
+    
     created() {
         this.category() 
-        
     }
 
 
@@ -204,16 +266,31 @@ export default {
   left: 760px;
   top: 347px;
 }
-.useage {
+.usingDate {
   color: #000000;
   text-align: left;
   font: 400 16px "Roboto", sans-serif;
   position: absolute;
   left: 0px;
   top: 2px;
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: flex-start;
+}
+
+.radioSelect {
+  color: #000000;
+  text-align: left;
+  font: 400 16px "Roboto", sans-serif;
+  left: 0px;
+  top: 2px;
+  display: block;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.one {
+
 }
 
 .pick1 {
@@ -322,7 +399,7 @@ export default {
   left: 773px;
   top: 683.2px;
 }
-.sub----5 {
+.detail {
   color: #797979;
   text-align: left;
   font: 300 12px "Roboto", sans-serif;
@@ -344,9 +421,9 @@ export default {
   height: 63px;
   position: static;
 }
-._20px5 {
-  width: 110px;
-  height: 23px;
+.useageBox {
+  width: 500px;
+  height: 100px;
   position: absolute;
   left: 760px;
   top: 533px;

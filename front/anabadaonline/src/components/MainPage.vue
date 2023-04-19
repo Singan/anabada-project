@@ -1,47 +1,5 @@
 <template>
 
-  <div class="Header">
-      <div class="HeaderButton">
-        <div class="AuctionButton" @click="goAuction">경매</div>
-  
-        <div class="Logo">아나바다</div>
-  
-        <div class="ChatButton" @click="goChat">채팅</div>
-  
-        <div class="SearchBox" contenteditable="true" >
-          <b-form-input
-          size="sm"
-          class="mr-sm-2"
-          type="text"
-          placeholder="검색어를 입력해주세요"
-          v-model="keyword"  
-          @keyup.enter="searchresultshow(keyword)"
-        ></b-form-input>
-        </div>
-  
-        <div class="Search">
-          <div class="SearchButton"></div>
-          <div class="SearchText">
-            <!-- <div class="SearchText1">검색하기</div> -->
-            <b-button
-              size="sm"
-              class="SearchText1"
-              type="submit"
-              @click="goAuction(keyword)" 
-            >검색하기
-            </b-button>
-          </div>
-        </div>
-  
-        <div class="Login">
-          <div class="LoginBox"></div>
-          <div class="LoginText">
-            <div class="LoginText1" @click="goLogin">
-              로그인
-            </div>          
-          </div>
-        </div>
-      </div>
   
       <div class="Footer1"></div>
   
@@ -80,8 +38,8 @@
           <img src="@/assets/iphone14.jpg" style="width:100%; height:100%;"/>
         </div>
       </div>
-  
-      <div class="ProductImg1"></div>
+      <!-- 현재 경매되고있는 상품 -->
+      <div class="ProductImg1">{{ productImage }}</div>
   
       <div class="ProductImg2"></div>
   
@@ -98,15 +56,18 @@
       </div>
   
       <div class="ProductN1">
-        <div class="ProductNT1">아이폰 14 프로</div>
+        <div class="ProductNT1">{{ productName }}</div>
+        <!-- 상품이름 들어가야함 -->
       </div>
   
       <div class="Adress1">
-        <div class="AdressT1">경기도 성남시</div>
+        <div class="AdressT1">{{ wishAddr }}</div>
+        <!-- 상품거래지 -->
       </div>
   
       <div class="Price1">
-        <div class="PriceT1">1,200,000 원</div>
+        <div class="PriceT1">{{ price }}</div>
+        <!-- 상품가격 -->
       </div>
   
       <div class="ProductN2">
@@ -144,11 +105,19 @@
       <div class="Price4">
         <div class="PriceT1">900,000 원</div>
       </div>
-    </div>
+    
   </template>
   
   <script>
+  import axios from '@/axios.js'
+
   export default {
+    data() {
+
+      return {
+        productList:'',
+      };
+    },
     methods: {
   
       goLogin() {
@@ -159,6 +128,15 @@
       },
       goChat() {
         this.$router.push('./chat')
+      },
+      
+      product() {
+           axios.get('/product/list')
+           .then((response)=> {
+              console.log(response.data) 
+              this.productList=response.data
+              console.log(this.productList)
+           })
       },
       searchresultshow(keyword) {
       if (keyword !== ''){ //검색어를 입력한 경우
@@ -174,12 +152,14 @@
       } else {
         alert('검색어를 입력해주세요!')  //검색어를 입력하지 않은 경우
       }
+     },
+    },
+    
+  
+    created() {
+        this.product() 
     },
   }
-    }
-  
-  
-  
   </script>
   
   <style scoped>

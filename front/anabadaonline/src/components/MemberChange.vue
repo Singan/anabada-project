@@ -99,7 +99,7 @@
         <div class="rectangle-252"></div>
   
         <div class="_18px3">
-          <div class="_18px2">취소</div>
+          <div class="_18px2" @click="goMypage">취소</div>
         </div>
       </div>
     </div>
@@ -107,16 +107,16 @@
   <script>
   /* Code generated with AutoHTML Plugin for Figma */
   
-  export default {
-    name: "",
-    components: {},
-    props: {},
-    data() {
-      // quickfix to have components available to pass as props
-      return {};
-    },
-    
-  };
+    export default {
+      name: "",
+      components: {},
+      props: {},
+      data() {
+        // quickfix to have components available to pass as props
+        return {};
+      },
+      
+    };
   </script>
   <style scoped>
   .------------,

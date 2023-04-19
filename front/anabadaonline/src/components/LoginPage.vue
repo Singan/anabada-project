@@ -58,8 +58,9 @@
           }).then((response)=>{
             console.log(response)
             if(response.status==200){
-            axios.defaults.headers.common['X-AUTH-TOKEN'] = `${response.data.accessToken}`
-            this.$router.push('./')
+              axios.defaults.headers.common['X-AUTH-TOKEN'] = `${response.data.accessToken}`
+              this.$emit("aaa")
+              this.$router.push('./')
           }
             
           })
@@ -72,7 +73,7 @@
 
 <style scoped>
 
-.---,
+/* .---,
 .--- * {
   box-sizing: border-box;
 }
@@ -82,7 +83,7 @@
   height: 1024px;
   position: relative;
   overflow: hidden;
-}
+} */
 .---- {
   color: #0075ff;
   text-align: center;

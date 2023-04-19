@@ -87,11 +87,6 @@ const routes = [
         component: () => import('@/components/TransactionDt2.vue'),
     },
     {
-        path: '/memberJoin',
-        name: 'MemberJoin',
-        component: () => import('@/components/MemberJoin.vue'),
-    },
-    {
         path: '/JoinMember',
         name: 'JoinMember',
         component: () => import('@/components/JoinMember.vue'),

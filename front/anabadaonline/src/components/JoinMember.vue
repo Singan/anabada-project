@@ -43,9 +43,6 @@
       <button class="cancel" @click="goLogin">취소하기</button>
       </li>
      
-
-      
-			
 		</form>
 	</div>
 </template>
@@ -62,15 +59,15 @@ export default {
 			birth: '',
 			detailaddr: '',
 			addr: '',
-            Wishaddr: '',
-            image: '',
+      Wishaddr: '',
+      image: '',
 		};
 	},
 	methods: {
         
 		submitForm() {
 			let form = new FormData()
-			form.append("id",this.id)
+			      form.append("id",this.id)
             form.append("pw",this.pw)
             form.append("name",this.name)
             // form.append("birth",this.birth)
@@ -111,7 +108,7 @@ export default {
   font: 400 16px "Roboto", sans-serif;
   position: absolute;
   left: 648px;
-  top: 114px;
+  top: 211px;
   width: 398px;
   height: 37px;
   display: flex;
@@ -125,7 +122,7 @@ export default {
   font: 700 28px "Roboto", sans-serif;
   position: absolute;
   left: 614px;
-  top: 53px;
+  top: 130px;
   width: 398px;
   height: 37px;
   display: flex;
@@ -139,7 +136,7 @@ export default {
   font: 400 16px "Roboto", sans-serif;
   position: absolute;
   left: 648px;
-  top: 176px;
+  top: 273px;
   width: 398px;
   height: 37px;
   display: flex;
@@ -153,7 +150,7 @@ export default {
   font: 400 16px "Roboto", sans-serif;
   position: absolute;
   left: 648px;
-  top: 240px;
+  top: 337px;
   width: 398px;
   height: 37px;
   display: flex;
@@ -167,7 +164,7 @@ export default {
   font: 400 16px "Roboto", sans-serif;
   position: absolute;
   left: 648px;
-  top: 304px;
+  top: 401px;
   width: 398px;
   height: 37px;
   display: flex;
@@ -181,7 +178,7 @@ export default {
   font: 400 16px "Roboto", sans-serif;
   position: absolute;
   left: 648px;
-  top: 368px;
+  top: 465px;
   width: 398px;
   height: 37px;
   display: flex;
@@ -195,7 +192,7 @@ export default {
   font: 400 16px "Roboto", sans-serif;
   position: absolute;
   left: 648px;
-  top: 432px;
+  top: 529px;
   width: 398px;
   height: 37px;
   display: flex;
@@ -209,7 +206,7 @@ export default {
   font: 400 16px "Roboto", sans-serif;
   position: absolute;
   left: 648px;
-  top: 496px;
+  top: 593px;
   width: 398px;
   height: 37px;
   display: flex;
@@ -223,7 +220,7 @@ export default {
   font: 400 16px "Roboto", sans-serif;
   position: absolute;
   left: 648px;
-  top: 560px;
+  top: 657px;
   width: 398px;
   height: 37px;
   display: flex;
@@ -241,7 +238,7 @@ export default {
    color:#0075ff;
     position: absolute;
   left: 648px;
-  top: 610px;
+  top: 727px;
 
 }
 
@@ -255,7 +252,7 @@ export default {
    color:#e20303;
   position: absolute;
   left: 1000px;
-  top: 610px;
+  top: 727px;
 
 }
 
