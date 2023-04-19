@@ -30,10 +30,11 @@ public class ProductImageService {
         Product product = Product.builder().productNo(no).build();
         List<ProductImage> productImageList = imagePathList.stream().map
                 (s -> ProductImage.
-                        builder()
-                        .product(product)
-                        .build()
-                ).collect(Collectors.toList());
+                        builder().
+                        product(product).
+                        imageAddr(s).
+                        build()
+        ).collect(Collectors.toList());
         productRepository.saveAll(productImageList);
     }
 }
