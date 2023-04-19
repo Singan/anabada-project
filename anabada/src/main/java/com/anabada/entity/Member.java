@@ -19,7 +19,6 @@ public class Member {
     private String memberPw;
     private String memberName;
 
-    @DateTimeFormat(pattern = "yyyyMMdd")
     private LocalDate memberBirth;
     private Integer memberMoney;
     private Float memberTemper;

@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class MemberJoinDto extends MemberLoginDto{
     private String name;
-    @DateTimeFormat(pattern = "yyyyMMdd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birth;
     private String detailAddr;
 //    @NotNull(message = "기본주소지를 입력해주세요")
