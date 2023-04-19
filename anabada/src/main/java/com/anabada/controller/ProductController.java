@@ -50,7 +50,7 @@ public class ProductController {
     @GetMapping("/list")
     @Operation(description = "메인페이지 하단 상품 조회")
     public ResultList<String,List<ProductFindAllDto>> productList(
-            @PageableDefault(sort = "id", size = 3, direction = Sort.Direction.DESC)
+            @PageableDefault(sort = "id", size = 4, direction = Sort.Direction.DESC)
             Pageable pageable
     ) {
         ResultList<String,List<ProductFindAllDto>> result = productService.findProductList(pageable);

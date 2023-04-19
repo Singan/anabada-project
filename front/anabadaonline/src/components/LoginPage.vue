@@ -33,6 +33,9 @@
 
 <script>
   import axios from '@/axios.js'
+  import { useCookies } from "vue3-cookies";
+  const { cookies } = useCookies();
+  
   export default {
     name:"LoginPage",
     data() {
@@ -58,7 +61,7 @@
           }).then((response)=>{
             console.log(response)
             if(response.status==200){
-              axios.defaults.headers.common['X-AUTH-TOKEN'] = `${response.data.accessToken}`
+              cookies.set("token",`${response.data.accessToken}`)
               this.$emit("aaa")
               this.$router.push('./')
           }

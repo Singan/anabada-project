@@ -44,7 +44,9 @@
   </div>
 </template>
 <script>
-import axios from '@/axios'
+import { useCookies } from "vue3-cookies";
+  const { cookies } = useCookies();
+  console.log(cookies.get('token')) 
 export default {
   
   props:{
@@ -88,15 +90,6 @@ export default {
     },
       
     },
-    mounted(){
-      console.log("왜시발")
-      console.log(axios.defaults.headers.common['X-AUTH-TOKEN'])
-
-        if(axios.defaults.headers.common['X-AUTH-TOKEN']!=null){
-          console.log("11")
-          this.isToken =true;
-        }
-    }
   }
 </script>
 <style scoped>
