@@ -18,6 +18,8 @@ public class ProductImageService {
     private final FileProcessor fileProcessor;
 
     public void productImageSave(Long no,MultipartFile... multipartFiles){
+        if(multipartFiles == null)
+            return;
         for (MultipartFile multipartFile : multipartFiles) {
             if(multipartFile == null || multipartFile.isEmpty())
                 return;
