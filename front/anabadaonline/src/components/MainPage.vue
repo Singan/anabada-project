@@ -38,7 +38,7 @@
           <img src="@/assets/iphone14.jpg" style="width:100%; height:100%;"/>
         </div>
       </div>
-  
+      <!-- 현재 경매되고있는 상품 -->
       <div class="ProductImg1"></div>
   
       <div class="ProductImg2"></div>

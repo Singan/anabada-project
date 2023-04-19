@@ -48,7 +48,7 @@
              <select >
                 
                 <option v-for="item in categoryList " :key="item.categoryNo" 
-                value={{item.categoryNo}}>{{ item.categoryName }}</option> 
+                value={{item.categoryNo}}>{{ item.  categoryName }}</option> 
                
             </select>
           </div>
@@ -130,7 +130,6 @@ export default {
 
     created() {
         this.category() 
-        
     }
 
 
