@@ -1,4 +1,5 @@
 <template>
+  <form @submit.prevent="productRegister">
   <div class="------------">
     <div class="-----"></div>
 
@@ -9,7 +10,7 @@
 
       <div class="---------">
         <div class="---------2"></div>
-          <input id="image" type="file" @change="onInputImage" accept="image/*"/>
+          <input id="productImages" type="file" @change="onInputImage" accept="image/*"/>
         <div class="_18px">
           
           <div class="_18px2">이미지 변경</div>
@@ -25,12 +26,11 @@
         <div class="rectangle-23"></div>
 
         <div class="nameBox">
-          <div class="nameText" id="nameText">
+          <div class="nameText" id="name">
             <input 
                 type="text"
                  placeholder="상품명을 입력해주세요"    
             >
-            
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@
         <div class="rectangle-233"></div>
 
         <div class="sub----4">
-          <div class="productExplain" contenteditable="true">
+          <div class="detail" contenteditable="true">
             <input
               type="text"
               placeholder="상품 설명을 입력해주세요"
@@ -79,20 +79,20 @@
         
 
         <div class="useageBox">
-          <div class="useage">상품 사용기간 {{ picked }}
+          <div class="usingDate">상품 사용기간
             
             <div class="radioSelect">
               
-               <input type="radio" id="one" class="one" value="하나" v-model="picked"  />
+               <input type="radio" id="one" class="one" value="하나"  />
               <label for="one">미사용</label>
 
-              <input type="radio" id="two"  value="둘" v-model="picked" />
+              <input type="radio" id="two"  value="둘"/>
               <label for="two">0 ~ 4주</label>
 
-              <input type="radio" id="two" value="둘" v-model="picked" />
+              <input type="radio" id="three" value="삼"/>
                 <label for="two">4 ~ 8주</label>
 
-                <input type="radio" id="two" value="둘" v-model="picked" />
+                <input type="radio" id="four" value="사"/>
                 <label for="two">8주 이상</label>
 
             </div>
@@ -105,13 +105,14 @@
         <div class="rectangle-25"></div>
 
         <div class="_18px3">
-          <div class="_18px4">등록하기</div>
+          <button class="_18px4" >등록하기</button>
         </div>
       </div>
 
       <div class="rectangle-26"></div>
     </div>
   </div>
+  </form>
 </template>
 <script>
 import axios from '@/axios.js'
@@ -125,7 +126,13 @@ export default {
     return {
       image:'',
       categoryList:'',
-      productRegister:''
+      name:'',
+     // usingDate:'',
+      detail:'',
+     // price:'',
+      categoryNo:'',
+     // productImages:''
+
     };
   },
 
@@ -139,21 +146,34 @@ export default {
            })
         },
 
-        product() {
-          axios.post('/product')
-          .then((response) => {
-            console.log(response.data)
-            this.productRegister=product.data
-          })
-        }
+        productRegister() {
+          let form = new FormData()
+          form.append("name", this.name)
+          //form.append("usingDate", this.usingDate)
+          form.append("detail", this.detail)
+          //form.append("price", this.price)
+          form.append("categoryNo", this.categoryNo)
+          //form.append("productImages", this.productImages)
 
-        
-    },
+          axios.post('/product',
+            form,
+            {
+              header: { 'Content-Type': 'multipart/form-data' }
+            }
+          ).then((response) => {
+            console.log(response)
+            if (response.status == 200) {
+              axios.defaults.headers.common['X-AUTH-TOKEN'] = `${response.data.accessToken}`
+              this.$router.push('./ProductDt')
+            }
+          })
+        },
+        onInputImage(e) {
+          this.image = e.target.files[0];
+        }
+        },
 
     
-
-
-
     created() {
         this.category() 
     }
@@ -246,7 +266,7 @@ export default {
   left: 760px;
   top: 347px;
 }
-.useage {
+.usingDate {
   color: #000000;
   text-align: left;
   font: 400 16px "Roboto", sans-serif;
@@ -379,7 +399,7 @@ export default {
   left: 773px;
   top: 683.2px;
 }
-.productExplain {
+.detail {
   color: #797979;
   text-align: left;
   font: 300 12px "Roboto", sans-serif;
