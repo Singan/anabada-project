@@ -171,8 +171,6 @@ export default {
               }
             }
           ).then((response,aa) => {
-            console.log(this.category)
-            console.log(response)
             if (response.status == 200) {
               this.$router.push('./ProductDt')
             }
