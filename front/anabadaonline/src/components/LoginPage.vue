@@ -58,8 +58,9 @@
           }).then((response)=>{
             console.log(response)
             if(response.status==200){
-            axios.defaults.headers.common['X-AUTH-TOKEN'] = `${response.data.accessToken}`
-            this.$router.push('./')
+              axios.defaults.headers.common['X-AUTH-TOKEN'] = `${response.data.accessToken}`
+              this.$emit("aaa")
+              this.$router.push('./')
           }
             
           })

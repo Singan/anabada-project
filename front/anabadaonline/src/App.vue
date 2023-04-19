@@ -1,6 +1,6 @@
 <template>
-    <Header></Header>
-    <router-view />
+    <Header :ccc="ccc"></Header>
+    <router-view v-on:aaa="bbb"/>
 </template>
 
 <script>
@@ -11,8 +11,18 @@ export default {
   components: {
     "MainPage": MainPage,
     Header,
+  },
+  data(){
+    return{
+      ccc:false
+    }
+  },
+  methods: {
+  bbb() {
+    console.log('test')
+    this.ccc=true
   }
-
+}
 }
 </script>
 

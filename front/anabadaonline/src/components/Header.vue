@@ -32,7 +32,7 @@
           </div>
         </div>
   
-        <div class="Login">
+        <div class="Login" v-if="!ccc">
           <div class="LoginBox"></div>
           <div class="LoginText">
             <div class="LoginText1" @click="goLogin">
@@ -44,7 +44,19 @@
   </div>
 </template>
 <script>
+import axios from '@/axios'
 export default {
+  
+  props:{
+    ccc:{
+      type:Boolean,
+    }
+  },
+    data(){
+      return{
+        isToken:false
+      }
+    },
     methods: {
   
       goLogin() {
@@ -75,6 +87,15 @@ export default {
       }
     },
       
+    },
+    mounted(){
+      console.log("왜시발")
+      console.log(axios.defaults.headers.common['X-AUTH-TOKEN'])
+
+        if(axios.defaults.headers.common['X-AUTH-TOKEN']!=null){
+          console.log("11")
+          this.isToken =true;
+        }
     }
   }
 </script>
