@@ -46,7 +46,7 @@
       <div class="Illust1">
         <img src="@/assets/change.png" style="width:100%; height:100%;"/>
       </div>
-      <ul v-for="item in product" :key="item.id">
+      <ul v-for="item in productList" :key="item.productNo">
         <div class="ProductN1">
           <div class="ProductNT1">{{ item.productName }}</div>
         </div>
@@ -134,9 +134,8 @@
       product() {
            axios.get('/product/list')
            .then((response)=> {
-              console.log(response.data) 
-              this.productList=response.data
-              console.log(this.productList)
+              console.dir(response.data) 
+              this.productList=response.data.list
            })
       },
       searchresultshow(keyword) {
