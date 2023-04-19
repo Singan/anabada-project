@@ -456,7 +456,7 @@
     position: absolute;
     left: 1125px;
     top: 606px;
-    width: 55px;
+    width: 60px;
     height: 26px;
     display: flex;
     align-items: center;
@@ -609,7 +609,7 @@
     position: absolute;
     left: 947px;
     top: 909px;
-    width: 49px;
+    width: 55px;
     height: 26px;
     display: flex;
     align-items: center;
