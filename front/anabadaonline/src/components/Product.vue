@@ -24,7 +24,11 @@
 
         <div class="nameBox">
           <div class="nameText" id="nameText">
-            <input type="text">
+            <input 
+                type="text"
+                 placeholder="상품명을 입력해주세요"    
+            >
+            
           </div>
         </div>
       </div>
@@ -41,12 +45,10 @@
          
           <div class="categoryText">
             
-             <select>
+             <select >
                 
-                <option >
-                    
-                    
-                </option> 
+                <option v-for="item in categoryList " :key="item.categoryNo" 
+                value={{item.categoryNo}}>{{ item.categoryName }}</option> 
                
             </select>
           </div>
@@ -61,15 +63,30 @@
         <div class="rectangle-233"></div>
 
         <div class="sub----4">
-          <div class="sub----5">상품에 대한 설명을 간략하게 적어주세요</div>
+          <div class="productExplain" contenteditable="true">
+            <input
+              type="text"
+              placeholder="상품 설명을 입력해주세요"
+            />
+          </div>
+          
         </div>
       </div>
 
       <div class="group-17">
         
-        <div class="_20px5">
-          <div class="useage">상품 사용기간 선택한 상품 </div>
+        
+        <div class="useageBox">
+          <div class="useage">상품 사용기간 
+          </div>
+          <div>
+            <input type="radio" v-model="radioValues" value="1R">
+            <input type="radio" v-model="radioValues" value="2R">
+            <input type="radio" v-model="radioValues" value="3R">
+            <input type="radio" v-model="radioValues" value="4R">
+          </div>
         </div>
+        
       </div>
 
       <div class="--7">
@@ -216,6 +233,18 @@ export default {
   justify-content: flex-start;
 }
 
+.radioValues {
+  color: #000000;
+  text-align: left;
+  font: 400 16px "Roboto", sans-serif;
+  position: absolute;
+  left: 0px;
+  top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .pick1 {
    width: 110px;
   height: 23px;
@@ -322,7 +351,7 @@ export default {
   left: 773px;
   top: 683.2px;
 }
-.sub----5 {
+.productExplain {
   color: #797979;
   text-align: left;
   font: 300 12px "Roboto", sans-serif;
@@ -344,9 +373,9 @@ export default {
   height: 63px;
   position: static;
 }
-._20px5 {
-  width: 110px;
-  height: 23px;
+.useageBox {
+  width: 500px;
+  height: 100px;
   position: absolute;
   left: 760px;
   top: 533px;
