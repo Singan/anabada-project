@@ -103,9 +103,9 @@
       <div class="--7">
         <div class="rectangle-25"></div>
 
-        <div class="_18px3">
-          <div class="_18px4" @click="goProductDt" >등록하기</div>
-        </div>
+        <button class="_18px3">
+          등록하기
+        </button>
       </div>
 
       <div class="rectangle-26"></div>
@@ -158,7 +158,7 @@ export default {
           form.append("detail", this.detail)
           //form.append("price", this.price)
           form.append("categoryNo", this.selectCategory)
-          //form.append("productImages", this.productImages)
+          form.append("productImages", this.productImages)
           axios.defaults.headers.common["x-auth-token"] = cookies.get('token')
           console.log(this.selectCategory)
 
@@ -167,15 +167,14 @@ export default {
             {
               header: { 
                 'Content-Type': 'multipart/form-data' ,
-                'X-AUTH-TOKEN': cookies.get('token')
               }
             }
-          ).then((response,aa) => {
+          ).then((response) => {
             console.log(this.category)
             console.log(response)
-            if (response.status == 200) {
-              this.$router.push('./ProductDt')
-            }
+            // if (response.status == 200) {
+            //   this.$router.push('./ProductDt')
+            // }
           })
         },
         onInputImage(e) {
