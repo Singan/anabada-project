@@ -24,7 +24,7 @@
 
         <div class="nameBox">
           <div class="nameText" id="nameText">
-            <input type="text" v-model="nameText">
+            <input type="text">
           </div>
         </div>
       </div>
@@ -40,13 +40,14 @@
           <div class="rectangle-232"></div>
          
           <div class="categoryText">
-             <select v-model="categoryType">
-                <option value="cloth">의류</option>
-                <option value="beauty">뷰티</option>
-                <option value="book">도서</option>
-                <option value="electro">전자제품</option>
-                <option value="kitchen">주방용품</option>
-                <option value="office">문구류</option>
+            
+             <select>
+                
+                <option >
+                    
+                    
+                </option> 
+               
             </select>
           </div>
         </div>
@@ -65,14 +66,9 @@
       </div>
 
       <div class="group-17">
-        <div class="pick1">
-            <div class="pick2"> 선택한 것: {{ picked }}
-
-                
-            </div>
-        </div>
+        
         <div class="_20px5">
-          <div class="useage">상품 사용기간</div>
+          <div class="useage">상품 사용기간 선택한 상품 </div>
         </div>
       </div>
 
@@ -89,16 +85,39 @@
   </div>
 </template>
 <script>
-
+import axios from '@/axios.js'
 
 export default {
-  name: "",
+  name: '',
   components: {},
   props: {},
   data() {
-    picked: []
-    return {};
+
+    return {
+      categoryList:''
+    };
   },
+
+    methods: {
+        category() {
+           axios.get('/category')
+           .then((response)=> {
+              console.log(response.data) 
+              this.categoryList=response.data
+              console.log(this.categoryList)
+           })
+        }
+    },
+
+
+
+    created() {
+        this.category() 
+        
+    }
+
+
+  
 };
 </script>
 <style scoped>
