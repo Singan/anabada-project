@@ -67,7 +67,7 @@ export default {
         
 		submitForm() {
 			let form = new FormData()
-			form.append("id",this.id)
+			      form.append("id",this.id)
             form.append("pw",this.pw)
             form.append("name",this.name)
             // form.append("birth",this.birth)

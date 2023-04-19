@@ -39,7 +39,7 @@
         </div>
       </div>
       <!-- 현재 경매되고있는 상품 -->
-      <div class="ProductImg1"></div>
+      <div class="ProductImg1">{{ productImage }}</div>
   
       <div class="ProductImg2"></div>
   
@@ -56,15 +56,18 @@
       </div>
   
       <div class="ProductN1">
-        <div class="ProductNT1">아이폰 14 프로</div>
+        <div class="ProductNT1">{{ productName }}</div>
+        <!-- 상품이름 들어가야함 -->
       </div>
   
       <div class="Adress1">
-        <div class="AdressT1">경기도 성남시</div>
+        <div class="AdressT1">{{ wishAddr }}</div>
+        <!-- 상품거래지 -->
       </div>
   
       <div class="Price1">
-        <div class="PriceT1">1,200,000 원</div>
+        <div class="PriceT1">{{ price }}</div>
+        <!-- 상품가격 -->
       </div>
   
       <div class="ProductN2">
@@ -106,7 +109,15 @@
   </template>
   
   <script>
+  import axios from '@/axios.js'
+
   export default {
+    data() {
+
+      return {
+        productList:'',
+      };
+    },
     methods: {
   
       goLogin() {
@@ -117,6 +128,15 @@
       },
       goChat() {
         this.$router.push('./chat')
+      },
+      
+      product() {
+           axios.get('/product/list')
+           .then((response)=> {
+              console.log(response.data) 
+              this.productList=response.data
+              console.log(this.productList)
+           })
       },
       searchresultshow(keyword) {
       if (keyword !== ''){ //검색어를 입력한 경우
@@ -132,12 +152,14 @@
       } else {
         alert('검색어를 입력해주세요!')  //검색어를 입력하지 않은 경우
       }
+     },
+    },
+    
+  
+    created() {
+        this.product() 
     },
   }
-    }
-  
-  
-  
   </script>
   
   <style scoped>
