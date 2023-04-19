@@ -1,47 +1,5 @@
 <template>
 
-  <div class="Header">
-      <div class="HeaderButton">
-        <div class="AuctionButton" @click="goAuction">경매</div>
-  
-        <div class="Logo">아나바다</div>
-  
-        <div class="ChatButton" @click="goChat">채팅</div>
-  
-        <div class="SearchBox" contenteditable="true" >
-          <b-form-input
-          size="sm"
-          class="mr-sm-2"
-          type="text"
-          placeholder="검색어를 입력해주세요"
-          v-model="keyword"  
-          @keyup.enter="searchresultshow(keyword)"
-        ></b-form-input>
-        </div>
-  
-        <div class="Search">
-          <div class="SearchButton"></div>
-          <div class="SearchText">
-            <!-- <div class="SearchText1">검색하기</div> -->
-            <b-button
-              size="sm"
-              class="SearchText1"
-              type="submit"
-              @click="goAuction(keyword)" 
-            >검색하기
-            </b-button>
-          </div>
-        </div>
-  
-        <div class="Login">
-          <div class="LoginBox"></div>
-          <div class="LoginText">
-            <div class="LoginText1" @click="goLogin">
-              로그인
-            </div>          
-          </div>
-        </div>
-      </div>
   
       <div class="Footer1"></div>
   
@@ -80,7 +38,7 @@
           <img src="@/assets/iphone14.jpg" style="width:100%; height:100%;"/>
         </div>
       </div>
-  
+      <!-- 현재 경매되고있는 상품 -->
       <div class="ProductImg1"></div>
   
       <div class="ProductImg2"></div>
@@ -144,7 +102,7 @@
       <div class="Price4">
         <div class="PriceT1">900,000 원</div>
       </div>
-    </div>
+    
   </template>
   
   <script>

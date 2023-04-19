@@ -72,7 +72,7 @@
 
 <style scoped>
 
-.---,
+/* .---,
 .--- * {
   box-sizing: border-box;
 }
@@ -82,7 +82,7 @@
   height: 1024px;
   position: relative;
   overflow: hidden;
-}
+} */
 .---- {
   color: #0075ff;
   text-align: center;
