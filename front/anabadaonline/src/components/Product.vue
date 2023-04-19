@@ -123,7 +123,6 @@ export default {
   data() {
 
     return {
-      image:'',
       categoryList:'',
       name:'',
      // usingDate:'',
