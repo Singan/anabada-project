@@ -9,9 +9,11 @@
 
       <div class="---------">
         <div class="---------2"></div>
-
+          <input id="image" type="file" @change="onInputImage" accept="image/*"/>
         <div class="_18px">
+          
           <div class="_18px2">이미지 변경</div>
+      
         </div>
       </div>
 
@@ -75,15 +77,25 @@
 
       <div class="group-17">
         
-        
+
         <div class="useageBox">
-          <div class="useage">상품 사용기간 
-          </div>
-          <div>
-            <input type="radio" v-model="radioValues" value="1R">
-            <input type="radio" v-model="radioValues" value="2R">
-            <input type="radio" v-model="radioValues" value="3R">
-            <input type="radio" v-model="radioValues" value="4R">
+          <div class="useage">상품 사용기간 {{ picked }}
+            
+            <div class="radioSelect">
+              
+               <input type="radio" id="one" class="one" value="하나" v-model="picked"  />
+              <label for="one">미사용</label>
+
+              <input type="radio" id="two"  value="둘" v-model="picked" />
+              <label for="two">0 ~ 4주</label>
+
+              <input type="radio" id="two" value="둘" v-model="picked" />
+                <label for="two">4 ~ 8주</label>
+
+                <input type="radio" id="two" value="둘" v-model="picked" />
+                <label for="two">8주 이상</label>
+
+            </div>
           </div>
         </div>
         
@@ -111,7 +123,9 @@ export default {
   data() {
 
     return {
-      categoryList:''
+      image:'',
+      categoryList:'',
+      productRegister:''
     };
   },
 
@@ -123,8 +137,20 @@ export default {
               this.categoryList=response.data
               console.log(this.categoryList)
            })
+        },
+
+        product() {
+          axios.post('/product')
+          .then((response) => {
+            console.log(response.data)
+            this.productRegister=product.data
+          })
         }
+
+        
     },
+
+    
 
 
 
@@ -228,21 +254,24 @@ export default {
   position: absolute;
   left: 0px;
   top: 2px;
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: flex-start;
 }
 
-.radioValues {
+.radioSelect {
   color: #000000;
   text-align: left;
   font: 400 16px "Roboto", sans-serif;
-  position: absolute;
   left: 0px;
   top: 2px;
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: flex-start;
+}
+
+.one {
+
 }
 
 .pick1 {
