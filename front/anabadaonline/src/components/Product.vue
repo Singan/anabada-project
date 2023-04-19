@@ -10,12 +10,12 @@
 
       <div class="---------">
         <div class="---------2"></div>
-          <input id="productImages" type="file" @change="onInputImage" accept="image/*"/>
-        <div class="_18px">
           
+        <div class="_18px">
           <div class="_18px2">이미지 변경</div>
-      
+          <input id="productImages" type="file" @change="onFileChange" accept="image/*" multiple="multiple">
         </div>
+        
       </div>
 
       <div class="_20px">
@@ -105,7 +105,7 @@
         <div class="rectangle-25"></div>
 
         <div class="_18px3">
-          <button class="_18px4" >등록하기</button>
+          <div class="_18px4" @click="goProductDt" >등록하기</div>
         </div>
       </div>
 
@@ -137,6 +137,10 @@ export default {
   },
 
     methods: {
+        goProductDt(){
+          this.$router.push('./ProductDt')
+        },
+
         category() {
            axios.get('/category')
            .then((response)=> {
@@ -240,8 +244,8 @@ export default {
   top: 300px;
 }
 ._18px {
-  width: 90px;
-  height: 30px;
+  width: 500px;
+  height: 200px;
   position: absolute;
   left: 945px;
   top: 300px;
@@ -250,7 +254,6 @@ export default {
   color: #ffffff;
   text-align: center;
   font: 700 14px "Roboto", sans-serif;
-  position: absolute;
   left: 0px;
   top: 0px;
   width: 90px;
