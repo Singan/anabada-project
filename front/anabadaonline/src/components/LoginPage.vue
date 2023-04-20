@@ -59,7 +59,6 @@
             id:this.id,
             pw:this.pw
           }).then((response)=>{
-            console.log(response)
             if(response.status==200){
               cookies.set("token",`${response.data.accessToken}`)
               this.$emit("aaa")
