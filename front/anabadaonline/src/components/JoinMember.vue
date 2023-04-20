@@ -36,7 +36,7 @@
 			</div>
             <div class="image">
 				<label for="image">프로필 이미지</label>
-				<input id="image" type="file" @change="onFileChange">
+				<input id="image" type="file" @change="onInputImage">
 			</div>
 			
 			<button type="submit" class="join">회원가입</button>
@@ -66,14 +66,14 @@ export default {
 	methods: {
         
 		submitForm() {
-			let form = new FormData()
+			      let form = new FormData()
 			      form.append("id",this.id)
             form.append("pw",this.pw)
             form.append("name",this.name)
             // form.append("birth",this.birth)
-            form.append("detailaddr",this.detailaddr)
+            form.append("detailAddr",this.detailaddr)
             form.append("addr",this.addr)
-            form.append("Wishaddr",this.Wishaddr)
+            form.append("wishAddr",this.Wishaddr)
 
             axios.post('/member',
             form,
@@ -83,7 +83,7 @@ export default {
             ).then((response)=>{
             console.log(response)
             if(response.status==200){
-                axios.defaults.headers.common['X-AUTH-TOKEN'] = `${response.data.accessToken}`
+              // 로그인 하면 토큰 발급
                 this.$router.push('./login')
             }
           })
