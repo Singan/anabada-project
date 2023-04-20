@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,6 +25,10 @@ public class Category {
     @Builder
     public Category(Long categoryNo, String categoryName) {
         this.categoryNo = categoryNo;
+        this.categoryName = categoryName;
+    }
+
+    public Category(String categoryName) {
         this.categoryName = categoryName;
     }
 }

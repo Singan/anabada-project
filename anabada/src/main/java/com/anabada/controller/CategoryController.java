@@ -3,7 +3,6 @@ package com.anabada.controller;
 import com.anabada.dto.response_dto.CategoryFindDto;
 import com.anabada.service.CategoryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,5 +19,10 @@ public class CategoryController {
     @GetMapping
     public List<CategoryFindDto> categoryFindDto() {
         return categoryService.getCategoryList();
+    }
+
+    @GetMapping("/insert")
+    public void categoryInsert() {
+        categoryService.categorySave();
     }
 }
