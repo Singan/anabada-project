@@ -46,6 +46,7 @@
       <div class="Illust1">
         <img src="@/assets/change.png" style="width:100%; height:100%;"/>
       </div>
+
       <ul v-for="item in product" :key="item.id">
         <div class="ProductN1">
           <div class="ProductNT1">{{ item.productName }}</div>
@@ -155,8 +156,7 @@
       }
      },
     },
-    
-  
+
     created() {
         this.product() 
     },
