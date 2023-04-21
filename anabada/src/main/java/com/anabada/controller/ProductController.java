@@ -2,6 +2,7 @@ package com.anabada.controller;
 
 import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.ProductInsertDto;
+import com.anabada.dto.response_dto.FindProductToCategoryDto;
 import com.anabada.dto.response_dto.ProductFindAllDto;
 import com.anabada.dto.response_dto.ProductFindOneDto;
 import com.anabada.dto.response_dto.ResultList;
@@ -20,6 +21,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -47,7 +49,7 @@ public class ProductController {
     // 요구사항 분석에 맞춰 보여주는 값 주기 order, all, bid
 
     // 상품 리스트
-    @GetMapping("/list")
+    @GetMapping("/main")
     @Operation(description = "메인페이지 하단 상품 조회")
     public ResultList<String,List<ProductFindAllDto>> productList(
             @PageableDefault(sort = "id", size = 4, direction = Sort.Direction.DESC)
@@ -55,6 +57,13 @@ public class ProductController {
     ) {
         ResultList<String,List<ProductFindAllDto>> result = productService.findProductList(pageable);
         return result;
+    }
+
+    @GetMapping("/list")
+    @Operation(description = "카테고리별 상품 리스트")
+    public ArrayList<FindProductToCategoryDto> findProductToCategoryDto(Long categoryNo) {
+        ArrayList<FindProductToCategoryDto> findProductToCategoryDtoArrayList = productService.findProductToCategory(categoryNo);
+        return findProductToCategoryDtoArrayList;
     }
 }
 

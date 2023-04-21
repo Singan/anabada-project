@@ -2,6 +2,7 @@ package com.anabada.service;
 
 import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.ProductInsertDto;
+import com.anabada.dto.response_dto.FindProductToCategoryDto;
 import com.anabada.dto.response_dto.ProductFindAllDto;
 import com.anabada.dto.response_dto.ProductFindOneDto;
 import com.anabada.dto.response_dto.ResultList;
@@ -51,5 +52,18 @@ public class ProductService {
 
         ResultList<String,List<ProductFindAllDto>> result = new ResultList<>("메인화면",productDtoList);
         return result;
+    }
+
+    // 카테고리별 product 리스트
+    public ArrayList<FindProductToCategoryDto> findProductToCategory(Long categoryNo) {
+        ArrayList<FindProductToCategoryDto> findProductToCategoryDtoArrayList = new ArrayList<>();
+        List<Product> productByCategoryList = productRepository.findProductByCategory(categoryNo);
+
+        productByCategoryList.forEach(products -> {
+            FindProductToCategoryDto findProductToCategoryDto = new FindProductToCategoryDto(products);
+            findProductToCategoryDtoArrayList.add(findProductToCategoryDto);
+        });
+
+        return findProductToCategoryDtoArrayList;
     }
 }
