@@ -1,31 +1,23 @@
 <template>
-    <Header :ccc="ccc"></Header>
-    <router-view v-on:aaa="bbb"/>
+  <Header :ccc="ccc"></Header>
+  <router-view v-on:isToken="isToken" />
 </template>
 
 <script>
 
-import MainPage from './components/MainPage.vue'
 import Header from './components/Header.vue';
+import isToken from '@/common/isToken'
 export default {
   components: {
-    "MainPage": MainPage,
     Header,
   },
-  data(){
-    return{
-      ccc:false
+  data() {
+    return {
+      isToken: isToken.is,
+      token: isToken.token
     }
   },
-  methods: {
-  bbb() {
-    console.log('test')
-    this.ccc=true
-  }
-}
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

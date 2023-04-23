@@ -1,7 +1,6 @@
 // 라우트 정보
 // 라우팅을 해주면서 #을 제거해주면서, path에 입력한 경로에 매핑된 컴포넌트를 보여준다.
 
-
 const routes = [
     {
         path: '/',
@@ -19,7 +18,7 @@ const routes = [
         component: () => import('@/components/MyPage.vue'),
     },
     {
-         path: '/product',
+        path: '/product',
         name: 'Product',
         component: () => import('@/components/Product.vue'),
     },
@@ -39,7 +38,7 @@ const routes = [
         component: () => import('@/components/MemberExit.vue'),
     },
     {
-       
+
     },
     {
         path: '/jjim',
@@ -91,8 +90,7 @@ const routes = [
         name: 'JoinMember',
         component: () => import('@/components/JoinMember.vue'),
     },
-    
-]
 
+];
 
 export default routes;
