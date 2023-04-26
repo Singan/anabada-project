@@ -21,7 +21,7 @@
                 </div>
             </div>
 
-            <div class="Login" v-if="isTokena">
+            <div class="Login" v-if="!isToken">
                 <div class="LoginBox"></div>
                 <div class="LoginText">
                     <div class="LoginText1" @click="goLogin">

@@ -1,22 +1,22 @@
 <template>
-  <Header :ccc="ccc"></Header>
-  <router-view v-on:isToken="isToken" />
+    <Header :isToken="isToken"></Header>
+    <router-view v-on:isToken="isToken" />
 </template>
 
 <script>
 
 import Header from './components/Header.vue';
-import isToken from '@/common/isToken'
+import token from '@/common/isToken'
 export default {
-  components: {
-    Header,
-  },
-  data() {
-    return {
-      isToken: isToken.is,
-      token: isToken.token
-    }
-  },
+    components: {
+        Header,
+    },
+    data() {
+        return {
+            isToken: token.is,
+            token: token.token
+        }
+    },
 }
 </script>
 

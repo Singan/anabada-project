@@ -11,5 +11,4 @@ if (token != null) {
     result.is = true;
     result.token = token;
 }
-console.log(token)
 export default result;

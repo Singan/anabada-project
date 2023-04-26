@@ -60,7 +60,7 @@ export default {
                 }).then((response) => {
                     if (response.status == 200) {
                         cookies.set("token", `${response.data.accessToken}`)
-                        this.$emit("aaa")
+                        this.$emit("login")
                         this.$router.push('./')
                     }
 
