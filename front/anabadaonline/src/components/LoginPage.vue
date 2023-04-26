@@ -22,37 +22,37 @@
 
         <div class="----2" @click="goJoin">회원가입</div>
         <form>
-            <div class="---5" id="id"><input type="text" v-model="id"></div>
+            <div class="---5" id="id"><input type="text" v-model="id" /></div>
 
-            <div class="----3" id="pw"><input type="password" v-model="pw"></div>
+            <div class="----3" id="pw">
+                <input type="password" v-model="pw" />
+            </div>
         </form>
         <div class="---6" @click="login">로그인</div>
     </div>
 </template>
 
 <script>
-import axios from '@/axios.js'
-import { useCookies } from "vue3-cookies";
+import axios from '@/axios.js';
+import { useCookies } from 'vue3-cookies';
 const { cookies } = useCookies();
 
 export default {
-    name: "LoginPage",
+    name: 'LoginPage',
     data() {
         return {
             id: '아이디',
-            pw: '패스워드'
-        }
+            pw: '패스워드',
+        };
     },
     methods: {
         goJoin() {
-            this.$router.push('./JoinMember')
+            this.$router.push('./JoinMember');
         },
         goMain() {
-            this.$router.push('./')
+            this.$router.push('./');
         },
         login() {
-            console.log(this.id)
-
             axios.post('/member/login',
                 {
                     id: this.id,
@@ -70,6 +70,7 @@ export default {
         },
     }
 }
+
 </script>
 
 <style scoped>
@@ -87,7 +88,7 @@ export default {
 .---- {
     color: #0075ff;
     text-align: center;
-    font: 700 35px "Roboto", sans-serif;
+    font: 700 35px 'Roboto', sans-serif;
     position: absolute;
     left: 862px;
     top: 312px;
@@ -127,7 +128,7 @@ export default {
 .--2 {
     color: #0123b4;
     text-align: center;
-    font: 400 15px "Roboto", sans-serif;
+    font: 400 15px 'Roboto', sans-serif;
     position: absolute;
     left: 808px;
     top: 322.92px;
@@ -171,7 +172,7 @@ export default {
 .------ {
     color: #000000;
     text-align: center;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 799px;
     top: 653px;
@@ -185,7 +186,7 @@ export default {
 .------- {
     color: #000000;
     text-align: center;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 939px;
     top: 653px;
@@ -199,7 +200,7 @@ export default {
 .----2 {
     color: #0075ff;
     text-align: center;
-    font: 700 13px "Roboto", sans-serif;
+    font: 700 13px 'Roboto', sans-serif;
     position: absolute;
     left: 1094px;
     top: 653px;
@@ -213,7 +214,7 @@ export default {
 .---5 {
     color: #a3a3a3;
     text-align: left;
-    font: 400 16px "Roboto", sans-serif;
+    font: 400 16px 'Roboto', sans-serif;
     position: absolute;
     left: 762px;
     top: 437px;
@@ -227,7 +228,7 @@ export default {
 .----3 {
     color: #a3a3a3;
     text-align: left;
-    font: 400 16px "Roboto", sans-serif;
+    font: 400 16px 'Roboto', sans-serif;
     position: absolute;
     left: 762px;
     top: 510px;
@@ -241,7 +242,7 @@ export default {
 .---6 {
     color: #ffffff;
     text-align: center;
-    font: 700 18px "Roboto", sans-serif;
+    font: 700 18px 'Roboto', sans-serif;
     position: absolute;
     left: 776px;
     top: 601px;

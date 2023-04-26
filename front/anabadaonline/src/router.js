@@ -38,9 +38,6 @@ const routes = [
         component: () => import('@/components/MemberExit.vue'),
     },
     {
-
-    },
-    {
         path: '/jjim',
         name: 'Jjim',
         component: () => import('@/components/Jjim.vue'),
@@ -90,6 +87,7 @@ const routes = [
         name: 'JoinMember',
         component: () => import('@/components/JoinMember.vue'),
     },
+
 
 ];
 
