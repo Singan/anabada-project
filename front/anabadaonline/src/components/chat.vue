@@ -13,7 +13,7 @@
                 stroke="white" />
         </svg>
 
-        <div class="group-37">
+         <div class="group-37">
             <div class="rectangle-32"></div>
             <svg class="polygon-4" width="16" height="15" viewBox="0 0 16 15" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
