@@ -155,8 +155,13 @@
 <style scoped>
 	.product {
 		display: inline-block;
-		margin-right: 100px;
+		margin-right: 30px;
 		display: flex-inline;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		left: 320px;
+		top: 1290px;
+		position: static;
 	}
 	.Header,
 	.Header * {
