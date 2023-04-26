@@ -1,149 +1,147 @@
 <template>
     <div class="------------">
-      <svg
-        class="---------"
-        width="800"
-        height="1000"
-        viewBox="0 0 800 1000"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d="M0 0H800V1000H0V0Z" fill="white" />
-      </svg>
-  
-      <div class="--">
-        <div class="----">아이디</div>
-      </div>
-  
-      <div class="--2">
-        <div class="--3">회원 정보 수정</div>
-      </div>
-  
-      <div class="----------">
-        <div class="rectangle-27"></div>
-  
-        <div class="--4">
-          <div class="----2">abcd@gmail.com</div>
+        <svg class="---------" width="800" height="1000" viewBox="0 0 800 1000" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0H800V1000H0V0Z" fill="white" />
+        </svg>
+
+        <div class="--">
+            <div class="----">아이디</div>
         </div>
-      </div>
-  
-      <div class="--5">
-        <div class="----">이름</div>
-      </div>
-  
-      <div class="----------">
-        <div class="rectangle-272"></div>
-  
-        <div class="--6">
-          <div class="----2">홍길동</div>
+
+        <div class="--2">
+            <div class="--3">회원 정보 수정</div>
         </div>
-      </div>
-  
-      <div class="--7">
-        <div class="----">비밀번호 변경</div>
-      </div>
-  
-      <div class="----------">
-        <div class="rectangle-273"></div>
-  
-        <div class="--8"></div>
-  
-        <div class="----3">현재 비밀번호를 입력하세요</div>
-      </div>
-  
-      <div class="--9">
-        <div class="----">주소 변경</div>
-      </div>
-  
-      <div class="----------2">
-        <div class="rectangle-274"></div>
-  
-        <div class="--10"></div>
-  
-        <div class="-------">경기도 성남시</div>
-      </div>
-  
-      <div class="----------3">
-        <div class="rectangle-275"></div>
-  
-        <div class="--11"></div>
-  
-        <div class="-----">주소 찾기</div>
-      </div>
-  
-      <div class="----------">
-        <div class="rectangle-276"></div>
-  
-        <div class="--12"></div>
-  
-        <div class="-------------">새 비밀번호를 입력하세요</div>
-      </div>
-  
-      <div class="----------">
-        <div class="rectangle-277"></div>
-  
-        <div class="--13"></div>
-  
-        <div class="------------------">새 비밀번호를 한 번더 입력하세요</div>
-      </div>
-  
-      <div class="--14">
-        <div class="rectangle-25"></div>
-  
-        <div class="_18px">
-          <div class="_18px2">수정 하기</div>
+
+        <div class="----------">
+            <div class="rectangle-27"></div>
+
+            <div class="--4">
+                <div class="----2">abcd@gmail.com</div>
+            </div>
         </div>
-      </div>
-  
-      <div class="-----2">
-        <div class="rectangle-252"></div>
-  
-        <div class="_18px3">
-          <div class="_18px2" @click="goMypage">취소</div>
+
+        <div class="--5">
+            <div class="----">이름</div>
         </div>
-      </div>
+
+        <div class="----------">
+            <div class="rectangle-272"></div>
+
+            <div class="--6">
+                <div class="----2">홍길동</div>
+            </div>
+        </div>
+
+        <div class="--7">
+            <div class="----">비밀번호 변경</div>
+        </div>
+
+        <div class="----------">
+            <div class="rectangle-273"></div>
+
+            <div class="--8"></div>
+
+            <div class="----3">현재 비밀번호를 입력하세요</div>
+        </div>
+
+        <div class="--9">
+            <div class="----">주소 변경</div>
+        </div>
+
+        <div class="----------2">
+            <div class="rectangle-274"></div>
+
+            <div class="--10"></div>
+
+            <div class="-------">경기도 성남시</div>
+        </div>
+
+        <div class="----------3">
+            <div class="rectangle-275"></div>
+
+            <div class="--11"></div>
+
+            <div class="-----">주소 찾기</div>
+        </div>
+
+        <div class="----------">
+            <div class="rectangle-276"></div>
+
+            <div class="--12"></div>
+
+            <div class="-------------">새 비밀번호를 입력하세요</div>
+        </div>
+
+        <div class="----------">
+            <div class="rectangle-277"></div>
+
+            <div class="--13"></div>
+
+            <div class="------------------">새 비밀번호를 한 번더 입력하세요</div>
+        </div>
+
+        <div class="--14">
+            <div class="rectangle-25"></div>
+
+            <div class="_18px">
+                <div class="_18px2">수정 하기</div>
+            </div>
+        </div>
+
+        <div class="-----2">
+            <div class="rectangle-252"></div>
+
+            <div class="_18px3">
+                <div class="_18px2" @click="goMypage">취소</div>
+            </div>
+        </div>
     </div>
-  </template>
-  <script>
-  /* Code generated with AutoHTML Plugin for Figma */
-  
-    export default {
-      name: "",
-      components: {},
-      props: {},
-      data() {
+</template>
+<script>
+/* Code generated with AutoHTML Plugin for Figma */
+
+export default {
+    name: "",
+    components: {},
+    props: {},
+    data() {
         // quickfix to have components available to pass as props
         return {};
-      },
-      
-    };
-  </script>
-  <style scoped>
-  .------------,
-  .------------ * {
+    },
+
+};
+</script>
+<style scoped>
+.------------,
+.------------ * {
     box-sizing: border-box;
-  }
-  .------------ {
+}
+
+.------------ {
     background: #f1f1f1;
     width: 1920px;
     height: 1080px;
     position: relative;
     overflow: hidden;
-  }
-  .--------- {
+}
+
+.--------- {
     position: absolute;
     left: 560px;
     top: 40px;
     overflow: visible;
-  }
-  .-- {
+}
+
+.-- {
     width: 370px;
     height: 30px;
     position: absolute;
     left: 660px;
     top: 168px;
-  }
-  .---- {
+}
+
+.---- {
     color: #000000;
     text-align: left;
     font: 400 16px "Roboto", sans-serif;
@@ -155,15 +153,17 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-  }
-  .--2 {
+}
+
+.--2 {
     width: 200px;
     height: 40px;
     position: absolute;
     left: 660px;
     top: 78px;
-  }
-  .--3 {
+}
+
+.--3 {
     color: #0075ff;
     text-align: left;
     font: 700 28px "Roboto", sans-serif;
@@ -173,13 +173,15 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-  }
-  .---------- {
+}
+
+.---------- {
     width: 630px;
     height: 40px;
     position: static;
-  }
-  .rectangle-27 {
+}
+
+.rectangle-27 {
     background: #e1e1e1;
     border-radius: 5px;
     border-style: solid;
@@ -190,15 +192,17 @@
     position: absolute;
     left: 660px;
     top: 210px;
-  }
-  .--4 {
+}
+
+.--4 {
     width: 487.98px;
     height: 26.67px;
     position: absolute;
     left: 673.2px;
     top: 216.67px;
-  }
-  .----2 {
+}
+
+.----2 {
     color: #797979;
     text-align: left;
     font: 400 12px "Roboto", sans-serif;
@@ -210,15 +214,17 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-  }
-  .--5 {
+}
+
+.--5 {
     width: 370px;
     height: 30px;
     position: absolute;
     left: 660px;
     top: 280px;
-  }
-  .rectangle-272 {
+}
+
+.rectangle-272 {
     background: #e1e1e1;
     border-radius: 5px;
     border-style: solid;
@@ -229,22 +235,25 @@
     position: absolute;
     left: 660px;
     top: 322px;
-  }
-  .--6 {
+}
+
+.--6 {
     width: 487.98px;
     height: 26.67px;
     position: absolute;
     left: 673.2px;
     top: 328.67px;
-  }
-  .--7 {
+}
+
+.--7 {
     width: 370px;
     height: 30px;
     position: absolute;
     left: 660px;
     top: 390px;
-  }
-  .rectangle-273 {
+}
+
+.rectangle-273 {
     border-radius: 5px;
     border-style: solid;
     border-color: #0075ff;
@@ -254,15 +263,17 @@
     position: absolute;
     left: 660px;
     top: 430px;
-  }
-  .--8 {
+}
+
+.--8 {
     width: 487.98px;
     height: 26.67px;
     position: absolute;
     left: 663.2px;
     top: 436.67px;
-  }
-  .----3 {
+}
+
+.----3 {
     color: #797979;
     text-align: left;
     font: 400 12px "Roboto", sans-serif;
@@ -274,20 +285,23 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-  }
-  .--9 {
+}
+
+.--9 {
     width: 370px;
     height: 30px;
     position: absolute;
     left: 660px;
     top: 620px;
-  }
-  .----------2 {
+}
+
+.----------2 {
     width: 530px;
     height: 30px;
     position: static;
-  }
-  .rectangle-274 {
+}
+
+.rectangle-274 {
     border-radius: 5px;
     border-style: solid;
     border-color: #0075ff;
@@ -297,15 +311,17 @@
     position: absolute;
     left: 660px;
     top: 660px;
-  }
-  .--10 {
+}
+
+.--10 {
     width: 410.53px;
     height: 20px;
     position: absolute;
     left: 662.69px;
     top: 665px;
-  }
-  .------- {
+}
+
+.------- {
     color: #797979;
     text-align: left;
     font: 400 12px "Roboto", sans-serif;
@@ -317,13 +333,15 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-  }
-  .----------3 {
+}
+
+.----------3 {
     width: 70px;
     height: 30px;
     position: static;
-  }
-  .rectangle-275 {
+}
+
+.rectangle-275 {
     background: #0075ff;
     border-radius: 5px;
     width: 70px;
@@ -331,16 +349,18 @@
     position: absolute;
     left: 1220px;
     top: 660px;
-  }
-  .--11 {
+}
+
+.--11 {
     background: #0075ff;
     width: 54.22px;
     height: 20px;
     position: absolute;
     left: 1220.36px;
     top: 665px;
-  }
-  .----- {
+}
+
+.----- {
     color: #ffffff;
     text-align: center;
     font: 400 12px "Roboto", sans-serif;
@@ -352,8 +372,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  .rectangle-276 {
+}
+
+.rectangle-276 {
     border-radius: 5px;
     border-style: solid;
     border-color: #0075ff;
@@ -363,15 +384,17 @@
     position: absolute;
     left: 660px;
     top: 490px;
-  }
-  .--12 {
+}
+
+.--12 {
     width: 487.98px;
     height: 26.67px;
     position: absolute;
     left: 663.2px;
     top: 496.67px;
-  }
-  .------------- {
+}
+
+.------------- {
     color: #797979;
     text-align: left;
     font: 400 12px "Roboto", sans-serif;
@@ -383,8 +406,9 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-  }
-  .rectangle-277 {
+}
+
+.rectangle-277 {
     border-radius: 5px;
     border-style: solid;
     border-color: #0075ff;
@@ -394,15 +418,17 @@
     position: absolute;
     left: 660px;
     top: 550px;
-  }
-  .--13 {
+}
+
+.--13 {
     width: 487.98px;
     height: 26.67px;
     position: absolute;
     left: 663.2px;
     top: 556.67px;
-  }
-  .------------------ {
+}
+
+.------------------ {
     color: #797979;
     text-align: left;
     font: 400 12px "Roboto", sans-serif;
@@ -414,13 +440,15 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-  }
-  .--14 {
+}
+
+.--14 {
     width: 630px;
     height: 40px;
     position: static;
-  }
-  .rectangle-25 {
+}
+
+.rectangle-25 {
     background: #0075ff;
     border-radius: 5px;
     width: 630px;
@@ -428,15 +456,17 @@
     position: absolute;
     left: 650px;
     top: 902px;
-  }
-  ._18px {
+}
+
+._18px {
     width: 107.23px;
     height: 30px;
     position: absolute;
     left: 911.38px;
     top: 907px;
-  }
-  ._18px2 {
+}
+
+._18px2 {
     color: #ffffff;
     text-align: center;
     font: 700 18px "Roboto", sans-serif;
@@ -448,13 +478,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  .-----2 {
+}
+
+.-----2 {
     width: 630px;
     height: 40px;
     position: static;
-  }
-  .rectangle-252 {
+}
+
+.rectangle-252 {
     background: #ff4545;
     border-radius: 5px;
     width: 630px;
@@ -462,13 +494,14 @@
     position: absolute;
     left: 650px;
     top: 962px;
-  }
-  ._18px3 {
+}
+
+._18px3 {
     width: 107.23px;
     height: 30px;
     position: absolute;
     left: 911.38px;
     top: 967px;
-  }
-  </style>
+}
+</style>
   
