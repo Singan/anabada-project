@@ -312,7 +312,7 @@
 
 	.Footer1 {
 		background: #f1f8ff;
-		width: 1920px;
+		width: 100%;
 		height: 600px;
 		position: absolute;
 		left: 0px;
@@ -321,7 +321,7 @@
 
 	.Footer2 {
 		background: #f3f4ff;
-		width: 1920px;
+		width: 100%;
 		height: 600px;
 		position: absolute;
 		left: 0px;
@@ -330,7 +330,7 @@
 
 	.Footer3 {
 		background: #f6efff;
-		width: 1920px;
+		width: 100%;
 		height: 600px;
 		position: absolute;
 		left: 0px;

@@ -1,27 +1,5 @@
 <template>
 	<div class="---">
-		<div class="group-48">
-			<div class="--">경매</div>
-
-			<div class="----">아나바다</div>
-
-			<div class="--2">채팅</div>
-
-			<div class="---2"></div>
-
-			<div class="----2"></div>
-
-			<div class="----3">
-				<div class="_18px">검색하기</div>
-			</div>
-
-			<div class="----4"></div>
-
-			<div class="----5">
-				<div class="_18px2">로그인</div>
-			</div>
-		</div>
-
 		<div class="---3">찜목록</div>
 
 		<div class="rectangle-16"></div>
