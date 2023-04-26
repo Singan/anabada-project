@@ -10,7 +10,7 @@
             <div class="---"></div>
 
             <div class="--4">
-                <div class="----2"></div>
+            <div class="----2"></div>
 
                 <div class="----3">
                     <div class="_18px">검색하기</div>
