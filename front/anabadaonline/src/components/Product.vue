@@ -95,7 +95,7 @@
 </template>
 <script>
 import axios from '@/axios.js';
-import result from '@/common/isToken';
+import result from '@/common/token.js';
 export default {
     name: '',
     components: {},
@@ -274,7 +274,6 @@ export default {
     justify-content: flex-start;
 }
 
-.one {}
 
 .pick1 {
     width: 110px;

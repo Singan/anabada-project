@@ -1,23 +1,35 @@
 <template>
     <Header :isToken="isToken"></Header>
-    <router-view v-on:isToken="isToken" />
+    <router-view @logined="login" />
 </template>
 
 <script>
 
 import Header from './components/Header.vue';
-import token from '@/common/isToken'
+import token from '@/common/token'
 export default {
     components: {
         Header,
     },
     data() {
         return {
-            isToken: token.is,
+            isToken: token.is(),
             token: token.token
         }
     },
+    methods: {
+        login() {
+            this.isToken = token.is()
+            console.log(this.isToken)
+        }
+    },
+
+
 }
 </script>
 
-<style></style>
+<style>
+body {
+    width: 100%;
+}
+</style>

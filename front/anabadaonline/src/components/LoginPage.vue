@@ -34,8 +34,7 @@
 
 <script>
 import axios from '@/axios.js';
-import { useCookies } from 'vue3-cookies';
-const { cookies } = useCookies();
+import token from '@/common/token'
 
 export default {
     name: 'LoginPage',
@@ -52,15 +51,15 @@ export default {
         goMain() {
             this.$router.push('./');
         },
-        login() {
-            axios.post('/member/login',
+        async login() {
+            await axios.post('/member/login',
                 {
                     id: this.id,
                     pw: this.pw
                 }).then((response) => {
                     if (response.status == 200) {
-                        cookies.set("token", `${response.data.accessToken}`)
-                        this.$emit("login")
+                        token.setToken(`${response.data.accessToken}`)
+                        this.$emit("logined")
                         this.$router.push('./')
                     }
 
