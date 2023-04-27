@@ -1,44 +1,42 @@
 <template>
-	<div class="container">
+	<div class="flexContainer">
 		<form @submit.prevent="submitForm">
 			<div class="text">본인 정보를 입력해 주세요</div>
-			<li>
-				<div class="id">
-					<label for="id">id</label>
-					<input type="text" id="id" v-model="id" />
-				</div>
-				<div class="pw">
-					<label for="pw">pw</label>
-					<input type="password" id="pw" v-model="pw" />
-				</div>
-				<div class="name">
-					<label for="name">이름</label>
-					<input type="text" id="name" v-model="name" />
-				</div>
-				<div class="birth">
-					<label for="birth">생년월일</label>
-					<input type="date" id="birth" v-model="birth" />
-				</div>
-				<div class="addr">
-					<label for="addr">주소</label>
-					<input type="text" id="addr" v-model="addr" />
-				</div>
-				<div class="detailaddr">
-					<label for="detailaddr">상세주소</label>
-					<input type="text" id="detailaddr" v-model="detailaddr" />
-				</div>
-				<div class="Wishaddr">
-					<label for="Wishaddr">거래희망지</label>
-					<input type="text" id="Wishaddr" v-model="Wishaddr" />
-				</div>
-				<div class="image">
-					<label for="image">프로필 이미지</label>
-					<input id="image" type="file" @change="onInputImage" />
-				</div>
+			<div class="id">
+				<label for="id">id</label>
+				<input type="text" id="id" v-model="id" />
+			</div>
+			<div class="pw">
+				<label for="pw">pw</label>
+				<input type="password" id="pw" v-model="pw" />
+			</div>
+			<div class="name">
+				<label for="name">이름</label>
+				<input type="text" id="name" v-model="name" />
+			</div>
+			<div class="birth">
+				<label for="birth">생년월일</label>
+				<input type="date" id="birth" v-model="birth" />
+			</div>
+			<div class="addr">
+				<label for="addr">주소</label>
+				<input type="text" id="addr" v-model="addr" />
+			</div>
+			<div class="detailaddr">
+				<label for="detailaddr">상세주소</label>
+				<input type="text" id="detailaddr" v-model="detailaddr" />
+			</div>
+			<div class="Wishaddr">
+				<label for="Wishaddr">거래희망지</label>
+				<input type="text" id="Wishaddr" v-model="Wishaddr" />
+			</div>
+			<div class="image">
+				<label for="image">프로필 이미지</label>
+				<input id="image" type="file" @change="onInputImage" />
+			</div>
 
-				<button type="submit" class="join">회원가입</button>
-				<button class="cancel" @click="goLogin">취소하기</button>
-			</li>
+			<button type="submit" class="join">회원가입</button>
+			<button class="cancel" @click="goLogin">취소하기</button>
 		</form>
 	</div>
 </template>
@@ -112,7 +110,6 @@
 		text-align: left;
 		font: 700 28px 'Roboto', sans-serif;
 		position: absolute;
-		left: 614px;
 		top: 130px;
 		width: 398px;
 		height: 37px;

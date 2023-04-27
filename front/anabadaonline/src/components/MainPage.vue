@@ -7,12 +7,11 @@
 				구매해보세요
 			</div>
 		</div>
-
-		<img class="rectangle-13" src="@/assets/bike.jpg" />
-
-		<img class="rectangle-14" src="@/assets/samsung.jpg" />
-
-		<img class="rectangle-12" src="@/assets/iphone14.jpg" />
+		<div class="topImages">
+			<img src="@/assets/mainImage.png" />
+			<!-- <img class="rectangle-14" src="@/assets/samsung.jpg" />
+			<img class="rectangle-12" src="@/assets/iphone14.jpg" /> -->
+		</div>
 	</div>
 
 	<div class="Text2 content2TextFlex content2Title">
@@ -317,24 +316,28 @@
 	}
 
 	.Text3 {
-		flex-basis: auto;
 		color: #000000;
 		text-align: left;
 		font: 700 35px 'Roboto', sans-serif;
 		align-items: center;
-		position: relative;
-		left: 130px;
-		top: 200px;
+		position: absolute;
+		left: 15%;
+		top: 40%;
 	}
 
 	.Text4 {
 		color: #000000;
 		text-align: left;
 		font: 400 16px 'Roboto', sans-serif;
-		flex-basis: auto;
-		display: flex;
 		align-items: center;
 		justify-content: flex-start;
+	}
+
+	.topImages {
+		position: absolute;
+		width: 800px;
+		height: 190px;
+		right: 10%;
 	}
 
 	.rectangle-12 {
@@ -342,9 +345,8 @@
 		width: 400px;
 		height: 190px;
 		box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
-		position: relative;
-		right: 430px;
-		top: 110px;
+		right: 38%;
+		top: 30%;
 	}
 
 	.rectangle-13 {
@@ -352,9 +354,8 @@
 		width: 400px;
 		height: 190px;
 		box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
-		position: relative;
-		left: 450px;
-		top: 280px;
+		left: 45%;
+		top: 50%;
 	}
 
 	.rectangle-14 {
@@ -362,9 +363,8 @@
 		width: 400px;
 		height: 190px;
 		box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
-		position: relative;
-		left: 250px;
-		top: 170px;
+		left: 58%;
+		top: 35%;
 	}
 
 	.ProductImg1 {
@@ -451,5 +451,10 @@
 		display: flex;
 		align-items: center;
 		justify-content: flex-start;
+	}
+
+	* {
+		padding: 0;
+		margin: 0;
 	}
 </style>
