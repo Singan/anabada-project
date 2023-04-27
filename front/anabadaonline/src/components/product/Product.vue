@@ -150,7 +150,7 @@
 				detail: '',
 				// price:'',
 				selectCategory: '',
-				productImages: '',
+				productImages: null,
 			};
 		},
 
@@ -174,14 +174,15 @@
 				form.append('detail', this.detail);
 				//form.append("price", this.price)
 				form.append('categoryNo', this.selectCategory);
-				form.append('productImages', this.productImages);
-				console.log(form);
-				console.log(result);
+				if (this.productImages) {
+					form.append('productImages', this.productImages);
+				}
+				console.log(this.selectCategory);
+				axios.defaults.headers.common['x-auth-token'] = result.token;
 				axios
 					.post('/product', form, {
 						header: {
 							'Content-Type': 'multipart/form-data',
-							'x-auth-token': result.token,
 						},
 					})
 					.then((response) => {
@@ -190,6 +191,7 @@
 			},
 			onInputImage(e) {
 				this.productImages = e.target.files;
+				console.log(this.productImages);
 			},
 		},
 

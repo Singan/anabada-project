@@ -30,12 +30,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         // 1. 토큰이 필요하지 않은 API URL에 대해서 배열로 구성합니다.
 
         String token = request.getHeader("X-AUTH-TOKEN");
+        System.out.println(token);
 
         if (token != null && !token.isBlank()) {
             if (jwtTokenProvider.isValidToken(token)) {
                 String userId = jwtTokenProvider.getUserIdFromToken(token);
                 if (userId != null) {
-                    System.out.println(token);
+                    System.out.println("오나?");
                     SecurityContextHolder.getContext().setAuthentication(getAuthentication(userId));
                 }
 
