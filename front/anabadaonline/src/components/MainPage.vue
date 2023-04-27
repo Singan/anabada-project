@@ -1,5 +1,13 @@
 <template>
 	<div class="content1 flexContainer">
+		<div class="Text3">
+			원하는 물품,<br />원하는 가격으로<br /><br />
+			<div class="Text4">
+				중고 거래, 이제 경매에 직접 참여해서<br />원하는 가격으로
+				구매해보세요
+			</div>
+		</div>
+
 		<img class="rectangle-13" src="@/assets/bike.jpg" />
 
 		<img class="rectangle-14" src="@/assets/samsung.jpg" />
@@ -7,20 +15,12 @@
 		<img class="rectangle-12" src="@/assets/iphone14.jpg" />
 	</div>
 
-	<div class="content2 flexContainer">
-		<div class="Text1">현재 경매 되고 있는 상품을 둘러보세요</div>
+	<!-- <div class="content2 flexContainer"></div> -->
 
-		<div class="Text2">내가 사는 지역에서 펼쳐지는 경매장</div>
-
-		<div class="Text3">원하는 물품,<br />원하는 가격으로</div>
-
-		<div class="Text4">
-			중고 거래, 이제 경매에 직접 참여해서<br />원하는 가격으로
-			구매해보세요
-		</div>
+	<div class="Text2 textFlex content3Title">
+		내가 사는 지역에서 펼쳐지는 경매장
 	</div>
-
-	<div class="content3 flexContainer">
+	<div class="content2 flexContainer">
 		<div class="Illust2">
 			<img src="@/assets/change2.jpg" style="width: 100%; height: 100%" />
 		</div>
@@ -30,7 +30,8 @@
 		</div>
 	</div>
 
-	<div class="productFlex">
+	<div class="content3 productFlex">
+		<div class="Text1">현재 경매 되고 있는 상품을 둘러보세요</div>
 		<div
 			class="productFlexItem"
 			v-for="item in productList"
@@ -150,8 +151,20 @@
 		margin-right: 30px;
 	}
 
+	.textFlex {
+		display: flex;
+		flex-direction: column;
+	}
+
+	/* .productImgflexContainer {
+		justify-content: flex-end;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+	} */
+
 	.flexContainer {
-		float: right;
+		justify-content: flex-end;
 		width: 100%;
 		display: flex;
 	}
@@ -304,6 +317,12 @@
 		height: 600px;
 	}
 
+	.content3Title {
+		background: #f6efff;
+		justify-content: center;
+		width: 100%;
+	}
+
 	.Text1 {
 		color: #000000;
 		text-align: center;
@@ -319,10 +338,8 @@
 		color: #000000;
 		text-align: center;
 		font: 700 35px 'Roboto', sans-serif;
-		width: 666px;
 		height: 60px;
 		align-items: center;
-		justify-content: center;
 	}
 
 	.Text3 {
@@ -352,8 +369,9 @@
 		background: #bdbdbd;
 		width: 400px;
 		height: 190px;
-
 		box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
+		float: right;
+		left: 200%;
 	}
 
 	.rectangle-14 {

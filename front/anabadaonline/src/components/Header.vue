@@ -1,47 +1,4 @@
 <template>
-	<<<<<<< HEAD
-	<div class="Header">
-		<div class="HeaderButton">
-			<div class="Logo" @click="goMain">아나바다</div>
-
-			<div class="AuctionButton" @click="goAuction">경매</div>
-
-			<div class="ChatButton" @click="goChat">채팅</div>
-
-			<div class="SearchBox" contenteditable="true">
-				<b-form-input
-					size="sm"
-					class="mr-sm-2"
-					type="text"
-					placeholder="검색어를 입력해주세요"
-					v-model="keyword"
-					@keyup.enter="searchresultshow(keyword)"
-				></b-form-input>
-			</div>
-
-			<div class="Search">
-				<div class="SearchButton">
-					<div class="SearchText">
-						<b-button
-							size="sm"
-							class="SearchText1"
-							type="submit"
-							@click="goAuction(keyword)"
-							>검색하기
-						</b-button>
-					</div>
-				</div>
-			</div>
-
-			<div class="Login" v-if="isTokena">
-				<div class="LoginBox"></div>
-				<div class="LoginText">
-					<div class="LoginText1" @click="goLogin">로그인</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	=======
 	<div class="Header">
 		<div class="Logo" @click="goMain">아나바다</div>
 
@@ -71,7 +28,6 @@
 
 		<div class="LoginBox" v-if="!isToken" @click="goLogin">로그인</div>
 	</div>
-	>>>>>>> 5d69b94f6fc0bdc7553903624853a3a6ed53372b
 </template>
 <script>
 	export default {
