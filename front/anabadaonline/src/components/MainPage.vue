@@ -1,69 +1,56 @@
 <template>
-	<div class="Footer1"></div>
+	<div class="content1 flexContainer">
+		<img class="rectangle-13" src="@/assets/bike.jpg" />
 
-	<div class="Footer2"></div>
+		<img class="rectangle-14" src="@/assets/samsung.jpg" />
 
-	<div class="Footer3"></div>
+		<img class="rectangle-12" src="@/assets/iphone14.jpg" />
+	</div>
 
-	<div class="TextBox1">
+	<div class="content2 flexContainer">
 		<div class="Text1">현재 경매 되고 있는 상품을 둘러보세요</div>
-	</div>
 
-	<div class="TextBox2">
 		<div class="Text2">내가 사는 지역에서 펼쳐지는 경매장</div>
-	</div>
 
-	<div class="TextBox3">
 		<div class="Text3">원하는 물품,<br />원하는 가격으로</div>
-	</div>
 
-	<div class="TextBox4">
 		<div class="Text4">
 			중고 거래, 이제 경매에 직접 참여해서<br />원하는 가격으로
 			구매해보세요
 		</div>
 	</div>
 
-	<div class="ImgArea1">
-		<div class="rectangle-13">
-			<img src="@/assets/bike.jpg" style="width: 100%; height: 130%" />
+	<div class="content3 flexContainer">
+		<div class="Illust2">
+			<img src="@/assets/change2.jpg" style="width: 100%; height: 100%" />
 		</div>
 
-		<div class="rectangle-14">
-			<img src="@/assets/samsung.jpg" style="width: 100%; height: 100%" />
-		</div>
-
-		<div class="rectangle-12">
-			<img
-				src="@/assets/iphone14.jpg"
-				style="width: 100%; height: 100%"
-			/>
+		<div class="Illust1">
+			<img src="@/assets/change.png" style="width: 100%; height: 100%" />
 		</div>
 	</div>
 
-	<div class="Illust2">
-		<img src="@/assets/change2.jpg" style="width: 100%; height: 100%" />
-	</div>
+	<div class="productFlex">
+		<div
+			class="productFlexItem"
+			v-for="item in productList"
+			:key="item.productNo"
+		>
+			<img class="ProductImg1" :src="item.productImage" />
 
-	<div class="Illust1">
-		<img src="@/assets/change.png" style="width: 100%; height: 100%" />
-	</div>
+			<div class="ProductN1">
+				<div class="ProductNT1">{{ item.productName }}</div>
+			</div>
 
-	<div v-for="item in productList" :key="item.productNo" class="product">
-		<img class="ProductImg1" :src="item.productImage" />
+			<div class="Adress1">
+				<div class="AdressT1">{{ item.wishAddr }}</div>
+				<!-- 상품거래지 -->
+			</div>
 
-		<div class="ProductN1">
-			<div class="ProductNT1">{{ item.productName }}</div>
-		</div>
-
-		<div class="Adress1">
-			<div class="AdressT1">{{ item.wishAddr }}</div>
-			<!-- 상품거래지 -->
-		</div>
-
-		<div class="Price1">
-			<div class="PriceT1">{{ item.price }} 원</div>
-			<!-- 상품가격 -->
+			<div class="Price1">
+				<div class="PriceT1">{{ item.price }} 원</div>
+				<!-- 상품가격 -->
+			</div>
 		</div>
 	</div>
 </template>
@@ -114,7 +101,6 @@
 		},
 
 		created() {
-			this.product();
 			//this.product();
 			this.productList = {
 				length: '메인화면',
@@ -154,28 +140,20 @@
 </script>
 
 <style scoped>
-	.product {
-		display: inline-block;
-		margin-right: 100px;
-		display: flex-inline;
-	}
-	.Header,
-	.Header * {
-		box-sizing: border-box;
+	.productFlex {
+		display: flex;
+		width: 100%;
+		justify-content: center;
 	}
 
-	.Header {
-		background: #ffffff;
-		width: 1920px;
-		height: 1900px;
-		position: relative;
-		overflow: hidden;
+	.productFlexItem {
+		margin-right: 30px;
 	}
 
-	.HeaderButton {
-		width: 1130px;
-		height: 40px;
-		position: static;
+	.flexContainer {
+		float: right;
+		width: 100%;
+		display: flex;
 	}
 
 	.AuctionButton {
@@ -311,117 +289,58 @@
 		justify-content: center;
 	}
 
-	.Footer1 {
+	.content1 {
 		background: #f1f8ff;
-		width: 100%;
 		height: 600px;
-		position: relative;
-		width: 1920px;
-		height: 600px;
-		position: absolute;
-		left: 0px;
-		top: 100px;
 	}
 
-	.Footer2 {
+	.content2 {
 		background: #f3f4ff;
-		width: 100%;
 		height: 600px;
-		position: relative;
-		width: 1920px;
-		height: 600px;
-		position: absolute;
-		left: 0px;
-		top: 700px;
 	}
 
-	.Footer3 {
+	.content3 {
 		background: #f6efff;
-		width: 100%;
-		width: 1920px;
 		height: 600px;
-		position: absolute;
-		left: 0px;
-		top: 1300px;
-	}
-
-	.TextBox1 {
-		width: 693px;
-		height: 60px;
-		position: absolute;
-		left: 613px;
-		top: 1380px;
 	}
 
 	.Text1 {
 		color: #000000;
 		text-align: center;
 		font: 700 33px 'Roboto', sans-serif;
-		position: absolute;
-		left: 83px;
-		top: 11px;
+		width: 693px;
+		height: 60px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-	}
-
-	.TextBox2 {
-		width: 666px;
-		height: 60px;
-		position: absolute;
-		left: 627px;
-		top: 780px;
 	}
 
 	.Text2 {
 		color: #000000;
 		text-align: center;
 		font: 700 35px 'Roboto', sans-serif;
-		position: absolute;
-		left: 90px;
-		top: 10px;
-		display: flex;
+		width: 666px;
+		height: 60px;
 		align-items: center;
 		justify-content: center;
 	}
 
-	.TextBox3 {
+	.Text3 {
 		width: 307px;
 		height: 80px;
-		position: absolute;
-		left: 170px;
-		left: 333px;
-		top: 290px;
-	}
-
-	.Text3 {
 		color: #000000;
 		text-align: left;
 		font: 700 35px 'Roboto', sans-serif;
-		position: absolute;
-		left: 0px;
-		top: -1px;
-		display: flex;
+
 		align-items: center;
 		justify-content: flex-start;
-	}
-
-	.TextBox4 {
-		width: 334px;
-		height: 50px;
-		position: absolute;
-		left: 170px;
-		left: 333px;
-		top: 404px;
 	}
 
 	.Text4 {
 		color: #000000;
 		text-align: left;
 		font: 400 16px 'Roboto', sans-serif;
-		position: absolute;
-		left: 0px;
-		top: 0px;
+
 		width: 334px;
 		height: 50px;
 		display: flex;
@@ -429,20 +348,11 @@
 		justify-content: flex-start;
 	}
 
-	.ImgArea1 {
-		width: 773.33px;
-		height: 358px;
-		position: static;
-	}
-
 	.rectangle-13 {
 		background: #bdbdbd;
 		width: 400px;
 		height: 190px;
-		position: absolute;
-		left: 900px;
-		left: 1000px;
-		top: 368px;
+
 		box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
 	}
 
@@ -450,12 +360,7 @@
 		background: #bdbdbd;
 		width: 400px;
 		height: 190px;
-		position: relative;
-		left: 980px;
-		top: 80px;
-		position: absolute;
-		left: 1240px;
-		top: 200px;
+
 		box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
 	}
 
@@ -463,11 +368,7 @@
 		background: #bdbdbd;
 		width: 400px;
 		height: 190px;
-		position: relative;
-		left: 700px;
-		position: absolute;
-		left: 866.67px;
-		top: 256px;
+
 		box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
 	}
 
@@ -476,49 +377,13 @@
 		border-radius: 5px;
 		width: 240px;
 		height: 180px;
-		position: absolute;
-		position: relative;
-		left: 320px;
-		top: 1490px;
-	}
-
-	.ProductImg2 {
-		background: #bdbdbd;
-		border-radius: 5px;
-		width: 240px;
-		height: 180px;
-		position: absolute;
-		left: 667px;
-		top: 1490px;
-	}
-
-	.ProductImg3 {
-		background: #bdbdbd;
-		border-radius: 5px;
-		width: 240px;
-		height: 180px;
-		position: absolute;
-		left: 1013px;
-		top: 1490px;
-	}
-
-	.ProductImg4 {
-		background: #bdbdbd;
-		border-radius: 5px;
-		width: 240px;
-		height: 180px;
-		position: absolute;
-		left: 1360px;
-		top: 1490px;
 	}
 
 	.Illust2 {
 		background: #bdbdbd;
 		width: 600px;
 		height: 270px;
-		position: relative;
-		left: 95%;
-		top: 900px;
+
 		box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
 	}
 
@@ -526,30 +391,22 @@
 		background: #bdbdbd;
 		width: 600px;
 		height: 270px;
-		position: absolute;
-		left: 5%;
-		top: 900px;
+
 		box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
 	}
 
 	.ProductN1 {
 		width: 133px;
 		height: 20px;
-		position: absolute;
-		left: 320px;
-		top: 1680px;
 	}
 
 	.ProductNT1 {
 		color: #000000;
 		text-align: left;
 		font: 400 16px 'Roboto', sans-serif;
-		position: absolute;
-		left: 0px;
-		top: 0px;
+
 		width: 240px;
 		height: 20px;
-		display: flex;
 		align-items: center;
 		justify-content: flex-start;
 	}
@@ -557,21 +414,15 @@
 	.Adress1 {
 		width: 240px;
 		height: 20px;
-		position: absolute;
-		left: 320px;
-		top: 1730px;
 	}
 
 	.AdressT1 {
 		color: #000000;
 		text-align: left;
 		font: 400 16px 'Roboto', sans-serif;
-		position: absolute;
-		left: 0px;
-		top: 0px;
+
 		width: 240px;
 		height: 20px;
-		display: flex;
 		align-items: center;
 		justify-content: flex-start;
 	}
@@ -579,81 +430,6 @@
 	.Price1 {
 		width: 133px;
 		height: 20px;
-		position: absolute;
-		left: 320px;
-		top: 1705px;
-	}
-
-	.Illust2 {
-		background: #bdbdbd;
-		width: 600px;
-		height: 270px;
-		position: absolute;
-		left: 1000px;
-		top: 900px;
-		box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
-	}
-
-	.Illust1 {
-		background: #bdbdbd;
-		width: 600px;
-		height: 270px;
-		position: absolute;
-		left: 320px;
-		top: 900px;
-		box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
-	}
-
-	.ProductN1 {
-		width: 133px;
-		height: 20px;
-		position: relative;
-		left: 320px;
-		top: 1680px;
-		display: inline-block;
-	}
-
-	.ProductNT1 {
-		color: #000000;
-		text-align: left;
-		font: 400 16px 'Roboto', sans-serif;
-		position: relative;
-		left: 0px;
-		top: 0px;
-		width: 240px;
-		height: 20px;
-		display: flex;
-		align-items: center;
-		justify-content: flex-start;
-		display: inline-block;
-	}
-
-	.Adress1 {
-		width: 240px;
-		height: 20px;
-		position: relative;
-		left: 320px;
-		top: 1730px;
-	}
-
-	.AdressT1 {
-		color: #000000;
-		text-align: left;
-		font: 400 16px 'Roboto', sans-serif;
-		position: relative;
-		left: 0px;
-		top: 0px;
-		width: 240px;
-		height: 20px;
-		display: flex;
-		align-items: center;
-		justify-content: flex-start;
-	}
-
-	.Price1 {
-		width: 133px;
-		height: 20px;
-		position: relative;
 		left: 320px;
 		top: 1705px;
 	}
@@ -662,63 +438,11 @@
 		color: #000000;
 		text-align: left;
 		font: 700 16px 'Roboto', sans-serif;
-		position: absolute;
-		position: relative;
-		left: 0px;
-		top: 0px;
+
 		width: 133px;
 		height: 20px;
-		display: flex;
 		align-items: center;
 		justify-content: flex-start;
-	}
-
-	.ProductNT2 {
-		width: 133px;
-		height: 20px;
-		position: absolute;
-		left: 667px;
-		top: 1680px;
-	}
-
-	.Adress2 {
-		width: 240px;
-		height: 20px;
-		position: absolute;
-		left: 667px;
-		top: 1730px;
-	}
-
-	.Price2 {
-		width: 133px;
-		height: 20px;
-		position: absolute;
-		left: 667px;
-		top: 1705px;
-	}
-
-	.ProductN3 {
-		width: 134px;
-		height: 20px;
-		position: absolute;
-		left: 1013px;
-		top: 1680px;
-	}
-
-	.Adress3 {
-		width: 240px;
-		height: 20px;
-		position: absolute;
-		left: 1013px;
-		top: 1730px;
-	}
-
-	.Price3 {
-		width: 134px;
-		height: 20px;
-		position: absolute;
-		left: 1013px;
-		top: 1705px;
 	}
 
 	.----11 {
@@ -726,36 +450,11 @@
 		text-align: left;
 		font: 700 16px 'Roboto', sans-serif;
 		position: absolute;
-		left: 0px;
-		top: 0px;
+
 		width: 134px;
 		height: 20px;
 		display: flex;
 		align-items: center;
 		justify-content: flex-start;
-	}
-
-	.ProductN4 {
-		width: 240px;
-		height: 20px;
-		position: absolute;
-		left: 1360px;
-		top: 1680px;
-	}
-
-	.Adress4 {
-		width: 240px;
-		height: 20px;
-		position: absolute;
-		left: 1360px;
-		top: 1730px;
-	}
-
-	.Price4 {
-		width: 133px;
-		height: 20px;
-		position: absolute;
-		left: 1360px;
-		top: 1705px;
 	}
 </style>

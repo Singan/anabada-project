@@ -16,32 +16,6 @@
             </div>
         </div>
 
-        <div class="--3">
-            <div class="--4">경매</div>
-
-            <div class="----">아나바다</div>
-
-            <div class="--5">채팅</div>
-
-            <div class="---"></div>
-
-            <div class="--6">
-                <div class="----2"></div>
-
-                <div class="----3">
-                    <div class="_18px">검색하기</div>
-                </div>
-            </div>
-
-            <div class="---2">
-                <div class="----4"></div>
-
-                <div class="----5">
-                    <div class="_18px2">로그인</div>
-                </div>
-            </div>
-        </div>
-
         <div class="------"></div>
 
         <div class="--7">
@@ -103,7 +77,7 @@
 /* Code generated with AutoHTML Plugin for Figma */
 
 export default {
-    name: "",
+    name: '',
     components: {},
     props: {},
     data() {
@@ -137,7 +111,7 @@ export default {
 .-- {
     color: #000000;
     text-align: center;
-    font: 700 28px "Roboto", sans-serif;
+    font: 700 28px 'Roboto', sans-serif;
     position: absolute;
     left: 5px;
     top: 4px;
@@ -156,7 +130,7 @@ export default {
 
 .--2 {
     text-align: center;
-    font: 700 20px "Roboto", sans-serif;
+    font: 700 20px 'Roboto', sans-serif;
     position: absolute;
     left: 131px;
     top: 9px;
@@ -167,27 +141,27 @@ export default {
 
 .--2-span {
     color: #000000;
-    font: 700 20px "Roboto", sans-serif;
+    font: 700 20px 'Roboto', sans-serif;
 }
 
 .--2-span2 {
     color: #0075ff;
-    font: 700 20px "Roboto", sans-serif;
+    font: 700 20px 'Roboto', sans-serif;
 }
 
 .--2-span3 {
     color: #000000;
-    font: 700 20px "Roboto", sans-serif;
+    font: 700 20px 'Roboto', sans-serif;
 }
 
 .--2-span4 {
     color: #0075ff;
-    font: 700 20px "Roboto", sans-serif;
+    font: 700 20px 'Roboto', sans-serif;
 }
 
 .--2-span5 {
     color: #000000;
-    font: 700 20px "Roboto", sans-serif;
+    font: 700 20px 'Roboto', sans-serif;
 }
 
 .--3 {
@@ -199,7 +173,7 @@ export default {
 .--4 {
     color: #0075ff;
     text-align: center;
-    font: 700 18px "Roboto", sans-serif;
+    font: 700 18px 'Roboto', sans-serif;
     position: absolute;
     left: 570px;
     top: 40px;
@@ -213,7 +187,7 @@ export default {
 .---- {
     color: #0075ff;
     text-align: center;
-    font: 700 24px "Roboto", sans-serif;
+    font: 700 24px 'Roboto', sans-serif;
     position: absolute;
     left: 400px;
     top: 35px;
@@ -227,7 +201,7 @@ export default {
 .--5 {
     color: #000000;
     text-align: center;
-    font: 700 18px "Roboto", sans-serif;
+    font: 700 18px 'Roboto', sans-serif;
     position: absolute;
     left: 650px;
     top: 40px;
@@ -278,7 +252,7 @@ export default {
 ._18px {
     color: #000000;
     text-align: center;
-    font: 700 18px "Roboto", sans-serif;
+    font: 700 18px 'Roboto', sans-serif;
     position: absolute;
     left: 0px;
     top: 0px;
@@ -316,7 +290,7 @@ export default {
 ._18px2 {
     color: #ffffff;
     text-align: center;
-    font: 700 18px "Roboto", sans-serif;
+    font: 700 18px 'Roboto', sans-serif;
     position: absolute;
     left: 0px;
     top: 0px;
@@ -348,7 +322,7 @@ export default {
 .----6 {
     color: #000000;
     text-align: center;
-    font: 400 14px "Roboto", sans-serif;
+    font: 400 14px 'Roboto', sans-serif;
     position: absolute;
     left: 0px;
     top: 0px;
@@ -386,7 +360,7 @@ export default {
 .----7 {
     color: #000000;
     text-align: center;
-    font: 700 13px "Roboto", sans-serif;
+    font: 700 13px 'Roboto', sans-serif;
     position: absolute;
     left: 0px;
     top: 0px;
@@ -408,7 +382,7 @@ export default {
 ._18px4 {
     color: #000000;
     text-align: center;
-    font: 400 16px "Roboto", sans-serif;
+    font: 400 16px 'Roboto', sans-serif;
     position: absolute;
     left: 0px;
     top: 0px;
@@ -438,7 +412,7 @@ export default {
 ._18px6 {
     color: #000000;
     text-align: center;
-    font: 700 18px "Roboto", sans-serif;
+    font: 700 18px 'Roboto', sans-serif;
     position: absolute;
     left: 0px;
     top: 0px;
@@ -517,7 +491,7 @@ export default {
 ._18px8 {
     color: #ffffff;
     text-align: center;
-    font: 700 18px "Roboto", sans-serif;
+    font: 700 18px 'Roboto', sans-serif;
     position: absolute;
     left: 0px;
     top: 0px;
@@ -555,7 +529,7 @@ export default {
 ._18px10 {
     color: #ffffff;
     text-align: center;
-    font: 400 12px "Roboto", sans-serif;
+    font: 400 12px 'Roboto', sans-serif;
     position: absolute;
     left: 0px;
     top: 0px;
@@ -566,4 +540,3 @@ export default {
     justify-content: center;
 }
 </style>
-  
