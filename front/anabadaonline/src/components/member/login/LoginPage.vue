@@ -74,8 +74,8 @@
 			goMain() {
 				this.$router.push('./');
 			},
-			async login() {
-				await axios
+			login() {
+				axios
 					.post('/member/login', {
 						id: this.id,
 						pw: this.pw,
