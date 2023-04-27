@@ -28,7 +28,7 @@ public class ProductInsertDto {
     private Integer price;
 
     private Long categoryNo;
-    private MultipartFile[] productImages;
+    private List<MultipartFile> productImages;
     public Product getProduct(MemberDetailDTO principal){
         Member member = principal.getMember();
         Category category = Category.builder().categoryNo(categoryNo).build();

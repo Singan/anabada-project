@@ -17,7 +17,7 @@ public class ProductImageService {
     private final ProductImageRepository productRepository;
     private final FileProcessor fileProcessor;
 
-    public void productImageSave(Long no,MultipartFile... multipartFiles){
+    public void productImageSave(Long no,List<MultipartFile> multipartFiles){
         if(multipartFiles == null)
             return;
         for (MultipartFile multipartFile : multipartFiles) {
