@@ -68,12 +68,13 @@
 
 				<div class="group-112">
 					<div class="rectangle-233">
-						<label for="Textarea1" class="form-label"></label>
+						<label for="detail"></label>
 						<textarea
 							class="form-control"
-							id="Textarea1"
-							placeholder="상품 설명을 입력해주세요"
-							rows="6"
+							id="detail"
+							placeholder="상품 설명을 입력하세요"
+							rows="7"
+							cols="50"
 						></textarea>
 					</div>
 				</div>
@@ -82,39 +83,42 @@
 					<div class="useageBox">
 						<div class="usingDate">
 							상품 사용기간
+							<div>
+								사용기간 : {{ picked }}
+								<div class="radioSelect">
+									<input
+										type="radio"
+										id="one"
+										value="미사용"
+										v-model="picked"
+										checked
+									/>
+									<label for="one">미사용</label>
 
-							<div class="radioSelect">
-								<input
-									type="radio"
-									id="one"
-									class="one"
-									value="하나"
-								/>
-								<label for="one">미사용</label>
+									<input
+										type="radio"
+										id="two"
+										value="0 ~ 4주"
+										v-model="picked"
+									/>
+									<label for="two">0 ~ 4주</label>
 
-								<input
-									type="radio"
-									id="two"
-									class="two"
-									value="둘"
-								/>
-								<label for="two">0 ~ 4주</label>
+									<input
+										type="radio"
+										id="three"
+										value="4 ~ 8주"
+										v-model="picked"
+									/>
+									<label for="three">4 ~ 8주</label>
 
-								<input
-									type="radio"
-									id="three"
-									class="three"
-									value="삼"
-								/>
-								<label for="two">4 ~ 8주</label>
-
-								<input
-									type="radio"
-									id="four"
-									class="four"
-									value="사"
-								/>
-								<label for="two">8주 이상</label>
+									<input
+										type="radio"
+										id="four"
+										value="8주 이상"
+										v-model="picked"
+									/>
+									<label for="four">8주 이상</label>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -140,6 +144,7 @@
 		props: {},
 		data() {
 			return {
+				picked: '미사용',
 				categoryList: '',
 				name: '',
 				// usingDate:'',
@@ -200,7 +205,9 @@
 	.------------ * {
 		box-sizing: border-box;
 	}
-
+	.form-control {
+		margin: 5px 0px 0px 30px;
+	}
 	.------------ {
 		background: #f1f1f1;
 		width: 1920px;
@@ -310,6 +317,7 @@
 		display: block;
 		align-items: center;
 		justify-content: flex-start;
+		margin: 10px 0px 0px 0px;
 	}
 
 	.one {
