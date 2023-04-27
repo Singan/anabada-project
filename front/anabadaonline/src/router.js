@@ -30,7 +30,7 @@ const routes = [
 	{
 		path: '/chat',
 		name: 'Chat',
-		component: () => import('@/components/chat.vue'),
+		component: () => import('@/components/chat/chat.vue'),
 	},
 	{
 		path: '/memberExit',
