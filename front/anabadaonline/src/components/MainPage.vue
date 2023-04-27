@@ -17,7 +17,7 @@
 
 	<!-- <div class="content2 flexContainer"></div> -->
 
-	<div class="Text2 textFlex content3Title">
+	<div class="Text2 textFlex content2Title">
 		내가 사는 지역에서 펼쳐지는 경매장
 	</div>
 	<div class="content2 flexContainer">
@@ -312,15 +312,15 @@
 		height: 600px;
 	}
 
+	.content2Title {
+		background: #f3f4ff;
+		justify-content: center;
+		width: 100%;
+	}
+
 	.content3 {
 		background: #f6efff;
 		height: 600px;
-	}
-
-	.content3Title {
-		background: #f6efff;
-		justify-content: center;
-		width: 100%;
 	}
 
 	.Text1 {
