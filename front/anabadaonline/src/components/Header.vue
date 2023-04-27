@@ -1,9 +1,9 @@
 <template>
 	<div class="Header">
 		<div class="HeaderButton">
-			<div class="AuctionButton" @click="goAuction">경매</div>
-
 			<div class="Logo" @click="goMain">아나바다</div>
+
+			<div class="AuctionButton" @click="goAuction">경매</div>
 
 			<div class="ChatButton" @click="goChat">채팅</div>
 
@@ -19,16 +19,16 @@
 			</div>
 
 			<div class="Search">
-				<div class="SearchButton"></div>
-				<div class="SearchText">
-					<!-- <div class="SearchText1">검색하기</div> -->
-					<b-button
-						size="sm"
-						class="SearchText1"
-						type="submit"
-						@click="goAuction(keyword)"
-						>검색하기
-					</b-button>
+				<div class="SearchButton">
+					<div class="SearchText">
+						<b-button
+							size="sm"
+							class="SearchText1"
+							type="submit"
+							@click="goAuction(keyword)"
+							>검색하기
+						</b-button>
+					</div>
 				</div>
 			</div>
 
@@ -93,21 +93,28 @@
 		background: #ffffff;
 		width: 100%;
 		height: 115px;
-		position: relative;
-		/* overflow: hidden; */
 	}
 
 	.HeaderButton {
-		/* width: 1130px; */
 		height: 115px;
-		/* position: static; */
+		flex-direction: row;
+	}
+
+	.Logo {
+		color: #0075ff;
+		text-align: center;
+		font: 700 24px 'Roboto', sans-serif;
+		width: 110px;
+		height: 30px;
+		align-items: center;
+		justify-content: center;
+		display: flex;
 	}
 
 	.AuctionButton {
 		color: #0075ff;
 		text-align: center;
 		font: 700 18px 'Roboto', sans-serif;
-		position: relative;
 		left: 365px;
 		top: 15px;
 		width: 40px;
@@ -115,37 +122,20 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		display: inline-block;
-	}
-
-	.Logo {
-		color: #0075ff;
-		text-align: center;
-		font: 700 24px 'Roboto', sans-serif;
-		position: relative;
-		left: 150px;
-		top: 16px;
-		width: 110px;
-		height: 30px;
 		display: flex;
-		align-items: center;
-		justify-content: center;
-		display: inline-block;
 	}
 
 	.ChatButton {
 		color: #000000;
 		text-align: center;
 		font: 700 18px 'Roboto', sans-serif;
-		position: relative;
 		left: 285px;
 		top: 15px;
 		width: 40px;
 		height: 20px;
-		/* display: flex; */
-		/* align-items: center; */
-		/* justify-content: center; */
-		display: inline-block;
+		align-items: center;
+		justify-content: center;
+		display: flex;
 	}
 
 	.SearchBox {
@@ -153,18 +143,17 @@
 		border-radius: 5px;
 		width: 450px;
 		height: 40px;
-		position: relative;
-		left: 785px;
-		/* top: 30px; */
-		text-align: center;
+		left: 385px;
+		top: 15px;
+		padding-left: 10px;
 		line-height: 40px;
-		display: inline-block;
+		display: flex;
 	}
 
 	.Search {
 		width: 130px;
 		height: 40px;
-		position: static;
+		display: flex;
 	}
 
 	.SearchButton {
@@ -175,17 +164,14 @@
 		border-width: 1px;
 		width: 130px;
 		height: 40px;
-		position: absolute;
-		left: 1265px;
-		top: 30px;
+		display: flex;
 	}
 
 	.SearchText {
 		width: 80px;
 		height: 30px;
-		position: absolute;
-		left: 1290px;
-		top: 35px;
+		position: relative;
+		top: 10px;
 	}
 
 	.SearchText1 {
