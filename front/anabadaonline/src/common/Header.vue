@@ -93,13 +93,14 @@
 		font: 700 18px 'Roboto', sans-serif;
 		width: 40px;
 		height: 20px;
+		cursor: pointer;
 	}
 
 	.Logo {
 		color: #0075ff;
 		text-align: center;
 		font: 700 24px 'Roboto', sans-serif;
-
+		cursor: pointer;
 		width: 110px;
 		height: 30px;
 	}
@@ -108,7 +109,7 @@
 		color: #000000;
 		text-align: center;
 		font: 700 18px 'Roboto', sans-serif;
-
+		cursor: pointer;
 		width: 40px;
 		height: 20px;
 	}
@@ -134,6 +135,7 @@
 		text-align: center;
 		font: 700 18px 'Roboto', sans-serif;
 		line-height: 40px;
+		cursor: pointer;
 	}
 
 	.SearchText1 {
@@ -150,5 +152,6 @@
 		text-align: center;
 		font: 700 18px 'Roboto', sans-serif;
 		line-height: 40px;
+		cursor: pointer;
 	}
 </style>

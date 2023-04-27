@@ -15,8 +15,6 @@
 		<img class="rectangle-12" src="@/assets/iphone14.jpg" />
 	</div>
 
-	<!-- <div class="content2 flexContainer"></div> -->
-
 	<div class="Text2 content2TextFlex content2Title">
 		내가 사는 지역에서 펼쳐지는 경매장
 	</div>
