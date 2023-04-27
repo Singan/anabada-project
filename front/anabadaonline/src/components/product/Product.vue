@@ -168,10 +168,13 @@
 				//form.append("price", this.price)
 				form.append('categoryNo', this.selectCategory);
 				if (this.productImages) {
-					form.append('productImages', this.productImages);
+					for (let i = 0; i < this.productImages.length; i++) {
+						form.append('productImages', this.productImages[i]);
+					}
 				}
 				console.log(this.selectCategory);
 				axios.defaults.headers.common['x-auth-token'] = result.token;
+
 				axios
 					.post('/product', form, {
 						header: {
