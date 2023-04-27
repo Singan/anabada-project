@@ -1,57 +1,54 @@
 <template>
-	<div class="---">
-		<div class="----" @click="goMain">아나바다</div>
-
-		<div class="rectangle-15"></div>
-
-		<div class="--">
-			<div class="ellipse-8"></div>
-
-			<div class="--2">로고</div>
+	<div class="inputForm">
+		<div class="logo">
+			<div class="logoImg"></div>
+			<div class="logoName" @click="goMain">아나바다</div>
 		</div>
 
-		<div class="---2"></div>
-
-		<div class="---3"></div>
-
-		<div class="---4"></div>
-
-		<div class="------">아이디 찾기</div>
-
-		<div class="-------">비밀번호 찾기</div>
-
-		<div class="----2" @click="goJoin">회원가입</div>
-		<form>
+		<form class="idPw">
 			<div class="id" id="id">
-				<label for="id">ID </label>
-				<input
-					type="text"
-					v-model="id"
-					style="
-						border: none;
-						outline: none;
-						width: 300px;
-						height: 50px;
-						font-size: 19px;
-					"
-				/>
+				<div class="idBox">
+					<label for="id">ID </label>
+					<input
+						type="text"
+						v-model="id"
+						style="
+							border: none;
+							outline: none;
+							width: 430px;
+							height: 50px;
+							font-size: 19px;
+						"
+					/>
+				</div>
 			</div>
-
-			<div class="pw" id="pw">
-				<label for="pw">PW </label>
-				<input
-					type="password"
-					v-model="pw"
-					style="
-						border: none;
-						outline: none;
-						height: 50px;
-						font-size: 19px;
-					"
-				/>
+			<div class="pwBox">
+				<div class="pw" id="pw">
+					<label for="pw">PW </label>
+					<input
+						type="password"
+						v-model="pw"
+						style="
+							border: none;
+							outline: none;
+							width: 430px;
+							height: 50px;
+							font-size: 19px;
+						"
+					/>
+				</div>
+			</div>
+			<div class="loginBox">
+				<div class="login" @click="login">로그인</div>
 			</div>
 		</form>
-		<div class="---6" @click="login">로그인</div>
+
+		<div class="joinBox">
+			<div class="idSearch">아이디 찾기</div>
+
+			<div class="pwSearch">비밀번호 찾기</div>
+			<div class="join" @click="goJoin">회원가입</div>
+		</div>
 	</div>
 </template>
 
@@ -93,140 +90,129 @@
 </script>
 
 <style scoped>
-	/* .---,
-.--- * {
-  box-sizing: border-box;
-}
-.--- {
-  background: #ffffff;
-  width: 1920px;
-  height: 1024px;
-  position: relative;
-  overflow: hidden;
-} */
-	.---- {
+	.flexContainer {
+		background: #ffffff;
+		width: 100%;
+		height: 1024px;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-items: center;
+	}
+	.logoName {
 		color: #0075ff;
 		text-align: center;
 		font: 700 35px 'Roboto', sans-serif;
-		position: absolute;
-		left: 862px;
-		top: 312px;
+
 		width: 244px;
 		height: 37px;
-		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
 
-	.rectangle-15 {
+	.inputForm {
 		background: #f6f6f6;
 		border-radius: 5px;
-		width: 500px;
+		width: 600px;
 		height: 300px;
-		position: absolute;
-		left: 725px;
-		top: 399px;
+		display: flex;
+		align-content: center;
+		left: 30%;
+		top: 20%;
+		flex-direction: column;
+		align-items: center;
+		justify-items: center;
 	}
 
-	.-- {
-		width: 65px;
+	.logo {
+		width: 100%;
 		height: 58.2px;
-		position: static;
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		flex-basis: 100%;
 	}
 
-	.ellipse-8 {
+	.logoImg {
 		background: #d9d9d9;
 		border-radius: 50%;
 		width: 58.2px;
 		height: 58.2px;
-		position: absolute;
-		left: 811.78px;
-		top: 301px;
 	}
 
-	.--2 {
-		color: #0123b4;
-		text-align: center;
-		font: 400 15px 'Roboto', sans-serif;
-		position: absolute;
-		left: 808px;
-		top: 322.92px;
-		width: 65px;
-		height: 13.6px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.---2 {
+	.idBox {
 		background: #ffffff;
 		border-radius: 5px;
 		width: 446px;
 		height: 52px;
-		position: absolute;
+
 		left: 752px;
 		top: 429px;
 	}
 
-	.---3 {
+	.pwBox {
 		background: #ffffff;
 		border-radius: 5px;
 		width: 446px;
 		height: 52px;
-		position: absolute;
+
 		left: 752px;
 		top: 501px;
 	}
 
-	.---4 {
+	.loginBox {
 		background: #0075ff;
 		border-radius: 5px;
 		width: 446px;
 		height: 52px;
-		position: absolute;
+		justify-content: center;
+		align-items: center;
 		left: 752px;
 		top: 593px;
 	}
 
-	.------ {
+	.idSearch {
 		color: #000000;
 		text-align: center;
 		font: 400 13px 'Roboto', sans-serif;
-		position: absolute;
+
 		left: 799px;
 		top: 653px;
 		width: 78px;
 		height: 37px;
-		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
 
-	.------- {
+	.pwSearch {
 		color: #000000;
 		text-align: center;
 		font: 400 13px 'Roboto', sans-serif;
-		position: absolute;
+
 		left: 939px;
 		top: 653px;
 		width: 90px;
 		height: 37px;
-		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
 
-	.----2 {
+	.join {
 		color: #0075ff;
 		text-align: center;
 		font: 700 13px 'Roboto', sans-serif;
-		position: absolute;
+
 		left: 1094px;
 		top: 653px;
 		width: 54px;
 		height: 37px;
-		display: flex;
 		align-items: center;
+		justify-content: center;
+	}
+	.joinBox {
+		width: 100%;
+		justify-content: space-around;
+		display: flex;
 		justify-content: center;
 	}
 
@@ -234,40 +220,40 @@
 		color: #a3a3a3;
 		text-align: left;
 		font: 400 16px 'Roboto', sans-serif;
-		position: absolute;
+
 		left: 762px;
 		top: 437px;
 		width: 60px;
 		height: 35px;
-		display: flex;
 		align-items: center;
-		justify-content: flex-start;
+		justify-content: center;
 	}
 
 	.pw {
 		color: #a3a3a3;
 		text-align: left;
 		font: 400 16px 'Roboto', sans-serif;
-		position: absolute;
+
 		left: 762px;
 		top: 510px;
 		width: 75px;
 		height: 35px;
-		display: flex;
 		align-items: center;
-		justify-content: flex-start;
+		justify-content: center;
 	}
 
-	.---6 {
+	.idPw {
+		display: block;
+	}
+
+	.login {
 		color: #ffffff;
 		text-align: center;
 		font: 700 18px 'Roboto', sans-serif;
-		position: absolute;
 		left: 776px;
 		top: 601px;
 		width: 398px;
 		height: 37px;
-		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
