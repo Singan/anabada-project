@@ -28,19 +28,15 @@
 				</div>
 
 				<div class="group-10">
-					<div class="rectangle-23" contenteditable="true">
-						<b-form-input
-							type="text"
-							placeholder="상품명을 입력해주세요"
-						>
-						</b-form-input>
-						<!-- <div class="nameText" id="name">
+					<div class="rectangle-23">
+						<div class="nameText" id="name">
 							<input
-								style="border: none"
+								v-model="name"
 								type="text"
 								placeholder="상품명을 입력해주세요"
+								style="border: none; outline: none"
 							/>
-						</div> -->
+						</div>
 					</div>
 				</div>
 
