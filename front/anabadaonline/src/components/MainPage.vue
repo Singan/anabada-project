@@ -17,10 +17,10 @@
 
 	<!-- <div class="content2 flexContainer"></div> -->
 
-	<div class="Text2 textFlex content2Title">
+	<div class="Text2 content2TextFlex content2Title">
 		내가 사는 지역에서 펼쳐지는 경매장
 	</div>
-	<div class="content2 flexContainer">
+	<div class="content2">
 		<div class="Illust2">
 			<img src="@/assets/change2.jpg" style="width: 100%; height: 100%" />
 		</div>
@@ -30,8 +30,9 @@
 		</div>
 	</div>
 
+	<div class="Text1 content3Title">현재 경매 되고 있는 상품을 둘러보세요</div>
+
 	<div class="content3 productFlex">
-		<div class="Text1">현재 경매 되고 있는 상품을 둘러보세요</div>
 		<div
 			class="productFlexItem"
 			v-for="item in productList"
@@ -151,7 +152,7 @@
 		margin-right: 30px;
 	}
 
-	.textFlex {
+	.content2TextFlex {
 		display: flex;
 		flex-direction: column;
 	}
@@ -309,7 +310,10 @@
 
 	.content2 {
 		background: #f3f4ff;
-		height: 600px;
+		width: 100%;
+		display: flex;
+		justify-content: space-evenly;
+		height: 350px;
 	}
 
 	.content2Title {
@@ -320,15 +324,20 @@
 
 	.content3 {
 		background: #f6efff;
-		height: 600px;
+		height: 400px;
+	}
+
+	.content3Title {
+		background: #f6efff;
+		width: 100%;
+		justify-content: center;
 	}
 
 	.Text1 {
 		color: #000000;
 		text-align: center;
 		font: 700 33px 'Roboto', sans-serif;
-		width: 693px;
-		height: 60px;
+		height: 100px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -338,31 +347,39 @@
 		color: #000000;
 		text-align: center;
 		font: 700 35px 'Roboto', sans-serif;
-		height: 60px;
+		height: 100px;
 		align-items: center;
 	}
 
 	.Text3 {
-		width: 307px;
-		height: 80px;
+		flex-basis: auto;
 		color: #000000;
 		text-align: left;
 		font: 700 35px 'Roboto', sans-serif;
-
 		align-items: center;
-		justify-content: flex-start;
+		position: relative;
+		left: 130px;
+		top: 200px;
 	}
 
 	.Text4 {
 		color: #000000;
 		text-align: left;
 		font: 400 16px 'Roboto', sans-serif;
-
-		width: 334px;
-		height: 50px;
+		flex-basis: auto;
 		display: flex;
 		align-items: center;
 		justify-content: flex-start;
+	}
+
+	.rectangle-12 {
+		background: #bdbdbd;
+		width: 400px;
+		height: 190px;
+		box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
+		position: relative;
+		right: 430px;
+		top: 110px;
 	}
 
 	.rectangle-13 {
@@ -370,24 +387,19 @@
 		width: 400px;
 		height: 190px;
 		box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
-		float: right;
-		left: 200%;
+		position: relative;
+		left: 450px;
+		top: 280px;
 	}
 
 	.rectangle-14 {
 		background: #bdbdbd;
 		width: 400px;
 		height: 190px;
-
 		box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
-	}
-
-	.rectangle-12 {
-		background: #bdbdbd;
-		width: 400px;
-		height: 190px;
-
-		box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
+		position: relative;
+		left: 250px;
+		top: 170px;
 	}
 
 	.ProductImg1 {
@@ -399,7 +411,7 @@
 
 	.Illust2 {
 		background: #bdbdbd;
-		width: 600px;
+		width: 500px;
 		height: 270px;
 
 		box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -407,7 +419,7 @@
 
 	.Illust1 {
 		background: #bdbdbd;
-		width: 600px;
+		width: 500px;
 		height: 270px;
 
 		box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
