@@ -77,7 +77,7 @@
 			},
 
 			product() {
-				axios.get('/product/list').then((response) => {
+				axios.get('/product/main').then((response) => {
 					console.dir(response.data);
 					this.productList = response.data.list;
 				});
@@ -101,40 +101,7 @@
 		},
 
 		created() {
-			//this.product();
-			this.productList = {
-				length: '메인화면',
-				list: [
-					{
-						price: 10000,
-						productImage: 'C:/Users/leesm/Pictures/수료증.jpg',
-						productName: '상품3',
-						productNo: 8,
-						wishAddr: null,
-					},
-					{
-						price: 10000,
-						productImage: 'C:/anabada/product/서명.png',
-						productName: '상품3',
-						productNo: 7,
-						wishAddr: null,
-					},
-					{
-						price: 10000,
-						productImage: 'C:/anabada/product/영어.png',
-						productName: '상품2',
-						productNo: 6,
-						wishAddr: null,
-					},
-					{
-						price: 10000,
-						productImage: 'C:/anabada/product/캡쳐.png',
-						productName: '상품1',
-						productNo: 5,
-						wishAddr: null,
-					},
-				],
-			}.list;
+			this.product();
 		},
 	};
 </script>

@@ -6,6 +6,7 @@
 <script>
 	import Header from './common/Header.vue';
 	import token from '@/common/token';
+	console.log(token.is());
 	export default {
 		components: {
 			Header,
@@ -19,7 +20,7 @@
 		methods: {
 			login() {
 				this.isToken = token.is();
-				console.log(this.isToken);
+				console.log('에밋' + this.isToken);
 			},
 		},
 	};

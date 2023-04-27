@@ -28,19 +28,15 @@
 				</div>
 
 				<div class="group-10">
-					<div class="rectangle-23" contenteditable="true">
-						<b-form-input
-							type="text"
-							placeholder="상품명을 입력해주세요"
-						>
-						</b-form-input>
-						<!-- <div class="nameText" id="name">
+					<div class="rectangle-23">
+						<div class="nameText" id="name">
 							<input
-								style="border: none"
+								v-model="name"
 								type="text"
 								placeholder="상품명을 입력해주세요"
+								style="border: none; outline: none"
 							/>
-						</div> -->
+						</div>
 					</div>
 				</div>
 
@@ -179,10 +175,13 @@
 				//form.append("price", this.price)
 				form.append('categoryNo', this.selectCategory);
 				if (this.productImages) {
-					form.append('productImages', this.productImages);
+					for (let i = 0; i < this.productImages.length; i++) {
+						form.append('productImages', this.productImages[i]);
+					}
 				}
 				console.log(this.selectCategory);
 				axios.defaults.headers.common['x-auth-token'] = result.token;
+
 				axios
 					.post('/product', form, {
 						header: {
