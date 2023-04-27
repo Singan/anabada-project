@@ -28,15 +28,19 @@
 				</div>
 
 				<div class="group-10">
-					<div class="rectangle-23"></div>
-
-					<div class="nameBox">
-						<div class="nameText" id="name">
+					<div class="rectangle-23" contenteditable="true">
+						<b-form-input
+							type="text"
+							placeholder="상품명을 입력해주세요"
+						>
+						</b-form-input>
+						<!-- <div class="nameText" id="name">
 							<input
+								style="border: none"
 								type="text"
 								placeholder="상품명을 입력해주세요"
 							/>
-						</div>
+						</div> -->
 					</div>
 				</div>
 
@@ -344,14 +348,6 @@
 		top: 380px;
 	}
 
-	.nameBox {
-		width: 170px;
-		height: 19px;
-		position: absolute;
-		left: 773px;
-		top: 386px;
-	}
-
 	.nameText {
 		color: #797979;
 		text-align: left;
@@ -362,6 +358,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: flex-start;
+		margin: 2px 0px 0px 5px;
 	}
 
 	.group-18 {
