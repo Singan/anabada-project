@@ -1,135 +1,128 @@
 <template>
 	<form @submit.prevent="productRegister">
-		<div class="------------">
-			<div class="-----"></div>
+		<div class="box">
+			<div class="productLayout"></div>
+			<div class="--">
+				<div class="--2">상품 등록하기</div>
+			</div>
 
-			<div class="group-46">
-				<div class="--">
-					<div class="--2">상품 등록하기</div>
-				</div>
+			<div class="rectangle-26"></div>
 
-				<div class="---------">
-					<div class="---------2"></div>
+			<input
+				id="productImages"
+				class="productSelect"
+				type="file"
+				@change="onInputImage"
+				accept="image/*"
+				multiple="multiple"
+				style="background-color: blue"
+			/>
 
-					<div class="_18px">
-						<div class="_18px2">이미지 변경</div>
+			<div class="_20px">
+				<div class="_20px2">상품명</div>
+			</div>
+
+			<div class="group-10">
+				<div class="rectangle-23">
+					<div class="nameText" id="name">
 						<input
-							id="productImages"
-							type="file"
-							@change="onInputImage"
-							accept="image/*"
-							multiple="multiple"
+							v-model="name"
+							type="text"
+							placeholder="상품명을 입력해주세요"
+							style="border: none; outline: none"
 						/>
 					</div>
 				</div>
+			</div>
 
-				<div class="_20px">
-					<div class="_20px2">상품명</div>
+			<div class="group-18">
+				<div class="_20px3">
+					<div class="_20px2">상품 카테고리</div>
 				</div>
 
-				<div class="group-10">
-					<div class="rectangle-23">
-						<div class="nameText" id="name">
-							<input
-								v-model="name"
-								type="text"
-								placeholder="상품명을 입력해주세요"
-								style="border: none; outline: none"
-							/>
-						</div>
+				<div class="group-11">
+					<div class="rectangle-232"></div>
+
+					<div class="categoryText">
+						<select v-model="selectCategory">
+							<option
+								v-for="item in categoryList"
+								:key="item.categoryNo"
+								:value="item.categoryNo"
+							>
+								{{ item.categoryName }}
+							</option>
+						</select>
 					</div>
 				</div>
+			</div>
 
-				<div class="group-18">
-					<div class="_20px3">
-						<div class="_20px2">상품 카테고리</div>
-					</div>
+			<div class="_20px4">
+				<div class="_20px2">상품 설명</div>
+			</div>
 
-					<div class="group-11">
-						<div class="rectangle-232"></div>
-
-						<div class="categoryText">
-							<select v-model="selectCategory">
-								<option
-									v-for="item in categoryList"
-									:key="item.categoryNo"
-									:value="item.categoryNo"
-								>
-									{{ item.categoryName }}
-								</option>
-							</select>
-						</div>
-					</div>
+			<div class="group-112">
+				<div class="rectangle-233">
+					<label for="detail" id="detail"></label>
+					<textarea
+						class="form-control"
+						id="detail"
+						placeholder="상품 설명을 입력하세요"
+						rows="7"
+						cols="50"
+						style="border: none; outline: none"
+					></textarea>
 				</div>
+			</div>
 
-				<div class="_20px4">
-					<div class="_20px2">상품 설명</div>
-				</div>
+			<div class="group-17">
+				<div class="useageBox">
+					<div class="usingDate">
+						상품 사용기간
+						<div>
+							사용기간 : {{ picked }}
+							<div class="radioSelect">
+								<input
+									type="radio"
+									id="one"
+									value="미사용"
+									v-model="picked"
+									checked
+								/>
+								<label for="one">미사용</label>
 
-				<div class="group-112">
-					<div class="rectangle-233">
-						<label for="detail"></label>
-						<textarea
-							class="form-control"
-							id="detail"
-							placeholder="상품 설명을 입력하세요"
-							rows="7"
-							cols="50"
-						></textarea>
-					</div>
-				</div>
+								<input
+									type="radio"
+									id="two"
+									value="0 ~ 4주"
+									v-model="picked"
+								/>
+								<label for="two">0 ~ 4주</label>
 
-				<div class="group-17">
-					<div class="useageBox">
-						<div class="usingDate">
-							상품 사용기간
-							<div>
-								사용기간 : {{ picked }}
-								<div class="radioSelect">
-									<input
-										type="radio"
-										id="one"
-										value="미사용"
-										v-model="picked"
-										checked
-									/>
-									<label for="one">미사용</label>
+								<input
+									type="radio"
+									id="three"
+									value="4 ~ 8주"
+									v-model="picked"
+								/>
+								<label for="three">4 ~ 8주</label>
 
-									<input
-										type="radio"
-										id="two"
-										value="0 ~ 4주"
-										v-model="picked"
-									/>
-									<label for="two">0 ~ 4주</label>
-
-									<input
-										type="radio"
-										id="three"
-										value="4 ~ 8주"
-										v-model="picked"
-									/>
-									<label for="three">4 ~ 8주</label>
-
-									<input
-										type="radio"
-										id="four"
-										value="8주 이상"
-										v-model="picked"
-									/>
-									<label for="four">8주 이상</label>
-								</div>
+								<input
+									type="radio"
+									id="four"
+									value="8주 이상"
+									v-model="picked"
+								/>
+								<label for="four">8주 이상</label>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="--7">
-					<div class="rectangle-25"></div>
+			</div>
+			<div class="--7">
+				<div class="rectangle-25"></div>
 
-					<button class="_18px3">등록하기</button>
-				</div>
-
-				<div class="rectangle-26"></div>
+				<button class="_18px3">등록하기</button>
 			</div>
 		</div>
 	</form>
@@ -201,22 +194,21 @@
 	};
 </script>
 <style scoped>
-	.------------,
-	.------------ * {
+	.box * {
 		box-sizing: border-box;
 	}
 	.form-control {
 		margin: 5px 0px 0px 30px;
 	}
-	.------------ {
+	.box {
 		background: #f1f1f1;
 		width: 1920px;
 		height: 1024px;
-		position: relative;
+
 		overflow: hidden;
 	}
 
-	.----- {
+	.productLayout {
 		background: #ffffff;
 		width: 700px;
 		height: 900px;
@@ -251,41 +243,13 @@
 		justify-content: flex-start;
 	}
 
-	.--------- {
-		width: 90px;
-		height: 30px;
-		position: static;
-	}
-
-	.---------2 {
-		background: #0075ff;
+	.productSelect {
 		border-radius: 10px;
 		width: 90px;
 		height: 30px;
 		position: absolute;
 		left: 945px;
 		top: 300px;
-	}
-
-	._18px {
-		width: 500px;
-		height: 200px;
-		position: absolute;
-		left: 945px;
-		top: 300px;
-	}
-
-	._18px2 {
-		color: #ffffff;
-		text-align: center;
-		font: 700 14px 'Roboto', sans-serif;
-		left: 0px;
-		top: 0px;
-		width: 90px;
-		height: 30px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
 	}
 
 	._20px {
