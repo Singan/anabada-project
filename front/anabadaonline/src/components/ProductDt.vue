@@ -1,21 +1,5 @@
 <template>
     <div class="----">
-        <div class="----2">
-            <div class="--">경매</div>
-
-            <div class="----3">아나바다</div>
-
-            <div class="--2">채팅</div>
-
-            <div class="---"></div>
-
-            <div class="----4"></div>
-
-            <div class="----5">
-                <div class="_18px">검색하기</div>
-            </div>
-        </div>
-
         <div class="-----"></div>
 
         <img class="--------" src="--------.png" />
@@ -168,7 +152,7 @@
 /* Code generated with AutoHTML Plugin for Figma */
 
 export default {
-    name: "",
+    name: '',
     components: {},
     props: {},
     data() {
@@ -200,7 +184,7 @@ export default {
 .-- {
     color: #0075ff;
     text-align: center;
-    font: 700 18px "Roboto", sans-serif;
+    font: 700 18px 'Roboto', sans-serif;
     position: absolute;
     left: 620px;
     top: 40px;
@@ -214,7 +198,7 @@ export default {
 .----3 {
     color: #0075ff;
     text-align: center;
-    font: 700 24px "Roboto", sans-serif;
+    font: 700 24px 'Roboto', sans-serif;
     position: absolute;
     left: 430px;
     top: 35px;
@@ -228,7 +212,7 @@ export default {
 .--2 {
     color: #000000;
     text-align: center;
-    font: 700 18px "Roboto", sans-serif;
+    font: 700 18px 'Roboto', sans-serif;
     position: absolute;
     left: 700px;
     top: 40px;
@@ -270,7 +254,7 @@ export default {
 ._18px {
     color: #000000;
     text-align: center;
-    font: 700 18px "Roboto", sans-serif;
+    font: 700 18px 'Roboto', sans-serif;
     position: absolute;
     left: 0px;
     top: 0px;
@@ -307,7 +291,7 @@ export default {
 .-----2 {
     color: #000000;
     text-align: left;
-    font: 700 14px "Roboto", sans-serif;
+    font: 700 14px 'Roboto', sans-serif;
     position: absolute;
     left: 730px;
     top: 606px;
@@ -321,7 +305,7 @@ export default {
 .-----3 {
     color: #000000;
     text-align: left;
-    font: 500 12px "Roboto", sans-serif;
+    font: 500 12px 'Roboto', sans-serif;
     position: absolute;
     left: 1125px;
     top: 606px;
@@ -335,7 +319,7 @@ export default {
 ._0 {
     color: #0075ff;
     text-align: center;
-    font: 500 18px "Roboto", sans-serif;
+    font: 500 18px 'Roboto', sans-serif;
     position: absolute;
     left: 1175px;
     top: 606px;
@@ -349,7 +333,7 @@ export default {
 .---------- {
     color: #0075ff;
     text-align: right;
-    font: 500 12px "Roboto", sans-serif;
+    font: 500 12px 'Roboto', sans-serif;
     position: absolute;
     left: 1087px;
     top: 981px;
@@ -363,7 +347,7 @@ export default {
 .----6 {
     color: #000000;
     text-align: left;
-    font: 700 14px "Roboto", sans-serif;
+    font: 700 14px 'Roboto', sans-serif;
     position: absolute;
     left: 677px;
     top: 714px;
@@ -377,7 +361,7 @@ export default {
 .--------2 {
     color: #000000;
     text-align: left;
-    font: 700 14px "Roboto", sans-serif;
+    font: 700 14px 'Roboto', sans-serif;
     position: absolute;
     left: 677px;
     top: 986px;
@@ -391,7 +375,7 @@ export default {
 .-----4 {
     color: #000000;
     text-align: left;
-    font: 100 14px "Roboto", sans-serif;
+    font: 100 14px 'Roboto', sans-serif;
     position: absolute;
     left: 677px;
     top: 824px;
@@ -402,7 +386,7 @@ export default {
 .----7 {
     color: #000000;
     text-align: left;
-    font: 600 14px "Roboto", sans-serif;
+    font: 600 14px 'Roboto', sans-serif;
     position: absolute;
     left: 677px;
     top: 778px;
@@ -429,7 +413,7 @@ export default {
 .----8 {
     color: #a3a1a1;
     text-align: left;
-    font: 500 12px "Roboto", sans-serif;
+    font: 500 12px 'Roboto', sans-serif;
     position: absolute;
     left: 677px;
     top: 746px;
@@ -443,7 +427,7 @@ export default {
 .--3 {
     color: #a3a1a1;
     text-align: left;
-    font: 500 12px "Roboto", sans-serif;
+    font: 500 12px 'Roboto', sans-serif;
     position: absolute;
     left: 677px;
     top: 909px;
@@ -457,7 +441,7 @@ export default {
 ._02 {
     color: #a3a1a1;
     text-align: left;
-    font: 400 12px "Roboto", sans-serif;
+    font: 400 12px 'Roboto', sans-serif;
     position: absolute;
     left: 710px;
     top: 909px;
@@ -471,7 +455,7 @@ export default {
 ._03 {
     color: #a3a1a1;
     text-align: left;
-    font: 400 12px "Roboto", sans-serif;
+    font: 400 12px 'Roboto', sans-serif;
     position: absolute;
     left: 800px;
     top: 909px;
@@ -485,7 +469,7 @@ export default {
 ._04 {
     color: #a3a1a1;
     text-align: left;
-    font: 400 12px "Roboto", sans-serif;
+    font: 400 12px 'Roboto', sans-serif;
     position: absolute;
     left: 890px;
     top: 909px;
@@ -499,7 +483,7 @@ export default {
 .--4 {
     color: #a3a1a1;
     text-align: left;
-    font: 500 12px "Roboto", sans-serif;
+    font: 500 12px 'Roboto', sans-serif;
     position: absolute;
     left: 767px;
     top: 909px;
@@ -513,7 +497,7 @@ export default {
 .--5 {
     color: #a3a1a1;
     text-align: left;
-    font: 500 12px "Roboto", sans-serif;
+    font: 500 12px 'Roboto', sans-serif;
     position: absolute;
     left: 857px;
     top: 909px;
@@ -527,7 +511,7 @@ export default {
 .-----5 {
     color: #a3a1a1;
     text-align: left;
-    font: 500 12px "Roboto", sans-serif;
+    font: 500 12px 'Roboto', sans-serif;
     position: absolute;
     left: 947px;
     top: 909px;
@@ -541,7 +525,7 @@ export default {
 .--------- {
     color: #000000;
     text-align: left;
-    font: 500 14px "Roboto", sans-serif;
+    font: 500 14px 'Roboto', sans-serif;
     position: absolute;
     left: 730px;
     top: 632px;
@@ -637,7 +621,7 @@ export default {
 .----9 {
     color: #000000;
     text-align: left;
-    font: 300 16px "Roboto", sans-serif;
+    font: 300 16px 'Roboto', sans-serif;
     position: absolute;
     left: 1100px;
     top: 1190px;
@@ -651,7 +635,7 @@ export default {
 .----10 {
     color: #000000;
     text-align: left;
-    font: 300 16px "Roboto", sans-serif;
+    font: 300 16px 'Roboto', sans-serif;
     position: absolute;
     left: 1100px;
     top: 1498px;
@@ -665,7 +649,7 @@ export default {
 .----11 {
     color: #000000;
     text-align: left;
-    font: 300 16px "Roboto", sans-serif;
+    font: 300 16px 'Roboto', sans-serif;
     position: absolute;
     left: 670px;
     top: 1190px;
@@ -679,7 +663,7 @@ export default {
 .----12 {
     color: #000000;
     text-align: left;
-    font: 300 16px "Roboto", sans-serif;
+    font: 300 16px 'Roboto', sans-serif;
     position: absolute;
     left: 670px;
     top: 1498px;
@@ -693,7 +677,7 @@ export default {
 .----13 {
     color: #000000;
     text-align: left;
-    font: 300 16px "Roboto", sans-serif;
+    font: 300 16px 'Roboto', sans-serif;
     position: absolute;
     left: 885px;
     top: 1190px;
@@ -707,7 +691,7 @@ export default {
 .----14 {
     color: #000000;
     text-align: left;
-    font: 300 16px "Roboto", sans-serif;
+    font: 300 16px 'Roboto', sans-serif;
     position: absolute;
     left: 885px;
     top: 1498px;
@@ -721,7 +705,7 @@ export default {
 .--6 {
     color: #000000;
     text-align: left;
-    font: 600 16px "Roboto", sans-serif;
+    font: 600 16px 'Roboto', sans-serif;
     position: absolute;
     left: 1100px;
     top: 1219px;
@@ -735,7 +719,7 @@ export default {
 .--7 {
     color: #000000;
     text-align: left;
-    font: 600 16px "Roboto", sans-serif;
+    font: 600 16px 'Roboto', sans-serif;
     position: absolute;
     left: 1100px;
     top: 1527px;
@@ -749,7 +733,7 @@ export default {
 .--8 {
     color: #000000;
     text-align: left;
-    font: 600 16px "Roboto", sans-serif;
+    font: 600 16px 'Roboto', sans-serif;
     position: absolute;
     left: 670px;
     top: 1219px;
@@ -763,7 +747,7 @@ export default {
 .--9 {
     color: #000000;
     text-align: left;
-    font: 600 16px "Roboto", sans-serif;
+    font: 600 16px 'Roboto', sans-serif;
     position: absolute;
     left: 670px;
     top: 1527px;
@@ -777,7 +761,7 @@ export default {
 .--10 {
     color: #000000;
     text-align: left;
-    font: 600 16px "Roboto", sans-serif;
+    font: 600 16px 'Roboto', sans-serif;
     position: absolute;
     left: 885px;
     top: 1219px;
@@ -791,7 +775,7 @@ export default {
 .--11 {
     color: #000000;
     text-align: left;
-    font: 600 16px "Roboto", sans-serif;
+    font: 600 16px 'Roboto', sans-serif;
     position: absolute;
     left: 885px;
     top: 1527px;
@@ -805,7 +789,7 @@ export default {
 .--12 {
     color: #000000;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 1100px;
     top: 1247px;
@@ -819,7 +803,7 @@ export default {
 .--13 {
     color: #000000;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 1100px;
     top: 1555px;
@@ -833,7 +817,7 @@ export default {
 .--14 {
     color: #000000;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 670px;
     top: 1247px;
@@ -847,7 +831,7 @@ export default {
 .--15 {
     color: #000000;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 670px;
     top: 1555px;
@@ -861,7 +845,7 @@ export default {
 .--16 {
     color: #000000;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 885px;
     top: 1247px;
@@ -875,7 +859,7 @@ export default {
 .--17 {
     color: #000000;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 885px;
     top: 1555px;
@@ -889,7 +873,7 @@ export default {
 .--18 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 1100px;
     top: 1270px;
@@ -903,7 +887,7 @@ export default {
 .--19 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 1100px;
     top: 1578px;
@@ -917,7 +901,7 @@ export default {
 .--20 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 670px;
     top: 1270px;
@@ -931,7 +915,7 @@ export default {
 .--21 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 670px;
     top: 1578px;
@@ -945,7 +929,7 @@ export default {
 .--22 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 885px;
     top: 1270px;
@@ -959,7 +943,7 @@ export default {
 .--23 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 885px;
     top: 1578px;
@@ -973,7 +957,7 @@ export default {
 .--24 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 1176px;
     top: 1270px;
@@ -987,7 +971,7 @@ export default {
 .--25 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 1176px;
     top: 1578px;
@@ -1001,7 +985,7 @@ export default {
 .--26 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 746px;
     top: 1270px;
@@ -1015,7 +999,7 @@ export default {
 .--27 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 746px;
     top: 1578px;
@@ -1029,7 +1013,7 @@ export default {
 .--28 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 961px;
     top: 1270px;
@@ -1043,7 +1027,7 @@ export default {
 .--29 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 961px;
     top: 1578px;
@@ -1057,7 +1041,7 @@ export default {
 ._05 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 1220px;
     top: 1270px;
@@ -1071,7 +1055,7 @@ export default {
 ._06 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 1220px;
     top: 1578px;
@@ -1085,7 +1069,7 @@ export default {
 ._07 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 790px;
     top: 1270px;
@@ -1099,7 +1083,7 @@ export default {
 ._08 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 790px;
     top: 1578px;
@@ -1113,7 +1097,7 @@ export default {
 ._09 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 1005px;
     top: 1270px;
@@ -1127,7 +1111,7 @@ export default {
 ._010 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 1005px;
     top: 1578px;
@@ -1141,7 +1125,7 @@ export default {
 ._011 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 1135px;
     top: 1270px;
@@ -1155,7 +1139,7 @@ export default {
 ._012 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 1135px;
     top: 1578px;
@@ -1169,7 +1153,7 @@ export default {
 ._013 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 705px;
     top: 1270px;
@@ -1183,7 +1167,7 @@ export default {
 ._014 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 705px;
     top: 1578px;
@@ -1197,7 +1181,7 @@ export default {
 ._015 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 920px;
     top: 1270px;
@@ -1211,7 +1195,7 @@ export default {
 ._016 {
     color: #797979;
     text-align: left;
-    font: 400 13px "Roboto", sans-serif;
+    font: 400 13px 'Roboto', sans-serif;
     position: absolute;
     left: 920px;
     top: 1578px;
@@ -1231,7 +1215,7 @@ export default {
 .---3 {
     color: #0075ff;
     text-align: center;
-    font: 500 12px "Roboto", sans-serif;
+    font: 500 12px 'Roboto', sans-serif;
     position: absolute;
     left: 1176px;
     top: 634px;
@@ -1249,4 +1233,3 @@ export default {
     overflow: visible;
 }
 </style>
-  

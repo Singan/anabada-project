@@ -123,7 +123,6 @@
 						</div>
 					</div>
 				</div>
-
 				<div class="--7">
 					<div class="rectangle-25"></div>
 
@@ -151,7 +150,6 @@
 				detail: '',
 				// price:'',
 				selectCategory: '',
-
 				productImages: '',
 			};
 		},
@@ -318,9 +316,6 @@
 		align-items: center;
 		justify-content: flex-start;
 		margin: 10px 0px 0px 0px;
-	}
-
-	.one {
 	}
 
 	.pick1 {
