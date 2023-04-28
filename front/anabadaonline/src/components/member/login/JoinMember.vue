@@ -1,44 +1,43 @@
 <template>
-    <div class="flexContainer">
-        <form @submit.prevent="submitForm">
-            <div class="text">본인 정보를 입력해 주세요</div>
-            <div class="id">
-                <label for="id">id</label>
-                <input type="text" id="id" v-model="id" />
-            </div>
-            <div class="pw">
-                <label for="pw">pw</label>
-                <input type="password" id="pw" v-model="pw" />
-            </div>
-            <div class="name">
-                <label for="name">이름</label>
-                <input type="text" id="name" v-model="name" />
-            </div>
-            <div class="birth">
-                <label for="birth">생년월일</label>
-                <input type="date" id="birth" v-model="birth" />
-            </div>
-            <div class="addr">
-                <label for="addr">주소</label>
-                <input type="text" id="addr" v-model="addr" />
-            </div>
-            <div class="detailaddr">
-                <label for="detailaddr">상세주소</label>
-                <input type="text" id="detailaddr" v-model="detailaddr" />
-            </div>
-            <div class="Wishaddr">
-                <label for="Wishaddr">거래희망지</label>
-                <input type="text" id="Wishaddr" v-model="Wishaddr" />
-            </div>
-            <div class="image">
-                <label for="image">프로필 이미지</label>
-                <input id="image" type="file" @change="onInputImage" />
-            </div>
-
+    <form @submit.prevent="submitForm" class="flexContainer">
+        <div class="text">본인 정보를 입력해 주세요</div>
+        <div class="id">
+            <label for="id">id</label>
+            <input type="text" id="id" v-model="id" />
+        </div>
+        <div class="pw">
+            <label for="pw">pw</label>
+            <input type="password" id="pw" v-model="pw" />
+        </div>
+        <div class="name">
+            <label for="name">이름</label>
+            <input type="text" id="name" v-model="name" />
+        </div>
+        <div class="birth">
+            <label for="birth">생년월일</label>
+            <input type="date" id="birth" v-model="birth" />
+        </div>
+        <div class="addr">
+            <label for="addr">주소</label>
+            <input type="text" id="addr" v-model="addr" />
+        </div>
+        <div class="detailaddr">
+            <label for="detailaddr">상세주소</label>
+            <input type="text" id="detailaddr" v-model="detailaddr" />
+        </div>
+        <div class="Wishaddr">
+            <label for="Wishaddr">거래희망지</label>
+            <input type="text" id="Wishaddr" v-model="Wishaddr" />
+        </div>
+        <div class="image">
+            <label for="image">프로필 이미지</label>
+            <input id="image" type="file" @change="onInputImage" />
+        </div>
+        <div class="buttonContainer">
             <button type="submit" class="join">회원가입</button>
             <button class="cancel" @click="goLogin">취소하기</button>
-        </form>
-    </div>
+        </div>
+    </form>
 </template>
 
 <script>
@@ -91,129 +90,122 @@ export default {
 </script>
 
 <style scoped>
+.flexContainer {
+    display: flex;
+    width: 788px;
+    height: 1040px;
+    flex-direction: column;
+    align-items: center;
+
+    margin: auto;
+
+}
+
+.flexContainer>* {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flexContainer>*>*:first-child {
+    flex-grow: 1;
+}
+
+.flexContainer>*>* {
+    flex-grow: 3;
+}
+
 .id {
     color: #000000;
     text-align: left;
     font: 400 16px 'Roboto', sans-serif;
-    position: absolute;
-    left: 648px;
-    top: 211px;
+
     width: 398px;
     height: 37px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+
 }
 
 .text {
     color: #0075ff;
     text-align: left;
     font: 700 28px 'Roboto', sans-serif;
-    position: absolute;
-    top: 130px;
+
     width: 398px;
     height: 37px;
-    display: flex;
+    margin-bottom: 30px;
+    /* display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: flex-start; */
 }
 
 .pw {
     color: #000000;
     text-align: left;
     font: 400 16px 'Roboto', sans-serif;
-    position: absolute;
-    left: 648px;
-    top: 273px;
+
     width: 398px;
     height: 37px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+
 }
 
 .name {
     color: #000000;
     text-align: left;
     font: 400 16px 'Roboto', sans-serif;
-    position: absolute;
-    left: 648px;
-    top: 337px;
+
     width: 398px;
     height: 37px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+
 }
 
 .birth {
     color: #000000;
     text-align: left;
     font: 400 16px 'Roboto', sans-serif;
-    position: absolute;
-    left: 648px;
-    top: 401px;
+
     width: 398px;
     height: 37px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+
 }
 
 .addr {
     color: #000000;
     text-align: left;
     font: 400 16px 'Roboto', sans-serif;
-    position: absolute;
-    left: 648px;
-    top: 465px;
+
     width: 398px;
     height: 37px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+
 }
 
 .detailaddr {
     color: #000000;
     text-align: left;
     font: 400 16px 'Roboto', sans-serif;
-    position: absolute;
-    left: 648px;
-    top: 529px;
+
     width: 398px;
     height: 37px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+
 }
 
 .Wishaddr {
     color: #000000;
     text-align: left;
     font: 400 16px 'Roboto', sans-serif;
-    position: absolute;
-    left: 648px;
-    top: 593px;
+
     width: 398px;
     height: 37px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+
 }
 
 .image {
     color: #000000;
     text-align: left;
     font: 400 16px 'Roboto', sans-serif;
-    position: absolute;
-    left: 648px;
-    top: 657px;
+
     width: 398px;
     height: 37px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+
 }
 
 .join {
@@ -224,9 +216,7 @@ export default {
     border-radius: 5px;
     margin: 0 auto;
     color: #0075ff;
-    position: absolute;
-    left: 648px;
-    top: 727px;
+
 }
 
 .cancel {
@@ -237,8 +227,6 @@ export default {
     border-radius: 5px;
     margin: 0 auto;
     color: #e20303;
-    position: absolute;
-    left: 1000px;
-    top: 727px;
+
 }
 </style>
