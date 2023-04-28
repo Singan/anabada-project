@@ -19,24 +19,24 @@
 				<input type="date" id="birth" v-model="birth" />
 			</div>
 			<div class="post">
-				<label for="addr">우편번호 찾기</label>
+				<label for="addr" class="postcodeText">우편번호</label>
 				<input type="text" id="post" v-model="addr" readonly />
-				<button @click="search()">찾기</button>
+				<button @click="search()">우편 번호 찾기</button>
 			</div>
 			<div class="addr">
 				<label for="addr">주소</label>
-				<input type="text" id="addr" v-model="addr" />
+				<input type="text" id="addr" v-model="addr" readonly />
 			</div>
 			<div class="detailaddr">
 				<label for="detailaddr">상세주소</label>
 				<input type="text" id="detailaddr" v-model="detailaddr" />
 			</div>
-			<div class="Wishaddr">
-				<label for="Wishaddr">거래희망지</label>
-				<input type="text" id="Wishaddr" v-model="Wishaddr" />
+			<div class="wishaddr">
+				<label for="wishaddr">거래희망지</label>
+				<input type="text" id="wishaddr" v-model="Wishaddr" />
 			</div>
 			<div class="image">
-				<label for="image">프로필 이미지</label>
+				<label for="image" class="imageText">프로필 이미지</label>
 				<input id="image" type="file" @change="onInputImage" />
 			</div>
 
@@ -133,34 +133,8 @@
 						// 우편번호와 주소 정보를 해당 필드에 넣는다.
 						document.getElementById('post').value = data.zonecode;
 						document.getElementById('addr').value = roadAddr;
-						document.getElementById('detailaddr').value =
-							data.jibunAddress;
-
-						// 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-						if (roadAddr !== '') {
-							document.getElementById('extraAddress').value =
-								extraRoadAddr;
-						} else {
-							document.getElementById('extraAddress').value = '';
-						}
-
-						var guideTextBox = document.getElementById('guide');
-						// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-						if (data.autoRoadAddress) {
-							var expRoadAddr =
-								data.autoRoadAddress + extraRoadAddr;
-							guideTextBox.innerHTML =
-								'(예상 도로명 주소 : ' + expRoadAddr + ')';
-							guideTextBox.style.display = 'block';
-						} else if (data.autoJibunAddress) {
-							var expJibunAddr = data.autoJibunAddress;
-							guideTextBox.innerHTML =
-								'(예상 지번 주소 : ' + expJibunAddr + ')';
-							guideTextBox.style.display = 'block';
-						} else {
-							guideTextBox.innerHTML = '';
-							guideTextBox.style.display = 'none';
-						}
+						// document.getElementById('detailaddr').value =
+						// 	data.jibunAddress;
 					},
 				}).open();
 			},
@@ -172,6 +146,18 @@
 <style scoped>
 	input:focus {
 		outline: 0;
+	}
+	.text {
+		color: #0075ff;
+		text-align: left;
+		font: 700 28px 'Roboto', sans-serif;
+		position: absolute;
+		top: 150px;
+		width: 80%;
+		height: 37px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 	.id {
 		color: #000000;
@@ -192,20 +178,7 @@
 		border-right: 0;
 		border-top: 0;
 		border-left: 0;
-		padding-top: 3%;
-	}
-
-	.text {
-		color: #0075ff;
-		text-align: left;
-		font: 700 28px 'Roboto', sans-serif;
-		position: absolute;
-		top: 150px;
-		width: 80%;
-		height: 37px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		padding-top: 15px;
 	}
 
 	.pw {
@@ -216,7 +189,7 @@
 		top: 273px;
 		width: 30%;
 		left: 34%;
-		height: 37px;
+		height: 40px;
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
@@ -228,7 +201,7 @@
 		border-right: 0;
 		border-top: 0;
 		border-left: 0;
-		padding-top: 3%;
+		padding-top: 15px;
 	}
 
 	.name {
@@ -236,14 +209,14 @@
 		text-align: left;
 		font: 600 16px 'Roboto', sans-serif;
 		position: absolute;
-		top: 337px;
-		height: 37px;
+		top: 345px;
+		height: 40px;
 		width: 10%;
 		left: 34%;
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
-		padding-top: 30px;
+		padding-top: 15px;
 	}
 
 	#name {
@@ -251,7 +224,7 @@
 		border-right: 0;
 		border-top: 0;
 		border-left: 0;
-		padding-top: 3%;
+		padding-top: 15px;
 	}
 
 	.birth {
@@ -272,7 +245,7 @@
 	.post {
 		color: #000000;
 		text-align: left;
-		font: 400 16px 'Roboto', sans-serif;
+		font: 600 16px 'Roboto', sans-serif;
 		position: absolute;
 		top: 465px;
 		width: 500px;
@@ -281,50 +254,81 @@
 		padding-top: 25px;
 	}
 
+	.postcodeText {
+		margin-right: 10px;
+	}
+
 	#post {
-		padding-left: 20px;
+		width: 80px;
+		cursor: default;
 	}
 
 	.addr {
 		color: #000000;
 		text-align: left;
-		font: 400 16px 'Roboto', sans-serif;
+		font: 600 16px 'Roboto', sans-serif;
 		position: absolute;
-		left: 648px;
 		top: 530px;
-		width: 10%;
+		width: 100px;
 		left: 34%;
-		height: 37px;
 		display: flex;
+		flex-direction: column;
 		justify-content: flex-start;
+	}
+
+	#addr {
+		width: 500px;
+		font: 400 16px 'Roboto', sans-serif;
+		border-right: 0;
+		border-top: 0;
+		border-left: 0;
+		cursor: default;
 	}
 
 	.detailaddr {
 		color: #000000;
 		text-align: left;
-		font: 400 16px 'Roboto', sans-serif;
+		font: 600 16px 'Roboto', sans-serif;
 		position: absolute;
-		left: 648px;
-		top: 600px;
+		left: 34%;
+		top: 560px;
 		width: 398px;
-		height: 37px;
 		display: flex;
-		align-items: center;
+		flex-direction: column;
 		justify-content: flex-start;
+		padding-top: 25px;
 	}
 
-	.Wishaddr {
+	#detailaddr {
+		width: 500px;
+		font: 400 16px 'Roboto', sans-serif;
+		border-right: 0;
+		border-top: 0;
+		border-left: 0;
+		padding-top: 2%;
+	}
+
+	.wishaddr {
 		color: #000000;
 		text-align: left;
-		font: 400 16px 'Roboto', sans-serif;
+		font: 600 16px 'Roboto', sans-serif;
 		position: absolute;
-		left: 648px;
-		top: 593px;
+		left: 34%;
+		top: 630px;
 		width: 398px;
-		height: 37px;
 		display: flex;
-		align-items: center;
+		flex-direction: column;
 		justify-content: flex-start;
+		padding-top: 20px;
+	}
+
+	#wishaddr {
+		width: 400px;
+		font: 400 16px 'Roboto', sans-serif;
+		border-right: 0;
+		border-top: 0;
+		border-left: 0;
+		padding-top: 2%;
 	}
 
 	.image {
@@ -332,38 +336,45 @@
 		text-align: left;
 		font: 400 16px 'Roboto', sans-serif;
 		position: absolute;
-		left: 648px;
-		top: 657px;
+		left: 34%;
+		top: 720px;
 		width: 398px;
-		height: 37px;
 		display: flex;
 		align-items: center;
 		justify-content: flex-start;
 	}
 
+	.imageText {
+		margin-right: 10px;
+	}
+
 	.join {
-		width: 8.5rem;
+		width: 6.5rem;
 		height: 50px;
 		line-height: 50px;
-		background-color: white;
+		background-color: #0075ff;
 		border-radius: 5px;
 		margin: 0 auto;
-		color: #0075ff;
+		color: white;
 		position: absolute;
-		left: 648px;
-		top: 727px;
+		left: 34%;
+		top: 780px;
+		cursor: pointer;
+		border: none;
 	}
 
 	.cancel {
-		width: 8.5rem;
+		width: 6.5rem;
 		height: 50px;
 		line-height: 50px;
-		background-color: white;
+		background-color: #e20303;
 		border-radius: 5px;
 		margin: 0 auto;
-		color: #e20303;
+		color: white;
 		position: absolute;
-		left: 1000px;
-		top: 727px;
+		left: 58%;
+		top: 780px;
+		cursor: pointer;
+		border: none;
 	}
 </style>
