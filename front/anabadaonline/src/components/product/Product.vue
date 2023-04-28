@@ -2,7 +2,7 @@
     <form @submit.prevent="productRegister" class="form">
         <div class="title">상품 등록하기</div>
 
-        <div class="rectangle-26"></div>
+        <div class="imageView"></div>
         <label class="productSelect" style="background-color: skyblue" for="productImages">
             이미지 등록
             <input id="productImages" type="file" @change="onInputImage" accept="image/*" multiple="multiple"
@@ -155,11 +155,6 @@ export default {
 }
 
 
-.group-46 {
-    width: 540px;
-    height: 778px;
-    position: static;
-}
 
 
 
@@ -206,15 +201,6 @@ export default {
 
 
 
-.rectangle-23 {
-    border-radius: 5px;
-    border-style: solid;
-    border-color: #0075ff;
-    border-width: 1.5px;
-    width: 470px;
-    height: 30px;
-
-}
 
 .nameText {
     color: #797979;
@@ -224,6 +210,12 @@ export default {
     align-items: center;
     justify-content: flex-start;
     margin: 2px 0px 0px 5px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #0075ff;
+    border-width: 1.5px;
+    width: 470px;
+    height: 30px;
 }
 
 
@@ -266,9 +258,7 @@ export default {
     text-align: left;
     font: 300 12px 'Roboto', sans-serif;
 
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+
 }
 
 
@@ -277,6 +267,10 @@ export default {
 
 
 
+.commonText {
+    font-size: 18px;
+    color: blue;
+}
 
 .submit {
     background: #0075ff;
@@ -292,7 +286,7 @@ export default {
 
 
 
-.rectangle-26 {
+.imageView {
     background: #d9d9d9;
     width: 120px;
     height: 120px;
