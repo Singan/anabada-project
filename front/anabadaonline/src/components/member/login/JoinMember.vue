@@ -1,43 +1,49 @@
 <template>
-    <form @submit.prevent="submitForm" class="flexContainer">
-        <div class="text">본인 정보를 입력해 주세요</div>
-        <div class="id">
-            <label for="id">id</label>
-            <input type="text" id="id" v-model="id" />
-        </div>
-        <div class="pw">
-            <label for="pw">pw</label>
-            <input type="password" id="pw" v-model="pw" />
-        </div>
-        <div class="name">
-            <label for="name">이름</label>
-            <input type="text" id="name" v-model="name" />
-        </div>
-        <div class="birth">
-            <label for="birth">생년월일</label>
-            <input type="date" id="birth" v-model="birth" />
-        </div>
-        <div class="addr">
-            <label for="addr">주소</label>
-            <input type="text" id="addr" v-model="addr" />
-        </div>
-        <div class="detailaddr">
-            <label for="detailaddr">상세주소</label>
-            <input type="text" id="detailaddr" v-model="detailaddr" />
-        </div>
-        <div class="Wishaddr">
-            <label for="Wishaddr">거래희망지</label>
-            <input type="text" id="Wishaddr" v-model="Wishaddr" />
-        </div>
-        <div class="image">
-            <label for="image">프로필 이미지</label>
-            <input id="image" type="file" @change="onInputImage" />
-        </div>
-        <div class="buttonContainer">
+    <div class="flexContainer">
+        <form @submit.prevent="submitForm">
+            <div class="text">본인 정보를 입력해 주세요</div>
+            <div class="id">
+                <label for="id">아이디</label>
+                <input type="text" id="id" v-model="id" />
+            </div>
+            <div class="pw">
+                <label for="pw">비밀번호</label>
+                <input type="password" id="pw" v-model="pw" />
+            </div>
+            <div class="name">
+                <label for="name">이름</label>
+                <input type="text" id="name" v-model="name" />
+            </div>
+            <div class="birth">
+                <label for="birth">생년월일</label>
+                <input type="date" id="birth" v-model="birth" />
+            </div>
+            <div class="post">
+                <label for="addr" class="postcodeText">우편번호</label>
+                <input type="text" id="post" v-model="addr" readonly />
+                <button @click="search()">우편 번호 찾기</button>
+            </div>
+            <div class="addr">
+                <label for="addr">주소</label>
+                <input type="text" id="addr" v-model="addr" readonly />
+            </div>
+            <div class="detailaddr">
+                <label for="detailaddr">상세주소</label>
+                <input type="text" id="detailaddr" v-model="detailaddr" />
+            </div>
+            <div class="wishaddr">
+                <label for="wishaddr">거래희망지</label>
+                <input type="text" id="wishaddr" v-model="Wishaddr" />
+            </div>
+            <div class="image">
+                <label for="image" class="imageText">프로필 이미지</label>
+                <input id="image" type="file" @change="onInputImage" />
+            </div>
+
             <button type="submit" class="join">회원가입</button>
             <button class="cancel" @click="goLogin">취소하기</button>
-        </div>
-    </form>
+        </form>
+    </div>
 </template>
 
 <script>
@@ -86,147 +92,291 @@ export default {
             this.$router.push('./login');
         },
     },
+
+    name: 'Address',
+    methods: {
+        search() {
+            //@click을 사용할 때 함수는 이렇게 작성해야 한다.
+            new window.daum.Postcode({
+                oncomplete: (data) => {
+                    //function이 아니라 => 로 바꿔야한다.
+                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                    // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                    var roadAddr = data.roadAddress; // 도로명 주소 변수
+                    var extraRoadAddr = ''; // 참고 항목 변수
+
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if (
+                        data.bname !== '' &&
+                        /[동|로|가]$/g.test(data.bname)
+                    ) {
+                        extraRoadAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if (
+                        data.buildingName !== '' &&
+                        data.apartment === 'Y'
+                    ) {
+                        extraRoadAddr +=
+                            extraRoadAddr !== ''
+                                ? ', ' + data.buildingName
+                                : data.buildingName;
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if (extraRoadAddr !== '') {
+                        extraRoadAddr = ' (' + extraRoadAddr + ')';
+                    }
+
+                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                    document.getElementById('post').value = data.zonecode;
+                    document.getElementById('addr').value = roadAddr;
+                    // document.getElementById('detailaddr').value =
+                    // 	data.jibunAddress;
+                },
+            }).open();
+        },
+    },
 };
+	// };
 </script>
 
 <style scoped>
-.flexContainer {
-    display: flex;
-    width: 788px;
-    height: 1040px;
-    flex-direction: column;
-    align-items: center;
-
-    margin: auto;
-
-}
-
-.flexContainer>* {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.flexContainer>*>*:first-child {
-    flex-grow: 1;
-}
-
-.flexContainer>*>* {
-    flex-grow: 3;
-}
-
-.id {
-    color: #000000;
-    text-align: left;
-    font: 400 16px 'Roboto', sans-serif;
-
-    width: 398px;
-    height: 37px;
-
+input:focus {
+    outline: 0;
 }
 
 .text {
     color: #0075ff;
     text-align: left;
     font: 700 28px 'Roboto', sans-serif;
-
-    width: 398px;
+    position: absolute;
+    top: 150px;
+    width: 80%;
     height: 37px;
-    margin-bottom: 30px;
-    /* display: flex;
+    display: flex;
     align-items: center;
-    justify-content: flex-start; */
+    justify-content: center;
+}
+
+.id {
+    color: #000000;
+    text-align: left;
+    font: 600 16px 'Roboto', sans-serif;
+    position: absolute;
+    top: 211px;
+    height: 40px;
+    width: 30%;
+    left: 34%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#id {
+    font: 400 16px 'Roboto', sans-serif;
+    border-right: 0;
+    border-top: 0;
+    border-left: 0;
+    padding-top: 15px;
 }
 
 .pw {
     color: #000000;
     text-align: left;
+    font: 600 16px 'Roboto', sans-serif;
+    position: absolute;
+    top: 273px;
+    width: 30%;
+    left: 34%;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 15px;
+}
+
+#pw {
     font: 400 16px 'Roboto', sans-serif;
-
-    width: 398px;
-    height: 37px;
-
+    border-right: 0;
+    border-top: 0;
+    border-left: 0;
+    padding-top: 15px;
 }
 
 .name {
     color: #000000;
     text-align: left;
+    font: 600 16px 'Roboto', sans-serif;
+    position: absolute;
+    top: 345px;
+    height: 40px;
+    width: 10%;
+    left: 34%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 15px;
+}
+
+#name {
     font: 400 16px 'Roboto', sans-serif;
-
-    width: 398px;
-    height: 37px;
-
+    border-right: 0;
+    border-top: 0;
+    border-left: 0;
+    padding-top: 15px;
 }
 
 .birth {
     color: #000000;
     text-align: left;
-    font: 400 16px 'Roboto', sans-serif;
-
-    width: 398px;
+    font: 600 16px 'Roboto', sans-serif;
+    position: absolute;
+    top: 401px;
+    width: 10%;
+    left: 34%;
     height: 37px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 30px;
+}
 
+.post {
+    color: #000000;
+    text-align: left;
+    font: 600 16px 'Roboto', sans-serif;
+    position: absolute;
+    top: 465px;
+    width: 500px;
+    left: 34%;
+    display: flex;
+    padding-top: 25px;
+}
+
+.postcodeText {
+    margin-right: 10px;
+}
+
+#post {
+    width: 80px;
+    cursor: default;
 }
 
 .addr {
     color: #000000;
     text-align: left;
+    font: 600 16px 'Roboto', sans-serif;
+    position: absolute;
+    top: 530px;
+    width: 100px;
+    left: 34%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#addr {
+    width: 500px;
     font: 400 16px 'Roboto', sans-serif;
-
-    width: 398px;
-    height: 37px;
-
+    border-right: 0;
+    border-top: 0;
+    border-left: 0;
+    cursor: default;
 }
 
 .detailaddr {
     color: #000000;
     text-align: left;
-    font: 400 16px 'Roboto', sans-serif;
-
+    font: 600 16px 'Roboto', sans-serif;
+    position: absolute;
+    left: 34%;
+    top: 560px;
     width: 398px;
-    height: 37px;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 25px;
 }
 
-.Wishaddr {
+#detailaddr {
+    width: 500px;
+    font: 400 16px 'Roboto', sans-serif;
+    border-right: 0;
+    border-top: 0;
+    border-left: 0;
+    padding-top: 2%;
+}
+
+.wishaddr {
     color: #000000;
     text-align: left;
-    font: 400 16px 'Roboto', sans-serif;
-
+    font: 600 16px 'Roboto', sans-serif;
+    position: absolute;
+    left: 34%;
+    top: 630px;
     width: 398px;
-    height: 37px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 20px;
+}
 
+#wishaddr {
+    width: 400px;
+    font: 400 16px 'Roboto', sans-serif;
+    border-right: 0;
+    border-top: 0;
+    border-left: 0;
+    padding-top: 2%;
 }
 
 .image {
     color: #000000;
     text-align: left;
     font: 400 16px 'Roboto', sans-serif;
-
+    position: absolute;
+    left: 34%;
+    top: 720px;
     width: 398px;
-    height: 37px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
 
+.imageText {
+    margin-right: 10px;
 }
 
 .join {
-    width: 8.5rem;
+    width: 6.5rem;
     height: 50px;
     line-height: 50px;
-    background-color: white;
+    background-color: #0075ff;
     border-radius: 5px;
     margin: 0 auto;
-    color: #0075ff;
-
+    color: white;
+    position: absolute;
+    left: 34%;
+    top: 780px;
+    cursor: pointer;
+    border: none;
 }
 
 .cancel {
-    width: 8.5rem;
+    width: 6.5rem;
     height: 50px;
     line-height: 50px;
-    background-color: white;
+    background-color: #e20303;
     border-radius: 5px;
     margin: 0 auto;
-    color: #e20303;
-
+    color: white;
+    position: absolute;
+    left: 58%;
+    top: 780px;
+    cursor: pointer;
+    border: none;
 }
 </style>
