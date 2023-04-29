@@ -37,7 +37,7 @@ public class MemberController {
 
     @PostMapping("/update")
     public Long memberUpdate(@RequestBody MemberUpdateDto memberUpdateDto) {
-
+        return null;
     }
 
 }

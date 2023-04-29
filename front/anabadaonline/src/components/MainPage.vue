@@ -31,21 +31,16 @@
 
     <div class="content3 productFlex">
         <div class="productFlexItem" v-for="item in productList" :key="item.productNo">
-            <img class="ProductImg1" :src="item.productImage" />
+            <img class="ProductImg1" :src="item.productImage" style="width: 320px; height: 240px;" />
+            <div class="ProductNT1">{{ item.productName }}</div>
 
-            <div class="ProductN1">
-                <div class="ProductNT1">{{ item.productName }}</div>
-            </div>
 
-            <div class="Adress1">
-                <div class="AdressT1">{{ item.wishAddr }}</div>
-                <!-- 상품거래지 -->
-            </div>
+            <div class="AdressT1">{{ item.wishAddr }}</div>
 
-            <div class="Price1">
-                <div class="PriceT1">{{ item.price }} 원</div>
-                <!-- 상품가격 -->
-            </div>
+
+            <div class="PriceT1">{{ item.price }} 원</div>
+
+
         </div>
     </div>
 </template>
@@ -106,6 +101,7 @@ export default {
     display: flex;
     width: 100%;
     justify-content: center;
+    align-items: center;
 }
 
 .productFlexItem {
@@ -129,12 +125,6 @@ export default {
     width: 100%;
     display: flex;
 }
-
-
-
-
-
-
 
 .content1 {
     background: #f1f8ff;
@@ -163,7 +153,6 @@ export default {
 .content3Title {
     background: #f6efff;
     width: 100%;
-    justify-content: center;
 }
 
 .Text1 {
@@ -171,9 +160,8 @@ export default {
     text-align: center;
     font: 700 33px 'Roboto', sans-serif;
     height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    line-height: 100px;
+
 }
 
 .Text2 {
@@ -181,7 +169,6 @@ export default {
     text-align: center;
     font: 700 35px 'Roboto', sans-serif;
     height: 100px;
-    align-items: center;
 }
 
 .Text3 {
@@ -228,26 +215,15 @@ export default {
     box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.ProductN1 {
-    width: 133px;
-    height: 20px;
-}
 
 .ProductNT1 {
     color: #000000;
     text-align: left;
     font: 400 16px 'Roboto', sans-serif;
 
-    width: 240px;
-    height: 20px;
     align-items: center;
-    justify-content: flex-start;
 }
 
-.Adress1 {
-    width: 240px;
-    height: 20px;
-}
 
 .AdressT1 {
     color: #000000;
@@ -260,20 +236,13 @@ export default {
     justify-content: flex-start;
 }
 
-.Price1 {
-    width: 133px;
-    height: 20px;
-    left: 320px;
-    top: 1705px;
-}
 
 .PriceT1 {
     color: #000000;
     text-align: left;
     font: 700 16px 'Roboto', sans-serif;
 
-    width: 133px;
-    height: 20px;
+
     align-items: center;
     justify-content: flex-start;
 }
