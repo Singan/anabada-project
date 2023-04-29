@@ -1,4 +1,4 @@
-package com.anabada.security.token;
+package com.anabada.config.token;
 
 import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.MemberLoginDto;

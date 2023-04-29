@@ -1,4 +1,4 @@
-package com.anabada.security.token;
+package com.anabada.config.token;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

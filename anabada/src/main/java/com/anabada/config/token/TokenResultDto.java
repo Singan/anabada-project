@@ -1,4 +1,4 @@
-package com.anabada.security.token;
+package com.anabada.config.token;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

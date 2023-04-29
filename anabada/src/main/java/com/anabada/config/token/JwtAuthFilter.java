@@ -1,4 +1,4 @@
-package com.anabada.security.token;
+package com.anabada.config.token;
 
 import com.anabada.dto.MemberDetailDTO;
 import com.anabada.service.MemberService;
@@ -15,9 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Enumeration;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Component
