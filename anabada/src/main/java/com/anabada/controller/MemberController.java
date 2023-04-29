@@ -3,6 +3,7 @@ package com.anabada.controller;
 import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.MemberJoinDto;
 import com.anabada.dto.request_dto.MemberLoginDto;
+import com.anabada.dto.request_dto.MemberUpdateDto;
 import com.anabada.security.token.TokenResultDto;
 import com.anabada.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,6 +32,11 @@ public class MemberController {
 
         return memberService.memberLogin(memberLoginDto);
 
+
+    }
+
+    @PostMapping("/update")
+    public Long memberUpdate(@RequestBody MemberUpdateDto memberUpdateDto) {
 
     }
 

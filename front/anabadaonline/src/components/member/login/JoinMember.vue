@@ -19,9 +19,9 @@
 				<input type="date" id="birth" v-model="birth" />
 			</div>
 			<div class="post">
-				<label for="addr" class="postcodeText">우편번호</label>
-				<input type="text" id="post" v-model="addr" readonly />
-				<button @click="search()">우편 번호 찾기</button>
+				<!-- <label for="addr" class="postcodeText">우편번호</label>
+				<input type="text" id="post" v-model="addr" readonly /> -->
+				<button @click="search()">주소 찾기</button>
 			</div>
 			<div class="addr">
 				<label for="addr">주소</label>
@@ -92,10 +92,7 @@
 			goLogin() {
 				this.$router.push('./login');
 			},
-		},
 
-		name: 'Address',
-		methods: {
 			search() {
 				//@click을 사용할 때 함수는 이렇게 작성해야 한다.
 				new window.daum.Postcode({
@@ -132,7 +129,7 @@
 						}
 
 						// 우편번호와 주소 정보를 해당 필드에 넣는다.
-						document.getElementById('post').value = data.zonecode;
+						// document.getElementById('post').value = data.zonecode;
 						document.getElementById('addr').value = roadAddr;
 						// document.getElementById('detailaddr').value =
 						// 	data.jibunAddress;
