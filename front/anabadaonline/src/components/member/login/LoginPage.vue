@@ -91,9 +91,6 @@ export default {
 
 }
 
-.joinBox {
-    height: auto;
-}
 
 .input {
     border-radius: 5px;
@@ -160,7 +157,6 @@ export default {
 
 }
 
-.loginBox {}
 
 .idSearch {
     color: #000000;
@@ -170,8 +166,7 @@ export default {
 
     width: 78px;
     height: 37px;
-    align-items: center;
-    justify-content: center;
+
 }
 
 .pwSearch {
@@ -181,8 +176,7 @@ export default {
 
     width: 90px;
     height: 37px;
-    align-items: center;
-    justify-content: center;
+
 }
 
 .join {
@@ -193,15 +187,13 @@ export default {
 
     width: 54px;
     height: 37px;
-    align-items: center;
-    justify-content: center;
+
 }
 
 .joinBox {
     width: 100%;
     justify-content: space-around;
     display: flex;
-    justify-content: center;
 }
 
 .id {
@@ -211,11 +203,9 @@ export default {
 
     width: 60px;
     height: 35px;
-    align-items: center;
-    justify-content: center;
+
 }
 
-.pw {}
 
 
 
