@@ -1,265 +1,233 @@
 <template>
-	<div class="inputForm flexContainer">
-		<div class="logo">
-			<div class="logoImg"></div>
-			<div class="logoName" @click="goMain">아나바다</div>
-		</div>
+    <div class="flexContainer">
 
-		<form class="idPw">
-			<div class="id" id="id">
-				<div class="idBox">
-					<label for="id">ID </label>
-					<input
-						type="text"
-						v-model="id"
-						style="
-							border: none;
-							outline: none;
-							width: 430px;
-							height: 50px;
-							font-size: 19px;
-						"
-					/>
-				</div>
-			</div>
-			<div class="pwBox">
-				<div class="pw" id="pw">
-					<label for="pw">PW </label>
-					<input
-						type="password"
-						v-model="pw"
-						style="
-							border: none;
-							outline: none;
-							width: 430px;
-							height: 50px;
-							font-size: 19px;
-						"
-					/>
-				</div>
-			</div>
-			<div class="loginBox">
-				<div class="login" @click="login">로그인</div>
-			</div>
-		</form>
+        <div class="logo">
+            <div class="logoImg"></div>
+            <div class="logoName" @click="goMain">아나바다</div>
+        </div>
+        <form class="idPw">
+            <input type="text" v-model="id" style="font-size: 19px;" class="input" placeholder="아이디" />
+            <input type="password" v-model="pw" style="font-size: 19px;" class="input" placeholder="패스워드" />
+            <div class="login" @click="login">로그인</div>
+            <div class="joinBox">
+                <div class="idSearch">아이디 찾기</div>
 
-		<div class="joinBox">
-			<div class="idSearch">아이디 찾기</div>
+                <div class="pwSearch">비밀번호 찾기</div>
+                <div class="join" @click="goJoin">회원가입</div>
+            </div>
+        </form>
 
-			<div class="pwSearch">비밀번호 찾기</div>
-			<div class="join" @click="goJoin">회원가입</div>
-		</div>
-	</div>
+
+    </div>
 </template>
 
 <script>
-	import axios from '@/axios.js';
-	import token from '@/common/token';
+import axios from '@/axios.js';
+import token from '@/common/token';
 
-	export default {
-		name: 'LoginPage',
-		data() {
-			return {
-				id: '',
-				pw: '',
-			};
-		},
-		methods: {
-			goJoin() {
-				this.$router.push('./JoinMember');
-			},
-			goMain() {
-				this.$router.push('./');
-			},
-			login() {
-				axios
-					.post('/member/login', {
-						id: this.id,
-						pw: this.pw,
-					})
-					.then((response) => {
-						if (response.status == 200) {
-							token.setToken(`${response.data.accessToken}`);
-							this.$emit('logined');
-							this.$router.push('./');
-						}
-					});
-			},
-		},
-	};
+export default {
+    name: 'LoginPage',
+    data() {
+        return {
+            id: '',
+            pw: '',
+        };
+    },
+    methods: {
+        goJoin() {
+            this.$router.push('./JoinMember');
+        },
+        goMain() {
+            this.$router.push('./');
+        },
+        login() {
+            axios
+                .post('/member/login', {
+                    id: this.id,
+                    pw: this.pw,
+                })
+                .then((response) => {
+                    if (response.status == 200) {
+                        token.setToken(`${response.data.accessToken}`);
+                        this.$emit('logined');
+                        this.$router.push('./');
+                    }
+                });
+        },
+    },
+};
 </script>
 
 <style scoped>
-	.flexContainer {
-		background: #ffffff;
-		width: 100%;
-		height: 1024px;
-		overflow: hidden;
-		display: flex;
-		align-items: center;
-		justify-items: center;
-	}
-	.logoName {
-		color: #0075ff;
-		text-align: center;
-		font: 700 35px 'Roboto', sans-serif;
+.flexContainer {
+    width: 500px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+    position: relative;
+    top: 150px;
+    margin: auto;
+    border-radius: 5px;
 
-		width: 244px;
-		height: 37px;
-		align-items: center;
-		justify-content: center;
-	}
+}
 
-	.inputForm {
-		background: #f6f6f6;
-		border-radius: 5px;
-		width: 600px;
-		height: 300px;
-		display: inline-flex;
-		position: absolute;
-		align-content: center;
-		left: 30%;
-		top: 25%;
-		flex-direction: column;
-		align-items: center;
-		justify-items: center;
-	}
+.idPw {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    align-items: center;
+    height: 300px;
+    background: #f6f6f6;
 
-	.logo {
-		width: 100%;
-		height: 30%;
-		display: flex;
-		align-content: center;
-		justify-content: center;
-		align-items: flex-start;
-		flex-basis: 100%;
-	}
+}
 
-	.logoImg {
-		background: #d9d9d9;
-		border-radius: 50%;
-		width: 58.2px;
-		height: 58.2px;
-	}
+.idPw>* {
 
-	.idBox {
-		background: #ffffff;
-		border-radius: 5px;
-		width: 446px;
-		height: 52px;
-		display: flex;
-		flex-direction: column;
-		left: 752px;
-		top: 429px;
-	}
+    width: 90%;
+    height: 23%;
+    margin-top: 5%;
 
-	.pwBox {
-		background: #ffffff;
-		border-radius: 5px;
-		width: 446px;
-		height: 52px;
-		display: flex;
-		flex-direction: column;
-		left: 752px;
-		top: 501px;
-	}
+}
 
-	.loginBox {
-		background: #0075ff;
-		border-radius: 5px;
-		width: 446px;
-		height: 52px;
-		justify-content: center;
-		align-items: center;
-		left: 752px;
-		top: 593px;
-	}
+.joinBox {
+    height: auto;
+}
 
-	.idSearch {
-		color: #000000;
-		text-align: center;
-		font: 400 13px 'Roboto', sans-serif;
+.input {
+    border-radius: 5px;
+    border: none;
+}
 
-		left: 799px;
-		top: 653px;
-		width: 78px;
-		height: 37px;
-		align-items: center;
-		justify-content: center;
-	}
+.logoName {
+    color: #0075ff;
+    text-align: center;
+    font: 700 35px 'Roboto', sans-serif;
 
-	.pwSearch {
-		color: #000000;
-		text-align: center;
-		font: 400 13px 'Roboto', sans-serif;
+    width: 244px;
+    height: 37px;
 
-		left: 939px;
-		top: 653px;
-		width: 90px;
-		height: 37px;
-		align-items: center;
-		justify-content: center;
-	}
+}
 
-	.join {
-		color: #0075ff;
-		text-align: center;
-		font: 700 13px 'Roboto', sans-serif;
 
-		left: 1094px;
-		top: 653px;
-		width: 54px;
-		height: 37px;
-		align-items: center;
-		justify-content: center;
-	}
-	.joinBox {
-		width: 100%;
-		justify-content: space-around;
-		display: flex;
-		justify-content: center;
-	}
 
-	.id {
-		color: #a3a3a3;
-		text-align: left;
-		font: 400 16px 'Roboto', sans-serif;
+.logo {
+    width: 100%;
+    height: 10%;
+    margin: 20px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+}
 
-		left: 762px;
-		top: 437px;
-		width: 60px;
-		height: 35px;
-		align-items: center;
-		justify-content: center;
-	}
+.logoImg {
+    background: #d9d9d9;
+    border-radius: 50%;
+    width: 58.2px;
+    height: 100%;
+}
 
-	.pw {
-		color: #a3a3a3;
-		text-align: left;
-		font: 400 16px 'Roboto', sans-serif;
+.idBox {
+    background: #ffffff;
+    border-radius: 5px;
+    width: 446px;
+    height: 52px;
+    display: flex;
+    flex-direction: column;
+    left: 752px;
+    top: 429px;
+}
 
-		left: 762px;
-		top: 510px;
-		width: 75px;
-		height: 35px;
-		align-items: center;
-		justify-content: center;
-	}
+.pwBox {
+    background: #ffffff;
+    border-radius: 5px;
+    width: 446px;
+    height: 52px;
+    display: flex;
+    flex-direction: column;
 
-	.idPw {
-		display: flex;
-		flex-direction: column;
-	}
 
-	.login {
-		color: #ffffff;
-		text-align: center;
-		font: 700 18px 'Roboto', sans-serif;
-		left: 776px;
-		top: 601px;
-		width: 398px;
-		height: 37px;
-		align-items: center;
-		justify-content: center;
-	}
+    color: #a3a3a3;
+    text-align: left;
+    font: 400 16px 'Roboto', sans-serif;
+
+    width: 75px;
+    height: 35px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.loginBox {}
+
+.idSearch {
+    color: #000000;
+    text-align: center;
+    font: 400 13px 'Roboto', sans-serif;
+
+
+    width: 78px;
+    height: 37px;
+    align-items: center;
+    justify-content: center;
+}
+
+.pwSearch {
+    color: #000000;
+    text-align: center;
+    font: 400 13px 'Roboto', sans-serif;
+
+    width: 90px;
+    height: 37px;
+    align-items: center;
+    justify-content: center;
+}
+
+.join {
+    color: #0075ff;
+    text-align: center;
+    font: 700 13px 'Roboto', sans-serif;
+
+
+    width: 54px;
+    height: 37px;
+    align-items: center;
+    justify-content: center;
+}
+
+.joinBox {
+    width: 100%;
+    justify-content: space-around;
+    display: flex;
+    justify-content: center;
+}
+
+.id {
+    color: #a3a3a3;
+    text-align: left;
+    font: 400 16px 'Roboto', sans-serif;
+
+    width: 60px;
+    height: 35px;
+    align-items: center;
+    justify-content: center;
+}
+
+.pw {}
+
+
+
+.login {
+    text-align: center;
+    font: 700 18px 'Roboto', sans-serif;
+    color: #ffffff;
+    line-height: 52px;
+    align-items: center;
+    background: #0075ff;
+    border-radius: 5px;
+    width: 446px;
+    height: 52px;
+}
 </style>
