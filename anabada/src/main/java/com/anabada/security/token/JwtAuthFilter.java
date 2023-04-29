@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -31,6 +32,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         String token = request.getHeader("X-AUTH-TOKEN");
         System.out.println(token);
+        System.out.println(request.getRequestURI());
+        Enumeration<String> e = request.getHeaderNames();
+        System.out.println("!_--------------------!" + request.getHeader("test"));
+        while(e.hasMoreElements()){
+            String key = e.nextElement();
+            System.out.println(key + " :===" +  request.getHeader(key));
+        }
 
         if (token != null && !token.isBlank()) {
             if (jwtTokenProvider.isValidToken(token)) {

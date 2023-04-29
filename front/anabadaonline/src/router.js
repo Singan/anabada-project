@@ -92,6 +92,11 @@ const routes = [
         path: "/joinmember2",
         name: '/joinmember2',
         component: () => import('@/components/member/login/joinmember2.vue'),
+    },
+    {
+        path: "/socket",
+        name: '/socket',
+        component: () => import('@/components/chat/socket.vue'),
     }
 ];
 
