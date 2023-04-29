@@ -1,13 +1,12 @@
 <template>
     <div class="flexContainer">
-
         <div class="logo">
             <div class="logoImg"></div>
             <div class="logoName" @click="goMain">아나바다</div>
         </div>
         <form class="idPw">
-            <input type="text" v-model="id" style="font-size: 19px;" class="input" placeholder="아이디" />
-            <input type="password" v-model="pw" style="font-size: 19px;" class="input" placeholder="패스워드" />
+            <input type="text" v-model="id" style="font-size: 19px" class="input" placeholder="아이디" />
+            <input type="password" v-model="pw" style="font-size: 19px" class="input" placeholder="패스워드" />
             <div class="login" @click="login">로그인</div>
             <div class="joinBox">
                 <div class="idSearch">아이디 찾기</div>
@@ -16,8 +15,6 @@
                 <div class="join" @click="goJoin">회원가입</div>
             </div>
         </form>
-
-
     </div>
 </template>
 
@@ -70,7 +67,6 @@ export default {
     top: 150px;
     margin: auto;
     border-radius: 5px;
-
 }
 
 .idPw {
@@ -80,17 +76,13 @@ export default {
     align-items: center;
     height: 300px;
     background: #f6f6f6;
-
 }
 
 .idPw>* {
-
     width: 90%;
     height: 23%;
     margin-top: 5%;
-
 }
-
 
 .input {
     border-radius: 5px;
@@ -104,10 +96,7 @@ export default {
 
     width: 244px;
     height: 37px;
-
 }
-
-
 
 .logo {
     width: 100%;
@@ -145,7 +134,6 @@ export default {
     display: flex;
     flex-direction: column;
 
-
     color: #a3a3a3;
     text-align: left;
     font: 400 16px 'Roboto', sans-serif;
@@ -154,9 +142,61 @@ export default {
     height: 35px;
     align-items: center;
     justify-content: center;
-
 }
 
+.loginBox {}
+
+.idSearch {
+    color: #000000;
+    text-align: center;
+    font: 400 13px 'Roboto', sans-serif;
+
+    width: 78px;
+    height: 37px;
+    align-items: center;
+    justify-content: center;
+}
+
+.pwSearch {
+    color: #000000;
+    text-align: center;
+    font: 400 13px 'Roboto', sans-serif;
+
+    width: 90px;
+    height: 37px;
+    align-items: center;
+    justify-content: center;
+}
+
+.join {
+    color: #0075ff;
+    text-align: center;
+    font: 700 13px 'Roboto', sans-serif;
+
+    width: 54px;
+    height: 37px;
+    align-items: center;
+    justify-content: center;
+}
+
+.joinBox {
+    width: 100%;
+    justify-content: space-around;
+    display: flex;
+    justify-content: center;
+    height: auto;
+}
+
+.id {
+    color: #a3a3a3;
+    text-align: left;
+    font: 400 16px 'Roboto', sans-serif;
+
+    width: 60px;
+    height: 35px;
+    align-items: center;
+    justify-content: center;
+}
 
 .idSearch {
     color: #000000;
@@ -207,6 +247,19 @@ export default {
 }
 
 
+
+
+.login {
+    text-align: center;
+    font: 700 18px 'Roboto', sans-serif;
+    color: #ffffff;
+    line-height: 52px;
+    align-items: center;
+    background: #0075ff;
+    border-radius: 5px;
+    width: 446px;
+    height: 52px;
+}
 
 
 .login {
