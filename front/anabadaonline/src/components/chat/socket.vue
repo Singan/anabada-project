@@ -7,7 +7,8 @@
 </template>
 
 <script>
-import io from 'socket.io-client';
+import Stomp from 'webstomp-client'
+import SockJS from 'sockjs-client'
 import token from '@/common/token'
 export default {
     data() {
@@ -17,29 +18,33 @@ export default {
         }
     },
     mounted() {
-        this.socket = io('http://localhost:8081', {
-            header: {
-                test: "aaaa"
-            }
-        });
-        console.log(this.socket)
-        this.socket.on('message', (message) => {
-            this.messages.push(message);//데이터받는부분
-        });
-        this.socket.on('connect', () => {
-            console.log('Connected to server'); // 연결 성공 시
-        });
-        this.socket.on('connect_error', (error) => {
-            console.log('Connection failed:', error); // 연결 실패 시
-        });
-        // this.socket.on('message', (message) => {
-        //     this.messages.push(message);//데이터받는부분
-        // });
+        const serverURL = 'http://localhost:8081'
+        let socket = new SockJS(serverURL)
+        this.stompClient = Stomp.over(socket)
+        console.log(`소켓 연결을 시도합니다. 서버 주소: ${serverURL}`)
+        this.stompClient.connect(
+            {},
+            (frame) => {
+                // 소켓 연결 성공
+                this.connected = true
+                console.log('소켓 연결 성공', frame)
+                // 서버의 메시지 전송 endpoint를 구독합니다.
+                // 이런형태를 pub sub 구조라고 합니다.
+                this.stompClient.subscribe('/bid', (res) => {
+                    // 받은 데이터를 json으로 파싱하고 리스트에 넣어줍니다.
+                    console.log()
+                    this.messages.push(JSON.parse(res.body))
+                })
+            }, (error) => {
+                console.log(error)
+            })
     },
     methods: {
         sendMessage(message) {
             this.socket.emit('message', message);//보내는부분
-        }
+        },
+
+
     }
 }
 </script>
