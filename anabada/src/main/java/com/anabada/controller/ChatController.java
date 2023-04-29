@@ -11,8 +11,8 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class ChatController {
 
-    @MessageMapping("/chat")
-    @SendTo("/topic")
+    @MessageMapping("/res")
+    @SendTo("/bid")
     public MessageVo sendMessage(@Payload MessageVo messageVo, SimpMessageHeaderAccessor headerAccessor) {
         System.out.println("왔다 채팅");
         String userName = messageVo.getUserName();

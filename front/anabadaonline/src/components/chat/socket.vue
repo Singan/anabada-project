@@ -18,9 +18,13 @@ export default {
     },
     mounted() {
         this.socket = io('http://localhost:8081', {
-            headers: {
-                'test': "aaa",
+            header: {
+                test: "aaaa"
             }
+        });
+        console.log(this.socket)
+        this.socket.on('message', (message) => {
+            this.messages.push(message);//데이터받는부분
         });
         this.socket.on('connect', () => {
             console.log('Connected to server'); // 연결 성공 시
@@ -33,9 +37,9 @@ export default {
         // });
     },
     methods: {
-        // sendMessage(message) {
-        //     this.socket.emit('message', message);//보내는부분
-        // }
+        sendMessage(message) {
+            this.socket.emit('message', message);//보내는부분
+        }
     }
 }
 </script>
