@@ -93,7 +93,6 @@ export default {
     color: #0075ff;
     text-align: center;
     font: 700 35px 'Roboto', sans-serif;
-
     width: 244px;
     height: 37px;
 }
@@ -126,31 +125,13 @@ export default {
     top: 429px;
 }
 
-.pwBox {
-    background: #ffffff;
-    border-radius: 5px;
-    width: 446px;
-    height: 52px;
-    display: flex;
-    flex-direction: column;
 
-    color: #a3a3a3;
-    text-align: left;
-    font: 400 16px 'Roboto', sans-serif;
 
-    width: 75px;
-    height: 35px;
-    align-items: center;
-    justify-content: center;
-}
-
-.loginBox {}
 
 .idSearch {
     color: #000000;
     text-align: center;
     font: 400 13px 'Roboto', sans-serif;
-
     width: 78px;
     height: 37px;
     align-items: center;
@@ -164,8 +145,7 @@ export default {
 
     width: 90px;
     height: 37px;
-    align-items: center;
-    justify-content: center;
+
 }
 
 .join {
@@ -175,8 +155,7 @@ export default {
 
     width: 54px;
     height: 37px;
-    align-items: center;
-    justify-content: center;
+
 }
 
 .joinBox {
@@ -191,19 +170,15 @@ export default {
     color: #a3a3a3;
     text-align: left;
     font: 400 16px 'Roboto', sans-serif;
-
     width: 60px;
     height: 35px;
-    align-items: center;
-    justify-content: center;
+
 }
 
 .idSearch {
     color: #000000;
     text-align: center;
     font: 400 13px 'Roboto', sans-serif;
-
-
     width: 78px;
     height: 37px;
 
