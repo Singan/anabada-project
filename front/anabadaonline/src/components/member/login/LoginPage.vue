@@ -1,5 +1,5 @@
 <template>
-	<div class="inputForm">
+	<div class="inputForm flexContainer">
 		<div class="logo">
 			<div class="logoImg"></div>
 			<div class="logoName" @click="goMain">아나바다</div>
@@ -115,10 +115,11 @@
 		border-radius: 5px;
 		width: 600px;
 		height: 300px;
-		display: flex;
+		display: inline-flex;
+		position: absolute;
 		align-content: center;
 		left: 30%;
-		top: 20%;
+		top: 25%;
 		flex-direction: column;
 		align-items: center;
 		justify-items: center;
@@ -126,8 +127,9 @@
 
 	.logo {
 		width: 100%;
-		height: 58.2px;
+		height: 30%;
 		display: flex;
+		align-content: center;
 		justify-content: center;
 		align-items: flex-start;
 		flex-basis: 100%;
@@ -145,7 +147,8 @@
 		border-radius: 5px;
 		width: 446px;
 		height: 52px;
-
+		display: flex;
+		flex-direction: column;
 		left: 752px;
 		top: 429px;
 	}
@@ -155,7 +158,8 @@
 		border-radius: 5px;
 		width: 446px;
 		height: 52px;
-
+		display: flex;
+		flex-direction: column;
 		left: 752px;
 		top: 501px;
 	}
@@ -243,7 +247,8 @@
 	}
 
 	.idPw {
-		display: block;
+		display: flex;
+		flex-direction: column;
 	}
 
 	.login {
