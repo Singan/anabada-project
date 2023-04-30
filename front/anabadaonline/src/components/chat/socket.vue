@@ -1,44 +1,70 @@
 <template>
-    <span v-for="s in messages">
-        {{ s }}
-    </span>
-    <textarea></textarea>
-    <button :on-click="sendMessage">보내기</button>
+    <span v-for="receive in recvList">{{ receive.message }} <br></span>
+
+    <br>
+    <textarea v-model="message"></textarea>
+    <button @click="sendMessage" style="width: 100px; height: 100px;">보내기</button>
 </template>
 
 <script>
-import io from 'socket.io-client';
-import token from '@/common/token'
+import SockJS from "sockjs-client";
+import Stomp from "webstomp-client"
 export default {
     data() {
         return {
-            messages: [],
-            socket: null
-        }
+            message: "",
+            socket: null,
+            stompClient: null,
+            msg: "",
+            recvList: [{ message: "시작" }]
+        };
     },
     mounted() {
-        this.socket = io('http://localhost:8082', {
-            transports: ['websocket']
-        });
-        console.log(this.socket)
-        this.socket.on('message', (message) => {
-            this.messages.push(message);//데이터받는부분
-        });
-        this.socket.on('connect', () => {
-            console.log('Connected to server'); // 연결 성공 시
-        });
-        this.socket.on('connect_error', (error) => {
-            console.log('Connection failed:', error); // 연결 실패 시
-        });
-        // this.socket.on('message', (message) => {
-        //     this.messages.push(message);//데이터받는부분
-        // });
-    },
-    methods: {
-        sendMessage(message) {
-            this.socket.emit('message', message);//보내는부분
-        }
+        this.socket = new SockJS('http://localhost:8081/ws')
+        this.stompClient = Stomp.over(this.socket)
+        console.log(`소켓 연결을 시도합니다. 서버 주소: http://localhost:8081/ws`)
 
+        this.stompClient.connect(
+            {},
+            frame => {
+                // 소켓 연결 성공
+                console.log('소켓 연결 성공', frame);
+                // 서버의 메시지 전송 endpoint를 구독합니다.
+                // 이런형태를 pub sub 구조라고 합니다.
+                this.stompClient.subscribe("/send", res => {
+                    console.log(res)
+                    console.log('구독으로 받은 메시지 입니다.', res.body);
+
+                    // 받은 데이터를 json으로 파싱하고 리스트에 넣어줍니다.
+                    this.recvList.push(JSON.parse(res.body))
+                });
+            },
+            error => {
+                // 소켓 연결 실패
+                console.log('소켓 연결 실패', error);
+                this.connected = false;
+            }
+        );
+
+
+    },
+
+    methods: {
+        sendMessage() {
+            console.log(this.message)
+            this.send()
+            this.message = ''
+
+        },
+        send() {
+            console.log("Send message:" + this.message);
+            if (this.stompClient && this.stompClient.connected) {
+                const msg = {
+                    message: this.message
+                };
+                this.stompClient.send("/receive", JSON.stringify(msg), {})
+            }
+        },
     }
-}
+};
 </script>

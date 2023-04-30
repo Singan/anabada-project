@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class MessageVo {
-    private String UserName;
+    private String userName;
     private String message;
 }
