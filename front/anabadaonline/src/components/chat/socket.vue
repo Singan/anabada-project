@@ -1,5 +1,5 @@
 <template>
-    <span v-for="receive in recvList">{{ receive.message }} <br></span>
+    <span v-for="receive in recvList">{{ receive.memberId + ":" + receive.message }} <br></span>
 
     <br>
     <textarea v-model="message"></textarea>
@@ -9,6 +9,7 @@
 <script>
 import SockJS from "sockjs-client";
 import Stomp from "webstomp-client"
+import token from "@/common/token.js"
 export default {
     data() {
         return {
@@ -16,16 +17,23 @@ export default {
             socket: null,
             stompClient: null,
             msg: "",
-            recvList: [{ message: "시작" }]
+            recvList: [
+                {
+                    message: "시작", memberId: "운영자"
+                }
+            ]
         };
     },
     mounted() {
+        const headers = {
+            'x-auth-token': token.getToken()
+        }
         this.socket = new SockJS('http://localhost:8081/ws')
         this.stompClient = Stomp.over(this.socket)
         console.log(`소켓 연결을 시도합니다. 서버 주소: http://localhost:8081/ws`)
 
         this.stompClient.connect(
-            {},
+            headers,
             frame => {
                 // 소켓 연결 성공
                 console.log('소켓 연결 성공', frame);
@@ -51,7 +59,6 @@ export default {
 
     methods: {
         sendMessage() {
-            console.log(this.message)
             this.send()
             this.message = ''
 
@@ -62,7 +69,9 @@ export default {
                 const msg = {
                     message: this.message
                 };
-                this.stompClient.send("/receive", JSON.stringify(msg), {})
+                this.stompClient.send("/receive", JSON.stringify(msg), {
+                    'x-auth-token': token.getToken()
+                })
             }
         },
     }

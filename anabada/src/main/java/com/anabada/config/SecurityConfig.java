@@ -1,6 +1,8 @@
 package com.anabada.config;
 
 import com.anabada.config.token.JwtAuthFilter;
+import com.anabada.config.token.JwtTokenProvider;
+import com.anabada.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +24,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Slf4j
 public class SecurityConfig   {
 
-    private final JwtAuthFilter jwtAuthFilter;
+    private final JwtTokenProvider jwtTokenProvider;
+    private final MemberService memberService;
     private final String[] PERMIT_URL_ARRAY = {
             "/api-docs/**",
             "/swagger-resources",
@@ -33,11 +36,7 @@ public class SecurityConfig   {
             "/api-docs",
             "/v3/api-docs/**"
     };
-    /**
-     * 1. 정적 자원(Resource)에 대해서 인증된 사용자가  정적 자원의 접근에 대해 ‘인가’에 대한 설정을 담당하는 메서드이다.
-     *
-     * @return WebSecurityCustomizer
-     */
+
 
     @Bean
     public WebSecurityCustomizer configure() {
@@ -78,7 +77,7 @@ public class SecurityConfig   {
                 .and()
 
                 // [STEP3] Spring Security JWT Filter Load
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new JwtAuthFilter(jwtTokenProvider,memberService), UsernamePasswordAuthenticationFilter.class)
 
                 // [STEP4] Session 기반의 인증기반을 사용하지 않고 추후 JWT를 이용하여서 인증 예정
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
