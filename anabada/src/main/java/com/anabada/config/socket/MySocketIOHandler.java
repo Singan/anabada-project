@@ -10,28 +10,31 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MySocketIOHandler implements InitializingBean {
-    private final SocketIOServer server;
-
-    @Autowired
-    public MySocketIOHandler(SocketIOServer server) {
-        this.server = server;
-
-    }
-
     @Override
     public void afterPropertiesSet() throws Exception {
-        server.addListeners(new MySocketIOListener());
-        server.start();
-    }
 
-    public void destroy() throws Exception {
-        server.stop();
     }
-
-    private class MySocketIOListener implements DataListener<Object> {
-        @Override
-        public void onData(SocketIOClient client, Object data, AckRequest ackSender) throws Exception {
-            // 이벤트 핸들러 구현
-        }
-    }
+  //  private final SocketIOServer server;
+//
+//    @Autowired
+//    public MySocketIOHandler(SocketIOServer server) {
+//        this.server = server;
+//
+//    }
+//
+//    @Override
+//    public void afterPropertiesSet() throws Exception {
+//        server.addListeners(new MySocketIOListener());
+//        server.start();
+//    }
+//
+//    public void destroy() throws Exception {
+//        server.stop();
+//    }
+//
+//    private class MySocketIOListener implements DataListener<Object> {
+//        @Override
+//        public void onData(SocketIOClient client, Object data, AckRequest ackSender) throws Exception {
+//            // 이벤트 핸들러 구현
+//        }
 }

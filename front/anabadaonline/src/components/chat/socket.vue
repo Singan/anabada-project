@@ -18,9 +18,7 @@ export default {
     },
     mounted() {
         this.socket = io('http://localhost:8082', {
-            header: {
-                test: "aaaa"
-            }
+            transports: ['websocket']
         });
         console.log(this.socket)
         this.socket.on('message', (message) => {
