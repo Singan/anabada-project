@@ -11,14 +11,18 @@ import com.anabada.repository.MemberRepository;
 import com.anabada.config.token.JwtTokenProvider;
 import com.anabada.config.token.TokenResultDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class MemberService implements UserDetailsService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
@@ -27,6 +31,8 @@ public class MemberService implements UserDetailsService {
     public boolean existsMemberByMemberId(String id){
         return memberRepository.existsMemberByMemberId(id);
     }
+
+
     public Member findByMemberId(String id){
         if (!existsMemberByMemberId(id)) {
             throw new RuntimeException("없는 회원입니다.");
@@ -34,7 +40,7 @@ public class MemberService implements UserDetailsService {
         return memberRepository.findByMemberId(id);
 
     }
-
+    @Transactional(readOnly = true)
     public Long memberJoin(MemberJoinDto memberJoinDto) {
         if (!existsMemberByMemberId(memberJoinDto.getId())) {
             memberJoinDto.setPw(passwordEncoder.encode(memberJoinDto.getPw()));
@@ -75,13 +81,8 @@ public class MemberService implements UserDetailsService {
         return new MyPageFindDto(memberDetailDTO);
     }
 
-    public Long memberUpdate(MemberUpdateDto memberUpdateDto) {
-        String profileImagePath = null;
-        MultipartFile file = memberUpdateDto.getImage();
-
-        if (file != null)
-            profileImagePath = fileProcessor.fileSave(file);
-        Member updateMember = memberRepository.save(memberUpdateDto.updateMember(profileImagePath));
-        return updateMember.getMemberNo();
+    public Authentication getAuthentication(String id) {
+        MemberDetailDTO userDetails = loadUserByUsername(id);
+        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 }

@@ -65,6 +65,8 @@ public class JwtTokenProvider{
      * @return boolean      : 유효한지 여부 반환
      */
     public boolean isValidToken(String token) {
+        if(token == null || token.isBlank())
+            return false;
         try {
             Claims claims = getClaimsFormToken(token);
 

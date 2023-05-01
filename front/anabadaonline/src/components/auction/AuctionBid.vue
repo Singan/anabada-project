@@ -1,22 +1,20 @@
 <template>
 	<div class="---------">
-		<div class="-----"></div>
+		<div class="productImg"></div>
 
-		<img class="--------" src="--------.png" />
+		<img class="profileImg" />
 
-		<div class="-----2">판매자이름</div>
+		<div class="sellerName">판매자이름</div>
 
 		<div class="-----3">방사능지수</div>
 
 		<div class="_0">0</div>
 
-		<div class="----6">상품이름</div>
+		<div class="productName">상품이름</div>
+		<div class="time">등록시간</div>
+		<div class="price">상품가격</div>
 
-		<div class="-----4">상품 설명</div>
-
-		<div class="----7">상품가격</div>
-
-		<div class="----8">등록시간</div>
+		<div class="productDetail">상품 설명</div>
 
 		<div class="--5">관심</div>
 
@@ -26,17 +24,13 @@
 
 		<div class="_04">0</div>
 
-		<div class="--6">채팅</div>
+		<div class="chat">채팅</div>
 
-		<div class="--7">조회</div>
+		<div class="inquiry">조회</div>
 
-		<div class="-----5">경매 참여</div>
+		<div class="auctionJoin">경매 참여</div>
 
-		<div class="---------2">판매자 주 거래지</div>
-
-		<div class="line-7"></div>
-
-		<div class="line-8"></div>
+		<div class="area">판매자 주 거래지</div>
 
 		<div class="---3">
 			<div class="---4">찜하기</div>
@@ -54,6 +48,10 @@
 				/>
 			</svg>
 		</div>
+
+		<div class="line1"></div>
+
+		<div class="line2"></div>
 
 		<div class="-----6"></div>
 
@@ -403,7 +401,7 @@
 		justify-content: center;
 	}
 
-	.----- {
+	.productImg {
 		background: #d9d9d9;
 		border-radius: 20px;
 		width: 580px;
@@ -413,7 +411,7 @@
 		top: 160px;
 	}
 
-	.-------- {
+	.profileImg {
 		border-radius: 50%;
 		border-style: solid;
 		border-color: #000000;
@@ -426,7 +424,7 @@
 		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 	}
 
-	.-----2 {
+	.sellerName {
 		color: #000000;
 		text-align: left;
 		font: 700 14px 'Roboto', sans-serif;
@@ -468,7 +466,7 @@
 		justify-content: center;
 	}
 
-	.----6 {
+	.productName {
 		color: #000000;
 		text-align: left;
 		font: 700 14px 'Roboto', sans-serif;
@@ -482,7 +480,7 @@
 		justify-content: flex-start;
 	}
 
-	.-----4 {
+	.productDetail {
 		color: #000000;
 		text-align: left;
 		font: 100 14px 'Roboto', sans-serif;
@@ -493,7 +491,7 @@
 		height: 56px;
 	}
 
-	.----7 {
+	.price {
 		color: #000000;
 		text-align: left;
 		font: 600 14px 'Roboto', sans-serif;
@@ -507,7 +505,7 @@
 		justify-content: flex-start;
 	}
 
-	.----8 {
+	.time {
 		color: #a3a1a1;
 		text-align: left;
 		font: 500 12px 'Roboto', sans-serif;
@@ -577,7 +575,7 @@
 		justify-content: flex-start;
 	}
 
-	.--6 {
+	.chat {
 		color: #a3a1a1;
 		text-align: left;
 		font: 500 12px 'Roboto', sans-serif;
@@ -591,7 +589,7 @@
 		justify-content: flex-start;
 	}
 
-	.--7 {
+	.inquiry {
 		color: #a3a1a1;
 		text-align: left;
 		font: 500 12px 'Roboto', sans-serif;
@@ -605,7 +603,7 @@
 		justify-content: flex-start;
 	}
 
-	.-----5 {
+	.auctionJoin {
 		color: #0075ff;
 		text-align: left;
 		font: 700 12px 'Roboto', sans-serif;
@@ -619,7 +617,7 @@
 		justify-content: flex-start;
 	}
 
-	.---------2 {
+	.area {
 		color: #000000;
 		text-align: left;
 		font: 500 14px 'Roboto', sans-serif;
@@ -633,7 +631,7 @@
 		justify-content: flex-start;
 	}
 
-	.line-7 {
+	.line1 {
 		border-style: solid;
 		border-color: #d9d9d9;
 		border-width: 1px 0 0 0;
@@ -644,7 +642,7 @@
 		top: 673px;
 	}
 
-	.line-8 {
+	.line2 {
 		border-style: solid;
 		border-color: #d9d9d9;
 		border-width: 1px 0 0 0;
