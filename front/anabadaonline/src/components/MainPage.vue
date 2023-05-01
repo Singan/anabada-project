@@ -10,7 +10,7 @@
 		<div class="topImages">
 			<img src="@/assets/mainImage.png" />
 			<!-- <img class="rectangle-14" src="@/assets/samsung.jpg" />
-			<img class="rectangle-12" src="@/assets/iphone14.jpg" /> -->
+         <img class="rectangle-12" src="@/assets/iphone14.jpg" /> -->
 		</div>
 	</div>
 
@@ -118,11 +118,11 @@
 	}
 
 	/* .productImgflexContainer {
-		justify-content: flex-end;
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-	} */
+      justify-content: flex-end;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+   } */
 
 	.flexContainer {
 		justify-content: flex-end;
