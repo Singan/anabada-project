@@ -1,6 +1,5 @@
 package com.anabada.dto.request_dto;
 
-import com.anabada.entity.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,20 +10,9 @@ import org.springframework.web.multipart.MultipartFile;
 @NoArgsConstructor
 public class MemberUpdateDto {
     private String memberId;
-    private String memberPw;
-    private String addr;
-    private String detailAddr;
-    private String wishTradeAddr;
-    private MultipartFile image;
-
-    public Member updateMember(String profilePath) {
-        return Member.builder()
-                .memberPw(memberPw)
-                .memberAddr(addr)
-                .memberDetailAddr(detailAddr)
-                .memberWishAddr(wishTradeAddr)
-                .memberImage(profilePath)
-                .build();
-    }
-
+    private String updatePw;
+    private String updateAddr;
+    private String updateDetailAddr;
+    private String updateWishAddr;
+    private MultipartFile updateImage;
 }

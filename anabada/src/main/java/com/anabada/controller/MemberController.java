@@ -35,7 +35,7 @@ public class MemberController {
 
     @PostMapping("/update")
     @Operation(description = "회원 수정")
-    public Long memberUpdate(@RequestBody MemberUpdateDto memberUpdateDto) {
+    public Long memberUpdate(MemberUpdateDto memberUpdateDto) {
         return memberService.memberUpdate(memberUpdateDto);
     }
 
