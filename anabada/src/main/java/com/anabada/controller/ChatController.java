@@ -7,6 +7,9 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,16 +22,18 @@ import java.security.Principal;
 @RequiredArgsConstructor
 @Controller
 public class ChatController {
-
+    private final SimpMessagingTemplate simpMessagingTemplate;
 
     @MessageMapping("/receive")
     @SendTo("/send")
-    public MessageVo sendMessage(@Payload MessageVo chatMessage, Principal principal) {
-        System.out.println(chatMessage.getMessage());
+    public void sendMessage(@Payload MessageVo chatMessage, Authentication authentication, StompHeaderAccessor accessor) {
 
-        Authentication authentication = (Authentication) principal;
         MemberDetailDTO memberDetailDTO = (MemberDetailDTO) authentication.getPrincipal();
-        chatMessage.setMemberId(memberDetailDTO.getMemberName());
-        return chatMessage;
+
+
+
+            chatMessage.setMemberId(memberDetailDTO.getMemberName());
+            simpMessagingTemplate.convertAndSend("/send",chatMessage);
+
     }
 }
