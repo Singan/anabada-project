@@ -144,13 +144,23 @@
 						console.log(response);
 					});
 			},
-			readInputFile(e) {
-				// 미리보기 기능구현
-			},
 
 			onInputImage(e) {
 				this.productImages = e.target.files;
 				console.log(this.productImages);
+
+				//이미지 미리보기
+				const image = document.getElementById('img');
+				const reader = new FileReader();
+				reader.onload = (e) => {
+					image.src = e.target.result;
+					image.width = 120;
+					image.height = 120;
+					document.querySelector(
+						'.imagePreView',
+					).style.backgroundColor = 'white';
+				};
+				reader.readAsDataURL(this.productImages.item(0));
 			},
 		},
 
