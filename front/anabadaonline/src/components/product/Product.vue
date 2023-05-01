@@ -2,7 +2,9 @@
 	<form @submit.prevent="productRegister" class="form">
 		<div class="title">상품 등록하기</div>
 
-		<div class="imageView"></div>
+		<div class="imagePreView">
+			<img id="img" />
+		</div>
 		<label
 			class="productSelect"
 			style="background-color: skyblue"
@@ -93,7 +95,6 @@
 		props: {},
 		data() {
 			return {
-				imageList: [],
 				picked: '미사용',
 				categoryList: '',
 				name: '',
@@ -143,6 +144,10 @@
 						console.log(response);
 					});
 			},
+			readInputFile(e) {
+				// 미리보기 기능구현
+			},
+
 			onInputImage(e) {
 				this.productImages = e.target.files;
 				console.log(this.productImages);
@@ -281,7 +286,7 @@
 		font-size: 15;
 	}
 
-	.imageView {
+	.imagePreView {
 		background: #d9d9d9;
 		width: 120px;
 		height: 120px;
