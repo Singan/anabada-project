@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Setter
 @NoArgsConstructor
 public class MemberUpdateDto {
-    private String memberName;
+    private String memberId;
     private String memberPw;
     private String addr;
     private String detailAddr;
@@ -19,7 +19,6 @@ public class MemberUpdateDto {
 
     public Member updateMember(String profilePath) {
         return Member.builder()
-                .memberName(memberName)
                 .memberPw(memberPw)
                 .memberAddr(addr)
                 .memberDetailAddr(detailAddr)
