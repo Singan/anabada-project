@@ -88,8 +88,10 @@ public class MemberService implements UserDetailsService {
 
     @Transactional
     public Long memberUpdate(MemberUpdateDto memberUpdateDto) {
+        String updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage());
+        memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
         Member member = memberRepository.findByMemberId(memberUpdateDto.getMemberId());
-        member.updateMember(memberUpdateDto);
+        member.updateMember(memberUpdateDto, updateImagePath);
         return member.getMemberNo();
     }
 }

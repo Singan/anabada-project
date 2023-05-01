@@ -14,6 +14,7 @@ import java.util.List;
 public class FileProcessor {
     public String fileSave(MultipartFile multipartFile) {
         String fileName = "C:/anabada/images";
+//        String fileName = "/Users/hwi/anabada/images";
         System.out.println("fileName"+fileName);
         try{
 

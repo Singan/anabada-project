@@ -93,15 +93,4 @@ public class MemberDetailDTO implements UserDetails {
 
         return member;
     };
-
-    public Member updateMember(MemberUpdateDto memberUpdateDto) {
-        Member member = Member
-                .builder()
-//                .memberPw(memberUpdateDto.getMemberPw())
-                .memberAddr(memberUpdateDto.getAddr())
-                .memberDetailAddr(memberUpdateDto.getDetailAddr())
-                .memberWishAddr(memberUpdateDto.getWishTradeAddr())
-                .build();
-        return member;
-    }
 }

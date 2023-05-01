@@ -59,9 +59,11 @@ public class Member {
         this.memberBank = memberBank;
     }
 
-    public void updateMember(MemberUpdateDto memberUpdateDto) {
-        this.memberAddr = memberUpdateDto.getAddr();
-        this.memberDetailAddr = memberUpdateDto.getDetailAddr();
-        this.memberWishAddr = memberUpdateDto.getWishTradeAddr();
+    public void updateMember(MemberUpdateDto memberUpdateDto, String updateImagePath) {
+        this.memberPw = memberUpdateDto.getUpdatePw();
+        this.memberAddr = memberUpdateDto.getUpdateAddr();
+        this.memberDetailAddr = memberUpdateDto.getUpdateDetailAddr();
+        this.memberWishAddr = memberUpdateDto.getUpdateWishAddr();
+        this.memberImage = updateImagePath;
     }
 }
