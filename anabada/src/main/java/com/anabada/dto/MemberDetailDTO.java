@@ -1,11 +1,13 @@
 package com.anabada.dto;
 
+import com.anabada.dto.request_dto.MemberUpdateDto;
 import com.anabada.entity.Member;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -91,4 +93,15 @@ public class MemberDetailDTO implements UserDetails {
 
         return member;
     };
+
+    public Member updateMember(MemberUpdateDto memberUpdateDto) {
+        Member member = Member
+                .builder()
+//                .memberPw(memberUpdateDto.getMemberPw())
+                .memberAddr(memberUpdateDto.getAddr())
+                .memberDetailAddr(memberUpdateDto.getDetailAddr())
+                .memberWishAddr(memberUpdateDto.getWishTradeAddr())
+                .build();
+        return member;
+    }
 }

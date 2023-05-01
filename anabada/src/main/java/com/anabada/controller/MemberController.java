@@ -1,5 +1,6 @@
 package com.anabada.controller;
 
+import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.MemberJoinDto;
 import com.anabada.dto.request_dto.MemberLoginDto;
 import com.anabada.dto.request_dto.MemberUpdateDto;
@@ -34,9 +35,8 @@ public class MemberController {
 
     @PostMapping("/update")
     @Operation(description = "회원 수정")
-    public Long memberUpdate(@AuthenticationPrincipal @RequestBody MemberUpdateDto memberUpdateDto) {
+    public Long memberUpdate(@RequestBody MemberUpdateDto memberUpdateDto) {
         return memberService.memberUpdate(memberUpdateDto);
-//        return null;
     }
 
 }

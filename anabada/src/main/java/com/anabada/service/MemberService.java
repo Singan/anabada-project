@@ -40,7 +40,7 @@ public class MemberService implements UserDetailsService {
         return memberRepository.findByMemberId(id);
 
     }
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = false)
     public Long memberJoin(MemberJoinDto memberJoinDto) {
         if (!existsMemberByMemberId(memberJoinDto.getId())) {
             memberJoinDto.setPw(passwordEncoder.encode(memberJoinDto.getPw()));
@@ -84,5 +84,12 @@ public class MemberService implements UserDetailsService {
     public Authentication getAuthentication(String id) {
         MemberDetailDTO userDetails = loadUserByUsername(id);
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+    }
+
+    @Transactional
+    public Long memberUpdate(MemberUpdateDto memberUpdateDto) {
+        Member member = memberRepository.findByMemberId(memberUpdateDto.getMemberId());
+        member.updateMember(memberUpdateDto);
+        return member.getMemberNo();
     }
 }
