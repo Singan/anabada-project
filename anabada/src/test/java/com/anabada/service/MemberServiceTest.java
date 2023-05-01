@@ -4,7 +4,7 @@ import com.anabada.dto.request_dto.MemberJoinDto;
 import com.anabada.dto.request_dto.MemberLoginDto;
 import com.anabada.entity.Member;
 import com.anabada.config.token.JwtTokenProvider;
-import com.anabada.config.token.TokenResultDto;
+import com.anabada.dto.response_dto.LoginResultDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -52,7 +52,7 @@ class MemberServiceTest {
         MemberLoginDto memberLoginDto = new MemberLoginDto();
         memberLoginDto.setId(id);
         memberLoginDto.setPw(pw);
-        TokenResultDto t = memberService.memberLogin(memberLoginDto);
+        LoginResultDto t = memberService.memberLogin(memberLoginDto);
 
 
         System.out.println(jwtTokenProvider.isValidToken(t.getAccessToken()));

@@ -2,19 +2,18 @@ package com.anabada.controller;
 
 import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.ProductInsertDto;
-import com.anabada.dto.response_dto.FindProductToCategoryDto;
-import com.anabada.dto.response_dto.ProductFindAllDto;
-import com.anabada.dto.response_dto.ProductFindOneDto;
-import com.anabada.dto.response_dto.ResultList;
+import com.anabada.dto.response_dto.*;
 import com.anabada.entity.Product;
 import com.anabada.repository.ProductRepository;
 import com.anabada.service.ProductImageService;
 import com.anabada.service.ProductService;
+import com.anabada.service.SocketService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,13 +29,14 @@ import java.util.List;
 public class ProductController {
     private final ProductService productService;
     private final ProductImageService imageService;
+    private final SocketService socketService;
     @PostMapping
     @Operation(description = "상품등록")
     public Long productInsert(ProductInsertDto productInsertDto, @AuthenticationPrincipal MemberDetailDTO principal){
         //스레드에 MemberDetail을 넣는다.
         Long productNo = productService.productSave(productInsertDto,principal);
         imageService.productImageSave(productNo,productInsertDto.getProductImages());
-
+        socketService.socketRoomCreate("product",productNo,principal.getMember());
         return productNo;
     }
 
@@ -65,5 +65,8 @@ public class ProductController {
         ArrayList<FindProductToCategoryDto> findProductToCategoryDtoArrayList = productService.findProductToCategory(categoryNo);
         return findProductToCategoryDtoArrayList;
     }
+
+
+
 }
 

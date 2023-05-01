@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Entity
@@ -31,6 +32,9 @@ public class Member {
     private String memberAccount;
     private String memberImage;
     private String memberBank;
+
+    @OneToMany(mappedBy = "member")
+    private List<SocketRelation> memberSocketList;
     @Builder
     public Member(Long memberNo, String memberName,
                   String memberId,
@@ -42,7 +46,7 @@ public class Member {
                   String memberAddr,
                   String memberWishAddr,
                   String memberAccount,
-                  String memberImage,String memberBank
+                  String memberImage,String memberBank,List<SocketRelation> memberSocketList
     ) {
         this.memberNo = memberNo;
         this.memberName = memberName;
@@ -57,8 +61,12 @@ public class Member {
         this.memberAccount = memberAccount;
         this.memberImage = memberImage;
         this.memberBank = memberBank;
+        this.memberSocketList = memberSocketList;
     }
+    public void addSocketList(SocketRelation socketRelation){
+        memberSocketList.add(socketRelation);
 
+    }
     public void updateMember(MemberUpdateDto memberUpdateDto, String updateImagePath) {
         this.memberPw = memberUpdateDto.getUpdatePw();
         this.memberAddr = memberUpdateDto.getUpdateAddr();

@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
+
 @Getter
 @Setter
 public class MemberDetailDTO implements UserDetails {
@@ -30,7 +32,6 @@ public class MemberDetailDTO implements UserDetails {
     private String memberWishAddr;
     private String memberAccount;
     private String memberImage;
-
     public MemberDetailDTO(Member member) {
         this.no = member.getMemberNo();
         this.username = member.getMemberId();

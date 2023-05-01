@@ -8,6 +8,8 @@ import com.anabada.entity.Bid;
 import com.anabada.service.BidService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +21,7 @@ import java.util.List;
 public class BidController {
     private final BidService bidService;
 
-    @PostMapping
+    @MessageMapping
     @Operation(description = "입찰 정보 등록")
     public Long bidInsert(@RequestBody BidInsertDto bidinsertDto, @AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
         return bidService.bidSave(bidinsertDto,memberDetailDTO);

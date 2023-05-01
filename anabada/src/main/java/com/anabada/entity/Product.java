@@ -42,6 +42,7 @@ public class Product {
     private List<ProductImage> productImageList;
     @Column
     private LocalDateTime createDateTime;
+
     @Builder
     public Product(Long productNo, Member member, String productName, String productDetail, Integer productPrice, String productUseDate, Category category, List<ProductImage> productImageList) {
         this.productNo = productNo;

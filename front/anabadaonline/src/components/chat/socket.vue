@@ -41,7 +41,14 @@ export default {
                 // 이런형태를 pub sub 구조라고 합니다.
                 this.stompClient.subscribe("/send", res => {
                     console.log(res)
-                    console.log('구독으로 받은 메시지 입니다.', res.body);
+                    console.log('구독으로 받은 메시지 입니다.1', res.body);
+
+                    // 받은 데이터를 json으로 파싱하고 리스트에 넣어줍니다.
+                    this.recvList.push(JSON.parse(res.body))
+                });
+                this.stompClient.subscribe("/send2", res => {
+                    console.log(res)
+                    console.log('구독으로 받은 메시지 입니다.2', res.body);
 
                     // 받은 데이터를 json으로 파싱하고 리스트에 넣어줍니다.
                     this.recvList.push(JSON.parse(res.body))

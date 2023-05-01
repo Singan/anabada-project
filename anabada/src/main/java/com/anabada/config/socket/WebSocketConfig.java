@@ -20,10 +20,7 @@ import org.springframework.messaging.support.MessageHeaderAccessor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketHandler;
-import org.springframework.web.socket.config.annotation.AbstractWebSocketMessageBrokerConfigurer;
-import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
-import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
-import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
+import org.springframework.web.socket.config.annotation.*;
 import org.springframework.web.socket.server.HandshakeInterceptor;
 
 import java.security.Principal;
@@ -41,22 +38,24 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws").setAllowedOriginPatterns("*").withSockJS();
     }
-
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         registry.setApplicationDestinationPrefixes(""); // publish
+
         registry.enableSimpleBroker("/send"); // subscribe
     }
 
 
     @Override
     public void configureClientInboundChannel(ChannelRegistration registration) {
+
         registration.interceptors(new ChannelInterceptor() {
             @Override
             public Message<?> preSend(Message<?> message, MessageChannel channel) {
                 StompHeaderAccessor accessor = MessageHeaderAccessor.getAccessor(message, StompHeaderAccessor.class);
                 String token = accessor.getFirstNativeHeader("x-auth-token");
-                System.out.println("presend 호출");
+
+                accessor.setSessionId(accessor.getSessionId());
                 if(jwtTokenProvider.isValidToken(token)){
                     String userId = jwtTokenProvider.getUserIdFromToken(token);
                     accessor.setUser( memberService.getAuthentication(userId));
@@ -67,5 +66,7 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
             }
         });
     }
+
+
 }
 

@@ -2,6 +2,7 @@ package com.anabada.config.token;
 
 import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.MemberLoginDto;
+import com.anabada.entity.Member;
 import com.anabada.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,15 +31,15 @@ public class JwtTokenProvider{
     /**
      * 사용자 정보를 기반으로 토큰을 생성하여 반환 해주는 메서드
      *
-     * @param memberDetailDTO : 사용자 정보
+     * @param member : 사용자 정보
      * @return String : 토큰
      */
-    public String generateJwtToken(MemberDetailDTO memberDetailDTO) {
+    public String generateJwtToken(Member member) {
         // 사용자 시퀀스를 기준으로 JWT 토큰을 발급하여 반환해줍니다.
         JwtBuilder builder = Jwts.builder()
                 .setHeader(createHeader())                              // Header 구성
-                .setClaims(createClaims(memberDetailDTO))                       // Payload - Claims 구성
-                .setSubject(String.valueOf(memberDetailDTO.getNo()))        // Payload - Subject 구성
+                .setClaims(createClaims(member))                       // Payload - Claims 구성
+                .setSubject(String.valueOf(member.getMemberNo()))        // Payload - Subject 구성
                 .signWith(SignatureAlgorithm.HS256, createSignature())  // Signature 구성
                 .setExpiration(createExpiredDate());                    // Expired Date 구성
         return builder.compact();
@@ -131,14 +132,14 @@ public class JwtTokenProvider{
      * @param memberDetailDTO 사용자 정보
      * @return Map<String, Object>
      */
-    private Map<String, Object> createClaims(MemberDetailDTO memberDetailDTO) {
+    private Map<String, Object> createClaims(Member memberDetailDTO) {
         // 공개 클레임에 사용자의 이름과 이메일을 설정하여 정보를 조회할 수 있다.
         Map<String, Object> claims = new HashMap<>();
 
-        log.info("userId :" + memberDetailDTO.getUsername());
+        log.info("userId :" + memberDetailDTO.getMemberId());
         log.info("userNm :" + memberDetailDTO.getMemberName());
 
-        claims.put("userId", memberDetailDTO.getUsername());
+        claims.put("userId", memberDetailDTO.getMemberId());
         claims.put("userNm", memberDetailDTO.getMemberName());
         return claims;
     }
