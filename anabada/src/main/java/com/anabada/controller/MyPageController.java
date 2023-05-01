@@ -18,11 +18,6 @@ public class MyPageController {
     private final MemberService memberService;
 
     @PostMapping
-    // MemberDetailDto에서 값 받아오는걸로 변경하기
-//    public MyPageFindDto myPageFindDto(@RequestHeader("X-AUTH-TOKEN") String header) {
-//        return memberService.myPage(header);
-//    }
-
     public MyPageFindDto myPageFindDto(@AuthenticationPrincipal MemberDetailDTO principal) {
         return memberService.myPage(principal);
     }

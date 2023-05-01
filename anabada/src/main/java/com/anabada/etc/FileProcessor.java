@@ -13,7 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 public class FileProcessor {
     public String fileSave(MultipartFile multipartFile) {
-//        String fileName = "C:/anabada/images" ;
         String fileName = "C:/anabada/images";
         System.out.println("fileName"+fileName);
         try{
@@ -34,7 +33,6 @@ public class FileProcessor {
     }
 
     public List<String> fileSave(List<MultipartFile> multipartFiles) {
-//        String fileName = "C:/anabada/product/" ;
         String fileName = "C:/anabada/product/";
         File file = new File(fileName);
         file.mkdirs();

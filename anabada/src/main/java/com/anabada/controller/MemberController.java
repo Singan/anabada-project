@@ -7,6 +7,7 @@ import com.anabada.config.token.TokenResultDto;
 import com.anabada.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -32,8 +33,10 @@ public class MemberController {
     }
 
     @PostMapping("/update")
-    public Long memberUpdate(@RequestBody MemberUpdateDto memberUpdateDto) {
-        return null;
+    @Operation(description = "회원 수정")
+    public Long memberUpdate(@AuthenticationPrincipal @RequestBody MemberUpdateDto memberUpdateDto) {
+        return memberService.memberUpdate(memberUpdateDto);
+//        return null;
     }
 
 }

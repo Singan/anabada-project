@@ -3,6 +3,7 @@ package com.anabada.service;
 import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.MemberJoinDto;
 import com.anabada.dto.request_dto.MemberLoginDto;
+import com.anabada.dto.request_dto.MemberUpdateDto;
 import com.anabada.dto.response_dto.MyPageFindDto;
 import com.anabada.entity.Member;
 import com.anabada.etc.FileProcessor;
@@ -72,5 +73,15 @@ public class MemberService implements UserDetailsService {
     public MyPageFindDto myPage(MemberDetailDTO principal) {
         MemberDetailDTO memberDetailDTO = new MemberDetailDTO(principal.getMember());
         return new MyPageFindDto(memberDetailDTO);
+    }
+
+    public Long memberUpdate(MemberUpdateDto memberUpdateDto) {
+        String profileImagePath = null;
+        MultipartFile file = memberUpdateDto.getImage();
+
+        if (file != null)
+            profileImagePath = fileProcessor.fileSave(file);
+        Member updateMember = memberRepository.save(memberUpdateDto.updateMember(profileImagePath));
+        return updateMember.getMemberNo();
     }
 }
