@@ -46,6 +46,12 @@ export default {
                 .then((response) => {
                     if (response.status == 200) {
                         token.setToken(`${response.data.accessToken}`);
+                        const header = {
+                            "x-auth-token": token.getToken()
+                        }
+                        axios.get("/member", null, header)
+
+                        this.$store.state.commit("setMember",)
                         this.$emit('logined');
                         this.$router.push('./');
                     }

@@ -66,10 +66,9 @@ export default {
             form.append('addr', this.addr);
             form.append('wishAddr', this.Wishaddr);
 
-            axios
-                .post('/member', form, {
-                    header: { 'Content-Type': 'multipart/form-data' },
-                })
+            axios.post('/member', form, {
+                header: { 'Content-Type': 'multipart/form-data' },
+            })
                 .then((response) => {
                     console.log(response);
                     if (response.status == 200) {

@@ -4,7 +4,6 @@ import com.anabada.entity.Product;
 import lombok.*;
 
 @Getter
-@Setter
 @NoArgsConstructor
 
 public class ProductFindAllDto {
@@ -15,12 +14,12 @@ public class ProductFindAllDto {
     private Integer price;
     private String productImage;
     public ProductFindAllDto(Product product) {
-        this.setProductName(product.getProductName());
-        this.setProductNo(product.getProductNo());
-        this.setWishAddr(product.getMember().getMemberWishAddr());
-        this.setPrice(product.getProductPrice());
+        this.productName = (product.getProductName());
+        this.productNo = (product.getProductNo());
+        this.wishAddr = (product.getMember().getMemberWishAddr());
+        this.price = (product.getProductPrice());
         if(!product.getProductImageList().isEmpty()) {
-            this.setProductImage(product.getProductImageList().get(0).getImageAddr());
+            this.productImage = (product.getProductImageList().get(0).getImageAddr());
         }
     }
 
