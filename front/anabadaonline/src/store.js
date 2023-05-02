@@ -4,14 +4,17 @@ import { createStore } from 'vuex'
 const store = createStore({
     state() {
         return {
-            member: {
-
-            }
+            member: null
         }
     },
     mutations: {
         setMember(state, member) {
             state.member = member;
+        }
+    },
+    getters: {
+        getMember(state) {
+            return state.member;
         }
     }
 

@@ -1,6 +1,7 @@
 package com.anabada.config.token;
 
 import com.anabada.dto.MemberDetailDTO;
+import com.anabada.entity.Member;
 import com.anabada.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.lang.NonNull;
@@ -29,12 +30,12 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             throws IOException, ServletException {
 
         String token = request.getHeader("X-AUTH-TOKEN");
-
-
+        System.out.println(request.getMethod()+request.getRequestURI());
+        System.out.println(token);
             if (jwtTokenProvider.isValidToken(token)) {
-                String userId = jwtTokenProvider.getUserIdFromToken(token);
-                if (userId != null) {
-                    SecurityContextHolder.getContext().setAuthentication(memberService.getAuthentication(userId));
+                Member member = jwtTokenProvider.getUserIdFromToken(token);
+                if (member != null) {
+                    SecurityContextHolder.getContext().setAuthentication(memberService.getAuthentication(member));
                 }
 
 

@@ -4,6 +4,7 @@ package com.anabada.config.socket;
 import com.anabada.config.token.JwtTokenProvider;
 import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.MessageVo;
+import com.anabada.entity.Member;
 import com.anabada.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
@@ -57,8 +58,8 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
                 accessor.setSessionId(accessor.getSessionId());
                 if(jwtTokenProvider.isValidToken(token)){
-                    String userId = jwtTokenProvider.getUserIdFromToken(token);
-                    accessor.setUser( memberService.getAuthentication(userId));
+                    Member member = jwtTokenProvider.getUserIdFromToken(token);
+                    accessor.setUser( memberService.getAuthentication(member));
                     return message;
                 }
 

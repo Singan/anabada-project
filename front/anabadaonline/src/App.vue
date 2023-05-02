@@ -6,7 +6,7 @@
 <script>
 import Header from './common/Header.vue';
 import token from '@/common/token';
-console.log(token.is());
+import axios from '@/axios';
 export default {
     components: {
         Header,
@@ -20,9 +20,22 @@ export default {
     methods: {
         login() {
             this.isToken = token.is();
-            console.log('에밋' + this.isToken);
         },
     },
+    mounted() {
+        if (token.is() && !this.$store.getters.getMember) {
+            const header = {
+                "x-auth-token": token.getToken()
+            }
+            axios.get("/member", {
+                headers: header
+            }).then((res) => {
+                this.$store.commit("setMember", res.data)
+
+
+            })
+        }
+    }
 };
 </script>
 

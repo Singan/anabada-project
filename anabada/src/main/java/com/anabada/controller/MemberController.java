@@ -47,7 +47,7 @@ public class MemberController {
 
     @GetMapping
     public MemberInfoDto memberInfo(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
-        return new MemberInfoDto(memberService.findByMemberId(memberDetailDTO.getMemberName()));
+        return new MemberInfoDto(memberService.findByMemberId(memberDetailDTO.getUsername()));
     }
 
 }

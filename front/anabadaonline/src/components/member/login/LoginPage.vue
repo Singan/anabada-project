@@ -38,24 +38,24 @@ export default {
             this.$router.push('./');
         },
         login() {
-            axios
-                .post('/member/login', {
-                    id: this.id,
-                    pw: this.pw,
-                })
-                .then((response) => {
-                    if (response.status == 200) {
-                        token.setToken(`${response.data.accessToken}`);
-                        const header = {
-                            "x-auth-token": token.getToken()
-                        }
-                        axios.get("/member", null, header)
-
-                        this.$store.state.commit("setMember",)
+            axios.post('/member/login', {
+                id: this.id,
+                pw: this.pw,
+            }).then((response) => {
+                if (response.status == 200) {
+                    token.setToken(`${response.data.accessToken}`);
+                    const header = {
+                        "x-auth-token": token.getToken()
+                    }
+                    axios.get("/member", {
+                        headers: header
+                    }).then((res) => {
+                        this.$store.commit("setMember", res.data)
                         this.$emit('logined');
                         this.$router.push('./');
-                    }
-                });
+                    })
+                }
+            });
         },
     },
 };

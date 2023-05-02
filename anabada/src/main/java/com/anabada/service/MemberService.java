@@ -86,8 +86,8 @@ public class MemberService implements UserDetailsService {
         return new MyPageFindDto(memberDetailDTO);
     }
 
-    public Authentication getAuthentication(String id) {
-        MemberDetailDTO userDetails = loadUserByUsername(id);
+    public Authentication getAuthentication(Member member) {
+        MemberDetailDTO userDetails = new MemberDetailDTO(member);
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 

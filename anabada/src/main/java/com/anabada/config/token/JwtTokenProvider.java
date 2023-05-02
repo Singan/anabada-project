@@ -129,18 +129,18 @@ public class JwtTokenProvider{
     /**
      * 사용자 정보를 기반으로 클래임을 생성해주는 메서드
      *
-     * @param memberDetailDTO 사용자 정보
+     * @param Member 사용자 정보
      * @return Map<String, Object>
      */
-    private Map<String, Object> createClaims(Member memberDetailDTO) {
+    private Map<String, Object> createClaims(Member Member) {
         // 공개 클레임에 사용자의 이름과 이메일을 설정하여 정보를 조회할 수 있다.
         Map<String, Object> claims = new HashMap<>();
 
-        log.info("userId :" + memberDetailDTO.getMemberId());
-        log.info("userNm :" + memberDetailDTO.getMemberName());
+        log.info("userId :" + Member.getMemberId());
+        log.info("userNm :" + Member.getMemberName());
 
-        claims.put("userId", memberDetailDTO.getMemberId());
-        claims.put("userNm", memberDetailDTO.getMemberName());
+        claims.put("userId", Member.getMemberId());
+        claims.put("userNo", Member.getMemberNo());
         return claims;
     }
 
@@ -171,9 +171,17 @@ public class JwtTokenProvider{
      * @param token : 토큰
      * @return String : 사용자 아이디
      */
-    public String getUserIdFromToken(String token) {
+    public Member getUserIdFromToken(String token) {
         Claims claims = getClaimsFormToken(token);
-        return claims.get("userId").toString();
+        String id = claims.get("userId").toString();
+        Long no = Long.parseLong(claims.get("userNo").toString());
+
+        Member member = Member
+                .builder()
+                .memberId(id)
+                .memberNo(no)
+                .build();
+        return member;
     }
 
 }

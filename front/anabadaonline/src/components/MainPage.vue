@@ -91,6 +91,7 @@ export default {
 
 
         this.product();
+        console.log(this.$store.state.member)
     },
 };
 </script>

@@ -15,7 +15,6 @@ public class BidInsertDto {
 
     private Integer bidPrice;
     private Long productNo;
-    private boolean bidding;
 
     public Bid getBid(MemberDetailDTO principal) {
         //MemberDetailDTO > Member
@@ -25,7 +24,7 @@ public class BidInsertDto {
         Bid bid = Bid.builder()
                 .member(member)
                 .price(bidPrice)
-                .bidding(bidding)
+                .bidding(false)
                 .time(bidTime)
                 .product(product)
                 .build();
