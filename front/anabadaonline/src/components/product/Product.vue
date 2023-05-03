@@ -56,7 +56,7 @@
     </form>
 </template>
 <script>
-//import axios from '@/axios.js';
+import axios from '@/axios.js';
 import token from '@/common/token.js';
 export default {
     name: '',

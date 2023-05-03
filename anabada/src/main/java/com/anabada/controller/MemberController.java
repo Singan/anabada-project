@@ -27,7 +27,12 @@ public class MemberController {
     @PostMapping
     @Operation(description = "회원가입")
     public Long memberJoin(@Valid MemberJoinDto memberJoinDto) {
-        return memberService.memberJoin(memberJoinDto);
+        try {
+            return memberService.memberJoin(memberJoinDto);
+        }catch (Exception e){
+            throw new
+        }
+
     }
 
     @PostMapping("/login")
