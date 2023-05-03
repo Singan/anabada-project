@@ -32,12 +32,12 @@ public class ProductController {
     private final SocketService socketService;
     @PostMapping
     @Operation(description = "상품등록")
-    public Long productInsert(ProductInsertDto productInsertDto, @AuthenticationPrincipal MemberDetailDTO principal){
+    public ProductInsertResDto productInsert(ProductInsertDto productInsertDto, @AuthenticationPrincipal MemberDetailDTO principal){
         //스레드에 MemberDetail을 넣는다.
-        Long productNo = productService.productSave(productInsertDto,principal);
-        imageService.productImageSave(productNo,productInsertDto.getProductImages());
-        socketService.socketRoomCreate("product",productNo,principal.getMember());
-        return productNo;
+        ProductInsertResDto productInsertResDto = productService.productSave(productInsertDto,principal);
+        imageService.productImageSave(productInsertResDto.getProductNo(),productInsertDto.getProductImages());
+
+        return productInsertResDto;
     }
 
     @GetMapping

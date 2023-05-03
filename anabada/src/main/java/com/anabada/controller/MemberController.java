@@ -27,12 +27,7 @@ public class MemberController {
     @PostMapping
     @Operation(description = "회원가입")
     public Long memberJoin(@Valid MemberJoinDto memberJoinDto) {
-        try {
-            return memberService.memberJoin(memberJoinDto);
-        }catch (Exception e){
-            throw new
-        }
-
+        return memberService.memberJoin(memberJoinDto);
     }
 
     @PostMapping("/login")
@@ -41,7 +36,7 @@ public class MemberController {
     }
 
     @GetMapping("/socket")
-    public List<String> memberSocketList(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
+    public List<Long> memberSocketList(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
         return socketService.memberSocketList(memberDetailDTO.getMember());
     }
 
@@ -54,7 +49,7 @@ public class MemberController {
 
     @GetMapping
     public MemberInfoDto memberInfo(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
-        return new MemberInfoDto(memberService.findByMemberId(memberDetailDTO.getUsername()));
+        return new MemberInfoDto(memberService.findByMemberNoWithSocketList(memberDetailDTO.getUsername()));
     }
 
 }

@@ -1,10 +1,7 @@
 package com.anabada.dto.request_dto;
 
 import com.anabada.dto.MemberDetailDTO;
-import com.anabada.entity.Category;
-import com.anabada.entity.Member;
-import com.anabada.entity.Product;
-import com.anabada.entity.ProductImage;
+import com.anabada.entity.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -29,14 +26,15 @@ public class ProductInsertDto {
 
     private Long categoryNo;
     private List<MultipartFile> productImages;
-    public Product getProduct(MemberDetailDTO principal){
+    public Product getProduct(MemberDetailDTO principal ){
         Member member = principal.getMember();
         Category category = Category.builder().categoryNo(categoryNo).build();
-
+        ProductSocket productSocket = new ProductSocket();
         Product product = Product.builder()
                 .productDetail(detail)
                 .productName(name)
                 .productUseDate(usingDate)
+                .productSocket(productSocket)
                 .member(member)
                 .productPrice(price)
                 .category(category)

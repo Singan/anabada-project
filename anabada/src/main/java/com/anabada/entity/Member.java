@@ -35,6 +35,9 @@ public class Member {
 
     @OneToMany(mappedBy = "member")
     private List<SocketRelation> memberSocketList;
+
+    @OneToMany(mappedBy = "member")
+    private List<Product> memberProductList;
     @Builder
     public Member(Long memberNo, String memberName,
                   String memberId,
