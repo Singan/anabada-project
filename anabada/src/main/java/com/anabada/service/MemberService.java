@@ -96,7 +96,7 @@ public class MemberService implements UserDetailsService {
     public MemberUpdateFindDto memberUpdate(MemberDetailDTO memberDetailDTO, MemberUpdateDto memberUpdateDto) {
         String updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage());
         memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
-        Member member = memberRepository.findByMemberId(memberDetailDTO.getUserId());
+        Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
         member.updateMember(memberUpdateDto, updateImagePath);
         return new MemberUpdateFindDto(member);
     }
