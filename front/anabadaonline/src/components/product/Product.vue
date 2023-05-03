@@ -75,6 +75,7 @@ export default {
         };
     },
 
+
     methods: {
         goProductDt() {
             this.$router.push('./ProductDt');
