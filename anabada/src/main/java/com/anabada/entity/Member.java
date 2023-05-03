@@ -27,7 +27,7 @@ public class Member {
     private LocalDate memberBirth;
     @Column(name = "member_money", nullable = false)
     private Integer memberMoney;
-    @Column(name = "member_temp")
+    @Column(name = "member_temper", nullable = false)
     private Float memberTemper;
 
 
