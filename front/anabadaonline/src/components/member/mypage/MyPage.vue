@@ -8,7 +8,6 @@
 			<div class="showProfileButton"></div>
 			<div class="showProfileText">프로필 보기</div>
 		</div>
-
 		<div class="group-2">
 			<div class="anaMoneyChargeButton"></div>
 			<div class="--" @click="goAcount">충전</div>
