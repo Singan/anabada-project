@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.annotation.Rollback;
 
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
@@ -26,6 +27,7 @@ class MemberServiceTest {
     private final String name = "테스트이름";
 
     @Test
+    @Rollback()
     void findByUserId() {
         MemberJoinDto memberJoinDto = new MemberJoinDto();
         memberJoinDto.setId(id);
@@ -39,6 +41,7 @@ class MemberServiceTest {
         assertEquals(name,member.getMemberName());
     }
     @Test
+    @Rollback()
     void memberJoin(){
 
         MemberJoinDto memberJoinDto = new MemberJoinDto();
@@ -48,6 +51,7 @@ class MemberServiceTest {
         memberService.memberJoin(memberJoinDto);
     }
     @Test
+    @Rollback()
     void memberLogin() {
         MemberLoginDto memberLoginDto = new MemberLoginDto();
         memberLoginDto.setId(id);
