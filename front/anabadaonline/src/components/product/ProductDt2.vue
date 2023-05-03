@@ -39,11 +39,66 @@
 			<div class="actionProduct">인기경매 상품</div>
 			<a class="others">다른 상품 보러가기</a>
 		</div>
+		<div class="box4">
+			<div class="product1">
+				<div class="productImage"></div>
+				<div class="productName">상품 이름</div>
+				<div class="productPrice">가격</div>
+				<div class="productRegion">지역</div>
+			</div>
+
+			<div class="product2">
+				<div class="productImage"></div>
+				<div class="productName">상품 이름</div>
+				<div class="productPrice">가격</div>
+				<div class="productRegion">지역</div>
+			</div>
+
+			<div class="product3">
+				<div class="productImage"></div>
+				<div class="productName">상품 이름</div>
+				<div class="productPrice">가격</div>
+				<div class="productRegion">지역</div>
+			</div>
+		</div>
+
+		<div class="box5">
+			<div class="product4">
+				<div class="productImage"></div>
+				<div class="productName">상품 이름</div>
+				<div class="productPrice">가격</div>
+				<div class="productRegion">지역</div>
+			</div>
+
+			<div class="product5">
+				<div class="productImage"></div>
+				<div class="productName">상품 이름</div>
+				<div class="productPrice">가격</div>
+				<div class="productRegion">지역</div>
+			</div>
+
+			<div class="product6">
+				<div class="productImage"></div>
+				<div class="productName">상품 이름</div>
+				<div class="productPrice">가격</div>
+				<div class="productRegion">지역</div>
+			</div>
+		</div>
 	</form>
 </template>
 
 <script>
-	export default {};
+	import axios from '@/axios.js';
+	export default {
+		name: '',
+		components: {},
+		props: {},
+		data() {
+			return {};
+		},
+
+		methods: {},
+	};
 </script>
 
 <style>
@@ -51,7 +106,7 @@
 		width: 100%;
 		background: #ffffff;
 		width: 700px;
-		height: 2000px;
+		height: 1500px;
 		display: flex;
 		flex-direction: column;
 		margin: 100px auto 0;
@@ -75,6 +130,7 @@
 	.userInfo {
 		display: flex;
 		flex-direction: row;
+		margin-top: 30px;
 	}
 
 	.box1 {
@@ -181,5 +237,41 @@
 		color: #000000;
 		font: 14px 'Roboto', sans-serif;
 		font-weight: bold;
+	}
+
+	.box4 {
+		display: flex;
+		flex-direction: row;
+		gap: 60px;
+	}
+
+	.box5 {
+		display: flex;
+		flex-direction: row;
+		gap: 60px;
+	}
+
+	.productImage {
+		background: #d9d9d9;
+		border-radius: 20px;
+		width: 160px;
+		height: 160px;
+	}
+
+	.productName {
+		color: #000000;
+		font: 300 16px 'Roboto', sans-serif;
+		font-weight: light;
+	}
+
+	.productPrice {
+		color: #000000;
+		font: 16px 'Roboto', sans-serif;
+		font-weight: bold;
+	}
+
+	.productRegion {
+		color: #000000;
+		font: 16px 'Roboto', sans-serif;
 	}
 </style>
