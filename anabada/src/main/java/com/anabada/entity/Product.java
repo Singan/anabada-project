@@ -15,6 +15,7 @@ import java.util.List;
 public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @Column
     private Long productNo;
 
     @ManyToOne(fetch = FetchType.LAZY)

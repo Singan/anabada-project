@@ -15,20 +15,20 @@ public class Bid {//입찰내역
     private Long bidNo;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_no")
+    @JoinColumn(name = "product_no", nullable = false)
     private Product product;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_no")
+    @JoinColumn(name = "member_no", nullable = false)
     private Member member;
 
-    @Column(name = "bid_price")
+    @Column(name = "bid_price", nullable = false)
     private Integer price;
 
-    @Column(name = "bid_time")
+    @Column(name = "bid_time", nullable = false)
     private LocalDateTime time;
 
-    @Column(name = "bid_bidding")
+    @Column(name = "bid_bidding", nullable = false)
     private boolean bidding;
 
     @Builder
