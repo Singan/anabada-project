@@ -1,6 +1,7 @@
 package com.anabada.etc;
 
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,8 +13,10 @@ import java.util.List;
 @Component
 @NoArgsConstructor
 public class FileProcessor {
+    @Value("${my.file.path}")
+    String fileName;
     public String fileSave(MultipartFile multipartFile) {
-        String fileName = "C:/anabada/images";
+        fileName = "C:/anabada/images";
         //String fileName = "/Users/hwi/anabada/images";
         System.out.println("fileName"+fileName);
         try{

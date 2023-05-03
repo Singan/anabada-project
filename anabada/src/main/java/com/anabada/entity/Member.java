@@ -14,15 +14,20 @@ import java.util.List;
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_no", nullable = false)
     private Long memberNo;
 
-    @Column(unique = true)
+    @Column(name = "member_id",unique = true, nullable = false)
     private String memberId;
+    @Column(name = "member_pw", nullable = false)
     private String memberPw;
+    @Column(name = "member_name", nullable = false)
     private String memberName;
-
+    @Column(name = "member_birth", nullable = false)
     private LocalDate memberBirth;
+    @Column(name = "member_money", nullable = false)
     private Integer memberMoney;
+    @Column(name = "member_temper", nullable = false)
     private Float memberTemper;
 
 

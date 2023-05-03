@@ -15,8 +15,10 @@ import java.util.List;
 public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @Column(name = "category_no", nullable = false)
     private Long categoryNo;
 
+    @Column(name = "category_name", nullable = false)
     private String categoryName;
 
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
