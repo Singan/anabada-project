@@ -24,6 +24,5 @@ public class ProductFindOneDto {
         this.productDetail = product.getProductDetail();
         this.productPrice = product.getProductPrice();
         this.productUseDate = product.getProductUseDate();
-
     }
 }

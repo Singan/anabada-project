@@ -1,41 +1,50 @@
 <template>
-	<div class="mypageController">
-		<div class="userName">사용자이름</div>
-		<div class="moneyInfoBox"></div>
-		<div class="anaMoneyText">아나머니</div>
-
-		<div class="group-1">
-			<div class="showProfileButton"></div>
-			<div class="showProfileText">프로필 보기</div>
+	<div class="mypageContainer">
+		<div class="mypageHeader">
+			<img class="userImage" src="" />
+			<div class="userName">
+				이름
+				<img
+					src="@/assets/profileButton.png"
+					alt="profileButton"
+					class="showProfileButton"
+				/>
+			</div>
+			<div class="moneyInfoBox">
+				<span class="anaMoneyText">내 아나머니</span>
+				<button class="anaMoneyChargeButton">충전</button>
+				<div class="showMoney">
+					<span class="moneyText">머니</span>
+					<span class="anaMoney">0</span>
+				</div>
+			</div>
 		</div>
 
-		<div class="group-2">
-			<div class="anaMoneyChargeButton"></div>
-			<div class="--" @click="goAcount">충전</div>
+		<div class="mypageUserSetting">
+			<div class="container">
+				<div class="userInfoText">개인정보</div>
+				<span class="userInfoChange" @click="goChange">
+					회원 정보 수정
+				</span>
+				<span class="withDrawal" @click="goExit">회원 탈퇴</span>
+				<div class="userInfoLine"></div>
+			</div>
 		</div>
 
-		<div class="----8">
-			<div class="userInfoText">개인정보</div>
-
-			<div class="userInfoChange" @click="goChange">회원 정보 수정</div>
-
-			<div class="withDrawal" @click="goExit">회원 탈퇴</div>
-
-			<div class="userInfoLine"></div>
+		<div class="mypageTradeInfo">
+			<div class="container">
+				<div class="myTradeText">내 거래</div>
+				<span class="sellListButton" @click="goDt2">판매 내역</span>
+				<span class="buyListButton" @click="goDt1">구매 내역</span>
+				<span class="productRegButton" @click="goProduct"
+					>상품등록</span
+				>
+				<span class="wishListButton" @click="goJjim">찜 목록</span>
+				<div class="line-1"></div>
+			</div>
 		</div>
 
-		<div class="----2">
-			<div class="myTradeText">내 거래</div>
-			<div class="sellListButton" @click="goDt2">판매 내역</div>
-			<div class="buyListButton" @click="goDt1">구매 내역</div>
-			<div class="productRegButton" @click="goProduct">상품등록</div>
-			<div class="wishListButton" @click="goJjim">찜 목록</div>
-			<div class="line-1"></div>
-		</div>
-
-		<img class="ellipse-1" src="ellipse-1.png" />
-
-		<div class="group-4">
+		<div class="">
 			<div class="group-3">
 				<div class="rectangle-53"></div>
 
@@ -45,17 +54,17 @@
 			<div class="_0">0</div>
 		</div>
 
-		<div class="group-30">
+		<!-- <div class="group-30">
 			<div class="kb------94290200086122">KB 국민은행 94290200086122</div>
-		</div>
+		</div> -->
 
-		<div class="group-6">
+		<!-- <div class="group-6">
 			<div class="ellipse-10"></div>
 
 			<div class="ellipse-11"></div>
 
 			<div class="ellipse-12"></div>
-		</div>
+		</div> -->
 	</div>
 </template>
 
@@ -91,13 +100,40 @@
 </script>
 
 <style scoped>
+	.mypageHeader {
+		display: flex;
+		justify-content: center;
+		margin-top: 40px;
+	}
+
+	.userImage {
+		border-radius: 50%;
+		border-style: solid;
+		border-color: #000000;
+		border-width: 1px;
+		width: 100px;
+		height: 100px;
+		margin-right: 15px;
+		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+	}
+
 	.userName {
 		color: #000000;
 		font: 700 18px 'Roboto', sans-serif;
 		width: 126px;
 		height: 30px;
+		margin: 10px;
+		text-align: center;
 		align-items: center;
 		justify-content: center;
+	}
+
+	.showProfileButton {
+		width: 120px;
+		height: 40px;
+		margin-top: 20px;
+		text-align: center;
+		cursor: pointer;
 	}
 
 	.moneyInfoBox {
@@ -105,29 +141,58 @@
 		border-radius: 0px 20px 0px 20px;
 		border-style: solid;
 		border-color: #0075ff;
-		border-width: 1px;
-		width: 430px;
-		height: 113px;
-		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+		border-width: 1.5px;
+		width: 350px;
+		height: 120px;
+		margin-left: 10px;
+		box-shadow: 1px 4px 4px 0px rgba(0, 0, 0, 0.15);
 	}
 
 	.anaMoneyText {
 		color: #000000;
 		font: 700 18px 'Roboto', sans-serif;
-		width: 126px;
-		height: 46px;
-		align-items: center;
-		justify-content: center;
+		position: relative;
+		left: 30px;
+		top: 20px;
+		letter-spacing: -0.5px;
 	}
 
-	.group-1 {
-	}
-
-	.showProfileButton {
+	.anaMoneyChargeButton {
 		background: #0075ff;
-		border-radius: 15px;
-		width: 121.6px;
-		height: 40px;
+		width: 70px;
+		height: 30px;
+		border-radius: 10px;
+		color: white;
+		border: none;
+		position: relative;
+		right: 44px;
+		top: 65px;
+		cursor: pointer;
+	}
+
+	.showMoney {
+		background: #0075ff;
+		width: 165px;
+		height: 60px;
+		left: 150px;
+		border-radius: 10px;
+		position: relative;
+	}
+
+	.moneyText {
+		color: white;
+		float: right;
+		margin-right: 10px;
+		padding-top: 30px;
+	}
+
+	.anaMoney {
+		color: white;
+		font: 700 20px 'Roboto', sans-serif;
+		position: relative;
+		float: right;
+		right: 10px;
+		top: 20px;
 	}
 
 	.showProfileText {
@@ -140,49 +205,85 @@
 		justify-content: center;
 	}
 
-	.group-2 {
+	.mypageUserSetting {
+		display: flex;
+		justify-content: center;
 	}
 
-	.anaMoneyChargeButton {
-		background: #0075ff;
-		border-radius: 10px;
-		width: 79.14px;
-		height: 28px;
+	.container {
+		width: 700px;
 	}
 
-	.----2 {
-		width: 750px;
-		height: 217px;
-		position: static;
+	.userInfoText {
+		color: #000000;
+		font: 600 20px 'Roboto', sans-serif;
+		margin-top: 40px;
+		margin-bottom: 40px;
+	}
+
+	.userInfoChange {
+		color: #000000;
+		font: 500 16px 'Roboto', sans-serif;
+		padding-right: 120px;
+	}
+
+	.withDrawal {
+		color: #000000;
+		font: 500 16px 'Roboto', sans-serif;
+	}
+
+	.userInfoLine {
+		border-style: solid;
+		border-color: #000000;
+		border-width: 1px 0 0 0;
+		width: 700px;
+		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+		margin-top: 10px;
+		transform-origin: 0 0;
+		transform: rotate(0deg) scale(1, 1);
+	}
+
+	.mypageTradeInfo {
+		display: flex;
+		justify-content: center;
 	}
 
 	.myTradeText {
 		color: #000000;
-		text-align: left;
 		font: 600 20px 'Roboto', sans-serif;
-		width: 133px;
-		height: 63px;
-		align-items: center;
-		justify-content: flex-start;
+		margin-top: 80px;
+		margin-bottom: 40px;
 	}
 
 	.sellListButton {
 		color: #000000;
-		text-align: left;
 		font: 400 16px 'Roboto', sans-serif;
-		width: 74px;
-		height: 63px;
-		align-items: center;
-		justify-content: flex-start;
+		padding-right: 155px;
 	}
 
 	.productRegButton {
 		color: #000000;
 		font: 400 16px 'Roboto', sans-serif;
-		width: 133px;
-		height: 63px;
-		align-items: center;
-		justify-content: center;
+		padding-right: 155px;
+	}
+	.buyListButton {
+		color: #000000;
+		font: 400 16px 'Roboto', sans-serif;
+		padding-right: 155px;
+	}
+	.wishListButton {
+		color: #000000;
+		font: 400 16px 'Roboto', sans-serif;
+	}
+	.line-1 {
+		border-style: solid;
+		border-color: #000000;
+		border-width: 1px 0 0 0;
+		width: 700px;
+		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+		transform-origin: 0 0;
+		transform: rotate(0deg) scale(1, 1);
+		margin-top: 10px;
 	}
 
 	.-----4 {
@@ -206,16 +307,6 @@
 		justify-content: center;
 	}
 
-	.buyListButton {
-		color: #000000;
-		text-align: left;
-		font: 400 16px 'Roboto', sans-serif;
-		width: 80px;
-		height: 63px;
-		align-items: center;
-		justify-content: flex-start;
-	}
-
 	.----6 {
 		color: #000000;
 		text-align: center;
@@ -230,27 +321,6 @@
 		justify-content: center;
 	}
 
-	.wishListButton {
-		color: #000000;
-		text-align: right;
-		font: 400 16px 'Roboto', sans-serif;
-		width: 63px;
-		height: 63px;
-		align-items: center;
-		justify-content: flex-end;
-	}
-
-	.line-1 {
-		border-style: solid;
-		border-color: #000000;
-		border-width: 1px 0 0 0;
-		width: 750px;
-		height: 0px;
-		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-		transform-origin: 0 0;
-		transform: rotate(0deg) scale(1, 1);
-	}
-
 	.line-2 {
 		border-style: solid;
 		border-color: #000000;
@@ -260,86 +330,6 @@
 		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 		transform-origin: 0 0;
 		transform: rotate(0deg) scale(1, 1);
-	}
-
-	.----8 {
-		width: 750px;
-		height: 135px;
-		position: static;
-	}
-
-	.userInfoText {
-		color: #000000;
-		text-align: left;
-		font: 600 20px 'Roboto', sans-serif;
-		width: 133px;
-		height: 41px;
-		align-items: center;
-		justify-content: flex-start;
-	}
-
-	.userInfoChange {
-		color: #000000;
-		text-align: left;
-		font: 500 16px 'Roboto', sans-serif;
-		width: 120px;
-		height: 63px;
-		align-items: center;
-		justify-content: flex-start;
-	}
-
-	.withDrawal {
-		color: #000000;
-		text-align: left;
-		font: 500 16px 'Roboto', sans-serif;
-		width: 80px;
-		height: 63px;
-		display: flex;
-		align-items: center;
-		justify-content: flex-start;
-	}
-
-	.userInfoLine {
-		border-style: solid;
-		border-color: #000000;
-		border-width: 1px 0 0 0;
-		width: 750px;
-		height: 0px;
-		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-		transform-origin: 0 0;
-		transform: rotate(0deg) scale(1, 1);
-	}
-
-	.ellipse-1 {
-		border-radius: 50%;
-		border-style: solid;
-		border-color: #000000;
-		border-width: 1px;
-		width: 100px;
-		height: 100px;
-		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-	}
-
-	.group-4 {
-		width: 247px;
-		height: 40px;
-		position: static;
-	}
-
-	.group-3 {
-		width: 247px;
-		height: 40px;
-		position: static;
-	}
-
-	.rectangle-53 {
-		background: #0075ff;
-		border-radius: 10px;
-		width: 247px;
-		height: 40px;
-		position: absolute;
-		left: 1047px;
-		top: 220px;
 	}
 
 	.--2 {
@@ -360,12 +350,8 @@
 		color: #ffffff;
 		text-align: right;
 		font: 400 24px 'Roboto', sans-serif;
-		position: absolute;
-		left: 1050.47px;
-		top: 229.05px;
 		width: 169.25px;
 		height: 21.9px;
-		display: flex;
 		align-items: center;
 		justify-content: flex-end;
 	}
