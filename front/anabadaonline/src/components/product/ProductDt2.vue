@@ -35,7 +35,10 @@
 
 		<div class="line"></div>
 
-		<div class="actionProduct">인기경매 상품</div>
+		<div class="box3">
+			<div class="actionProduct">인기경매 상품</div>
+			<a class="others">다른 상품 보러가기</a>
+		</div>
 	</form>
 </template>
 
@@ -131,12 +134,6 @@
 		height: 0px;
 	}
 
-	.productInfo {
-		display: flex;
-		flex-direction: column;
-		gap: px;
-	}
-
 	.myInfoText {
 		color: #000000;
 		font: 14px 'Roboto', sans-serif;
@@ -166,5 +163,23 @@
 	.myInfo {
 		display: flex;
 		gap: 50px;
+	}
+
+	.box3 {
+		gap: 280px;
+		display: flex;
+		flex-direction: row;
+		gap: 400px;
+	}
+
+	.others {
+		color: #0075ff;
+		font: 12px 'Roboto', sans-serif;
+	}
+
+	.actionProduct {
+		color: #000000;
+		font: 14px 'Roboto', sans-serif;
+		font-weight: bold;
 	}
 </style>
