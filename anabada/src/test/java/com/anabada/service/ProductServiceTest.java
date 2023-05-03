@@ -35,7 +35,7 @@ class ProductServiceTest {
         productInsertDto.setPrice(1400000);
         Member member = memberRepository.findById(1L).get();
         MemberDetailDTO memberDetailDTO = new MemberDetailDTO(member);
-        
+
         productService.productSave(productInsertDto, memberDetailDTO);
 
         Optional<Product> product = productRepository.findById(1L);

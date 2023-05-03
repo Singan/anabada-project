@@ -28,9 +28,9 @@ export default {
         const headers = {
             'x-auth-token': token.getToken()
         }
-        this.socket = new SockJS('http://localhost:8081/ws')
+        this.socket = new SockJS(process.env.VUE_APP_API_URL + '/ws')
         this.stompClient = Stomp.over(this.socket)
-        console.log(`소켓 연결을 시도합니다. 서버 주소: http://localhost:8081/ws`)
+        console.log(`소켓 연결을 시도합니다. 서버 주소: ` + process.env.VUE_APP_API_URL)
 
         this.stompClient.connect(
             headers,
