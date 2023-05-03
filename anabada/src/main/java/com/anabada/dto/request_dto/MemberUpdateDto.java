@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Setter
 @NoArgsConstructor
 public class MemberUpdateDto {
-    private String memberId;
     private String updatePw;
     private String updateAddr;
     private String updateDetailAddr;

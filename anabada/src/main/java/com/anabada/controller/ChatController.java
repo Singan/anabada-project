@@ -35,7 +35,7 @@ public class ChatController {
         Authentication receiveAuthentication = (Authentication) accessor.getUser();
         MemberDetailDTO receiver = (MemberDetailDTO) receiveAuthentication.getPrincipal();
         System.out.println("receiveMessage");
-        chatMessage.setMemberId(sender.getMemberName());
+        chatMessage.setMemberId(sender.getUsername());
         if (receiver.getNo() != sender.getNo()) {
 
         }

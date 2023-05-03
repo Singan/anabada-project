@@ -4,6 +4,7 @@ import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.MemberJoinDto;
 import com.anabada.dto.request_dto.MemberLoginDto;
 import com.anabada.dto.request_dto.MemberUpdateDto;
+import com.anabada.dto.response_dto.MemberUpdateFindDto;
 import com.anabada.dto.response_dto.MyPageFindDto;
 import com.anabada.entity.Member;
 import com.anabada.etc.FileProcessor;
@@ -92,11 +93,11 @@ public class MemberService implements UserDetailsService {
     }
 
     @Transactional
-    public Long memberUpdate(MemberUpdateDto memberUpdateDto) {
+    public MemberUpdateFindDto memberUpdate(MemberDetailDTO memberDetailDTO, MemberUpdateDto memberUpdateDto) {
         String updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage());
         memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
-        Member member = memberRepository.findByMemberId(memberUpdateDto.getMemberId());
+        Member member = memberRepository.findByMemberId(memberDetailDTO.getUserId());
         member.updateMember(memberUpdateDto, updateImagePath);
-        return member.getMemberNo();
+        return new MemberUpdateFindDto(member);
     }
 }

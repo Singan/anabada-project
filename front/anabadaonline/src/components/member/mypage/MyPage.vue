@@ -1,25 +1,33 @@
 <template>
-	<div class="-----">
-		<div class="-----2">사용자이름</div>
+	<div class="mypageController">
+		<div class="userName">사용자이름</div>
 
-		<div class="rectangle-4"></div>
+		<div class="moneyInfoBox"></div>
 
 		<div class="----">아나머니</div>
 
 		<div class="group-1">
-			<div class="rectangle-5"></div>
-
-			<div class="------">프로필 보기</div>
+			<div class="showProfileButton"></div>
+			<div class="showProfileText">프로필 보기</div>
 		</div>
 
 		<div class="group-2">
-			<div class="rectangle-52"></div>
-
+			<div class="anaMoneyChargeButton"></div>
 			<div class="--" @click="goAcount">충전</div>
 		</div>
 
+		<div class="----8">
+			<div class="userInfoText">개인정보</div>
+
+			<div class="userInfoChange" @click="goChange">회원 정보 수정</div>
+
+			<div class="withDrawal" @click="goExit">회원 탈퇴</div>
+
+			<div class="userInfoLine"></div>
+		</div>
+
 		<div class="----2">
-			<div class="----3">내 거래</div>
+			<div class="myTradeText">내 거래</div>
 
 			<div class="-----3" @click="goDt2">판매 내역</div>
 
@@ -30,16 +38,6 @@
 			<div class="----7" @click="goJjim">찜 목록</div>
 
 			<div class="line-1"></div>
-		</div>
-
-		<div class="----8">
-			<div class="----9">개인정보</div>
-
-			<div class="--------" @click="goChange">회원 정보 수정</div>
-
-			<div class="-----5" @click="goExit">회원 탈퇴</div>
-
-			<div class="line-12"></div>
 		</div>
 
 		<img class="ellipse-1" src="ellipse-1.png" />
@@ -105,15 +103,7 @@
 		box-sizing: border-box;
 	}
 
-	.----- {
-		background: #ffffff;
-		width: 1920px;
-		height: 1024px;
-		position: relative;
-		overflow: hidden;
-	}
-
-	.-----2 {
+	.userName {
 		color: #000000;
 		text-align: center;
 		font: 700 18px 'Roboto', sans-serif;
@@ -127,7 +117,7 @@
 		justify-content: center;
 	}
 
-	.rectangle-4 {
+	.moneyInfoBox {
 		background: #ffffff;
 		border-radius: 0px 20px 0px 20px;
 		border-style: solid;
@@ -156,12 +146,9 @@
 	}
 
 	.group-1 {
-		width: 122.92px;
-		height: 40px;
-		position: static;
 	}
 
-	.rectangle-5 {
+	.showProfileButton {
 		background: #0075ff;
 		border-radius: 15px;
 		width: 121.6px;
@@ -171,7 +158,7 @@
 		top: 232px;
 	}
 
-	.------ {
+	.showProfileText {
 		color: #ffffff;
 		text-align: center;
 		font: 500 16px 'Roboto', sans-serif;
@@ -186,12 +173,9 @@
 	}
 
 	.group-2 {
-		width: 80px;
-		height: 28px;
-		position: static;
 	}
 
-	.rectangle-52 {
+	.anaMoneyChargeButton {
 		background: #0075ff;
 		border-radius: 10px;
 		width: 79.14px;
@@ -221,7 +205,7 @@
 		position: static;
 	}
 
-	.----3 {
+	.myTradeText {
 		color: #000000;
 		text-align: left;
 		font: 600 20px 'Roboto', sans-serif;
@@ -235,7 +219,7 @@
 		justify-content: flex-start;
 	}
 
-	.-----3 {
+	.myTradeText {
 		color: #000000;
 		text-align: left;
 		font: 400 16px 'Roboto', sans-serif;
@@ -367,7 +351,7 @@
 		position: static;
 	}
 
-	.----9 {
+	.userInfoText {
 		color: #000000;
 		text-align: left;
 		font: 600 20px 'Roboto', sans-serif;
@@ -381,7 +365,7 @@
 		justify-content: flex-start;
 	}
 
-	.-------- {
+	.userInfoChange {
 		color: #000000;
 		text-align: left;
 		font: 500 16px 'Roboto', sans-serif;
@@ -395,7 +379,7 @@
 		justify-content: flex-start;
 	}
 
-	.-----5 {
+	.withDrawal {
 		color: #000000;
 		text-align: left;
 		font: 500 16px 'Roboto', sans-serif;
@@ -409,7 +393,7 @@
 		justify-content: flex-start;
 	}
 
-	.line-12 {
+	.userInfoLine {
 		border-style: solid;
 		border-color: #000000;
 		border-width: 1px 0 0 0;

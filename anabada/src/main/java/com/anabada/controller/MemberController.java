@@ -6,6 +6,7 @@ import com.anabada.dto.request_dto.MemberLoginDto;
 import com.anabada.dto.request_dto.MemberUpdateDto;
 import com.anabada.dto.response_dto.LoginResultDto;
 import com.anabada.dto.response_dto.MemberInfoDto;
+import com.anabada.dto.response_dto.MemberUpdateFindDto;
 import com.anabada.service.MemberService;
 import com.anabada.service.SocketService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -39,10 +40,10 @@ public class MemberController {
         return socketService.memberSocketList(memberDetailDTO.getMember());
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     @Operation(description = "회원 수정")
-    public Long memberUpdate(MemberUpdateDto memberUpdateDto) {
-        return memberService.memberUpdate(memberUpdateDto);
+    public MemberUpdateFindDto memberUpdate(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO, MemberUpdateDto memberUpdateDto) {
+        return memberService.memberUpdate(memberDetailDTO, memberUpdateDto);
     }
 
     @GetMapping
