@@ -17,18 +17,16 @@ import java.util.List;
 public class MemberDetailDTO implements UserDetails {
     private Long no;
     private String username;
-    private String userId;
+    private String userNickname;
     private String password;
-    private Integer money;
-    private String image;
+
 
 
     public MemberDetailDTO(Member member) {
         this.no = member.getMemberNo();
-        this.userId = member.getMemberId();
+        this.userNickname = member.getMemberName();
         this.username = member.getMemberId();
-        this.money = member.getMemberMoney();
-        this.image = member.getMemberImage();
+
     }
 
     @Override
@@ -71,6 +69,7 @@ public class MemberDetailDTO implements UserDetails {
                 .builder()
                 .memberNo(no)
                 .memberId(username)
+                .memberName(userNickname)
                 .build();
 
         return member;
