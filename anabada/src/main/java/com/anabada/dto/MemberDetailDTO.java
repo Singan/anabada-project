@@ -25,6 +25,7 @@ public class MemberDetailDTO implements UserDetails {
 
     public MemberDetailDTO(Member member) {
         this.no = member.getMemberNo();
+        this.userId = member.getMemberId();
         this.username = member.getMemberId();
         this.money = member.getMemberMoney();
         this.image = member.getMemberImage();

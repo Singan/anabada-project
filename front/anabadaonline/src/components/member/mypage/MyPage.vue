@@ -1,10 +1,8 @@
 <template>
 	<div class="mypageController">
 		<div class="userName">사용자이름</div>
-
 		<div class="moneyInfoBox"></div>
-
-		<div class="----">아나머니</div>
+		<div class="anaMoneyText">아나머니</div>
 
 		<div class="group-1">
 			<div class="showProfileButton"></div>
@@ -28,15 +26,10 @@
 
 		<div class="----2">
 			<div class="myTradeText">내 거래</div>
-
-			<div class="-----3" @click="goDt2">판매 내역</div>
-
-			<div class="----5" @click="goProduct">상품등록</div>
-
-			<div class="-----4" @click="goDt1">구매 내역</div>
-
-			<div class="----7" @click="goJjim">찜 목록</div>
-
+			<div class="sellListButton" @click="goDt2">판매 내역</div>
+			<div class="buyListButton" @click="goDt1">구매 내역</div>
+			<div class="productRegButton" @click="goProduct">상품등록</div>
+			<div class="wishListButton" @click="goJjim">찜 목록</div>
 			<div class="line-1"></div>
 		</div>
 
@@ -98,21 +91,11 @@
 </script>
 
 <style scoped>
-	.-----,
-	.----- * {
-		box-sizing: border-box;
-	}
-
 	.userName {
 		color: #000000;
-		text-align: center;
 		font: 700 18px 'Roboto', sans-serif;
-		position: absolute;
-		left: 717px;
-		top: 192px;
 		width: 126px;
 		height: 30px;
-		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
@@ -125,22 +108,14 @@
 		border-width: 1px;
 		width: 430px;
 		height: 113px;
-		position: absolute;
-		left: 890px;
-		top: 170px;
 		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 	}
 
-	.---- {
+	.anaMoneyText {
 		color: #000000;
-		text-align: center;
 		font: 700 18px 'Roboto', sans-serif;
-		position: absolute;
-		left: 891px;
-		top: 176px;
 		width: 126px;
 		height: 46px;
-		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
@@ -153,21 +128,14 @@
 		border-radius: 15px;
 		width: 121.6px;
 		height: 40px;
-		position: absolute;
-		left: 719.66px;
-		top: 232px;
 	}
 
 	.showProfileText {
 		color: #ffffff;
 		text-align: center;
 		font: 500 16px 'Roboto', sans-serif;
-		position: absolute;
-		left: 719px;
-		top: 232px;
 		width: 122.92px;
 		height: 40px;
-		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
@@ -180,23 +148,6 @@
 		border-radius: 10px;
 		width: 79.14px;
 		height: 28px;
-		position: absolute;
-		left: 914.43px;
-		top: 230px;
-	}
-
-	.-- {
-		color: #ffffff;
-		text-align: center;
-		font: 500 14px 'Roboto', sans-serif;
-		position: absolute;
-		left: 914px;
-		top: 230px;
-		width: 80px;
-		height: 28px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
 	}
 
 	.----2 {
@@ -209,40 +160,27 @@
 		color: #000000;
 		text-align: left;
 		font: 600 20px 'Roboto', sans-serif;
-		position: absolute;
-		left: 582px;
-		top: 513px;
 		width: 133px;
 		height: 63px;
-		display: flex;
 		align-items: center;
 		justify-content: flex-start;
 	}
 
-	.myTradeText {
+	.sellListButton {
 		color: #000000;
 		text-align: left;
 		font: 400 16px 'Roboto', sans-serif;
-		position: absolute;
-		left: 607px;
-		top: 585px;
 		width: 74px;
 		height: 63px;
-		display: flex;
 		align-items: center;
 		justify-content: flex-start;
 	}
 
-	.----4 {
+	.productRegButton {
 		color: #000000;
-		text-align: center;
-		font: 600 20px 'Roboto', sans-serif;
-		position: absolute;
-		left: 578px;
-		top: 667px;
+		font: 400 16px 'Roboto', sans-serif;
 		width: 133px;
 		height: 63px;
-		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
@@ -251,12 +189,8 @@
 		color: #000000;
 		text-align: left;
 		font: 400 16px 'Roboto', sans-serif;
-		position: absolute;
-		left: 817px;
-		top: 585px;
 		width: 80px;
 		height: 63px;
-		display: flex;
 		align-items: center;
 		justify-content: flex-start;
 	}
@@ -265,9 +199,6 @@
 		color: #000000;
 		text-align: center;
 		font: 600 20px 'Roboto', sans-serif;
-		position: absolute;
-		left: 787px;
-		top: 667px;
 		width: 133px;
 		height: 63px;
 		display: flex;
@@ -275,16 +206,12 @@
 		justify-content: center;
 	}
 
-	.----5 {
+	.buyListButton {
 		color: #000000;
 		text-align: left;
 		font: 400 16px 'Roboto', sans-serif;
-		position: absolute;
-		left: 1040px;
-		top: 585px;
 		width: 80px;
 		height: 63px;
-		display: flex;
 		align-items: center;
 		justify-content: flex-start;
 	}
@@ -303,16 +230,12 @@
 		justify-content: center;
 	}
 
-	.----7 {
+	.wishListButton {
 		color: #000000;
 		text-align: right;
 		font: 400 16px 'Roboto', sans-serif;
-		position: absolute;
-		left: 1230px;
-		top: 585px;
 		width: 63px;
 		height: 63px;
-		display: flex;
 		align-items: center;
 		justify-content: flex-end;
 	}
@@ -323,9 +246,6 @@
 		border-width: 1px 0 0 0;
 		width: 750px;
 		height: 0px;
-		position: absolute;
-		left: 577px;
-		top: 648px;
 		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 		transform-origin: 0 0;
 		transform: rotate(0deg) scale(1, 1);
@@ -337,9 +257,6 @@
 		border-width: 1px 0 0 0;
 		width: 750px;
 		height: 0px;
-		position: absolute;
-		left: 577px;
-		top: 730px;
 		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 		transform-origin: 0 0;
 		transform: rotate(0deg) scale(1, 1);
@@ -355,12 +272,8 @@
 		color: #000000;
 		text-align: left;
 		font: 600 20px 'Roboto', sans-serif;
-		position: absolute;
-		left: 578px;
-		top: 339px;
 		width: 133px;
 		height: 41px;
-		display: flex;
 		align-items: center;
 		justify-content: flex-start;
 	}
@@ -369,12 +282,8 @@
 		color: #000000;
 		text-align: left;
 		font: 500 16px 'Roboto', sans-serif;
-		position: absolute;
-		left: 598px;
-		top: 411px;
 		width: 120px;
 		height: 63px;
-		display: flex;
 		align-items: center;
 		justify-content: flex-start;
 	}
@@ -383,9 +292,6 @@
 		color: #000000;
 		text-align: left;
 		font: 500 16px 'Roboto', sans-serif;
-		position: absolute;
-		left: 817px;
-		top: 411px;
 		width: 80px;
 		height: 63px;
 		display: flex;
@@ -399,9 +305,6 @@
 		border-width: 1px 0 0 0;
 		width: 750px;
 		height: 0px;
-		position: absolute;
-		left: 577px;
-		top: 474px;
 		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 		transform-origin: 0 0;
 		transform: rotate(0deg) scale(1, 1);
@@ -414,9 +317,6 @@
 		border-width: 1px;
 		width: 100px;
 		height: 100px;
-		position: absolute;
-		left: 594px;
-		top: 183px;
 		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 	}
 

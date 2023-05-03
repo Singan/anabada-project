@@ -42,7 +42,8 @@ public class MemberController {
 
     @PutMapping("/update")
     @Operation(description = "회원 수정")
-    public MemberUpdateFindDto memberUpdate(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO, MemberUpdateDto memberUpdateDto) {
+    public MemberUpdateFindDto memberUpdate(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO,
+                                            MemberUpdateDto memberUpdateDto) {
         return memberService.memberUpdate(memberDetailDTO, memberUpdateDto);
     }
 
