@@ -91,6 +91,7 @@
 
 <script>
 	import axios from '@/axios.js';
+
 	var temporaryData = {
 		seller1: [
 			{
