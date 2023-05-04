@@ -116,6 +116,11 @@
 			};
 		},
 
+		methods: {},
+		mounted() {
+			console.log('ddd');
+			console.log(this.$route.query.test);
+		},
 		//axios 통신
 		// methods: {
 		// 	sellerInfo() {

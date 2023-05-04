@@ -12,7 +12,9 @@
 			</div>
 			<div class="moneyInfoBox">
 				<span class="anaMoneyText">내 아나머니</span>
-				<button class="anaMoneyChargeButton">충전</button>
+				<button class="anaMoneyChargeButton" @click="payForm">
+					충전
+				</button>
 				<div class="showMoney">
 					<span class="moneyText">머니</span>
 					<span class="anaMoney">0</span>
@@ -69,6 +71,8 @@
 </template>
 
 <script>
+	import Bootpay from '@bootpay/client-js';
+
 	export default {
 		methods: {
 			goExit() {
@@ -94,6 +98,14 @@
 			},
 			goMain() {
 				this.$router.push('./');
+			},
+			payForm() {
+				const response = Bootpay.requestPayment({
+					application_id: '6450b5b4755e27001d375f49',
+					price: 1000,
+					order_name: '테스트결제',
+					order_id: 'TEST_ORDER_ID',
+				});
 			},
 		},
 	};
@@ -225,11 +237,13 @@
 		color: #000000;
 		font: 500 16px 'Roboto', sans-serif;
 		padding-right: 120px;
+		cursor: pointer;
 	}
 
 	.withDrawal {
 		color: #000000;
 		font: 500 16px 'Roboto', sans-serif;
+		cursor: pointer;
 	}
 
 	.userInfoLine {
@@ -259,21 +273,25 @@
 		color: #000000;
 		font: 400 16px 'Roboto', sans-serif;
 		padding-right: 155px;
+		cursor: pointer;
 	}
 
 	.productRegButton {
 		color: #000000;
 		font: 400 16px 'Roboto', sans-serif;
 		padding-right: 155px;
+		cursor: pointer;
 	}
 	.buyListButton {
 		color: #000000;
 		font: 400 16px 'Roboto', sans-serif;
 		padding-right: 155px;
+		cursor: pointer;
 	}
 	.wishListButton {
 		color: #000000;
 		font: 400 16px 'Roboto', sans-serif;
+		cursor: pointer;
 	}
 	.line-1 {
 		border-style: solid;
