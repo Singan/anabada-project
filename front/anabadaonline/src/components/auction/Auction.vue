@@ -16,14 +16,6 @@
 			<div class="price">{{ item.price }} 원</div>
 
 			<div class="area">{{ item.productNo }}</div>
-
-			<!-- <div class="interest">관심</div> -->
-
-			<!-- <div class="chat">채팅</div>
-
-			<div class="chatCount">0</div> -->
-
-			<!-- <div class="interestCount">0</div> -->
 		</div>
 	</div>
 </template>
