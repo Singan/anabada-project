@@ -30,8 +30,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             throws IOException, ServletException {
 
         String token = request.getHeader("X-AUTH-TOKEN");
-        System.out.println(request.getMethod()+request.getRequestURI());
-        System.out.println(token);
             if (jwtTokenProvider.isValidToken(token)) {
                 Member member = jwtTokenProvider.getUserIdFromToken(token);
                 if (member != null) {
@@ -41,7 +39,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         }
 
-        System.out.println("필터 검증완료");
         chain.doFilter(request, response);
 
     }
