@@ -103,7 +103,6 @@
 			},
 		],
 	};
-	console.log(temporaryData.seller1);
 
 	export default {
 		name: '',
@@ -118,23 +117,23 @@
 
 		methods: {},
 		mounted() {
-			console.log('ddd');
 			console.log(this.$route.query.test);
 		},
-		//axios 통신
-		// methods: {
-		// 	sellerInfo() {
-		// 		axios.get().then((response) => {
-		// 			console.log(response.data);
-		// 			this.seller = response.data;
-		// 			console.log(this.seller);
-		// 		});
-		// 	},
-		// },
 
-		// created() {
-		// 	this.sellerInfo();
-		// },
+		//axios 통신
+		methods: {
+			sellerInfo() {
+				axios.get().then((response) => {
+					console.log(response.data);
+					this.seller = response.data;
+					console.log(this.seller);
+				});
+			},
+		},
+
+		created() {
+			this.sellerInfo();
+		},
 	};
 </script>
 

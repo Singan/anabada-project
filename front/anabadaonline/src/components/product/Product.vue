@@ -130,15 +130,9 @@
 		},
 
 		methods: {
-			goProductDt() {
-				this.$router.push('./ProductDt');
-			},
-
 			category() {
 				axios.get('/category').then((response) => {
-					console.log(response.data);
 					this.categoryList = response.data;
-					console.log(this.categoryList);
 				});
 			},
 
@@ -155,7 +149,7 @@
 						form.append('productImages', this.productImages[i]);
 					}
 				}
-				console.log(this.selectCategory);
+				console.log(this.price);
 				axios.defaults.headers.common['x-auth-token'] =
 					token.getToken();
 
@@ -167,6 +161,10 @@
 					})
 					.then((response) => {
 						console.log(response);
+						this.$router.push(
+							'./ProductDt?test=' + response.data.productNo,
+						);
+						console.log(response.data.productNo);
 					});
 			},
 
