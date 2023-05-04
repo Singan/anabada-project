@@ -20,14 +20,16 @@
 		<div class="line"></div>
 
 		<div class="prouductInfo">
-			<div class="productNamePrice">상품 이름 :</div>
+			<div class="productNamePrice">
+				상품 이름 : {{ temporaryData.seller1[0].productName }}
+			</div>
 			<div class="productTime">등록 시간 :</div>
 			<div class="productNamePrice">상품 가격 : xx원</div>
 			<div class="productExplain">상품 설명 :</div>
 		</div>
 
 		<div class="myInfo">
-			<a class="myInfoText">관심 0</a>
+			<a href="" class="myInfoText">관심 0</a>
 			<a class="myInfoText">채팅 0</a>
 			<a class="myInfoText">조회 0</a>
 			<a class="myInfoText">경매 참여 0</a>
@@ -89,15 +91,43 @@
 
 <script>
 	import axios from '@/axios.js';
+	var temporaryData = {
+		seller1: [
+			{
+				productName: '자전거',
+				productTime: '3시',
+				productPrice: '3만원',
+				productExplain: '멋집니다',
+			},
+		],
+	};
+	console.log(temporaryData.seller1);
+
 	export default {
 		name: '',
 		components: {},
 		props: {},
 		data() {
-			return {};
+			return {
+				seller: '',
+				temporaryData,
+			};
 		},
 
-		methods: {},
+		//axios 통신
+		// methods: {
+		// 	sellerInfo() {
+		// 		axios.get().then((response) => {
+		// 			console.log(response.data);
+		// 			this.seller = response.data;
+		// 			console.log(this.seller);
+		// 		});
+		// 	},
+		// },
+
+		// created() {
+		// 	this.sellerInfo();
+		// },
 	};
 </script>
 
