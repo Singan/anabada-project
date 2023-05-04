@@ -98,6 +98,10 @@
 		},
 
 		methods: {},
+		mounted() {
+			console.log('ddd');
+			console.log(this.$route.query.test);
+		},
 	};
 </script>
 
