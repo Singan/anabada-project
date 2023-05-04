@@ -25,7 +25,8 @@ class ProductServiceTest {
 
     @Autowired
     MemberRepository memberRepository;
-
+    @Autowired
+    SocketService socketService;
     @Test
     void productFindName() {
         ProductInsertDto productInsertDto = new ProductInsertDto();

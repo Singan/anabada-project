@@ -15,6 +15,7 @@ import java.util.List;
 public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @Column
     private Long productNo;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -42,9 +43,12 @@ public class Product {
     private List<ProductImage> productImageList;
     @Column
     private LocalDateTime createDateTime;
-
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_socket_no",nullable = false)
+    private ProductSocket productSocket;
     @Builder
-    public Product(Long productNo, Member member, String productName, String productDetail, Integer productPrice, String productUseDate, Category category, List<ProductImage> productImageList) {
+    public Product(Long productNo, Member member, String productName, String productDetail, Integer productPrice,
+                   String productUseDate, Category category, List<ProductImage> productImageList,ProductSocket productSocket) {
         this.productNo = productNo;
         this.member = member;
         this.productName = productName;
@@ -54,5 +58,6 @@ public class Product {
         this.category = category;
         this.productImageList = productImageList;
         this.createDateTime = LocalDateTime.now();
+        this.productSocket = productSocket;
     }
 }

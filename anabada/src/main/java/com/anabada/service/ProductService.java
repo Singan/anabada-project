@@ -2,11 +2,9 @@ package com.anabada.service;
 
 import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.ProductInsertDto;
-import com.anabada.dto.response_dto.FindProductToCategoryDto;
-import com.anabada.dto.response_dto.ProductFindAllDto;
-import com.anabada.dto.response_dto.ProductFindOneDto;
-import com.anabada.dto.response_dto.ResultList;
+import com.anabada.dto.response_dto.*;
 import com.anabada.entity.Product;
+import com.anabada.entity.ProductSocket;
 import com.anabada.etc.FileProcessor;
 import com.anabada.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,10 +22,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ProductService {
     private final ProductRepository productRepository;
-    public Long productSave(ProductInsertDto productInsertDto,MemberDetailDTO memberDetailDTO){
+    public ProductInsertResDto productSave(ProductInsertDto productInsertDto,MemberDetailDTO memberDetailDTO){
+        //ProductSocket productSocket = ProductSocket.builder().productSocketNo(socketNo).build();
         Product product = productInsertDto.getProduct(memberDetailDTO);
+
         productRepository.save(product);
-        return product.getProductNo();
+        return new ProductInsertResDto(product.getProductNo(), product.getProductSocket().getProductSocketNo());
     }
 
     // product 세부 정보

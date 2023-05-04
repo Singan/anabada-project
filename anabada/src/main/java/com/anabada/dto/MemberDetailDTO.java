@@ -17,12 +17,16 @@ import java.util.List;
 public class MemberDetailDTO implements UserDetails {
     private Long no;
     private String username;
+    private String userNickname;
     private String password;
+
 
 
     public MemberDetailDTO(Member member) {
         this.no = member.getMemberNo();
+        this.userNickname = member.getMemberName();
         this.username = member.getMemberId();
+
     }
 
     @Override
@@ -65,6 +69,7 @@ public class MemberDetailDTO implements UserDetails {
                 .builder()
                 .memberNo(no)
                 .memberId(username)
+                .memberName(userNickname)
                 .build();
 
         return member;

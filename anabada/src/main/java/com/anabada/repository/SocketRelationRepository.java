@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface SocketRelationRepository extends JpaRepository<SocketRelation, Long> {
 
-    @Query("select s from socket_relation s join fetch s.socketTable where s.member = :member")
+    @Query("select s from socket_relation s join fetch s.productSocket where s.member = :member")
     List<SocketRelation> findSocketRelationByMember(Member member);
 }

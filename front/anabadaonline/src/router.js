@@ -42,15 +42,11 @@ const routes = [
 		name: 'Jjim',
 		component: () => import('@/components/member/mypage/Jjim.vue'),
 	},
+
 	{
 		path: '/productDt',
 		name: 'ProductDt',
 		component: () => import('@/components/product/ProductDt.vue'),
-	},
-	{
-		path: '/productDt2',
-		name: 'ProductDt2',
-		component: () => import('@/components/product/ProductDt2.vue'),
 	},
 	{
 		path: '/memberChange',

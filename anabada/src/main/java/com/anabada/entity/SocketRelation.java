@@ -18,18 +18,18 @@ public class SocketRelation {
     private Long socketRelationNo;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
+    @JoinColumn(name = "member_no")
     private Member member;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
-    private SocketTable socketTable;
+    @JoinColumn(name = "product_socket_no")
+    private ProductSocket productSocket;
 
     @Builder
-    public SocketRelation(Long socketRelationNo, Member member, SocketTable socketTable) {
+    public SocketRelation(Long socketRelationNo, Member member, ProductSocket productSocket) {
         this.socketRelationNo = socketRelationNo;
         this.member = member;
-        this.socketTable = socketTable;
+        this.productSocket = productSocket;
     }
 }
