@@ -25,6 +25,7 @@
 
 		<div class="nameText rectangle-23" id="name">
 			<input
+				class="textSize"
 				v-model="name"
 				type="text"
 				placeholder="상품명을 입력해주세요"
@@ -32,7 +33,16 @@
 			/>
 		</div>
 
-		<div>dd</div>
+		<div class="commonText">경매 시작 가격</div>
+		<div class="priceText" id="price">
+			<input
+				class="textSize"
+				v-model="price"
+				type="text"
+				placeholder="경매 시작 가격을 입력해주세요( , 없이 숫자만 입력)"
+				style="border: none; outline: none"
+			/>
+		</div>
 
 		<div class="commonText">상품 카테고리</div>
 
@@ -55,31 +65,42 @@
 				class="form-control"
 				id="detail"
 				placeholder="상품 설명을 입력하세요"
+				v-model="detail"
 				rows="7"
 				cols="50"
 				style="border: none; outline: none"
 			></textarea>
 		</div>
 		<div class="usingDate commonText">상품 사용기간 <br /></div>
-		<div class="commonText">사용기간 : {{ picked }}</div>
+		<div class="commonText">사용기간 : {{ usingDate }}</div>
 
 		<div class="radioSelect">
 			<input
 				type="radio"
 				id="one"
 				value="미사용"
-				v-model="picked"
+				v-model="usingDate"
 				checked
 			/>
 			<label for="one">미사용</label>
 
-			<input type="radio" id="two" value="0 ~ 4주" v-model="picked" />
+			<input type="radio" id="two" value="0 ~ 4주" v-model="usingDate" />
 			<label for="two">0 ~ 4주</label>
 
-			<input type="radio" id="three" value="4 ~ 8주" v-model="picked" />
+			<input
+				type="radio"
+				id="three"
+				value="4 ~ 8주"
+				v-model="usingDate"
+			/>
 			<label for="three">4 ~ 8주</label>
 
-			<input type="radio" id="four" value="8주 이상" v-model="picked" />
+			<input
+				type="radio"
+				id="four"
+				value="8주 이상"
+				v-model="usingDate"
+			/>
 			<label for="four">8주 이상</label>
 		</div>
 		<label class="submit">
@@ -97,12 +118,12 @@
 		props: {},
 		data() {
 			return {
-				picked: '미사용',
 				categoryList: '',
 				name: '',
-				// usingDate:'',
+				price: '',
+				usingDate: '미사용',
 				detail: '',
-				// price:'',
+				price: '',
 				selectCategory: '',
 				productImages: null,
 			};
@@ -124,9 +145,10 @@
 			productRegister() {
 				let form = new FormData();
 				form.append('name', this.name);
-				//form.append("usingDate", this.usingDate)
+				form.append('price', this.price);
+				form.append('usingDate', this.usingDate);
 				form.append('detail', this.detail);
-				//form.append("price", this.price)
+				form.append('price', this.price);
 				form.append('categoryNo', this.selectCategory);
 				if (this.productImages) {
 					for (let i = 0; i < this.productImages.length; i++) {
@@ -244,6 +266,27 @@
 		border-style: solid;
 		border-color: #0075ff;
 		border-width: 1.5px;
+		width: 470px;
+		height: 30px;
+	}
+
+	.priceText {
+		color: #797979;
+		text-align: left;
+		font: 300 12px 'Roboto', sans-serif;
+
+		align-items: center;
+		justify-content: flex-start;
+		margin: 2px 0px 0px 5px;
+		border-radius: 5px;
+		border-style: solid;
+		border-color: #0075ff;
+		border-width: 1.5px;
+		width: 470px;
+		height: 30px;
+	}
+
+	.textSize {
 		width: 470px;
 		height: 30px;
 	}
