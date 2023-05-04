@@ -33,7 +33,6 @@
 					})
 					.then((res) => {
 						this.$store.commit('setMember', res.data);
-						console.log(this.$store.state.member);
 					});
 			}
 		},
