@@ -1,22 +1,20 @@
 <template>
 	<div class="title">인기 매물</div>
 	<div class="productFlex">
-		<div
-			class="flexItem"
-			v-for="item in product.list"
-			:key="item.productNo"
-		>
-			<img
-				class="productImg"
-				:src="item.productImg"
-				style="width: 160px; height: 160px"
-			/>
+		<a class="flexItem" v-for="item in product.list" :key="item.productNo">
+			<a v-bind:href="'/ProductDt?productNo=' + item.productNo">
+				<img
+					class="productImg"
+					:src="item.productImg"
+					style="width: 160px; height: 160px"
+				/>
+			</a>
 			<div class="productName">{{ item.productName }}</div>
 
 			<div class="price">{{ item.price }} 원</div>
 
 			<div class="area">{{ item.productNo }}</div>
-		</div>
+		</a>
 	</div>
 </template>
 <script>
@@ -72,16 +70,16 @@
 				product: a,
 			};
 		},
-		// methods: {
-		// 	product() {
-		// 		axios.get('/product/list').then((response) => {
-		// 			console.dir(response.data);
-		// 			this.product = response.data.list;
-		// 		});
-		// 	},
-		// },
+		methods: {
+			product() {
+				axios.get('/product/list').then((response) => {
+					console.dir(response.data);
+					this.product = response.data.list;
+				});
+			},
+		},
 		mounted() {
-			console.log(a);
+			console.log(this.product.list);
 		},
 	};
 </script>
