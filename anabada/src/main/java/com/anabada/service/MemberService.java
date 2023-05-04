@@ -46,7 +46,9 @@ public class MemberService implements UserDetailsService {
 
     }
     public Member findByMemberNoWithSocketList(String id){
-        return memberRepository.findMemberByMemberId(id);
+        System.out.println(id);
+        Member member = memberRepository.findMemberByMemberId(id);
+        return member;
     }
     @Transactional(readOnly = false)
     public Long memberJoin(MemberJoinDto memberJoinDto) {
