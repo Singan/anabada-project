@@ -118,8 +118,7 @@
 
 		methods: {},
 		mounted() {
-			console.log('ddd');
-			console.log(this.$route.query.test);
+			console.log(this.$route.query.productNo);
 		},
 		//axios 통신
 		// methods: {
