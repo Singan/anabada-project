@@ -1,17 +1,21 @@
 <template>
 	<div class="title">인기 매물</div>
 	<div class="productFlex">
-		<div class="flexItem" v-for="item in product" :key="item.productNo">
+		<div
+			class="flexItem"
+			v-for="item in product.list"
+			:key="item.productNo"
+		>
 			<img
 				class="productImg"
-				:src="product.list[0].productImg"
+				:src="item.productImg"
 				style="width: 160px; height: 160px"
 			/>
-			<div class="productName">{{ product.list[0].productName }}</div>
+			<div class="productName">{{ item.productName }}</div>
 
-			<div class="price">{{ product.list[0].price }} 원</div>
+			<div class="price">{{ item.price }} 원</div>
 
-			<div class="area">{{ product.list.productNo }}</div>
+			<div class="area">{{ item.productNo }}</div>
 
 			<!-- <div class="interest">관심</div> -->
 
@@ -24,7 +28,7 @@
 	</div>
 </template>
 <script>
-	let a = {
+	var a = {
 		length: '이승민여친들',
 		list: [
 			{
@@ -84,6 +88,9 @@
 		// 		});
 		// 	},
 		// },
+		mounted() {
+			console.log(a);
+		},
 	};
 </script>
 <style scoped>
