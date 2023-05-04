@@ -7,6 +7,7 @@ import com.anabada.dto.request_dto.MemberUpdateDto;
 import com.anabada.dto.response_dto.LoginResultDto;
 import com.anabada.dto.response_dto.MemberInfoDto;
 import com.anabada.dto.response_dto.MemberUpdateFindDto;
+import com.anabada.entity.Member;
 import com.anabada.service.MemberService;
 import com.anabada.service.SocketService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -49,7 +50,8 @@ public class MemberController {
 
     @GetMapping
     public MemberInfoDto memberInfo(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
-        return new MemberInfoDto(memberService.findByMemberNoWithSocketList(memberDetailDTO.getUsername()));
+        Member member = memberService.findByMemberNoWithSocketList(memberDetailDTO.getUsername());
+        return new MemberInfoDto(member);
     }
 
 }

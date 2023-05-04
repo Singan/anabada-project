@@ -13,7 +13,7 @@ import java.util.List;
 @Component
 @NoArgsConstructor
 public class FileProcessor {
-    @Value("${my.file.path}")
+    //@Value("${my.file.path}")
     String fileName;
     public String fileSave(MultipartFile multipartFile) {
         fileName = "C:/anabada/images";

@@ -23,11 +23,11 @@ public class Member {
     private String memberPw;
     @Column(name = "member_name", nullable = false)
     private String memberName;
-    @Column(name = "member_birth", nullable = false)
+    @Column(name = "member_birth")
     private LocalDate memberBirth;
-    @Column(name = "member_money", nullable = false)
+    @Column(name = "member_money")
     private Integer memberMoney;
-    @Column(name = "member_temper", nullable = false)
+    @Column(name = "member_temper")
     private Float memberTemper;
 
 
