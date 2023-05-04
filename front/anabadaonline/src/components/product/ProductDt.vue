@@ -94,10 +94,12 @@
 	var temporaryData = {
 		seller1: [
 			{
-				productName: '자전거',
-				productTime: '3시',
-				productPrice: '3만원',
-				productExplain: '멋집니다',
+				productNo: 0,
+				memberName: 'string',
+				productName: 'string',
+				productDetail: 'string',
+				productPrice: 0,
+				productUseDate: 'string',
 			},
 		],
 	};
