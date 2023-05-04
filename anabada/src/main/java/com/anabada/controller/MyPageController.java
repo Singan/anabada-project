@@ -21,4 +21,6 @@ public class MyPageController {
     public MyPageFindDto myPageFindDto(@AuthenticationPrincipal MemberDetailDTO principal) {
         return memberService.myPage(principal);
     }
+
+    
 }

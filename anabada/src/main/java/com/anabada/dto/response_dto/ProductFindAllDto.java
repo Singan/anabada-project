@@ -13,6 +13,7 @@ public class ProductFindAllDto {
     private String wishAddr;
     private Integer price;
     private String productImage;
+    // 카테고리 넣기
     public ProductFindAllDto(Product product) {
         this.productName = (product.getProductName());
         this.productNo = (product.getProductNo());

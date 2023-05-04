@@ -100,12 +100,62 @@
 				this.$router.push('./');
 			},
 			payForm() {
-				const response = Bootpay.requestPayment({
-					application_id: '6450b5b4755e27001d375f49',
-					price: 1000,
-					order_name: '테스트결제',
-					order_id: 'TEST_ORDER_ID',
-				});
+				try {
+					const response = Bootpay.requestPayment({
+						application_id: '6450b5b4755e27001d375f49',
+						price: 100,
+						order_name: '아나머니 충전',
+						order_id: 'TEST_ORDER_ID',
+						extra: {
+							open_type: 'iframe',
+							browser_open_type: [
+								{
+									browser: 'kakaotalk',
+									open_type: 'popup',
+								},
+								{
+									browser: 'naver',
+									open_type: 'popup',
+								},
+								{
+									browser: 'mobile_safari',
+									open_type: 'popup',
+								},
+								{
+									browser: 'mobile_chrome',
+									open_type: 'iframe',
+								},
+							],
+							redirect_url: 'URL',
+						},
+					});
+					switch (response.event) {
+						case 'issued':
+							break;
+						case 'done':
+							console.log(response);
+							break;
+						case 'confirm':
+							console.log(response.receipt_id);
+
+							const confirmedData = Bootpay.confirm();
+
+							if (confirmedData.event === 'done') {
+							}
+
+							break;
+					}
+				} catch (e) {
+					console.log(e.message);
+					switch (e.event) {
+						case 'cancel':
+							console.log(e.message);
+							break;
+						case 'error':
+							console.log(e.error_code);
+							break;
+					}
+				}
 			},
 		},
 	};
