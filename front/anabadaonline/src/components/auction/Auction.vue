@@ -1,7 +1,7 @@
 <template>
 	<div class="title">인기 매물</div>
 	<div class="productFlex">
-		<a class="flexItem" v-for="item in product.list" :key="item.productNo">
+		<a class="flexItem" v-for="item in product" :key="item.productNo">
 			<a v-bind:href="'/ProductDt?productNo=' + item.productNo">
 				<img
 					class="productImg"
@@ -52,7 +52,6 @@
 		],
 	};
 
-	/* Code generated with AutoHTML Plugin for Figma */
 	import One8Px from './One8Px.vue';
 	import axios from '@/axios.js';
 
@@ -63,11 +62,9 @@
 		},
 		props: {},
 		data() {
-			// quickfix to have components available to pass as props
-
 			return {
 				One8Px,
-				product: a,
+				product: '',
 			};
 		},
 		methods: {
@@ -79,7 +76,11 @@
 			},
 		},
 		mounted() {
-			console.log(this.product.list);
+			console.log(product);
+		},
+
+		created() {
+			this.product();
 		},
 	};
 </script>
