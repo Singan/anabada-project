@@ -16,6 +16,9 @@ public interface MemberRepository extends JpaRepository<Member,Long> {
 
     boolean existsMemberByMemberId(String id);
 
-    @Query("select distinct m from Member m join fetch m.memberProductList p join fetch p.productSocket where m.memberId = :id")
+    @Query("select m from Member m " +
+            "left join fetch m.memberProductList p " +
+            "left join fetch p.productSocket " +
+            "where m.memberId = :id")
     Member findMemberByMemberId(@Param("id") String id);
 }
