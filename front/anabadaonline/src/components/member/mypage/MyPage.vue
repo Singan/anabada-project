@@ -11,6 +11,7 @@
 				/>
 			</div>
 			<div class="moneyInfoBox">
+				<!-- span 태그 a 태그로 변경하기 -->
 				<span class="anaMoneyText">내 아나머니</span>
 				<button class="anaMoneyChargeButton" @click="payForm">
 					충전
@@ -97,7 +98,8 @@
 
 			async payForm() {
 				try {
-					const response = Bootpay.requestPayment({
+					// 결제 창 따로 만들기
+					const response = await Bootpay.requestPayment({
 						application_id: '6450b5b4755e27001d375f49',
 						price: 100,
 						order_name: '아나머니 충전',
