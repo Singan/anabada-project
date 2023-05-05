@@ -2,6 +2,7 @@ package com.anabada.entity;
 
 import com.anabada.dto.request_dto.MemberUpdateDto;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -26,6 +27,7 @@ public class Member {
     @Column(name = "member_birth")
     private LocalDate memberBirth;
     @Column(name = "member_money")
+    @ColumnDefault(value = "0")
     private Integer memberMoney;
     @Column(name = "member_temper")
     private Float memberTemper;

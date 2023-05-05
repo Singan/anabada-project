@@ -13,7 +13,7 @@
                 </button>
                 <div class="showMoney">
                     <span class="moneyText">머니</span>
-                    <span class="anaMoney">0</span>
+                    <span class="anaMoney">{{ myData.memberMoney }}</span>
                 </div>
             </div>
         </div>
@@ -39,17 +39,6 @@
                 <div class="line-1"></div>
             </div>
         </div>
-
-        <div class="">
-            <div class="group-3">
-                <div class="rectangle-53"></div>
-
-                <div class="--2">머니</div>
-            </div>
-
-            <div class="_0">0</div>
-        </div>
-
         <!-- <div class="group-30">
 			<div class="kb------94290200086122">KB 국민은행 94290200086122</div>
 		</div> -->
@@ -139,6 +128,8 @@ export default {
                             addMoney: response.data.price
                         }).then(() => {
                             alert("결제가 성공적으로 진행되었습니다.")
+                            this.myData.memberMoney += response.data.price;
+
                         });
                         break;
                     case 'confirm':
