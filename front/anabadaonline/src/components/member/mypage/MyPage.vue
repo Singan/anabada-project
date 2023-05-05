@@ -17,7 +17,7 @@
 				</button>
 				<div class="showMoney">
 					<span class="moneyText">머니</span>
-					<span class="anaMoney">0</span>
+					<span class="anaMoney">{{ myData.memberMoney }}</span>
 				</div>
 			</div>
 		</div>
@@ -45,17 +45,6 @@
 				<div class="line-1"></div>
 			</div>
 		</div>
-
-		<div class="">
-			<div class="group-3">
-				<div class="rectangle-53"></div>
-
-				<div class="--2">머니</div>
-			</div>
-
-			<div class="_0">0</div>
-		</div>
-
 		<!-- <div class="group-30">
 			<div class="kb------94290200086122">KB 국민은행 94290200086122</div>
 		</div> -->
@@ -107,15 +96,10 @@
 			},
 
 			async payForm() {
-				// 버튼 누르면 결제할 금액을 입력할 창을 띄움
-
-				let money = prompt('금액: ');
-				console.log(money);
-
 				try {
-					const response = await Bootpay.requestPayment({
+					const response = Bootpay.requestPayment({
 						application_id: '6450b5b4755e27001d375f49',
-						price: money,
+						price: 100,
 						order_name: '아나머니 충전',
 						order_id: 'TEST_ORDER_ID',
 						extra: {
@@ -146,6 +130,15 @@
 							break;
 						case 'done':
 							console.log(response);
+							axios
+								.post('/mypage/pay', {
+									addMoney: response.data.price,
+								})
+								.then(() => {
+									alert('결제가 성공적으로 진행되었습니다.');
+									this.myData.memberMoney +=
+										response.data.price;
+								});
 							break;
 						case 'confirm':
 							console.log(response.receipt_id);
