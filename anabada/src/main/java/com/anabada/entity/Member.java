@@ -27,8 +27,7 @@ public class Member {
     private String memberName;
     @Column(name = "member_birth")
     private LocalDate memberBirth;
-    @Column(name = "member_money")
-    @ColumnDefault(value = "0")
+    @Column(name = "member_money" ,columnDefinition = "0")
     private Integer memberMoney;
     @Column(name = "member_temper")
     private Float memberTemper;
@@ -39,7 +38,6 @@ public class Member {
     private String memberWishAddr;
     private String memberAccount;
     private String memberImage;
-    private String memberBank;
 
     @OneToMany(mappedBy = "member")
     private List<SocketRelation> memberSocketList;
@@ -57,7 +55,8 @@ public class Member {
                   String memberAddr,
                   String memberWishAddr,
                   String memberAccount,
-                  String memberImage,String memberBank,List<SocketRelation> memberSocketList
+                  String memberImage,List<SocketRelation> memberSocketList,
+                  List<Product> memberProductList
     ) {
         this.memberNo = memberNo;
         this.memberName = memberName;
@@ -71,8 +70,8 @@ public class Member {
         this.memberWishAddr = memberWishAddr;
         this.memberAccount = memberAccount;
         this.memberImage = memberImage;
-        this.memberBank = memberBank;
         this.memberSocketList = memberSocketList;
+        this.memberProductList = memberProductList;
     }
     public void addSocketList(SocketRelation socketRelation){
         memberSocketList.add(socketRelation);
