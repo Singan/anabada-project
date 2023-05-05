@@ -18,17 +18,10 @@ public class MyPageFindDto {
     private String memberName;
     private Integer memberMoney;
     private String memberImage;
-//    만약 생일까지 뽑고 싶다면
-//    @DateTimeFormat(pattern = "yyyy-MM-dd")
-//    private LocalDate memberBirth;
 
-//    멤버 계좌번호
-//    private String memberAccountNum;
-
-    public MyPageFindDto (MemberDetailDTO member) {
-        this.memberName = member.getUserNickname();
-//        this.memberMoney = member.getMoney();
-//        this.memberImage = member.getImage();
-//        this.memberBirth = member.getMemberBirth();
+    public MyPageFindDto (Member member) {
+        this.memberName = member.getMemberName();
+        this.memberMoney = member.getMemberMoney();
+        this.memberImage = member.getMemberImage();
     }
 }

@@ -87,8 +87,8 @@ public class MemberService implements UserDetailsService {
     }
 
     public MyPageFindDto myPage(MemberDetailDTO principal) {
-        MemberDetailDTO memberDetailDTO = new MemberDetailDTO(principal.getMember());
-        return new MyPageFindDto(memberDetailDTO);
+        Member member = memberRepository.findByMemberId(principal.getUsername());
+        return new MyPageFindDto(member);
     }
 
     public Authentication getAuthentication(Member member) {

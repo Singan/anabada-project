@@ -1,6 +1,7 @@
 package com.anabada.entity;
 
 import com.anabada.dto.request_dto.MemberUpdateDto;
+import com.anabada.dto.request_dto.PayDto;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -81,5 +82,9 @@ public class Member {
         this.memberDetailAddr = memberUpdateDto.getUpdateDetailAddr();
         this.memberWishAddr = memberUpdateDto.getUpdateWishAddr();
         this.memberImage = updateImagePath;
+    }
+
+    public void updateMemberMoney(PayDto payDto) {
+        this.memberMoney = payDto.getAddMoney();
     }
 }
