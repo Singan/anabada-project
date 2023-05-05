@@ -73,7 +73,8 @@ export default {
         return {
             myData: ''
         };
-    }, methods: {
+    },
+    methods: {
         goExit() {
             this.$router.push('./MemberExit');
         },
@@ -99,7 +100,7 @@ export default {
             this.$router.push('./');
         },
 
-        payForm() {
+        async payForm() {
             try {
                 const response = Bootpay.requestPayment({
                     application_id: '6450b5b4755e27001d375f49',
@@ -134,6 +135,11 @@ export default {
                         break;
                     case 'done':
                         console.log(response);
+                        axios.post("/mypage/pay", {
+                            addMoney: response.data.price
+                        }).then(() => {
+                            alert("결제가 성공적으로 진행되었습니다.")
+                        });
                         break;
                     case 'confirm':
                         console.log(response.receipt_id);
