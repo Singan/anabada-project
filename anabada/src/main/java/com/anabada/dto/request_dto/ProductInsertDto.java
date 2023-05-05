@@ -36,6 +36,7 @@ public class ProductInsertDto {
                 .productUseDate(usingDate)
                 .productSocket(productSocket)
                 .member(member)
+                .productVisit(0L)
                 .productPrice(price)
                 .category(category)
                 .build();

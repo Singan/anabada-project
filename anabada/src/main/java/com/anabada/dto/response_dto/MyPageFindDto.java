@@ -26,7 +26,7 @@ public class MyPageFindDto {
 //    private String memberAccountNum;
 
     public MyPageFindDto (MemberDetailDTO member) {
-        this.memberName = member.getUsername();
+        this.memberName = member.getUserNickname();
 //        this.memberMoney = member.getMoney();
 //        this.memberImage = member.getImage();
 //        this.memberBirth = member.getMemberBirth();

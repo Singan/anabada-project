@@ -35,7 +35,7 @@ public class ProductService {
         Optional<Product> product = productRepository.findById(productNo);
 
         if (!product.isEmpty()) {
-
+            product.get().upProductVisit();
             ProductFindOneDto productFindOneDto = new ProductFindOneDto(product.get());
 
             return productFindOneDto;

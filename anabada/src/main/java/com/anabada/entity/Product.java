@@ -46,9 +46,15 @@ public class Product {
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "product_socket_no",nullable = false)
     private ProductSocket productSocket;
+
+    private Long productVisit;
+
+    public void upProductVisit(){
+        this.productVisit++;
+    }
     @Builder
     public Product(Long productNo, Member member, String productName, String productDetail, Integer productPrice,
-                   String productUseDate, Category category, List<ProductImage> productImageList,ProductSocket productSocket) {
+                   String productUseDate, Category category,Long productVisit, List<ProductImage> productImageList,ProductSocket productSocket) {
         this.productNo = productNo;
         this.member = member;
         this.productName = productName;
@@ -59,5 +65,6 @@ public class Product {
         this.productImageList = productImageList;
         this.createDateTime = LocalDateTime.now();
         this.productSocket = productSocket;
+        this.productVisit = productVisit;
     }
 }

@@ -3,7 +3,7 @@ import Stomp from 'webstomp-client';
 
 let url = process.env.VUE_APP_API_URL
 
-let result = {
+let socketResult = {
     headers: {},
     setHeaders(headers) {
         this.headers = headers;
@@ -29,18 +29,17 @@ let result = {
             this.headers,
             (frame) => {
                 console.dir(frame)
-                this.stompClient.subscribe('/send', (res) => {
-
-                }, this.headers);
+                for (let socket in this.socketList) {
+                    this.stompClient.subscribe('/' + socket.socketId, (res) => {
+                        let result = JSON.stringify(res.body);
+                        console.log(result)
+                    }, this.headers);
+                }
             },
             (error) => {
                 console.log('소켓 연결 실패', error);
             },
         );
-        this.stompClient.subscribe('/send', (res) => {
-
-        }, this.headers);
-
     },
     send(msg) {
         if (stompClient && stompClient.connected) {
@@ -55,4 +54,4 @@ let result = {
 
 
 
-export default result;
+export default socketResult;
