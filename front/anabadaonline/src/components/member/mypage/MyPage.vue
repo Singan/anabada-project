@@ -7,6 +7,7 @@
                 <img src="@/assets/profileButton.png" alt="profileButton" class="showProfileButton" />
             </div>
             <div class="moneyInfoBox">
+                <!-- span 태그 a 태그로 변경하기 -->
                 <span class="anaMoneyText">내 아나머니</span>
                 <button class="anaMoneyChargeButton" @click="payForm">
                     충전
@@ -129,6 +130,7 @@ export default {
                         }).then(() => {
                             alert("결제가 성공적으로 진행되었습니다.")
                             this.myData.memberMoney += response.data.price;
+
 
                         });
                         break;

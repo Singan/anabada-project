@@ -86,6 +86,6 @@ public class Member {
     }
 
     public void updateMemberMoney(PayDto payDto) {
-        this.memberMoney = payDto.getAddMoney();
+        this.memberMoney += payDto.getAddMoney();
     }
 }
