@@ -30,6 +30,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             throws IOException, ServletException {
 
         String token = request.getHeader("X-AUTH-TOKEN");
+        System.out.println(request.getRequestURI());
+        System.out.println(token);
             if (jwtTokenProvider.isValidToken(token)) {
                 Member member = jwtTokenProvider.getUserIdFromToken(token);
                 if (member != null) {

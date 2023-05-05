@@ -32,14 +32,11 @@ public class ChatController {
         System.out.println("SendMessage");
 
         MemberDetailDTO sender = (MemberDetailDTO) authentication.getPrincipal();
-        Authentication receiveAuthentication = (Authentication) accessor.getUser();
-        MemberDetailDTO receiver = (MemberDetailDTO) receiveAuthentication.getPrincipal();
         System.out.println("receiveMessage");
-        chatMessage.setMemberId(sender.getUsername());
-        if (receiver.getNo() != sender.getNo()) {
-
-        }
-        simpMessagingTemplate.convertAndSend("/send",chatMessage);
+        chatMessage.setMemberName(sender.getUserNickname());
+        chatMessage.setMemberNo(sender.getNo());
+        System.out.println(sender.getUserNickname());
+        simpMessagingTemplate.convertAndSend("/send",chatMessage); // 센드로 메시지를 쏴준다.
         simpMessagingTemplate.convertAndSend("/send2",chatMessage);
 
     }

@@ -73,7 +73,7 @@ public class JwtTokenProvider{
 
             log.info("expireTime :" + claims.getExpiration());
             log.info("userId :" + claims.get("userId"));
-            log.info("userNm :" + claims.get("userNm"));
+            log.info("userName :" + claims.get("userNm"));
 
             return true;
         } catch (ExpiredJwtException exception) {
@@ -141,6 +141,7 @@ public class JwtTokenProvider{
 
         claims.put("userId", Member.getMemberId());
         claims.put("userNo", Member.getMemberNo());
+        claims.put("userName", Member.getMemberName());
         return claims;
     }
 
@@ -175,11 +176,12 @@ public class JwtTokenProvider{
         Claims claims = getClaimsFormToken(token);
         String id = claims.get("userId").toString();
         Long no = Long.parseLong(claims.get("userNo").toString());
-
+        String name = claims.get("userName").toString();
         Member member = Member
                 .builder()
                 .memberId(id)
                 .memberNo(no)
+                .memberName(name)
                 .build();
         return member;
     }

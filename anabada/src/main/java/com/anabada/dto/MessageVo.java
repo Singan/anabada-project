@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Data
 @ToString
 public class MessageVo {
-    private String memberId;
+    private Long memberNo;
     private String message;
+    private String memberName;
 }
