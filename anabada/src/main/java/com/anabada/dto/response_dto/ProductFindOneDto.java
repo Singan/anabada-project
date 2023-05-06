@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -21,6 +23,7 @@ public class ProductFindOneDto {
     private String productUseDate;
     private Long productVisit;
     private LocalDateTime productInsertTime;
+    private List<String> productImageList;
     public ProductFindOneDto(Product product) {
         Member member = product.getMember();
         this.productNo = product.getProductNo();
@@ -32,6 +35,8 @@ public class ProductFindOneDto {
         this.productVisit = product.getProductVisit();
         this.memberAddr = member.getMemberAddr();
         this.productInsertTime = product.getCreateDateTime();
-
+        this.productImageList = product.getProductImageList().stream().map(productImage ->  {
+            return productImage.getImageAddr();
+        }).collect(Collectors.toList());
     }
 }
