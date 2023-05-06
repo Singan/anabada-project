@@ -20,9 +20,7 @@
 		<div class="line"></div>
 
 		<div class="prouductInfo">
-			<div class="productNamePrice">
-				상품 이름 : {{ temporaryData.seller1[0].productName }}
-			</div>
+			<div class="productNamePrice">상품 이름 :</div>
 			<div class="productTime">등록 시간 :</div>
 			<div class="productNamePrice">상품 가격 : xx원</div>
 			<div class="productExplain">상품 설명 :</div>
@@ -112,23 +110,23 @@
 		data() {
 			return {
 				seller: '',
-				temporaryData,
+				temporaryData: '',
+				productNo: this.$route.query.test,
 			};
 		},
 
 		methods: {},
-		mounted() {
-			console.log(this.$route.query.test);
-		},
 
 		//axios 통신
 		methods: {
 			sellerInfo() {
-				axios.get().then((response) => {
-					console.log(response.data);
-					this.seller = response.data;
-					console.log(this.seller);
-				});
+				axios
+					.get('/product?productNo=' + this.productNo)
+					.then((response) => {
+						console.log(response.data);
+						this.seller = response.data;
+						console.log(this.seller);
+					});
 			},
 		},
 
