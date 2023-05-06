@@ -5,7 +5,9 @@
 		<div class="userInfo">
 			<img class="userImage" src="@/assets/userImage.jpg" />
 			<div class="box1">
-				<div class="sellerName">판매자 이름 :</div>
+				<div class="sellerName">
+					판매자 이름 : {{ seller.memberName }}
+				</div>
 				<div class="mainDeal">판매자 주 거래지 :</div>
 			</div>
 
@@ -20,16 +22,24 @@
 		<div class="line"></div>
 
 		<div class="prouductInfo">
-			<div class="productNamePrice">상품 이름 :</div>
+			<div class="productNamePrice">
+				상품 이름 : {{ seller.productName }}
+			</div>
 			<div class="productTime">등록 시간 :</div>
-			<div class="productNamePrice">상품 가격 : xx원</div>
-			<div class="productExplain">상품 설명 :</div>
+			<div class="productNamePrice">
+				상품 가격 : {{ seller.productPrice }}원
+			</div>
+			<div class="productExplain">
+				상품 설명 : {{ seller.productDetail }}
+			</div>
+			<div class="productExplain">
+				상품 사용기간 : {{ seller.productUseDate }}
+			</div>
 		</div>
 
 		<div class="myInfo">
-			<a href="" class="myInfoText">관심 0</a>
-			<a class="myInfoText">채팅 0</a>
-			<a class="myInfoText">조회 0</a>
+			<a href="" class="myInfoText">찜 0</a>
+			<a class="myInfoText">조회 {{ seller.productVisit }}</a>
 			<a class="myInfoText">경매 참여 0</a>
 		</div>
 
@@ -111,7 +121,7 @@
 			return {
 				seller: '',
 				temporaryData: '',
-				productNo: this.$route.query.test,
+				productNo: this.$route.query.productNo,
 			};
 		},
 
