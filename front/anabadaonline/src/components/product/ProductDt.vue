@@ -25,7 +25,9 @@
 			<div class="productNamePrice">
 				상품 이름 : {{ seller.productName }}
 			</div>
-			<div class="productTime">등록 시간 :</div>
+			<div class="productTime">
+				등록 시간 : {{ seller.productInsertTime }}
+			</div>
 			<div class="productNamePrice">
 				상품 가격 : {{ seller.productPrice }}원
 			</div>
