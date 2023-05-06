@@ -50,7 +50,7 @@ public class Product {
     private Long productVisit;
 
     public void upProductVisit(){
-        this.productVisit++;
+        this.productVisit+=1;
     }
     @Builder
     public Product(Long productNo, Member member, String productName, String productDetail, Integer productPrice,
