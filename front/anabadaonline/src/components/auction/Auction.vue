@@ -5,11 +5,12 @@
 				v-for="item in categoryList"
 				:key="item.categoryNo"
 				:value="item.categoryNo"
+				class="title"
 			>
 				<div class="title">{{ item.categoryName }}</div>
 			</option>
 		</select>
-		<button @click="product">조회</button>
+		<button @click="product" class="list">조회</button>
 	</div>
 	<div class="productFlex">
 		<a class="flexItem" v-for="item in productList" :key="item.productNo">
@@ -95,14 +96,12 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		border: none;
 	}
 
-	.rectangle-20 {
-		position: absolute;
-		left: 385px;
-		top: 285px;
-		overflow: visible;
-	}
+	/* .list {
+		border: none;
+	} */
 
 	.productImg {
 		background: #d9d9d9;
