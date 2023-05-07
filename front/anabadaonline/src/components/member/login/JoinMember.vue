@@ -21,7 +21,7 @@
             <div class="post">
                 <!-- <label for="addr" class="postcodeText">우편번호</label>
 				<input type="text" id="post" v-model="addr" readonly /> -->
-                <button @click="search()">주소 찾기</button>
+                <button @click="search" type="button">주소 찾기</button>
             </div>
             <div class="addr">
                 <label for="addr">주소</label>
@@ -41,7 +41,7 @@
             </div>
             <div class="imageContainer">
                 <button type="submit" class="join">회원가입</button>
-                <button class="cancel" @click="goLogin">취소하기</button>
+                <button class="cancel" @click="goLogin" type="button">취소하기</button>
             </div>
         </form>
     </div>
