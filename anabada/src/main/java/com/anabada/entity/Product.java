@@ -46,7 +46,7 @@ public class Product {
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "product_socket_no",nullable = false)
     private ProductSocket productSocket;
-    @Column(columnDefinition = "0")
+    @Column(columnDefinition = "bigint default 0")
     private Long productVisit;
 
     public void upProductVisit(){
