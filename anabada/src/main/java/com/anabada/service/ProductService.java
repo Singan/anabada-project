@@ -45,7 +45,8 @@ public class ProductService {
     }
 
     // 모든 product
-    public ResultList<String,List<ProductFindAllDto>> findProductList(Pageable pageable) {
+    //메인페이지 하단 부분
+    public ResultList<String,List<ProductFindAllDto>> findAllByProductImageListIsNotEmpty(Pageable pageable) {
         List<Product> productList = productRepository.findAllByProductImageListIsNotEmpty(pageable);
 
         List<ProductFindAllDto> productDtoList =

@@ -48,16 +48,16 @@ public class ProductController {
 
     // 요구사항 분석에 맞춰 보여주는 값 주기 order, all, bid
 
-    // 상품 리스트
     @GetMapping("/main")
     @Operation(description = "메인페이지 하단 상품 조회")
     public ResultList<String,List<ProductFindAllDto>> productList(
             @PageableDefault(sort = "id", size = 4, direction = Sort.Direction.DESC)
             Pageable pageable
     ) {
-        ResultList<String,List<ProductFindAllDto>> result = productService.findProductList(pageable);
+        ResultList<String,List<ProductFindAllDto>> result = productService.findAllByProductImageListIsNotEmpty(pageable);
         return result;
     }
+    // 상품 리스트
 
     @GetMapping("/list")
     @Operation(description = "카테고리별 상품 리스트")
