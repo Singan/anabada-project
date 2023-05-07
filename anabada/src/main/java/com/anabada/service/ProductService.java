@@ -32,11 +32,12 @@ public class ProductService {
 
     // product 세부 정보
     public ProductFindOneDto findProduct(Long productNo) {
-        Optional<Product> product = productRepository.findById(productNo);
+        Optional<Product> productOptional = productRepository.findById(productNo);
 
-        if (!product.isEmpty()) {
-            product.get().upProductVisit();
-            ProductFindOneDto productFindOneDto = new ProductFindOneDto(product.get());
+        if (!productOptional.isEmpty()) {
+            Product product = productOptional.get();
+            product.upProductVisit();
+            ProductFindOneDto productFindOneDto = new ProductFindOneDto(product);
 
             return productFindOneDto;
         }
