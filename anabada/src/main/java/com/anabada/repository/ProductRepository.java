@@ -20,6 +20,6 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     @BatchSize(size = 3)
     List<Product> findAllByProductImageListIsNotEmpty(Pageable pageable);
 
-    @Query("select p from Product p join p.category c where c.categoryNo = :categoryNo")
+    @Query("select p from Product p join fetch p.productImageList where p.category.categoryNo = :categoryNo")
     List<Product> findProductByCategory(@Param("categoryNo") Long categoryNo);
 }
