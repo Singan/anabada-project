@@ -131,6 +131,7 @@
 		methods: {
 			category() {
 				axios.get('/category').then((response) => {
+					console.log(response.data);
 					this.categoryList = response.data;
 				});
 			},

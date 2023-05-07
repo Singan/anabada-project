@@ -1,6 +1,16 @@
 <template>
-	<div class="title">인기 매물</div>
-	<select></select>
+	<div class="title">
+		<select v-model="categoryNum" class="title">
+			<option
+				v-for="item in categoryList"
+				:key="item.categoryNo"
+				:value="item.categoryNo"
+			>
+				<div class="title">{{ item.categoryName }}</div>
+			</option>
+		</select>
+		<button @click="product">조회</button>
+	</div>
 	<div class="productFlex">
 		<a class="flexItem" v-for="item in productList" :key="item.productNo">
 			<a v-bind:href="'/ProductDt?productNo=' + item.productNo">
@@ -28,13 +38,22 @@
 		data() {
 			return {
 				productList: '',
-				categoryNo: '1',
+				categoryNum: 1, //초기값
+				categoryList: '',
+
+				categoryNo: '',
 			};
 		},
 		methods: {
+			category() {
+				axios.get('/category').then((response) => {
+					console.log(response.data);
+					this.categoryList = response.data;
+				});
+			},
 			product() {
 				axios
-					.get('/product/list?categoryNo=' + this.categoryNo)
+					.get('/product/list?categoryNo=' + this.categoryNum)
 					.then((response) => {
 						console.dir(response.data);
 						this.productList = response.data;
@@ -45,6 +64,7 @@
 
 		created() {
 			this.product();
+			this.category();
 		},
 	};
 </script>
