@@ -3,23 +3,23 @@
 		<div class="user1">
 			<div class="userImage"></div>
 			<div class="userName">{{ testData.list[0].memberName }}</div>
-			<div class="userPrice">원</div>
+			<div class="userPrice">{{ testData.list[0].price }}원</div>
 		</div>
 
 		<div class="line"></div>
 
 		<div class="user2">
 			<div class="userImage"></div>
-			<dib class="userName">김세진</dib>
-			<div class="userPrice">xxx,xxx원</div>
+			<dib class="userName">{{ testData.list[1].memberName }}</dib>
+			<div class="userPrice">{{ testData.list[1].price }}원</div>
 		</div>
 
 		<div class="line"></div>
 
 		<div class="user3">
 			<div class="userImage"></div>
-			<dib class="userName">석성희</dib>
-			<div class="userPrice">xxx,xxx원</div>
+			<dib class="userName">{{ testData.list[2].memberName }}</dib>
+			<div class="userPrice">{{ testData.list[2].price }}원</div>
 		</div>
 
 		<div class="bidBox">
@@ -65,6 +65,7 @@
 			return {
 				auction: '',
 				productNo: this.$route.query.productNo,
+				testData,
 			};
 		},
 
