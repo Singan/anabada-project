@@ -1,9 +1,9 @@
 <template>
-	<div class="form">
+	<div class="form1">
 		<div class="user1">
 			<div class="userImage"></div>
-			<dib class="userName">홍길동</dib>
-			<div class="userPrice">xxx,xxx원</div>
+			<div class="userName">{{ testData.list[0].memberName }}</div>
+			<div class="userPrice">원</div>
 		</div>
 
 		<div class="line"></div>
@@ -39,6 +39,24 @@
 <script>
 	import axios from '@/axios.js';
 
+	var testData = {
+		length: 3,
+		list: [
+			{
+				memberName: 'user1',
+				price: 11,
+			},
+			{
+				memberName: 'user2',
+				price: 22,
+			},
+			{
+				memberName: 'user3',
+				price: 33,
+			},
+		],
+	};
+
 	export default {
 		name: '',
 		components: {},
@@ -46,16 +64,19 @@
 		data() {
 			return {
 				auction: '',
+				productNo: this.$route.query.productNo,
 			};
 		},
 
 		methods: {
 			auctionList() {
-				axios.get('/bid').then((response) => {
-					console.log(response.data);
-					this.auction = response.data;
-					console.log(this.auction);
-				});
+				axios
+					.get('/bid?productNo=' + this.productNo)
+					.then((response) => {
+						console.log(response.data);
+						this.auction = response.data;
+						console.log(this.auction);
+					});
 			},
 		},
 
@@ -66,7 +87,7 @@
 </script>
 
 <style>
-	.form {
+	.form1 {
 		background: #ffffff;
 		border-radius: 5px;
 		width: 560px;
@@ -80,7 +101,7 @@
 		border: 5px solid black;
 	}
 
-	.form > * {
+	.form1 > * {
 		margin-bottom: 10px;
 		padding: 5px;
 	}

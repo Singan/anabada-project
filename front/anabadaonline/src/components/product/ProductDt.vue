@@ -1,6 +1,10 @@
 <template>
 	<form class="form">
-		<div class="productPicture"></div>
+		<div>
+			<img class="leftButton" src="@/assets/left.jpg" />
+			<img class="productPicture" />
+			<img class="rightButton" src="@/assets/right.jpg" />
+		</div>
 
 		<div class="userInfo">
 			<img class="userImage" src="@/assets/userImage.jpg" />
@@ -40,11 +44,11 @@
 		</div>
 
 		<div class="productStatus">
-			<a href="" class="productText1">찜 0</a>
+			<a class="productText1">찜 0</a>
 			<a class="productText1">조회 {{ seller.productVisit }}</a>
 		</div>
 
-		<a class="auctionText">경매 참여 0</a>
+		<button class="auctionText">경매 참여</button>
 
 		<div class="line"></div>
 
@@ -127,8 +131,7 @@
 				productNo: this.$route.query.productNo,
 			};
 		},
-
-		methods: {},
+		components: {},
 
 		//axios 통신
 		methods: {
@@ -154,7 +157,7 @@
 		width: 100%;
 		background: #ffffff;
 		width: 700px;
-		height: 1500px;
+		height: 3000px;
 		display: flex;
 		flex-direction: column;
 		margin: 100px auto 0;
@@ -171,8 +174,17 @@
 		border-radius: 20px;
 		width: 580px;
 		height: 400px;
-		left: 670px;
-		top: 160px;
+	}
+
+	.leftButton {
+		width: 40px;
+		height: 40px;
+		margin-bottom: 180px;
+	}
+	.rightButton {
+		width: 40px;
+		height: 40px;
+		margin-bottom: 180px;
 	}
 
 	.userInfo {
@@ -327,5 +339,13 @@
 	.productRegion {
 		color: #000000;
 		font: 16px 'Roboto', sans-serif;
+	}
+
+	.arrow {
+		width: 0;
+		height: 0;
+		border-top: 20px solid transparent;
+		border-bottom: 20px solid transparent;
+		border-right: 20px solid black;
 	}
 </style>
