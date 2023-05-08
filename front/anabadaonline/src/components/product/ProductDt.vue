@@ -102,7 +102,7 @@
 
 <script>
 	import axios from '@/axios.js';
-
+    import BidList from './BidList.vue';
 	var temporaryData = {
 		seller1: [
 			{
