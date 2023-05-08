@@ -48,10 +48,10 @@
             <a class="productText1">조회 {{ seller.productVisit }}</a>
         </div>
 
-        <button class="auctionText">경매 참여</button>
+        <button class="auctionText" @click="bidStart">경매 참여</button>
 
         <div class="line"></div>
-        <BidList :pNo="productNo"></BidList>
+        <BidList v-if="check"></BidList>
 
         <div class=" box3">
             <div class="actionProduct">인기경매 상품</div>
@@ -131,6 +131,7 @@ export default {
             seller: '',
             temporaryData: '',
             productNo: this.$route.query.productNo,
+            check: false,
         };
     },
 
@@ -145,6 +146,9 @@ export default {
                     console.log(this.seller);
                 });
         },
+        bidStart() {
+            this.check = true;
+        }
     },
 
     mounted() {
@@ -249,8 +253,9 @@ export default {
     border-style: solid;
     border-color: #d9d9d9;
     border-width: 1px 0 0 0;
-    width: 580px;
+    width: 100%;
     height: 0px;
+    margin-bottom: 5px;
 }
 
 .productText1 {

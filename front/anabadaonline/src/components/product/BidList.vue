@@ -1,41 +1,33 @@
 <template>
-    <a v-bind:href="'dd' + pNo"></a>
-    <div class="form">
+    <div class="form1">
         <div class="user1">
             <div class="userImage"></div>
-            <dib class="userName">홍길동</dib>
-            <div class="userPrice">xxx,xxx원</div>
+            <div class="userName">{{ testData.list[0].memberName }}</div>
+            <div class="userPrice">{{ testData.list[0].price }}원</div>
         </div>
-        <div class="form1">
-            <div class="user1">
-                <div class="userImage"></div>
-                <div class="userName"></div>
-                <div class="userPrice">원</div>
+
+        <div class="line"></div>
+
+
+        <div class="user2">
+            <div class="userImage"></div>
+            <dib class="userName">{{ testData.list[1].memberName }}</dib>
+            <div class="userPrice">{{ testData.list[1].price }}원</div>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="user3">
+            <div class="userImage"></div>
+            <dib class="userName">{{ testData.list[2].memberName }}</dib>
+            <div class="userPrice">{{ testData.list[2].price }}원</div>
+        </div>
+
+        <div class="bidBox">
+            <div class="inputPrice">
+                <input class="textSize" type="text" placeholder="ex)xxx,xxx,xxx 원" style="border: none; outline: none" />
             </div>
-
-            <div class="line"></div>
-
-            <div class="user2">
-                <div class="userImage"></div>
-                <dib class="userName">김세진</dib>
-                <div class="userPrice">xxx,xxx원</div>
-            </div>
-
-            <div class="line"></div>
-
-            <div class="user3">
-                <div class="userImage"></div>
-                <dib class="userName">석성희</dib>
-                <div class="userPrice">xxx,xxx원</div>
-            </div>
-
-            <div class="bidBox">
-                <div class="inputPrice">
-                    <input class="textSize" type="text" placeholder="ex)xxx,xxx,xxx 원"
-                        style="border: none; outline: none" />
-                </div>
-                <button class="bid">입찰</button>
-            </div>
+            <button class="bid">입찰</button>
         </div>
     </div>
 </template>
@@ -60,19 +52,18 @@ var testData = {
     ],
 };
 import axios from '@/axios.js';
+import socket from '@/common/socket'
 export default {
-    props: {
-        pNo: {
-            type: Number,
-            default: 1
-        },
-    },
+
     name: '',
     components: {},
     props: {},
     data() {
         return {
             auction: '',
+            testData,
+            productNo: this.$route.query.productNo,
+
         };
     },
 
@@ -88,6 +79,7 @@ export default {
         },
     },
 
+
     created() {
         this.auctionList();
     },
@@ -95,20 +87,6 @@ export default {
 </script>
 
 <style scoped>
-.form {
-    background: #ffffff;
-    border-radius: 5px;
-    width: 560px;
-    height: 330px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: hidden;
-    margin: 100px auto 0;
-    box-shadow: 4px 4px 8px 0px rgba(216, 216, 216, 0.25);
-    border: 5px solid black;
-}
-
 .form>* {
     margin-bottom: 10px;
     padding: 5px;
@@ -117,13 +95,11 @@ export default {
 .form1 {
     background: #ffffff;
     border-radius: 5px;
-    width: 560px;
+    width: 97%;
     height: 330px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: hidden;
-    margin: 100px auto 0;
     box-shadow: 4px 4px 8px 0px rgba(216, 216, 216, 0.25);
     border: 5px solid black;
 }
