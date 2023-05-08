@@ -27,12 +27,12 @@ public class BidService {
     }
 
 
-    public ResultList<Integer,List<BidInfoFindDto>> findBidList(Long productNo){
+    public ResultList<List<BidInfoFindDto>> findBidList(Long productNo){
         Product product = Product.builder().productNo(productNo).build();
         List<Bid> bidList = bidRepository.findBidByProduct(product);
 
         List<BidInfoFindDto> bidInfoFindDtoList = bidList.stream().map(bid -> new BidInfoFindDto(bid)).collect(Collectors.toList());
-        ResultList resultList = new ResultList<>(bidList.size(),bidInfoFindDtoList);
+        ResultList resultList = new ResultList<>(bidInfoFindDtoList);
         return resultList;
 
     }

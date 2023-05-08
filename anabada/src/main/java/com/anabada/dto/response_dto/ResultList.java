@@ -5,7 +5,6 @@ import lombok.Data;
 
 @AllArgsConstructor
 @Data
-public class ResultList <T,T2>{
-    private T length;
-    private T2 list;
+public class ResultList <T>{
+    private T list;
 }
