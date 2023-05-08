@@ -50,11 +50,11 @@ public class ProductController {
 
     @GetMapping("/main")
     @Operation(description = "메인페이지 하단 상품 조회")
-    public ResultList<String,List<ProductFindAllDto>> productList(
+    public ResultList<List<ProductFindAllDto>> productList(
             @PageableDefault(sort = "id", size = 4, direction = Sort.Direction.DESC)
             Pageable pageable
     ) {
-        ResultList<String,List<ProductFindAllDto>> result = productService.findAllByProductImageListIsNotEmpty(pageable);
+        ResultList<List<ProductFindAllDto>> result = productService.findAllByProductImageListIsNotEmpty(pageable);
         return result;
     }
     // 상품 리스트
