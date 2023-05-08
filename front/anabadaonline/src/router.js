@@ -104,6 +104,11 @@ const routes = [
 		name: '/BidList',
 		component: () => import('@/components/product/BidList.vue'),
 	},
+	{
+		path: '/Payment',
+		name: '/Payment',
+		component: () => import('@/components/member/mypage/Payment.vue'),
+	},
 ];
 
 export default routes;
