@@ -51,7 +51,7 @@
 	export default {
 		data() {
 			return {
-				addMoney: '',
+				addMoney: 10000,
 			};
 		},
 		methods: {
