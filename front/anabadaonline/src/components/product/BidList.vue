@@ -1,43 +1,70 @@
 <template>
+    <a v-bind:href="'dd' + pNo"></a>
     <div class="form">
         <div class="user1">
             <div class="userImage"></div>
             <dib class="userName">홍길동</dib>
             <div class="userPrice">xxx,xxx원</div>
         </div>
-
-        <div class="line"></div>
-
-        <div class="user2">
-            <div class="userImage"></div>
-            <dib class="userName">김세진</dib>
-            <div class="userPrice">xxx,xxx원</div>
-        </div>
-
-        <div class="line"></div>
-
-        <div class="user3">
-            <div class="userImage"></div>
-            <dib class="userName">석성희</dib>
-            <div class="userPrice">xxx,xxx원</div>
-        </div>
-
-        <div class="bidBox">
-            <div class="inputPrice">
-                <input class="textSize" type="text" placeholder="ex)xxx,xxx,xxx 원" style="border: none; outline: none" />
+        <div class="form1">
+            <div class="user1">
+                <div class="userImage"></div>
+                <div class="userName"></div>
+                <div class="userPrice">원</div>
             </div>
-            <button class="bid">입찰</button>
+
+            <div class="line"></div>
+
+            <div class="user2">
+                <div class="userImage"></div>
+                <dib class="userName">김세진</dib>
+                <div class="userPrice">xxx,xxx원</div>
+            </div>
+
+            <div class="line"></div>
+
+            <div class="user3">
+                <div class="userImage"></div>
+                <dib class="userName">석성희</dib>
+                <div class="userPrice">xxx,xxx원</div>
+            </div>
+
+            <div class="bidBox">
+                <div class="inputPrice">
+                    <input class="textSize" type="text" placeholder="ex)xxx,xxx,xxx 원"
+                        style="border: none; outline: none" />
+                </div>
+                <button class="bid">입찰</button>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-import axios from '@/axios.js';
 
+var testData = {
+    length: 3,
+    list: [
+        {
+            memberName: 'user1',
+            price: 11,
+        },
+        {
+            memberName: 'user2',
+            price: 22,
+        },
+        {
+            memberName: 'user3',
+            price: 33,
+        },
+    ],
+};
+import axios from '@/axios.js';
 export default {
     props: {
-        productNo: {
+        pNo: {
             type: Number,
+            default: 1
         },
     },
     name: '',
@@ -51,11 +78,13 @@ export default {
 
     methods: {
         auctionList() {
-            axios.get('/bid').then((response) => {
-                console.log(response.data);
-                this.auction = response.data;
-                console.log(this.auction);
-            });
+            axios
+                .get('/bid?productNo=' + this.productNo)
+                .then((response) => {
+                    console.log(response.data);
+                    this.auction = response.data;
+                    console.log(this.auction);
+                });
         },
     },
 
@@ -65,7 +94,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .form {
     background: #ffffff;
     border-radius: 5px;
@@ -81,6 +110,25 @@ export default {
 }
 
 .form>* {
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.form1 {
+    background: #ffffff;
+    border-radius: 5px;
+    width: 560px;
+    height: 330px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    margin: 100px auto 0;
+    box-shadow: 4px 4px 8px 0px rgba(216, 216, 216, 0.25);
+    border: 5px solid black;
+}
+
+.form1>* {
     margin-bottom: 10px;
     padding: 5px;
 }
