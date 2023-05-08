@@ -110,7 +110,7 @@
 							break;
 					}
 				} catch (e) {
-					console.log(e.message);
+					alert(e.message);
 					switch (e.event) {
 						case 'cancel':
 							console.log(e.message);
