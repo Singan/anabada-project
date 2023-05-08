@@ -38,6 +38,7 @@
 
 <script>
 	import axios from '@/axios.js';
+
 	export default {
 		name: '',
 		components: {},
@@ -45,19 +46,16 @@
 		data() {
 			return {
 				auction: '',
-				productNo: this.$route.query.productNo,
 			};
 		},
 
 		methods: {
 			auctionList() {
-				axios
-					.get('/product?productNo=' + this.productNo)
-					.then((response) => {
-						console.log(response.data);
-						this.auction = response.data;
-						console.log(this.auction);
-					});
+				axios.get('/bid').then((response) => {
+					console.log(response.data);
+					this.auction = response.data;
+					console.log(this.auction);
+				});
 			},
 		},
 

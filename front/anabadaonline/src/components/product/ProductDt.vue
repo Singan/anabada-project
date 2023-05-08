@@ -12,7 +12,7 @@
 			</div>
 
 			<div class="box2">
-				<div class="mainDeal">방사능 지수 0</div>
+				<!-- <div class="mainDeal">방사능 지수 0</div> -->
 				<div class="jjim">
 					<img class="starImage" src="@/assets/star.jpg" />찜하기
 				</div>
@@ -39,11 +39,12 @@
 			</div>
 		</div>
 
-		<div class="myInfo">
-			<a href="" class="myInfoText">찜 0</a>
-			<a class="myInfoText">조회 {{ seller.productVisit }}</a>
-			<a class="myInfoText">경매 참여 0</a>
+		<div class="productStatus">
+			<a href="" class="productText1">찜 0</a>
+			<a class="productText1">조회 {{ seller.productVisit }}</a>
 		</div>
+
+		<a class="auctionText">경매 참여 0</a>
 
 		<div class="line"></div>
 
@@ -238,7 +239,12 @@
 		height: 0px;
 	}
 
-	.myInfoText {
+	.productText1 {
+		color: #000000;
+		font: 14px 'Roboto', sans-serif;
+	}
+
+	.auctionText {
 		color: #000000;
 		font: 14px 'Roboto', sans-serif;
 		opacity: 0.4;
@@ -264,7 +270,7 @@
 		margin-bottom: 30px;
 	}
 
-	.myInfo {
+	.productStatus {
 		display: flex;
 		gap: 50px;
 	}
