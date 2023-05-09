@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -19,7 +20,7 @@ public class Product {
     private Long productNo;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_no")
+    @JoinColumn(name = "member_no", nullable = false)
     private Member member;
 
     @Column
@@ -36,13 +37,15 @@ public class Product {
     private String productUseDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="category_no")
+    @JoinColumn(name="category_no", nullable = false)
     private Category category;
 
     @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
     private List<ProductImage> productImageList;
+
     @Column
     private LocalDateTime createDateTime;
+
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "product_socket_no",nullable = false)
     private ProductSocket productSocket;
