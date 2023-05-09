@@ -2,9 +2,11 @@ package com.anabada.dto.response_dto;
 
 import com.anabada.entity.Member;
 import com.anabada.entity.Product;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,8 +24,10 @@ public class ProductFindOneDto {
     private Integer productPrice;
     private String productUseDate;
     private Long productVisit;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime productInsertTime;
     private List<String> productImageList;
+    //private Integer productHighPrice;
     public ProductFindOneDto(Product product) {
         Member member = product.getMember();
         this.productNo = product.getProductNo();
