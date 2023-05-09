@@ -24,6 +24,7 @@ public class ProductFindOneDto {
     private Long productVisit;
     private LocalDateTime productInsertTime;
     private List<String> productImageList;
+    //private Integer productHighPrice;
     public ProductFindOneDto(Product product) {
         Member member = product.getMember();
         this.productNo = product.getProductNo();

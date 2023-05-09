@@ -8,6 +8,7 @@ import com.anabada.entity.Bid;
 import com.anabada.entity.Member;
 import com.anabada.entity.Product;
 import com.anabada.repository.BidRepository;
+import com.anabada.repository.CurrentBidRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,8 @@ import java.util.stream.Collectors;
 public class BidService {
 
     private final BidRepository bidRepository;
+    private final CurrentBidRepository currentBidRepository;
     @Transactional
-
     public void bidSave(BidInsertDto bidInsertDto ,MemberDetailDTO memberDetailDTO) {
         Member member = memberDetailDTO.getMember();
         Bid bid = bidInsertDto.getBid(member);
@@ -52,7 +53,7 @@ public class BidService {
 
     public ResultList<List<BidInfoFindDto>> findBidList(Long productNo){
         Product product = Product.builder().productNo(productNo).build();
-        List<Bid> bidList = bidRepository.findBidByProduct(product);
+        List<Bid> bidList = bidRepository.findBidListByProduct(product);
 
         List<BidInfoFindDto> bidInfoFindDtoList = bidList.stream().map(bid -> new BidInfoFindDto(bid)).collect(Collectors.toList());
         ResultList resultList = new ResultList<>(bidInfoFindDtoList);
