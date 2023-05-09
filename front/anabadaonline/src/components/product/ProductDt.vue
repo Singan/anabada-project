@@ -25,6 +25,7 @@
 
         <div class="line"></div>
 
+
         <div class="prouductInfo">
             <div class="productNamePrice">
                 상품 이름 : {{ seller.productName }}
@@ -35,30 +36,30 @@
             <div class="productNamePrice">
                 상품 등록 가격 : {{ seller.productPrice }}원
             </div>
-            <div class="productHighestPrice">
-                상품 사용기간 : {{ seller.productUseDate }}
-            </div>
             <div class="productExplain">
                 상품 설명 : {{ seller.productDetail }}
             </div>
             <div class="productExplain">
                 상품 사용기간 : {{ seller.productUseDate }}
             </div>
-
         </div>
 
         <div class="productStatus">
             <a class="productText1">찜 0</a>
             <a class="productText1">조회 {{ seller.productVisit }}</a>
         </div>
-        <input v-model="testInput" type="number" style="width: 100%; height: auto;" />
-        <button style="width: 100%; height: auto;" @click="send">입찰 테스트 버튼임</button>
-        <button class="auctionText" @click="bidStart">경매 참여</button>
+        <input v-model="testInput" type="number" style="width: 100%; height: auto" />
+        <button style="width: 100%; height: auto" @click="send">
+            입찰 테스트 버튼임
+        </button>
+        <button class="auctionText" :class="{ clicked: isClicked }" @click="bidStart">
+            경매 참여
+        </button>
 
         <div class="line"></div>
         <BidList v-if="check"></BidList>
 
-        <div class=" box3">
+        <div class="box3">
             <div class="actionProduct">인기경매 상품</div>
             <a class="others">다른 상품 보러가기</a>
         </div>
@@ -138,6 +139,7 @@ export default {
             temporaryData: '',
             productNo: this.$route.query.productNo,
             check: false,
+            isClicked: false,
             socket: '',
             stompClient: '',
             resultObj: {},
@@ -157,7 +159,9 @@ export default {
                 });
         },
         bidStart() {
-            this.check = true;
+            this.check = !this.check;
+            this.isClicked = !this.isClicked;
+
         },
         recevieFunc(resObj) {
             console.log("recevieFunc 콜백")
@@ -170,17 +174,15 @@ export default {
                 productNo: this.productNo,
             }
             socket.send(msgObj, "/bid")
+            //axios 통신
 
-        }
+        },
     },
 
     mounted() {
         this.sellerInfo();
-        socket.connect("/product/" + this.productNo, this.recevieFunc);
-
+        socket.connect('/product/' + this.productNo, this.recevieFunc);
     },
-
-
 };
 </script>
 
@@ -291,9 +293,24 @@ export default {
 }
 
 .auctionText {
-    color: #000000;
     font: 14px 'Roboto', sans-serif;
-    opacity: 0.4;
+    background: #ffffff;
+    border-radius: 5px;
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    border: 2px solid #0075ff;
+}
+
+.auctionText.clicked {
+    font: 14px 'Roboto', sans-serif;
+    background: #0075ff;
+    color: #ffffff;
+    border-radius: 5px;
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    border: none;
 }
 
 .productNamePrice {
