@@ -30,7 +30,8 @@ public class Bid {//입찰내역
 
     @Column(name = "bid_bidding", nullable = false)
     private boolean bidding;
-
+    @OneToOne(mappedBy = "product")
+    private CurrentBid currentBid;
     @Builder
     public Bid(Long bidNo, Product product, Member member, Integer price, LocalDateTime time, boolean bidding) {
         this.bidNo = bidNo;

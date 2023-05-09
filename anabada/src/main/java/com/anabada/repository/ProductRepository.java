@@ -14,7 +14,7 @@ import java.util.Optional;
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Long> {
     @Query("select p from Product p inner join fetch p.member left join fetch p.productImageList where p.productNo=:id")
-    Optional<Product> findById(@Param("id") Long id);
+    Product findByProductNo(@Param("id") Long id);
 
     @Query("select distinct p from Product p join fetch p.productImageList join fetch p.member")
     @BatchSize(size = 3)

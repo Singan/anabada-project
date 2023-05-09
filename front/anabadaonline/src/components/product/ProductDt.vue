@@ -33,7 +33,7 @@
                 등록 시간 : {{ seller.productInsertTime }}
             </div>
             <div class="productNamePrice">
-                상품 가격 : {{ seller.productPrice }}원
+                상품 등록 가격 : {{ seller.productPrice }}원
             </div>
             <div class="productExplain">
                 상품 설명 : {{ seller.productDetail }}
@@ -47,7 +47,8 @@
             <a class="productText1">찜 0</a>
             <a class="productText1">조회 {{ seller.productVisit }}</a>
         </div>
-
+        <input v-model="testInput" type="number" style="width: 100%; height: auto;" />
+        <button style="width: 100%; height: auto;" @click="send">입찰 테스트 버튼임</button>
         <button class="auctionText" @click="bidStart">경매 참여</button>
 
         <div class="line"></div>
@@ -108,6 +109,7 @@
 <script>
 import axios from '@/axios.js';
 import BidList from './BidList.vue';
+import socket from '@/common/socket';
 
 var temporaryData = {
     seller1: [
@@ -132,6 +134,10 @@ export default {
             temporaryData: '',
             productNo: this.$route.query.productNo,
             check: false,
+            socket: '',
+            stompClient: '',
+            resultObj: {},
+            testInput: 0,
         };
     },
 
@@ -148,12 +154,28 @@ export default {
         },
         bidStart() {
             this.check = true;
+        },
+        recevieFunc(resObj) {
+            console.log("recevieFunc 콜백")
+            this.seller.productPrice = resObj.price;
+        },
+        send() {
+            let msgObj = {
+                bidPrice: this.testInput,
+                productNo: this.productNo,
+            }
+            socket.send(msgObj, "/bid")
+
         }
     },
 
     mounted() {
         this.sellerInfo();
+        socket.connect("/product/" + this.productNo, this.recevieFunc);
+
     },
+
+
 };
 </script>
 

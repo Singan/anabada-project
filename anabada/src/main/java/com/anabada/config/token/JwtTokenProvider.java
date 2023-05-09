@@ -73,7 +73,7 @@ public class JwtTokenProvider{
 
             log.info("expireTime :" + claims.getExpiration());
             log.info("userId :" + claims.get("userId"));
-            log.info("userName :" + claims.get("userNm"));
+            log.info("userName :" + claims.get("userName"));
 
             return true;
         } catch (ExpiredJwtException exception) {
