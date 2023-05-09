@@ -22,60 +22,63 @@
 		<div class="----------">
 			<div class="rectangle-272"></div>
 
-		<div class="--6">
-			<div class="----2">홍길동</div>
-		</div>
+			<div class="--6">
+				<div class="----2">홍길동</div>
+			</div>
 
-		<div class="--7">
-			<div class="Text">비밀번호 변경</div>
-		</div>
+			<div class="--7">
+				<div class="Text">비밀번호 변경</div>
+			</div>
 
-		<div class="rectangle-273"></div>
+			<div class="rectangle-273"></div>
 
-		<div class="----3">현재 비밀번호를 입력하세요</div>
+			<div class="----3">현재 비밀번호를 입력하세요</div>
 
-		<div class="--9">
-			<div class="Text">주소 변경</div>
-		</div>
+			<div class="--9">
+				<div class="Text">주소 변경</div>
+			</div>
 
-		<div class="----------2">
-			<div class="rectangle-274"></div>
+			<div class="----------2">
+				<div class="rectangle-274"></div>
 
-			<div class="--10"></div>
+				<div class="--10"></div>
 
-			<div class="-------">경기도 성남시</div>
-		</div>
+				<div class="-------">경기도 성남시</div>
+			</div>
 
-		<div class="----------3">
-			<div class="rectangle-275"></div>
+			<div class="----------3">
+				<div class="rectangle-275"></div>
 
-			<div class="--11"></div>
+				<div class="--11"></div>
 
-			<div class="-----">주소 찾기</div>
-		</div>
+				<div class="-----">주소 찾기</div>
+			</div>
 
-		<div class="rectangle-276"></div>
+			<div class="rectangle-276"></div>
 
-		<div class="--12"></div>
+			<div class="--12"></div>
 
-		<div class="-------------">새 비밀번호를 입력하세요</div>
+			<div class="-------------">새 비밀번호를 입력하세요</div>
 
-		<div class="rectangle-277"></div>
+			<div class="rectangle-277"></div>
 
-		<div class="--13"></div>
+			<div class="--13"></div>
 
-		<div class="------------------">새 비밀번호를 한 번더 입력하세요</div>
+			<div class="------------------">
+				새 비밀번호를 한 번더 입력하세요
+			</div>
 
-		<div class="rectangle-25"></div>
+			<div class="rectangle-25"></div>
 
-		<div class="_18px">
-			<div class="_18px2">수정 하기</div>
-		</div>
+			<div class="_18px">
+				<div class="_18px2">수정 하기</div>
+			</div>
 
-		<div class="rectangle-252"></div>
+			<div class="rectangle-252"></div>
 
-		<div class="_18px3">
-			<div class="_18px2" @click="goMypage">취소</div>
+			<div class="_18px3">
+				<div class="_18px2" @click="goMypage">취소</div>
+			</div>
 		</div>
 	</div>
 </template>
