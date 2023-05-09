@@ -17,7 +17,7 @@ public class FileProcessor {
     String fileName;
     public String fileSave(MultipartFile multipartFile) {
         fileName = "C:/anabada/images";
-        //String fileName = "/Users/hwi/anabada/images";
+//        fileName = "/Users/hwi/anabada/images";
         System.out.println("fileName"+fileName);
         try{
 
@@ -38,7 +38,7 @@ public class FileProcessor {
 
     public List<String> fileSave(List<MultipartFile> multipartFiles) {
         String fileName = "C:/anabada/product/";
-        //String fileName = "/Users/hwi/anabada/images";
+//        String fileName = "/Users/hwi/anabada/images";
         File file = new File(fileName);
         file.mkdirs();
         List<String> resultPath = new ArrayList<>();

@@ -6,20 +6,17 @@
 			</div>
 		</div>
 
-		<div class="--">
-			<div class="----">아이디</div>
-		</div>
+		<div class="changeIdAndName">
+			<div class="change">
+				<div class="changeId">아이디</div>
+				<div class="idBox" readonly>
+					<span class="id">aaa</span>
+				</div>
 
-		<div class="----------">
-			<div class="rectangle-27"></div>
-
-			<div class="--4">
-				<div class="----2">abcd@gmail.com</div>
+				<div class="--5">
+					<div class="----">이름</div>
+				</div>
 			</div>
-		</div>
-
-		<div class="--5">
-			<div class="----">이름</div>
 		</div>
 
 		<div class="----------">
@@ -118,56 +115,37 @@
 	.change {
 		width: 700px;
 	}
+	.changeIdAndName {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 
 	.changeHeaderText {
 		color: #0075ff;
 		font: 700 28px 'Roboto', sans-serif;
 	}
 
-	.--------- {
-		left: 560px;
-		top: 40px;
-	}
-
-	.-- {
-		width: 370px;
-		height: 30px;
-		position: absolute;
-		left: 660px;
-		top: 168px;
-	}
-
-	.---- {
+	.changeId {
 		color: #000000;
-		text-align: left;
 		font: 400 16px 'Roboto', sans-serif;
-		position: absolute;
-		left: 0px;
-		top: 0px;
-		width: 370px;
-		height: 30px;
-		display: flex;
-		align-items: center;
-		justify-content: flex-start;
 	}
 
-	.---------- {
-		width: 630px;
-		height: 40px;
-		position: static;
-	}
-
-	.rectangle-27 {
+	.idBox {
 		background: #e1e1e1;
 		border-radius: 5px;
 		border-style: solid;
 		border-color: #0075ff;
 		border-width: 1.5px;
-		width: 630px;
 		height: 40px;
-		position: absolute;
-		left: 660px;
-		top: 210px;
+	}
+
+	.id {
+		margin-left: 10px;
+		color: #797979;
+		font: 400 14px 'Roboto', sans-serif;
+		position: relative;
+		top: 7px;
 	}
 
 	.--4 {
