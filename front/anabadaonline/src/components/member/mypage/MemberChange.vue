@@ -66,20 +66,16 @@
 
 		<div class="------------------">새 비밀번호를 한 번더 입력하세요</div>
 
-		<div class="--14">
-			<div class="rectangle-25"></div>
+		<div class="rectangle-25"></div>
 
-			<div class="_18px">
-				<div class="_18px2">수정 하기</div>
-			</div>
+		<div class="_18px">
+			<div class="_18px2">수정 하기</div>
 		</div>
 
-		<div class="-----2">
-			<div class="rectangle-252"></div>
+		<div class="rectangle-252"></div>
 
-			<div class="_18px3">
-				<div class="_18px2" @click="goMypage">취소</div>
-			</div>
+		<div class="_18px3">
+			<div class="_18px2" @click="goMypage">취소</div>
 		</div>
 	</div>
 </template>
