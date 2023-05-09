@@ -48,14 +48,15 @@ public class Product {
     private ProductSocket productSocket;
     @Column(columnDefinition = "bigint default 0")
     private Long productVisit;
-
+    @OneToOne(mappedBy = "product")
+    private CurrentBid currentBid;
     public void upProductVisit(){
-        System.out.println("조회수 증가 실행");
-        this.productVisit=this.productVisit+1;
+        productVisit=productVisit+1;
     }
     @Builder
     public Product(Long productNo, Member member, String productName, String productDetail, Integer productPrice,
-                   String productUseDate, Category category,Long productVisit, List<ProductImage> productImageList,ProductSocket productSocket) {
+                   String productUseDate, Category category,Long productVisit,
+                   List<ProductImage> productImageList,ProductSocket productSocket,CurrentBid currentBid) {
         this.productNo = productNo;
         this.member = member;
         this.productName = productName;
@@ -67,5 +68,6 @@ public class Product {
         this.createDateTime = LocalDateTime.now();
         this.productSocket = productSocket;
         this.productVisit = productVisit;
+        this.currentBid = currentBid;
     }
 }

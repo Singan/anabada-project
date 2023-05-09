@@ -1,9 +1,6 @@
 package com.anabada.entity;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -18,13 +15,24 @@ public class CurrentBid {
     private Long currentBidNo;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_no")
+    @JoinColumn(name = "product_no",nullable = false)
     private Product product;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_no")
+    @JoinColumn(name = "member_no",nullable = false)
     private Member member;
 
     @Column(name = "create_time",nullable = false)
     private LocalDateTime localDateTime;
+
+    @Column(columnDefinition = "int default 0")
+    private Integer price;
+    @Builder
+    public CurrentBid(Long currentBidNo, Product product, Member member, LocalDateTime localDateTime, Integer price) {
+        this.currentBidNo = currentBidNo;
+        this.product = product;
+        this.member = member;
+        this.localDateTime = localDateTime;
+        this.price = price;
+    }
 }

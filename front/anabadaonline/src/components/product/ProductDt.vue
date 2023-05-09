@@ -35,12 +35,16 @@
             <div class="productNamePrice">
                 상품 등록 가격 : {{ seller.productPrice }}원
             </div>
+            <div class="productHighestPrice">
+                상품 사용기간 : {{ seller.productUseDate }}
+            </div>
             <div class="productExplain">
                 상품 설명 : {{ seller.productDetail }}
             </div>
             <div class="productExplain">
                 상품 사용기간 : {{ seller.productUseDate }}
             </div>
+
         </div>
 
         <div class="productStatus">
@@ -157,6 +161,7 @@ export default {
         },
         recevieFunc(resObj) {
             console.log("recevieFunc 콜백")
+            console.log(resObj.price)
             this.seller.productPrice = resObj.price;
         },
         send() {

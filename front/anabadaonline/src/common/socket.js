@@ -71,8 +71,9 @@ let socketResult = {
             this.headers,
             (frame) => {
                 this.stompClient.subscribe(subUrl, (res) => {
-                    let result = JSON.stringify(res.body);
+                    let result = JSON.parse(res.body);
                     console.log("받는부분")
+                    console.log()
                     recevieFunc(result);
                 });
             },
