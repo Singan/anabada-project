@@ -22,25 +22,20 @@
 		<div class="----------">
 			<div class="rectangle-272"></div>
 
-			<div class="--6">
-				<div class="----2">홍길동</div>
-			</div>
+		<div class="--6">
+			<div class="----2">홍길동</div>
 		</div>
 
 		<div class="--7">
-			<div class="----">비밀번호 변경</div>
+			<div class="Text">비밀번호 변경</div>
 		</div>
 
-		<div class="----------">
-			<div class="rectangle-273"></div>
+		<div class="rectangle-273"></div>
 
-			<div class="--8"></div>
-
-			<div class="----3">현재 비밀번호를 입력하세요</div>
-		</div>
+		<div class="----3">현재 비밀번호를 입력하세요</div>
 
 		<div class="--9">
-			<div class="----">주소 변경</div>
+			<div class="Text">주소 변경</div>
 		</div>
 
 		<div class="----------2">
@@ -59,23 +54,17 @@
 			<div class="-----">주소 찾기</div>
 		</div>
 
-		<div class="----------">
-			<div class="rectangle-276"></div>
+		<div class="rectangle-276"></div>
 
-			<div class="--12"></div>
+		<div class="--12"></div>
 
-			<div class="-------------">새 비밀번호를 입력하세요</div>
-		</div>
+		<div class="-------------">새 비밀번호를 입력하세요</div>
 
-		<div class="----------">
-			<div class="rectangle-277"></div>
+		<div class="rectangle-277"></div>
 
-			<div class="--13"></div>
+		<div class="--13"></div>
 
-			<div class="------------------">
-				새 비밀번호를 한 번더 입력하세요
-			</div>
-		</div>
+		<div class="------------------">새 비밀번호를 한 번더 입력하세요</div>
 
 		<div class="--14">
 			<div class="rectangle-25"></div>
@@ -170,7 +159,7 @@
 		justify-content: flex-start;
 	}
 
-	.--5 {
+	.name {
 		width: 370px;
 		height: 30px;
 		position: absolute;
@@ -178,7 +167,7 @@
 		top: 280px;
 	}
 
-	.rectangle-272 {
+	.nameBox {
 		background: #e1e1e1;
 		border-radius: 5px;
 		border-style: solid;
