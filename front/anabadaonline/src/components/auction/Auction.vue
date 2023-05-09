@@ -99,10 +99,6 @@
 		border: none;
 	}
 
-	/* .list {
-		border: none;
-	} */
-
 	.productImg {
 		background: #d9d9d9;
 		border-radius: 20px;
