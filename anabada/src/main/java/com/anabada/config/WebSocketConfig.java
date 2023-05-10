@@ -1,4 +1,4 @@
-package com.anabada.config.socket;
+package com.anabada.config;
 
 
 import com.anabada.config.token.JwtTokenProvider;

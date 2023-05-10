@@ -46,20 +46,22 @@ public class MemberService implements UserDetailsService {
 
     }
     public Member findByMemberNoWithSocketList(String id){
-        System.out.println(id);
         Member member = memberRepository.findMemberByMemberId(id);
         return member;
     }
-    @Transactional(readOnly = false)
+    @Transactional
     public Long memberJoin(MemberJoinDto memberJoinDto) {
         if (!existsMemberByMemberId(memberJoinDto.getId())) {
             memberJoinDto.setPw(passwordEncoder.encode(memberJoinDto.getPw()));
-            String profilePath = null;
+
             MultipartFile file = memberJoinDto.getImage();
+
+
             if (!((file == null) || (file.isEmpty()))) {
-                profilePath = fileProcessor.fileSave(file);
+                String profilePath = fileProcessor.fileSave(file,"member",memberJoinDto.getId());
+                memberJoinDto.setProfileImagePath(profilePath);
             }
-            Member member = memberJoinDto.getMember(profilePath);
+            Member member = memberJoinDto.getMember();
 
             memberRepository.save(member);
             return member.getMemberNo();
@@ -98,7 +100,7 @@ public class MemberService implements UserDetailsService {
 
     @Transactional
     public MemberUpdateFindDto memberUpdate(MemberDetailDTO memberDetailDTO, MemberUpdateDto memberUpdateDto) {
-        String updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage());
+        String updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage(),"member",memberDetailDTO.getUsername());
         memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
         Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
         member.updateMember(memberUpdateDto, updateImagePath);

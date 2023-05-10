@@ -85,6 +85,10 @@ public class Member {
         this.memberImage = updateImagePath;
     }
 
+    public void setMemberImage(String memberImage) {
+        this.memberImage = memberImage;
+    }
+
     public void updateMemberMoney(PayDto payDto) {
         this.memberMoney += payDto.getAddMoney();
     }

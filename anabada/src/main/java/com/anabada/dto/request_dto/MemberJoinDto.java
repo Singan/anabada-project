@@ -17,8 +17,8 @@ public class MemberJoinDto extends MemberLoginDto{
     private String addr;
     private String wishAddr;
     private MultipartFile image;
-
-    public Member getMember(String profileImagePath){
+    private String profileImagePath;
+    public Member getMember(){
         return Member.builder()
                 .memberId(this.id)
                 .memberPw(this.pw)
@@ -26,7 +26,7 @@ public class MemberJoinDto extends MemberLoginDto{
                 .memberBirth(this.birth)
                 .memberAddr(this.addr)
                 .memberDetailAddr(this.detailAddr)
-                .memberImage(profileImagePath)
+                .memberImage(this.profileImagePath)
                 .memberWishAddr(this.wishAddr).build();
     }
 
