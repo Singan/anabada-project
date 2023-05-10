@@ -14,7 +14,7 @@
 				</div>
 
 				<div class="--5">
-					<div class="----">이름</div>
+					<div class="Text">이름</div>
 				</div>
 			</div>
 		</div>
