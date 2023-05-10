@@ -13,13 +13,13 @@ import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Long> {
-    @Query("select p from Product p inner join fetch p.member left join fetch p.productImageList where p.productNo=:productNo")
+    @Query("select distinct p from Product p inner join fetch p.member left join fetch p.productImageList where p.productNo=:productNo")
     Product findByProductNo(@Param("productNo") Long productNo);
 
     @Query("select distinct p from Product p join fetch p.productImageList join fetch p.member")
     @BatchSize(size = 3)
     List<Product> findAllByProductImageListIsNotEmpty(Pageable pageable);
 
-    @Query("select p from Product p join fetch p.productImageList where p.category.categoryNo = :categoryNo")
+    @Query("select distinct p from Product p join fetch p.productImageList where p.category.categoryNo = :categoryNo")
     List<Product> findProductByCategory(@Param("categoryNo") Long categoryNo);
 }

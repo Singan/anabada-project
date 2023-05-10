@@ -20,7 +20,8 @@ public class FileProcessor {
     private final AmazonS3Client amazonS3Client;
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
-
+    @Value("${s3.bucket.endpoint}")
+    private String endpoint;
     public String fileSave(MultipartFile multipartFile, String type, String id) {
         String fileName = type + "/" + id + "/" + multipartFile.getOriginalFilename();
         try {
@@ -31,7 +32,7 @@ public class FileProcessor {
             objectMetadata.setContentType(multipartFile.getContentType());
             objectMetadata.setContentLength(multipartFile.getSize());
             amazonS3Client.putObject(bucket, fileName, multipartFile.getInputStream(), objectMetadata);
-            return "https://" + bucket + fileName;
+            return endpoint+"/"+ fileName;
         } catch (Exception e) {
             throw new RuntimeException("파일 저장 실패");
         }
@@ -51,7 +52,7 @@ public class FileProcessor {
                 objectMetadata.setContentType(multipartFile.getContentType());
                 objectMetadata.setContentLength(multipartFile.getSize());
                 amazonS3Client.putObject(bucket, fileName, multipartFile.getInputStream(), objectMetadata);
-                fileName = "https://" + bucket + fileName;
+                fileName = endpoint+"/" + fileName;
                 resultPath.add(fileName);
             } catch (Exception e) {
                 throw new RuntimeException("파일 저장 실패");

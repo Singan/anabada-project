@@ -42,11 +42,11 @@
 			/>
 			<div class="ProductNT1">{{ item.productName }}</div>
 
-			<div class="AdressT1">{{ item.wishAddr }}</div>
+			<div class="AddressT1">{{ item.wishAddr }}</div>
 
 			<div class="PriceT1">{{ item.price }} 원</div>
 		</div>
-	</div>
+	</div> 
 </template>
 
 <script>
@@ -224,7 +224,7 @@
 		align-items: center;
 	}
 
-	.AdressT1 {
+	.AddressT1 {
 		color: #000000;
 		text-align: left;
 		font: 400 16px 'Roboto', sans-serif;

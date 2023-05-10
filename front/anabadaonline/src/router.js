@@ -58,11 +58,7 @@ const routes = [
 		name: 'Evaluation',
 		component: () => import('@/components/transaction/Evaluation.vue'),
 	},
-	{
-		path: '/auctionBid',
-		name: 'AuctionBid',
-		component: () => import('@/components/auction/AuctionBid.vue'),
-	},
+
 	{
 		path: '/successfulBid',
 		name: 'SuccessfulBid',
@@ -71,8 +67,7 @@ const routes = [
 	{
 		path: '/acountRegister',
 		name: 'AcountRegister',
-		component: () =>
-			import('@/components/member/mypage/AcountRegister.vue'),
+		component: () => import('@/components/member/mypage/AcountRegister.vue'),
 	},
 	{
 		path: '/transactionDt1',
@@ -89,11 +84,7 @@ const routes = [
 		name: 'JoinMember',
 		component: () => import('@/components/member/login/JoinMember.vue'),
 	},
-	{
-		path: '/joinmember2',
-		name: '/joinmember2',
-		component: () => import('@/components/member/login/joinmember2.vue'),
-	},
+
 	{
 		path: '/socket',
 		name: '/socket',
