@@ -55,14 +55,15 @@ public class MemberService implements UserDetailsService {
             memberJoinDto.setPw(passwordEncoder.encode(memberJoinDto.getPw()));
 
             MultipartFile file = memberJoinDto.getImage();
-            Member member = memberJoinDto.getMember();
-            memberRepository.save(member);
+
+
             if (!((file == null) || (file.isEmpty()))) {
-                String profilePath = fileProcessor.fileSave(file,"member",member.getMemberNo());
-                member.setMemberImage(profilePath);
+                String profilePath = fileProcessor.fileSave(file,"member",memberJoinDto.getId());
+                memberJoinDto.setProfileImagePath(profilePath);
             }
+            Member member = memberJoinDto.getMember();
 
-
+            memberRepository.save(member);
             return member.getMemberNo();
         }
         throw new RuntimeException("중복된 회원입니다.");
@@ -99,7 +100,7 @@ public class MemberService implements UserDetailsService {
 
     @Transactional
     public MemberUpdateFindDto memberUpdate(MemberDetailDTO memberDetailDTO, MemberUpdateDto memberUpdateDto) {
-        String updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage(),"member",memberDetailDTO.getNo());
+        String updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage(),"member",memberDetailDTO.getUsername());
         memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
         Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
         member.updateMember(memberUpdateDto, updateImagePath);

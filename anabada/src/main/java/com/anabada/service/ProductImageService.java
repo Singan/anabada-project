@@ -28,7 +28,7 @@ public class ProductImageService {
         }
 
 
-        List<String> imagePathList = fileProcessor.fileSave(multipartFiles);
+        List<String> imagePathList = fileProcessor.fileSave(multipartFiles,"product",no+"");
         Product product = Product.builder().productNo(no).build();
         List<ProductImage> productImageList = imagePathList.stream().map
                 (s -> ProductImage.
