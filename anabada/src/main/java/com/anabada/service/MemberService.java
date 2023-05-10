@@ -4,6 +4,7 @@ import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.MemberJoinDto;
 import com.anabada.dto.request_dto.MemberLoginDto;
 import com.anabada.dto.request_dto.MemberUpdateDto;
+import com.anabada.dto.response_dto.MemberInfoDto;
 import com.anabada.dto.response_dto.MemberUpdateFindDto;
 import com.anabada.dto.response_dto.MyPageFindDto;
 import com.anabada.entity.Member;
@@ -12,6 +13,7 @@ import com.anabada.repository.MemberRepository;
 import com.anabada.config.token.JwtTokenProvider;
 import com.anabada.dto.response_dto.LoginResultDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -32,22 +34,26 @@ public class MemberService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
     private final FileProcessor fileProcessor;
-
+    @Value("${s3.bucket.endpoint}")
+    private String s3EndPoint;
     public boolean existsMemberByMemberId(String id) {
         return memberRepository.existsMemberByMemberId(id);
     }
 
 
     public Member findByMemberId(String id) {
-        if (!existsMemberByMemberId(id)) {
+        Member member = memberRepository.findByMemberId(id);
+        if(member == null){
             throw new RuntimeException("없는 회원입니다.");
         }
-        return memberRepository.findByMemberId(id);
+        return member;
 
     }
-    public Member findByMemberNoWithSocketList(String id){
+    public MemberInfoDto findByMemberNoWithSocketList(String id){
+
         Member member = memberRepository.findMemberByMemberId(id);
-        return member;
+        MemberInfoDto memberInfoDto= new MemberInfoDto(member,s3EndPoint);
+        return memberInfoDto;
     }
     @Transactional
     public Long memberJoin(MemberJoinDto memberJoinDto) {
@@ -58,7 +64,7 @@ public class MemberService implements UserDetailsService {
 
 
             if (!((file == null) || (file.isEmpty()))) {
-                String profilePath = fileProcessor.fileSave(file,"member",memberJoinDto.getId());
+                String profilePath = fileProcessor.fileSave(file,"member");
                 memberJoinDto.setProfileImagePath(profilePath);
             }
             Member member = memberJoinDto.getMember();
@@ -90,7 +96,7 @@ public class MemberService implements UserDetailsService {
 
     public MyPageFindDto myPage(MemberDetailDTO principal) {
         Member member = memberRepository.findByMemberId(principal.getUsername());
-        return new MyPageFindDto(member);
+        return new MyPageFindDto(member,s3EndPoint);
     }
 
     public Authentication getAuthentication(Member member) {
@@ -100,10 +106,10 @@ public class MemberService implements UserDetailsService {
 
     @Transactional
     public MemberUpdateFindDto memberUpdate(MemberDetailDTO memberDetailDTO, MemberUpdateDto memberUpdateDto) {
-        String updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage(),"member",memberDetailDTO.getUsername());
+        String updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage(),"member");
         memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
         Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
         member.updateMember(memberUpdateDto, updateImagePath);
-        return new MemberUpdateFindDto(member);
+        return new MemberUpdateFindDto(member,s3EndPoint);
     }
 }

@@ -26,7 +26,7 @@ public class ProductInsertDto {
 
     private Long categoryNo;
     private List<MultipartFile> productImages;
-    public Product getProduct(MemberDetailDTO principal ){
+    public Product getProduct(MemberDetailDTO principal,String thumbnail ){
         Member member = principal.getMember();
         Category category = Category.builder().categoryNo(categoryNo).build();
         ProductSocket productSocket = new ProductSocket();
@@ -34,6 +34,7 @@ public class ProductInsertDto {
                 .productDetail(detail)
                 .productName(name)
                 .productUseDate(usingDate)
+                .productThumbnail(thumbnail)
                 .productSocket(productSocket)
                 .member(member)
                 .productVisit(0L)

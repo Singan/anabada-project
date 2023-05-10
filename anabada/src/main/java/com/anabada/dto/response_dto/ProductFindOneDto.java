@@ -28,7 +28,7 @@ public class ProductFindOneDto {
     private LocalDateTime productInsertTime;
     private List<String> productImageList;
     //private Integer productHighPrice;
-    public ProductFindOneDto(Product product) {
+    public ProductFindOneDto(Product product,String prefix) {
         Member member = product.getMember();
         this.productNo = product.getProductNo();
         this.memberName = member.getMemberName();
@@ -39,8 +39,10 @@ public class ProductFindOneDto {
         this.productVisit = product.getProductVisit();
         this.memberAddr = member.getMemberAddr();
         this.productInsertTime = product.getCreateDateTime();
+
         this.productImageList = product.getProductImageList().stream().map(productImage ->  {
-            return productImage.getImageAddr();
+            return prefix+productImage.getImageAddr();
         }).collect(Collectors.toList());
+        productImageList.add(0,prefix+product.getProductThumbnail());
     }
 }

@@ -22,13 +22,8 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_no", nullable = false)
     private Member member;
-
     @Column
     private String productName;
-
-//    @OneToOne(mappedBy = "product", fetch = FetchType.LAZY)
-//    private Orders orders;
-
     @Column
     private String productDetail;
     @Column
@@ -51,15 +46,16 @@ public class Product {
     private ProductSocket productSocket;
     @Column(columnDefinition = "bigint default 0")
     private Long productVisit;
-//    @OneToOne(mappedBy = "product", fetch = FetchType.LAZY)
-//    private CurrentBid currentBid;
+    @Column(nullable = false)
+    private String productThumbnail;
+
     public void upProductVisit(){
         productVisit=productVisit+1;
     }
     @Builder
     public Product(Long productNo, Member member, String productName, String productDetail, Integer productPrice,
                    String productUseDate, Category category,Long productVisit,
-                   List<ProductImage> productImageList,ProductSocket productSocket) {
+                   List<ProductImage> productImageList,ProductSocket productSocket,String productThumbnail) {
         this.productNo = productNo;
         this.member = member;
         this.productName = productName;
@@ -71,5 +67,6 @@ public class Product {
         this.createDateTime = LocalDateTime.now();
         this.productSocket = productSocket;
         this.productVisit = productVisit;
+        this.productThumbnail = productThumbnail;
     }
 }

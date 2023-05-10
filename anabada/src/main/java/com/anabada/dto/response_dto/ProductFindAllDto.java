@@ -17,16 +17,17 @@ public class ProductFindAllDto {
     private Integer price;
     private String productImage;
     private Category category;
+
     // 카테고리 넣기
-    public ProductFindAllDto(Product product) {
+    public ProductFindAllDto(Product product,String prefix) {
         this.productName = (product.getProductName());
         this.productNo = (product.getProductNo());
         this.wishAddr = (product.getMember().getMemberWishAddr());
         this.price = (product.getProductPrice());
         this.category = product.getCategory();
-        if(!product.getProductImageList().isEmpty()) {
-            this.productImage = (product.getProductImageList().get(0).getImageAddr());
-        }
+
+        this.productImage = prefix + product.getProductThumbnail();
+
     }
 
 }

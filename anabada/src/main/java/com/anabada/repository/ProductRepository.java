@@ -14,12 +14,14 @@ import java.util.Optional;
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Long> {
     @Query("select distinct p from Product p inner join fetch p.member left join fetch p.productImageList where p.productNo=:productNo")
-    Product findByProductNo(@Param("productNo") Long productNo);
+    Product findByProductNo(@Param("productNo") Long productNo); // 프로덕트 상세
 
-    @Query("select distinct p from Product p join fetch p.productImageList join fetch p.member")
+    @Query("select distinct p from Product p join fetch p.member")
     @BatchSize(size = 3)
-    List<Product> findAllByProductImageListIsNotEmpty(Pageable pageable);
+    List<Product> findByProductAndMember(Pageable pageable); //메인에 나가는 목록 조회 조정할 예정
 
-    @Query("select distinct p from Product p join fetch p.productImageList where p.category.categoryNo = :categoryNo")
-    List<Product> findProductByCategory(@Param("categoryNo") Long categoryNo);
+    @Query("select  p from Product p where p.category = :categoryNo")
+    List<Product> findProductByCategory(@Param("categoryNo") Long categoryNo); //상품 카테고리 조히
+    @Query("select  p from Product p")
+    List<Product> findProductByCategory(); //상품 카테고리 조히
 }

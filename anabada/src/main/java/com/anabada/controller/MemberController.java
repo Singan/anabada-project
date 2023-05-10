@@ -50,8 +50,8 @@ public class MemberController {
 
     @GetMapping
     public MemberInfoDto memberInfo(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
-        Member member = memberService.findByMemberNoWithSocketList(memberDetailDTO.getUsername());
-        return new MemberInfoDto(member);
+        MemberInfoDto member = memberService.findByMemberNoWithSocketList(memberDetailDTO.getUsername());
+        return member;
     }
 
 }
