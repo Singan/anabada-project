@@ -58,11 +58,7 @@ const routes = [
 		name: 'Evaluation',
 		component: () => import('@/components/transaction/Evaluation.vue'),
 	},
-	{
-		path: '/auctionBid',
-		name: 'AuctionBid',
-		component: () => import('@/components/auction/AuctionBid.vue'),
-	},
+
 	{
 		path: '/successfulBid',
 		name: 'SuccessfulBid',
@@ -71,8 +67,7 @@ const routes = [
 	{
 		path: '/acountRegister',
 		name: 'AcountRegister',
-		component: () =>
-			import('@/components/member/mypage/AcountRegister.vue'),
+		component: () => import('@/components/member/mypage/AcountRegister.vue'),
 	},
 	{
 		path: '/transactionDt1',
