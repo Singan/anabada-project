@@ -20,6 +20,26 @@
 			</div>
 		</div>
 
+		<div class="changeImg">
+			<div class="change">
+				<div class="changeImgText">프로필 이미지 변경</div>
+				<div class="imagePreView">
+					<img id="img" />
+				</div>
+				<label class="imageChangeSelect" for="productImages">
+					이미지 등록
+					<input
+						id="productImages"
+						type="file"
+						@change="onInputImage"
+						accept="image/*"
+						multiple="multiple"
+						style="width: 0px; height: 0px"
+					/>
+				</label>
+			</div>
+		</div>
+
 		<div class="changePwAndPwCheck">
 			<div class="change">
 				<div class="changePw">비밀번호 변경</div>
@@ -35,8 +55,8 @@
 			</div>
 		</div>
 		<div class="changeAddrContainer">
-			<input class="addrBox" readonly />
-			<button class="findAddrButton">주소 찾기</button>
+			<input class="addrBox" readonly v-model="addr" />
+			<button class="findAddrButton" @click="search()">주소 찾기</button>
 		</div>
 
 		<div class="changeAddr">
@@ -49,7 +69,7 @@
 		<div class="yesAndNoButton">
 			<div class="change">
 				<button class="checkButton">수정하기</button>
-				<button class="noButton">취소하기</button>
+				<button class="noButton" onclick="history.go(-1)">취소하기</button>
 			</div>
 		</div>
 	</div>
@@ -61,7 +81,58 @@
 		props: {},
 		data() {
 			// quickfix to have components available to pass as props
-			return {};
+			return { addr: '' };
+		},
+		methods: {
+			onInputImage(e) {
+				this.productImages = e.target.files;
+				console.log(this.productImages);
+
+				//이미지 미리보기
+				const image = document.getElementById('img');
+				const reader = new FileReader();
+				reader.onload = (e) => {
+					image.src = e.target.result;
+					image.width = 120;
+					image.height = 120;
+					document.querySelector('.imagePreView').style.backgroundColor = 'white';
+				};
+				reader.readAsDataURL(this.productImages.item(0));
+			},
+			search() {
+				//@click을 사용할 때 함수는 이렇게 작성해야 한다.
+				new window.daum.Postcode({
+					oncomplete: (data) => {
+						//function이 아니라 => 로 바꿔야한다.
+						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+						// 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+						var roadAddr = data.roadAddress; // 도로명 주소 변수
+						var extraRoadAddr = ''; // 참고 항목 변수
+
+						// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+						// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+						if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+							extraRoadAddr += data.bname;
+						}
+						// 건물명이 있고, 공동주택일 경우 추가한다.
+						if (data.buildingName !== '' && data.apartment === 'Y') {
+							extraRoadAddr += extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName;
+						}
+						// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+						if (extraRoadAddr !== '') {
+							extraRoadAddr = ' (' + extraRoadAddr + ')';
+						}
+
+						// 우편번호와 주소 정보를 해당 필드에 넣는다.
+						// document.getElementById('post').value = data.zonecode;
+						this.addr = roadAddr;
+						// document.getElementById('detailaddr').value =
+						// 	data.jibunAddress;
+					},
+				}).open();
+			},
 		},
 	};
 </script>
@@ -87,7 +158,7 @@
 		font: 700 28px 'Roboto', sans-serif;
 	}
 
-	.changeId .changeName .changePw .changeAddrText {
+	.changeId .changeName .changePw .changeAddrText .changeImgText {
 		color: #000000;
 		font: 400 16px 'Roboto', sans-serif;
 	}
@@ -124,6 +195,30 @@
 		font: 400 14px 'Roboto', sans-serif;
 		position: relative;
 		top: 7px;
+	}
+
+	.changeImg {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.imagePreView {
+		background: #d9d9d9;
+		width: 120px;
+		height: 120px;
+	}
+
+	.imageChangeSelect {
+		background: #0075ff;
+		border-radius: 5px;
+		width: 70px;
+		height: 40px;
+		border: none;
+		color: white;
+		cursor: pointer;
+		text-align: center;
+		cursor: pointer;
 	}
 
 	.changePwAndPwCheck {
