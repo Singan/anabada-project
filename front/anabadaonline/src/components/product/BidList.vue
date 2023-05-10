@@ -1,39 +1,35 @@
 <template>
     <div class="form1">
         <div class="user1">
-            <div class="userImage"></div>
+            <div class="ListImage"></div>
             <div class="userName">{{ testData.list[0].memberName }}</div>
             <div class="userPrice">{{ testData.list[0].price }}원</div>
         </div>
 
-        <div class="line"></div>
-
+        <div class="listLine"></div>
 
         <div class="user2">
-            <div class="userImage"></div>
+            <div class="ListImage"></div>
             <dib class="userName">{{ testData.list[1].memberName }}</dib>
             <div class="userPrice">{{ testData.list[1].price }}원</div>
         </div>
 
-        <div class="line"></div>
+        <div class="listLine"></div>
 
         <div class="user3">
-            <div class="userImage"></div>
+            <div class="ListImage"></div>
             <dib class="userName">{{ testData.list[2].memberName }}</dib>
             <div class="userPrice">{{ testData.list[2].price }}원</div>
         </div>
 
         <div class="bidBox">
-            <div class="inputPrice">
-                <input class="textSize" type="text" placeholder="ex)xxx,xxx,xxx 원" style="border: none; outline: none" />
-            </div>
+            <input class="textSize" type="text" placeholder="ex)xxx,xxx,xxx 원" />
             <button class="bid">입찰</button>
         </div>
     </div>
 </template>
 
 <script>
-
 var testData = {
     length: 3,
     list: [
@@ -52,9 +48,8 @@ var testData = {
     ],
 };
 import axios from '@/axios.js';
-import socket from '@/common/socket'
+import socket from '@/common/socket';
 export default {
-
     name: '',
     components: {},
     props: {},
@@ -63,7 +58,6 @@ export default {
             auction: '',
             testData,
             productNo: this.$route.query.productNo,
-
         };
     },
 
@@ -79,7 +73,6 @@ export default {
         },
     },
 
-
     created() {
         this.auctionList();
     },
@@ -87,21 +80,17 @@ export default {
 </script>
 
 <style scoped>
-.form>* {
-    margin-bottom: 10px;
-    padding: 5px;
-}
-
 .form1 {
+    overflow: scroll;
     background: #ffffff;
     border-radius: 5px;
     width: 97%;
-    height: 330px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 4px 4px 8px 0px rgba(216, 216, 216, 0.25);
-    border: 5px solid black;
+    box-shadow: 5px 5px 2px 0px rgba(0, 117, 255, 0.25);
+    border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .form1>* {
@@ -109,28 +98,31 @@ export default {
     padding: 5px;
 }
 
-.userImage {
+.ListImage {
     background: #d9d9d9;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
     align-items: flex-start;
 }
 
 .userName {
     color: #000000;
-    font: 400 12px 'Roboto', sans-serif;
+    font: 400 20px 'Roboto', sans-serif;
+    flex: 1;
     margin-left: 10px;
+    margin-bottom: 5px;
 }
 
 .userPrice {
     color: #000000;
-    font: 400 11px 'Roboto', sans-serif;
-    margin-left: 320px;
+    font: 400 15px 'Roboto', sans-serif;
+    margin-left: 180px;
+    flex: 1;
     font-weight: bold;
 }
 
-.line {
+.listLine {
     border-style: solid;
     border-color: #dddddd;
     border-width: 1px 0 0 0;
@@ -142,53 +134,63 @@ export default {
 
 .user1 {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     width: 440px;
     margin-top: 30px;
 }
 
 .user2 {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     width: 440px;
 }
 
 .user3 {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     width: 440px;
 }
 
 .bidBox {
-    display: flex;
     width: 440px;
-    margin-top: 70px;
-    gap: 30px;
+    margin-top: 25px;
 }
 
-.inputPrice {
-    color: #797979;
+.textSize {
     text-align: left;
-    font: 300 10px 'Roboto', sans-serif;
+    font: 18px 'Roboto', sans-serif;
     border-radius: 5px;
     border-style: solid;
     border-color: #0075ff;
     border-width: 1px;
-    width: 370px;
-    height: 20px;
+    width: 430px;
+    height: 50px;
     align-items: center;
-    display: flex;
 }
 
-.textSize {
-    width: 370px;
-    height: 10px;
+input::placeholder {
+    font-size: 18px;
+}
+
+.textSize:focus {
+    outline: none;
 }
 
 .bid {
+    margin-top: 15px;
     background: #0075ff;
     border-radius: 5px;
-    width: 40px;
-    height: 22px;
+    text-align: center;
+    width: 440px;
+    height: 30px;
     color: #ffffff;
-    font: 400 10px 'Roboto', sans-serif;
+    font: 400 18px 'Roboto', sans-serif;
     border: none;
 }
 </style>

@@ -1,5 +1,6 @@
 package com.anabada.service;
 
+import com.amazonaws.services.s3.AmazonS3Client;
 import com.anabada.entity.Product;
 import com.anabada.entity.ProductImage;
 import com.anabada.etc.FileProcessor;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ProductImageService {
     private final ProductImageRepository productRepository;
+    //private final FileProcessor fileProcessor;
     private final FileProcessor fileProcessor;
 
     public void productImageSave(Long no,List<MultipartFile> multipartFiles){
