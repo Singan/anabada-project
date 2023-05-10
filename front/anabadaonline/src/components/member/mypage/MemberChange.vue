@@ -21,6 +21,7 @@
 
 		<div class="----------">
 			<div class="rectangle-272"></div>
+		</div>
 
 		<div class="--6">
 			<div class="----2">홍길동</div>
