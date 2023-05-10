@@ -53,17 +53,19 @@ const routes = [
 		name: 'MemberChange',
 		component: () => import('@/components/member/mypage/MemberChange.vue'),
 	},
-	{
-		path: '/evaluation',
-		name: 'Evaluation',
-		component: () => import('@/components/transaction/Evaluation.vue'),
-	},
 
 	{
 		path: '/successfulBid',
 		name: 'SuccessfulBid',
 		component: () => import('@/components/transaction/SuccessfulBid.vue'),
 	},
+
+	{
+		path: '/successfulBid2',
+		name: 'SuccessfulBid2',
+		component: () => import('@/components/transaction/SuccessfulBid2.vue'),
+	},
+
 	{
 		path: '/acountRegister',
 		name: 'AcountRegister',
