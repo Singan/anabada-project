@@ -51,7 +51,7 @@ public class Product {
     private ProductSocket productSocket;
     @Column(columnDefinition = "bigint default 0")
     private Long productVisit;
-    @OneToOne(mappedBy = "product")
+    @OneToOne(mappedBy = "product", fetch = FetchType.LAZY)
     private CurrentBid currentBid;
     public void upProductVisit(){
         productVisit=productVisit+1;
