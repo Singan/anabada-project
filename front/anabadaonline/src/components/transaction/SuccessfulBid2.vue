@@ -2,7 +2,11 @@
 	<div class="form">
 		<div class="SuccessText1">축하합니다!</div>
 
-		<div class="SuccessText2">"아이폰 14프로" 상품이 낙찰 되었습니다!</div>
+		<div class="SuccessText2">
+			<span style="color: #0075ff">"아이폰 14프로"</span> 상품이
+			<span style="color: #0075ff">낙찰</span>
+			되었습니다!
+		</div>
 
 		<img class="productPicture" />
 
@@ -13,15 +17,21 @@
 			<div class="productInfo">상품 거래지 : 경기도 성남시</div>
 		</div>
 
-		<div class="sellerBuyer">
-			<div>
-				<div class="seller">상품 판매자</div>
-				<div class="sellerName">김세진</div>
+		<div class="sellerBuyerBox">
+			<div class="sellerBuyerInfo">
+				<div class="sellerBuyer">상품 판매자</div>
+				<div class="sellerBuyerName">김세진</div>
 			</div>
 
-			<div>
-				<div class="buyer">상품 등록자</div>
-				<div class="buyerName">이승민</div>
+			<div class="processImage">
+				<div class="processComplete1"></div>
+				<div class="processComplete2"></div>
+				<div class="processComplete3"></div>
+			</div>
+
+			<div class="sellerBuyerInfo">
+				<div class="sellerBuyer">상품 등록자</div>
+				<div class="sellerBuyerName">이승민</div>
 			</div>
 		</div>
 
@@ -38,10 +48,10 @@
 		width: 100%;
 		background: #ffffff;
 		width: 800px;
-		height: 900px;
+		height: 800px;
 		display: flex;
 		flex-direction: column;
-		margin: 100px auto 0;
+		margin: 50px auto 0;
 		overflow: hidden;
 		align-items: center;
 	}
@@ -82,32 +92,62 @@
 		margin-bottom: 10px;
 	}
 
-	.sellerBuyer {
+	.sellerBuyerBox {
 		display: flex;
 		flex-direction: row;
 		gap: 100px;
+		justify-content: center;
+		align-items: center;
 	}
 
-	.seller {
+	.sellerBuyerInfo {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.sellerBuyer {
 		color: #000000;
 		font: 16px 'Roboto', sans-serif;
 	}
 
-	.sellerName {
+	.sellerBuyerName {
 		color: #000000;
 		font: 900 18px 'Roboto', sans-serif;
 		margin-top: 20px;
 	}
 
-	.buyer {
-		color: #000000;
-		font: 16px 'Roboto', sans-serif;
+	.processComplete1 {
+		width: 0;
+		height: 0;
+		border-top: 25px solid transparent;
+		border-bottom: 25px solid transparent;
+		border-left: 35px solid #74b4ff;
+		transform: rotate(0deg);
 	}
 
-	.buyerName {
-		color: #000000;
-		font: 900 18px 'Roboto', sans-serif;
-		margin-top: 20px;
+	.processComplete2 {
+		width: 0;
+		height: 0;
+		border-top: 25px solid transparent;
+		border-bottom: 25px solid transparent;
+		border-left: 35px solid #3692ff;
+		transform: rotate(0deg);
+	}
+
+	.processComplete3 {
+		width: 0;
+		height: 0;
+		border-top: 25px solid transparent;
+		border-bottom: 25px solid transparent;
+		border-left: 35px solid #0075ff;
+		transform: rotate(0deg);
+	}
+
+	.processImage {
+		display: flex;
+		gap: 50px;
 	}
 
 	.okayButton {
@@ -121,5 +161,6 @@
 		text-align: center;
 		border: none;
 		letter-spacing: 2px;
+		margin-top: 50px;
 	}
 </style>
