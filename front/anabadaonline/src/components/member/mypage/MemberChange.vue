@@ -10,12 +10,12 @@
 			<div class="change">
 				<div class="changeId">아이디</div>
 				<div class="idBox" readonly>
-					<span class="id">aaa</span>
+					<span class="id">{{ myData.memberId }}</span>
 				</div>
 
 				<div class="changeName">이름</div>
 				<div class="nameBox" readonly>
-					<span class="name">홍길동</span>
+					<span class="name">{{ myData.memberName }}</span>
 				</div>
 			</div>
 		</div>
@@ -39,49 +39,55 @@
 				</label>
 			</div>
 		</div>
-
-		<div class="changePwAndPwCheck">
-			<div class="change">
-				<div class="changePw">비밀번호 변경</div>
-				<input id="beforePw" type="text" class="pwBox" placeholder="기존 비밀번호를 입력하세요" />
-				<input id="beforePw" type="text" class="pwBox" placeholder="새 비밀번호를 입력하세요" />
-				<input id="beforePw" type="text" class="pwBox" placeholder="새 비밀번호를 한번 더 입력하세요" />
+		<form>
+			<div class="changePwAndPwCheck">
+				<div class="change">
+					<div class="changePw">비밀번호 변경</div>
+					<input id="beforePw" type="text" class="pwBox" placeholder="기존 비밀번호를 입력하세요" />
+					<input id="beforePw" type="text" class="pwBox" placeholder="새 비밀번호를 입력하세요" />
+					<input id="beforePw" type="text" class="pwBox" placeholder="새 비밀번호를 한번 더 입력하세요" />
+				</div>
 			</div>
-		</div>
 
-		<div class="changeAddr">
-			<div class="change">
-				<div class="changeAddrText">주소 변경</div>
+			<div class="changeAddr">
+				<div class="change">
+					<div class="changeAddrText">주소 변경</div>
+				</div>
 			</div>
-		</div>
-		<div class="changeAddrContainer">
-			<input class="addrBox" readonly v-model="addr" />
-			<button class="findAddrButton" @click="search()">주소 찾기</button>
-		</div>
+			<div class="changeAddrContainer">
+				<input class="addrBox" readonly v-model="addr" />
+				<button class="findAddrButton" type="button" @click="search()">주소 찾기</button>
+			</div>
 
-		<div class="changeAddr">
-			<div class="change">
-				<div class="changeAddrText">상세 주소 변경</div>
-				<input class="addrDetailBox" />
+			<div class="changeAddr">
+				<div class="change">
+					<div class="changeAddrText">상세 주소 변경</div>
+					<input class="addrDetailBox" />
+				</div>
 			</div>
-		</div>
 
-		<div class="yesAndNoButton">
-			<div class="change">
-				<button class="checkButton">수정하기</button>
-				<button class="noButton" onclick="history.go(-1)">취소하기</button>
+			<div class="yesAndNoButton">
+				<div class="change">
+					<button class="checkButton">수정하기</button>
+					<button class="noButton" onclick="history.go(-1)">취소하기</button>
+				</div>
 			</div>
-		</div>
+		</form>
 	</div>
 </template>
 <script>
+	import axios from '@/axios';
+	import { all } from 'axios';
 	export default {
 		name: '',
 		components: {},
 		props: {},
 		data() {
 			// quickfix to have components available to pass as props
-			return { addr: '' };
+			return {
+				addr: '',
+				myData: '',
+			};
 		},
 		methods: {
 			onInputImage(e) {
@@ -133,7 +139,17 @@
 					},
 				}).open();
 			},
+			getMypage() {
+				axios.get('update').then((res) => {
+					this.myData = res.data;
+					console.log(this.myData);
+				});
+			},
 		},
+		mounted() {
+			this.getMypage();
+		},
+		components: { all },
 	};
 </script>
 <style scoped>
@@ -151,11 +167,13 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		margin-top: 40px;
 	}
 
 	.changeHeaderText {
 		color: #0075ff;
 		font: 700 28px 'Roboto', sans-serif;
+		margin-top: 40px;
 	}
 
 	.changeId .changeName .changePw .changeAddrText .changeImgText {
@@ -170,6 +188,7 @@
 		border-color: #0075ff;
 		border-width: 1.5px;
 		height: 40px;
+		margin-bottom: 20px;
 	}
 
 	.id {
@@ -201,12 +220,14 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		margin-top: 40px;
 	}
 
 	.imagePreView {
 		background: #d9d9d9;
 		width: 120px;
 		height: 120px;
+		margin-top: 10px;
 	}
 
 	.imageChangeSelect {
@@ -225,6 +246,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		margin-top: 40px;
 	}
 
 	.pwBox {
@@ -234,6 +256,7 @@
 		border-width: 1.5px;
 		height: 40px;
 		width: 693px;
+		margin-bottom: 10px;
 	}
 
 	.addrBox {
@@ -259,6 +282,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		margin-top: 30px;
 	}
 
 	.changeAddrContainer {
@@ -294,6 +318,7 @@
 		color: white;
 		font: 500 16px 'Roboto', sans-serif;
 		cursor: pointer;
+		margin-top: 80px;
 	}
 
 	.noButton {
@@ -307,5 +332,7 @@
 		color: white;
 		font: 500 16px 'Roboto', sans-serif;
 		cursor: pointer;
+		margin-top: 10px;
+		margin-bottom: 80px;
 	}
 </style>
