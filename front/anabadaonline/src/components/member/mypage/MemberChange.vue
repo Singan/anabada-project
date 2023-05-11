@@ -56,12 +56,20 @@
 			</div>
 			<div class="changeAddrContainer">
 				<input class="addrBox" readonly v-model="addr" />
+				{{ myData.memberAddr }}
 				<button class="findAddrButton" type="button" @click="search()">주소 찾기</button>
 			</div>
 
 			<div class="changeAddr">
 				<div class="change">
 					<div class="changeAddrText">상세 주소 변경</div>
+					<input class="addrDetailBox" />
+				</div>
+			</div>
+
+			<div class="changeWishAddr">
+				<div class="change">
+					<div class="changeAddrText">거래 희망지 변경</div>
 					<input class="addrDetailBox" />
 				</div>
 			</div>
@@ -140,7 +148,7 @@
 				}).open();
 			},
 			getMypage() {
-				axios.get('update').then((res) => {
+				axios.get('member/idNameImage').then((res) => {
 					this.myData = res.data;
 					console.log(this.myData);
 				});
@@ -289,6 +297,13 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+
+	.changeWishAddr {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 30px;
 	}
 
 	.yesAndNoButton {

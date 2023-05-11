@@ -4,14 +4,11 @@ import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.MemberJoinDto;
 import com.anabada.dto.request_dto.MemberLoginDto;
 import com.anabada.dto.request_dto.MemberUpdateDto;
-import com.anabada.dto.response_dto.MemberInfoDto;
-import com.anabada.dto.response_dto.MemberUpdateFindDto;
-import com.anabada.dto.response_dto.MyPageFindDto;
+import com.anabada.dto.response_dto.*;
 import com.anabada.entity.Member;
 import com.anabada.etc.FileProcessor;
 import com.anabada.repository.MemberRepository;
 import com.anabada.config.token.JwtTokenProvider;
-import com.anabada.dto.response_dto.LoginResultDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -111,5 +108,11 @@ public class MemberService implements UserDetailsService {
         Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
         member.updateMember(memberUpdateDto, updateImagePath);
         return new MemberUpdateFindDto(member,s3EndPoint);
+    }
+
+    // 회원 정보 수정 페이지에 멤버 아이디, 이름, 이미지 보여주기
+    public ShowUpdateMemberDto showMemberInfo(MemberDetailDTO memberDetailDTO) {
+        Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
+        return new ShowUpdateMemberDto(member);
     }
 }
