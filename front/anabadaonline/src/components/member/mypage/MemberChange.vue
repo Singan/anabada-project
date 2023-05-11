@@ -333,6 +333,6 @@
 		font: 500 16px 'Roboto', sans-serif;
 		cursor: pointer;
 		margin-top: 10px;
-		margin-bottom: 80px;
+		margin-bottom: 90px;
 	}
 </style>
