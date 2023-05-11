@@ -1,6 +1,6 @@
 <template>
 	<div class="form1">
-		<div class="user1">
+		<div class="user">
 			<div class="ListImage"></div>
 			<div class="userName">{{ testData.list[0].memberName }}</div>
 			<div class="userPrice">{{ testData.list[0].price }}원</div>
@@ -8,7 +8,7 @@
 
 		<div class="listLine"></div>
 
-		<div class="user2">
+		<div class="user">
 			<div class="ListImage"></div>
 			<dib class="userName">{{ testData.list[1].memberName }}</dib>
 			<div class="userPrice">{{ testData.list[1].price }}원</div>
@@ -16,11 +16,12 @@
 
 		<div class="listLine"></div>
 
-		<div class="user3">
+		<div class="user">
 			<div class="ListImage"></div>
 			<dib class="userName">{{ testData.list[2].memberName }}</dib>
 			<div class="userPrice">{{ testData.list[2].price }}원</div>
 		</div>
+		<div class="listLine"></div>
 
 		<div class="bidBox">
 			<input class="textSize" type="text" placeholder="ex)xxx,xxx,xxx 원" />
@@ -130,29 +131,13 @@
 		transform: rotate(0deg) scale(1, 1);
 	}
 
-	.user1 {
+	.user {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
 		width: 440px;
 		margin-top: 30px;
-	}
-
-	.user2 {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		width: 440px;
-	}
-
-	.user3 {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		width: 440px;
 	}
 
 	.bidBox {

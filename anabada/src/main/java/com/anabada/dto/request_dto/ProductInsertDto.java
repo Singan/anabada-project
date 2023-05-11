@@ -35,6 +35,7 @@ public class ProductInsertDto {
                 .productName(name)
                 .productUseDate(usingDate)
                 .productThumbnail(thumbnail)
+                .productIsBidComplete(false)
                 .productSocket(productSocket)
                 .member(member)
                 .productVisit(0L)

@@ -71,9 +71,9 @@ public class ProductService {
         throw new RuntimeException("에러");
     }
 
-    // 모든 product
+
     //메인페이지 하단 부분
-    public ResultList<List<ProductFindAllDto>> findAllByProductImageListIsNotEmpty(Pageable pageable) {
+    public ResultList<List<ProductFindAllDto>> productMainFind(Pageable pageable) {
         List<Product> productList = productRepository.findByProductAndMember(pageable);
 
         List<ProductFindAllDto> productDtoList =
@@ -87,7 +87,7 @@ public class ProductService {
     public ArrayList<FindProductToCategoryDto> findProductToCategory(Long categoryNo) {
         ArrayList<FindProductToCategoryDto> findProductToCategoryDtoArrayList = new ArrayList<>();
         System.out.println("findProductToCategory -- 시작");
-        List<Product> productByCategoryList = productRepository.findProductByCategory();
+        List<Product> productByCategoryList = productRepository.findProductByCategory(categoryNo);
         System.out.println("findProductToCategory -- 쿼리실행");
         productByCategoryList.forEach(product -> {
             FindProductToCategoryDto findProductToCategoryDto = new FindProductToCategoryDto(product, s3EndPoint);

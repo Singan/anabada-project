@@ -47,7 +47,6 @@ public class MemberService implements UserDetailsService {
 
     }
     public MemberInfoDto findByMemberNoWithSocketList(String id){
-
         Member member = memberRepository.findMemberByMemberId(id);
         MemberInfoDto memberInfoDto= new MemberInfoDto(member,s3EndPoint);
         return memberInfoDto;

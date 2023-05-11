@@ -1,7 +1,7 @@
 import SockJS from 'sockjs-client';
 import Stomp from 'webstomp-client';
 
-let url = process.env.VUE_APP_API_URL
+let url = process.env.VUE_APP_API_URL;
 
 // let socketResult = {
 //     headers: {},
@@ -53,41 +53,40 @@ let url = process.env.VUE_APP_API_URL
 // };
 
 let socketResult = {
-    headers: {},
-    setHeaders(headers) {
-        this.headers = headers;
-    },
-    socket: '',
-    stompClient: '',
-    init() {
-
-        this.socket = new SockJS(url + '/ws');
-        this.stompClient = Stomp.over(this.socket);
-
-    },
-    connect(subUrl, recevieFunc) {
-        this.init();
-        this.stompClient.connect(
-            this.headers,
-            (frame) => {
-                this.stompClient.subscribe(subUrl, (res) => {
-                    let result = JSON.parse(res.body);
-                    console.log("받는부분")
-                    console.log()
-                    recevieFunc(result);
-                });
-            },
-            (error) => {
-                console.log('소켓 연결 실패', error);
-            },
-        );
-    },
-    send(msgObj, pubUrl) {
-        if (this.stompClient && this.stompClient.connected) {
-            this.stompClient.send(pubUrl, JSON.stringify(msgObj), this.headers);
-        }
-    }
+	headers: {},
+	setHeaders(headers) {
+		this.headers = headers;
+	},
+	socket: '',
+	stompClient: '',
+	init() {
+		this.socket = new SockJS(url + '/ws');
+		this.stompClient = Stomp.over(this.socket);
+	},
+	async connect() {
+		this.init();
+		this.stompClient.connect(
+			this.headers,
+			(frame) => {
+				console.log('소켓 연결 성공');
+			},
+			(error) => {
+				console.log('소켓 연결 실패', error);
+			},
+		);
+	},
+	send(msgObj, pubUrl) {
+		if (this.stompClient && this.stompClient.connected) {
+			this.stompClient.send(pubUrl, JSON.stringify(msgObj), this.headers);
+		}
+	},
+	subscribe(subUrl, recevieFunc) {
+		console.log('서브스크라이브 실행');
+		this.stompClient.subscribe(subUrl, (res) => {
+			let result = JSON.parse(res.body);
+			recevieFunc(result);
+		});
+	},
 };
-
 
 export default socketResult;

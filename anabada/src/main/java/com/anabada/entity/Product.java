@@ -32,30 +32,38 @@ public class Product {
     private String productUseDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="category_no", nullable = false)
+    @JoinColumn(name = "category_no", nullable = false)
     private Category category;
 
-    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ProductImage> productImageList;
 
     @Column
     private LocalDateTime createDateTime;
 
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "product_socket_no",nullable = false)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_socket_no", nullable = false)
     private ProductSocket productSocket;
     @Column(columnDefinition = "bigint default 0")
     private Long productVisit;
     @Column(nullable = false)
     private String productThumbnail;
 
-    public void upProductVisit(){
-        productVisit=productVisit+1;
+    @OneToOne(fetch = FetchType.LAZY,mappedBy = "product")
+    @PrimaryKeyJoinColumn
+    private CurrentBid currentBid;
+    @Column(nullable = false)
+    private Boolean productIsBidComplete;
+
+
+    public void upProductVisit() {
+        productVisit = productVisit + 1;
     }
+
     @Builder
     public Product(Long productNo, Member member, String productName, String productDetail, Integer productPrice,
-                   String productUseDate, Category category,Long productVisit,
-                   List<ProductImage> productImageList,ProductSocket productSocket,String productThumbnail) {
+                   String productUseDate, Category category, Long productVisit, List<ProductImage> productImageList,
+                   ProductSocket productSocket, String productThumbnail, boolean productIsBidComplete,CurrentBid currentBid) {
         this.productNo = productNo;
         this.member = member;
         this.productName = productName;
@@ -68,5 +76,7 @@ public class Product {
         this.productSocket = productSocket;
         this.productVisit = productVisit;
         this.productThumbnail = productThumbnail;
+        this.productIsBidComplete = productIsBidComplete;
+        this.currentBid = currentBid;
     }
 }

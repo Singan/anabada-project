@@ -34,7 +34,7 @@ public class FileProcessor {
             objectMetadata.setContentType(multipartFile.getContentType());
             objectMetadata.setContentLength(multipartFile.getSize());
             amazonS3Client.putObject(bucket, fileName, multipartFile.getInputStream(), objectMetadata);
-            return  "/" + fileName;
+            return   fileName;
         } catch (Exception e) {
             throw new RuntimeException("파일 저장 실패");
         }

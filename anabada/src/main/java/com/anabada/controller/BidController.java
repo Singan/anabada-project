@@ -30,20 +30,19 @@ public class BidController {
     public void bidInsert(@Payload BidInsertDto bidInsertDto, Authentication authentication) {
         MemberDetailDTO memberDetailDTO = (MemberDetailDTO)authentication.getPrincipal();
         System.out.println("입찰 정보 등록 실행");
-        Object ob;
         try {
             bidService.bidSave(bidInsertDto,memberDetailDTO);
-            ob = new BidInsertResponseDto(
+            BidInsertResponseDto bidRes = new BidInsertResponseDto(
                     bidInsertDto.getProductNo(),
                     memberDetailDTO.getUserNickname(),
                     bidInsertDto.getBidPrice(),
                     memberDetailDTO.getNo());
-        }catch (RuntimeException runtimeException){
-            ob= new RuntimeException(runtimeException.getMessage());
-
+            simpMessagingTemplate.convertAndSend(
+                    "/product/"+bidInsertDto.getProductNo(),bidRes);
+        }catch (RuntimeException e){
+            throw new RuntimeException(e.getMessage());
         }
-        simpMessagingTemplate.convertAndSend(
-                "/product/"+bidInsertDto.getProductNo(),ob);
+
     }
 
     @GetMapping

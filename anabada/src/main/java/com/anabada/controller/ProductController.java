@@ -51,7 +51,7 @@ public class ProductController {
             @PageableDefault(sort = "id", size = 4, direction = Sort.Direction.DESC)
             Pageable pageable
     ) {
-        ResultList<List<ProductFindAllDto>> result = productService.findAllByProductImageListIsNotEmpty(pageable);
+        ResultList<List<ProductFindAllDto>> result = productService.productMainFind(pageable);
         return result;
     }
     // 상품 리스트
