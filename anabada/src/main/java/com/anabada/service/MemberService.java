@@ -101,6 +101,7 @@ public class MemberService implements UserDetailsService {
     }
 
     @Transactional
+    // 로직 고치기
     public MemberUpdateFindDto memberUpdate(MemberDetailDTO memberDetailDTO, MemberUpdateDto memberUpdateDto) {
         Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
         String updateImagePath = "";
@@ -108,7 +109,7 @@ public class MemberService implements UserDetailsService {
         String originalPw = memberUpdateDto.getOriginalPw();  // 유저가 입력한 기존 비밀번호
         String memberPw = member.getMemberPw();  // 기존 비밀번호
 
-        // 비밀번호가 기존 비밀번호랑 다른지 검증
+        // 비밀번호가 기존 비밀번호랑 다른지 검증 고쳐야함
             if (!passwordEncoder.matches(updatePw, memberPw)) {
                 updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage(),"member");
                 memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
