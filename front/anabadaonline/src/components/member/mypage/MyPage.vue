@@ -1,7 +1,7 @@
 <template>
 	<div class="mypageContainer">
 		<div class="mypageHeader">
-			<img class="userImage" src="" />
+			<img class="userImage" v-bind:src="this.$store.getters.getMember.image" />
 			<div class="userName">
 				{{ myData.memberName }}
 				<img src="@/assets/profileButton.png" alt="profileButton" class="showProfileButton" />
