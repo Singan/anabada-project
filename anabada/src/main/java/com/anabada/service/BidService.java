@@ -43,10 +43,8 @@ public class BidService {
                     .price(bid.getPrice())
                     .product(product)
                     .build();
-            System.out.println("비드 셀렉트 실행??1");
 
             currentBidRepository.save(currentBid);
-            System.out.println("비드 셀렉트 실행??2");
         } else {
             if (bid.getPrice() <= currBid.getPrice()) {
                 throw new RuntimeException("새로운 입찰은 현재 입찰가보다 작을 수 없습니다.");

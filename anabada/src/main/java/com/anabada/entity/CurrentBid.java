@@ -13,14 +13,16 @@ public class CurrentBid {
     @Id
     private Long productNo;
 
+    @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn
+    private Product product;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_no",nullable = false)
     private Member member;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
-    @JoinColumn(name = "product_no" ,referencedColumnName="product_no")
-    private Product product;
+
 
     @Column(name = "create_time",nullable = false)
     private LocalDateTime localDateTime;

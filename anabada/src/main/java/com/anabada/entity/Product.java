@@ -49,9 +49,9 @@ public class Product {
     @Column(nullable = false)
     private String productThumbnail;
 
-    @OneToOne(fetch = FetchType.LAZY,mappedBy = "product" ,cascade = CascadeType.ALL, optional = false)
-    @PrimaryKeyJoinColumn
+    @OneToOne(fetch = FetchType.LAZY,mappedBy = "product" ,cascade = CascadeType.ALL)
     private CurrentBid currentBid;
+
     @Column(nullable = false)
     private Boolean productIsBidComplete;
 
