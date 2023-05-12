@@ -25,25 +25,22 @@ import java.util.List;
 public class BidController {
     private final BidService bidService;
     private final SimpMessagingTemplate simpMessagingTemplate;
+
     @MessageMapping("/bid")
     @Operation(description = "입찰 정보 등록")
     public void bidInsert(@Payload BidInsertDto bidInsertDto, Authentication authentication) {
-        MemberDetailDTO memberDetailDTO = (MemberDetailDTO)authentication.getPrincipal();
+        MemberDetailDTO memberDetailDTO = (MemberDetailDTO) authentication.getPrincipal();
         System.out.println("입찰 정보 등록 실행");
-        Object ob;
-        try {
-            bidService.bidSave(bidInsertDto,memberDetailDTO);
-            ob = new BidInsertResponseDto(
-                    bidInsertDto.getProductNo(),
-                    memberDetailDTO.getUserNickname(),
-                    bidInsertDto.getBidPrice(),
-                    memberDetailDTO.getNo());
-        }catch (RuntimeException runtimeException){
-            ob= new RuntimeException(runtimeException.getMessage());
-
-        }
+        bidService.bidSave(bidInsertDto, memberDetailDTO);
+        BidInsertResponseDto bidRes = new BidInsertResponseDto(
+                bidInsertDto.getProductNo(),
+                memberDetailDTO.getUserNickname(),
+                bidInsertDto.getBidPrice(),
+                memberDetailDTO.getNo());
         simpMessagingTemplate.convertAndSend(
-                "/product/"+bidInsertDto.getProductNo(),ob);
+                "/product/" + bidInsertDto.getProductNo(), bidRes);
+
+
     }
 
     @GetMapping

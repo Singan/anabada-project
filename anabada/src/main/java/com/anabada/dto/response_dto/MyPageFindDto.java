@@ -19,9 +19,9 @@ public class MyPageFindDto {
     private Integer memberMoney;
     private String memberImage;
 
-    public MyPageFindDto (Member member) {
+    public MyPageFindDto (Member member,String prefix) {
         this.memberName = member.getMemberName();
         this.memberMoney = member.getMemberMoney();
-        this.memberImage = member.getMemberImage();
+        this.memberImage = prefix+member.getMemberImage();
     }
 }

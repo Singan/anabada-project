@@ -5,7 +5,6 @@ import com.anabada.dto.request_dto.ProductInsertDto;
 import com.anabada.dto.response_dto.*;
 import com.anabada.entity.Product;
 import com.anabada.repository.ProductRepository;
-import com.anabada.service.ProductImageService;
 import com.anabada.service.ProductService;
 import com.anabada.service.SocketService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -28,14 +27,12 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
     private final ProductService productService;
-    private final ProductImageService imageService;
     private final SocketService socketService;
     @PostMapping
     @Operation(description = "상품등록")
     public ProductInsertResDto productInsert(ProductInsertDto productInsertDto, @AuthenticationPrincipal MemberDetailDTO principal){
         //스레드에 MemberDetail을 넣는다.
         ProductInsertResDto productInsertResDto = productService.productSave(productInsertDto,principal);
-        imageService.productImageSave(productInsertResDto.getProductNo(),productInsertDto.getProductImages());
 
         return productInsertResDto;
     }
@@ -54,7 +51,7 @@ public class ProductController {
             @PageableDefault(sort = "id", size = 4, direction = Sort.Direction.DESC)
             Pageable pageable
     ) {
-        ResultList<List<ProductFindAllDto>> result = productService.findAllByProductImageListIsNotEmpty(pageable);
+        ResultList<List<ProductFindAllDto>> result = productService.productMainFind(pageable);
         return result;
     }
     // 상품 리스트
@@ -65,8 +62,5 @@ public class ProductController {
         ArrayList<FindProductToCategoryDto> findProductToCategoryDtoArrayList = productService.findProductToCategory(categoryNo);
         return findProductToCategoryDtoArrayList;
     }
-
-
-
 }
 

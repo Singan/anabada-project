@@ -13,10 +13,10 @@ public class FindProductToCategoryDto {
     private Integer productPrice;
     private String productImage;
     private Long productNo;
-    public FindProductToCategoryDto(Product product) {
+    public FindProductToCategoryDto(Product product,String prefix) {
         this.productName = product.getProductName();
         this.productPrice = product.getProductPrice();
-        this.productImage = product.getProductImageList().get(0).getImageAddr();
+        this.productImage = prefix+product.getProductThumbnail();
         this.productNo = product.getProductNo();
     }
 }

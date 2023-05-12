@@ -1,6 +1,7 @@
 package com.anabada.dto.response_dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +12,7 @@ public class BidInsertResponseDto {
     private String memberName;
     private Integer price;
     private Long memberNo;
-
+    @Builder
     public BidInsertResponseDto(Long productNo, String memberName, Integer price, Long memberNo) {
         this.productNo = productNo;
         this.memberName = memberName;

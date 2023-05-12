@@ -5,11 +5,7 @@
 		<div class="imagePreView">
 			<img id="img" />
 		</div>
-		<label
-			class="productSelect"
-			style="background-color: skyblue"
-			for="productImages"
-		>
+		<label class="productSelect" style="background-color: skyblue" for="productImages">
 			이미지 등록
 			<input
 				id="productImages"
@@ -48,11 +44,7 @@
 
 		<div class="category">
 			<select v-model="selectCategory" class="categorySelect">
-				<option
-					v-for="item in categoryList"
-					:key="item.categoryNo"
-					:value="item.categoryNo"
-				>
+				<option v-for="item in categoryList" :key="item.categoryNo" :value="item.categoryNo">
 					{{ item.categoryName }}
 				</option>
 			</select>
@@ -75,32 +67,16 @@
 		<div class="commonText">사용기간 : {{ usingDate }}</div>
 
 		<div class="radioSelect">
-			<input
-				type="radio"
-				id="one"
-				value="미사용"
-				v-model="usingDate"
-				checked
-			/>
+			<input type="radio" id="one" value="미사용" v-model="usingDate" checked />
 			<label for="one">미사용</label>
 
 			<input type="radio" id="two" value="0 ~ 4주" v-model="usingDate" />
 			<label for="two">0 ~ 4주</label>
 
-			<input
-				type="radio"
-				id="three"
-				value="4 ~ 8주"
-				v-model="usingDate"
-			/>
+			<input type="radio" id="three" value="4 ~ 8주" v-model="usingDate" />
 			<label for="three">4 ~ 8주</label>
 
-			<input
-				type="radio"
-				id="four"
-				value="8주 이상"
-				v-model="usingDate"
-			/>
+			<input type="radio" id="four" value="8주 이상" v-model="usingDate" />
 			<label for="four">8주 이상</label>
 		</div>
 		<label class="submit">
@@ -159,9 +135,7 @@
 					})
 					.then((response) => {
 						console.log(response);
-						this.$router.push(
-							'./ProductDt?productNo=' + response.data.productNo,
-						);
+						this.$router.push('./ProductDt?productNo=' + response.data.productNo);
 						console.log(response.data.productNo);
 					});
 			},
@@ -177,9 +151,7 @@
 					image.src = e.target.result;
 					image.width = 120;
 					image.height = 120;
-					document.querySelector(
-						'.imagePreView',
-					).style.backgroundColor = 'white';
+					document.querySelector('.imagePreView').style.backgroundColor = 'white';
 				};
 				reader.readAsDataURL(this.productImages.item(0));
 			},

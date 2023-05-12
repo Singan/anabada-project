@@ -10,137 +10,153 @@
 			<div class="change">
 				<div class="changeId">아이디</div>
 				<div class="idBox" readonly>
-					<span class="id">aaa</span>
+					<span class="id">{{ myData.memberId }}</span>
 				</div>
 
-				<div class="--5">
-					<div class="Text">이름</div>
+				<div class="changeName">이름</div>
+				<div class="nameBox" readonly>
+					<span class="name">{{ myData.memberName }}</span>
 				</div>
 			</div>
 		</div>
 
-		<div class="----------">
-			<div class="rectangle-272"></div>
+		<div class="changeImg">
+			<div class="change">
+				<div class="changeImgText">프로필 이미지 변경</div>
+				<div class="imagePreView">
+					<img id="img" />
+				</div>
+				<label class="imageChangeSelect" for="productImages">
+					이미지 등록
+					<input
+						id="productImages"
+						type="file"
+						@change="onInputImage"
+						accept="image/*"
+						multiple="multiple"
+						style="width: 0px; height: 0px"
+					/>
+				</label>
+			</div>
 		</div>
+		<form>
+			<div class="changePwAndPwCheck">
+				<div class="change">
+					<div class="changePw">비밀번호 변경</div>
+					<input id="beforePw" type="text" class="pwBox" placeholder="기존 비밀번호를 입력하세요" />
+					<input id="beforePw" type="text" class="pwBox" placeholder="새 비밀번호를 입력하세요" />
+					<input id="beforePw" type="text" class="pwBox" placeholder="새 비밀번호를 한번 더 입력하세요" />
+				</div>
+			</div>
 
-		<div class="--6">
-			<div class="----2">홍길동</div>
-		</div>
+			<div class="changeAddr">
+				<div class="change">
+					<div class="changeAddrText">주소 변경</div>
+				</div>
+			</div>
+			<div class="changeAddrContainer">
+				<input class="addrBox" readonly v-model="myData.memberAddr" />
+				<button class="findAddrButton" type="button" @click="search()">주소 찾기</button>
+			</div>
 
-		<div class="--7">
-			<div class="Text">비밀번호 변경</div>
-		</div>
+			<div class="changeAddr">
+				<div class="change">
+					<div class="changeAddrText">상세 주소 변경</div>
+					<input class="addrDetailBox" />
+				</div>
+			</div>
 
-		<div class="rectangle-273"></div>
+			<div class="changeWishAddr">
+				<div class="change">
+					<div class="changeAddrText">거래 희망지 변경</div>
+					<input class="addrDetailBox" />
+				</div>
+			</div>
 
-		<div class="----3">현재 비밀번호를 입력하세요</div>
-
-		<div class="--9">
-			<div class="Text">주소 변경</div>
-		</div>
-
-		<div class="----------2">
-			<div class="rectangle-274"></div>
-
-			<div class="--10"></div>
-
-			<div class="-------">경기도 성남시</div>
-		</div>
-
-		<div class="----------3">
-			<div class="rectangle-275"></div>
-
-			<div class="--11"></div>
-
-			<div class="-----">주소 찾기</div>
-		</div>
-
-		<div class="rectangle-276"></div>
-
-		<div class="--12"></div>
-
-		<div class="-------------">새 비밀번호를 입력하세요</div>
-
-		<div class="rectangle-277"></div>
-
-		<div class="--13"></div>
-
-		<div class="------------------">새 비밀번호를 한 번더 입력하세요</div>
-
-		<div class="rectangle-25"></div>
-
-		<div class="_18px">
-			<div class="_18px2">수정 하기</div>
-		</div>
-
-		<div class="rectangle-252"></div>
-	</div>
-
-	<div class="--7">
-		<div class="Text">비밀번호 변경</div>
-	</div>
-
-	<div class="rectangle-273"></div>
-
-	<div class="----3">현재 비밀번호를 입력하세요</div>
-
-	<div class="--9">
-		<div class="Text">주소 변경</div>
-	</div>
-
-	<div class="----------2">
-		<div class="rectangle-274"></div>
-
-		<div class="--10"></div>
-
-		<div class="-------">경기도 성남시</div>
-	</div>
-
-	<div class="----------3">
-		<div class="rectangle-275"></div>
-
-		<div class="--11"></div>
-
-		<div class="-----">주소 찾기</div>
-	</div>
-
-	<div class="rectangle-276"></div>
-
-	<div class="--12"></div>
-
-	<div class="-------------">새 비밀번호를 입력하세요</div>
-
-	<div class="rectangle-277"></div>
-
-	<div class="--13"></div>
-
-	<div class="------------------">새 비밀번호를 한 번더 입력하세요</div>
-
-	<div class="--14">
-		<div class="rectangle-25"></div>
-
-		<div class="_18px">
-			<div class="_18px2">수정 하기</div>
-		</div>
-	</div>
-
-	<div class="-----2">
-		<div class="rectangle-252"></div>
-
-		<div class="_18px3">
-			<div class="_18px2" @click="goMypage">취소</div>
-		</div>
+			<div class="yesAndNoButton">
+				<div class="change">
+					<button class="checkButton">수정하기</button>
+					<button class="noButton" onclick="history.go(-1)">취소하기</button>
+				</div>
+			</div>
+		</form>
 	</div>
 </template>
 <script>
+	import axios from '@/axios';
+	import { all } from 'axios';
 	export default {
 		name: '',
 		components: {},
 		props: {},
 		data() {
 			// quickfix to have components available to pass as props
-			return {};
+			return {
+				addr: '',
+				myData: '',
+			};
 		},
+		methods: {
+			onInputImage(e) {
+				this.productImages = e.target.files;
+				console.log(this.productImages);
+
+				//이미지 미리보기
+				const image = document.getElementById('img');
+				const reader = new FileReader();
+				reader.onload = (e) => {
+					image.src = e.target.result;
+					image.width = 120;
+					image.height = 120;
+					document.querySelector('.imagePreView').style.backgroundColor = 'white';
+				};
+				reader.readAsDataURL(this.productImages.item(0));
+			},
+			search() {
+				//@click을 사용할 때 함수는 이렇게 작성해야 한다.
+				new window.daum.Postcode({
+					oncomplete: (data) => {
+						//function이 아니라 => 로 바꿔야한다.
+						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+						// 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+						var roadAddr = data.roadAddress; // 도로명 주소 변수
+						var extraRoadAddr = ''; // 참고 항목 변수
+
+						// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+						// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+						if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+							extraRoadAddr += data.bname;
+						}
+						// 건물명이 있고, 공동주택일 경우 추가한다.
+						if (data.buildingName !== '' && data.apartment === 'Y') {
+							extraRoadAddr += extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName;
+						}
+						// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+						if (extraRoadAddr !== '') {
+							extraRoadAddr = ' (' + extraRoadAddr + ')';
+						}
+
+						// 우편번호와 주소 정보를 해당 필드에 넣는다.
+						// document.getElementById('post').value = data.zonecode;
+						this.addr = roadAddr;
+						// document.getElementById('detailaddr').value =
+						// 	data.jibunAddress;
+					},
+				}).open();
+			},
+			getMypage() {
+				axios.get('member/idNameImage').then((res) => {
+					this.myData = res.data;
+					console.log(this.myData);
+				});
+			},
+		},
+		mounted() {
+			this.getMypage();
+		},
+		components: { all },
 	};
 </script>
 <style scoped>
@@ -158,14 +174,16 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		margin-top: 40px;
 	}
 
 	.changeHeaderText {
 		color: #0075ff;
 		font: 700 28px 'Roboto', sans-serif;
+		margin-top: 40px;
 	}
 
-	.changeId {
+	.changeId .changeName .changePw .changeAddrText .changeImgText {
 		color: #000000;
 		font: 400 16px 'Roboto', sans-serif;
 	}
@@ -177,6 +195,7 @@
 		border-color: #0075ff;
 		border-width: 1.5px;
 		height: 40px;
+		margin-bottom: 20px;
 	}
 
 	.id {
@@ -187,313 +206,147 @@
 		top: 7px;
 	}
 
-	.--4 {
-		width: 487.98px;
-		height: 26.67px;
-		position: absolute;
-		left: 673.2px;
-		top: 216.67px;
-	}
-
-	.----2 {
-		color: #797979;
-		text-align: left;
-		font: 400 12px 'Roboto', sans-serif;
-		position: absolute;
-		left: 0px;
-		top: 0px;
-		width: 487.98px;
-		height: 26.67px;
-		display: flex;
-		align-items: center;
-		justify-content: flex-start;
-	}
-
-	.name {
-		width: 370px;
-		height: 30px;
-		position: absolute;
-		left: 660px;
-		top: 280px;
-	}
-
 	.nameBox {
 		background: #e1e1e1;
 		border-radius: 5px;
 		border-style: solid;
 		border-color: #0075ff;
 		border-width: 1.5px;
-		width: 630px;
 		height: 40px;
-		position: absolute;
-		left: 660px;
-		top: 322px;
 	}
 
-	.--6 {
-		width: 487.98px;
-		height: 26.67px;
-		position: absolute;
-		left: 673.2px;
-		top: 328.67px;
-	}
-
-	.--7 {
-		width: 370px;
-		height: 30px;
-		position: absolute;
-		left: 660px;
-		top: 390px;
-	}
-
-	.rectangle-273 {
-		border-radius: 5px;
-		border-style: solid;
-		border-color: #0075ff;
-		border-width: 1.5px;
-		width: 630px;
-		height: 40px;
-		position: absolute;
-		left: 660px;
-		top: 430px;
-	}
-
-	.--8 {
-		width: 487.98px;
-		height: 26.67px;
-		position: absolute;
-		left: 663.2px;
-		top: 436.67px;
-	}
-
-	.----3 {
+	.name {
+		margin-left: 10px;
 		color: #797979;
-		text-align: left;
-		font: 400 12px 'Roboto', sans-serif;
-		position: absolute;
-		left: 670px;
-		top: 437px;
-		width: 487.98px;
-		height: 26.67px;
+		font: 400 14px 'Roboto', sans-serif;
+		position: relative;
+		top: 7px;
+	}
+
+	.changeImg {
 		display: flex;
-		align-items: center;
-		justify-content: flex-start;
-	}
-
-	.--9 {
-		width: 370px;
-		height: 30px;
-		position: absolute;
-		left: 660px;
-		top: 620px;
-	}
-
-	.----------2 {
-		width: 530px;
-		height: 30px;
-		position: static;
-	}
-
-	.rectangle-274 {
-		border-radius: 5px;
-		border-style: solid;
-		border-color: #0075ff;
-		border-width: 1.5px;
-		width: 530px;
-		height: 30px;
-		position: absolute;
-		left: 660px;
-		top: 660px;
-	}
-
-	.--10 {
-		width: 410.53px;
-		height: 20px;
-		position: absolute;
-		left: 662.69px;
-		top: 665px;
-	}
-
-	.------- {
-		color: #797979;
-		text-align: left;
-		font: 400 12px 'Roboto', sans-serif;
-		position: absolute;
-		left: 668.41px;
-		top: 665.25px;
-		width: 410.53px;
-		height: 20px;
-		display: flex;
-		align-items: center;
-		justify-content: flex-start;
-	}
-
-	.----------3 {
-		width: 70px;
-		height: 30px;
-		position: static;
-	}
-
-	.rectangle-275 {
-		background: #0075ff;
-		border-radius: 5px;
-		width: 70px;
-		height: 30px;
-		position: absolute;
-		left: 1220px;
-		top: 660px;
-	}
-
-	.--11 {
-		background: #0075ff;
-		width: 54.22px;
-		height: 20px;
-		position: absolute;
-		left: 1220.36px;
-		top: 665px;
-	}
-
-	.----- {
-		color: #ffffff;
-		text-align: center;
-		font: 400 12px 'Roboto', sans-serif;
-		position: absolute;
-		left: 1220px;
-		top: 665.25px;
-		width: 70px;
-		height: 20.25px;
-		display: flex;
-		align-items: center;
 		justify-content: center;
-	}
-
-	.rectangle-276 {
-		border-radius: 5px;
-		border-style: solid;
-		border-color: #0075ff;
-		border-width: 1.5px;
-		width: 630px;
-		height: 40px;
-		position: absolute;
-		left: 660px;
-		top: 490px;
-	}
-
-	.--12 {
-		width: 487.98px;
-		height: 26.67px;
-		position: absolute;
-		left: 663.2px;
-		top: 496.67px;
-	}
-
-	.------------- {
-		color: #797979;
-		text-align: left;
-		font: 400 12px 'Roboto', sans-serif;
-		position: absolute;
-		left: 670px;
-		top: 497px;
-		width: 487.98px;
-		height: 26.67px;
-		display: flex;
 		align-items: center;
-		justify-content: flex-start;
+		margin-top: 40px;
 	}
 
-	.rectangle-277 {
-		border-radius: 5px;
-		border-style: solid;
-		border-color: #0075ff;
-		border-width: 1.5px;
-		width: 630px;
-		height: 40px;
-		position: absolute;
-		left: 660px;
-		top: 550px;
+	.imagePreView {
+		background: #d9d9d9;
+		width: 120px;
+		height: 120px;
+		margin-top: 10px;
 	}
 
-	.--13 {
-		width: 487.98px;
-		height: 26.67px;
-		position: absolute;
-		left: 663.2px;
-		top: 556.67px;
-	}
-
-	.------------------ {
-		color: #797979;
-		text-align: left;
-		font: 400 12px 'Roboto', sans-serif;
-		position: absolute;
-		left: 670px;
-		top: 557px;
-		width: 487.98px;
-		height: 26.67px;
-		display: flex;
-		align-items: center;
-		justify-content: flex-start;
-	}
-
-	.--14 {
-		width: 630px;
-		height: 40px;
-		position: static;
-	}
-
-	.rectangle-25 {
+	.imageChangeSelect {
 		background: #0075ff;
 		border-radius: 5px;
-		width: 630px;
+		width: 70px;
 		height: 40px;
-		position: absolute;
-		left: 650px;
-		top: 902px;
-	}
-
-	._18px {
-		width: 107.23px;
-		height: 30px;
-		position: absolute;
-		left: 911.38px;
-		top: 907px;
-	}
-
-	._18px2 {
-		color: #ffffff;
+		border: none;
+		color: white;
+		cursor: pointer;
 		text-align: center;
-		font: 700 18px 'Roboto', sans-serif;
-		position: absolute;
-		left: 0px;
-		top: 0px;
-		width: 107.23px;
-		height: 30px;
+		cursor: pointer;
+	}
+
+	.changePwAndPwCheck {
 		display: flex;
-		align-items: center;
 		justify-content: center;
+		align-items: center;
+		margin-top: 40px;
 	}
 
-	.-----2 {
-		width: 630px;
-		height: 40px;
-		position: static;
-	}
-
-	.rectangle-252 {
-		background: #ff4545;
+	.pwBox {
 		border-radius: 5px;
-		width: 630px;
+		border-style: solid;
+		border-color: #0075ff;
+		border-width: 1.5px;
 		height: 40px;
-		position: absolute;
-		left: 650px;
-		top: 962px;
+		width: 693px;
+		margin-bottom: 10px;
 	}
 
-	._18px3 {
-		width: 107.23px;
-		height: 30px;
-		position: absolute;
-		left: 911.38px;
-		top: 967px;
+	.addrBox {
+		border-radius: 5px;
+		border-style: solid;
+		border-color: #0075ff;
+		border-width: 1.5px;
+		height: 40px;
+		width: 600px;
+		margin-right: 25px;
+	}
+
+	.addrDetailBox {
+		border-radius: 5px;
+		border-style: solid;
+		border-color: #0075ff;
+		border-width: 1.5px;
+		height: 40px;
+		width: 693px;
+	}
+
+	.changeAddr {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 30px;
+	}
+
+	.changeAddrContainer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.changeWishAddr {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 30px;
+	}
+
+	.yesAndNoButton {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.findAddrButton {
+		background: #0075ff;
+		border-radius: 5px;
+		width: 70px;
+		height: 40px;
+		border: none;
+		color: white;
+		cursor: pointer;
+	}
+
+	.checkButton {
+		border-radius: 5px;
+		border-style: solid;
+		background-color: #0075ff;
+		border-width: 1.5px;
+		width: 700px;
+		height: 40px;
+		border: none;
+		color: white;
+		font: 500 16px 'Roboto', sans-serif;
+		cursor: pointer;
+		margin-top: 80px;
+	}
+
+	.noButton {
+		border-radius: 5px;
+		border-style: solid;
+		background-color: #ff4545;
+		border-width: 1.5px;
+		width: 700px;
+		height: 40px;
+		border: none;
+		color: white;
+		font: 500 16px 'Roboto', sans-serif;
+		cursor: pointer;
+		margin-top: 10px;
+		margin-bottom: 90px;
 	}
 </style>
