@@ -44,9 +44,9 @@
 			<div class="changePwAndPwCheck">
 				<div class="change">
 					<div class="changePw">비밀번호 변경</div>
-					<input id="beforePw" type="text" class="pwBox" placeholder="기존 비밀번호를 입력하세요" />
-					<input id="newPw" type="text" class="pwBox" placeholder="새 비밀번호를 입력하세요" />
-					<input id="newPw" type="text" class="pwBox" placeholder="새 비밀번호를 한번 더 입력하세요" />
+					<input id="beforePw" type="password" class="pwBox" placeholder="기존 비밀번호를 입력하세요" />
+					<input id="newPw" type="password" class="pwBox" placeholder="새 비밀번호를 입력하세요" />
+					<input id="newPw" type="password" class="pwBox" placeholder="새 비밀번호를 한번 더 입력하세요" />
 				</div>
 			</div>
 
@@ -86,6 +86,7 @@
 <script>
 	import axios from '@/axios';
 	import { all } from 'axios';
+
 	export default {
 		name: '',
 		components: {},
@@ -120,13 +121,22 @@
 			},
 			submitForm() {
 				let form = new FormData();
-				form.append('newPw', this.newPw);
-				form.append('newAddr', this.newAddr);
-				form.append('newDt', this.newDt);
-				form.append('newWish', this.newWish);
-				form.append('img', this.img);
-				axios.post('member/update');
+				form.append('updatePw', this.newPw);
+				form.append('updateAddr', this.newAddr);
+				form.append('updateDetailAddr', this.newDt);
+				form.append('updateWishAddr', this.newWish);
+				form.append('updateImage', this.img);
+				axios
+					.post('member/update', form, {
+						header: { 'Content-Type': 'multipart/form-data' },
+					})
+					.then((response) => {
+						console.log(response);
+					});
 			},
+			// oldPassword() {
+			// 	axios.get();
+			// },
 			search() {
 				//@click을 사용할 때 함수는 이렇게 작성해야 한다.
 				new window.daum.Postcode({
