@@ -3,7 +3,9 @@
 		<img class="leftButton" src="@/assets/left.jpg" />
 
 		<div class="imgBox">
-			<img class="productPicture" v-for="image in seller.productImageList" :src="image"/>
+			<img class="productPicture" v-for="image in seller.productImageList" :src="image" />
+			<button @click="prevImage">이전</button>
+			<button @click="nextImage">다음</button>
 		</div>
 		<img class="rightButton" src="@/assets/right.jpg" />
 
@@ -126,6 +128,7 @@
 				stompClient: '',
 				resultObj: {},
 				testInput: 0,
+				imageIndex: 0,
 			};
 		},
 
@@ -154,13 +157,23 @@
 				};
 				this.$store.getters.getSocket.send(msgObj, '/bid');
 			},
+
+			prevImage() {
+				(this.imageIndex - 1 + this.seller.productImageList.length) % this.seller.productImageList.length;
+			},
 		},
 
 		mounted() {
 			this.sellerInfo();
-			console.log("실행")
-			
+			console.log('실행');
+
 			this.$store.getters.getSocket.subscribe('/product/' + this.productNo, this.recevieFunc);
+		},
+
+		computed: {
+			image() {
+				return this.seller.productImageList[this.imageIndex];
+			},
 		},
 		created() {},
 	};
