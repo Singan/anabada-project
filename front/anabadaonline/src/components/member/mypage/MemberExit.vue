@@ -71,12 +71,13 @@
 		border-style: solid;
 		border-color: #0075ff;
 		border-width: 1.5px;
+		margin-top: 20px;
 		width: 630px;
 		height: 40px;
 	}
 
 	.pwBox {
-		width: 487.98px;
+		width: 630px;
 		height: 26.67px;
 		left: 663.2px;
 		top: 264.67px;
@@ -101,17 +102,13 @@
 		width: 630px;
 		height: 40px;
 		margin-top: 300px;
+		margin-bottom: 10px;
 		display: flex;
+		background: #0075ff;
+		border-radius: 5px;
 	}
 
 	.blueBox {
-		background: #0075ff;
-		border-radius: 5px;
-		width: 630px;
-		height: 40px;
-
-		left: 660px;
-		top: 862px;
 	}
 
 	._18px {
@@ -125,13 +122,12 @@
 	.cancelBox {
 		width: 630px;
 		height: 40px;
-
+		background: #ff4545;
+		border-radius: 5px;
 		display: flex;
 	}
 
 	.redBox {
-		background: #ff4545;
-		border-radius: 5px;
 		width: 630px;
 		height: 40px;
 
