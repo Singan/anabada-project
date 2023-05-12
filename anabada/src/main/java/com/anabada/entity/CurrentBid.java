@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 public class CurrentBid {
 
     @Id
-    @Column(name = "product_no" )
     private Long productNo;
 
     @ManyToOne(fetch = FetchType.LAZY)
