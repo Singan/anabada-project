@@ -1,46 +1,25 @@
 <template>
-	<div class="---------">
-		<svg
-			class="---------2"
-			width="800"
-			height="1000"
-			viewBox="0 0 800 1000"
-			fill="none"
-			xmlns="http://www.w3.org/2000/svg"
-		>
-			<path d="M0 0H800V1000H0V0Z" fill="white" />
-		</svg>
+	<div class="title">회원 탈퇴</div>
 
-		<div class="--">
-			<div class="--2">회원 탈퇴</div>
-		</div>
+	<div class="flex">
+		<div class="explan">회원 탈퇴를 위해 비밀번호를 입력해주세요</div>
 
-		<div class="--3">
-			<div class="----">회원 탈퇴를 위해 비밀번호를 입력해주세요</div>
-		</div>
-
-		<div class="----------">
-			<div class="rectangle-27"></div>
-
-			<div class="--4">
-				<div class="----2">현재 비밀번호를 입력하세요</div>
+		<div class="pwBox">
+			<div class="pw-re">
+				<div class="pwText">비밀번호를 입력하세요</div>
 			</div>
 		</div>
 
-		<div class="--5">
-			<div class="rectangle-25"></div>
-
-			<div class="_18px">
-				<div class="_18px2">탈퇴 하기</div>
-			</div>
+		<div class="exitBox">
+			<div class="_18px"></div>
+			<div class="blueBox">탈퇴 하기</div>
 		</div>
 
-		<div class="-----">
-			<div class="rectangle-252"></div>
-
+		<div class="cancelBox">
 			<div class="_18px3">
-				<div class="_18px2">취소 하기</div>
+				<div class="buttonText"></div>
 			</div>
+			<div class="redBox">취소 하기</div>
 		</div>
 	</div>
 </template>
@@ -58,99 +37,57 @@
 	};
 </script>
 <style scoped>
-	.---------,
-	.--------- * {
-		box-sizing: border-box;
-	}
-
-	.--------- {
-		background: #f1f1f1;
-		width: 1920px;
-		height: 1080px;
-		position: relative;
+	.flex {
+		background: #ffffff;
+		width: 700px;
 		overflow: hidden;
-	}
-
-	.---------2 {
-		position: absolute;
-		left: 575px;
-		top: 48px;
-		overflow: visible;
-	}
-
-	.-- {
-		width: 150px;
-		height: 40px;
-		position: absolute;
-		left: 660px;
-		top: 78px;
-	}
-
-	.--2 {
-		color: #0075ff;
-		text-align: left;
-		font: 700 28px 'Roboto', sans-serif;
-		position: absolute;
-		left: 0px;
-		top: 4px;
 		display: flex;
-		align-items: center;
-		justify-content: flex-start;
+		flex-direction: column;
+		flex-wrap: wrap;
+		padding: auto;
+		margin: auto auto;
 	}
 
-	.--3 {
-		width: 370px;
-		height: 30px;
-		position: absolute;
-		left: 660px;
-		top: 218px;
+	.title {
+		color: #0075ff;
+		text-align: center;
+		font: 700 28px 'Roboto', sans-serif;
+		margin: auto;
 	}
 
-	.---- {
+	.explan {
 		color: #000000;
 		text-align: left;
 		font: 400 16px 'Roboto', sans-serif;
-		position: absolute;
-		left: 0px;
-		top: 0px;
-		width: 370px;
+		width: 315px;
 		height: 30px;
-		display: flex;
 		align-items: center;
 		justify-content: flex-start;
+		margin-top: 80px;
 	}
 
-	.---------- {
-		width: 630px;
-		height: 40px;
-		position: static;
-	}
-
-	.rectangle-27 {
+	.pw-re {
 		border-radius: 5px;
 		border-style: solid;
 		border-color: #0075ff;
 		border-width: 1.5px;
 		width: 630px;
 		height: 40px;
-		position: absolute;
-		left: 660px;
-		top: 258px;
 	}
 
-	.--4 {
+	.pwBox {
 		width: 487.98px;
 		height: 26.67px;
-		position: absolute;
 		left: 663.2px;
 		top: 264.67px;
+		display: flex;
 	}
 
-	.----2 {
+	.pwText {
 		color: #797979;
 		text-align: left;
 		font: 400 12px 'Roboto', sans-serif;
-		position: absolute;
+
 		left: 0px;
 		top: 0px;
 		width: 487.98px;
@@ -160,18 +97,19 @@
 		justify-content: flex-start;
 	}
 
-	.--5 {
+	.exitBox {
 		width: 630px;
 		height: 40px;
-		position: static;
+		margin-top: 300px;
+		display: flex;
 	}
 
-	.rectangle-25 {
+	.blueBox {
 		background: #0075ff;
 		border-radius: 5px;
 		width: 630px;
 		height: 40px;
-		position: absolute;
+
 		left: 660px;
 		top: 862px;
 	}
@@ -179,37 +117,24 @@
 	._18px {
 		width: 107.23px;
 		height: 30px;
-		position: absolute;
+
 		left: 921.38px;
 		top: 867px;
 	}
 
-	._18px2 {
-		color: #ffffff;
-		text-align: center;
-		font: 700 18px 'Roboto', sans-serif;
-		position: absolute;
-		left: 0px;
-		top: 0px;
-		width: 107.23px;
-		height: 30px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.----- {
+	.cancelBox {
 		width: 630px;
 		height: 40px;
-		position: static;
+
+		display: flex;
 	}
 
-	.rectangle-252 {
+	.redBox {
 		background: #ff4545;
 		border-radius: 5px;
 		width: 630px;
 		height: 40px;
-		position: absolute;
+
 		left: 660px;
 		top: 922px;
 	}
@@ -217,7 +142,7 @@
 	._18px3 {
 		width: 107.23px;
 		height: 30px;
-		position: absolute;
+
 		left: 921.38px;
 		top: 927px;
 	}

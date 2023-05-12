@@ -1,12 +1,7 @@
 <template>
 	<div class="title">
 		<select v-model="categoryNum" class="title">
-			<option
-				v-for="item in categoryList"
-				:key="item.categoryNo"
-				:value="item.categoryNo"
-				class="title"
-			>
+			<option v-for="item in categoryList" :key="item.categoryNo" :value="item.categoryNo" class="title">
 				<div class="title">{{ item.categoryName }}</div>
 			</option>
 		</select>
@@ -15,11 +10,7 @@
 	<div class="productFlex">
 		<a class="flexItem" v-for="item in productList" :key="item.productNo">
 			<a v-bind:href="'/ProductDt?productNo=' + item.productNo">
-				<img
-					class="productImg"
-					:src="item.productImg"
-					style="width: 160px; height: 160px"
-				/>
+				<img class="productImg" :src="item.productImage" style="width: 160px; height: 160px" />
 			</a>
 			<div class="productName">{{ item.productName }}</div>
 
@@ -53,12 +44,10 @@
 				});
 			},
 			product() {
-				axios
-					.get('/product/list?categoryNo=' + this.categoryNum)
-					.then((response) => {
-						console.dir(response.data);
-						this.productList = response.data;
-					});
+				axios.get('/product/list?categoryNo=' + this.categoryNum).then((response) => {
+					console.dir(response.data);
+					this.productList = response.data;
+				});
 			},
 		},
 		mounted() {},
