@@ -8,14 +8,9 @@
 		<button @click="product" class="list">조회</button>
 	</div>
 	<div class="productFlex">
-		<a class="flexItem" v-for="item in productList" :key="item.productNo">
-			<a v-bind:href="'/ProductDt?productNo=' + item.productNo">
-				<img class="productImg" :src="item.productImage" style="width: 160px; height: 160px" />
-			</a>
-		</a>
 		<div class="flexItem" v-for="item in productList" :key="item.productNo">
 			<router-link :to="'/ProductDt?productNo=' + item.productNo">
-				<img class="productImg" :src="item.productImg" style="width: 160px; height: 160px" />
+				<img class="productImg" :src="item.productImage" style="width: 160px; height: 160px" />
 			</router-link>
 
 			<div class="productName">{{ item.productName }}</div>
