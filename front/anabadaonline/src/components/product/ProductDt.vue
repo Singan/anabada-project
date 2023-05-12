@@ -159,8 +159,9 @@
 		mounted() {
 			this.sellerInfo();
 			console.log("실행")
-			
-			this.$store.getters.getSocket.subscribe('/product/' + this.productNo, this.recevieFunc);
+			if(this.$store.getters.getSocket != null){
+				this.$store.getters.getSocket.subscribe('/product/' + this.productNo, this.recevieFunc);
+			}
 		},
 		created() {},
 	};
