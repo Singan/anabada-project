@@ -115,9 +115,21 @@
 	};
 
 	export default {
+		inject: ['socket'],
+		watch: {
+			isSocket: function (isSocket) {
+				console.log('Socket connection status changed:', isSocket);
+				this.socketConnect();
+			},
+		},
 		name: '',
 		components: { BidList },
-		props: {},
+		props: {
+			isSocket: {
+				type: Boolean,
+				required: false,
+			},
+		},
 		data() {
 			return {
 				seller: '',
@@ -125,7 +137,6 @@
 				productNo: this.$route.query.productNo,
 				check: false,
 				isClicked: false,
-				socket: '',
 				stompClient: '',
 				resultObj: {},
 				testInput: 0,
@@ -151,19 +162,24 @@
 				this.seller.productPrice = resObj.price;
 			},
 			send() {
+				console.log('dt send');
+				console.log(this.isSocket);
 				let msgObj = {
 					bidPrice: this.testInput,
 					productNo: this.productNo,
 				};
-				this.$store.getters.getSocket.send(msgObj, '/bid');
+				this.socket.send(msgObj, '/bid');
+				console.log(this.socket);
+			},
+			socketConnect() {
+				console.log('create 실행');
+				this.socket.subscribe('/product/' + this.productNo, this.recevieFunc);
 			},
 		},
-
-		async mounted() {
+		mounted() {
+			console.log('dt mounted');
+			console.log(this.isSocket);
 			this.sellerInfo();
-
-			console.log('실행');
-			await this.$store.getters.getSocket.subscribe('/product/' + this.productNo, this.recevieFunc);
 		},
 	};
 </script>

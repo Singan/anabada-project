@@ -32,7 +32,7 @@ public class BidService {
         Member member = memberDetailDTO.getMember();
         Bid bid = bidInsertDto.getBid(member);
         Product product = bid.getProduct();
-        CurrentBid currBid = currentBidRepository.findById(product.getProductNo()).orElse(null);
+        CurrentBid currBid = currentBidRepository.findByProduct(product);
         if (currBid == null) {
             bidRepository.save(bid);// 먼저 현재 진행중인 입찰이 있나 체크 없다면 이후 조건을 체크하지않고 넘어가기 위함
             CurrentBid currentBid = CurrentBid.builder()

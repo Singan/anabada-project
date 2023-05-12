@@ -1,6 +1,6 @@
 <template>
 	<Header :isToken="isToken"></Header>
-	<router-view @logined="login" />
+	<router-view @logined="login" :isSocket="isSocket" />
 </template>
 
 <script>
@@ -8,7 +8,13 @@
 	import token from '@/common/token';
 	import axios from '@/axios';
 	import socket from '@/common/socket';
+
 	export default {
+		provide() {
+			return {
+				socket: socket,
+			};
+		},
 		components: {
 			Header,
 		},
@@ -16,6 +22,7 @@
 			return {
 				isToken: token.is(),
 				token: token.token,
+				isSocket: false,
 			};
 		},
 		methods: {
@@ -23,25 +30,26 @@
 				this.isToken = token.is();
 			},
 		},
-		async created() {
-			this.$store.commit('setSocket', socket);
-			this.$store.getters.getSocket.init();
-
-			await this.$store.getters.getSocket.connect();
-
-			let headers = {
-				'x-auth-token': token.getToken(),
-				'accept-version': '1.2',
-			};
-			this.$store.getters.getSocket.setHeaders(headers);
+		async beforeCreate() {
+			console.log('beforeCreate 실행');
+			socket.init();
+			console.log('커넥트 완료 전');
+			console.log(socket.connected());
+			await socket.connect();
+			this.isSocket = socket.connected();
+			console.log('커넥트 완료 후');
 			if (token.is() && this.$store.getters.getMember == null) {
 				let tokenVal = token.getToken();
 				axios.defaults.headers.common['x-auth-token'] = tokenVal;
 
 				axios.get('/member').then((res) => {
 					this.$store.commit('setMember', res.data);
-					console.log(tokenVal);
-
+					let headers = {
+						'x-auth-token': token.getToken(),
+						'accept-version': '1.2',
+					};
+					socket.setHeaders(headers);
+					this.$emit('socketConnect');
 					//this.$store.getters.getSocket.subscribe('/product/' + this.productNo, this.recevieFunc);
 
 					// socket.setSocketList(this.$store.getters.getMember.socketList)

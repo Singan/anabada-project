@@ -1,11 +1,12 @@
 import { createStore } from 'vuex';
+import socket from '@/common/socket';
 
 // Create a new store instance.
 const store = createStore({
 	state() {
 		return {
 			member: null,
-			socket: null,
+			socket: socket,
 		};
 	},
 	mutations: {

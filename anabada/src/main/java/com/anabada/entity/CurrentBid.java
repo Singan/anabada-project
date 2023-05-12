@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class CurrentBid {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long currentBid;
 
     @OneToOne(fetch = FetchType.LAZY)
