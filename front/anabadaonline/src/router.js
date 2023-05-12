@@ -61,12 +61,6 @@ const routes = [
 	},
 
 	{
-		path: '/successfulBid2',
-		name: 'SuccessfulBid2',
-		component: () => import('@/components/transaction/SuccessfulBid2.vue'),
-	},
-
-	{
 		path: '/acountRegister',
 		name: 'AcountRegister',
 		component: () => import('@/components/member/mypage/AcountRegister.vue'),
