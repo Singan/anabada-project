@@ -23,28 +23,26 @@
 				this.isToken = token.is();
 			},
 		},
-		created() {
-			if (token.is() && this.$store.getters.getMember == null) {
-				let today = new Date();
+		async created() {
+			this.$store.commit('setSocket', socket);
+			this.$store.getters.getSocket.init();
 
-				let seconds = today.getSeconds(); // 초
-				let milliseconds = today.getMilliseconds(); // 밀리초
-				console.log('token.is()' + token.is());
-				console.log('현재' + seconds + '' + milliseconds);
+			await this.$store.getters.getSocket.connect();
+
+			let headers = {
+				'x-auth-token': token.getToken(),
+				'accept-version': '1.2',
+			};
+			this.$store.getters.getSocket.setHeaders(headers);
+			if (token.is() && this.$store.getters.getMember == null) {
 				let tokenVal = token.getToken();
 				axios.defaults.headers.common['x-auth-token'] = tokenVal;
 
 				axios.get('/member').then((res) => {
 					this.$store.commit('setMember', res.data);
-					this.$store.commit('setSocket', socket);
-					console.log(tokenVal)
+					console.log(tokenVal);
 
-					let headers = {
-                        'x-auth-token': tokenVal, 'accept-version': '1.2'
-					}
-					this.$store.getters.getSocket.init();
-					this.$store.getters.getSocket.connect();
-					this.$store.getters.getSocket.setHeaders(headers)
+					//this.$store.getters.getSocket.subscribe('/product/' + this.productNo, this.recevieFunc);
 
 					// socket.setSocketList(this.$store.getters.getMember.socketList)
 				});

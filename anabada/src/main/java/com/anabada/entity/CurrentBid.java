@@ -11,11 +11,11 @@ import java.time.LocalDateTime;
 public class CurrentBid {
 
     @Id
-    private Long productNo;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long currentBid;
 
-    @MapsId
     @OneToOne(fetch = FetchType.LAZY)
-    @PrimaryKeyJoinColumn
+    @JoinColumn(name = "product_no" , nullable = false)
     private Product product;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -30,8 +30,8 @@ public class CurrentBid {
     @Column(columnDefinition = "int default 0")
     private Integer price;
     @Builder
-    public CurrentBid(Long productNo, Member member, LocalDateTime localDateTime, Integer price,Product product) {
-        this.productNo = productNo;
+    public CurrentBid(Long currentBid, Member member, LocalDateTime localDateTime, Integer price,Product product) {
+        this.currentBid = currentBid;
         this.member = member;
         this.localDateTime = localDateTime;
         this.price = price;

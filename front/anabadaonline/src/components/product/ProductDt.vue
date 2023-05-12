@@ -159,16 +159,12 @@
 			},
 		},
 
-		mounted() {
+		async mounted() {
 			this.sellerInfo();
 
 			console.log('실행');
-			if (this.$store.getters.getSocket != null) {
-				this.$store.getters.getSocket.subscribe('/product/' + this.productNo, this.recevieFunc);
-			}
+			await this.$store.getters.getSocket.subscribe('/product/' + this.productNo, this.recevieFunc);
 		},
-
-		created() {},
 	};
 </script>
 

@@ -35,9 +35,7 @@ public class BidService {
         CurrentBid currBid = currentBidRepository.findById(product.getProductNo()).orElse(null);
         if (currBid == null) {
             bidRepository.save(bid);// 먼저 현재 진행중인 입찰이 있나 체크 없다면 이후 조건을 체크하지않고 넘어가기 위함
-            System.out.println(product.getProductNo()+"으으으으으응ㅇ,ㅡㅇㅇ,응ㅇ,");
             CurrentBid currentBid = CurrentBid.builder()
-                    .productNo(product.getProductNo())
                     .localDateTime(LocalDateTime.now())
                     .member(member)
                     .price(bid.getPrice())
