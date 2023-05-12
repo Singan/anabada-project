@@ -44,9 +44,21 @@
 			<div class="changePwAndPwCheck">
 				<div class="change">
 					<div class="changePw">비밀번호 변경</div>
-					<input id="beforePw" type="text" class="pwBox" placeholder="기존 비밀번호를 입력하세요" />
-					<input id="beforePw" type="text" class="pwBox" placeholder="새 비밀번호를 입력하세요" />
-					<input id="beforePw" type="text" class="pwBox" placeholder="새 비밀번호를 한번 더 입력하세요" />
+					<input id="beforePw" type="password" class="pwBox" placeholder="기존 비밀번호를 입력하세요" />
+					<input
+						id="newPw"
+						type="password"
+						class="pwBox"
+						placeholder="새 비밀번호를 입력하세요"
+						v-model="newPw"
+					/>
+					<input
+						id="newPw"
+						type="password"
+						class="pwBox"
+						v-model="newPw"
+						placeholder="새 비밀번호를 한번 더 입력하세요"
+					/>
 				</div>
 			</div>
 
@@ -56,27 +68,27 @@
 				</div>
 			</div>
 			<div class="changeAddrContainer">
-				<input class="addrBox" readonly v-model="myData.memberAddr" />
+				<input class="addrBox" readonly v-model="addr" />
 				<button class="findAddrButton" type="button" @click="search()">주소 찾기</button>
 			</div>
 
 			<div class="changeAddr">
 				<div class="change">
 					<div class="changeAddrText">상세 주소 변경</div>
-					<input class="addrDetailBox" />
+					<input id="newDt" class="addrDetailBox" v-model="newAddr" />
 				</div>
 			</div>
 
 			<div class="changeWishAddr">
 				<div class="change">
 					<div class="changeAddrText">거래 희망지 변경</div>
-					<input class="addrDetailBox" />
+					<input id="newWish" class="addrDetailBox" />
 				</div>
 			</div>
 
 			<div class="yesAndNoButton">
 				<div class="change">
-					<button class="checkButton">수정하기</button>
+					<button type="button" class="checkButton" @click="submitForm">수정하기</button>
 					<button class="noButton" onclick="history.go(-1)">취소하기</button>
 				</div>
 			</div>
@@ -86,6 +98,7 @@
 <script>
 	import axios from '@/axios';
 	import { all } from 'axios';
+
 	export default {
 		name: '',
 		components: {},
@@ -95,11 +108,16 @@
 			return {
 				addr: '',
 				myData: '',
+				newPw: '',
+				newAddr: '',
+				newDt: '',
+				newWish: '',
+				img: '',
 			};
 		},
 		methods: {
 			onInputImage(e) {
-				this.productImages = e.target.files;
+				this.productImages = e.target.files[0];
 				console.log(this.productImages);
 
 				//이미지 미리보기
@@ -111,7 +129,22 @@
 					image.height = 120;
 					document.querySelector('.imagePreView').style.backgroundColor = 'white';
 				};
-				reader.readAsDataURL(this.productImages.item(0));
+				reader.readAsDataURL(this.productImages);
+			},
+			submitForm() {
+				let form = new FormData();
+				form.append('updatePw', this.newPw);
+				form.append('updateAddr', this.newAddr);
+				form.append('updateDetailAddr', this.newDt);
+				form.append('updateWishAddr', this.newWish);
+				form.append('updateImage', this.productImages);
+				axios
+					.put('/member/update', form, {
+						header: { 'Content-Type': 'multipart/form-data' },
+					})
+					.then((response) => {
+						console.log(response);
+					});
 			},
 			search() {
 				//@click을 사용할 때 함수는 이렇게 작성해야 한다.

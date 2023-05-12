@@ -102,12 +102,21 @@ public class MemberService implements UserDetailsService {
 
     @Transactional
     public MemberUpdateFindDto memberUpdate(MemberDetailDTO memberDetailDTO, MemberUpdateDto memberUpdateDto) {
-        String updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage(),"member");
-        memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
         Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
-        member.updateMember(memberUpdateDto, updateImagePath);
-        System.out.println("변경됨");
-        return new MemberUpdateFindDto(member,s3EndPoint);
+        String updateImagePath = "";
+        String updatePw = memberUpdateDto.getUpdatePw();  // 변경할 비밀번호
+        String originalPw = memberUpdateDto.getOriginalPw();  // 유저가 입력한 기존 비밀번호
+        String memberPw = member.getMemberPw();  // 기존 비밀번호
+
+        // 비밀번호가 기존 비밀번호랑 다른지 검증
+            if (!passwordEncoder.matches(updatePw, memberPw)) {
+                updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage(),"member");
+                memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
+                member.updateMember(memberUpdateDto, updateImagePath);
+                System.out.println("변경됨");
+                return new MemberUpdateFindDto(member,s3EndPoint);
+            }
+        throw new RuntimeException("변경한 비밀번호가 기존의 비밀번호랑 같음");
     }
 
     // 회원 정보 수정 페이지에 멤버 아이디, 이름, 이미지 보여주기
