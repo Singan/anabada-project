@@ -1,11 +1,13 @@
 <template>
 	<div class="form">
-		<img class="leftButton" src="@/assets/left.jpg" />
-
 		<div class="imgBox">
-			<img class="productPicture" v-for="image in seller.productImageList" :src="image"/>
+			<div class="productPicture" v-for="(image, index) in seller.productImageList" :key="index">
+				<img :src="image" />
+			</div>
 		</div>
-		<img class="rightButton" src="@/assets/right.jpg" />
+
+		<button class="prev" @click="prevSlide">&lt;</button>
+		<button class="next" @click="nextSlide">&gt;</button>
 
 		<div class="userInfo">
 			<img class="userImage" src="@/assets/userImage.jpg" />
@@ -107,6 +109,7 @@
 				productPrice: 0,
 				productUseDate: 'string',
 				productImageList: '',
+				imageIndex: 0,
 			},
 		],
 	};
@@ -158,11 +161,13 @@
 
 		mounted() {
 			this.sellerInfo();
-			console.log("실행")
-			if(this.$store.getters.getSocket != null){
+
+			console.log('실행');
+			if (this.$store.getters.getSocket != null) {
 				this.$store.getters.getSocket.subscribe('/product/' + this.productNo, this.recevieFunc);
 			}
 		},
+
 		created() {},
 	};
 </script>
@@ -200,16 +205,16 @@
 		width: 100%;
 	}
 
-	.leftButton {
-		width: 40px;
-		height: 40px;
-		margin-bottom: 180px;
-	}
-
-	.rightButton {
-		width: 40px;
-		height: 40px;
-		margin-bottom: 180px;
+	.prev,
+	.next {
+		top: 50%;
+		transform: translateY(-50%);
+		background-color: transparent;
+		color: black;
+		font-size: 2rem;
+		border: none;
+		cursor: pointer;
+		outline: none;
 	}
 
 	.userInfo {
