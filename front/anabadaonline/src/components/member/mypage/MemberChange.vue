@@ -127,7 +127,7 @@
 				form.append('updateWishAddr', this.newWish);
 				form.append('updateImage', this.img);
 				axios
-					.post('member/update', form, {
+					.put('/member/update', form, {
 						header: { 'Content-Type': 'multipart/form-data' },
 					})
 					.then((response) => {

@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 @NoArgsConstructor
 public class MemberUpdateDto {
     private String updatePw;
+    private String originalPw;
     private String updateAddr;
     private String updateDetailAddr;
     private String updateWishAddr;
