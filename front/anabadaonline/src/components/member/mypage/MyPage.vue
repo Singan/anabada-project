@@ -4,18 +4,12 @@
 			<img class="userImage" src="" />
 			<div class="userName">
 				{{ myData.memberName }}
-				<img
-					src="@/assets/profileButton.png"
-					alt="profileButton"
-					class="showProfileButton"
-				/>
+				<img src="@/assets/profileButton.png" alt="profileButton" class="showProfileButton" />
 			</div>
 			<div class="moneyInfoBox">
 				<!-- span 태그 a 태그로 변경하기 -->
 				<span class="anaMoneyText">내 아나머니</span>
-				<button class="anaMoneyChargeButton" @click="goPayment">
-					충전
-				</button>
+				<button class="anaMoneyChargeButton" @click="goPayment">충전</button>
 				<div class="showMoney">
 					<span class="moneyText">머니</span>
 					<span class="anaMoney">{{ myData.memberMoney }}</span>
@@ -26,16 +20,8 @@
 		<div class="mypageUserSetting">
 			<div class="container">
 				<div class="userInfoText">개인정보</div>
-				<a
-					href="./MemberChange"
-					class="userInfoChange"
-					@click="goChange"
-				>
-					회원 정보 수정
-				</a>
-				<a href="./MemberExit" class="withDrawal" @click="goExit"
-					>회원 탈퇴</a
-				>
+				<a href="./MemberChange" class="userInfoChange" @click="goChange"> 회원 정보 수정 </a>
+				<a href="./MemberExit" class="withDrawal" @click="goExit">회원 탈퇴</a>
 				<div class="userInfoLine"></div>
 			</div>
 		</div>
@@ -43,27 +29,10 @@
 		<div class="mypageTradeInfo">
 			<div class="container">
 				<div class="myTradeText">내 거래</div>
-				<a
-					href="../../TransactionDt2"
-					class="sellListButton"
-					@click="goDt2"
-					>판매 내역</a
-				>
-				<a
-					href="../../TransactionDt1"
-					class="buyListButton"
-					@click="goDt1"
-					>구매 내역</a
-				>
-				<a
-					href="../../Product"
-					class="productRegButton"
-					@click="goProduct"
-					>상품등록</a
-				>
-				<a href="./Jjim" class="wishListButton" @click="goJjim"
-					>찜 목록</a
-				>
+				<a href="../../TransactionDt2" class="sellListButton" @click="goDt2">판매 내역</a>
+				<a href="../../TransactionDt1" class="buyListButton" @click="goDt1">구매 내역</a>
+				<a href="../../Product" class="productRegButton" @click="goProduct">상품등록</a>
+				<a href="./Jjim" class="wishListButton" @click="goJjim">찜 목록</a>
 				<div class="line-1"></div>
 			</div>
 		</div>

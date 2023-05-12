@@ -56,7 +56,7 @@
 				</div>
 			</div>
 			<div class="changeAddrContainer">
-				<input class="addrBox" readonly v-model="myData.memberAddr" />
+				<input class="addrBox" readonly v-model="addr" />
 				<button class="findAddrButton" type="button" @click="search()">주소 찾기</button>
 			</div>
 
