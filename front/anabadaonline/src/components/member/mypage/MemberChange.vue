@@ -20,26 +20,27 @@
 			</div>
 		</div>
 
-		<div class="changeImg">
-			<div class="change">
-				<div class="changeImgText">프로필 이미지 변경</div>
-				<div class="imagePreView">
-					<img id="img" />
-				</div>
-				<label class="imageChangeSelect" for="productImages">
-					이미지 등록
-					<input
-						id="productImages"
-						type="file"
-						@change="onInputImage"
-						accept="image/*"
-						multiple="multiple"
-						style="width: 0px; height: 0px"
-					/>
-				</label>
-			</div>
-		</div>
 		<form>
+			<div class="changeImg">
+				<div class="change">
+					<div class="changeImgText">프로필 이미지 변경</div>
+					<div class="imagePreView">
+						<img id="img" />
+					</div>
+					<label class="imageChangeSelect" for="productImages">
+						이미지 등록
+						<input
+							id="productImages"
+							type="file"
+							@change="onInputImage"
+							accept="image/*"
+							multiple="multiple"
+							style="width: 0px; height: 0px"
+						/>
+					</label>
+				</div>
+			</div>
+
 			<div class="changePwAndPwCheck">
 				<div class="change">
 					<div class="changePw">비밀번호 변경</div>

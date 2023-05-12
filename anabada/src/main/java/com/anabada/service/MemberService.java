@@ -106,6 +106,7 @@ public class MemberService implements UserDetailsService {
         memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
         Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
         member.updateMember(memberUpdateDto, updateImagePath);
+        System.out.println("변경됨");
         return new MemberUpdateFindDto(member,s3EndPoint);
     }
 
