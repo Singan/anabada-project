@@ -62,8 +62,5 @@ public class ProductController {
         ArrayList<FindProductToCategoryDto> findProductToCategoryDtoArrayList = productService.findProductToCategory(categoryNo);
         return findProductToCategoryDtoArrayList;
     }
-
-
-
 }
 

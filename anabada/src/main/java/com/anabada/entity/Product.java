@@ -49,7 +49,7 @@ public class Product {
     @Column(nullable = false)
     private String productThumbnail;
 
-    @OneToOne(fetch = FetchType.LAZY,mappedBy = "product")
+    @OneToOne(fetch = FetchType.LAZY,mappedBy = "product" ,cascade = CascadeType.ALL, optional = false)
     @PrimaryKeyJoinColumn
     private CurrentBid currentBid;
     @Column(nullable = false)

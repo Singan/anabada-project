@@ -32,16 +32,21 @@ public class BidService {
         Member member = memberDetailDTO.getMember();
         Bid bid = bidInsertDto.getBid(member);
         Product product = bid.getProduct();
-        CurrentBid currBid = currentBidRepository.findById(product.getProductNo()).get();
+        CurrentBid currBid = currentBidRepository.findById(product.getProductNo()).orElse(null);
         if (currBid == null) {
             bidRepository.save(bid);// 먼저 현재 진행중인 입찰이 있나 체크 없다면 이후 조건을 체크하지않고 넘어가기 위함
+            System.out.println(product.getProductNo()+"으으으으으응ㅇ,ㅡㅇㅇ,응ㅇ,");
             CurrentBid currentBid = CurrentBid.builder()
+                    .productNo(product.getProductNo())
                     .localDateTime(LocalDateTime.now())
                     .member(member)
                     .price(bid.getPrice())
                     .product(product)
                     .build();
+            System.out.println("비드 셀렉트 실행??1");
+
             currentBidRepository.save(currentBid);
+            System.out.println("비드 셀렉트 실행??2");
         } else {
             if (bid.getPrice() <= currBid.getPrice()) {
                 throw new RuntimeException("새로운 입찰은 현재 입찰가보다 작을 수 없습니다.");

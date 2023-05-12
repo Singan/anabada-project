@@ -1,9 +1,9 @@
 <template>
 	<div class="Header">
-		<div class="Logo" @click="this.$router.push('/')">아나바다</div>
+		<router-link class="Logo" to="/">아나바다</router-link>
 
-		<a href="/auction" class="AuctionButton"> 경매 </a>
-		<a href="/chat" class="ChatButton"> 채팅 </a>
+		<router-link to="/auction" class="AuctionButton"> 경매 </router-link>
+		<router-link to="/chat" class="ChatButton"> 채팅 </router-link>
 		<div class="SearchBox" contenteditable="true">
 			<b-form-input
 				size="sm"
@@ -17,8 +17,8 @@
 
 		<b-button size="sm" class="SearchButton" type="submit"> 검색하기 </b-button>
 
-		<a href="/login" class="LoginBox" v-if="!isToken"> 로그인 </a>
-		<a class="mypage" v-if="isToken" href="/mypage">마이페이지</a>
+		<router-link to="/login" class="LoginBox" v-if="!isToken"> 로그인 </router-link>
+		<router-link class="mypage" v-if="isToken" to="/mypage">마이페이지</router-link>
 	</div>
 </template>
 <script>

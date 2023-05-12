@@ -3,7 +3,7 @@
 		<img class="leftButton" src="@/assets/left.jpg" />
 
 		<div class="imgBox">
-			<img class="productPicture" v-for="image in seller.productImageList" :src="image" />
+			<img class="productPicture" v-for="image in seller.productImageList" :src="image"/>
 		</div>
 		<img class="rightButton" src="@/assets/right.jpg" />
 
@@ -96,7 +96,6 @@
 <script>
 	import axios from '@/axios.js';
 	import BidList from './BidList.vue';
-	import socket from '@/common/socket';
 
 	var temporaryData = {
 		seller1: [
@@ -153,14 +152,15 @@
 					bidPrice: this.testInput,
 					productNo: this.productNo,
 				};
-				socket.send(msgObj, '/bid');
-				//axios 통신
+				this.$store.getters.getSocket.send(msgObj, '/bid');
 			},
 		},
 
 		mounted() {
 			this.sellerInfo();
-			socket.subscribe('/product/' + this.productNo, this.recevieFunc);
+			console.log("실행")
+			
+			this.$store.getters.getSocket.subscribe('/product/' + this.productNo, this.recevieFunc);
 		},
 		created() {},
 	};

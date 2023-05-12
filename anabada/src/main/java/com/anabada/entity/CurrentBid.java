@@ -11,16 +11,16 @@ import java.time.LocalDateTime;
 public class CurrentBid {
 
     @Id
-    @Column(name = "productNo")
+    @Column(name = "product_no" )
     private Long productNo;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_no",nullable = false)
     private Member member;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @MapsId
-    @JoinColumn(name = "productNo")
+    @JoinColumn(name = "product_no" ,referencedColumnName="product_no")
     private Product product;
 
     @Column(name = "create_time",nullable = false)

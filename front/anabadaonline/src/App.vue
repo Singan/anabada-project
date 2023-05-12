@@ -37,8 +37,15 @@
 				axios.get('/member').then((res) => {
 					this.$store.commit('setMember', res.data);
 					this.$store.commit('setSocket', socket);
-					// this.$store.getters.getSocket.init();
-					// this.$store.getters.getSocket.connect();
+					console.log(tokenVal)
+
+					let headers = {
+                        'x-auth-token': tokenVal, 'accept-version': '1.2'
+					}
+					this.$store.getters.getSocket.init();
+					this.$store.getters.getSocket.connect();
+					this.$store.getters.getSocket.setHeaders(headers)
+
 					// socket.setSocketList(this.$store.getters.getMember.socketList)
 				});
 			}
