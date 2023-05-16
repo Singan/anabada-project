@@ -4,6 +4,7 @@ import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.MemberJoinDto;
 import com.anabada.dto.request_dto.MemberLoginDto;
 import com.anabada.dto.request_dto.MemberUpdateDto;
+import com.anabada.dto.request_dto.MypageConfirmDto;
 import com.anabada.dto.response_dto.*;
 import com.anabada.entity.Member;
 import com.anabada.etc.FileProcessor;
@@ -100,25 +101,28 @@ public class MemberService implements UserDetailsService {
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
-    @Transactional
-    // 로직 고치기
-    public MemberUpdateFindDto memberUpdate(MemberDetailDTO memberDetailDTO, MemberUpdateDto memberUpdateDto) {
+    public boolean confirmPassword(MemberDetailDTO memberDetailDTO, MypageConfirmDto mypageConfirmDto) {
         Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
-        String updateImagePath = "";
-        String updatePw = memberUpdateDto.getUpdatePw();  // 변경할 비밀번호
-        String originalPw = memberUpdateDto.getOriginalPw();  // 유저가 입력한 기존 비밀번호
-        String memberPw = member.getMemberPw();  // 기존 비밀번호
+        String confirmPw = mypageConfirmDto.getConfirmPassword();
 
-        // 비밀번호가 기존 비밀번호랑 다른지 검증 고쳐야함
-            if (!passwordEncoder.matches(updatePw, memberPw)) {
-                updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage(),"member");
-                memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
-                member.updateMember(memberUpdateDto, updateImagePath);
-                System.out.println("변경됨");
-                return new MemberUpdateFindDto(member,s3EndPoint);
-            }
-        throw new RuntimeException("변경한 비밀번호가 기존의 비밀번호랑 같음");
+        if (member.getMemberPw().equals(confirmPw)) {
+            return true;
+        } else {
+            throw new RuntimeException("비밀번호가 다릅니다.");
+        }
     }
+
+//    @Transactional
+//    // 로직 고치기
+//    public MemberUpdateFindDto memberUpdate(MemberDetailDTO memberDetailDTO, MemberUpdateDto memberUpdateDto) {
+//        Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
+//
+//        // 새로 입력한 비밀번호가 같은지 비교하여 같다면 로직 실행
+//        if (member.getMemberPw() == member.getMemberPw()) {
+//            passwordEncoder.encode(memberUpdateDto.getUpdatePw());
+//
+//        }
+//    }
 
     // 회원 정보 수정 페이지에 멤버 아이디, 이름, 이미지 보여주기
     public ShowUpdateMemberDto showMemberInfo(MemberDetailDTO memberDetailDTO) {

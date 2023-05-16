@@ -1,6 +1,7 @@
 package com.anabada.controller;
 
 import com.anabada.dto.MemberDetailDTO;
+import com.anabada.dto.request_dto.MypageConfirmDto;
 import com.anabada.dto.request_dto.PayDto;
 import com.anabada.dto.response_dto.MyPageFindDto;
 import com.anabada.service.MemberService;
@@ -27,6 +28,10 @@ public class MyPageController {
         payService.addMoney(memberDetailDTO, payDto);
     }
 
+    @PostMapping("/confirm")
+    public boolean mypageConfirm(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO,  MypageConfirmDto mypageConfirmDto) {
+        return memberService.confirmPassword(memberDetailDTO, mypageConfirmDto);
+    }
 
-    
+
 }

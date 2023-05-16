@@ -41,12 +41,12 @@ public class MemberController {
         return socketService.memberSocketList(memberDetailDTO.getMember());
     }
 
-    @PutMapping("/update")
-    @Operation(description = "회원 수정")
-    public MemberUpdateFindDto memberUpdate(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO,
-                                            MemberUpdateDto memberUpdateDto) {
-        return memberService.memberUpdate(memberDetailDTO, memberUpdateDto);
-    }
+//    @PutMapping("/update")
+//    @Operation(description = "회원 수정")
+//    public MemberUpdateFindDto memberUpdate(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO,
+//                                            MemberUpdateDto memberUpdateDto) {
+//        return memberService.memberUpdate(memberDetailDTO, memberUpdateDto);
+//    }
 
     @GetMapping
     public MemberInfoDto memberInfo(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
