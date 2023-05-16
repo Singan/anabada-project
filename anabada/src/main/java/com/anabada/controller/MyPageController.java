@@ -29,7 +29,7 @@ public class MyPageController {
     }
 
     @PostMapping("/confirm")
-    public boolean mypageConfirm(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO,  MypageConfirmDto mypageConfirmDto) {
+    public boolean mypageConfirm(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO, @RequestBody MypageConfirmDto mypageConfirmDto) {
         return memberService.confirmPassword(memberDetailDTO, mypageConfirmDto);
     }
 
