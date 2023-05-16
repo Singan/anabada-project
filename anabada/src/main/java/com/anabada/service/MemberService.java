@@ -104,8 +104,9 @@ public class MemberService implements UserDetailsService {
     public boolean confirmPassword(MemberDetailDTO memberDetailDTO, MypageConfirmDto mypageConfirmDto) {
         Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
         String confirmPw = mypageConfirmDto.getConfirmPassword();
-
-        if (member.getMemberPw().equals(confirmPw)) {
+        System.out.println(confirmPw);
+        System.out.println(passwordEncoder.matches( confirmPw,member.getMemberPw()));
+        if (passwordEncoder.matches( confirmPw,member.getMemberPw())) {
             return true;
         } else {
             throw new RuntimeException("비밀번호가 다릅니다.");
