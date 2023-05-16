@@ -23,6 +23,7 @@
 </template>
 <script>
 	export default {
+		name: 'header',
 		props: {
 			isToken: {
 				type: Boolean,
@@ -31,6 +32,7 @@
 		data() {
 			return {};
 		},
+
 		methods: {
 			searchresultshow(keyword) {
 				if (keyword !== '') {

@@ -82,6 +82,7 @@ let socketResult = {
 	},
 	send(msgObj, pubUrl) {
 		if (this.stompClient && this.stompClient.connected) {
+			console.log(this.headers);
 			this.stompClient.send(pubUrl, JSON.stringify(msgObj), this.headers);
 		}
 	},

@@ -5,11 +5,9 @@ import com.anabada.dto.request_dto.BidInsertDto;
 import com.anabada.dto.response_dto.BidInfoFindDto;
 import com.anabada.dto.response_dto.ResultList;
 import com.anabada.entity.Bid;
-import com.anabada.entity.CurrentBid;
 import com.anabada.entity.Member;
 import com.anabada.entity.Product;
 import com.anabada.repository.BidRepository;
-import com.anabada.repository.CurrentBidRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
@@ -25,33 +23,22 @@ import java.util.stream.Collectors;
 public class BidService {
 
     private final BidRepository bidRepository;
-    private final CurrentBidRepository currentBidRepository;
 
     @Transactional
     public void bidSave(BidInsertDto bidInsertDto, MemberDetailDTO memberDetailDTO) {
         Member member = memberDetailDTO.getMember();
-        Bid bid = bidInsertDto.getBid(member);
-        Product product = bid.getProduct();
-        CurrentBid currBid = currentBidRepository.findByProduct(product);
+        Bid insertBid = bidInsertDto.getBid(member);
+        Product product = insertBid.getProduct();
+        Bid currBid = bidRepository.findFirstByProductOrderByTimeDesc(product);
         if (currBid == null) {
-            bidRepository.save(bid);// 먼저 현재 진행중인 입찰이 있나 체크 없다면 이후 조건을 체크하지않고 넘어가기 위함
-            CurrentBid currentBid = CurrentBid.builder()
-                    .localDateTime(LocalDateTime.now())
-                    .member(member)
-                    .price(bid.getPrice())
-                    .product(product)
-                    .build();
-
-            currentBidRepository.save(currentBid);
+            bidRepository.save(insertBid);// 먼저 현재 진행중인 입찰이 있나 체크 없다면 이후 조건을 체크하지않고 넘어가기 위함
         } else {
-            if (bid.getPrice() <= currBid.getPrice()) {
+            if (insertBid.getPrice() <= currBid.getPrice()) {
                 throw new RuntimeException("새로운 입찰은 현재 입찰가보다 작을 수 없습니다.");
                 // 만약 현재 진행중인 입찰이 있다면 등록 가격을 비교,사실상 비정상적인 API 호출을 막기위한 검증
             } else {
-                bidRepository.save(bid);
-                currBid.updateCurrentBid(member, bid.getPrice());
+                bidRepository.save(insertBid);
             }
-
         }
     }
 

@@ -1,8 +1,9 @@
 package com.anabada.dto.response_dto;
 
-import com.anabada.entity.CurrentBid;
+import com.anabada.entity.Bid;
 import com.anabada.entity.Member;
 import com.anabada.entity.Product;
+import com.anabada.entity.nativeQuery.ProductFindOneInterface;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,29 +31,26 @@ public class ProductFindOneDto {
     private LocalDateTime productInsertTime;
     private List<String> productImageList;
     private Integer productHighPrice;
-    private LocalDateTime productLeftTime;
 
-    public ProductFindOneDto(Product product,String prefix) {
-        Member member = product.getMember();
+    public ProductFindOneDto(ProductFindOneInterface product, String prefix) {
         this.productNo = product.getProductNo();
-        this.memberName = member.getMemberName();
+        this.memberName = product.getMemberName();
         this.productName = product.getProductName();
         this.productDetail = product.getProductDetail();
         this.productPrice = product.getProductPrice();
         this.productUseDate = product.getProductUseDate();
         this.productVisit = product.getProductVisit();
-        this.memberAddr = member.getMemberAddr();
-        this.productInsertTime = product.getCreateDateTime();
+        this.memberAddr = product.getMemberAddr();
+        this.productInsertTime = product.getProductTime();
 
         this.productImageList = product.getProductImageList().stream().map(productImage ->  {
-            return prefix+productImage.getImageAddr();
+            return prefix+productImage;
         }).collect(Collectors.toList());
         productImageList.add(0,prefix+product.getProductThumbnail());
         Collections.reverse(productImageList);
-        CurrentBid CurrentBid = product.getCurrentBid();
-        if(CurrentBid != null) {
-            this.productHighPrice = product.getCurrentBid().getPrice();
-            this.productLeftTime = product.getCurrentBid().getLocalDateTime();
+        Integer highPrice = product.getProductHighPrice();
+        if(highPrice != null) {
+            this.productHighPrice = highPrice;
         }
 
     }

@@ -28,6 +28,8 @@
 			<div class="productNamePrice">상품 이름 : {{ seller.productName }}</div>
 			<div class="productTime">등록 시간 : {{ seller.productInsertTime }}</div>
 			<div class="productNamePrice">상품 등록 가격 : {{ seller.productPrice }}원</div>
+			<div class="productNamePrice">현재 최고가 : {{ seller.productHighPrice }} 원</div>
+
 			<div class="productExplain">상품 설명 : {{ seller.productDetail }}</div>
 			<div class="productExplain">상품 사용기간 : {{ seller.productUseDate }}</div>
 		</div>
@@ -98,7 +100,6 @@
 <script>
 	import axios from '@/axios.js';
 	import BidList from './BidList.vue';
-
 	var temporaryData = {
 		seller1: [
 			{
@@ -119,7 +120,7 @@
 		watch: {
 			isSocket: function (isSocket) {
 				console.log('Socket connection status changed:', isSocket);
-				this.socketConnect();
+				this.subscribe();
 			},
 		},
 		name: '',
@@ -147,9 +148,7 @@
 		methods: {
 			sellerInfo() {
 				axios.get('/product?productNo=' + this.productNo).then((response) => {
-					console.log(response.data);
 					this.seller = response.data;
-					console.log(this.seller);
 				});
 			},
 			bidStart() {
@@ -159,27 +158,24 @@
 			recevieFunc(resObj) {
 				console.log('recevieFunc 콜백');
 				console.log(resObj.price);
-				this.seller.productPrice = resObj.price;
+				this.seller.productHighPrice = resObj.price;
 			},
 			send() {
-				console.log('dt send');
-				console.log(this.isSocket);
 				let msgObj = {
 					bidPrice: this.testInput,
 					productNo: this.productNo,
 				};
 				this.socket.send(msgObj, '/bid');
-				console.log(this.socket);
 			},
-			socketConnect() {
-				console.log('create 실행');
+			subscribe() {
 				this.socket.subscribe('/product/' + this.productNo, this.recevieFunc);
 			},
 		},
 		mounted() {
-			console.log('dt mounted');
-			console.log(this.isSocket);
 			this.sellerInfo();
+			if (this.isSocket) {
+				this.socket.subscribe('/product/' + this.productNo, this.recevieFunc);
+			}
 		},
 	};
 </script>
