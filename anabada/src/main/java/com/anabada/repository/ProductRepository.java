@@ -6,6 +6,7 @@ import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.NamedNativeQuery;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -31,8 +32,9 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
             " order by productHighPrice desc;")
     ProductFindOneInterface findProductDetail(@Param("productNo") Long productNo); // 프로덕트 상세
 
-    @Query("update Product p set p.productVisit=p.productVisit+1 where p.productNo = :prodcutNo")
-    Optional<Product> upProductVisit(@Param("productNo")Long productNo);
+    @Modifying
+    @Query("update Product p set p.productVisit=p.productVisit+1 where p.productNo = :productNo")
+    void upProductVisit(@Param("productNo") Long productNo);
 
     @Query("select distinct p from Product p join fetch p.member ")
     @BatchSize(size = 3)
