@@ -44,19 +44,18 @@
 			<div class="changePwAndPwCheck">
 				<div class="change">
 					<div class="changePw">비밀번호 변경</div>
-					<input id="beforePw" type="password" class="pwBox" placeholder="기존 비밀번호를 입력하세요" />
 					<input
-						id="newPw"
+						id="newPassword"
 						type="password"
 						class="pwBox"
 						placeholder="새 비밀번호를 입력하세요"
 						v-model="newPw"
 					/>
 					<input
-						id="newPw"
+						id="newPasswordConfirm"
 						type="password"
 						class="pwBox"
-						v-model="newPw"
+						v-model="newPasswordConfirm"
 						placeholder="새 비밀번호를 한번 더 입력하세요"
 					/>
 				</div>
@@ -97,7 +96,6 @@
 </template>
 <script>
 	import axios from '@/axios';
-	import { all } from 'axios';
 
 	export default {
 		name: '',
@@ -113,6 +111,7 @@
 				newDt: '',
 				newWish: '',
 				img: '',
+				newPasswordConfirm: '',
 			};
 		},
 		methods: {
@@ -134,6 +133,7 @@
 			submitForm() {
 				let form = new FormData();
 				form.append('updatePw', this.newPw);
+				form.append('confirmPw', this.newPasswordConfirm);
 				form.append('updateAddr', this.newAddr);
 				form.append('updateDetailAddr', this.newDt);
 				form.append('updateWishAddr', this.newWish);
@@ -181,7 +181,7 @@
 				}).open();
 			},
 			getMypage() {
-				axios.get('member/idNameImage').then((res) => {
+				axios.get('/member/idNameImage').then((res) => {
 					this.myData = res.data;
 					console.log(this.myData);
 				});
@@ -190,7 +190,6 @@
 		mounted() {
 			this.getMypage();
 		},
-		components: { all },
 	};
 </script>
 <style scoped>

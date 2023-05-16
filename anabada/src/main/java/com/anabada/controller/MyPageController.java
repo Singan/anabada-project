@@ -29,7 +29,10 @@ public class MyPageController {
     }
 
     @PostMapping("/confirm")
-    public boolean mypageConfirm(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO, @RequestBody MypageConfirmDto mypageConfirmDto) {
+    public boolean mypageConfirm(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO,@RequestBody MypageConfirmDto mypageConfirmDto) {
+        System.out.println("마이페이지 컨펌 들어옴");
+        System.out.println(mypageConfirmDto.getConfirmPassword());
+        System.out.println("------------------------------------");
         return memberService.confirmPassword(memberDetailDTO, mypageConfirmDto);
     }
 

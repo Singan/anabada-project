@@ -20,7 +20,7 @@
 		<div class="mypageUserSetting">
 			<div class="container">
 				<div class="userInfoText">개인정보</div>
-				<a href="./MemberChange" class="userInfoChange" @click="goChange"> 회원 정보 수정 </a>
+				<span class="userInfoChange" @click="goChange"> 회원 정보 수정 </span>
 				<a href="./MemberExit" class="withDrawal" @click="goExit">회원 탈퇴</a>
 				<div class="userInfoLine"></div>
 			</div>
@@ -65,16 +65,19 @@
 			},
 			goChange() {
 				let pass = prompt('비밀번호를 입력해주세요');
+				console.log(pass);
 				axios
 					.post('/mypage/confirm', {
 						confirmPassword: pass,
 					})
 					.then((res) => {
+						console.log(res.data);
 						if (res.data) {
 							this.$router.push('./MemberChange');
-						} else {
-							alert('잘못된 비밀번호 입니다.');
 						}
+					})
+					.catch(() => {
+						alert('잘못된 비밀번호 입니다.');
 					});
 			},
 			goProduct() {
