@@ -1,8 +1,13 @@
 <template>
 	<div class="form">
 		<div class="imgBox">
-			<div class="productPicture" v-for="(image, index) in seller.productImageList" :key="index">
-				<img :src="image" />
+			<div
+				class="productPicture"
+				:style="{
+					marginLeft: `-${imageCurrIndex * 100}%`,
+				}"
+			>
+				<img :src="image" v-for="(image, index) in seller.productImageList" :key="index" />
 			</div>
 		</div>
 
@@ -13,7 +18,7 @@
 			<img class="userImage" src="@/assets/userImage.jpg" />
 			<div class="box1">
 				<div class="sellerName">판매자 이름 : {{ seller.memberName }}</div>
-				<div class="mainDeal">판매자 주 거래지 :</div>
+				<div class="mainDeal">판매자 주 거래지 : {{ seller.memberAddr }}</div>
 			</div>
 
 			<div class="box2">
@@ -100,20 +105,6 @@
 <script>
 	import axios from '@/axios.js';
 	import BidList from './BidList.vue';
-	var temporaryData = {
-		seller1: [
-			{
-				productNo: 0,
-				memberName: 'string',
-				productName: 'string',
-				productDetail: 'string',
-				productPrice: 0,
-				productUseDate: 'string',
-				productImageList: '',
-				imageIndex: 0,
-			},
-		],
-	};
 
 	export default {
 		inject: ['socket'],
@@ -141,6 +132,7 @@
 				stompClient: '',
 				resultObj: {},
 				testInput: 0,
+				imageCurrIndex: 0,
 			};
 		},
 
@@ -170,6 +162,12 @@
 			subscribe() {
 				this.socket.subscribe('/product/' + this.productNo, this.recevieFunc);
 			},
+			prevSlide() {
+				if (this.imageCurrIndex) this.imageCurrIndex--;
+			},
+			nextSlide() {
+				if (this.imageCurrIndex < this.seller.productImageList.length - 1) this.imageCurrIndex++;
+			},
 		},
 		mounted() {
 			this.sellerInfo();
@@ -182,14 +180,13 @@
 
 <style scoped>
 	.form {
-		width: 100%;
 		background: #ffffff;
 		width: 700px;
-		height: 3000px;
+		height: 1800px;
 		display: flex;
 		flex-direction: column;
 		margin: 100px auto 0;
-		overflow: hidden;
+		position: relative;
 	}
 
 	.form > * {
@@ -200,8 +197,10 @@
 	.productPicture {
 		background: #d9d9d9;
 		border-radius: 20px;
-		width: 100%;
 		height: 100%;
+		transition: margin-left 2s;
+		width: fit-content;
+		display: flex;
 	}
 
 	.imgBox {
@@ -209,22 +208,29 @@
 		overflow: hidden;
 		padding: 0;
 		position: relative;
-		display: flex;
 		width: 100%;
 	}
-
+	.productPicture > * {
+		width: 700px;
+		height: 100%;
+	}
 	.prev,
 	.next {
-		top: 50%;
-		transform: translateY(-50%);
+		position: absolute;
 		background-color: transparent;
 		color: black;
 		font-size: 2rem;
 		border: none;
 		cursor: pointer;
 		outline: none;
+		top: 180px;
 	}
-
+	.next {
+		right: -30px;
+	}
+	.prev {
+		left: -30px;
+	}
 	.userInfo {
 		display: flex;
 		flex-direction: row;

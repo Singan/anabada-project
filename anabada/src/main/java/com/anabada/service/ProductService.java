@@ -62,10 +62,8 @@ public class ProductService {
     // product 세부 정보
     @Transactional
     public ProductFindOneDto findProduct(Long productNo) {
-        System.out.println("productFindOne=================================");
 
         ProductFindOneInterface product = productRepository.findProductDetail(productNo);
-        System.out.println("productFindOne-----------------------------------");
 
         if (product != null) {
             productRepository.upProductVisit(productNo);

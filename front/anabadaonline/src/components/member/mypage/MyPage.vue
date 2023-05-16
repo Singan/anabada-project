@@ -1,7 +1,7 @@
 <template>
 	<div class="mypageContainer">
 		<div class="mypageHeader">
-			<img class="userImage" v-bind:src="this.$store.getters.getMember.image" />
+			<img class="userImage" :src="this.$store.getters.getMember.image" />
 			<div class="userName">
 				{{ myData.memberName }}
 				<img src="@/assets/profileButton.png" alt="profileButton" class="showProfileButton" />
@@ -21,7 +21,7 @@
 			<div class="container">
 				<div class="userInfoText">개인정보</div>
 				<span class="userInfoChange" @click="goChange"> 회원 정보 수정 </span>
-				<a href="./MemberExit" class="withDrawal" @click="goExit">회원 탈퇴</a>
+				<router-link to="./MemberExit" class="withDrawal" @click="goExit">회원 탈퇴</router-link>
 				<div class="userInfoLine"></div>
 			</div>
 		</div>
@@ -29,10 +29,10 @@
 		<div class="mypageTradeInfo">
 			<div class="container">
 				<div class="myTradeText">내 거래</div>
-				<a href="../../TransactionDt2" class="sellListButton" @click="goDt2">판매 내역</a>
-				<a href="../../TransactionDt1" class="buyListButton" @click="goDt1">구매 내역</a>
-				<a href="../../Product" class="productRegButton" @click="goProduct">상품등록</a>
-				<a href="./Jjim" class="wishListButton" @click="goJjim">찜 목록</a>
+				<router-link to="/transactionDt2" class="sellListButton" @click="goDt2">판매 내역</router-link>
+				<router-link to="./transactionDt1" class="buyListButton" @click="goDt1">구매 내역</router-link>
+				<router-link to="./product" class="productRegButton" @click="goProduct">상품등록</router-link>
+				<router-link to="./Jjim" class="wishListButton" @click="goJjim">찜 목록</router-link>
 				<div class="line-1"></div>
 			</div>
 		</div>
@@ -108,7 +108,7 @@
 				});
 			},
 		},
-		mounted() {
+		created() {
 			this.getMypage();
 		},
 	};

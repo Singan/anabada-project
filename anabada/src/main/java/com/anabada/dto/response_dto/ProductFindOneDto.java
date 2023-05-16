@@ -47,7 +47,6 @@ public class ProductFindOneDto {
             return prefix+productImage;
         }).collect(Collectors.toList());
         productImageList.add(0,prefix+product.getProductThumbnail());
-        Collections.reverse(productImageList);
         Integer highPrice = product.getProductHighPrice();
         if(highPrice != null) {
             this.productHighPrice = highPrice;

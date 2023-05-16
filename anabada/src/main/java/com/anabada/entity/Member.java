@@ -29,14 +29,12 @@ public class Member {
     private LocalDate memberBirth;
     @Column(name = "member_money" ,columnDefinition = "int default 0")
     private Integer memberMoney;
-    @Column(name = "member_temper")
-    private Float memberTemper;
+
 
 
     private String memberDetailAddr;
     private String memberAddr;
     private String memberWishAddr;
-    private String memberAccount;
     private String memberImage;
 
     @OneToMany(mappedBy = "member")
@@ -50,11 +48,9 @@ public class Member {
                   String memberPw,
                   LocalDate memberBirth,
                   Integer memberMoney,
-                  Float memberTemper,
                   String memberDetailAddr,
                   String memberAddr,
                   String memberWishAddr,
-                  String memberAccount,
                   String memberImage,List<SocketRelation> memberSocketList,
                   List<Product> memberProductList
     ) {
@@ -64,11 +60,9 @@ public class Member {
         this.memberPw = memberPw;
         this.memberBirth = memberBirth;
         this.memberMoney = memberMoney;
-        this.memberTemper = memberTemper;
         this.memberDetailAddr = memberDetailAddr;
         this.memberAddr = memberAddr;
         this.memberWishAddr = memberWishAddr;
-        this.memberAccount = memberAccount;
         this.memberImage = memberImage;
         this.memberSocketList = memberSocketList;
         this.memberProductList = memberProductList;
