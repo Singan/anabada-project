@@ -49,13 +49,13 @@
 		},
 
 		async mounted() {
+			this.login();
+
 			socket.init();
 			console.log(socket.connected());
 			await socket.connect();
 			this.isSocket = socket.connected();
 			console.log(socket.connected());
-
-			this.login();
 		},
 	};
 </script>
