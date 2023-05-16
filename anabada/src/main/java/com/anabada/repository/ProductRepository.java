@@ -22,7 +22,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
                     "p.product_visit as productVisit , p.product_price as productPrice,"+
                     "p.create_date_time as productTime ,"+
                     "m.member_name as memberName , m.member_addr as memberAddr,"+
-                    "pi.image_addr as productImageList, p.product_thumbnail as productThumbnail" +
+                    "pi.image_addr as productImageList, p.product_thumbnail as productThumbnail, " +
                     "max(b.bid_price) as productHighPrice from product p" +
             " join member m on p.member_no = m.member_no" +
             " left join product_image pi on p.product_no = pi.product_no" +
@@ -31,8 +31,8 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
             " order by productHighPrice desc;")
     ProductFindOneInterface findProductDetail(@Param("productNo") Long productNo); // 프로덕트 상세
 
-    @Query("update Product p set p.productVisit = p.productVisit+1")
-    void updateProductByProductVisit();
+    @Query("update Product p set p.productVisit=p.productVisit+1 where p.productNo = :prodcutNo")
+    Optional<Product> upProductVisit(@Param("productNo")Long productNo);
 
     @Query("select distinct p from Product p join fetch p.member ")
     @BatchSize(size = 3)

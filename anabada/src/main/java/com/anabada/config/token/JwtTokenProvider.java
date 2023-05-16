@@ -107,7 +107,7 @@ public class JwtTokenProvider{
     private Date createExpiredDate() {
         // 토큰 만료시간은 30일으로 설정
         Calendar c = Calendar.getInstance();
-        c.add(Calendar.HOUR, 8);     // 8시간
+        c.add(Calendar.HOUR, 24);     // 24시간
         // c.add(Calendar.DATE, 1);         // 1일
         return c.getTime();
     }

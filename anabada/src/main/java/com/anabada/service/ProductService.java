@@ -68,7 +68,7 @@ public class ProductService {
         System.out.println("productFindOne-----------------------------------");
 
         if (product != null) {
-            productRepository.updateProductByProductVisit();
+            productRepository.upProductVisit(productNo);
             ProductFindOneDto productFindOneDto = new ProductFindOneDto(product, s3EndPoint);
             return productFindOneDto;
         }

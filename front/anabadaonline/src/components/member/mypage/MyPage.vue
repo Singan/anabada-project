@@ -52,7 +52,6 @@
 
 <script>
 	import axios from '@/axios';
-	import { all } from 'axios';
 	export default {
 		data() {
 			// quickfix to have components available to pass as props
@@ -65,7 +64,18 @@
 				this.$router.push('./MemberExit');
 			},
 			goChange() {
-				this.$router.push('./MemberChange');
+				let pass = prompt('비밀번호를 입력해주세요');
+				axios
+					.post('/mypage/confirm', {
+						confirmPassword: pass,
+					})
+					.then((res) => {
+						if (res.data) {
+							this.$router.push('./MemberChange');
+						} else {
+							alert('잘못된 비밀번호 입니다.');
+						}
+					});
 			},
 			goProduct() {
 				this.$router.push('./Product');
@@ -98,7 +108,6 @@
 		mounted() {
 			this.getMypage();
 		},
-		components: { all },
 	};
 </script>
 
