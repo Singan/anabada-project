@@ -60,7 +60,7 @@
 				detailaddr: '',
 				addr: '',
 				Wishaddr: '',
-				image: '',
+				image: null,
 			};
 		},
 		methods: {
@@ -73,7 +73,9 @@
 				form.append('detailAddr', this.detailaddr);
 				form.append('addr', this.addr);
 				form.append('wishAddr', this.Wishaddr);
-				form.append('image', this.image);
+				if (this.image != null) {
+					form.append('image', this.image);
+				}
 
 				axios
 					.post('/member', form, {
