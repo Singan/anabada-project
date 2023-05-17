@@ -31,9 +31,12 @@
 
 		<div class="prouductInfo">
 			<div class="productNamePrice">상품 이름 : {{ seller.productName }}</div>
-			<div class="productTime">등록 시간 : {{ seller.productInsertTime }}</div>
+			<div class="productTime">등록 시간 : {{ seller.productTime }}</div>
 			<div class="productNamePrice">상품 등록 가격 : {{ seller.productPrice }}원</div>
-			<div class="productNamePrice">현재 최고가 : {{ seller.productHighPrice }} 원</div>
+			<div class="productNamePrice" v-if="seller.productHighPrice">
+				현재 최고가 : {{ seller.productHighPrice }} 원
+			</div>
+			<div class="productNamePrice" v-if="seller.productHighPrice">상품 낙찰까지 남은 시간 : {{ leftTimer }}</div>
 
 			<div class="productExplain">상품 설명 : {{ seller.productDetail }}</div>
 			<div class="productExplain">상품 사용기간 : {{ seller.productUseDate }}</div>
@@ -131,19 +134,34 @@
 				resultObj: {},
 				testInput: 0,
 				imageCurrIndex: 0,
+				leftTimer: '',
 			};
 		},
 
 		//axios 통신
 		methods: {
-			sellerInfo() {
-				axios.get('/product?productNo=' + this.productNo).then((response) => {
-					this.seller = response.data;
-				});
+			async sellerInfo() {
+				const response = await axios.get('/product?productNo=' + this.productNo);
+				this.seller = response.data;
+				const timer = setInterval(this.timer, 1000);
 			},
 			bidStart() {
 				this.check = !this.check;
 				this.isClicked = !this.isClicked;
+			},
+			timer() {
+				let bidTime = new Date(this.seller.bidTime);
+				bidTime.setMinutes(bidTime.getMinutes() + 10);
+				let date = new Date();
+				const diffMSec = bidTime - date;
+				let s = Math.floor(diffMSec / 1000);
+				let m = Math.floor(s / 60);
+				s = s - m * 60;
+				this.leftTimer = m + '분 ' + s + '초';
+				console.log(this.leftTimer);
+				if (m && s) {
+					clearInterval(this.timer);
+				}
 			},
 			recevieFunc(resObj) {
 				console.log(resObj.price);
@@ -160,8 +178,10 @@
 				if (this.imageCurrIndex < this.seller.productImageList.length - 1) this.imageCurrIndex++;
 			},
 		},
-		mounted() {
+		created() {
 			this.sellerInfo();
+		},
+		mounted() {
 			if (this.isSocket) {
 				this.socket.subscribe('/product/' + this.productNo, this.recevieFunc);
 			}
@@ -172,6 +192,7 @@
 <style scoped>
 	.prouductInfo > div {
 		padding-left: 60px;
+		width: fit-content;
 	}
 	.form {
 		background: #ffffff;
@@ -335,6 +356,7 @@
 		color: #000000;
 		font: 14px 'Roboto', sans-serif;
 		margin-bottom: 30px;
+		word-break: break-all;
 	}
 
 	.productStatus {

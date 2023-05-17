@@ -11,12 +11,12 @@ public interface ProductFindOneInterface {
     String getProductDetail();
     Integer getProductPrice();
     Long getProductVisit();
-    LocalDateTime getProductTime();
+    String getProductTime();
     String getProductUseDate();
     String getProductThumbnail();
     String getMemberName();
     String getMemberAddr();
-
+    LocalDateTime getBidTime();
     Long getMemberNo();
 
 

@@ -28,11 +28,10 @@ public class ProductFindOneDto {
     private String productUseDate;
     private Long productVisit;
     private Long memberNo;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime productInsertTime;
+    private String productTime;
     private List<String> productImageList;
     private Integer productHighPrice;
-
+    private LocalDateTime bidTime;
     public ProductFindOneDto(ProductFindOneInterface product, String prefix) {
         this.productNo = product.getProductNo();
         this.memberName = product.getMemberName();
@@ -42,7 +41,7 @@ public class ProductFindOneDto {
         this.productUseDate = product.getProductUseDate();
         this.productVisit = product.getProductVisit();
         this.memberAddr = product.getMemberAddr();
-        this.productInsertTime = product.getProductTime();
+        this.productTime= product.getProductTime();
         this.memberNo = product.getMemberNo();
         this.productImageList = product.getProductImageList().stream().map(productImage ->  {
             return prefix+productImage;
@@ -51,6 +50,7 @@ public class ProductFindOneDto {
         Integer highPrice = product.getProductHighPrice();
         if(highPrice != null) {
             this.productHighPrice = highPrice;
+            this.bidTime = product.getBidTime();
         }
 
     }
