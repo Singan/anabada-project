@@ -17,16 +17,16 @@ public class ProductSocket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productSocketNo;
 
-
-    @OneToMany(mappedBy = "productSocket")
-    private List<SocketRelation> socketRelationList;
+//
+//    @OneToMany(mappedBy = "productSocket")
+//    private List<SocketRelation> socketRelationList;
 
     @OneToOne(mappedBy = "productSocket")
     private Product product;
     @Builder
     public ProductSocket(Long productSocketNo,List<SocketRelation> socketRelationList,Product product) {
         this.productSocketNo = productSocketNo;
-        this.socketRelationList = socketRelationList;
+        //this.socketRelationList = socketRelationList;
         this.product = product;
     }
 }

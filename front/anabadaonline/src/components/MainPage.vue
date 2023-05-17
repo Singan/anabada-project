@@ -5,7 +5,7 @@
 			<div class="Text4">중고 거래, 이제 경매에 직접 참여해서<br />원하는 가격으로 구매해보세요</div>
 		</div>
 		<div class="topImages">
-			<img src="../assets/mainImage.png" />
+			<img src="@/assets/mainImage.png" />
 			<!-- <img class="rectangle-14" src="@/assets/samsung.jpg" />
          <img class="rectangle-12" src="@/assets/iphone14.jpg" /> -->
 		</div>
@@ -62,22 +62,22 @@
 					this.productList = response.data.list;
 				});
 			},
-			searchresultshow(keyword) {
-				if (keyword !== '') {
-					//검색어를 입력한 경우
-					this.$router.push({
-						name: 'SearchPage',
-						params: {
-							keyword: this.keyword,
-							isResultShow: true,
-						},
-					});
-					this.keyword = '';
-					console.log('"', keyword, '"' + ' 검색');
-				} else {
-					alert('검색어를 입력해주세요!'); //검색어를 입력하지 않은 경우
-				}
-			},
+			// searchresultshow(keyword) {
+			// 	if (keyword !== '') {
+			// 		//검색어를 입력한 경우
+			// 		this.$router.push({
+			// 			name: 'SearchPage',
+			// 			params: {
+			// 				keyword: this.keyword,
+			// 				isResultShow: true,
+			// 			},
+			// 		});
+			// 		this.keyword = '';
+			// 		console.log('"', keyword, '"' + ' 검색');
+			// 	} else {
+			// 		alert('검색어를 입력해주세요!'); //검색어를 입력하지 않은 경우
+			// 	}
+			// },
 		},
 
 		created() {

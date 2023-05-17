@@ -63,21 +63,36 @@
 			goExit() {
 				this.$router.push('./MemberExit');
 			},
-			goChange() {
-				let pass = prompt('비밀번호를 입력해주세요');
-				console.log(pass);
+			async goChange() {
+				const { value: password } = await this.$swal({
+					title: '비밀번호 확인',
+					input: 'password',
+					inputPlaceholder: '비밀번호를 입력해주세요',
+					heightAuto: true,
+					inputAttributes: {
+						maxlength: 20,
+						autocapitalize: 'off',
+						autocorrect: 'off',
+						autocomplete: 'new-password',
+					},
+					allowOutsideClick: false,
+				});
+				console.log(password);
 				axios
 					.post('/mypage/confirm', {
-						confirmPassword: pass,
+						confirmPassword: password,
 					})
 					.then((res) => {
-						console.log(res.data);
 						if (res.data) {
 							this.$router.push('./MemberChange');
 						}
 					})
-					.catch(() => {
-						alert('잘못된 비밀번호 입니다.');
+					.catch((response) => {
+						const message = response.data;
+						this.$swal({
+							icon: 'error',
+							title: '잘못된 비밀번호입니다.',
+						});
 					});
 			},
 			goProduct() {

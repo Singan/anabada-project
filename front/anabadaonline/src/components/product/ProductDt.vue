@@ -36,7 +36,9 @@
 			<div class="productNamePrice" v-if="seller.productHighPrice">
 				현재 최고가 : {{ seller.productHighPrice }} 원
 			</div>
-			<div class="productNamePrice" v-if="seller.productHighPrice">상품 낙찰까지 남은 시간 : {{ leftTimer }}</div>
+			<div class="productNamePrice" v-if="seller.productHighPrice">
+				상품 낙찰까지 남은 시간 : {{ leftTimerView }}
+			</div>
 
 			<div class="productExplain">상품 설명 : {{ seller.productDetail }}</div>
 			<div class="productExplain">상품 사용기간 : {{ seller.productUseDate }}</div>
@@ -50,7 +52,7 @@
 		<button class="auctionText" :class="{ clicked: isClicked }" @click="bidStart">경매 참여</button>
 
 		<div class="line"></div>
-		<BidList v-if="check" :memberNo="seller.memberNo"></BidList>
+		<BidList v-if="isClicked" :memberNo="seller.memberNo"></BidList>
 
 		<div class="box3">
 			<div class="actionProduct">인기경매 상품</div>
@@ -110,20 +112,22 @@
 
 	export default {
 		inject: ['socket'],
-
-		watch: {
-			isSocket: function (isSocket) {
-				this.subscribe();
-			},
-		},
-		name: '',
-		components: { BidList },
 		props: {
 			isSocket: {
 				type: Boolean,
 				required: false,
 			},
 		},
+		watch: {
+			isSocket: function (isSocket) {
+				if (isSocket) {
+					this.subscribe();
+				}
+			},
+		},
+		name: '',
+		components: { BidList },
+
 		data() {
 			return {
 				seller: '',
@@ -134,7 +138,8 @@
 				resultObj: {},
 				testInput: 0,
 				imageCurrIndex: 0,
-				leftTimer: '',
+				leftTimerView: '',
+				leftTime: '',
 			};
 		},
 
@@ -143,24 +148,28 @@
 			async sellerInfo() {
 				const response = await axios.get('/product?productNo=' + this.productNo);
 				this.seller = response.data;
-				const timer = setInterval(this.timer, 1000);
+				console.log('seller');
+
+				let bidTime = new Date(this.seller.bidTime);
+				bidTime.setMinutes(bidTime.getMinutes() + 10);
+				this.leftTime = bidTime;
+				let date = new Date();
+				this.leftTime = this.leftTime - date;
+				if (this.leftTime >= 0) {
+					const ti = setInterval(this.timer, 1000);
+				}
 			},
 			bidStart() {
-				this.check = !this.check;
 				this.isClicked = !this.isClicked;
 			},
 			timer() {
-				let bidTime = new Date(this.seller.bidTime);
-				bidTime.setMinutes(bidTime.getMinutes() + 10);
-				let date = new Date();
-				const diffMSec = bidTime - date;
-				let s = Math.floor(diffMSec / 1000);
+				let s = Math.floor(this.leftTime / 1000);
 				let m = Math.floor(s / 60);
 				s = s - m * 60;
-				this.leftTimer = m + '분 ' + s + '초';
-				console.log(this.leftTimer);
-				if (m && s) {
-					clearInterval(this.timer);
+				this.leftTimerView = m + '분 ' + s + '초';
+				this.leftTime -= 1000;
+				if (this.leftTime <= 0) {
+					clearInterval(this.timer); // 타이머가 0 이하가 되었을 때 타이머를 멈추도록 함
 				}
 			},
 			recevieFunc(resObj) {

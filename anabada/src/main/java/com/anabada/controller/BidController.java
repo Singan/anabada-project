@@ -36,7 +36,8 @@ public class BidController {
         simpMessagingTemplate.convertAndSend(
                 "/product/" + bidInsertDto.getProductNo(), bidRes);
 
-
+        simpMessagingTemplate.convertAndSend(
+                "/product/myProduct/" + bidInsertDto.getProductNo(), bidRes);
     }
 
     @GetMapping
