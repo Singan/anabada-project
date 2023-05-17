@@ -112,6 +112,7 @@
 				newWish: '',
 				img: '',
 				newPasswordConfirm: '',
+				productImages: null,
 			};
 		},
 		methods: {
@@ -137,7 +138,10 @@
 				form.append('updateAddr', this.newAddr);
 				form.append('updateDetailAddr', this.newDt);
 				form.append('updateWishAddr', this.newWish);
-				form.append('updateImage', this.productImages);
+				if (this.productImages != null) {
+					console.log(this.productImages);
+					form.append('updateImage', this.productImages);
+				}
 				axios
 					.put('/member/update', form, {
 						header: { 'Content-Type': 'multipart/form-data' },

@@ -5,22 +5,20 @@ import { createApp } from 'vue';
 import VueCookies from 'vue3-cookies';
 import store from './store';
 const router = createRouter({
-    history: createWebHistory(),
-    routes,
+	history: createWebHistory(),
+	routes,
 });
-
 
 const app = createApp(App);
 
 app.use(router);
-app.use(store)
+app.use(store);
 app.use(VueCookies, {
-    expireTimes: '30d',
-    path: '/',
-    domain: '',
-    secure: true,
-    sameSite: 'None',
+	expireTimes: '30d',
+	path: '/',
+	domain: '',
+	secure: true,
+	sameSite: 'None',
 });
 app.mount('#app');
 // Set global cookie in component:
-

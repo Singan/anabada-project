@@ -1,10 +1,11 @@
+@@ -1,74 +1,23 @@
 <template>
-	<CustomHeader :isToken="isToken"></CustomHeader>
+	<Header :isToken="isToken"></Header>
 	<router-view @logined="login" :isSocket="isSocket" v-if="isLoad" />
 </template>
 
 <script>
-	import CustomHeader from './common/Header.vue';
+	import Header from './common/Header.vue';
 	import token from '@/common/token';
 	import axios from '@/axios';
 	import socket from '@/common/socket';
@@ -16,7 +17,7 @@
 			};
 		},
 		components: {
-			CustomHeader,
+			Header,
 		},
 		data() {
 			return {
@@ -27,8 +28,9 @@
 			};
 		},
 		methods: {
-			login() {
+			async login() {
 				this.isToken = token.is();
+
 				if (token.is() && !this.$store.getters.getMember.no) {
 					const tokenVal = token.getToken();
 					axios.defaults.headers.common['x-auth-token'] = tokenVal;
@@ -38,16 +40,15 @@
 					};
 					socket.setHeaders(headers);
 
-					axios.get('/member').then((res) => {
-						this.$store.commit('setMember', res.data);
-						this.isLoad = true;
-					});
+					const res = await axios.get('/member');
+					this.$store.commit('setMember', res.data);
 				}
 			},
 		},
 
 		async created() {
-			this.login();
+			await this.login();
+			this.isLoad = true;
 
 			socket.init();
 			await socket.connect();

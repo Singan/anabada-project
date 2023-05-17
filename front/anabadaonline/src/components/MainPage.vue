@@ -5,7 +5,7 @@
 			<div class="Text4">중고 거래, 이제 경매에 직접 참여해서<br />원하는 가격으로 구매해보세요</div>
 		</div>
 		<div class="topImages">
-			<img src="@/assets/mainImage.png" />
+			<img src="../assets/mainImage.png" />
 			<!-- <img class="rectangle-14" src="@/assets/samsung.jpg" />
          <img class="rectangle-12" src="@/assets/iphone14.jpg" /> -->
 		</div>
