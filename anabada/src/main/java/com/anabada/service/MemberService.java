@@ -59,10 +59,12 @@ public class MemberService implements UserDetailsService {
 
             MultipartFile file = memberJoinDto.getImage();
 
-
             if (!((file == null) || (file.isEmpty()))) {
                 String profilePath = fileProcessor.fileSave(file,"member");
                 memberJoinDto.setProfileImagePath(profilePath);
+            } else {
+                String basicProfileImagePath = "member/basic/user.png";
+                memberJoinDto.setProfileImagePath(basicProfileImagePath);
             }
             Member member = memberJoinDto.getMember();
 
@@ -128,7 +130,7 @@ public class MemberService implements UserDetailsService {
             String basicImagePath = "member/basic/user.png";
             member.updateMember(memberUpdateDto, basicImagePath);
             return new MemberUpdateFindDto(member, basicImagePath);
-        }
+            }
         } else {
             throw new RuntimeException("새로운 비밀번호가 다름");
         }
