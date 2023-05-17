@@ -1,27 +1,11 @@
 <template>
 	<div class="form1">
-		<div class="user">
-			<div class="ListImage"></div>
-			<div class="userName">{{ testData.list[0].memberName }}</div>
-			<div class="userPrice">{{ testData.list[0].price }}원</div>
+		<div class="user" v-for="(bid, index) in bidList" :key="index">
+			<div class="ListImage"><img :src="bid.memberImage" /></div>
+			<div class="userName">{{ bid.memberName }}</div>
+			<div class="userPrice">{{ bid.price }}원</div>
+			<div class="bidTime">{{ bid.bidTime }}</div>
 		</div>
-
-		<div class="listLine"></div>
-
-		<div class="user">
-			<div class="ListImage"></div>
-			<dib class="userName">{{ testData.list[1].memberName }}</dib>
-			<div class="userPrice">{{ testData.list[1].price }}원</div>
-		</div>
-
-		<div class="listLine"></div>
-
-		<div class="user">
-			<div class="ListImage"></div>
-			<dib class="userName">{{ testData.list[2].memberName }}</dib>
-			<div class="userPrice">{{ testData.list[2].price }}원</div>
-		</div>
-		<div class="listLine"></div>
 
 		<div class="bidBox">
 			<input class="textSize" type="text" placeholder="ex)xxx,xxx,xxx 원" />
@@ -31,23 +15,6 @@
 </template>
 
 <script>
-	var testData = {
-		length: 3,
-		list: [
-			{
-				memberName: 'user1',
-				price: 11,
-			},
-			{
-				memberName: 'user2',
-				price: 22,
-			},
-			{
-				memberName: 'user3',
-				price: 33,
-			},
-		],
-	};
 	import axios from '@/axios.js';
 	import socket from '@/common/socket';
 	export default {
@@ -56,8 +23,7 @@
 		props: {},
 		data() {
 			return {
-				auction: '',
-				testData,
+				bidList: '',
 				productNo: this.$route.query.productNo,
 			};
 		},
@@ -65,9 +31,7 @@
 		methods: {
 			auctionList() {
 				axios.get('/bid?productNo=' + this.productNo).then((response) => {
-					console.log(response.data);
-					this.auction = response.data;
-					console.log(this.auction);
+					this.bidList = response.data.list;
 				});
 			},
 		},
@@ -102,9 +66,11 @@
 		border-radius: 50%;
 		width: 40px;
 		height: 40px;
-		align-items: flex-start;
 	}
-
+	.ListImage > img {
+		width: 100%;
+		height: 100%;
+	}
 	.userName {
 		color: #000000;
 		font: 400 20px 'Roboto', sans-serif;
@@ -136,8 +102,9 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
-		width: 440px;
+		width: 90%;
 		margin-top: 30px;
+		border-bottom: 1px dashed black;
 	}
 
 	.bidBox {

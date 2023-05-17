@@ -9,6 +9,7 @@ import com.anabada.entity.Member;
 import com.anabada.entity.Product;
 import com.anabada.repository.BidRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +24,8 @@ import java.util.stream.Collectors;
 public class BidService {
 
     private final BidRepository bidRepository;
-
+    @Value("${s3.bucket.endpoint}")
+    private String prefix ;
     @Transactional
     public void bidSave(BidInsertDto bidInsertDto, MemberDetailDTO memberDetailDTO) {
         Member member = memberDetailDTO.getMember();
@@ -49,7 +51,7 @@ public class BidService {
         Product product = Product.builder().productNo(productNo).build();
         List<Bid> bidList = bidRepository.findBidListByProduct(product);
 
-        List<BidInfoFindDto> bidInfoFindDtoList = bidList.stream().map(bid -> new BidInfoFindDto(bid)).collect(Collectors.toList());
+        List<BidInfoFindDto> bidInfoFindDtoList = bidList.stream().map(bid -> new BidInfoFindDto(bid,prefix)).collect(Collectors.toList());
         ResultList resultList = new ResultList<>(bidInfoFindDtoList);
         return resultList;
 

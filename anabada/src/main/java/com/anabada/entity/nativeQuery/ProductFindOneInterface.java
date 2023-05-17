@@ -15,11 +15,12 @@ public interface ProductFindOneInterface {
     String getProductUseDate();
     String getProductThumbnail();
     String getMemberName();
-     String getMemberAddr();
+    String getMemberAddr();
+
+    Long getMemberNo();
 
 
-
-     List<String> getProductImageList();
+    List<String> getProductImageList();
      Integer getProductHighPrice();
      //LocalDateTime getProductLeftTime();
 }

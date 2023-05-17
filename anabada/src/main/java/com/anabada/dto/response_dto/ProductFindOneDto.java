@@ -27,6 +27,7 @@ public class ProductFindOneDto {
     private Integer productPrice;
     private String productUseDate;
     private Long productVisit;
+    private Long memberNo;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime productInsertTime;
     private List<String> productImageList;
@@ -42,7 +43,7 @@ public class ProductFindOneDto {
         this.productVisit = product.getProductVisit();
         this.memberAddr = product.getMemberAddr();
         this.productInsertTime = product.getProductTime();
-
+        this.memberNo = product.getMemberNo();
         this.productImageList = product.getProductImageList().stream().map(productImage ->  {
             return prefix+productImage;
         }).collect(Collectors.toList());
