@@ -3,6 +3,7 @@ package com.anabada.service;
 import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.BidInsertDto;
 import com.anabada.dto.response_dto.BidInfoFindDto;
+import com.anabada.dto.response_dto.BidInsertResponseDto;
 import com.anabada.dto.response_dto.ResultList;
 import com.anabada.entity.Bid;
 import com.anabada.entity.Member;
@@ -10,13 +11,12 @@ import com.anabada.entity.Product;
 import com.anabada.repository.BidRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,9 +25,10 @@ public class BidService {
 
     private final BidRepository bidRepository;
     @Value("${s3.bucket.endpoint}")
-    private String prefix ;
+    private String prefix;
+
     @Transactional
-    public void bidSave(BidInsertDto bidInsertDto, MemberDetailDTO memberDetailDTO) {
+    public BidInsertResponseDto bidSave(BidInsertDto bidInsertDto, MemberDetailDTO memberDetailDTO) {
         Member member = memberDetailDTO.getMember();
         Bid insertBid = bidInsertDto.getBid(member);
         Product product = insertBid.getProduct();
@@ -42,16 +43,25 @@ public class BidService {
                 bidRepository.save(insertBid);
             }
         }
+        String bidTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh시 mm분"));
+        BidInsertResponseDto bidRes = BidInsertResponseDto
+                .builder()
+                .memberImage(bidInsertDto.getMemberImage())
+                .memberNo(member.getMemberNo())
+                .price(insertBid.getPrice())
+                .memberName(member.getMemberName())
+                .productNo(product.getProductNo())
+                .bidTime(bidTime)
+                .build();
+        return bidRes;
     }
-
-
 
 
     public ResultList<List<BidInfoFindDto>> findBidList(Long productNo) {
         Product product = Product.builder().productNo(productNo).build();
         List<Bid> bidList = bidRepository.findBidListByProduct(product);
 
-        List<BidInfoFindDto> bidInfoFindDtoList = bidList.stream().map(bid -> new BidInfoFindDto(bid,prefix)).collect(Collectors.toList());
+        List<BidInfoFindDto> bidInfoFindDtoList = bidList.stream().map(bid -> new BidInfoFindDto(bid, prefix)).collect(Collectors.toList());
         ResultList resultList = new ResultList<>(bidInfoFindDtoList);
         return resultList;
 

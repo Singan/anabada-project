@@ -1,5 +1,5 @@
 <template>
-	<div class="form">
+	<div class="form" :style="'height : ' + { isClicked } ? '2800px' : '1900x'">
 		<div class="imgBox">
 			<div
 				class="productPicture"
@@ -43,8 +43,7 @@
 			<a class="productText1">찜 0</a>
 			<a class="productText1">조회 {{ seller.productVisit }}</a>
 		</div>
-		<input v-model="testInput" type="number" style="width: 100%; height: auto" />
-		<button style="width: 100%; height: auto" @click="send">입찰 테스트 버튼임</button>
+
 		<button class="auctionText" :class="{ clicked: isClicked }" @click="bidStart">경매 참여</button>
 
 		<div class="line"></div>
@@ -108,9 +107,9 @@
 
 	export default {
 		inject: ['socket'],
+
 		watch: {
 			isSocket: function (isSocket) {
-				console.log('Socket connection status changed:', isSocket);
 				this.subscribe();
 			},
 		},
@@ -127,7 +126,6 @@
 				seller: '',
 				temporaryData: '',
 				productNo: this.$route.query.productNo,
-				check: false,
 				isClicked: false,
 				stompClient: '',
 				resultObj: {},
@@ -148,17 +146,10 @@
 				this.isClicked = !this.isClicked;
 			},
 			recevieFunc(resObj) {
-				console.log('recevieFunc 콜백');
 				console.log(resObj.price);
 				this.seller.productHighPrice = resObj.price;
 			},
-			send() {
-				let msgObj = {
-					bidPrice: this.testInput,
-					productNo: this.productNo,
-				};
-				this.socket.send(msgObj, '/bid');
-			},
+
 			subscribe() {
 				this.socket.subscribe('/product/' + this.productNo, this.recevieFunc);
 			},
@@ -179,10 +170,12 @@
 </script>
 
 <style scoped>
+	.prouductInfo > div {
+		padding-left: 60px;
+	}
 	.form {
 		background: #ffffff;
 		width: 700px;
-		height: 1800px;
 		display: flex;
 		flex-direction: column;
 		margin: 100px auto 0;
@@ -198,7 +191,7 @@
 		background: #d9d9d9;
 		border-radius: 20px;
 		height: 100%;
-		transition: margin-left 2s;
+		transition: margin-left 1s;
 		width: fit-content;
 		display: flex;
 	}
@@ -209,6 +202,8 @@
 		padding: 0;
 		position: relative;
 		width: 100%;
+		align-items: center;
+		justify-content: center;
 	}
 	.productPicture > * {
 		width: 700px;
@@ -352,6 +347,7 @@
 		display: flex;
 		flex-direction: row;
 		gap: 400px;
+		justify-content: center;
 	}
 
 	.others {
@@ -369,12 +365,14 @@
 		display: flex;
 		flex-direction: row;
 		gap: 60px;
+		justify-content: center;
 	}
 
 	.box5 {
 		display: flex;
 		flex-direction: row;
 		gap: 60px;
+		justify-content: center;
 	}
 
 	.productImage {

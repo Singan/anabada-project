@@ -15,7 +15,7 @@ public class BidInsertDto {
 
     private Integer bidPrice;
     private Long productNo;
-
+    private String memberImage;
     public Bid getBid(Member member) {
         //MemberDetailDTO > Member
 

@@ -8,23 +8,36 @@
 		</div>
 
 		<div class="bidBox">
-			<input class="textSize" type="text" placeholder="ex)xxx,xxx,xxx 원" />
-			<button class="bid">입찰</button>
+			<input
+				class="textSize"
+				type="number"
+				placeholder="이 전보다 낮은 금액을 입력 시 입찰에 실패합니다."
+				v-model="bidPrice"
+			/>
+			<button class="bid" type="button" @click="send">입찰</button>
 		</div>
 	</div>
 </template>
 
 <script>
 	import axios from '@/axios.js';
-	import socket from '@/common/socket';
 	export default {
+		inject: ['socket'],
+
 		name: '',
 		components: {},
+		watch: {
+			isSocket: function (isSocket) {
+				console.log('Socket connection status changed:', isSocket);
+				this.subscribe();
+			},
+		},
 		props: {},
 		data() {
 			return {
 				bidList: '',
 				productNo: this.$route.query.productNo,
+				bidPrice: '',
 			};
 		},
 
@@ -34,26 +47,50 @@
 					this.bidList = response.data.list;
 				});
 			},
+			recevieFunc(resObj) {
+				this.bidList.push(resObj);
+			},
+			send() {
+				const lastBid = this.bidList[this.bidList.length - 1];
+				if (lastBid.price < this.bidPrice) {
+					let msgObj = {
+						bidPrice: this.bidPrice,
+						productNo: this.productNo,
+						memberImage: this.$store.getters.getMember.image,
+					};
+					this.socket.send(msgObj, '/bid');
+				} else {
+					alert('입찰 금액은 현재 최고 입찰금액보다 높아야 합니다.');
+				}
+			},
 		},
 
 		created() {
 			this.auctionList();
+			this.socket.subscribe('/product/' + this.productNo, this.recevieFunc);
 		},
 	};
 </script>
 
 <style scoped>
+	input[type='number']::-webkit-outer-spin-button,
+	input[type='number']::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
 	.form1 {
+		justify-content: center;
 		overflow: scroll;
 		background: #ffffff;
 		border-radius: 5px;
-		width: 97%;
-		height: 400px;
+		width: 100%;
+		height: 900px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		box-shadow: 5px 5px 2px 0px rgba(0, 117, 255, 0.25);
 		border: 1px solid rgba(0, 0, 0, 0.2);
+		align-items: center;
 	}
 
 	.form1 > * {
