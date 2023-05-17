@@ -116,18 +116,21 @@ public class MemberService implements UserDetailsService {
         MultipartFile imageFile = memberUpdateDto.getUpdateImage();
         Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
 
-        if (!((imageFile == null) || (imageFile.isEmpty()))) {
-            // 새로 입력한 비밀번호가 같은지 비교하여 같다면 로직 실행
-            if (memberUpdateDto.getUpdatePw().equals(memberUpdateDto.getConfirmPw())) {
+        // 새로 입력한 비밀번호가 같은지 비교하여 같다면
+        if (memberUpdateDto.getUpdatePw().equals(memberUpdateDto.getConfirmPw())) {
+            if (!((imageFile == null) || (imageFile.isEmpty()))) {
                 memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));  // 인코딩된 새로운 비밀번호
                 String updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage(), "member");  // 변경된 이미지파일
                 member.updateMember(memberUpdateDto, updateImagePath);
                 return new MemberUpdateFindDto(member, updateImagePath);
             } else {
-                throw new RuntimeException("새로운 비밀번호가 다름");
-            }
+            memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
+            String basicImagePath = "member/basic/user.png";
+            member.updateMember(memberUpdateDto, basicImagePath);
+            return new MemberUpdateFindDto(member, basicImagePath);
+        }
         } else {
-            throw new RuntimeException("이미지를 등록하세요");
+            throw new RuntimeException("새로운 비밀번호가 다름");
         }
     }
 

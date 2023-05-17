@@ -81,7 +81,7 @@
 			<div class="changeWishAddr">
 				<div class="change">
 					<div class="changeAddrText">거래 희망지 변경</div>
-					<input id="newWish" class="addrDetailBox" />
+					<input id="newWish" class="addrDetailBox" v-model="newWish" />
 				</div>
 			</div>
 
