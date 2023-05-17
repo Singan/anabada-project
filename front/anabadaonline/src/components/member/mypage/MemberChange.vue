@@ -67,14 +67,14 @@
 				</div>
 			</div>
 			<div class="changeAddrContainer">
-				<input class="addrBox" readonly v-model="addr" />
+				<input class="addrBox" readonly v-model="newAddr" />
 				<button class="findAddrButton" type="button" @click="search()">주소 찾기</button>
 			</div>
 
 			<div class="changeAddr">
 				<div class="change">
 					<div class="changeAddrText">상세 주소 변경</div>
-					<input id="newDt" class="addrDetailBox" v-model="newAddr" />
+					<input id="newDt" class="addrDetailBox" v-model="newDt" />
 				</div>
 			</div>
 
@@ -174,7 +174,7 @@
 
 						// 우편번호와 주소 정보를 해당 필드에 넣는다.
 						// document.getElementById('post').value = data.zonecode;
-						this.addr = roadAddr;
+						this.newAddr = roadAddr;
 						// document.getElementById('detailaddr').value =
 						// 	data.jibunAddress;
 					},

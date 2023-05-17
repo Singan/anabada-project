@@ -114,17 +114,23 @@ public class MemberService implements UserDetailsService {
     }
 
     @Transactional
-    // 로직 고치기
     public MemberUpdateFindDto memberUpdate(MemberDetailDTO memberDetailDTO, MemberUpdateDto memberUpdateDto) {
-        // 새로 입력한 비밀번호가 같은지 비교하여 같다면 로직 실행
-        if (memberUpdateDto.getUpdatePw().equals(memberUpdateDto.getConfirmPw())) {
-            Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
-            memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));  // 인코딩된 새로운 비밀번호
-            String updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage(), "member");  // 변경된 이미지파일
-            member.updateMember(memberUpdateDto, updateImagePath);
-            return new MemberUpdateFindDto(member, updateImagePath);
+        MultipartFile imageFile = memberUpdateDto.getUpdateImage();
+        Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
+
+        if (!((imageFile == null) || (imageFile.isEmpty()))) {
+            // 새로 입력한 비밀번호가 같은지 비교하여 같다면 로직 실행
+            if (memberUpdateDto.getUpdatePw().equals(memberUpdateDto.getConfirmPw())) {
+                memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));  // 인코딩된 새로운 비밀번호
+                String updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage(), "member");  // 변경된 이미지파일
+                member.updateMember(memberUpdateDto, updateImagePath);
+                return new MemberUpdateFindDto(member, updateImagePath);
+            } else {
+                throw new RuntimeException("새로운 비밀번호가 다름");
+            }
+        } else {
+            throw new RuntimeException("이미지를 등록하세요");
         }
-        throw new RuntimeException("새로운 비밀번호가 다름");
     }
 
     // 회원 정보 수정 페이지에 멤버 아이디, 이름, 이미지 보여주기
