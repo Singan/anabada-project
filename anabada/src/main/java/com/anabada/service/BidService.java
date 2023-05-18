@@ -4,6 +4,7 @@ import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.BidInsertDto;
 import com.anabada.dto.response_dto.BidInfoFindDto;
 import com.anabada.dto.response_dto.BidInsertResponseDto;
+import com.anabada.dto.response_dto.FindBiddingDetailDto;
 import com.anabada.dto.response_dto.ResultList;
 import com.anabada.entity.Bid;
 import com.anabada.entity.Member;
@@ -65,5 +66,13 @@ public class BidService {
         ResultList resultList = new ResultList<>(bidInfoFindDtoList);
         return resultList;
 
+    }
+
+    // 입찰 내역
+    public ResultList<List<FindBiddingDetailDto>> findBiddingDetail(MemberDetailDTO memberDetailDTO) {
+        List<Bid> bidList = bidRepository.findBidListByMemberNo(memberDetailDTO.getNo());
+        List<FindBiddingDetailDto> biddingDetail =
+                bidList.stream().map(bid -> new FindBiddingDetailDto(bid, prefix)).collect(Collectors.toList());
+        return new ResultList<>(biddingDetail);
     }
 }

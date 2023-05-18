@@ -20,4 +20,8 @@ public interface BidRepository extends JpaRepository<Bid, Long> {
     Bid findFirstByProductOrderByTimeDesc(Product product);
 
     Bid findBidByProductAndMember(Product product, Member member);
+
+    // 입찰 내역
+    @Query("select b from Bid b join fetch b.product where b.member.memberNo = :memberNo order by b.time desc")
+    List<Bid> findBidListByMemberNo(@Param("memberNo") Long memberNo);
 }

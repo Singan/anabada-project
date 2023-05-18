@@ -45,6 +45,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
             "where p.category.categoryNo = :categoryNo and p.productIsBidComplete = false")
     List<Product> findProductByCategory(@Param("categoryNo") Long categoryNo); //상품 카테고리 조회
 
-    @Query("select p from Product p where p.member.memberNo = :memberNo")
+    // 판매 내역
+    @Query("select p from Product p where p.member.memberNo = :memberNo order by p.createDateTime desc")
     List<Product> findByMemberNo(@Param("memberNo") Long memberNo);
 }
