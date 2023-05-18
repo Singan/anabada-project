@@ -6,6 +6,7 @@ import VueCookies from 'vue3-cookies';
 import store from './store';
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import token from './common/token';
 //import axios from 'axios';
 const router = createRouter({
 	history: createWebHistory(),
@@ -17,8 +18,9 @@ const options = {
 	confirmButtonColor: '#41b882',
 	cancelButtonColor: '#ff7674',
 };
+app.config.globalProperties.$token = token;
 app.use(VueSweetalert2, options);
-
+app.use(token);
 app.use(router);
 app.use(store);
 //app.use(axios)

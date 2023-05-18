@@ -20,7 +20,6 @@
 
 <script>
 	import axios from '@/axios.js';
-	import token from '@/common/token';
 
 	export default {
 		name: 'LoginPage',
@@ -54,8 +53,8 @@
 					})
 					.then((response) => {
 						if (response.status == 200) {
-							token.setToken(`${response.data.accessToken}`);
-							axios.defaults.headers.common['x-auth-token'] = token.getToken();
+							this.$token.setToken(`${response.data.accessToken}`);
+							axios.defaults.headers.common['x-auth-token'] = this.$token.getToken();
 							this.$emit('logined');
 							this.$router.push('./');
 						}

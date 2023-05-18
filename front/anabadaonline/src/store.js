@@ -20,6 +20,11 @@ const store = createStore({
 		setSocket(state, socket) {
 			state.socket = socket;
 		},
+		removeMember(state) {
+			state.image = '';
+			state.name = '';
+			state.no = '';
+		},
 	},
 	getters: {
 		getMember({ image, name, no }) {

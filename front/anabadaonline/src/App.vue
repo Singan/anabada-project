@@ -1,12 +1,11 @@
 @@ -1,74 +1,23 @@
 <template>
-	<Header :isToken="isToken"></Header>
+	<Header :isToken="isToken" @logout="logout"></Header>
 	<router-view @logined="login" :isSocket="isSocket" v-if="isLoad" />
 </template>
 
 <script>
 	import Header from './common/Header.vue';
-	import token from '@/common/token';
 	import axios from '@/axios';
 	import socket from '@/common/socket';
 
@@ -21,8 +20,7 @@
 		},
 		data() {
 			return {
-				isToken: token.is(),
-				token: token.token,
+				isToken: this.$token.is(),
 				isSocket: false,
 				isLoad: false,
 				myProductSocketList: [],
@@ -39,10 +37,10 @@
 				});
 			},
 			async login() {
-				this.isToken = token.is();
+				this.isToken = this.$token.is();
 
-				if (token.is() && !this.$store.getters.getMember.no) {
-					const tokenVal = token.getToken();
+				if (this.$token.is() && !this.$store.getters.getMember.no) {
+					const tokenVal = this.$token.getToken();
 					axios.defaults.headers.common['x-auth-token'] = tokenVal;
 					const headers = {
 						'x-auth-token': tokenVal,
@@ -54,6 +52,12 @@
 					this.mySocketList = res.data.productSocketList;
 				}
 			},
+			logout() {
+				this.$token.remove();
+
+				this.isToken = this.$token.is();
+				this.$store.commit('removeMember');
+			},
 		},
 
 		async created() {
@@ -62,10 +66,10 @@
 			socket.init();
 			await socket.connect();
 			this.isSocket = socket.connected();
-			console.log(this.mySocketList);
-			this.mySocketList.forEach(({ socketId }) => {
-				socket.subscribe('/product/myProduct/' + socketId, this.subscribe);
-			});
+			// console.log(this.mySocketList);
+			// this.mySocketList.forEach(({ socketId }) => {
+			// 	socket.subscribe('/product/myProduct/' + socketId, this.subscribe);
+			// });
 		},
 	};
 </script>

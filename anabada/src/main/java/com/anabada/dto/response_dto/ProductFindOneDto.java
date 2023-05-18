@@ -11,6 +11,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,9 +44,13 @@ public class ProductFindOneDto {
         this.memberAddr = product.getMemberAddr();
         this.productTime= product.getProductTime();
         this.memberNo = product.getMemberNo();
-        this.productImageList = product.getProductImageList().stream().map(productImage ->  {
-            return prefix+productImage;
-        }).collect(Collectors.toList());
+        if(product.getProductImageList()!=null){
+            this.productImageList = product.getProductImageList().stream().map(productImage ->  {
+                return prefix+productImage;
+            }).collect(Collectors.toList());
+        }else{
+            productImageList = new ArrayList<>();
+        }
         productImageList.add(0,prefix+product.getProductThumbnail());
         Integer highPrice = product.getProductHighPrice();
         if(highPrice != null) {

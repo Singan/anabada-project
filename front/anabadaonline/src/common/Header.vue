@@ -14,9 +14,12 @@
 		/>
 
 		<button class="SearchButton" type="submit">검색하기</button>
-
 		<router-link to="/login" class="LoginBox" v-if="!isToken"> 로그인 </router-link>
-		<router-link class="mypage" v-if="isToken" to="/mypage">마이페이지</router-link>
+
+		<div v-if="isToken">
+			<router-link class="mypage" to="/mypage">마이페이지</router-link>
+			<div @click="logout">로그아웃</div>
+		</div>
 	</div>
 </template>
 <script>
@@ -48,6 +51,9 @@
 				} else {
 					alert('검색어를 입력해주세요!'); //검색어를 입력하지 않은 경우
 				}
+			},
+			logout() {
+				this.$emit('logout');
 			},
 		},
 	};
