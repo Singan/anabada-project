@@ -44,7 +44,13 @@
 			<div class="changePwAndPwCheck">
 				<div class="change">
 					<div class="changePw">비밀번호 변경</div>
-					<input id="beforePw" type="password" class="pwBox" placeholder="기존 비밀번호를 입력하세요" />
+					<input
+						id="beforePw"
+						type="password"
+						class="pwBox"
+						v-model="oldPw"
+						placeholder="기존 비밀번호를 입력하세요"
+					/>
 					<input
 						id="newPw"
 						type="password"
@@ -56,7 +62,7 @@
 						id="newPw"
 						type="password"
 						class="pwBox"
-						v-model="newPw"
+						v-model="newPw2"
 						placeholder="새 비밀번호를 한번 더 입력하세요"
 					/>
 				</div>
@@ -113,6 +119,7 @@
 				newDt: '',
 				newWish: '',
 				img: '',
+				oldPw: '',
 			};
 		},
 		methods: {
@@ -138,6 +145,7 @@
 				form.append('updateDetailAddr', this.newDt);
 				form.append('updateWishAddr', this.newWish);
 				form.append('updateImage', this.productImages);
+				form.append('orginalPw', this.oldPw);
 				axios
 					.put('/member/update', form, {
 						header: { 'Content-Type': 'multipart/form-data' },
