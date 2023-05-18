@@ -1,538 +1,65 @@
 <template>
-    <div class="---------">
-        <div class="----6">구매내역</div>
-
-        <div class="----7">판매내역</div>
-
-        <div class="rectangle-16"></div>
-
-        <div class="rectangle-18"></div>
-
-        <div class="rectangle-17"></div>
-
-        <div class="rectangle-19"></div>
-
-        <div class="group-19">
-            <div class="-----14---">
-                <div class="----8">아이폰 14 프로</div>
-            </div>
-
-            <div class="-----14---2">
-                <div class="----9">경기도 성남시 1달전 판매완료</div>
-            </div>
-
-            <div class="--4">
-                <div class="----10">1,200,000 원</div>
-            </div>
-        </div>
-
-        <div class="group-21">
-            <div class="-----14---3">
-                <div class="----8">아이폰 14 프로</div>
-            </div>
-
-            <div class="-----14---4">
-                <div class="----9">경기도 성남시 1달전 판매완료</div>
-            </div>
-
-            <div class="--5">
-                <div class="----10">1,200,000 원</div>
-            </div>
-        </div>
-
-        <div class="group-20">
-            <div class="-----14---5">
-                <div class="----8">위닉스 제습기</div>
-            </div>
-
-            <div class="-----14---6">
-                <div class="----9">경기도 성남시 3달전 입찰중</div>
-            </div>
-
-            <div class="--6">
-                <div class="----10">32,000 원</div>
-            </div>
-        </div>
-
-        <div class="group-22">
-            <div class="-----14---7">
-                <div class="----8">위닉스 제습기</div>
-            </div>
-
-            <div class="-----14---8">
-                <div class="----9">경기도 성남시 3달전 판매완료</div>
-            </div>
-
-            <div class="--7">
-                <div class="----10">32,000 원</div>
-            </div>
-        </div>
-        <svg class="rectangle-24" width="141" height="25" viewBox="0 0 141 25" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path d="M0.5 0.5H140.5V24.5H0.5V0.5Z" fill="white" stroke="black" />
-        </svg>
-
-        <div class="---3">가격순</div>
-
-        <div class="group-12">
-            <div class="line-10"></div>
-
-            <div class="line-11"></div>
-        </div>
-
-        <div class="----11">거래내역</div>
-    </div>
+	<div class="flexContainer">
+		<div>거래내역</div>
+		<div class="flexLine">
+			<button class="tab">구매내역</button>
+			<button class="tab">판매내역</button>
+		</div>
+		<div class="flexLine">
+			<div class="procutThumbnail">
+				<img
+					src="data:image/jpeg;base64,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"
+				/>
+			</div>
+			<div class="contentFlex">
+				<div class="productName">아이폰 14 프로</div>
+				<div class="addr">경기도 성남시</div>
+				<div class="day">1달전 판매완료</div>
+				<div class="price">1,200,000 원</div>
+			</div>
+		</div>
+	</div>
 </template>
 <script>
-/* Code generated with AutoHTML Plugin for Figma */
+	/* Code generated with AutoHTML Plugin for Figma */
 
-export default {
-    name: '',
-    components: {},
-    props: {},
-    data() {
-        // quickfix to have components available to pass as props
-        return {};
-    },
-};
+	export default {
+		name: '',
+		components: {},
+		props: {},
+		data() {
+			// quickfix to have components available to pass as props
+			return {};
+		},
+	};
 </script>
 <style scoped>
-.---------,
-.--------- * {
-    box-sizing: border-box;
-}
-
-.--------- {
-    background: #ffffff;
-    width: 1920px;
-    height: 1213px;
-    position: relative;
-    overflow: hidden;
-}
-
-.-- {
-    color: #0075ff;
-    text-align: center;
-    font: 700 18px 'Roboto', sans-serif;
-    position: absolute;
-    left: 645px;
-    top: 40px;
-    width: 40px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.---- {
-    color: #0075ff;
-    text-align: center;
-    font: 700 24px 'Roboto', sans-serif;
-    position: absolute;
-    left: 475px;
-    top: 35px;
-    width: 90px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.--2 {
-    color: #000000;
-    text-align: center;
-    font: 700 18px 'Roboto', sans-serif;
-    position: absolute;
-    left: 725px;
-    top: 40px;
-    width: 40px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.--- {
-    background: #d9ecff;
-    border-radius: 5px;
-    width: 450px;
-    height: 40px;
-    position: absolute;
-    left: 855px;
-    top: 30px;
-}
-
-.--3 {
-    width: 130px;
-    height: 40px;
-    position: static;
-}
-
-.----2 {
-    background: #ffffff;
-    border-radius: 5px;
-    border-style: solid;
-    border-color: #000000;
-    border-width: 1px;
-    width: 130px;
-    height: 40px;
-    position: absolute;
-    left: 1335px;
-    top: 30px;
-}
-
-.----3 {
-    width: 80px;
-    height: 30px;
-    position: absolute;
-    left: 1360px;
-    top: 35px;
-}
-
-._18px {
-    color: #000000;
-    text-align: center;
-    font: 700 18px 'Roboto', sans-serif;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 80px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.---2 {
-    width: 80px;
-    height: 40px;
-    position: static;
-}
-
-.----4 {
-    background: #0075ff;
-    border-radius: 5px;
-    width: 80px;
-    height: 40px;
-    position: absolute;
-    left: 1515px;
-    top: 30px;
-}
-
-.----5 {
-    width: 49.23px;
-    height: 30px;
-    position: absolute;
-    left: 1530.38px;
-    top: 35px;
-}
-
-._18px2 {
-    color: #ffffff;
-    text-align: center;
-    font: 700 18px 'Roboto', sans-serif;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 49.23px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.----6 {
-    color: #000000;
-    text-align: center;
-    font: 700 24px 'Roboto', sans-serif;
-    position: absolute;
-    left: 862px;
-    top: 220px;
-    width: 110px;
-    height: 37px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.----7 {
-    color: #0075ff;
-    text-align: center;
-    font: 700 24px 'Roboto', sans-serif;
-    position: absolute;
-    left: 1080px;
-    top: 220px;
-    width: 110px;
-    height: 37px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.rectangle-16 {
-    background: #d9d9d9;
-    border-radius: 20px;
-    width: 160px;
-    height: 160px;
-    position: absolute;
-    left: 755px;
-    top: 336px;
-}
-
-.rectangle-18 {
-    background: #d9d9d9;
-    border-radius: 20px;
-    width: 160px;
-    height: 160px;
-    position: absolute;
-    left: 755px;
-    top: 696px;
-}
-
-.rectangle-17 {
-    background: #d9d9d9;
-    border-radius: 20px;
-    width: 160px;
-    height: 160px;
-    position: absolute;
-    left: 755px;
-    top: 516px;
-}
-
-.rectangle-19 {
-    background: #d9d9d9;
-    border-radius: 20px;
-    width: 160px;
-    height: 160px;
-    position: absolute;
-    left: 755px;
-    top: 876px;
-}
-
-.group-19 {
-    width: 190px;
-    height: 70px;
-    position: static;
-}
-
-.-----14--- {
-    width: 100px;
-    height: 20px;
-    position: absolute;
-    left: 935px;
-    top: 376px;
-}
-
-.----8 {
-    color: #000000;
-    text-align: left;
-    font: 400 16px 'Roboto', sans-serif;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 100px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.-----14---2 {
-    width: 190px;
-    height: 20px;
-    position: absolute;
-    left: 935px;
-    top: 426px;
-}
-
-.----9 {
-    color: #000000;
-    text-align: left;
-    font: 400 16px 'Roboto', sans-serif;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 190px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.--4 {
-    width: 100px;
-    height: 20px;
-    position: absolute;
-    left: 935px;
-    top: 401px;
-}
-
-.----10 {
-    color: #000000;
-    text-align: left;
-    font: 700 16px 'Roboto', sans-serif;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 100px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.group-21 {
-    width: 190px;
-    height: 70px;
-    position: static;
-}
-
-.-----14---3 {
-    width: 100px;
-    height: 20px;
-    position: absolute;
-    left: 935px;
-    top: 736px;
-}
-
-.-----14---4 {
-    width: 190px;
-    height: 20px;
-    position: absolute;
-    left: 935px;
-    top: 786px;
-}
-
-.--5 {
-    width: 100px;
-    height: 20px;
-    position: absolute;
-    left: 935px;
-    top: 761px;
-}
-
-.group-20 {
-    width: 190px;
-    height: 70px;
-    position: static;
-}
-
-.-----14---5 {
-    width: 100px;
-    height: 20px;
-    position: absolute;
-    left: 935px;
-    top: 556px;
-}
-
-.-----14---6 {
-    width: 190px;
-    height: 20px;
-    position: absolute;
-    left: 935px;
-    top: 606px;
-}
-
-.--6 {
-    width: 100px;
-    height: 20px;
-    position: absolute;
-    left: 935px;
-    top: 581px;
-}
-
-.group-22 {
-    width: 190px;
-    height: 70px;
-    position: static;
-}
-
-.-----14---7 {
-    width: 100px;
-    height: 20px;
-    position: absolute;
-    left: 935px;
-    top: 916px;
-}
-
-.-----14---8 {
-    width: 190px;
-    height: 20px;
-    position: absolute;
-    left: 935px;
-    top: 966px;
-}
-
-.--7 {
-    width: 100px;
-    height: 20px;
-    position: absolute;
-    left: 935px;
-    top: 941px;
-}
-
-.rectangle-24 {
-    position: absolute;
-    left: 1344px;
-    top: 296px;
-    overflow: visible;
-}
-
-.---3 {
-    color: #000000;
-    text-align: left;
-    font: 400 16px 'Roboto', sans-serif;
-    position: absolute;
-    left: 1355px;
-    top: 299px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.group-12 {
-    width: 20.69px;
-    height: 13px;
-    position: static;
-}
-
-.line-10 {
-    border-style: solid;
-    border-color: #000000;
-    border-width: 3px 0 0 0;
-    width: 16px;
-    height: 0px;
-    position: absolute;
-    left: 1480.69px;
-    top: 304px;
-    transform-origin: 0 0;
-    transform: rotate(136.958deg) scale(1, 1);
-}
-
-.line-11 {
-    border-style: solid;
-    border-color: #000000;
-    border-width: 3px 0 0 0;
-    width: 15.56px;
-    height: 0px;
-    position: absolute;
-    left: 1460px;
-    top: 306px;
-    transform-origin: 0 0;
-    transform: rotate(45deg) scale(1, 1);
-}
-
-.----11 {
-    color: #000000;
-    text-align: center;
-    font: 700 24px 'Roboto', sans-serif;
-    position: absolute;
-    left: 325px;
-    top: 155px;
-    width: 398px;
-    height: 37px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+	.flexContainer {
+		width: 50%;
+		display: flex;
+		height: 100%;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		margin: auto;
+	}
+	.contentFlex {
+		width: 50%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+	.tab {
+		border-radius: 5px;
+		width: 20%;
+		height: 100px;
+		margin-bottom: 50px;
+	}
+	.flexLine {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		width: 100%;
+	}
 </style>
