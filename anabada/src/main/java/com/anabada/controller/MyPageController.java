@@ -5,12 +5,15 @@ import com.anabada.dto.request_dto.MypageConfirmDto;
 import com.anabada.dto.request_dto.PayDto;
 import com.anabada.dto.response_dto.FindSalesDto;
 import com.anabada.dto.response_dto.MyPageFindDto;
+import com.anabada.dto.response_dto.ResultList;
 import com.anabada.service.MemberService;
 import com.anabada.service.PayService;
 import com.anabada.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -40,8 +43,8 @@ public class MyPageController {
     }
 
     @PostMapping("/sales")
-    public FindSalesDto findSales(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
-        productService
+    public ResultList<List<FindSalesDto>> findSales(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
+        return productService.findSales(memberDetailDTO);
     }
 
 
