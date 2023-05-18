@@ -89,13 +89,11 @@ let socketResult = {
 	subscribe(subUrl, recevieFunc) {
 		console.log('서브스크라이브 실행' + subUrl);
 		if (this.stompClient && this.stompClient.connected) {
-			this.stompClient.subscribe(subUrl, (res) => {
+			return this.stompClient.subscribe(subUrl, (res) => {
 				let result = JSON.parse(res.body);
 				recevieFunc(result);
 			});
-			return true;
 		}
-		return false;
 	},
 	connected() {
 		return this.stompClient.connected;

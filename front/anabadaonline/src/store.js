@@ -9,6 +9,7 @@ const store = createStore({
 			name: '',
 			no: '',
 			socket: socket,
+			mysub: [],
 		};
 	},
 	mutations: {
@@ -24,6 +25,14 @@ const store = createStore({
 			state.image = '';
 			state.name = '';
 			state.no = '';
+			state.mysub.forEach((sub) => {
+				console.log('언서브 실행');
+				sub.unsubscribe();
+			});
+			state.mysub = '';
+		},
+		addMysub(state, sub) {
+			state.mysub.push(sub);
 		},
 	},
 	getters: {
@@ -36,6 +45,9 @@ const store = createStore({
 		},
 		getSocket(state) {
 			return state.socket;
+		},
+		getMysub(state) {
+			return state.mysub;
 		},
 	},
 });

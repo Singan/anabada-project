@@ -50,11 +50,16 @@
 					const res = await axios.get('/member');
 					this.$store.commit('setMember', res.data);
 					this.mySocketList = res.data.productSocketList;
+					this.mySocketList.forEach(({ socketId }) => {
+						this.$store.commit(
+							'addMysub',
+							socket.subscribe('/product/myProduct/' + socketId, this.subscribe),
+						);
+					});
 				}
 			},
 			logout() {
 				this.$token.remove();
-
 				this.isToken = this.$token.is();
 				this.$store.commit('removeMember');
 			},
@@ -67,9 +72,6 @@
 			await socket.connect();
 			this.isSocket = socket.connected();
 			// console.log(this.mySocketList);
-			this.mySocketList.forEach(({ socketId }) => {
-				socket.subscribe('/product/myProduct/' + socketId, this.subscribe);
-			});
 		},
 	};
 </script>

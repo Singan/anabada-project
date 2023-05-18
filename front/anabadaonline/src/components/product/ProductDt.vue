@@ -92,43 +92,6 @@
 				<div class="productPrice">가격</div>
 				<div class="productRegion">지역</div>
 			</div>
-
-			<div class="product2">
-				<div class="productImage"></div>
-				<div class="productName">상품 이름</div>
-				<div class="productPrice">가격</div>
-				<div class="productRegion">지역</div>
-			</div>
-
-			<div class="product3">
-				<div class="productImage"></div>
-				<div class="productName">상품 이름</div>
-				<div class="productPrice">가격</div>
-				<div class="productRegion">지역</div>
-			</div>
-		</div>
-
-		<div class="box5">
-			<div class="product4">
-				<div class="productImage"></div>
-				<div class="productName">상품 이름</div>
-				<div class="productPrice">가격</div>
-				<div class="productRegion">지역</div>
-			</div>
-
-			<div class="product5">
-				<div class="productImage"></div>
-				<div class="productName">상품 이름</div>
-				<div class="productPrice">가격</div>
-				<div class="productRegion">지역</div>
-			</div>
-
-			<div class="product6">
-				<div class="productImage"></div>
-				<div class="productName">상품 이름</div>
-				<div class="productPrice">가격</div>
-				<div class="productRegion">지역</div>
-			</div>
 		</div>
 	</div>
 </template>
@@ -168,6 +131,7 @@
 				imageCurrIndex: 0,
 				leftTimerView: '',
 				leftTime: '',
+				productSubscribe: '',
 			};
 		},
 
@@ -176,7 +140,6 @@
 			async sellerInfo() {
 				const response = await axios.get('/product?productNo=' + this.productNo);
 				this.seller = response.data;
-				console.log('seller');
 
 				let bidTime = new Date(this.seller.bidTime);
 				bidTime.setMinutes(bidTime.getMinutes() + 10);
@@ -194,6 +157,7 @@
 			starFill() {
 				this.isfilled = !this.isfilled;
 			},
+			// subscription.unsubscribe(headers);
 
 			timer() {
 				let s = Math.floor(this.leftTime / 1000);
@@ -211,7 +175,7 @@
 			},
 
 			subscribe() {
-				this.socket.subscribe('/product/' + this.productNo, this.recevieFunc);
+				this.productSubscribe = this.socket.subscribe('/product/' + this.productNo, this.recevieFunc);
 			},
 			prevSlide() {
 				if (this.imageCurrIndex) this.imageCurrIndex--;
@@ -229,8 +193,13 @@
 		},
 		mounted() {
 			if (this.isSocket) {
-				this.socket.subscribe('/product/' + this.productNo, this.recevieFunc);
+				this.subscribe();
 			}
+		},
+		unmounted() {
+			console.log('디스트로이드');
+			console.log(this.productSubscribe);
+			this.productSubscribe.unsubscribe();
 		},
 	};
 </script>
