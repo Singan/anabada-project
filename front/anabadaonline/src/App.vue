@@ -67,9 +67,9 @@
 			await socket.connect();
 			this.isSocket = socket.connected();
 			// console.log(this.mySocketList);
-			// this.mySocketList.forEach(({ socketId }) => {
-			// 	socket.subscribe('/product/myProduct/' + socketId, this.subscribe);
-			// });
+			this.mySocketList.forEach(({ socketId }) => {
+				socket.subscribe('/product/myProduct/' + socketId, this.subscribe);
+			});
 		},
 	};
 </script>
