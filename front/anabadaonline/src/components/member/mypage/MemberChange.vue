@@ -44,6 +44,14 @@
 			<div class="changePwAndPwCheck">
 				<div class="change">
 					<div class="changePw">비밀번호 변경</div>
+
+					<input
+						id="beforePw"
+						type="password"
+						class="pwBox"
+						v-model="oldPw"
+						placeholder="기존 비밀번호를 입력하세요"
+					/>
 					<input
 						id="newPassword"
 						type="password"
@@ -51,13 +59,7 @@
 						placeholder="새 비밀번호를 입력하세요"
 						v-model="newPw"
 					/>
-					<input
-						id="newPasswordConfirm"
-						type="password"
-						class="pwBox"
-						v-model="newPasswordConfirm"
-						placeholder="새 비밀번호를 한번 더 입력하세요"
-					/>
+					<input id="newPasswordConfirm" type="password" class="pwBox" v-model="newPw2" />
 				</div>
 			</div>
 
@@ -111,6 +113,7 @@
 				newDt: '',
 				newWish: '',
 				img: '',
+				oldPw: '',
 				newPasswordConfirm: '',
 				productImages: null,
 			};
@@ -138,6 +141,8 @@
 				form.append('updateAddr', this.newAddr);
 				form.append('updateDetailAddr', this.newDt);
 				form.append('updateWishAddr', this.newWish);
+				form.append('updateImage', this.productImages);
+				form.append('orginalPw', this.oldPw);
 				if (this.productImages != null) {
 					console.log(this.productImages);
 					form.append('updateImage', this.productImages);

@@ -10,6 +10,20 @@
 				<img :src="image" v-for="(image, index) in seller.productImageList" :key="index" />
 			</div>
 		</div>
+		<button class="listButton" @click="goList">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="50"
+				height="50"
+				fill="currentColor"
+				class="bi bi-x"
+				viewBox="0 0 16 16"
+			>
+				<path
+					d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+				/>
+			</svg>
+		</button>
 
 		<button class="prev" @click="prevSlide">&lt;</button>
 		<button class="next" @click="nextSlide">&gt;</button>
@@ -22,8 +36,21 @@
 			</div>
 
 			<div class="box2">
-				<!-- <div class="mainDeal">방사능 지수 0</div> -->
-				<div class="jjim"><img class="starImage" src="@/assets/star.jpg" />찜하기</div>
+				<button class="starIcon" :class="{ filled: isfilled }" @click="starFill">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="25"
+						height="25"
+						fill="currentColor"
+						class="bi bi-star-fill"
+						viewBox="0 0 16 16"
+					>
+						<path
+							d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+						/>
+					</svg>
+				</button>
+				<div class="jjim">찜하기</div>
 			</div>
 		</div>
 
@@ -134,6 +161,7 @@
 				temporaryData: '',
 				productNo: this.$route.query.productNo,
 				isClicked: false,
+				isfilled: false,
 				stompClient: '',
 				resultObj: {},
 				testInput: 0,
@@ -162,6 +190,11 @@
 			bidStart() {
 				this.isClicked = !this.isClicked;
 			},
+
+			starFill() {
+				this.isfilled = !this.isfilled;
+			},
+
 			timer() {
 				let s = Math.floor(this.leftTime / 1000);
 				let m = Math.floor(s / 60);
@@ -185,6 +218,10 @@
 			},
 			nextSlide() {
 				if (this.imageCurrIndex < this.seller.productImageList.length - 1) this.imageCurrIndex++;
+			},
+
+			goList() {
+				this.$router.push('./auction');
 			},
 		},
 		created() {
@@ -256,8 +293,18 @@
 	.prev {
 		left: -30px;
 	}
+
+	.listButton {
+		position: absolute;
+		background-color: transparent;
+		color: black;
+		border: none;
+		cursor: pointer;
+		outline: none;
+	}
 	.userInfo {
 		display: flex;
+
 		flex-direction: row;
 		margin-top: 30px;
 	}
@@ -270,9 +317,10 @@
 	}
 
 	.box2 {
-		margin-left: 280px;
+		margin-left: auto;
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
+		align-items: center;
 		gap: 8px;
 	}
 
@@ -287,14 +335,18 @@
 		font: 14px 'Roboto', sans-serif;
 	}
 
-	.hackNumber {
-		color: #000000;
-		font: 14px 'Roboto', sans-serif;
+	.starIcon {
+		border: none;
+		background-color: transparent;
+	}
+
+	.starIcon.filled svg path {
+		color: #0075ff;
 	}
 
 	.jjim {
 		color: #0075ff;
-		font: 20px 'Roboto', sans-serif;
+		font: 22px 'Roboto', sans-serif;
 	}
 
 	.userImage {

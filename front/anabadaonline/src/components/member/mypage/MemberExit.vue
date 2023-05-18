@@ -6,21 +6,17 @@
 
 		<div class="pwBox">
 			<div class="pw-re">
-				<div class="pwText">비밀번호를 입력하세요</div>
+				<input class="pwText" type="password" placeholder="비밀번호를 입력하세요" />
 			</div>
 		</div>
 
 		<div class="exitBox">
-			<div class="_18px"></div>
 			<div class="blueBox">탈퇴 하기</div>
 		</div>
 
-		<div class="cancelBox">
-			<div class="_18px3">
-				<div class="buttonText"></div>
-			</div>
+		<a href="./MyPage.vue" class="cancelBox">
 			<div class="redBox">취소 하기</div>
-		</div>
+		</a>
 	</div>
 </template>
 <script>
@@ -52,7 +48,7 @@
 		color: #0075ff;
 		text-align: center;
 		font: 700 28px 'Roboto', sans-serif;
-		margin: auto;
+		margin: 30px auto;
 	}
 
 	.explan {
@@ -63,7 +59,7 @@
 		height: 30px;
 		align-items: center;
 		justify-content: flex-start;
-		margin-top: 80px;
+		margin-top: 30px;
 	}
 
 	.pw-re {
@@ -73,7 +69,7 @@
 		border-width: 1.5px;
 		margin-top: 20px;
 		width: 630px;
-		height: 40px;
+		height: 45px;
 	}
 
 	.pwBox {
@@ -82,20 +78,20 @@
 		left: 663.2px;
 		top: 264.67px;
 		display: flex;
+		justify-items: center;
 	}
 
 	.pwText {
 		color: #797979;
 		text-align: left;
-		font: 400 12px 'Roboto', sans-serif;
-
-		left: 0px;
-		top: 0px;
+		font: 400 16px 'Roboto', sans-serif;
 		width: 487.98px;
-		height: 26.67px;
+		height: 40px;
 		display: flex;
 		align-items: center;
-		justify-content: flex-start;
+		border: none;
+		border-radius: none;
+		outline: none;
 	}
 
 	.exitBox {
@@ -106,17 +102,15 @@
 		display: flex;
 		background: #0075ff;
 		border-radius: 5px;
+		justify-content: center;
 	}
 
 	.blueBox {
-	}
-
-	._18px {
-		width: 107.23px;
-		height: 30px;
-
-		left: 921.38px;
-		top: 867px;
+		color: #ffffff;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		align-items: center;
 	}
 
 	.cancelBox {
@@ -128,18 +122,11 @@
 	}
 
 	.redBox {
+		color: #ffffff;
 		width: 630px;
 		height: 40px;
-
-		left: 660px;
-		top: 922px;
-	}
-
-	._18px3 {
-		width: 107.23px;
-		height: 30px;
-
-		left: 921.38px;
-		top: 927px;
+		line-height: 40px;
+		text-align: center;
+		align-items: center;
 	}
 </style>

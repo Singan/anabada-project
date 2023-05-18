@@ -96,12 +96,6 @@ const routes = [
 		name: '/Payment',
 		component: () => import('@/components/member/mypage/Payment.vue'),
 	},
-
-	{
-		path: '/imageSlide',
-		name: '/imageSlide',
-		component: () => import('@/components/product/imageSlide.vue'),
-	},
 ];
 
 export default routes;

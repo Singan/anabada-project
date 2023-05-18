@@ -98,4 +98,12 @@ public class ProductService {
 
         return findProductToCategoryDtoArrayList;
     }
+
+    // 판매 내역
+    public ResultList<List<FindSalesDto>> findSales(MemberDetailDTO memberDetailDTO) {
+        List<Product> productList = productRepository.findByMemberNo(memberDetailDTO.getNo());
+        List<FindSalesDto> salesList =
+                productList.stream().map(product -> new FindSalesDto(product, s3EndPoint)).collect(Collectors.toList());
+        return new ResultList<>(salesList);
+    }
 }
