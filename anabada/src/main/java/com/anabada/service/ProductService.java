@@ -3,12 +3,12 @@ package com.anabada.service;
 import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.ProductInsertDto;
 import com.anabada.dto.response_dto.*;
-import com.anabada.entity.CurrentBid;
 import com.anabada.entity.Product;
 import com.anabada.entity.ProductImage;
 import com.anabada.entity.ProductSocket;
+import com.anabada.entity.nativeQuery.ProductFindOneInterface;
 import com.anabada.etc.FileProcessor;
-import com.anabada.repository.CurrentBidRepository;
+import com.anabada.repository.BidRepository;
 import com.anabada.repository.ProductImageRepository;
 import com.anabada.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +34,8 @@ public class ProductService {
     private final FileProcessor fileProcessor;
     @Value("${s3.bucket.endpoint}")
     private String s3EndPoint;
+    private final BidRepository bidRepository;
+
     @Transactional
     public ProductInsertResDto productSave(ProductInsertDto productInsertDto, MemberDetailDTO memberDetailDTO) {
         List<MultipartFile> multipartFiles = productInsertDto.getProductImages();
@@ -54,18 +56,18 @@ public class ProductService {
         }
 
 
-
         return new ProductInsertResDto(product.getProductNo(), product.getProductSocket().getProductSocketNo());
     }
 
     // product 세부 정보
     @Transactional
     public ProductFindOneDto findProduct(Long productNo) {
-        Product product = productRepository.findByProductNo(productNo);
+
+        ProductFindOneInterface product = productRepository.findProductDetail(productNo);
 
         if (product != null) {
-            product.upProductVisit();
-            ProductFindOneDto productFindOneDto = new ProductFindOneDto(product ,s3EndPoint);
+            productRepository.upProductVisit(productNo);
+            ProductFindOneDto productFindOneDto = new ProductFindOneDto(product, s3EndPoint);
             return productFindOneDto;
         }
         throw new RuntimeException("에러");
@@ -77,7 +79,7 @@ public class ProductService {
         List<Product> productList = productRepository.findByProductAndMember(pageable);
 
         List<ProductFindAllDto> productDtoList =
-                productList.stream().map(product -> new ProductFindAllDto(product,s3EndPoint)).collect(Collectors.toList());
+                productList.stream().map(product -> new ProductFindAllDto(product, s3EndPoint)).collect(Collectors.toList());
 
         ResultList<List<ProductFindAllDto>> result = new ResultList<>(productDtoList);
         return result;

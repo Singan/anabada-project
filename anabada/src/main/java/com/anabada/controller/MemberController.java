@@ -36,10 +36,10 @@ public class MemberController {
         return memberService.memberLogin(memberLoginDto);
     }
 
-    @GetMapping("/socket")
-    public List<Long> memberSocketList(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
-        return socketService.memberSocketList(memberDetailDTO.getMember());
-    }
+//    @GetMapping("/socket")
+//    public List<Long> memberSocketList(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
+//        return socketService.memberSocketList(memberDetailDTO.getMember());
+//    }
 
     @PutMapping("/update")
     @Operation(description = "회원 수정")

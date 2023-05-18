@@ -37,7 +37,8 @@ public class Product {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ProductImage> productImageList;
-
+    @OneToMany(mappedBy = "product")
+    private List<Bid> productBidList;
     @Column
     private LocalDateTime createDateTime;
 
@@ -49,9 +50,9 @@ public class Product {
     @Column(nullable = false)
     private String productThumbnail;
 
-    @OneToOne(fetch = FetchType.LAZY,mappedBy = "product" ,cascade = CascadeType.ALL, optional = false)
-    @PrimaryKeyJoinColumn
-    private CurrentBid currentBid;
+//    @OneToOne(fetch = FetchType.LAZY,mappedBy = "product" ,cascade = CascadeType.ALL)
+//    private CurrentBid currentBid;
+
     @Column(nullable = false)
     private Boolean productIsBidComplete;
 
@@ -63,7 +64,8 @@ public class Product {
     @Builder
     public Product(Long productNo, Member member, String productName, String productDetail, Integer productPrice,
                    String productUseDate, Category category, Long productVisit, List<ProductImage> productImageList,
-                   ProductSocket productSocket, String productThumbnail, boolean productIsBidComplete,CurrentBid currentBid) {
+                   ProductSocket productSocket, String productThumbnail, boolean productIsBidComplete,
+                   List<Bid> productBidList, LocalDateTime localDateTime) {
         this.productNo = productNo;
         this.member = member;
         this.productName = productName;
@@ -72,11 +74,11 @@ public class Product {
         this.productUseDate = productUseDate;
         this.category = category;
         this.productImageList = productImageList;
-        this.createDateTime = LocalDateTime.now();
+        this.createDateTime = localDateTime;
         this.productSocket = productSocket;
         this.productVisit = productVisit;
         this.productThumbnail = productThumbnail;
         this.productIsBidComplete = productIsBidComplete;
-        this.currentBid = currentBid;
+        this.productBidList = productBidList;
     }
 }

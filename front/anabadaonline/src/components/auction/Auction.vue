@@ -15,8 +15,7 @@
 
 			<div class="productName">{{ item.productName }}</div>
 
-			<div class="price">{{ item.productPrice }} 원</div>
-
+			<div class="price">등록 가격 : {{ item.productPrice }} 원</div>
 			<div class="area">{{ item.productNo }}</div>
 		</div>
 	</div>

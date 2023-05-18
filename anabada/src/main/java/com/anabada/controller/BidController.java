@@ -31,16 +31,13 @@ public class BidController {
     public void bidInsert(@Payload BidInsertDto bidInsertDto, Authentication authentication) {
         MemberDetailDTO memberDetailDTO = (MemberDetailDTO) authentication.getPrincipal();
         System.out.println("입찰 정보 등록 실행");
-        bidService.bidSave(bidInsertDto, memberDetailDTO);
-        BidInsertResponseDto bidRes = new BidInsertResponseDto(
-                bidInsertDto.getProductNo(),
-                memberDetailDTO.getUserNickname(),
-                bidInsertDto.getBidPrice(),
-                memberDetailDTO.getNo());
+        BidInsertResponseDto bidRes = bidService.bidSave(bidInsertDto, memberDetailDTO);
+
         simpMessagingTemplate.convertAndSend(
                 "/product/" + bidInsertDto.getProductNo(), bidRes);
 
-
+        simpMessagingTemplate.convertAndSend(
+                "/product/myProduct/" + bidInsertDto.getProductNo(), bidRes);
     }
 
     @GetMapping

@@ -34,7 +34,7 @@ public class FileProcessor {
             objectMetadata.setContentType(multipartFile.getContentType());
             objectMetadata.setContentLength(multipartFile.getSize());
             amazonS3Client.putObject(bucket, fileName, multipartFile.getInputStream(), objectMetadata);
-            return   fileName;
+            return fileName;
         } catch (Exception e) {
             throw new RuntimeException("파일 저장 실패");
         }
@@ -62,7 +62,8 @@ public class FileProcessor {
         }
         return resultPath;
     }
-    public List<String> fileSave(List<MultipartFile> multipartFiles, String type,Long id) {
+
+    public List<String> fileSave(List<MultipartFile> multipartFiles, String type, Long id) {
         LocalDateTime localDateTime = LocalDateTime.now();
         String filePath = type + "/" + localDateTime + "/" + id;
         List<String> resultPath = new ArrayList<>();
@@ -83,6 +84,7 @@ public class FileProcessor {
         }
         return resultPath;
     }
+
     public boolean isImageCheck(String fileName) {
         int dot = fileName.lastIndexOf(".");
         String extension = fileName.substring(dot).toLowerCase();

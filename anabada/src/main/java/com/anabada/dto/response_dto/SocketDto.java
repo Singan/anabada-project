@@ -5,8 +5,8 @@ import lombok.Getter;
 
 @Getter
 public class SocketDto {
-    private String socketId;
+    private Long socketId;
     public SocketDto(ProductSocket productSocket) {
-        this.socketId = "product"+productSocket.getProductSocketNo();
+        this.socketId = productSocket.getProductSocketNo();
     }
 }

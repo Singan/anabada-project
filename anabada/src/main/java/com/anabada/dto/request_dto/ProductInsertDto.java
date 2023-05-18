@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,6 +38,7 @@ public class ProductInsertDto {
                 .productThumbnail(thumbnail)
                 .productIsBidComplete(false)
                 .productSocket(productSocket)
+                .localDateTime(LocalDateTime.now())
                 .member(member)
                 .productVisit(0L)
                 .productPrice(price)

@@ -44,6 +44,7 @@
 			<div class="changePwAndPwCheck">
 				<div class="change">
 					<div class="changePw">비밀번호 변경</div>
+
 					<input
 						id="beforePw"
 						type="password"
@@ -52,19 +53,13 @@
 						placeholder="기존 비밀번호를 입력하세요"
 					/>
 					<input
-						id="newPw"
+						id="newPassword"
 						type="password"
 						class="pwBox"
 						placeholder="새 비밀번호를 입력하세요"
 						v-model="newPw"
 					/>
-					<input
-						id="newPw"
-						type="password"
-						class="pwBox"
-						v-model="newPw2"
-						placeholder="새 비밀번호를 한번 더 입력하세요"
-					/>
+					<input id="newPasswordConfirm" type="password" class="pwBox" v-model="newPw2" />
 				</div>
 			</div>
 
@@ -74,21 +69,21 @@
 				</div>
 			</div>
 			<div class="changeAddrContainer">
-				<input class="addrBox" readonly v-model="addr" />
+				<input class="addrBox" readonly v-model="newAddr" />
 				<button class="findAddrButton" type="button" @click="search()">주소 찾기</button>
 			</div>
 
 			<div class="changeAddr">
 				<div class="change">
 					<div class="changeAddrText">상세 주소 변경</div>
-					<input id="newDt" class="addrDetailBox" v-model="newAddr" />
+					<input id="newDt" class="addrDetailBox" v-model="newDt" />
 				</div>
 			</div>
 
 			<div class="changeWishAddr">
 				<div class="change">
 					<div class="changeAddrText">거래 희망지 변경</div>
-					<input id="newWish" class="addrDetailBox" />
+					<input id="newWish" class="addrDetailBox" v-model="newWish" />
 				</div>
 			</div>
 
@@ -103,7 +98,6 @@
 </template>
 <script>
 	import axios from '@/axios';
-	import { all } from 'axios';
 
 	export default {
 		name: '',
@@ -120,6 +114,8 @@
 				newWish: '',
 				img: '',
 				oldPw: '',
+				newPasswordConfirm: '',
+				productImages: null,
 			};
 		},
 		methods: {
@@ -141,11 +137,16 @@
 			submitForm() {
 				let form = new FormData();
 				form.append('updatePw', this.newPw);
+				form.append('confirmPw', this.newPasswordConfirm);
 				form.append('updateAddr', this.newAddr);
 				form.append('updateDetailAddr', this.newDt);
 				form.append('updateWishAddr', this.newWish);
 				form.append('updateImage', this.productImages);
 				form.append('orginalPw', this.oldPw);
+				if (this.productImages != null) {
+					console.log(this.productImages);
+					form.append('updateImage', this.productImages);
+				}
 				axios
 					.put('/member/update', form, {
 						header: { 'Content-Type': 'multipart/form-data' },
@@ -182,23 +183,22 @@
 
 						// 우편번호와 주소 정보를 해당 필드에 넣는다.
 						// document.getElementById('post').value = data.zonecode;
-						this.addr = roadAddr;
+						this.newAddr = roadAddr;
 						// document.getElementById('detailaddr').value =
 						// 	data.jibunAddress;
 					},
 				}).open();
 			},
 			getMypage() {
-				axios.get('member/idNameImage').then((res) => {
+				axios.get('/member/idNameImage').then((res) => {
 					this.myData = res.data;
 					console.log(this.myData);
 				});
 			},
 		},
-		mounted() {
+		created() {
 			this.getMypage();
 		},
-		components: { all },
 	};
 </script>
 <style scoped>

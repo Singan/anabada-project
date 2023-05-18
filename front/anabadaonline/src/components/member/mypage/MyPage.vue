@@ -1,7 +1,7 @@
 <template>
 	<div class="mypageContainer">
 		<div class="mypageHeader">
-			<img class="userImage" v-bind:src="this.$store.getters.getMember.image" />
+			<img class="userImage" :src="this.$store.getters.getMember.image" />
 			<div class="userName">
 				{{ myData.memberName }}
 				<img src="@/assets/profileButton.png" alt="profileButton" class="showProfileButton" />
@@ -20,8 +20,8 @@
 		<div class="mypageUserSetting">
 			<div class="container">
 				<div class="userInfoText">개인정보</div>
-				<a href="./MemberChange" class="userInfoChange" @click="goChange"> 회원 정보 수정 </a>
-				<a href="./MemberExit" class="withDrawal" @click="goExit">회원 탈퇴</a>
+				<span class="userInfoChange" @click="goChange"> 회원 정보 수정 </span>
+				<router-link to="./MemberExit" class="withDrawal" @click="goExit">회원 탈퇴</router-link>
 				<div class="userInfoLine"></div>
 			</div>
 		</div>
@@ -29,10 +29,10 @@
 		<div class="mypageTradeInfo">
 			<div class="container">
 				<div class="myTradeText">내 거래</div>
-				<a href="../../TransactionDt2" class="sellListButton" @click="goDt2">판매 내역</a>
-				<a href="../../TransactionDt1" class="buyListButton" @click="goDt1">구매 내역</a>
-				<a href="../../Product" class="productRegButton" @click="goProduct">상품등록</a>
-				<a href="./Jjim" class="wishListButton" @click="goJjim">찜 목록</a>
+				<router-link to="/transactionDt2" class="sellListButton" @click="goDt2">판매 내역</router-link>
+				<router-link to="./transactionDt1" class="buyListButton" @click="goDt1">구매 내역</router-link>
+				<router-link to="./product" class="productRegButton" @click="goProduct">상품등록</router-link>
+				<router-link to="./Jjim" class="wishListButton" @click="goJjim">찜 목록</router-link>
 				<div class="line-1"></div>
 			</div>
 		</div>
@@ -52,7 +52,6 @@
 
 <script>
 	import axios from '@/axios';
-	import { all } from 'axios';
 	export default {
 		data() {
 			// quickfix to have components available to pass as props
@@ -64,8 +63,37 @@
 			goExit() {
 				this.$router.push('./MemberExit');
 			},
-			goChange() {
-				this.$router.push('./MemberChange');
+			async goChange() {
+				const { value: password } = await this.$swal({
+					title: '비밀번호 확인',
+					input: 'password',
+					inputPlaceholder: '비밀번호를 입력해주세요',
+					heightAuto: true,
+					inputAttributes: {
+						maxlength: 20,
+						autocapitalize: 'off',
+						autocorrect: 'off',
+						autocomplete: 'new-password',
+					},
+					allowOutsideClick: false,
+				});
+				console.log(password);
+				axios
+					.post('/mypage/confirm', {
+						confirmPassword: password,
+					})
+					.then((res) => {
+						if (res.data) {
+							this.$router.push('./MemberChange');
+						}
+					})
+					.catch((response) => {
+						const message = response.data;
+						this.$swal({
+							icon: 'error',
+							title: '잘못된 비밀번호입니다.',
+						});
+					});
 			},
 			goProduct() {
 				this.$router.push('./Product');
@@ -95,10 +123,9 @@
 				});
 			},
 		},
-		mounted() {
+		created() {
 			this.getMypage();
 		},
-		components: { all },
 	};
 </script>
 

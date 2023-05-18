@@ -3,21 +3,20 @@ package com.anabada.service;
 import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.BidInsertDto;
 import com.anabada.dto.response_dto.BidInfoFindDto;
+import com.anabada.dto.response_dto.BidInsertResponseDto;
 import com.anabada.dto.response_dto.ResultList;
 import com.anabada.entity.Bid;
-import com.anabada.entity.CurrentBid;
 import com.anabada.entity.Member;
 import com.anabada.entity.Product;
 import com.anabada.repository.BidRepository;
-import com.anabada.repository.CurrentBidRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,48 +24,44 @@ import java.util.stream.Collectors;
 public class BidService {
 
     private final BidRepository bidRepository;
-    private final CurrentBidRepository currentBidRepository;
+    @Value("${s3.bucket.endpoint}")
+    private String prefix;
 
     @Transactional
-    public void bidSave(BidInsertDto bidInsertDto, MemberDetailDTO memberDetailDTO) {
+    public BidInsertResponseDto bidSave(BidInsertDto bidInsertDto, MemberDetailDTO memberDetailDTO) {
         Member member = memberDetailDTO.getMember();
-        Bid bid = bidInsertDto.getBid(member);
-        Product product = bid.getProduct();
-        CurrentBid currBid = currentBidRepository.findById(product.getProductNo()).orElse(null);
+        Bid insertBid = bidInsertDto.getBid(member);
+        Product product = insertBid.getProduct();
+        Bid currBid = bidRepository.findFirstByProductOrderByTimeDesc(product);
         if (currBid == null) {
-            bidRepository.save(bid);// 먼저 현재 진행중인 입찰이 있나 체크 없다면 이후 조건을 체크하지않고 넘어가기 위함
-            System.out.println(product.getProductNo()+"으으으으으응ㅇ,ㅡㅇㅇ,응ㅇ,");
-            CurrentBid currentBid = CurrentBid.builder()
-                    .productNo(product.getProductNo())
-                    .localDateTime(LocalDateTime.now())
-                    .member(member)
-                    .price(bid.getPrice())
-                    .product(product)
-                    .build();
-            System.out.println("비드 셀렉트 실행??1");
-
-            currentBidRepository.save(currentBid);
-            System.out.println("비드 셀렉트 실행??2");
+            bidRepository.save(insertBid);// 먼저 현재 진행중인 입찰이 있나 체크 없다면 이후 조건을 체크하지않고 넘어가기 위함
         } else {
-            if (bid.getPrice() <= currBid.getPrice()) {
+            if (insertBid.getPrice() <= currBid.getPrice()) {
                 throw new RuntimeException("새로운 입찰은 현재 입찰가보다 작을 수 없습니다.");
                 // 만약 현재 진행중인 입찰이 있다면 등록 가격을 비교,사실상 비정상적인 API 호출을 막기위한 검증
             } else {
-                bidRepository.save(bid);
-                currBid.updateCurrentBid(member, bid.getPrice());
+                bidRepository.save(insertBid);
             }
-
         }
+        String bidTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh시 mm분"));
+        BidInsertResponseDto bidRes = BidInsertResponseDto
+                .builder()
+                .memberImage(bidInsertDto.getMemberImage())
+                .memberNo(member.getMemberNo())
+                .price(insertBid.getPrice())
+                .memberName(member.getMemberName())
+                .productNo(product.getProductNo())
+                .bidTime(bidTime)
+                .build();
+        return bidRes;
     }
-
-
 
 
     public ResultList<List<BidInfoFindDto>> findBidList(Long productNo) {
         Product product = Product.builder().productNo(productNo).build();
         List<Bid> bidList = bidRepository.findBidListByProduct(product);
 
-        List<BidInfoFindDto> bidInfoFindDtoList = bidList.stream().map(bid -> new BidInfoFindDto(bid)).collect(Collectors.toList());
+        List<BidInfoFindDto> bidInfoFindDtoList = bidList.stream().map(bid -> new BidInfoFindDto(bid, prefix)).collect(Collectors.toList());
         ResultList resultList = new ResultList<>(bidInfoFindDtoList);
         return resultList;
 

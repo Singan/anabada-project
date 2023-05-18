@@ -34,7 +34,7 @@
 			<input
 				class="textSize"
 				v-model="price"
-				type="text"
+				type="number"
 				placeholder="경매 시작 가격을 입력해주세요( , 없이 숫자만 입력)"
 				style="border: none; outline: none"
 			/>
@@ -125,7 +125,6 @@
 						form.append('productImages', this.productImages[i]);
 					}
 				}
-				console.log(this.price);
 
 				axios
 					.post('/product', form, {
@@ -134,9 +133,10 @@
 						},
 					})
 					.then((response) => {
-						console.log(response);
 						this.$router.push('./ProductDt?productNo=' + response.data.productNo);
-						console.log(response.data.productNo);
+					})
+					.catch((error) => {
+						alert(error.response.data.message);
 					});
 			},
 

@@ -4,18 +4,16 @@
 
 		<router-link to="/auction" class="AuctionButton"> 경매 </router-link>
 		<router-link to="/chat" class="ChatButton"> 채팅 </router-link>
-		<div class="SearchBox" contenteditable="true">
-			<b-form-input
-				size="sm"
-				class="mr-sm-2"
-				type="text"
-				placeholder="검색어를 입력해주세요"
-				v-model="keyword"
-				@keyup.enter="searchresultshow(keyword)"
-			></b-form-input>
-		</div>
+		<input
+			class="SearchBox"
+			v-model="keyword"
+			@keyup.enter="searchresultshow(keyword)"
+			placeholder="검색어를 입력해주세요"
+			autocomplete="off"
+			type="text"
+		/>
 
-		<b-button size="sm" class="SearchButton" type="submit"> 검색하기 </b-button>
+		<button class="SearchButton" type="submit">검색하기</button>
 
 		<router-link to="/login" class="LoginBox" v-if="!isToken"> 로그인 </router-link>
 		<router-link class="mypage" v-if="isToken" to="/mypage">마이페이지</router-link>
@@ -29,8 +27,11 @@
 			},
 		},
 		data() {
-			return {};
+			return {
+				keyword: '',
+			};
 		},
+
 		methods: {
 			searchresultshow(keyword) {
 				if (keyword !== '') {
@@ -114,7 +115,6 @@
 		color: #000000;
 		text-align: center;
 		font: 700 18px 'Roboto', sans-serif;
-		line-height: 40px;
 		cursor: pointer;
 	}
 

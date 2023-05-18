@@ -1,95 +1,105 @@
 <template>
 	<div class="form1">
-		<div class="user">
-			<div class="ListImage"></div>
-			<div class="userName">{{ testData.list[0].memberName }}</div>
-			<div class="userPrice">{{ testData.list[0].price }}원</div>
+		<div class="user" v-for="(bid, index) in bidList" :key="index">
+			<div class="ListImage"><img :src="bid.memberImage" /></div>
+			<div class="userName">{{ bid.memberName }}</div>
+			<div class="userPrice">{{ bid.price }}원</div>
+			<div class="bidTime">{{ bid.bidTime }}</div>
 		</div>
 
-		<div class="listLine"></div>
-
-		<div class="user">
-			<div class="ListImage"></div>
-			<dib class="userName">{{ testData.list[1].memberName }}</dib>
-			<div class="userPrice">{{ testData.list[1].price }}원</div>
-		</div>
-
-		<div class="listLine"></div>
-
-		<div class="user">
-			<div class="ListImage"></div>
-			<dib class="userName">{{ testData.list[2].memberName }}</dib>
-			<div class="userPrice">{{ testData.list[2].price }}원</div>
-		</div>
-		<div class="listLine"></div>
-
-		<div class="bidBox">
-			<input class="textSize" type="text" placeholder="ex)xxx,xxx,xxx 원" />
-			<button class="bid">입찰</button>
+		<div class="bidBox" v-if="memberNo != myMemberNo">
+			<input
+				class="textSize"
+				type="number"
+				placeholder="이 전보다 낮은 금액을 입력 시 입찰에 실패합니다."
+				v-model="bidPrice"
+			/>
+			<button class="bid" type="button" @click="send">입찰</button>
 		</div>
 	</div>
 </template>
 
 <script>
-	var testData = {
-		length: 3,
-		list: [
-			{
-				memberName: 'user1',
-				price: 11,
-			},
-			{
-				memberName: 'user2',
-				price: 22,
-			},
-			{
-				memberName: 'user3',
-				price: 33,
-			},
-		],
-	};
 	import axios from '@/axios.js';
-	import socket from '@/common/socket';
 	export default {
+		inject: ['socket'],
+		props: {
+			memberNo: {
+				type: Number,
+			},
+		},
 		name: '',
 		components: {},
-		props: {},
+		watch: {
+			isSocket: function (isSocket) {
+				if (isSocket) this.subscribe();
+			},
+		},
 		data() {
 			return {
-				auction: '',
-				testData,
+				bidList: '',
 				productNo: this.$route.query.productNo,
+				bidPrice: '',
+				myMemberNo: this.$store.getters.getMember.no,
 			};
 		},
 
 		methods: {
 			auctionList() {
 				axios.get('/bid?productNo=' + this.productNo).then((response) => {
-					console.log(response.data);
-					this.auction = response.data;
-					console.log(this.auction);
+					this.bidList = response.data.list;
 				});
 			},
+			beforeDestory() {
+				console.log('디스트로이드');
+			},
+			recevieFunc(resObj) {
+				this.bidList.push(resObj);
+			},
+			send() {
+				const lastBid = this.bidList[this.bidList.length - 1];
+				if (this.memberNo == this.$store.getters.getMember.no) {
+					alert('상품을 등록한 사람은 경매에 참여할 수 없습니다.');
+				} else if (lastBid.price < this.bidPrice) {
+					let msgObj = {
+						bidPrice: this.bidPrice,
+						productNo: this.productNo,
+						memberImage: this.$store.getters.getMember.image,
+					};
+					this.socket.send(msgObj, '/bid');
+				} else {
+					alert('입찰 금액은 현재 최고 입찰금액보다 높아야 합니다.');
+				}
+			},
 		},
-
+		mounted() {},
 		created() {
 			this.auctionList();
+
+			this.socket.subscribe('/product/' + this.productNo, this.recevieFunc);
 		},
 	};
 </script>
 
 <style scoped>
+	input[type='number']::-webkit-outer-spin-button,
+	input[type='number']::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
 	.form1 {
+		justify-content: center;
 		overflow: scroll;
 		background: #ffffff;
 		border-radius: 5px;
-		width: 97%;
-		height: 400px;
+		width: 100%;
+		height: 900px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		box-shadow: 5px 5px 2px 0px rgba(0, 117, 255, 0.25);
 		border: 1px solid rgba(0, 0, 0, 0.2);
+		align-items: center;
 	}
 
 	.form1 > * {
@@ -102,9 +112,11 @@
 		border-radius: 50%;
 		width: 40px;
 		height: 40px;
-		align-items: flex-start;
 	}
-
+	.ListImage > img {
+		width: 100%;
+		height: 100%;
+	}
 	.userName {
 		color: #000000;
 		font: 400 20px 'Roboto', sans-serif;
@@ -136,8 +148,9 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
-		width: 440px;
+		width: 90%;
 		margin-top: 30px;
+		border-bottom: 1px dashed black;
 	}
 
 	.bidBox {

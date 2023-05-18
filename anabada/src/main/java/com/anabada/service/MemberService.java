@@ -4,6 +4,7 @@ import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.MemberJoinDto;
 import com.anabada.dto.request_dto.MemberLoginDto;
 import com.anabada.dto.request_dto.MemberUpdateDto;
+import com.anabada.dto.request_dto.MypageConfirmDto;
 import com.anabada.dto.response_dto.*;
 import com.anabada.entity.Member;
 import com.anabada.etc.FileProcessor;
@@ -58,10 +59,12 @@ public class MemberService implements UserDetailsService {
 
             MultipartFile file = memberJoinDto.getImage();
 
-
             if (!((file == null) || (file.isEmpty()))) {
                 String profilePath = fileProcessor.fileSave(file,"member");
                 memberJoinDto.setProfileImagePath(profilePath);
+            } else {
+                String basicProfileImagePath = "member/basic/user.png";
+                memberJoinDto.setProfileImagePath(basicProfileImagePath);
             }
             Member member = memberJoinDto.getMember();
 
@@ -100,23 +103,37 @@ public class MemberService implements UserDetailsService {
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
+    public boolean confirmPassword(MemberDetailDTO memberDetailDTO, MypageConfirmDto mypageConfirmDto) {
+        Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
+        String confirmPw = mypageConfirmDto.getConfirmPassword();
+        if (passwordEncoder.matches( confirmPw,member.getMemberPw())) {
+            return true;
+        } else {
+            throw new RuntimeException("비밀번호가 다릅니다.");
+        }
+    }
+
     @Transactional
     public MemberUpdateFindDto memberUpdate(MemberDetailDTO memberDetailDTO, MemberUpdateDto memberUpdateDto) {
+        MultipartFile imageFile = memberUpdateDto.getUpdateImage();
         Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
-        String updateImagePath = "";
-        String updatePw = memberUpdateDto.getUpdatePw();  // 변경할 비밀번호
-        String originalPw = memberUpdateDto.getOriginalPw();  // 유저가 입력한 기존 비밀번호
-        String memberPw = member.getMemberPw();  // 기존 비밀번호
 
-        // 비밀번호가 기존 비밀번호랑 다른지 검증
-            if (!passwordEncoder.matches(updatePw, memberPw)) {
-                updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage(),"member");
-                memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
+        // 새로 입력한 비밀번호가 같은지 비교하여 같다면
+        if (memberUpdateDto.getUpdatePw().equals(memberUpdateDto.getConfirmPw())) {
+            if (!((imageFile == null) || (imageFile.isEmpty()))) {
+                memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));  // 인코딩된 새로운 비밀번호
+                String updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage(), "member");  // 변경된 이미지파일
                 member.updateMember(memberUpdateDto, updateImagePath);
-                System.out.println("변경됨");
-                return new MemberUpdateFindDto(member,s3EndPoint);
+                return new MemberUpdateFindDto(member, updateImagePath);
+            } else {
+            memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
+            String basicImagePath = "member/basic/user.png";
+            member.updateMember(memberUpdateDto, basicImagePath);
+            return new MemberUpdateFindDto(member, basicImagePath);
             }
-        throw new RuntimeException("변경한 비밀번호가 기존의 비밀번호랑 같음");
+        } else {
+            throw new RuntimeException("새로운 비밀번호가 다름");
+        }
     }
 
     // 회원 정보 수정 페이지에 멤버 아이디, 이름, 이미지 보여주기

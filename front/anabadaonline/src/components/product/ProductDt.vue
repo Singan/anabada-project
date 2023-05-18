@@ -1,17 +1,24 @@
 <template>
-	<div class="form">
-		<img class="leftButton" src="@/assets/left.jpg" />
-
+	<div class="form" :style="'height : ' + { isClicked } ? '2800px' : '1900x'">
 		<div class="imgBox">
-			<img class="productPicture" v-for="image in seller.productImageList" :src="image"/>
+			<div
+				class="productPicture"
+				:style="{
+					marginLeft: `-${imageCurrIndex * 100}%`,
+				}"
+			>
+				<img :src="image" v-for="(image, index) in seller.productImageList" :key="index" />
+			</div>
 		</div>
-		<img class="rightButton" src="@/assets/right.jpg" />
+
+		<button class="prev" @click="prevSlide">&lt;</button>
+		<button class="next" @click="nextSlide">&gt;</button>
 
 		<div class="userInfo">
 			<img class="userImage" src="@/assets/userImage.jpg" />
 			<div class="box1">
 				<div class="sellerName">판매자 이름 : {{ seller.memberName }}</div>
-				<div class="mainDeal">판매자 주 거래지 :</div>
+				<div class="mainDeal">판매자 주 거래지 : {{ seller.memberAddr }}</div>
 			</div>
 
 			<div class="box2">
@@ -24,8 +31,15 @@
 
 		<div class="prouductInfo">
 			<div class="productNamePrice">상품 이름 : {{ seller.productName }}</div>
-			<div class="productTime">등록 시간 : {{ seller.productInsertTime }}</div>
+			<div class="productTime">등록 시간 : {{ seller.productTime }}</div>
 			<div class="productNamePrice">상품 등록 가격 : {{ seller.productPrice }}원</div>
+			<div class="productNamePrice" v-if="seller.productHighPrice">
+				현재 최고가 : {{ seller.productHighPrice }} 원
+			</div>
+			<div class="productNamePrice" v-if="seller.productHighPrice">
+				상품 낙찰까지 남은 시간 : {{ leftTimerView }}
+			</div>
+
 			<div class="productExplain">상품 설명 : {{ seller.productDetail }}</div>
 			<div class="productExplain">상품 사용기간 : {{ seller.productUseDate }}</div>
 		</div>
@@ -34,12 +48,11 @@
 			<a class="productText1">찜 0</a>
 			<a class="productText1">조회 {{ seller.productVisit }}</a>
 		</div>
-		<input v-model="testInput" type="number" style="width: 100%; height: auto" />
-		<button style="width: 100%; height: auto" @click="send">입찰 테스트 버튼임</button>
+
 		<button class="auctionText" :class="{ clicked: isClicked }" @click="bidStart">경매 참여</button>
 
 		<div class="line"></div>
-		<BidList v-if="check"></BidList>
+		<BidList v-if="isClicked" :memberNo="seller.memberNo"></BidList>
 
 		<div class="box3">
 			<div class="actionProduct">인기경매 상품</div>
@@ -97,86 +110,106 @@
 	import axios from '@/axios.js';
 	import BidList from './BidList.vue';
 
-	var temporaryData = {
-		seller1: [
-			{
-				productNo: 0,
-				memberName: 'string',
-				productName: 'string',
-				productDetail: 'string',
-				productPrice: 0,
-				productUseDate: 'string',
-				productImageList: '',
-			},
-		],
-	};
-
 	export default {
+		inject: ['socket'],
+		props: {
+			isSocket: {
+				type: Boolean,
+				required: false,
+			},
+		},
+		watch: {
+			isSocket: function (isSocket) {
+				if (isSocket) {
+					this.subscribe();
+				}
+			},
+		},
 		name: '',
 		components: { BidList },
-		props: {},
+
 		data() {
 			return {
 				seller: '',
 				temporaryData: '',
 				productNo: this.$route.query.productNo,
-				check: false,
 				isClicked: false,
-				socket: '',
 				stompClient: '',
 				resultObj: {},
 				testInput: 0,
+				imageCurrIndex: 0,
+				leftTimerView: '',
+				leftTime: '',
 			};
 		},
 
 		//axios 통신
 		methods: {
-			sellerInfo() {
-				axios.get('/product?productNo=' + this.productNo).then((response) => {
-					console.log(response.data);
-					this.seller = response.data;
-					console.log(this.seller);
-				});
+			async sellerInfo() {
+				const response = await axios.get('/product?productNo=' + this.productNo);
+				this.seller = response.data;
+				console.log('seller');
+
+				let bidTime = new Date(this.seller.bidTime);
+				bidTime.setMinutes(bidTime.getMinutes() + 10);
+				this.leftTime = bidTime;
+				let date = new Date();
+				this.leftTime = this.leftTime - date;
+				if (this.leftTime >= 0) {
+					const ti = setInterval(this.timer, 1000);
+				}
 			},
 			bidStart() {
-				this.check = !this.check;
 				this.isClicked = !this.isClicked;
 			},
-			recevieFunc(resObj) {
-				console.log('recevieFunc 콜백');
-				console.log(resObj.price);
-				this.seller.productPrice = resObj.price;
+			timer() {
+				let s = Math.floor(this.leftTime / 1000);
+				let m = Math.floor(s / 60);
+				s = s - m * 60;
+				this.leftTimerView = m + '분 ' + s + '초';
+				this.leftTime -= 1000;
+				if (this.leftTime <= 0) {
+					clearInterval(this.timer); // 타이머가 0 이하가 되었을 때 타이머를 멈추도록 함
+				}
 			},
-			send() {
-				let msgObj = {
-					bidPrice: this.testInput,
-					productNo: this.productNo,
-				};
-				this.$store.getters.getSocket.send(msgObj, '/bid');
+			recevieFunc(resObj) {
+				console.log(resObj.price);
+				this.seller.productHighPrice = resObj.price;
+			},
+
+			subscribe() {
+				this.socket.subscribe('/product/' + this.productNo, this.recevieFunc);
+			},
+			prevSlide() {
+				if (this.imageCurrIndex) this.imageCurrIndex--;
+			},
+			nextSlide() {
+				if (this.imageCurrIndex < this.seller.productImageList.length - 1) this.imageCurrIndex++;
 			},
 		},
-
-		mounted() {
+		created() {
 			this.sellerInfo();
-			console.log("실행")
-			if(this.$store.getters.getSocket != null){
-				this.$store.getters.getSocket.subscribe('/product/' + this.productNo, this.recevieFunc);
+		},
+		mounted() {
+			if (this.isSocket) {
+				this.socket.subscribe('/product/' + this.productNo, this.recevieFunc);
 			}
 		},
-		created() {},
 	};
 </script>
 
 <style scoped>
+	.prouductInfo > div {
+		padding-left: 60px;
+		width: fit-content;
+	}
 	.form {
-		width: 100%;
 		background: #ffffff;
 		width: 700px;
-		height: 3000px;
 		display: flex;
 		flex-direction: column;
 		margin: 100px auto 0;
-		overflow: hidden;
+		position: relative;
 	}
 
 	.form > * {
@@ -187,8 +220,10 @@
 	.productPicture {
 		background: #d9d9d9;
 		border-radius: 20px;
-		width: 100%;
 		height: 100%;
+		transition: margin-left 1s;
+		width: fit-content;
+		display: flex;
 	}
 
 	.imgBox {
@@ -196,22 +231,31 @@
 		overflow: hidden;
 		padding: 0;
 		position: relative;
-		display: flex;
 		width: 100%;
+		align-items: center;
+		justify-content: center;
 	}
-
-	.leftButton {
-		width: 40px;
-		height: 40px;
-		margin-bottom: 180px;
+	.productPicture > * {
+		width: 700px;
+		height: 100%;
 	}
-
-	.rightButton {
-		width: 40px;
-		height: 40px;
-		margin-bottom: 180px;
+	.prev,
+	.next {
+		position: absolute;
+		background-color: transparent;
+		color: black;
+		font-size: 2rem;
+		border: none;
+		cursor: pointer;
+		outline: none;
+		top: 180px;
 	}
-
+	.next {
+		right: -30px;
+	}
+	.prev {
+		left: -30px;
+	}
 	.userInfo {
 		display: flex;
 		flex-direction: row;
@@ -321,6 +365,7 @@
 		color: #000000;
 		font: 14px 'Roboto', sans-serif;
 		margin-bottom: 30px;
+		word-break: break-all;
 	}
 
 	.productStatus {
@@ -333,6 +378,7 @@
 		display: flex;
 		flex-direction: row;
 		gap: 400px;
+		justify-content: center;
 	}
 
 	.others {
@@ -350,12 +396,14 @@
 		display: flex;
 		flex-direction: row;
 		gap: 60px;
+		justify-content: center;
 	}
 
 	.box5 {
 		display: flex;
 		flex-direction: row;
 		gap: 60px;
+		justify-content: center;
 	}
 
 	.productImage {

@@ -60,7 +60,7 @@
 				detailaddr: '',
 				addr: '',
 				Wishaddr: '',
-				image: '',
+				image: null,
 			};
 		},
 		methods: {
@@ -73,20 +73,29 @@
 				form.append('detailAddr', this.detailaddr);
 				form.append('addr', this.addr);
 				form.append('wishAddr', this.Wishaddr);
-				form.append('image', this.image);
+				if (this.image != null) {
+					form.append('image', this.image);
+				}
 
 				axios
 					.post('/member', form, {
 						header: { 'Content-Type': 'multipart/form-data' },
 					})
 					.then((response) => {
-						console.log(response);
 						if (response.status == 200) {
 							// 로그인 하면 토큰 발급
 							this.$router.push('./login');
 						} else {
 							alert('잘못된 정보입니다.');
 						}
+					})
+					.catch((error) => {
+						let message = error.response.data.message;
+						this.$swal({
+							icon: 'error',
+							title: '회원가입을 실패하였습니다.',
+							text: message,
+						});
 					});
 			},
 			onInputImage(e) {

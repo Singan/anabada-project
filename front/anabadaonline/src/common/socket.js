@@ -55,7 +55,6 @@ let url = process.env.VUE_APP_API_URL;
 let socketResult = {
 	headers: {},
 	setHeaders(headers) {
-		console.log(this.headers)
 		this.headers = headers;
 	},
 	socket: '',
@@ -64,30 +63,42 @@ let socketResult = {
 		this.socket = new SockJS(url + '/ws');
 		this.stompClient = Stomp.over(this.socket);
 	},
-	async connect() {
-		this.stompClient.connect(
-			this.headers,
-			(frame) => {
-				console.log('소켓 연결 성공');
-				this.stompClient.connected = true;
-			},
-			(error) => {
-				console.log('소켓 연결 실패', error);
-			},
-		);
+	connect() {
+		return new Promise((resolve, reject) => {
+			// Promise로 감싸기
+			this.stompClient.connect(
+				this.headers,
+				(frame) => {
+					console.log('소켓 연결 성공');
+					this.stompClient.connected = true;
+					resolve(); // 연결 성공 시 resolve 호출
+				},
+				(error) => {
+					console.log('소켓 연결 실패', error);
+					reject(error); // 연결 실패 시 reject 호출
+				},
+			);
+		});
 	},
 	send(msgObj, pubUrl) {
-		console.log(this.headers)
 		if (this.stompClient && this.stompClient.connected) {
+			console.log(this.headers);
 			this.stompClient.send(pubUrl, JSON.stringify(msgObj), this.headers);
 		}
 	},
 	subscribe(subUrl, recevieFunc) {
 		console.log('서브스크라이브 실행' + subUrl);
-		this.stompClient.subscribe(subUrl, (res) => {
-			let result = JSON.parse(res.body);
-			recevieFunc(result);
-		});
+		if (this.stompClient && this.stompClient.connected) {
+			this.stompClient.subscribe(subUrl, (res) => {
+				let result = JSON.parse(res.body);
+				recevieFunc(result);
+			});
+			return true;
+		}
+		return false;
+	},
+	connected() {
+		return this.stompClient.connected;
 	},
 };
 
