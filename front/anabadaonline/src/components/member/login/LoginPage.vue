@@ -46,7 +46,11 @@
 					.catch((error) => {
 						let message = error.response.data.message;
 						(this.id = ''), (this.pw = '');
-						alert(message);
+						this.$swal({
+							icon: 'error',
+							title: '로그인을 실패하였습니다.',
+							text: message,
+						});
 					})
 					.then((response) => {
 						if (response.status == 200) {

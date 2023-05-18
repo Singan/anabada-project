@@ -7,7 +7,7 @@
 			<div class="bidTime">{{ bid.bidTime }}</div>
 		</div>
 
-		<div class="bidBox">
+		<div class="bidBox" v-if="memberNo != myMemberNo">
 			<input
 				class="textSize"
 				type="number"
@@ -23,21 +23,24 @@
 	import axios from '@/axios.js';
 	export default {
 		inject: ['socket'],
-
+		props: {
+			memberNo: {
+				type: Number,
+			},
+		},
 		name: '',
 		components: {},
 		watch: {
 			isSocket: function (isSocket) {
-				console.log('Socket connection status changed:', isSocket);
-				this.subscribe();
+				if (isSocket) this.subscribe();
 			},
 		},
-		props: {},
 		data() {
 			return {
 				bidList: '',
 				productNo: this.$route.query.productNo,
 				bidPrice: '',
+				myMemberNo: this.$store.getters.getMember.no,
 			};
 		},
 
@@ -47,12 +50,17 @@
 					this.bidList = response.data.list;
 				});
 			},
+			beforeDestory() {
+				console.log('디스트로이드');
+			},
 			recevieFunc(resObj) {
 				this.bidList.push(resObj);
 			},
 			send() {
 				const lastBid = this.bidList[this.bidList.length - 1];
-				if (lastBid.price < this.bidPrice) {
+				if (this.memberNo == this.$store.getters.getMember.no) {
+					alert('상품을 등록한 사람은 경매에 참여할 수 없습니다.');
+				} else if (lastBid.price < this.bidPrice) {
 					let msgObj = {
 						bidPrice: this.bidPrice,
 						productNo: this.productNo,
@@ -64,9 +72,10 @@
 				}
 			},
 		},
-
+		mounted() {},
 		created() {
 			this.auctionList();
+
 			this.socket.subscribe('/product/' + this.productNo, this.recevieFunc);
 		},
 	};

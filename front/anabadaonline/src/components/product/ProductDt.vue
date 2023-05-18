@@ -31,9 +31,14 @@
 
 		<div class="prouductInfo">
 			<div class="productNamePrice">상품 이름 : {{ seller.productName }}</div>
-			<div class="productTime">등록 시간 : {{ seller.productInsertTime }}</div>
+			<div class="productTime">등록 시간 : {{ seller.productTime }}</div>
 			<div class="productNamePrice">상품 등록 가격 : {{ seller.productPrice }}원</div>
-			<div class="productNamePrice">현재 최고가 : {{ seller.productHighPrice }} 원</div>
+			<div class="productNamePrice" v-if="seller.productHighPrice">
+				현재 최고가 : {{ seller.productHighPrice }} 원
+			</div>
+			<div class="productNamePrice" v-if="seller.productHighPrice">
+				상품 낙찰까지 남은 시간 : {{ leftTimerView }}
+			</div>
 
 			<div class="productExplain">상품 설명 : {{ seller.productDetail }}</div>
 			<div class="productExplain">상품 사용기간 : {{ seller.productUseDate }}</div>
@@ -47,7 +52,7 @@
 		<button class="auctionText" :class="{ clicked: isClicked }" @click="bidStart">경매 참여</button>
 
 		<div class="line"></div>
-		<BidList v-if="check" :memberNo="seller.memberNo"></BidList>
+		<BidList v-if="isClicked" :memberNo="seller.memberNo"></BidList>
 
 		<div class="box3">
 			<div class="actionProduct">인기경매 상품</div>
@@ -107,20 +112,22 @@
 
 	export default {
 		inject: ['socket'],
-
-		watch: {
-			isSocket: function (isSocket) {
-				this.subscribe();
-			},
-		},
-		name: '',
-		components: { BidList },
 		props: {
 			isSocket: {
 				type: Boolean,
 				required: false,
 			},
 		},
+		watch: {
+			isSocket: function (isSocket) {
+				if (isSocket) {
+					this.subscribe();
+				}
+			},
+		},
+		name: '',
+		components: { BidList },
+
 		data() {
 			return {
 				seller: '',
@@ -131,19 +138,39 @@
 				resultObj: {},
 				testInput: 0,
 				imageCurrIndex: 0,
+				leftTimerView: '',
+				leftTime: '',
 			};
 		},
 
 		//axios 통신
 		methods: {
-			sellerInfo() {
-				axios.get('/product?productNo=' + this.productNo).then((response) => {
-					this.seller = response.data;
-				});
+			async sellerInfo() {
+				const response = await axios.get('/product?productNo=' + this.productNo);
+				this.seller = response.data;
+				console.log('seller');
+
+				let bidTime = new Date(this.seller.bidTime);
+				bidTime.setMinutes(bidTime.getMinutes() + 10);
+				this.leftTime = bidTime;
+				let date = new Date();
+				this.leftTime = this.leftTime - date;
+				if (this.leftTime >= 0) {
+					const ti = setInterval(this.timer, 1000);
+				}
 			},
 			bidStart() {
-				this.check = !this.check;
 				this.isClicked = !this.isClicked;
+			},
+			timer() {
+				let s = Math.floor(this.leftTime / 1000);
+				let m = Math.floor(s / 60);
+				s = s - m * 60;
+				this.leftTimerView = m + '분 ' + s + '초';
+				this.leftTime -= 1000;
+				if (this.leftTime <= 0) {
+					clearInterval(this.timer); // 타이머가 0 이하가 되었을 때 타이머를 멈추도록 함
+				}
 			},
 			recevieFunc(resObj) {
 				console.log(resObj.price);
@@ -160,8 +187,10 @@
 				if (this.imageCurrIndex < this.seller.productImageList.length - 1) this.imageCurrIndex++;
 			},
 		},
-		mounted() {
+		created() {
 			this.sellerInfo();
+		},
+		mounted() {
 			if (this.isSocket) {
 				this.socket.subscribe('/product/' + this.productNo, this.recevieFunc);
 			}
@@ -172,6 +201,7 @@
 <style scoped>
 	.prouductInfo > div {
 		padding-left: 60px;
+		width: fit-content;
 	}
 	.form {
 		background: #ffffff;
@@ -335,6 +365,7 @@
 		color: #000000;
 		font: 14px 'Roboto', sans-serif;
 		margin-bottom: 30px;
+		word-break: break-all;
 	}
 
 	.productStatus {

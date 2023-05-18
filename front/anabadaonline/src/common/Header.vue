@@ -9,6 +9,8 @@
 			v-model="keyword"
 			@keyup.enter="searchresultshow(keyword)"
 			placeholder="검색어를 입력해주세요"
+			autocomplete="off"
+			type="text"
 		/>
 
 		<button class="SearchButton" type="submit">검색하기</button>
@@ -25,7 +27,9 @@
 			},
 		},
 		data() {
-			return {};
+			return {
+				keyword: '',
+			};
 		},
 
 		methods: {

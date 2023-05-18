@@ -91,7 +91,11 @@
 					})
 					.catch((error) => {
 						let message = error.response.data.message;
-						alert(message);
+						this.$swal({
+							icon: 'error',
+							title: '회원가입을 실패하였습니다.',
+							text: message,
+						});
 					});
 			},
 			onInputImage(e) {

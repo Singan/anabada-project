@@ -25,9 +25,19 @@
 				token: token.token,
 				isSocket: false,
 				isLoad: false,
+				myProductSocketList: [],
 			};
 		},
 		methods: {
+			subscribe(res) {
+				console.log('으음');
+				this.$swal({
+					position: 'bottom-end',
+					title: '새로운 입찰이 들어왔습니다!',
+					showConfirmButton: false,
+					timer: 1500,
+				});
+			},
 			async login() {
 				this.isToken = token.is();
 
@@ -39,9 +49,9 @@
 						'accept-version': '1.2',
 					};
 					socket.setHeaders(headers);
-
 					const res = await axios.get('/member');
 					this.$store.commit('setMember', res.data);
+					this.mySocketList = res.data.productSocketList;
 				}
 			},
 		},
@@ -49,10 +59,13 @@
 		async created() {
 			await this.login();
 			this.isLoad = true;
-
 			socket.init();
 			await socket.connect();
 			this.isSocket = socket.connected();
+			console.log(this.mySocketList);
+			this.mySocketList.forEach(({ socketId }) => {
+				socket.subscribe('/product/myProduct/' + socketId, this.subscribe);
+			});
 		},
 	};
 </script>
