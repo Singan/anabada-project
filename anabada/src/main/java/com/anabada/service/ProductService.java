@@ -98,4 +98,8 @@ public class ProductService {
 
         return findProductToCategoryDtoArrayList;
     }
+
+    public ArrayList<FindSalesDto> findSales(MemberDetailDTO memberDetailDTO) {
+        productRepository.
+    }
 }
