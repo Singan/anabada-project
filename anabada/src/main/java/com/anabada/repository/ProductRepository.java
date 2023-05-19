@@ -24,7 +24,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
                     "DATE_FORMAT(p.create_date_time,'%Y년% %m월 %d일 %h시 %i분 %s초') as productTime ,"+
                     "m.member_name as memberName , m.member_addr as memberAddr,"+
                     "pi.image_addr as productImageList, p.product_thumbnail as productThumbnail, " +
-                    "b.bid_time as bidTime ,"+
+                    "max(b.bid_time) as bidTime ,"+
                     "max(b.bid_price) as productHighPrice, m.member_no as memberNo from product p" +
                     " join member m on p.member_no = m.member_no" +
             " left join product_image pi on p.product_no = pi.product_no" +

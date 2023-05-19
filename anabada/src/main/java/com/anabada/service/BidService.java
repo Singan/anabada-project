@@ -75,4 +75,8 @@ public class BidService {
                 bidList.stream().map(bid -> new FindBiddingDetailDto(bid, prefix)).collect(Collectors.toList());
         return new ResultList<>(biddingDetail);
     }
+    //입찰 내역에서 최고값들만
+    public List<Bid> productByMaxBidList(){
+        return bidRepository.bidList();
+    }
 }
