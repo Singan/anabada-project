@@ -66,14 +66,14 @@ const routes = [
 		component: () => import('@/components/member/mypage/AcountRegister.vue'),
 	},
 	{
-		path: '/transactionDt1',
-		name: 'TransactionDt1',
-		component: () => import('@/components/transaction/TransactionDt1.vue'),
+		path: '/purchaseDt',
+		name: 'purchaseDt',
+		component: () => import('@/components/transaction/purchaseDt.vue'),
 	},
 	{
-		path: '/transactionDt2',
-		name: 'TransactionDt2',
-		component: () => import('@/components/transaction/TransactionDt2.vue'),
+		path: '/salesDt',
+		name: 'salesDt',
+		component: () => import('@/components/transaction/salesDt.vue'),
 	},
 	{
 		path: '/JoinMember',

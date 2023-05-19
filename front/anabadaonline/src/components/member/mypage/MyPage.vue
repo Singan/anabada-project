@@ -29,8 +29,8 @@
 		<div class="mypageTradeInfo">
 			<div class="container">
 				<div class="myTradeText">내 거래</div>
-				<router-link to="/transactionDt2" class="sellListButton" @click="goDt2">판매 내역</router-link>
-				<router-link to="./transactionDt1" class="buyListButton" @click="goDt1">구매 내역</router-link>
+				<router-link to="/transactionDt2" class="sellListButton" @click="goSales">판매 내역</router-link>
+				<router-link to="./transactionDt1" class="buyListButton" @click="goPurchase">구매 내역</router-link>
 				<router-link to="./product" class="productRegButton" @click="goProduct">상품등록</router-link>
 				<router-link to="./Jjim" class="wishListButton" @click="goJjim">찜 목록</router-link>
 				<div class="line-1"></div>
@@ -101,11 +101,11 @@
 			goJjim() {
 				this.$router.push('./Jjim');
 			},
-			goDt1() {
-				this.$router.push('./TransactionDt1');
+			goPurchase() {
+				this.$router.push('./purchaseDt');
 			},
-			goDt2() {
-				this.$router.push('./TransactionDt2');
+			goSales() {
+				this.$router.push('./salesDt');
 			},
 			goAcount() {
 				this.$router.push('./AcountRegister');
