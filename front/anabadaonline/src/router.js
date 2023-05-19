@@ -70,6 +70,7 @@ const routes = [
 		name: 'purchaseDt',
 		component: () => import('@/components/transaction/purchaseDt.vue'),
 	},
+
 	{
 		path: '/salesDt',
 		name: 'salesDt',
