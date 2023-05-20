@@ -9,6 +9,7 @@ import com.anabada.dto.response_dto.ResultList;
 import com.anabada.entity.Bid;
 import com.anabada.entity.Member;
 import com.anabada.entity.Product;
+import com.anabada.entity.nativeQuery.MaxBidProductNoInterface;
 import com.anabada.repository.BidRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -75,8 +76,12 @@ public class BidService {
                 bidList.stream().map(bid -> new FindBiddingDetailDto(bid, prefix)).collect(Collectors.toList());
         return new ResultList<>(biddingDetail);
     }
-    //입찰 내역에서 최고값들만
-    public List<Bid> productByMaxBidList(){
+    //입찰 내역 중 최고값의 시간이 입력 후 10분이 지난 입찰 내역의 상품 번호
+    public List<MaxBidProductNoInterface> productByMaxBidList(){
         return bidRepository.bidList();
+    }
+    @Transactional
+    public void updateProductBidSuccess(List<Long> productNoList){
+        bidRepository.updateProductSuccessBid(productNoList);
     }
 }
