@@ -11,6 +11,7 @@ import com.anabada.entity.Member;
 import com.anabada.entity.Product;
 import com.anabada.entity.nativeQuery.MaxBidProductNoInterface;
 import com.anabada.repository.BidRepository;
+import com.anabada.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -28,13 +29,19 @@ public class BidService {
     private final BidRepository bidRepository;
     @Value("${s3.bucket.endpoint}")
     private String prefix;
-
+    private final ProductRepository productRepository;
     @Transactional
     public BidInsertResponseDto bidSave(BidInsertDto bidInsertDto, MemberDetailDTO memberDetailDTO) {
         Member member = memberDetailDTO.getMember();
         Bid insertBid = bidInsertDto.getBid(member);
-        Product product = insertBid.getProduct();
-        Bid currBid = bidRepository.findFirstByProductOrderByTimeDesc(product);
+        Product p = insertBid.getProduct();
+        boolean b = productRepository.readProductByProductIsBidComplete(p.getProductNo());
+
+        if(b==true){
+            throw new RuntimeException("경매를 할 수 없는 상품입니다.");
+        }
+
+        Bid currBid = bidRepository.findFirstByProductOrderByTimeDesc(p);
         if (currBid == null) {
             bidRepository.save(insertBid);// 먼저 현재 진행중인 입찰이 있나 체크 없다면 이후 조건을 체크하지않고 넘어가기 위함
         } else {
@@ -52,7 +59,7 @@ public class BidService {
                 .memberNo(member.getMemberNo())
                 .price(insertBid.getPrice())
                 .memberName(member.getMemberName())
-                .productNo(product.getProductNo())
+                .productNo(p.getProductNo())
                 .bidTime(bidTime)
                 .build();
         return bidRes;
