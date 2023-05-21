@@ -5,22 +5,22 @@
 		<div class="explan">회원 탈퇴를 위해 비밀번호를 입력해주세요</div>
 
 		<div class="pwBox">
-			<div class="pw-re">
-				<input class="pwText" type="password" placeholder="비밀번호를 입력하세요" />
-			</div>
+			<form class="pw-re">
+				<input class="pwText" type="password" v-model="inputPassword" placeholder="비밀번호를 입력하세요" />
+			</form>
 		</div>
 
-		<div class="exitBox">
+		<div @click="memberDelete" class="exitBox">
 			<div class="blueBox">탈퇴 하기</div>
 		</div>
 
-		<a href="./MyPage.vue" class="cancelBox">
+		<a href="./MyPage" class="cancelBox">
 			<div class="redBox">취소 하기</div>
 		</a>
 	</div>
 </template>
 <script>
-	/* Code generated with AutoHTML Plugin for Figma */
+	import axios from 'axios';
 
 	export default {
 		name: '',
@@ -28,10 +28,41 @@
 		props: {},
 		data() {
 			// quickfix to have components available to pass as props
-			return {};
+			return {
+				password: '',
+				inputPassword: '',
+			};
+		},
+		methods: {
+			password() {
+				axios.get('/member').then((response) => {
+					console.log(response.data.memberPw);
+					this.password = response.data.memberPw;
+				});
+			},
+			memberDelete() {
+				axios.post('/member', { password: this.inputPassword }).then((response) => {
+					// console.log(this.inputPassword);
+					if (response.data.isValid) {
+						axios
+							.delete('/member')
+							.then((response) => {
+								alert('회원 탈퇴되었습니다.');
+								this.$router.push('./');
+							})
+							.catch((error) => {
+								console.error(error);
+								alert('회원 탈퇴에 실패하였습니다. 다시 시도해주세요.');
+							});
+					} else {
+						alert('비밀번호가 유효하지 않습니다.');
+					}
+				});
+			},
 		},
 	};
 </script>
+
 <style scoped>
 	.flex {
 		background: #ffffff;
