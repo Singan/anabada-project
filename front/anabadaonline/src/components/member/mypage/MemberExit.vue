@@ -10,9 +10,9 @@
 			</form>
 		</div>
 
-		<a @click="memberDelete" class="exitBox">
+		<div @click="memberDelete" class="exitBox">
 			<div class="blueBox">탈퇴 하기</div>
-		</a>
+		</div>
 
 		<a href="./MyPage" class="cancelBox">
 			<div class="redBox">취소 하기</div>
@@ -21,8 +21,6 @@
 </template>
 <script>
 	import axios from 'axios';
-
-	/* Code generated with AutoHTML Plugin for Figma */
 
 	export default {
 		name: '',
@@ -35,7 +33,7 @@
 				inputPassword: '',
 			};
 		},
-		method: {
+		methods: {
 			password() {
 				axios.get('/member').then((response) => {
 					console.log(response.data.memberPw);
@@ -44,11 +42,13 @@
 			},
 			memberDelete() {
 				axios.post('/member', { password: this.inputPassword }).then((response) => {
+					// console.log(this.inputPassword);
 					if (response.data.isValid) {
 						axios
 							.delete('/member')
 							.then((response) => {
 								alert('회원 탈퇴되었습니다.');
+								this.$router.push('./');
 							})
 							.catch((error) => {
 								console.error(error);
