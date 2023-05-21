@@ -61,6 +61,7 @@ public class BidService {
                 .memberName(member.getMemberName())
                 .productNo(p.getProductNo())
                 .bidTime(bidTime)
+                .productName(p.getProductName())
                 .build();
         return bidRes;
     }

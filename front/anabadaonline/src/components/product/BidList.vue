@@ -27,6 +27,9 @@
 			memberNo: {
 				type: Number,
 			},
+			productName: {
+				type: String,
+			},
 		},
 		name: '',
 		components: {},
@@ -41,6 +44,7 @@
 				productNo: this.$route.query.productNo,
 				bidPrice: '',
 				myMemberNo: this.$store.getters.getMember.no,
+				sub: '',
 			};
 		},
 
@@ -50,9 +54,7 @@
 					this.bidList = response.data.list;
 				});
 			},
-			beforeDestory() {
-				console.log('디스트로이드');
-			},
+
 			recevieFunc(resObj) {
 				this.bidList.push(resObj);
 			},
@@ -60,11 +62,12 @@
 				const lastBid = this.bidList[this.bidList.length - 1];
 				if (this.memberNo == this.$store.getters.getMember.no) {
 					alert('상품을 등록한 사람은 경매에 참여할 수 없습니다.');
-				} else if (lastBid && lastBid.price < this.bidPrice) {
+				} else if (!lastBid || lastBid.price < this.bidPrice) {
 					let msgObj = {
 						bidPrice: this.bidPrice,
 						productNo: this.productNo,
 						memberImage: this.$store.getters.getMember.image,
+						productName: this.productName,
 					};
 					this.socket.send(msgObj, '/bid');
 				} else {
@@ -72,11 +75,13 @@
 				}
 			},
 		},
-		mounted() {},
+		unmounted() {
+			this.sub.unsubscribe();
+		},
 		created() {
 			this.auctionList();
 
-			this.socket.subscribe('/product/' + this.productNo, this.recevieFunc);
+			this.sub = this.socket.subscribe('/product/' + this.productNo, this.recevieFunc);
 		},
 	};
 </script>

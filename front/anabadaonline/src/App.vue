@@ -28,12 +28,14 @@
 		},
 		methods: {
 			subscribe(res) {
-				console.log('으음');
 				this.$swal({
 					position: 'bottom-end',
-					title: '새로운 입찰이 들어왔습니다!',
+					title: `새로운 입찰이 들어왔습니다!.`,
 					showConfirmButton: false,
-					timer: 1500,
+					backdrop: false,
+					text: `상품이름 : ${res.productName} 에 ${res.price} 원 으로 새로운 입찰이 들어왔습니다!`,
+					timer: 5000,
+					timerProgressBar: true,
 				});
 			},
 			async login() {
@@ -58,6 +60,7 @@
 					});
 				}
 			},
+			goProductDt(res) {},
 			logout() {
 				this.$token.remove();
 				this.isToken = this.$token.is();
@@ -66,10 +69,10 @@
 		},
 
 		async created() {
-			await this.login();
-			this.isLoad = true;
 			socket.init();
 			await socket.connect();
+			await this.login();
+			this.isLoad = true;
 			this.isSocket = socket.connected();
 			// console.log(this.mySocketList);
 		},
@@ -78,9 +81,10 @@
 
 <style>
 	body {
-		width: 100%;
+		/* width: 100%;
 		margin: 0px;
 		height: 100%;
+		padding: 0px; */
 	}
 
 	#app {

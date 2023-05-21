@@ -16,10 +16,11 @@ public class BidInsertDto {
     private Integer bidPrice;
     private Long productNo;
     private String memberImage;
+    private String productName;
     public Bid getBid(Member member) {
         //MemberDetailDTO > Member
 
-        Product product = Product.builder().productNo(productNo).build();
+        Product product = Product.builder().productName(productName).productNo(productNo).build();
         LocalDateTime bidTime = LocalDateTime.now();
         Bid bid = Bid.builder()
                 .member(member)

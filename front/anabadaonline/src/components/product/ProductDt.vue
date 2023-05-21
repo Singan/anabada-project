@@ -79,7 +79,7 @@
 		<button class="auctionText" :class="{ clicked: isClicked }" @click="bidStart">경매 참여</button>
 
 		<div class="line"></div>
-		<BidList v-if="isClicked" :memberNo="seller.memberNo"></BidList>
+		<BidList v-if="isClicked" :memberNo="seller.memberNo" :productName="seller.productName"></BidList>
 
 		<div class="box3">
 			<div class="actionProduct">인기경매 상품</div>
