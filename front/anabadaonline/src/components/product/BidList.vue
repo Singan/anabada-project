@@ -60,7 +60,7 @@
 				const lastBid = this.bidList[this.bidList.length - 1];
 				if (this.memberNo == this.$store.getters.getMember.no) {
 					alert('상품을 등록한 사람은 경매에 참여할 수 없습니다.');
-				} else if (lastBid.price < this.bidPrice) {
+				} else if (lastBid && lastBid.price < this.bidPrice) {
 					let msgObj = {
 						bidPrice: this.bidPrice,
 						productNo: this.productNo,

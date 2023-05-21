@@ -140,7 +140,7 @@
 			async sellerInfo() {
 				const response = await axios.get('/product?productNo=' + this.productNo);
 				this.seller = response.data;
-
+				console.log(this.seller.bidTime);
 				let bidTime = new Date(this.seller.bidTime);
 				bidTime.setMinutes(bidTime.getMinutes() + 10);
 				this.leftTime = bidTime;

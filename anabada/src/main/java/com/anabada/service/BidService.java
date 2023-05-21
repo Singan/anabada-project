@@ -9,7 +9,9 @@ import com.anabada.dto.response_dto.ResultList;
 import com.anabada.entity.Bid;
 import com.anabada.entity.Member;
 import com.anabada.entity.Product;
+import com.anabada.entity.nativeQuery.MaxBidProductNoInterface;
 import com.anabada.repository.BidRepository;
+import com.anabada.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -27,13 +29,19 @@ public class BidService {
     private final BidRepository bidRepository;
     @Value("${s3.bucket.endpoint}")
     private String prefix;
-
+    private final ProductRepository productRepository;
     @Transactional
     public BidInsertResponseDto bidSave(BidInsertDto bidInsertDto, MemberDetailDTO memberDetailDTO) {
         Member member = memberDetailDTO.getMember();
         Bid insertBid = bidInsertDto.getBid(member);
-        Product product = insertBid.getProduct();
-        Bid currBid = bidRepository.findFirstByProductOrderByTimeDesc(product);
+        Product p = insertBid.getProduct();
+        boolean b = productRepository.readProductByProductIsBidComplete(p.getProductNo());
+
+        if(b==true){
+            throw new RuntimeException("경매를 할 수 없는 상품입니다.");
+        }
+
+        Bid currBid = bidRepository.findFirstByProductOrderByTimeDesc(p);
         if (currBid == null) {
             bidRepository.save(insertBid);// 먼저 현재 진행중인 입찰이 있나 체크 없다면 이후 조건을 체크하지않고 넘어가기 위함
         } else {
@@ -51,7 +59,7 @@ public class BidService {
                 .memberNo(member.getMemberNo())
                 .price(insertBid.getPrice())
                 .memberName(member.getMemberName())
-                .productNo(product.getProductNo())
+                .productNo(p.getProductNo())
                 .bidTime(bidTime)
                 .build();
         return bidRes;
@@ -74,5 +82,13 @@ public class BidService {
         List<FindBiddingDetailDto> biddingDetail =
                 bidList.stream().map(bid -> new FindBiddingDetailDto(bid, prefix)).collect(Collectors.toList());
         return new ResultList<>(biddingDetail);
+    }
+    //입찰 내역 중 최고값의 시간이 입력 후 10분이 지난 입찰 내역의 상품 번호
+    public List<MaxBidProductNoInterface> productByMaxBidList(){
+        return bidRepository.bidList();
+    }
+    @Transactional
+    public void updateProductBidSuccess(List<Long> productNoList){
+        bidRepository.updateProductSuccessBid(productNoList);
     }
 }

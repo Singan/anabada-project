@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(indexes = @Index( name = "bid_time_index",columnList ="bid_time" ))
 public class Bid {//입찰내역
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
