@@ -141,4 +141,10 @@ public class MemberService implements UserDetailsService {
         Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
         return new ShowUpdateMemberDto(member);
     }
+
+    @Transactional
+    public void deleteMember(MemberDetailDTO memberDetailDTO){
+        Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
+        member.memberExistUpdate();
+    }
 }

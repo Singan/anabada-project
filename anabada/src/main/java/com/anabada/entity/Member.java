@@ -42,6 +42,9 @@ public class Member {
 
     @OneToMany(mappedBy = "member")
     private List<Product> memberProductList;
+
+    @Column(name="member_exist")
+    private boolean memberExist;
     @Builder
     public Member(Long memberNo, String memberName,
                   String memberId,
@@ -52,7 +55,8 @@ public class Member {
                   String memberAddr,
                   String memberWishAddr,
                   String memberImage,List<SocketRelation> memberSocketList,
-                  List<Product> memberProductList
+                  List<Product> memberProductList,
+                  boolean memberExist
     ) {
         this.memberNo = memberNo;
         this.memberName = memberName;
@@ -66,6 +70,7 @@ public class Member {
         this.memberImage = memberImage;
         this.memberSocketList = memberSocketList;
         this.memberProductList = memberProductList;
+        this.memberExist = memberExist;
     }
     public void addSocketList(SocketRelation socketRelation){
         memberSocketList.add(socketRelation);
@@ -77,6 +82,9 @@ public class Member {
         this.memberDetailAddr = memberUpdateDto.getUpdateDetailAddr();
         this.memberWishAddr = memberUpdateDto.getUpdateWishAddr();
         this.memberImage = updateImagePath;
+    }
+    public void memberExistUpdate(){
+        this.memberExist = true;
     }
 
     public void setMemberImage(String memberImage) {
