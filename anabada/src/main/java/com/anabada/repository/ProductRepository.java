@@ -51,4 +51,12 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
 
     @Query("select p.productIsBidComplete from Product p where p.productNo = :productNo")
     boolean readProductByProductIsBidComplete(@Param("productNo") Long productNo);
+
+//    @Query("select b.* from bid b " +
+//            "inner join (select max(b.bid_price) bid_price from bid b group by b.product_no) b2 " +
+//            "on b.bid_price = b2.bid_price and b.member_no = :memberNo;")
+//    List<Product> findProductListWithBid();
+//
+//    Product findProductDetail();
+
 }

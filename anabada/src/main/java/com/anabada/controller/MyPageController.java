@@ -27,7 +27,6 @@ public class MyPageController {
     private final PayService payService;
     private final ProductService productService;
     private final BidService bidService;
-
     @GetMapping
     public MyPageFindDto myPageFindDto(@AuthenticationPrincipal MemberDetailDTO principal) {
         return memberService.myPage(principal);
@@ -53,5 +52,9 @@ public class MyPageController {
     @Operation(description = "내 입찰내역")
     public ResultList<List<FindBiddingDetailDto>> findBiddingDetail(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
         return bidService.findBiddingDetail(memberDetailDTO);
+    }
+    @GetMapping("/")
+    public void findBuyList(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO){
+
     }
 }

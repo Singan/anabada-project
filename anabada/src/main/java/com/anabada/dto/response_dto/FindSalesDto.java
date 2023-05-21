@@ -16,6 +16,7 @@ public class FindSalesDto {
     private String productName;
     private Integer productPrice;
     private String productThumbnail;
+    private Boolean productIsBidding;
 
     public FindSalesDto(Product product, String prefix) {
         this.productNo = product.getProductNo();
@@ -23,5 +24,6 @@ public class FindSalesDto {
         this.productName = product.getProductName();
         this.productPrice = product.getProductPrice();
         this.productThumbnail = prefix + product.getProductThumbnail();
+        this.productIsBidding = product.getProductIsBidComplete();
     }
 }

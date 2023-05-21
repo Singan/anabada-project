@@ -106,4 +106,9 @@ public class ProductService {
                 productList.stream().map(product -> new FindSalesDto(product, s3EndPoint)).collect(Collectors.toList());
         return new ResultList<>(salesList);
     }
+
+    //
+    public void findBuyList(MemberDetailDTO memberDetailDTO){
+
+    }
 }

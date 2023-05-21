@@ -21,7 +21,7 @@
 			<div class="container">
 				<div class="userInfoText">개인정보</div>
 				<span class="userInfoChange" @click="goChange"> 회원 정보 수정 </span>
-				<router-link to="./MemberExit" class="withDrawal" @click="goExit">회원 탈퇴</router-link>
+				<router-link to="./MemberExit" class="withDrawal">회원 탈퇴</router-link>
 				<div class="userInfoLine"></div>
 			</div>
 		</div>
@@ -29,10 +29,10 @@
 		<div class="mypageTradeInfo">
 			<div class="container">
 				<div class="myTradeText">내 거래</div>
-				<router-link to="/transactionDt2" class="sellListButton" @click="goSales">판매 내역</router-link>
-				<router-link to="./transactionDt1" class="buyListButton" @click="goPurchase">구매 내역</router-link>
-				<router-link to="./product" class="productRegButton" @click="goProduct">상품등록</router-link>
-				<router-link to="./Jjim" class="wishListButton" @click="goJjim">찜 목록</router-link>
+				<router-link to="/salesDt" class="sellListButton">판매 내역</router-link>
+				<router-link to="./purchaseDt" class="buyListButton">구매 내역</router-link>
+				<router-link to="./Product" class="productRegButton">상품등록</router-link>
+				<router-link to="./Jjim" class="wishListButton">찜 목록</router-link>
 				<div class="line-1"></div>
 			</div>
 		</div>
@@ -60,9 +60,6 @@
 			};
 		},
 		methods: {
-			goExit() {
-				this.$router.push('./MemberExit');
-			},
 			async goChange() {
 				const { value: password } = await this.$swal({
 					title: '비밀번호 확인',
@@ -95,24 +92,11 @@
 						});
 					});
 			},
-			goProduct() {
-				this.$router.push('./Product');
-			},
-			goJjim() {
-				this.$router.push('./Jjim');
-			},
-			goPurchase() {
-				this.$router.push('./purchaseDt');
-			},
-			goSales() {
-				this.$router.push('./salesDt');
-			},
+
 			goAcount() {
 				this.$router.push('./AcountRegister');
 			},
-			goMain() {
-				this.$router.push('./');
-			},
+
 			goPayment() {
 				this.$router.push('./Payment');
 			},
