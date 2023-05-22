@@ -17,6 +17,10 @@
 			<div class="productDetail">
 				<div class="detailND">{{ item.productName }}</div>
 				<div class="detailPrice">등록 가격 :{{ item.productPrice }}</div>
+				<div class="detailPrice">상품 등록 시간{{ item.createDateTime }}</div>
+				<div class="detailPrice">경매 낙찰자 {{ item.memberName }}</div>
+				<div class="detailPrice">경매 낙찰 가격{{ item.bidPrice }}</div>
+				<div class="detailPrice">경매 낙찰 시간{{ item.bidTime }}</div>
 			</div>
 		</div>
 	</div>

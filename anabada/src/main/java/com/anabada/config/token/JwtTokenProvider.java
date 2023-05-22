@@ -25,8 +25,8 @@ import java.util.*;
 @RequiredArgsConstructor
 @Slf4j
 public class JwtTokenProvider{
-    @Value("{jwt.secret}")
-    private final String secretKey ="ASDKJSNKDQnskdnakjsdnkajsndkjqnksdqQASDQSDasdfsqqdsfqsd";
+    @Value("${jwt.secret.key}")
+    private  String secretKey = "ASDKJSNKDQnskdnakjsdnkajsndkjqnksdqQASDQSDasdfsqqdsfqsd" ;
 
     /**
      * 사용자 정보를 기반으로 토큰을 생성하여 반환 해주는 메서드

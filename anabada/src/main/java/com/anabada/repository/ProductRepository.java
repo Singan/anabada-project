@@ -2,10 +2,8 @@ package com.anabada.repository;
 
 import com.anabada.entity.Product;
 import com.anabada.entity.nativeQuery.ProductFindOneInterface;
-import com.anabada.entity.nativeQuery.SalesListSelectDto;
+import com.anabada.entity.nativeQuery.SalesListSelectInterface;
 import org.hibernate.annotations.BatchSize;
-import org.hibernate.annotations.NamedNativeQuery;
-import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -13,7 +11,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Long> {
@@ -53,11 +50,21 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     @Query("select p.productIsBidComplete from Product p where p.productNo = :productNo")
     boolean readProductByProductIsBidComplete(@Param("productNo") Long productNo);
 
-//    @Query(value = "select new com.anabada.entity.nativeQuery.SalesListSelectDto(p.member,b,p,s) from Product p " +
-//            "join fetch SuccessfulBid s on s.product = p " +
-//            "join fetch p.member " +
-//            "join fetch s.bid b")
-//    List<SalesListSelectDto> findProductListWithBid();
+    @Query(value = "select p.product_name as productName," +
+            "b.bid_price         as bidPrice," +
+            "p.product_thumbnail as productThumbnail," +
+            "p.product_no        as productNo," +
+            "p.product_price as productPrice ," +
+            "p.create_date_time  as createDateTime," +
+            "b.bid_time          as bidTime," +
+            "m.member_name       as memberName," +
+            "m.member_no         as memberNo" +
+            " from product p" +
+            " left join successful_bid sb on p.product_no = sb.product_product_no" +
+            " left join bid b on sb.bid_bid_no = b.bid_no" +
+            " left join member m on b.member_no = m.member_no" +
+            " where p.member_no = :memberNo", nativeQuery = true) // 판매 내역 리스트 인데 사용할지 고민중
+    List<SalesListSelectInterface> findProductListWithBid(@Param("memberNo") Long memberNo);
 //
 //    Product findProductDetail();
 

@@ -14,16 +14,18 @@ public class SuccessfulBid {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long currentBid;
+    private Long successBidProductNo;
 
     @OneToOne
+    @JoinColumn(nullable = false)
     private Bid bid;
 
     @OneToOne
+    @JoinColumn(nullable = false)
     private Product product;
     @Builder
-    public SuccessfulBid(Long currentBid, Bid bid, Product product) {
-        this.currentBid = currentBid;
+    public SuccessfulBid(Long successBidProductNo, Bid bid, Product product) {
+        this.successBidProductNo = successBidProductNo;
         this.bid = bid;
         this.product = product;
     }

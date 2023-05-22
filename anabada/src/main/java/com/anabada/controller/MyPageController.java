@@ -4,9 +4,9 @@ import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.MypageConfirmDto;
 import com.anabada.dto.request_dto.PayDto;
 import com.anabada.dto.response_dto.FindBiddingDetailDto;
-import com.anabada.dto.response_dto.FindSalesDto;
 import com.anabada.dto.response_dto.MyPageFindDto;
 import com.anabada.dto.response_dto.ResultList;
+import com.anabada.dto.response_dto.SalesListSelectDto;
 import com.anabada.service.BidService;
 import com.anabada.service.MemberService;
 import com.anabada.service.PayService;
@@ -44,7 +44,7 @@ public class MyPageController {
 
     @PostMapping("/sales")
     @Operation(description = "내 판매내역")
-    public ResultList<List<FindSalesDto>> findSales(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
+    public ResultList<List<SalesListSelectDto>> findSales(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
         return productService.findSales(memberDetailDTO);
     }
 

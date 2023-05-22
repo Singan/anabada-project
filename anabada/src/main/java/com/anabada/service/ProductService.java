@@ -5,24 +5,22 @@ import com.anabada.dto.request_dto.ProductInsertDto;
 import com.anabada.dto.response_dto.*;
 import com.anabada.entity.Product;
 import com.anabada.entity.ProductImage;
-import com.anabada.entity.ProductSocket;
 import com.anabada.entity.nativeQuery.ProductFindOneInterface;
+import com.anabada.dto.response_dto.SalesListSelectDto;
+import com.anabada.entity.nativeQuery.SalesListSelectInterface;
 import com.anabada.etc.FileProcessor;
 import com.anabada.repository.BidRepository;
 import com.anabada.repository.ProductImageRepository;
 import com.anabada.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -100,11 +98,21 @@ public class ProductService {
     }
 
     // 판매 내역
-    public ResultList<List<FindSalesDto>> findSales(MemberDetailDTO memberDetailDTO) {
-        List<Product> productList = productRepository.findByMemberNo(memberDetailDTO.getNo());
-        List<FindSalesDto> salesList =
-                productList.stream().map(product -> new FindSalesDto(product, s3EndPoint)).collect(Collectors.toList());
-        return new ResultList<>(salesList);
+    public ResultList<List<SalesListSelectDto>> findSales(MemberDetailDTO memberDetailDTO) {
+        List<SalesListSelectInterface> productList = productRepository.findProductListWithBid(memberDetailDTO.getNo());
+        List<SalesListSelectDto> productDtoList = productList.stream().map(s ->
+                SalesListSelectDto.builder()
+                        .memberNo(s.getMemberNo())
+                        .productThumbnail(s3EndPoint+s.getProductThumbnail())
+                        .bidTime(s.getBidTime())
+                        .createDateTime(s.getCreateDateTime())
+                        .memberName(s.getMemberName())
+                        .bidPrice(s.getBidPrice())
+                        .productPrice(s.getProductPrice())
+                        .productNo(s.getProductNo())
+                        .build()
+                ).collect(Collectors.toList());
+        return new ResultList<>(productDtoList);
     }
 
     //
