@@ -97,6 +97,11 @@ const routes = [
 		name: '/Payment',
 		component: () => import('@/components/member/mypage/Payment.vue'),
 	},
+	{
+		path: '/chatList',
+		name: '/chatList',
+		component: () => import('@/components/chat/chatList.vue'),
+	},
 ];
 
 export default routes;
