@@ -1,55 +1,26 @@
 <template>
 	<body>
 		<div class="chat_list_wrap">
-			<div class="header">채팅 목록</div>
-			<div class="search">
-				<input type="text" placeholder="이메일/아이피 검색" />
-			</div>
-			<div class="list">
-				<ul>
-					<li>
-						<table cellpadding="0" cellspacing="0">
-							<tr>
-								<td class="profile_td">
-									<!--Img-->
-									<!-- <img src="./images/profile_preview.png" /> -->
-								</td>
-								<td class="chat_td">
-									<!--Email & Preview-->
-									<div class="email">kkotkkio@gmail.com</div>
-									<div class="chat_preview">안녕하세요~</div>
-								</td>
-								<td class="time_td">
-									<!--Time & Check-->
-									<div class="time">2016.09.29 17:54</div>
-									<div class="check">
-										<!-- <p></p> -->
-									</div>
-								</td>
-							</tr>
-						</table>
-					</li>
-					<li>
-						<table cellpadding="0" cellspacing="0">
-							<tr>
-								<td class="profile_td">
-									<!--Img-->
-									<!-- <img src="./images/profile_preview.png" /> -->
-								</td>
-								<td class="chat_td">
-									<!--Email & Preview-->
-									<div class="email">kkotkkio@gmail.com</div>
-									<div class="chat_preview">안녕하세요~</div>
-								</td>
-								<td class="time_td">
-									<!--Time & Check-->
-									<div class="time">2016.09.29 17:54</div>
-									<div class="check"></div>
-								</td>
-							</tr>
-						</table>
-					</li>
-				</ul>
+			<div class="chatListContainer">
+				<div class="header">채팅 목록</div>
+				<div class="list">
+					<div class="profile_td">
+						<!--Img-->
+						<!-- <img src="./images/profile_preview.png" /> -->
+					</div>
+					<div class="chat_td">
+						<!--Email & Preview-->
+						<div class="email">kkotkkio@gmail.com</div>
+						<div class="chat_preview">안녕하세요~</div>
+					</div>
+					<div class="time_td">
+						<!--Time & Check-->
+						<div class="time">2016.09.29 17:54</div>
+						<div class="check">
+							<!-- <p></p> -->
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>
@@ -60,10 +31,17 @@
 		padding: 0;
 	}
 	body {
-		font-size: 11px;
+		font-size: 12px;
 	}
 	.chat_list_wrap {
 		list-style: none;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.chatListContainer {
+		width: 70rem;
 	}
 	.chat_list_wrap .header {
 		font-size: 14px;
@@ -71,21 +49,17 @@
 		background: #0075ff;
 		color: white;
 		text-align: center;
-		font-family: 'Josefin Sans', sans-serif;
+		font-family: 'Roboto', sans-serif;
 	}
-	.chat_list_wrap .search {
-		background: #eee;
+	.chat_list_wrap {
 		padding: 5px;
 	}
-	.chat_list_wrap .search input[type='text'] {
-		width: 100%;
-		border-radius: 4px;
-		padding: 5px 0;
-		border: 0;
-		text-align: center;
-	}
-	.chat_list_wrap .list {
+
+	.list {
+		margin-top: 2em;
 		padding: 0 16px;
+		display: flex;
+		border-bottom: 1px solid#e1e1e1;
 	}
 	.chat_list_wrap .list ul {
 		width: 100%;
@@ -93,14 +67,14 @@
 		margin-top: 3px;
 	}
 	.chat_list_wrap .list ul li {
-		padding-top: 10px;
-		padding-bottom: 10px;
+		padding-top: 2em;
+		padding-bottom: 2em;
 		border-bottom: 1px solid #e5e5e5;
 	}
 	.chat_list_wrap .list ul li table {
 		width: 100%;
 	}
-	.chat_list_wrap .list ul li table td.profile_td {
+	.profile_td {
 		width: 50px;
 		padding-right: 11px;
 	}
@@ -108,13 +82,16 @@
 		width: 50px;
 		height: auto;
 	}
-	.chat_list_wrap .list ul li table td.chat_td .email {
+	.chat_td .email {
 		font-size: 12px;
 		font-weight: bold;
 	}
-	.chat_list_wrap .list ul li table td.time_td {
+	.time_td {
 		width: 90px;
 		text-align: center;
+	}
+	.chat_preview {
+		margin-bottom: 2em;
 	}
 	.chat_list_wrap .list ul li table td.time_td .time {
 		padding-bottom: 4px;
