@@ -34,6 +34,7 @@ public class MemberService implements UserDetailsService {
     private final FileProcessor fileProcessor;
     @Value("${s3.bucket.endpoint}")
     private String s3EndPoint;
+
     public boolean existsMemberByMemberId(String id) {
         return memberRepository.existsMemberByMemberId(id);
     }
@@ -41,17 +42,19 @@ public class MemberService implements UserDetailsService {
 
     public Member findByMemberId(String id) {
         Member member = memberRepository.findByMemberId(id);
-        if(member == null){
+        if (member == null) {
             throw new RuntimeException("없는 회원입니다.");
         }
         return member;
 
     }
-    public MemberInfoDto findByMemberNoWithSocketList(String id){
+
+    public MemberInfoDto findByMemberNoWithSocketList(String id) {
         Member member = memberRepository.findMemberByMemberId(id);
-        MemberInfoDto memberInfoDto= new MemberInfoDto(member,s3EndPoint);
+        MemberInfoDto memberInfoDto = new MemberInfoDto(member, s3EndPoint);
         return memberInfoDto;
     }
+
     @Transactional
     public Long memberJoin(MemberJoinDto memberJoinDto) {
         if (!existsMemberByMemberId(memberJoinDto.getId())) {
@@ -60,7 +63,7 @@ public class MemberService implements UserDetailsService {
             MultipartFile file = memberJoinDto.getImage();
 
             if (!((file == null) || (file.isEmpty()))) {
-                String profilePath = fileProcessor.fileSave(file,"member");
+                String profilePath = fileProcessor.fileSave(file, "member");
                 memberJoinDto.setProfileImagePath(profilePath);
             } else {
                 String basicProfileImagePath = "member/basic/user.png";
@@ -95,7 +98,7 @@ public class MemberService implements UserDetailsService {
 
     public MyPageFindDto myPage(MemberDetailDTO principal) {
         Member member = memberRepository.findByMemberId(principal.getUsername());
-        return new MyPageFindDto(member,s3EndPoint);
+        return new MyPageFindDto(member, s3EndPoint);
     }
 
     public Authentication getAuthentication(Member member) {
@@ -106,7 +109,7 @@ public class MemberService implements UserDetailsService {
     public boolean confirmPassword(MemberDetailDTO memberDetailDTO, MypageConfirmDto mypageConfirmDto) {
         Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
         String confirmPw = mypageConfirmDto.getConfirmPassword();
-        if (passwordEncoder.matches( confirmPw,member.getMemberPw())) {
+        if (passwordEncoder.matches(confirmPw, member.getMemberPw())) {
             return true;
         } else {
             throw new RuntimeException("비밀번호가 다릅니다.");
@@ -120,30 +123,30 @@ public class MemberService implements UserDetailsService {
 
         // 새로 입력한 비밀번호가 같은지 비교하여 같다면
         if (memberUpdateDto.getUpdatePw().equals(memberUpdateDto.getConfirmPw())) {
-            if (!((imageFile == null) || (imageFile.isEmpty()))) {
+            if ((imageFile != null) && !imageFile.isEmpty()) {
                 memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));  // 인코딩된 새로운 비밀번호
                 String updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage(), "member");  // 변경된 이미지파일
                 member.updateMember(memberUpdateDto, updateImagePath);
                 return new MemberUpdateFindDto(member, updateImagePath);
             } else {
-            memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
-            String basicImagePath = "member/basic/user.png";
-            member.updateMember(memberUpdateDto, basicImagePath);
-            return new MemberUpdateFindDto(member, basicImagePath);
+                memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
+                String basicImagePath = "member/basic/user.png";
+                member.updateMember(memberUpdateDto, basicImagePath);
+                return new MemberUpdateFindDto(member, basicImagePath);
             }
         } else {
-            throw new RuntimeException("새로운 비밀번호가 다름");
+            throw new RuntimeException("새로운 비밀번호가 일치하지 않습니다.");
         }
     }
 
     // 회원 정보 수정 페이지에 멤버 아이디, 이름, 이미지 보여주기
     public ShowUpdateMemberDto showMemberInfo(MemberDetailDTO memberDetailDTO) {
         Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
-        return new ShowUpdateMemberDto(member);
+        return new ShowUpdateMemberDto(member, s3EndPoint);
     }
 
     @Transactional
-    public void deleteMember(MemberDetailDTO memberDetailDTO){
+    public void deleteMember(MemberDetailDTO memberDetailDTO) {
         Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
         member.memberExistUpdate();
     }

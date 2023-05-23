@@ -20,8 +20,8 @@
 		<div class="mypageUserSetting">
 			<div class="container">
 				<div class="userInfoText">개인정보</div>
-				<span class="userInfoChange" @click="goChange"> 회원 정보 수정 </span>
-				<router-link to="./MemberExit" class="withDrawal">회원 탈퇴</router-link>
+				<span class="userInfoChange" @click="goChange(0)"> 회원 정보 수정 </span>
+				<span class="withDrawal" @click="goChange(1)">회원 탈퇴</span>
 				<div class="userInfoLine"></div>
 			</div>
 		</div>
@@ -60,7 +60,7 @@
 			};
 		},
 		methods: {
-			async goChange() {
+			async goChange(e) {
 				const { value: password } = await this.$swal({
 					title: '비밀번호 확인',
 					input: 'password',
@@ -74,14 +74,20 @@
 					},
 					allowOutsideClick: false,
 				});
-				console.log(password);
 				axios
 					.post('/mypage/confirm', {
 						confirmPassword: password,
 					})
 					.then((res) => {
 						if (res.data) {
-							this.$router.push('./MemberChange');
+							switch (e) {
+								case 0:
+									this.$router.push('./MemberChange');
+									break;
+								case 1:
+									this.$router.push('./MemberExit');
+									break;
+							}
 						}
 					})
 					.catch((response) => {

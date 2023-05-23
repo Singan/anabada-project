@@ -20,13 +20,11 @@
 			</div>
 		</div>
 
-		<form>
+		<form id="form">
 			<div class="changeImg">
 				<div class="change">
 					<div class="changeImgText">프로필 이미지 변경</div>
-					<div class="imagePreView">
-						<img id="img" />
-					</div>
+					<img id="img" :src="this.myData.memberImage" />
 					<label class="imageChangeSelect" for="productImages">
 						이미지 등록
 						<input
@@ -59,7 +57,13 @@
 						placeholder="새 비밀번호를 입력하세요"
 						v-model="newPw"
 					/>
-					<input id="newPasswordConfirm" type="password" class="pwBox" v-model="newPw2" />
+					<input
+						id="newPasswordConfirm"
+						type="password"
+						class="pwBox"
+						v-model="newPasswordConfirm"
+						placeholder="비밀번호 확인"
+					/>
 				</div>
 			</div>
 
@@ -121,39 +125,32 @@
 		methods: {
 			onInputImage(e) {
 				this.productImages = e.target.files[0];
-				console.log(this.productImages);
 
 				//이미지 미리보기
 				const image = document.getElementById('img');
 				const reader = new FileReader();
 				reader.onload = (e) => {
 					image.src = e.target.result;
-					image.width = 120;
-					image.height = 120;
-					document.querySelector('.imagePreView').style.backgroundColor = 'white';
 				};
 				reader.readAsDataURL(this.productImages);
+				console.log(this.productImages);
 			},
-			submitForm() {
+			async submitForm() {
 				let form = new FormData();
 				form.append('updatePw', this.newPw);
 				form.append('confirmPw', this.newPasswordConfirm);
 				form.append('updateAddr', this.newAddr);
 				form.append('updateDetailAddr', this.newDt);
 				form.append('updateWishAddr', this.newWish);
-				form.append('updateImage', this.productImages);
 				form.append('orginalPw', this.oldPw);
 				if (this.productImages != null) {
 					console.log(this.productImages);
 					form.append('updateImage', this.productImages);
 				}
-				axios
-					.put('/member/update', form, {
-						header: { 'Content-Type': 'multipart/form-data' },
-					})
-					.then((response) => {
-						console.log(response);
-					});
+				const response = await axios.put('/member/update', form, {
+					header: { 'Content-Type': 'multipart/form-data' },
+				});
+				this.$store.commit('setMember', response.data);
 			},
 			search() {
 				//@click을 사용할 때 함수는 이렇게 작성해야 한다.
@@ -191,8 +188,11 @@
 			},
 			getMypage() {
 				axios.get('/member/idNameImage').then((res) => {
+					console.log(res);
 					this.myData = res.data;
-					console.log(this.myData);
+					this.newDt = this.myData.memberDetailAddr;
+					this.newAddr = this.myData.memberAddr;
+					this.newWish = this.myData.memberWishAddr;
 				});
 			},
 		},
@@ -224,7 +224,10 @@
 		font: 700 28px 'Roboto', sans-serif;
 		margin-top: 40px;
 	}
-
+	.changeHeader {
+		display: flex;
+		flex-direction: column;
+	}
 	.changeId .changeName .changePw .changeAddrText .changeImgText {
 		color: #000000;
 		font: 400 16px 'Roboto', sans-serif;
@@ -273,10 +276,6 @@
 	}
 
 	.imagePreView {
-		background: #d9d9d9;
-		width: 120px;
-		height: 120px;
-		margin-top: 10px;
 	}
 
 	.imageChangeSelect {
@@ -390,5 +389,11 @@
 		cursor: pointer;
 		margin-top: 10px;
 		margin-bottom: 90px;
+	}
+	#img {
+		background: #d9d9d9;
+		width: 120px;
+		height: 120px;
+		margin-top: 10px;
 	}
 </style>
