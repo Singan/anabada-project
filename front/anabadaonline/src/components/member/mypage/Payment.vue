@@ -36,9 +36,7 @@
 		<div class="paymentBottomContianer">
 			<div class="paymentBottom">
 				<button class="chargeButton" @click="payForm">충전 하기</button>
-				<button class="exitButton" onclick="history.go(-1)">
-					취소 하기
-				</button>
+				<button class="exitButton" onclick="history.go(-1)">취소 하기</button>
 			</div>
 		</div>
 	</div>
@@ -192,7 +190,7 @@
 
 	.won {
 		color: #0075ff;
-		font: 700 22px 'Roboto', sans-serif;
+		font: 700 20px 'Roboto', sans-serif;
 		text-align: right;
 		margin: 0 auto;
 	}
