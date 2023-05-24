@@ -66,15 +66,15 @@
 <style scoped>
 	.Header,
 	.Header > * {
-		margin-right: 50px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		margin:0 auto;
 	}
 
 	.Header {
 		background: #ffffff;
-		width: 100%;
+		width: 80%;
 		height: 115px;
 		display: flex;
 		justify-content: center;
