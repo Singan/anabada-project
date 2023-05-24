@@ -58,7 +58,7 @@
 			},
 			logout() {
 				this.$emit('logout');
-				this.$router.push("/MainPage")
+				this.$router.push("/")
 			},
 		},
 	};
