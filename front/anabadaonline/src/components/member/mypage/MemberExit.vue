@@ -2,7 +2,7 @@
 	<div class="title">회원 탈퇴</div>
 
 	<div class="flex">
-		<div class="explan">회원 탈퇴를 위해 비밀번호를 입력해주세요</div>
+		<div class="explan">회원 탈퇴를 위해 다시 한번 비밀번호를 입력해주세요</div>
 
 		<div class="pwBox">
 			<form class="pw-re">
@@ -42,9 +42,11 @@
 							axios
 								.delete('/member/member/exist')
 								.then((response) => {
+									this.$token.remove();
+									this.isToken = this.$token.is();
+									this.$store.commit('removeMember');
 									alert('회원 탈퇴되었습니다.');
-
-									// this.$router.push('./');
+									this.$router.push('./');
 								})
 								.catch((error) => {
 									console.error(error);
