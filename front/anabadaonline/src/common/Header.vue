@@ -14,6 +14,10 @@
 		/>
 
 		<button class="SearchButton" type="submit">검색하기</button>
+		<div class="userInfo">
+			<img class="userImage" />
+			<div class="userName">userName</div>
+		</div>
 		<router-link to="/login" class="LoginBox" v-if="!isToken"> 로그인 </router-link>
 
 		<div v-if="isToken">
@@ -126,6 +130,26 @@
 		text-align: center;
 		font: 700 18px 'Roboto', sans-serif;
 		cursor: pointer;
+	}
+
+	.userInfo {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.userImage {
+		border-radius: 50%;
+		border-style: solid;
+		border-color: #000000;
+		border-width: 1px;
+		width: 40px;
+		height: 40px;
+	}
+
+	.userName {
+		font: 500 16px 'Roboto', sans-serif;
+		margin-left: 10px;
 	}
 
 	.SearchText1 {
