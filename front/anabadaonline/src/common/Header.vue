@@ -54,6 +54,7 @@
 			},
 			logout() {
 				this.$emit('logout');
+				this.router.push("/MainPage")
 			},
 		},
 	};
@@ -62,6 +63,9 @@
 	.Header,
 	.Header > * {
 		margin-right: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.Header {

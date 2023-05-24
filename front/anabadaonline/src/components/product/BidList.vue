@@ -7,7 +7,7 @@
 			<div class="bidTime">{{ bid.bidTime }}</div>
 		</div>
 
-		<div class="bidBox" v-if="memberNo != myMemberNo">
+		<div class="bidBox" v-if="memberNo != myMemberNo && token.is()">
 			<input
 				class="textSize"
 				type="number"

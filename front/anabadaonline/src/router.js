@@ -1,6 +1,14 @@
 // 라우트 정보
 // 라우팅을 해주면서 #을 제거해주면서, path에 입력한 경로에 매핑된 컴포넌트를 보여준다.
-
+import token from './common/token';
+const requireAuth = () => (to, from, next) => {
+	if (token.is()) {
+	  return next();
+	}
+	next('/login');
+  };
+  
+  
 const routes = [
 	{
 		path: '/',
@@ -16,6 +24,7 @@ const routes = [
 		path: '/mypage',
 		name: 'MyPage',
 		component: () => import('@/components/member/mypage/MyPage.vue'),
+		beforeEnter:requireAuth()
 	},
 	{
 		path: '/product',
