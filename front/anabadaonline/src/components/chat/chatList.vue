@@ -12,7 +12,7 @@
 						<div class="chat_td">
 							<!--Email & Preview-->
 							<div class="email">
-								<div class="emailText" @click="newWindow()">kotkkio@gmail.com</div>
+								<a class="emailText" target="chatting">kotkkio@gmail.com</a>
 							</div>
 							<div class="chat_preview">안녕하세요~</div>
 						</div>
@@ -39,11 +39,7 @@
 				myData: '',
 			};
 		},
-		methods: {
-			newWindow() {
-				window.open('chat.html', 'chat', 'width=500, height=600, top 50, left=50');
-			},
-		},
+		methods: {},
 	};
 </script>
 <style scoped>
