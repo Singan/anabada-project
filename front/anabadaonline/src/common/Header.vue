@@ -2,7 +2,7 @@
 	<div class="Header">
 		<router-link class="Logo" to="/">아나바다</router-link>
 
-		<router-link to="/auction" class="AuctionButton"> 경매 </router-link>
+		<router-link to="/auction?category=1" class="AuctionButton"> 경매 </router-link>
 		<router-link to="/chat" class="ChatButton"> 채팅 </router-link>
 		<input
 			class="SearchBox"
@@ -58,7 +58,7 @@
 			},
 			logout() {
 				this.$emit('logout');
-				this.$router.push("/")
+				this.$router.push('/');
 			},
 		},
 	};
@@ -69,7 +69,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin:0 auto;
+		margin: 0 auto;
 	}
 
 	.Header {

@@ -110,6 +110,7 @@ public class ProductService {
                         .bidPrice(s.getBidPrice())
                         .productPrice(s.getProductPrice())
                         .productNo(s.getProductNo())
+                        .isBidComplete(s.getProductIsBidComplete())
                         .build()
                 ).collect(Collectors.toList());
         return new ResultList<>(productDtoList);

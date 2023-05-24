@@ -3,8 +3,8 @@
 		<div class="deal">거래 내역</div>
 
 		<div class="historyText">
-			<div class="purchaseText" :class="{ blue: check }" @click="toggle">구매 내역</div>
-			<div class="salesText" :class="{ blue: !check }" @click="toggle">판매 내역</div>
+			<div class="purchaseText" :class="{ blue: check }" @click="check = true">구매 내역</div>
+			<div class="salesText" :class="{ blue: !check }" @click="check = false">판매 내역</div>
 		</div>
 		<div>
 			<select class="sortList">
@@ -17,10 +17,12 @@
 			<div class="productDetail">
 				<div class="detailND">{{ item.productName }}</div>
 				<div class="detailPrice">등록 가격 :{{ item.productPrice }}</div>
-				<div class="detailPrice">상품 등록 시간{{ item.createDateTime }}</div>
-				<div class="detailPrice">경매 낙찰자 {{ item.memberName }}</div>
-				<div class="detailPrice">경매 낙찰 가격{{ item.bidPrice }}</div>
-				<div class="detailPrice">경매 낙찰 시간{{ item.bidTime }}</div>
+				<div class="detailPrice">상품 등록 시간 : {{ item.createDateTime }}</div>
+				<template v-if="item.isBidComplete">
+					<div class="detailPrice">경매 낙찰자 : {{ item.memberName }}</div>
+					<div class="detailPrice">경매 낙찰 가격 : {{ item.bidPrice }}</div>
+					<div class="detailPrice">경매 낙찰 시간 : {{ item.bidTime }}</div>
+				</template>
 			</div>
 		</div>
 	</div>
@@ -59,7 +61,6 @@
 	.form {
 		background: #ffffff;
 		width: 800px;
-		height: 800px;
 		display: flex;
 		flex-direction: column;
 		margin: 80px auto 0;
