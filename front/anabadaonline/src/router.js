@@ -102,6 +102,11 @@ const routes = [
 		name: '/chatList',
 		component: () => import('@/components/chat/chatList.vue'),
 	},
+	{
+		path: '/chat',
+		name: '/chat',
+		component: () => import('@/components/chat/chat.vue'),
+	},
 ];
 
 export default routes;
