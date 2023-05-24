@@ -32,7 +32,7 @@
 				<router-link to="/salesDt" class="sellListButton">판매 내역</router-link>
 				<router-link to="./purchaseDt" class="buyListButton">구매 내역</router-link>
 				<router-link to="./Product" class="productRegButton">상품등록</router-link>
-				<router-link to="./Jjim" class="wishListButton">찜 목록</router-link>
+				<router-link to="./Jjim" class="wishListButton">찜</router-link>
 				<div class="line-1"></div>
 			</div>
 		</div>

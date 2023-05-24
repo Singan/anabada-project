@@ -2,7 +2,7 @@
 	<div class="title">회원 탈퇴</div>
 
 	<div class="flex">
-		<div class="explan">회원 탈퇴를 위해 비밀번호를 입력해주세요</div>
+		<div class="explan">회원 탈퇴를 위해 다시 한번 비밀번호를 입력해주세요</div>
 
 		<div class="pwBox">
 			<form class="pw-re">
@@ -29,35 +29,38 @@
 		data() {
 			// quickfix to have components available to pass as props
 			return {
-				password: '',
 				inputPassword: '',
 			};
 		},
 		methods: {
-			password() {
-				axios.get('/member').then((response) => {
-					console.log(response.data.memberPw);
-					this.password = response.data.memberPw;
-				});
-			},
 			memberDelete() {
-				axios.post('/member', { password: this.inputPassword }).then((response) => {
-					// console.log(this.inputPassword);
-					if (response.data.isValid) {
-						axios
-							.delete('/member')
-							.then((response) => {
-								alert('회원 탈퇴되었습니다.');
-								this.$router.push('./');
-							})
-							.catch((error) => {
-								console.error(error);
-								alert('회원 탈퇴에 실패하였습니다. 다시 시도해주세요.');
-							});
-					} else {
-						alert('비밀번호가 유효하지 않습니다.');
-					}
-				});
+				axios
+					.post('/mypage/confirm', { confirmPassword: this.inputPassword })
+					.then((response) => {
+						console.log(response.data.isValid);
+						if (response.data) {
+							axios
+								.delete('/member/member/exist')
+								.then((response) => {
+									this.$token.remove();
+									this.isToken = this.$token.is();
+									this.$store.commit('removeMember');
+									alert('회원 탈퇴되었습니다.');
+									this.$router.push('./');
+								})
+								.catch((error) => {
+									console.error(error);
+									alert('회원 탈퇴에 실패하였습니다. 다시 시도해주세요.');
+								});
+						} else {
+							alert('비밀번호가 유효하지 않습니다.');
+						}
+					})
+					.catch((error) => {
+						// 비밀번호 유효성 검사 실패 처리
+						console.error(error);
+						alert('비밀번호 유효성 검사에 실패하였습니다. 다시 시도해주세요.');
+					});
 			},
 		},
 	};
