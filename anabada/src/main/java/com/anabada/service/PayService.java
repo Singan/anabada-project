@@ -16,7 +16,7 @@ public class PayService {
 
     @Transactional
     public void addMoney(MemberDetailDTO memberDetailDTO, PayDto payDto) {
-        Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
+        Member member = memberRepository.findByMemberIdAndMemberExistFalse(memberDetailDTO.getUsername());
         member.updateMemberMoney(payDto);
     }
 }
