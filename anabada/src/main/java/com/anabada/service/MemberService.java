@@ -41,7 +41,7 @@ public class MemberService implements UserDetailsService {
 
 
     public Member findByMemberId(String id) {
-        Member member = memberRepository.findByMemberId(id);
+        Member member = memberRepository.findByMemberIdAndMemberExistFalse(id);
         if (member == null) {
             throw new RuntimeException("없는 회원입니다.");
         }
@@ -97,7 +97,7 @@ public class MemberService implements UserDetailsService {
     }
 
     public MyPageFindDto myPage(MemberDetailDTO principal) {
-        Member member = memberRepository.findByMemberId(principal.getUsername());
+        Member member = memberRepository.findByMemberIdAndMemberExistFalse(principal.getUsername());
         return new MyPageFindDto(member, s3EndPoint);
     }
 

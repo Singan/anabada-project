@@ -7,7 +7,7 @@
 			<div class="bidTime">{{ bid.bidTime }}</div>
 		</div>
 
-		<div class="bidBox" v-if="memberNo != myMemberNo && token.is()">
+		<div class="bidBox" v-if=" $token.is()">
 			<input
 				class="textSize"
 				type="number"
@@ -80,6 +80,7 @@
 		},
 		created() {
 			this.auctionList();
+			console.log(this.$token.is())
 
 			this.sub = this.socket.subscribe('/product/' + this.productNo, this.recevieFunc);
 		},

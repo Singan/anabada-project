@@ -12,7 +12,9 @@ import java.util.Optional;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member,Long> {
-    Member findByMemberId(String id);
+
+
+    Member findByMemberIdAndMemberExistFalse(String id);
 
     boolean existsMemberByMemberId(String id);
 
