@@ -107,7 +107,7 @@ public class MemberService implements UserDetailsService {
     }
 
     public boolean confirmPassword(MemberDetailDTO memberDetailDTO, MypageConfirmDto mypageConfirmDto) {
-        Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
+        Member member = memberRepository.findByMemberIdAndMemberExistFalse(memberDetailDTO.getUsername());
         String confirmPw = mypageConfirmDto.getConfirmPassword();
         if (passwordEncoder.matches(confirmPw, member.getMemberPw())) {
             return true;
@@ -119,7 +119,7 @@ public class MemberService implements UserDetailsService {
     @Transactional
     public MemberUpdateFindDto memberUpdate(MemberDetailDTO memberDetailDTO, MemberUpdateDto memberUpdateDto) {
         MultipartFile imageFile = memberUpdateDto.getUpdateImage();
-        Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
+        Member member = memberRepository.findByMemberIdAndMemberExistFalse(memberDetailDTO.getUsername());
 
         // 새로 입력한 비밀번호가 같은지 비교하여 같다면
         if (memberUpdateDto.getUpdatePw().equals(memberUpdateDto.getConfirmPw())) {
@@ -141,13 +141,13 @@ public class MemberService implements UserDetailsService {
 
     // 회원 정보 수정 페이지에 멤버 아이디, 이름, 이미지 보여주기
     public ShowUpdateMemberDto showMemberInfo(MemberDetailDTO memberDetailDTO) {
-        Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
+        Member member = memberRepository.findByMemberIdAndMemberExistFalse(memberDetailDTO.getUsername());
         return new ShowUpdateMemberDto(member, s3EndPoint);
     }
 
     @Transactional
     public void deleteMember(MemberDetailDTO memberDetailDTO) {
-        Member member = memberRepository.findByMemberId(memberDetailDTO.getUsername());
+        Member member = memberRepository.findByMemberIdAndMemberExistFalse(memberDetailDTO.getUsername());
         member.memberExistUpdate();
     }
 }
