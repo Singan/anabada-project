@@ -74,7 +74,6 @@
 			await this.login();
 			this.isLoad = true;
 			this.isSocket = socket.connected();
-			// console.log(this.mySocketList);
 		},
 	};
 </script>
