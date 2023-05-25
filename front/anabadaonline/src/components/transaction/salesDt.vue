@@ -2,27 +2,29 @@
 	<div class="form">
 		<div class="deal">거래 내역</div>
 
-		<div class="historyText">
-			<div class="purchaseText" :class="{ blue: check }" @click="check = true">구매 내역</div>
-			<div class="salesText" :class="{ blue: !check }" @click="check = false">판매 내역</div>
+		<div class="historyBox">
+			<div class="historyText" :class="{ blue: check == 'purchase' }" @click="check = 'purchase'">구매 내역</div>
+			<div class="historyText" :class="{ blue: check == 'sales' }" @click="check = 'sales'">판매 내역</div>
+			<div class="historyText" :class="{ blue: check == 'bid' }" @click="check = 'bid'">입찰 내역</div>
 		</div>
-		<div>
+
+		<div class="listReapeat">
 			<select class="sortList">
 				<option>가격순</option>
 				<option>거래순</option>
 			</select>
-		</div>
-		<div class="productInfo" v-for="item in salesList">
-			<img class="productPicture" :src="item.productThumbnail" />
-			<div class="productDetail">
-				<div class="detailND">{{ item.productName }}</div>
-				<div class="detailPrice">등록 가격 :{{ item.productPrice }}</div>
-				<div class="detailPrice">상품 등록 시간 : {{ item.createDateTime }}</div>
-				<template v-if="item.isBidComplete">
-					<div class="detailPrice">경매 낙찰자 : {{ item.memberName }}</div>
-					<div class="detailPrice">경매 낙찰 가격 : {{ item.bidPrice }}</div>
-					<div class="detailPrice">경매 낙찰 시간 : {{ item.bidTime }}</div>
-				</template>
+			<div class="productInfo" v-for="item in salesList">
+				<img class="productPicture" :src="item.productThumbnail" />
+				<div class="productDetail">
+					<div class="detailND">{{ item.productName }}</div>
+					<div class="detailPrice">등록 가격 :{{ item.productPrice }}</div>
+					<div class="detailPrice">상품 등록 시간 : {{ item.createDateTime }}</div>
+					<template v-if="item.isBidComplete">
+						<div class="detailPrice">경매 낙찰자 : {{ item.memberName }}</div>
+						<div class="detailPrice">경매 낙찰 가격 : {{ item.bidPrice }}</div>
+						<div class="detailPrice">경매 낙찰 시간 : {{ item.bidTime }}</div>
+					</template>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -37,7 +39,7 @@
 		data() {
 			// quickfix to have components available to pass as props
 			return {
-				check: false,
+				check: 'sales',
 				salesList: [],
 			};
 		},
@@ -72,25 +74,31 @@
 		padding: 30px;
 	}
 
+	.listReapeat {
+		width: 100%;
+	}
+
+	.listReapeat > * {
+		margin-bottom: 60px;
+	}
+
 	.deal {
 		color: #000000;
 		font: 700 24px 'Roboto', sans-serif;
 	}
 
-	.historyText {
+	.historyBox {
 		display: flex;
 		gap: 150px;
 		justify-content: center;
 	}
 
-	.purchaseText {
+	.historyText {
 		font: 700 24px 'Roboto', sans-serif;
 	}
+
 	.blue {
 		color: #0075ff;
-	}
-	.salesText {
-		font: 700 24px 'Roboto', sans-serif;
 	}
 
 	.productPicture {
@@ -117,11 +125,11 @@
 	.detailPrice {
 		color: #000000;
 		font: 700 16px 'Roboto', sans-serif;
-		margin-bottom: 10px;
+		margin-bottom: 5px;
 	}
 
 	.sortList {
-		margin-left: 150px;
+		margin-left: 600px;
 		font-size: 16px;
 		border-style: solid;
 		text-align: center;
