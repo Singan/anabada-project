@@ -79,9 +79,6 @@
 			// 		alert('검색어를 입력해주세요!'); //검색어를 입력하지 않은 경우
 			// 	}
 			// },
-			// goProduct() {
-			// 	this.$router.push('./product');
-			// },
 		},
 
 		created() {

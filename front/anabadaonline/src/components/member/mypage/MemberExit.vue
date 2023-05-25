@@ -89,7 +89,7 @@
 		color: #000000;
 		text-align: left;
 		font: 400 16px 'Roboto', sans-serif;
-		width: 315px;
+		width: 500px;
 		height: 30px;
 		align-items: center;
 		justify-content: flex-start;
