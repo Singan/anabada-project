@@ -3,12 +3,11 @@
 import token from './common/token';
 const requireAuth = () => (to, from, next) => {
 	if (token.is()) {
-	  return next();
+		return next();
 	}
 	next('/login');
-  };
-  
-  
+};
+
 const routes = [
 	{
 		path: '/',
@@ -24,12 +23,13 @@ const routes = [
 		path: '/mypage',
 		name: 'MyPage',
 		component: () => import('@/components/member/mypage/MyPage.vue'),
-		beforeEnter:requireAuth()
+		beforeEnter: requireAuth(),
 	},
 	{
 		path: '/product',
 		name: 'Product',
 		component: () => import('@/components/product/Product.vue'),
+		beforeEnter: requireAuth(),
 	},
 	{
 		path: '/auction',
@@ -40,16 +40,19 @@ const routes = [
 		path: '/chat',
 		name: 'Chat',
 		component: () => import('@/components/chat/chat.vue'),
+		beforeEnter: requireAuth(),
 	},
 	{
 		path: '/memberExit',
 		name: 'MemberExit',
 		component: () => import('@/components/member/mypage/MemberExit.vue'),
+		beforeEnter: requireAuth(),
 	},
 	{
 		path: '/jjim',
 		name: 'Jjim',
 		component: () => import('@/components/member/mypage/Jjim.vue'),
+		beforeEnter: requireAuth(),
 	},
 
 	{
@@ -61,29 +64,34 @@ const routes = [
 		path: '/memberChange',
 		name: 'MemberChange',
 		component: () => import('@/components/member/mypage/MemberChange.vue'),
+		beforeEnter: requireAuth(),
 	},
 
 	{
 		path: '/successfulBid',
 		name: 'SuccessfulBid',
 		component: () => import('@/components/transaction/SuccessfulBid.vue'),
+		beforeEnter: requireAuth(),
 	},
 
 	{
 		path: '/acountRegister',
 		name: 'AcountRegister',
 		component: () => import('@/components/member/mypage/AcountRegister.vue'),
+		beforeEnter: requireAuth(),
 	},
 	{
 		path: '/purchaseDt',
 		name: 'purchaseDt',
 		component: () => import('@/components/transaction/purchaseDt.vue'),
+		beforeEnter: requireAuth(),
 	},
 
 	{
 		path: '/salesDt',
 		name: 'salesDt',
 		component: () => import('@/components/transaction/salesDt.vue'),
+		beforeEnter: requireAuth(),
 	},
 	{
 		path: '/JoinMember',
@@ -105,16 +113,19 @@ const routes = [
 		path: '/Payment',
 		name: '/Payment',
 		component: () => import('@/components/member/mypage/Payment.vue'),
+		beforeEnter: requireAuth(),
 	},
 	{
 		path: '/chatList',
 		name: '/chatList',
 		component: () => import('@/components/chat/chatList.vue'),
+		beforeEnter: requireAuth(),
 	},
 	{
 		path: '/chat',
 		name: '/chat',
 		component: () => import('@/components/chat/chat.vue'),
+		beforeEnter: requireAuth(),
 	},
 ];
 

@@ -68,9 +68,6 @@
 	};
 </script>
 <style scoped>
-	.select {
-		background-color: greenyellow;
-	}
 	.productFlex {
 		margin: auto;
 		display: grid;
@@ -93,7 +90,6 @@
 	.titleBox {
 		color: #010101;
 		text-align: center;
-		background-color: skyblue;
 		font: 600 18px 'Roboto', sans-serif;
 		margin: 50px auto;
 		width: 60%;
@@ -103,13 +99,17 @@
 		justify-content: center;
 	}
 	.title {
-		border: 1px black solid;
+		background-color: skyblue;
+		border: 0.001px black solid;
 		width: 100%;
 		height: calc(100% - 1px);
 		justify-content: center;
 		align-items: center;
 		display: flex;
-		border-radius: 5px;
+		border-radius: 30px;
+	}
+	.select {
+		background-color: greenyellow;
 	}
 	.productImg {
 		background: #d9d9d9;

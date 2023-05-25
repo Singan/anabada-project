@@ -70,9 +70,6 @@ public class JwtTokenProvider{
         try {
             Claims claims = getClaimsFormToken(token);
 
-            log.info("expireTime :" + claims.getExpiration());
-            log.info("userId :" + claims.get("userId"));
-            log.info("userName :" + claims.get("userName"));
 
             return true;
         } catch (ExpiredJwtException exception) {
@@ -94,7 +91,6 @@ public class JwtTokenProvider{
      * @return String
      */
     public String getTokenFromHeader(String header) {
-        System.out.println("???");
         return header.split(".")[1];
     }
 
@@ -134,10 +130,6 @@ public class JwtTokenProvider{
     private Map<String, Object> createClaims(Member Member) {
         // 공개 클레임에 사용자의 이름과 이메일을 설정하여 정보를 조회할 수 있다.
         Map<String, Object> claims = new HashMap<>();
-
-        log.info("userId :" + Member.getMemberId());
-        log.info("userNm :" + Member.getMemberName());
-
         claims.put("userId", Member.getMemberId());
         claims.put("userNo", Member.getMemberNo());
         claims.put("userName", Member.getMemberName());

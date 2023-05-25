@@ -3,15 +3,10 @@ package com.anabada.controller;
 import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.MypageConfirmDto;
 import com.anabada.dto.request_dto.PayDto;
-import com.anabada.dto.response_dto.FindBiddingDetailDto;
-import com.anabada.dto.response_dto.MyPageFindDto;
-import com.anabada.dto.response_dto.ResultList;
-import com.anabada.dto.response_dto.SalesListSelectDto;
-import com.anabada.service.BidService;
-import com.anabada.service.MemberService;
-import com.anabada.service.PayService;
-import com.anabada.service.ProductService;
+import com.anabada.dto.response_dto.*;
+import com.anabada.service.*;
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +22,8 @@ public class MyPageController {
     private final PayService payService;
     private final ProductService productService;
     private final BidService bidService;
+    private final MyPageService myPageService;
+
     @GetMapping
     public MyPageFindDto myPageFindDto(@AuthenticationPrincipal MemberDetailDTO principal) {
         return memberService.myPage(principal);
@@ -38,7 +35,7 @@ public class MyPageController {
     }
 
     @PostMapping("/confirm")
-    public boolean mypageConfirm(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO,@RequestBody MypageConfirmDto mypageConfirmDto) {
+    public boolean mypageConfirm(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO, @RequestBody MypageConfirmDto mypageConfirmDto) {
         return memberService.confirmPassword(memberDetailDTO, mypageConfirmDto);
     }
 
@@ -53,8 +50,10 @@ public class MyPageController {
     public ResultList<List<FindBiddingDetailDto>> findBiddingDetail(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
         return bidService.findBiddingDetail(memberDetailDTO);
     }
-    @GetMapping("/")
-    public void findBuyList(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO){
 
+    @GetMapping("/buys")
+    @Operation(description = "내 구매내역")
+    public ResultList<List<MyBuyDto>> findBuyList(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
+        return myPageService.myBuyList(memberDetailDTO);
     }
 }
