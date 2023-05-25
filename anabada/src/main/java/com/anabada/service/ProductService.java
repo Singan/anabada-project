@@ -84,10 +84,10 @@ public class ProductService {
     }
 
     // 카테고리별 product 리스트
-    public ArrayList<FindProductToCategoryDto> findProductToCategory(Long categoryNo) {
+    public ArrayList<FindProductToCategoryDto> findProductToCategory(Long categoryNo,Pageable pageable) {
         ArrayList<FindProductToCategoryDto> findProductToCategoryDtoArrayList = new ArrayList<>();
         System.out.println("findProductToCategory -- 시작");
-        List<Product> productByCategoryList = productRepository.findProductByCategory(categoryNo);
+        List<Product> productByCategoryList = productRepository.findProductByCategory(categoryNo,pageable);
         System.out.println("findProductToCategory -- 쿼리실행");
         productByCategoryList.forEach(product -> {
             FindProductToCategoryDto findProductToCategoryDto = new FindProductToCategoryDto(product, s3EndPoint);
@@ -109,6 +109,7 @@ public class ProductService {
                         .memberName(s.getMemberName())
                         .bidPrice(s.getBidPrice())
                         .productPrice(s.getProductPrice())
+                        .productName(s.getProductName())
                         .productNo(s.getProductNo())
                         .isBidComplete(s.getProductIsBidComplete())
                         .build()

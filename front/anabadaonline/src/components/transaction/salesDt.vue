@@ -45,7 +45,6 @@
 		},
 		methods: {
 			toggle() {
-				console.log('되는거 맞아?');
 				this.check = true;
 			},
 			async productSalesList() {
