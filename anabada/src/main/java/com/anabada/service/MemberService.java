@@ -121,23 +121,58 @@ public class MemberService implements UserDetailsService {
         MultipartFile imageFile = memberUpdateDto.getUpdateImage();
         Member member = memberRepository.findByMemberIdAndMemberExistFalse(memberDetailDTO.getUsername());
 
-        // 새로 입력한 비밀번호가 같은지 비교하여 같다면
-        if (memberUpdateDto.getUpdatePw().equals(memberUpdateDto.getConfirmPw())) {
-            if ((imageFile != null) && !imageFile.isEmpty()) {
-                memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));  // 인코딩된 새로운 비밀번호
-                String updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage(), "member");  // 변경된 이미지파일
-                member.updateMember(memberUpdateDto, updateImagePath);
-                return new MemberUpdateFindDto(member, updateImagePath);
+        String updatePw = memberUpdateDto.getUpdatePw();  // 변경된 비밀번호
+        String confirmPw = memberUpdateDto.getConfirmPw();  // 변경된 비밀번호 확인
+        String updateAddr = memberUpdateDto.getUpdateAddr();  // 변경된 주소
+        String detailAddr = memberUpdateDto.getUpdateDetailAddr();  // 변경된 상세 주소
+        String wishAddr = memberUpdateDto.getUpdateWishAddr();  // 변경된 거래 희망지
+
+        // 기존의 비밀 번호가 새로 입력받은 비밀 번호랑 같은지 확인
+        if (passwordEncoder.matches(memberUpdateDto.getUpdatePw(), member.getMemberPw())) {
+            throw new RuntimeException("같은 비밀번호로 변경할 수 없습니다.");
+        }
+
+        if (updateAddr.equals("") || detailAddr.equals("") || wishAddr.equals("")) {
+            throw new RuntimeException("주소를 전부 입력하세요");
+        }
+
+        // 비밀번호를 두 칸을 다 입력할 때
+        if (!updatePw.equals("") && !confirmPw.equals("")) {
+            if (memberUpdateDto.getUpdatePw().equals(memberUpdateDto.getConfirmPw())) {  // 입력한 비밀번호가 전부 같다면
+                if ((imageFile != null) && !imageFile.isEmpty()) {  // 이미지 파일이 있다면
+                    memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
+                    String updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage(), "member");  // 변경된 이미지파일
+                    member.updateMember(memberUpdateDto, updateImagePath);
+                    return new MemberUpdateFindDto(member, updateImagePath);
+                } else {
+                    memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
+                    member.updateMember(memberUpdateDto);
+                    return new MemberUpdateFindDto(member, member.getMemberImage());
+                }
             } else {
-                memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
-                String basicImagePath = "member/basic/user.png";
-                member.updateMember(memberUpdateDto, basicImagePath);
-                return new MemberUpdateFindDto(member, basicImagePath);
+                throw new RuntimeException("비밀번호가 같은지 확인해주세요");
             }
         } else {
-            throw new RuntimeException("새로운 비밀번호가 일치하지 않습니다.");
+            throw new RuntimeException("새 비밀번호를 입력해주세요");
         }
     }
+
+//        if (memberUpdateDto.getUpdatePw().equals(memberUpdateDto.getConfirmPw())) {
+//                if ((imageFile != null) && !imageFile.isEmpty()) {  // 이미지 파일이 있다면
+//                memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));  // 인코딩된 새로운 비밀번호
+//                String updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage(), "member");  // 변경된 이미지파일
+//                member.updateMember(memberUpdateDto, updateImagePath);
+//                return new MemberUpdateFindDto(member, updateImagePath);
+//            } else {
+//                memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
+//                member.updateMember(memberUpdateDto);
+//                return new MemberUpdateFindDto(member, member.getMemberImage());
+//            }
+//        } else {
+//            throw new RuntimeException("새로운 비밀번호가 일치하지 않습니다.");
+//        }
+//    }
+
 
     // 회원 정보 수정 페이지에 멤버 아이디, 이름, 이미지 보여주기
     public ShowUpdateMemberDto showMemberInfo(MemberDetailDTO memberDetailDTO) {

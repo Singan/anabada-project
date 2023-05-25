@@ -44,13 +44,6 @@
 					<div class="changePw">비밀번호 변경</div>
 
 					<input
-						id="beforePw"
-						type="password"
-						class="pwBox"
-						v-model="oldPw"
-						placeholder="기존 비밀번호를 입력하세요"
-					/>
-					<input
 						id="newPassword"
 						type="password"
 						class="pwBox"
@@ -137,6 +130,7 @@
 			},
 			async submitForm() {
 				let form = new FormData();
+				form.append('oldPw', this.oldPw);
 				form.append('updatePw', this.newPw);
 				form.append('confirmPw', this.newPasswordConfirm);
 				form.append('updateAddr', this.newAddr);

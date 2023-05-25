@@ -1,5 +1,6 @@
 package com.anabada.dto.request_dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
