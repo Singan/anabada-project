@@ -157,23 +157,6 @@ public class MemberService implements UserDetailsService {
         }
     }
 
-//        if (memberUpdateDto.getUpdatePw().equals(memberUpdateDto.getConfirmPw())) {
-//                if ((imageFile != null) && !imageFile.isEmpty()) {  // 이미지 파일이 있다면
-//                memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));  // 인코딩된 새로운 비밀번호
-//                String updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage(), "member");  // 변경된 이미지파일
-//                member.updateMember(memberUpdateDto, updateImagePath);
-//                return new MemberUpdateFindDto(member, updateImagePath);
-//            } else {
-//                memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
-//                member.updateMember(memberUpdateDto);
-//                return new MemberUpdateFindDto(member, member.getMemberImage());
-//            }
-//        } else {
-//            throw new RuntimeException("새로운 비밀번호가 일치하지 않습니다.");
-//        }
-//    }
-
-
     // 회원 정보 수정 페이지에 멤버 아이디, 이름, 이미지 보여주기
     public ShowUpdateMemberDto showMemberInfo(MemberDetailDTO memberDetailDTO) {
         Member member = memberRepository.findByMemberIdAndMemberExistFalse(memberDetailDTO.getUsername());
