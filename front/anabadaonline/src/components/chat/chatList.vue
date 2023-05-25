@@ -134,8 +134,8 @@
 	}
 	.chatting {
 		margin-top: 2rem;
-		width: 40em;
-		height: 50em;
-		border: solid 1px #0075ff;
+		width: 0em;
+		height: 0em;
+		border: solid 0px #0075ff;
 	}
 </style>
