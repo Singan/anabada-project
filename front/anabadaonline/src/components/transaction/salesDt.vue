@@ -94,6 +94,7 @@
 
 	.historyText {
 		font: 700 24px 'Roboto', sans-serif;
+		cursor: pointer;
 	}
 
 	.blue {
