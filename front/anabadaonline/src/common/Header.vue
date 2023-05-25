@@ -14,15 +14,15 @@
 		/>
 
 		<button class="SearchButton" type="submit">검색하기</button>
-		<div class="userInfo">
-			<img class="userImage" :src="member.image" />
-			<div class="userName">userName</div>
-		</div>
+
 		<router-link to="/login" class="LoginBox" v-if="!isToken"> 로그인 </router-link>
 
 		<div v-if="isToken">
-			<router-link class="mypage" to="/mypage">마이페이지</router-link>
-			<div @click="logout">로그아웃</div>
+			<div class="userInfo">
+				<img class="userImage" />
+				<router-link class="userName" to="/mypage">userName</router-link>
+				<div class="LogoutBox" @click="logout">로그아웃</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -83,7 +83,7 @@
 
 	.Header {
 		background: #ffffff;
-		width: 80%;
+		width: 70%;
 		height: 115px;
 		display: flex;
 		justify-content: center;
@@ -145,6 +145,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		margin-right: 10px;
 	}
 
 	.userImage {
@@ -168,6 +169,19 @@
 
 	.LoginBox {
 		background: #0075ff;
+		margin-left: 10px;
+		border-radius: 5px;
+		width: 80px;
+		height: 40px;
+		color: #ffffff;
+		text-align: center;
+		font: 700 18px 'Roboto', sans-serif;
+		line-height: 40px;
+		cursor: pointer;
+	}
+	.LogoutBox {
+		background: #0075ff;
+		margin-left: 35px;
 		border-radius: 5px;
 		width: 80px;
 		height: 40px;
