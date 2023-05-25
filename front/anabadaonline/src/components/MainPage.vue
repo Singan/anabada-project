@@ -27,6 +27,7 @@
 	<div class="content3 productFlex">
 		<div class="productFlexItem" v-for="item in productList" :key="item.productNo">
 			<img class="ProductImg1" :src="item.productImage" style="width: 320px; height: 240px" />
+
 			<div class="ProductNT1">{{ item.productName }}</div>
 
 			<div class="AddressT1">{{ item.wishAddr }}</div>
@@ -77,6 +78,9 @@
 			// 	} else {
 			// 		alert('검색어를 입력해주세요!'); //검색어를 입력하지 않은 경우
 			// 	}
+			// },
+			// goProduct() {
+			// 	this.$router.push('./product');
 			// },
 		},
 

@@ -114,6 +114,8 @@
 	.productImg {
 		background: #d9d9d9;
 		border-radius: 20px;
+		width: 160px;
+		height: 160px;
 		max-width: 100%;
 		max-height: 100%;
 	}
