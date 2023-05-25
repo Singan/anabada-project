@@ -55,6 +55,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
             "p.product_thumbnail as productThumbnail," +
             "p.product_no        as productNo," +
             "p.product_price as productPrice ," +
+            "p.product_is_bid_complete as productIsBidComplete," +
             "p.create_date_time  as createDateTime," +
             "b.bid_time          as bidTime," +
             "m.member_name       as memberName," +

@@ -2,8 +2,8 @@
 	<div class="Header">
 		<router-link class="Logo" to="/">아나바다</router-link>
 
-		<router-link to="/auction" class="AuctionButton"> 경매 </router-link>
-		<router-link to="/chatList" class="ChatButton"> 채팅 </router-link>
+		<router-link to="/auction?category=1" class="AuctionButton"> 경매 </router-link>
+		<router-link to="/chat" class="ChatButton"> 채팅 </router-link>
 		<input
 			class="SearchBox"
 			v-model="keyword"
