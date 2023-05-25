@@ -2,35 +2,56 @@
 	<div class="form">
 		<div class="deal">거래 내역</div>
 
-		<div class="historyText">
-			<div class="purchaseText">구매 내역</div>
-			<div class="salesText">판매 내역</div>
+		<div class="historyBox">
+			<div class="historyText" :class="{ blue: check == 'purchase' }" @click="check = 'purchase'">구매 내역</div>
+			<div class="historyText" :class="{ blue: check == 'sales' }" @click="check = 'sales'">판매 내역</div>
+			<div class="historyText" :class="{ blue: check == 'bid' }" @click="check = 'bid'">입찰 내역</div>
 		</div>
 
-		<div class="productInfo">
-			<img class="productPicture" />
-			<div class="productDetail">
-				<div class="detailND">아이폰 14프로</div>
-				<div class="detailPrice">1,200,000 원</div>
-				<div class="detailND">경기도 성남시 1달전 판매완료</div>
-			</div>
+		<div class="listReapeat">
 			<select class="sortList">
 				<option>가격순</option>
 				<option>거래순</option>
 			</select>
+			<div class="productInfo">
+				<img class="productPicture" />
+				<div class="productDetail">
+					<div class="detailPrice">상품명 :</div>
+					<div class="detailPrice">등록 가격 :</div>
+					<div class="detailPrice">상품 등록 시간 :</div>
+					<div class="detailPrice">경매 낙찰자 :</div>
+					<div class="detailPrice">경매 낙찰 가격 :</div>
+					<div class="detailPrice">경매 낙찰 시간 :</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
-
 <script>
-	export default {};
+	/* Code generated with AutoHTML Plugin for Figma */
+	import axios from '@/axios';
+	export default {
+		name: '',
+		components: {},
+		props: {},
+		data() {
+			// quickfix to have components available to pass as props
+			return {
+				check: 'purchase',
+			};
+		},
+		methods: {
+			toggle() {
+				console.log('되는거 맞아?');
+				this.check = true;
+			},
+		},
+	};
 </script>
-
 <style scoped>
 	.form {
 		background: #ffffff;
 		width: 800px;
-		height: 800px;
 		display: flex;
 		flex-direction: column;
 		margin: 80px auto 0;
@@ -42,29 +63,31 @@
 		padding: 30px;
 	}
 
+	.listReapeat {
+		width: 100%;
+	}
+
+	.listReapeat > * {
+		margin-bottom: 60px;
+	}
+
 	.deal {
 		color: #000000;
 		font: 700 24px 'Roboto', sans-serif;
 	}
 
-	.historyText {
+	.historyBox {
 		display: flex;
 		gap: 150px;
 		justify-content: center;
 	}
 
-	.purchaseText {
+	.historyText {
+		font: 700 24px 'Roboto', sans-serif;
+	}
+
+	.blue {
 		color: #0075ff;
-		font: 700 24px 'Roboto', sans-serif;
-	}
-
-	.salesText {
-		color: #000000;
-		font: 700 24px 'Roboto', sans-serif;
-	}
-
-	.productInfo {
-		display: flex;
 	}
 
 	.productPicture {
@@ -79,26 +102,30 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-	}
-
-	.detailND {
-		color: #000000;
-		font: 500 16px 'Roboto', sans-serif;
-		margin-bottom: 10px;
+		flex: 1;
 	}
 
 	.detailPrice {
 		color: #000000;
 		font: 700 16px 'Roboto', sans-serif;
-		margin-bottom: 10px;
+		margin-bottom: 5px;
 	}
 
 	.sortList {
-		margin-left: 150px;
+		margin-left: 600px;
 		font-size: 16px;
 		border-style: solid;
 		text-align: center;
 		width: 140px;
 		height: 25px;
+	}
+	.flexLine {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		width: 100%;
+	}
+	.productInfo {
+		display: flex;
 	}
 </style>

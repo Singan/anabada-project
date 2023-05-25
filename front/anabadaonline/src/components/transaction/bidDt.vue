@@ -13,17 +13,15 @@
 				<option>가격순</option>
 				<option>거래순</option>
 			</select>
-			<div class="productInfo" v-for="item in salesList">
-				<img class="productPicture" :src="item.productThumbnail" />
+			<div class="productInfo">
+				<img class="productPicture" />
 				<div class="productDetail">
-					<div class="detailPrice">상품명 : {{ item.productName }}</div>
-					<div class="detailPrice">등록 가격 :{{ item.productPrice }}</div>
-					<div class="detailPrice">상품 등록 시간 : {{ item.createDateTime }}</div>
-					<template v-if="item.isBidComplete">
-						<div class="detailPrice">경매 낙찰자 : {{ item.memberName }}</div>
-						<div class="detailPrice">경매 낙찰 가격 : {{ item.bidPrice }}</div>
-						<div class="detailPrice">경매 낙찰 시간 : {{ item.bidTime }}</div>
-					</template>
+					<div class="detailPrice">상품명 :</div>
+					<div class="detailPrice">등록 가격 :</div>
+					<div class="detailPrice">상품 등록 시간 :</div>
+					<div class="detailPrice">경매 낙찰자 :</div>
+					<div class="detailPrice">경매 낙찰 가격 :</div>
+					<div class="detailPrice">경매 낙찰 시간 :</div>
 				</div>
 			</div>
 		</div>
@@ -39,8 +37,7 @@
 		data() {
 			// quickfix to have components available to pass as props
 			return {
-				check: 'sales',
-				salesList: [],
+				check: 'bid',
 			};
 		},
 		methods: {
@@ -48,14 +45,6 @@
 				console.log('되는거 맞아?');
 				this.check = true;
 			},
-			async productSalesList() {
-				const result = await axios.post('/mypage/sales');
-				this.salesList = result.data.list;
-				console.log(result);
-			},
-		},
-		async created() {
-			await this.productSalesList();
 		},
 	};
 </script>

@@ -3,12 +3,11 @@
 import token from './common/token';
 const requireAuth = () => (to, from, next) => {
 	if (token.is()) {
-	  return next();
+		return next();
 	}
 	next('/login');
-  };
-  
-  
+};
+
 const routes = [
 	{
 		path: '/',
@@ -24,7 +23,7 @@ const routes = [
 		path: '/mypage',
 		name: 'MyPage',
 		component: () => import('@/components/member/mypage/MyPage.vue'),
-		beforeEnter:requireAuth()
+		beforeEnter: requireAuth(),
 	},
 	{
 		path: '/product',
@@ -85,6 +84,13 @@ const routes = [
 		name: 'salesDt',
 		component: () => import('@/components/transaction/salesDt.vue'),
 	},
+
+	{
+		path: '/bidDt',
+		name: 'bidDt',
+		component: () => import('@/components/transaction/bidDt.vue'),
+	},
+
 	{
 		path: '/JoinMember',
 		name: 'JoinMember',
