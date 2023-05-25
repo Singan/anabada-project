@@ -22,4 +22,5 @@ public interface SalesListSelectInterface {
     Integer getProductPrice();
 
     Boolean getProductIsBidComplete();
+    String getProductName();
 }

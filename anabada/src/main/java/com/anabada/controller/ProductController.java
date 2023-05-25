@@ -28,11 +28,12 @@ import java.util.List;
 public class ProductController {
     private final ProductService productService;
     private final SocketService socketService;
+
     @PostMapping
     @Operation(description = "상품등록")
-    public ProductInsertResDto productInsert(ProductInsertDto productInsertDto, @AuthenticationPrincipal MemberDetailDTO principal){
+    public ProductInsertResDto productInsert(ProductInsertDto productInsertDto, @AuthenticationPrincipal MemberDetailDTO principal) {
         //스레드에 MemberDetail을 넣는다.
-        ProductInsertResDto productInsertResDto = productService.productSave(productInsertDto,principal);
+        ProductInsertResDto productInsertResDto = productService.productSave(productInsertDto, principal);
 
         return productInsertResDto;
     }
@@ -58,8 +59,12 @@ public class ProductController {
 
     @GetMapping("/list")
     @Operation(description = "카테고리별 상품 리스트")
-    public ArrayList<FindProductToCategoryDto> findProductToCategoryDto(Long categoryNo) {
-        ArrayList<FindProductToCategoryDto> findProductToCategoryDtoArrayList = productService.findProductToCategory(categoryNo);
+    public ArrayList<FindProductToCategoryDto> findProductToCategoryDto(
+            Long categoryNo,
+            @PageableDefault(sort = "create_date_time",direction = Sort.Direction.DESC) Pageable pageable
+    ) {
+        ArrayList<FindProductToCategoryDto> findProductToCategoryDtoArrayList =
+                productService.findProductToCategory(categoryNo,pageable);
         return findProductToCategoryDtoArrayList;
     }
 }

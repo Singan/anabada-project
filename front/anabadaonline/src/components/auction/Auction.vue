@@ -45,6 +45,8 @@
 			return {
 				productList: '',
 				categoryList: '',
+				size: 8,
+				page: 1,
 			};
 		},
 		methods: {
