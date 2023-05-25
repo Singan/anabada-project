@@ -3,9 +3,19 @@
 		<div class="deal">거래 내역</div>
 
 		<div class="historyBox">
-			<div class="historyText" :class="{ blue: check == 'purchase' }" @click="check = 'purchase'">구매 내역</div>
-			<div class="historyText" :class="{ blue: check == 'sales' }" @click="check = 'sales'">판매 내역</div>
-			<div class="historyText" :class="{ blue: check == 'bid' }" @click="check = 'bid'">입찰 내역</div>
+			<router-link
+				to="purchaseDt"
+				class="historyText"
+				:class="{ blue: check == 'purchase' }"
+				@click="check = 'purchase'"
+				>구매 내역</router-link
+			>
+			<router-link to="./salesDt" class="historyText" :class="{ blue: check == 'sales' }" @click="check = 'sales'"
+				>판매 내역</router-link
+			>
+			<router-link to="./bidDt" class="historyText" :class="{ blue: check == 'bid' }" @click="check = 'bid'"
+				>입찰 내역</router-link
+			>
 		</div>
 
 		<div class="listReapeat">
