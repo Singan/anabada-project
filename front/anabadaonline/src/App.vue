@@ -79,6 +79,11 @@
 </script>
 
 <style>
+	a:visited {
+		color: black;
+		text-decoration: none;
+	}
+
 	body {
 		/* width: 100%;
 		margin: 0px;
