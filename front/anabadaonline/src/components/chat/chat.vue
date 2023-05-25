@@ -1,4 +1,7 @@
 <template>
+	<div class="header">
+		<div class="headerLine"></div>
+	</div>
 	<div class="chatBackground">
 		<div class="chatContainer">
 			<div class="oppoInfoBox">
@@ -23,6 +26,12 @@
 	};
 </script>
 <style scoped>
+	.header {
+	}
+
+	.headerLine {
+	}
+
 	.chatBackground {
 		background: #f1f1f1;
 		width: 100%;
