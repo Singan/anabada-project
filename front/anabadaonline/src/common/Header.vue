@@ -15,7 +15,7 @@
 
 		<button class="SearchButton" type="submit">검색하기</button>
 		<div class="userInfo">
-			<img class="userImage" />
+			<img class="userImage" :src="member.image" />
 			<div class="userName">userName</div>
 		</div>
 		<router-link to="/login" class="LoginBox" v-if="!isToken"> 로그인 </router-link>
@@ -27,6 +27,8 @@
 	</div>
 </template>
 <script>
+	import axios from 'axios';
+
 	export default {
 		props: {
 			isToken: {
@@ -36,6 +38,7 @@
 		data() {
 			return {
 				keyword: '',
+				member: '',
 			};
 		},
 
@@ -59,6 +62,12 @@
 			logout() {
 				this.$emit('logout');
 				this.$router.push('/');
+			},
+			memberImage() {
+				axios.get('/member').then((response) => {
+					this.member = response.data;
+					console.log(member.image);
+				});
 			},
 		},
 	};
