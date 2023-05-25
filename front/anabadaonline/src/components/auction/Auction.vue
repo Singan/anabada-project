@@ -46,7 +46,8 @@
 				productList: '',
 				categoryList: '',
 				size: 8,
-				page: 1,
+				page: 0,
+				totalCountPage: 0,
 			};
 		},
 		methods: {
@@ -56,10 +57,14 @@
 					this.product();
 				});
 			},
-			product() {
-				axios.get('/product/list?categoryNo=' + this.categoryNo).then((response) => {
-					this.productList = response.data;
-				});
+			async product() {
+				let response = await axios.get(
+					'/product/list?categoryNo=' + this.categoryNo + '&&size=' + this.size + '&&page=' + this.page,
+				);
+				this.productList = response.data.list;
+				this.totalCountPage = response.data.totalCountPage;
+				console.log(this.productList);
+				console.log(this.totalCountPage);
 			},
 		},
 		mounted() {},

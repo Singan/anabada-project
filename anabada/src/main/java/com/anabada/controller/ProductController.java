@@ -59,11 +59,11 @@ public class ProductController {
 
     @GetMapping("/list")
     @Operation(description = "카테고리별 상품 리스트")
-    public ArrayList<FindProductToCategoryDto> findProductToCategoryDto(
+    public ResultList<ArrayList<FindProductToCategoryDto>> findProductToCategoryDto(
             Long categoryNo,
-            @PageableDefault(sort = "create_date_time",direction = Sort.Direction.DESC) Pageable pageable
+            @PageableDefault(sort = "createDateTime",direction = Sort.Direction.DESC) Pageable pageable
     ) {
-        ArrayList<FindProductToCategoryDto> findProductToCategoryDtoArrayList =
+        ResultList<ArrayList<FindProductToCategoryDto>>  findProductToCategoryDtoArrayList =
                 productService.findProductToCategory(categoryNo,pageable);
         return findProductToCategoryDtoArrayList;
     }

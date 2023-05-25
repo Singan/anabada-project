@@ -14,6 +14,7 @@ import com.anabada.repository.ProductImageRepository;
 import com.anabada.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -84,17 +85,15 @@ public class ProductService {
     }
 
     // 카테고리별 product 리스트
-    public ArrayList<FindProductToCategoryDto> findProductToCategory(Long categoryNo,Pageable pageable) {
+    public ResultList<ArrayList<FindProductToCategoryDto>> findProductToCategory(Long categoryNo,Pageable pageable) {
         ArrayList<FindProductToCategoryDto> findProductToCategoryDtoArrayList = new ArrayList<>();
-        System.out.println("findProductToCategory -- 시작");
-        List<Product> productByCategoryList = productRepository.findProductByCategory(categoryNo,pageable);
-        System.out.println("findProductToCategory -- 쿼리실행");
-        productByCategoryList.forEach(product -> {
+        Page<Product> productPage = productRepository.findProductByCategory(categoryNo,pageable);
+        productPage.getContent().forEach(product -> {
             FindProductToCategoryDto findProductToCategoryDto = new FindProductToCategoryDto(product, s3EndPoint);
             findProductToCategoryDtoArrayList.add(findProductToCategoryDto);
         });
 
-        return findProductToCategoryDtoArrayList;
+        return new ResultList(productPage.getTotalPages(),findProductToCategoryDtoArrayList);
     }
 
     // 판매 내역
