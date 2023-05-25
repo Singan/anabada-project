@@ -87,7 +87,7 @@
 			<div class="yesAndNoButton">
 				<div class="change">
 					<button type="button" class="checkButton" @click="submitForm">수정하기</button>
-					<button class="noButton" onclick="history.go(-1)">취소하기</button>
+					<div class="noButton" :onclick="$router.back">취소하기</div>
 				</div>
 			</div>
 		</form>
@@ -378,6 +378,9 @@
 		width: 700px;
 		height: 40px;
 		border: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		color: white;
 		font: 500 16px 'Roboto', sans-serif;
 		cursor: pointer;

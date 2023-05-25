@@ -11,7 +11,7 @@
 			{{ item.categoryName }}
 		</router-link>
 	</div>
-	<div class="productFlex">
+	<div class="productFlex" ref="productFlex">
 		<div class="flexItem" v-for="item in productList" :key="item.productNo">
 			<router-link :to="'/ProductDt?productNo=' + item.productNo">
 				<img class="productImg" :src="item.productImage" />
@@ -29,11 +29,13 @@
 	export default {
 		watch: {
 			categoryNo(newCategoryNo) {
+				(this.page = 0), (this.totalCountPage = 0);
+
 				console.log('바뀜?');
 				this.product();
 			},
 		},
-		name: 'Off',
+		name: 'Auction',
 		components: {},
 		props: {},
 		computed: {
@@ -43,7 +45,7 @@
 		},
 		data() {
 			return {
-				productList: '',
+				productList: [],
 				categoryList: '',
 				size: 8,
 				page: 0,
@@ -63,12 +65,37 @@
 				);
 				this.productList = response.data.list;
 				this.totalCountPage = response.data.totalCountPage;
-				console.log(this.productList);
-				console.log(this.totalCountPage);
+			},
+			scroll() {
+				const element = this.$refs.productFlex;
+
+				const scrollBottom = element.scrollTop + element.clientHeight;
+				// 스크롤 위치 확인
+				if (scrollBottom >= element.scrollHeight) {
+					this.loadMoreData();
+				}
+			},
+
+			async loadMoreData() {
+				// 추가 데이터 로딩
+				if (this.page < this.totalCountPage) {
+					console.log('추가 데이터 가져오기');
+					this.page++;
+					let response = await axios.get(
+						'/product/list?categoryNo=' + this.categoryNo + '&&size=' + this.size + '&&page=' + this.page,
+					);
+					this.productList.push(...response.data.list);
+				}
 			},
 		},
-		mounted() {},
-
+		mounted() {
+			// scroll 이벤트 핸들러 등록
+			window.addEventListener('scroll', this.scroll);
+		},
+		beforeUnmount() {
+			// scroll 이벤트 핸들러 제거
+			window.removeEventListener('scroll', this.scroll);
+		},
 		created() {
 			this.category();
 		},
@@ -85,6 +112,7 @@
 		/* column의 간격을 20px로 */
 		grid-template-columns: 1fr 1fr 1fr 1fr;
 		grid-template-rows: auto;
+		overflow: auto;
 	}
 
 	.flexItem {

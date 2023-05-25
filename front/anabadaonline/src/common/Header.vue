@@ -19,8 +19,8 @@
 
 		<div v-if="isToken">
 			<div class="userInfo">
-				<img class="userImage" />
-				<router-link class="userName" to="/mypage">userName</router-link>
+				<img class="userImage" :src="$store.getters.getMember.image" />
+				<router-link class="userName" to="/mypage">{{ $store.getters.getMember.name }}</router-link>
 				<div class="LogoutBox" @click="logout">로그아웃</div>
 			</div>
 		</div>

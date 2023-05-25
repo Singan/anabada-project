@@ -29,16 +29,14 @@ public class Bid {//입찰내역
     @Column(name = "bid_time", nullable = false)
     private LocalDateTime time;
 
-    @Column(name = "bid_bidding", nullable = false)
-    private boolean bidding;
+
 
     @Builder
-    public Bid(Long bidNo, Product product, Member member, Integer price, LocalDateTime time, boolean bidding) {
+    public Bid(Long bidNo, Product product, Member member, Integer price, LocalDateTime time) {
         this.bidNo = bidNo;
         this.product = product;
         this.member = member;
         this.price = price;
         this.time = time;
-        this.bidding = bidding;
     }
 }
