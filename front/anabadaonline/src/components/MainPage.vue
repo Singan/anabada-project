@@ -112,9 +112,8 @@
    } */
 
 	.flexContainer {
-		justify-content: flex-end;
+		position: relative;
 		width: 100%;
-		display: flex;
 	}
 
 	.content1 {

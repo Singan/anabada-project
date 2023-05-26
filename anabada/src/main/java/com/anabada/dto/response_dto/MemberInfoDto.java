@@ -15,13 +15,13 @@ public class MemberInfoDto {
     private Long no;
     private String name;
     private String image;
-    private List<SocketDto> productSocketList;
+    private List<Long> productSocketNoList;
     public MemberInfoDto(Member member,String prefix) {
         no = member.getMemberNo();
         name = member.getMemberName();
         image =prefix+ member.getMemberImage();
-        productSocketList = member.getMemberProductList().stream()
-                .map(product -> new SocketDto(product.getProductSocket()))
+        productSocketNoList = member.getMemberProductList().stream()
+                .map(product -> product.getProductNo())
                 .collect(Collectors.toList());
     }
 }
