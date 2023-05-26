@@ -23,7 +23,6 @@ public class FindBiddingDetailDto {
         this.bidPrice = bid.getPrice();
         this.productName = bid.getProduct().getProductName();
         this.productThumbnail = prefix + bid.getProduct().getProductThumbnail();
-        this.bidding = bid.isBidding();
         this.productNo = bid.getProduct().getProductNo();
     }
 }

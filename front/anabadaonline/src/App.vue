@@ -28,15 +28,26 @@
 		},
 		methods: {
 			subscribe(res) {
-				this.$swal({
-					position: 'bottom-end',
-					title: `새로운 입찰이 들어왔습니다!.`,
-					showConfirmButton: false,
-					backdrop: false,
-					text: `상품이름 : ${res.productName} 에 ${res.price} 원 으로 새로운 입찰이 들어왔습니다!`,
-					timer: 5000,
-					timerProgressBar: true,
-				});
+				if (!res.complete) {
+					this.$swal({
+						position: 'bottom-end',
+						title: `새로운 입찰이 들어왔습니다!.`,
+						showConfirmButton: false,
+						backdrop: false,
+						text: `상품이름 : ${res.productName} 에 ${res.price} 원 으로 새로운 입찰이 들어왔습니다!`,
+						timer: 5000,
+						timerProgressBar: true,
+					});
+				} else {
+					this.$swal({
+						title: `상품명 : ${res.productName} 이 낙찰되었습니다!.`,
+						showConfirmButton: false,
+						backdrop: false,
+						text: res.message + res.productName,
+						timer: 5000,
+						timerProgressBar: true,
+					});
+				}
 			},
 			async login() {
 				this.isToken = this.$token.is();

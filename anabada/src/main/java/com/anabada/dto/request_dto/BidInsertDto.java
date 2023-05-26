@@ -25,7 +25,6 @@ public class BidInsertDto {
         Bid bid = Bid.builder()
                 .member(member)
                 .price(bidPrice)
-                .bidding(false)
                 .time(bidTime)
                 .product(product)
                 .build();
