@@ -29,7 +29,6 @@ public interface BidRepository extends JpaRepository<Bid, Long> {
     @Query("select b from Bid b " +
             " join fetch b.product p " +
             " join fetch p.member m where b.member.memberNo = :memberNo")
-    @BatchSize(size = 10)
     Page<Bid> findBidListByMemberNo(@Param("memberNo") Long memberNo, Pageable pageable);
 
     @Query(value = "SELECT " +
