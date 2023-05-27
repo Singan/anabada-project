@@ -80,26 +80,28 @@ const routes = [
 		component: () => import('@/components/member/mypage/AcountRegister.vue'),
 		beforeEnter: requireAuth(),
 	},
+
 	{
-		path: '/purchaseDt',
-		name: 'purchaseDt',
-		component: () => import('@/components/transaction/purchaseDt.vue'),
+		path: '/my/history/buy',
+		name: 'buyHistory',
+		props: { check: 'buy' },
+		component: () => import('@/components/transaction/MyHistory.vue'),
 		beforeEnter: requireAuth(),
 	},
-
 	{
-		path: '/salesDt',
-		name: 'salesDt',
-		component: () => import('@/components/transaction/salesDt.vue'),
+		path: '/my/history/sales',
+		name: 'salesHistory',
+		props: { check: 'sales' },
+		component: () => import('@/components/transaction/MyHistory.vue'),
 		beforeEnter: requireAuth(),
 	},
-
 	{
-		path: '/bidDt',
-		name: 'bidDt',
-		component: () => import('@/components/transaction/bidDt.vue'),
+		path: '/my/history/bid',
+		name: 'bidHistory',
+		props: { check: 'bid' },
+		component: () => import('@/components/transaction/MyHistory.vue'),
+		beforeEnter: requireAuth(),
 	},
-
 	{
 		path: '/JoinMember',
 		name: 'JoinMember',

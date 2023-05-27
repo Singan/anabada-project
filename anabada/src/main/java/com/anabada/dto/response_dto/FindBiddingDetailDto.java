@@ -15,8 +15,10 @@ public class FindBiddingDetailDto {
     private Long productNo;
     private String productName;
     private String productThumbnail;
-    private boolean bidding;
-
+    private String productMemberName;
+    @DateTimeFormat(pattern = "yyyy-mm-dd HH:mm:ss")
+    private LocalDateTime productTime;
+    private Integer productPrice;
     public FindBiddingDetailDto(Bid bid, String prefix) {
         this.bidNo = bid.getBidNo();
         this.bidTime = bid.getTime();
@@ -24,5 +26,8 @@ public class FindBiddingDetailDto {
         this.productName = bid.getProduct().getProductName();
         this.productThumbnail = prefix + bid.getProduct().getProductThumbnail();
         this.productNo = bid.getProduct().getProductNo();
+        productMemberName = bid.getProduct().getMember().getMemberName();
+        this.productTime = bid.getProduct().getCreateDateTime();
+        this.productPrice = bid.getProduct().getProductPrice();
     }
 }

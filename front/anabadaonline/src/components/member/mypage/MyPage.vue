@@ -31,9 +31,9 @@
 		<div class="myTradeText">내 거래</div>
 
 		<div class="mypageTradeInfo">
-			<router-link to="./purchaseDt" class="dealButton">구매 내역</router-link>
-			<router-link to="/salesDt" class="dealButton">판매 내역</router-link>
-			<router-link to="/bidDt" class="dealButton">입찰 내역</router-link>
+			<router-link to="./my/history/buy" class="dealButton">구매 내역</router-link>
+			<router-link to="/my/history/sales" class="dealButton">판매 내역</router-link>
+			<router-link to="/my/history/bid" class="dealButton">입찰 내역</router-link>
 			<router-link to="./Product" class="dealButton">상품등록</router-link>
 			<router-link to="./Jjim" class="dealButton">찜목록</router-link>
 		</div>

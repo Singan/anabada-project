@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -97,8 +98,9 @@ public class ProductService {
     }
 
     // 판매 내역
-    public ResultList<List<SalesListSelectDto>> findSales(MemberDetailDTO memberDetailDTO) {
-        List<SalesListSelectInterface> productList = productRepository.findProductListWithBid(memberDetailDTO.getNo());
+    public ResultList<List<SalesListSelectDto>> findSales(MemberDetailDTO memberDetailDTO,Pageable pageable) {
+        Page<SalesListSelectInterface> productList = productRepository.
+                findProductListWithBid(memberDetailDTO.getNo(),pageable);
         List<SalesListSelectDto> productDtoList = productList.stream().map(s ->
                 SalesListSelectDto.builder()
                         .memberNo(s.getMemberNo())
@@ -113,7 +115,7 @@ public class ProductService {
                         .isBidComplete(s.getProductIsBidComplete())
                         .build()
                 ).collect(Collectors.toList());
-        return new ResultList<>(productDtoList);
+        return new ResultList<>(productList.getTotalPages(),productDtoList);
     }
 
     //

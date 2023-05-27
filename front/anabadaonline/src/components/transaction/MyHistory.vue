@@ -4,16 +4,24 @@
 
 		<div class="historyBox">
 			<router-link
-				to="purchaseDt"
+				to="/my/history/buy"
 				class="historyText"
-				:class="{ blue: check == 'purchase' }"
-				@click="check = 'purchase'"
+				:class="{ blue: check == 'buy' }"
+				@click="check = 'buy'"
 				>구매 내역</router-link
 			>
-			<router-link to="./salesDt" class="historyText" :class="{ blue: check == 'sales' }" @click="check = 'sales'"
+			<router-link
+				to="/my/history/sales"
+				class="historyText"
+				:class="{ blue: check == 'sales' }"
+				@click="check = 'sales'"
 				>판매 내역</router-link
 			>
-			<router-link to="./bidDt" class="historyText" :class="{ blue: check == 'bid' }" @click="check = 'bid'"
+			<router-link
+				to="/my/history/bid"
+				class="historyText"
+				:class="{ blue: check == 'bid' }"
+				@click="check = 'bid'"
 				>입찰 내역</router-link
 			>
 		</div>
@@ -23,49 +31,42 @@
 				<option>가격순</option>
 				<option>거래순</option>
 			</select>
-			<div class="productInfo" v-for="item in salesList">
-				<img class="productPicture" :src="item.productThumbnail" />
-				<div class="productDetail">
-					<div class="detailPrice">상품명 : {{ item.productName }}</div>
-					<div class="detailPrice">등록 가격 :{{ item.productPrice }}</div>
-					<div class="detailPrice">상품 등록 시간 : {{ item.createDateTime }}</div>
-					<template v-if="item.isBidComplete">
-						<div class="detailPrice">경매 낙찰자 : {{ item.memberName }}</div>
-						<div class="detailPrice">경매 낙찰 가격 : {{ item.bidPrice }}</div>
-						<div class="detailPrice">경매 낙찰 시간 : {{ item.bidTime }}</div>
-					</template>
-				</div>
-			</div>
+			<BuyHistory v-if="check == 'buy'"></BuyHistory>
+			<BidHistory v-if="check == 'bid'"></BidHistory>
+			<SalesHisotry v-if="check == 'sales'"></SalesHisotry>
 		</div>
 	</div>
 </template>
 <script>
 	/* Code generated with AutoHTML Plugin for Figma */
 	import axios from '@/axios';
+	import BuyHistory from '@/components/transaction/BuyHistory.vue';
+	import BidHistory from '@/components/transaction/BidHistory.vue';
+	import SalesHisotry from '@/components/transaction/SalesHisotry.vue';
+
 	export default {
 		name: '',
-		components: {},
-		props: {},
+		components: {
+			BuyHistory,
+			BidHistory,
+			SalesHisotry,
+		},
+		props: {
+			check: {
+				Type: String,
+				default: 'buy',
+			},
+		},
 		data() {
 			// quickfix to have components available to pass as props
 			return {
-				check: 'sales',
 				salesList: [],
 			};
 		},
 		methods: {
-			toggle() {
-				this.check = true;
-			},
-			async productSalesList() {
-				const result = await axios.post('/mypage/sales');
-				this.salesList = result.data.list;
-				console.log(result);
-			},
+			toggle(e) {},
 		},
-		async created() {
-			await this.productSalesList();
-		},
+		async created() {},
 	};
 </script>
 <style scoped>
@@ -85,10 +86,9 @@
 
 	.listReapeat {
 		width: 100%;
-	}
-
-	.listReapeat > * {
-		margin-bottom: 60px;
+		display: flex;
+		flex-direction: column;
+		gap: 60px;
 	}
 
 	.deal {

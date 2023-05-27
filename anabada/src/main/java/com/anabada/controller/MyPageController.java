@@ -8,6 +8,9 @@ import com.anabada.service.*;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,16 +42,20 @@ public class MyPageController {
         return memberService.confirmPassword(memberDetailDTO, mypageConfirmDto);
     }
 
-    @PostMapping("/sales")
+    @GetMapping("/sales")
     @Operation(description = "내 판매내역")
-    public ResultList<List<SalesListSelectDto>> findSales(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
-        return productService.findSales(memberDetailDTO);
+    public ResultList<List<SalesListSelectDto>> findSales(
+            @AuthenticationPrincipal MemberDetailDTO memberDetailDTO,
+            @PageableDefault(sort = "productPrice",direction = Sort.Direction.DESC) Pageable pageable
+
+    ) {
+        return productService.findSales(memberDetailDTO,pageable);
     }
 
-    @PostMapping("/bidDetail")
+    @GetMapping("/bidDetail")
     @Operation(description = "내 입찰내역")
-    public ResultList<List<FindBiddingDetailDto>> findBiddingDetail(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
-        return bidService.findBiddingDetail(memberDetailDTO);
+    public ResultList<List<FindBiddingDetailDto>> findBiddingDetail(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO,Pageable pageable) {
+        return bidService.findBiddingDetail(memberDetailDTO, pageable);
     }
 
     @GetMapping("/buys")

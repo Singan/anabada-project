@@ -4,6 +4,9 @@ import com.anabada.entity.Bid;
 import com.anabada.entity.Member;
 import com.anabada.entity.Product;
 import com.anabada.entity.nativeQuery.MaxBidProductNoInterface;
+import org.hibernate.annotations.BatchSize;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -23,8 +26,11 @@ public interface BidRepository extends JpaRepository<Bid, Long> {
     Bid findBidByProductAndMember(Product product, Member member);
 
     // 입찰 내역
-    @Query("select b from Bid b join fetch b.product where b.member.memberNo = :memberNo order by b.time desc")
-    List<Bid> findBidListByMemberNo(@Param("memberNo") Long memberNo);
+    @Query("select b from Bid b " +
+            " join fetch b.product p " +
+            " join fetch p.member m where b.member.memberNo = :memberNo")
+    @BatchSize(size = 10)
+    Page<Bid> findBidListByMemberNo(@Param("memberNo") Long memberNo, Pageable pageable);
 
     @Query(value = "SELECT " +
             " p2.product_name as productName," +

@@ -66,7 +66,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
             " left join bid b on sb.bid_bid_no = b.bid_no" +
             " left join member m on b.member_no = m.member_no" +
             " where p.member_no = :memberNo", nativeQuery = true) // 판매 내역 리스트 인데 사용할지 고민중
-    List<SalesListSelectInterface> findProductListWithBid(@Param("memberNo") Long memberNo);
+    Page<SalesListSelectInterface> findProductListWithBid(@Param("memberNo") Long memberNo,Pageable pageable);
 //
 //    Product findProductDetail();
 
