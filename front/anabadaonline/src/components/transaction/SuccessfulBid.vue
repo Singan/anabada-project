@@ -40,7 +40,22 @@
 </template>
 
 <script>
-	export default {};
+	import axios from '@/axios';
+	export default {
+		name: '',
+		components: {},
+		props: {},
+		data() {
+			// quickfix to have components available to pass as props
+			return {
+				salesList: [],
+			};
+		},
+		methods: {
+			toggle(e) {},
+		},
+		async created() {},
+	};
 </script>
 
 <style scoped>

@@ -20,6 +20,6 @@ public class MyBuyDto {
     private Integer bidPrice;
     private String productThumbnail;
     private String productSellerName;
-
+    private Long successBidNo;
 
 }

@@ -81,10 +81,10 @@ public class BidService {
 
     // 입찰 내역
     public ResultList<List<FindBiddingDetailDto>> findBiddingDetail(MemberDetailDTO memberDetailDTO, Pageable pageable) {
-        Page<Bid> bidList = bidRepository.findBidListByMemberNo(memberDetailDTO.getNo(),pageable);
+        List<Bid> bidList = bidRepository.findBidListByMemberNo(memberDetailDTO.getNo());
         List<FindBiddingDetailDto> biddingDetail =
                 bidList.stream().map(bid -> new FindBiddingDetailDto(bid, prefix)).collect(Collectors.toList());
-        return new ResultList<>(bidList.getTotalPages(),biddingDetail);
+        return new ResultList<>(biddingDetail);
     }
     //입찰 내역 중 최고값의 시간이 입력 후 10분이 지난 입찰 내역의 상품 번호
     public List<MaxBidProductNoInterface> productByMaxBidList(){

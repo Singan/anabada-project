@@ -60,7 +60,7 @@ public class MyPageController {
 
     @GetMapping("/buys")
     @Operation(description = "내 구매내역")
-    public ResultList<List<MyBuyDto>> findBuyList(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
-        return myPageService.myBuyList(memberDetailDTO);
+    public ResultList<List<MyBuyDto>> findBuyList(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO,Pageable pageable) {
+        return myPageService.myBuyList(memberDetailDTO,pageable);
     }
 }

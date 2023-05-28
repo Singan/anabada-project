@@ -7,6 +7,8 @@ import com.anabada.entity.SuccessfulBid;
 import com.anabada.repository.SuccessBidRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,10 +22,10 @@ public class MyPageService {
     @Value("${s3.bucket.endpoint}")
     private String s3Endpoint;
 
-    public ResultList<List<MyBuyDto>> myBuyList(MemberDetailDTO memberDetailDTO){
-        List<SuccessfulBid> successfulBids = successBidRepository.successfulBidList(memberDetailDTO.getNo());
+    public ResultList<List<MyBuyDto>> myBuyList(MemberDetailDTO memberDetailDTO, Pageable pageable){
+        Page<SuccessfulBid> successfulBids = successBidRepository.successfulBidList(memberDetailDTO.getNo(),pageable);
 
-        return new ResultList<>(
+        return new ResultList<>(successfulBids.getTotalPages(),
                 successfulBids.stream().map(s -> MyBuyDto.builder()
                 .productNo(s.getProduct().getProductNo())
                 .productThumbnail(s3Endpoint+s.getProduct().getProductThumbnail())
