@@ -3,9 +3,9 @@
 		<img class="productPicture" :src="item.productThumbnail" />
 		<div class="productDetail">
 			<div class="detailPrice">상품명 : {{ item.productName }}</div>
-			<div class="detailPrice">상품 판매자 : {{ item.productSellerName }}</div>
+			<div class="detailPrice">상품 판매자 : {{ item.productMemberName }}</div>
 
-			<div class="detailPrice">상품 등록 시간 :</div>
+			<div class="detailPrice">상품 등록 시간 : {{ item.productTime }}</div>
 			<div class="detailPrice">경매 낙찰 가격 : {{ item.bidPrice }}</div>
 			<div class="detailPrice">경매 낙찰 시간 : {{ item.successTime }}</div>
 		</div>

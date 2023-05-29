@@ -24,8 +24,8 @@ public interface SuccessBidRepository extends JpaRepository<SuccessfulBid,Long> 
             "p.product_name as productName," +
             "b.bid_price as bidPrice," +
             "p.product_thumbnail as productThumbnail," +
-            "s.success_bid_no as successBidNo" +
-            " from success_ful_bid  s " +
+            "s.success_bid_product_no as successBidNo" +
+            " from successful_bid  s " +
             "join bid b on s.bid_no = b.bid_no " +
             "join product p on s.product_no = p.product_no " +
             "join member m on p.member_no = m.member_no " +

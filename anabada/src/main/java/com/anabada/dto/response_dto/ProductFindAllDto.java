@@ -16,8 +16,7 @@ public class ProductFindAllDto {
     private String wishAddr;
     private Integer price;
     private String productImage;
-    private String category;
-    private Integer productHighPrice;
+
 
     // 카테고리 넣기
     public ProductFindAllDto(Product product,String prefix) {
@@ -25,8 +24,6 @@ public class ProductFindAllDto {
         this.productNo = (product.getProductNo());
         this.wishAddr = (product.getMember().getMemberWishAddr());
         this.price = (product.getProductPrice());
-        //this.category = product.getCategory().getCategoryName();
-
         this.productImage = prefix + product.getProductThumbnail();
     }
 

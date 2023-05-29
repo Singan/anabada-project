@@ -18,11 +18,11 @@ public class ChatMessage {
     private Long chatMessageNo;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = false,name = "chat_room_no")
     private ChatRoom chatRoom ;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "member_no",nullable = false)
     private Member member;
 
     private LocalDateTime createDateTime;

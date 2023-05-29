@@ -33,7 +33,7 @@ public class MyPageService {
                         .successTime(s.getSuccessTime())
                         .productName(s.getProductName())
                         .bidPrice(s.getBidPrice())
-                        .productThumbnail(s.getProductThumbnail())
+                        .productThumbnail(s3Endpoint+s.getProductThumbnail())
                         .successBidNo(s.getSuccessBidNo())
                         .productTime(s.getProductTime())
                         .productMemberName(s.getProductMemberName())

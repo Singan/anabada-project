@@ -17,7 +17,7 @@ public class ChatRoom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long chatRoomNo;
     @OneToOne
-    @JoinColumn
+    @JoinColumn(nullable = false,name = "success_no")
     private SuccessfulBid successfulBid;
 
     @OneToMany(mappedBy = "chatRoom")

@@ -17,11 +17,11 @@ public class SuccessfulBid {
     private Long successBidProductNo;
 
     @OneToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = false,name="bid_no")
     private Bid bid;
 
     @OneToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = false,name = "product_no")
     private Product product;
     @Builder
     public SuccessfulBid(Long successBidProductNo, Bid bid, Product product) {

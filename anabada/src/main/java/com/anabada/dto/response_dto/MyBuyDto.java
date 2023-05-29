@@ -16,11 +16,14 @@ public class MyBuyDto {
 
     private Long productNo;
     private Long bidNo;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime successTime;
     private String productName;
     private Integer bidPrice;
     private String productThumbnail;
     private Long successBidNo;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
     private LocalDateTime productTime;
     private String productMemberName;
     private Long productMemberNo;
