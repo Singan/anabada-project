@@ -13,13 +13,24 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class MyBuyDto {
+
     private Long productNo;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Long bidNo;
     private LocalDateTime successTime;
     private String productName;
     private Integer bidPrice;
     private String productThumbnail;
-    private String productSellerName;
     private Long successBidNo;
-
+    private LocalDateTime productTime;
+    private String productMemberName;
+    private Long productMemberNo;
 }
+
+
+
+
+
+
+
+
+

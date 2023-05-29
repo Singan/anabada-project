@@ -1,6 +1,7 @@
 package com.anabada.repository;
 
 import com.anabada.entity.SuccessfulBid;
+import com.anabada.entity.nativeQuery.MyBuyListInterface;
 import org.hibernate.annotations.BatchSize;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,12 +14,22 @@ import java.util.List;
 public interface SuccessBidRepository extends JpaRepository<SuccessfulBid,Long> {
 
 
-    @Query("select s from SuccessfulBid  s " +
-            "join   s.bid b " +
-            "join   s.product p " +
-            "join fetch  p.member " +
-            "where b.member.memberNo = :memberNo")
-    @BatchSize(size = 5)
-    Page<SuccessfulBid> successfulBidList(@Param("memberNo") Long memberNo, Pageable pageable);
+    @Query(value = "select " +
+            "b.bid_no as bidNo," +
+            "p.product_no as productNo ," +
+            "m.member_name as productMemberName," +
+            "m.member_no as memberNo," +
+            "b.bid_time as successTime," +
+            "p.create_date_time as productTime," +
+            "p.product_name as productName," +
+            "b.bid_price as bidPrice," +
+            "p.product_thumbnail as productThumbnail," +
+            "s.success_bid_no as successBidNo" +
+            " from success_ful_bid  s " +
+            "join bid b on s.bid_no = b.bid_no " +
+            "join product p on s.product_no = p.product_no " +
+            "join member m on p.member_no = m.member_no " +
+            "where b.member_no = :memberNo",nativeQuery = true)
+    Page<MyBuyListInterface> successfulBidList(@Param("memberNo") Long memberNo, Pageable pageable);
 
 }

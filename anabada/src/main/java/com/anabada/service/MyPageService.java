@@ -4,6 +4,7 @@ import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.response_dto.MyBuyDto;
 import com.anabada.dto.response_dto.ResultList;
 import com.anabada.entity.SuccessfulBid;
+import com.anabada.entity.nativeQuery.MyBuyListInterface;
 import com.anabada.repository.SuccessBidRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,18 +23,22 @@ public class MyPageService {
     @Value("${s3.bucket.endpoint}")
     private String s3Endpoint;
 
-    public ResultList<List<MyBuyDto>> myBuyList(MemberDetailDTO memberDetailDTO, Pageable pageable){
-        Page<SuccessfulBid> successfulBids = successBidRepository.successfulBidList(memberDetailDTO.getNo(),pageable);
+    public ResultList<List<MyBuyDto>> myBuyList(MemberDetailDTO memberDetailDTO, Pageable pageable) {
+        Page<MyBuyListInterface> successfulBids = successBidRepository.successfulBidList(memberDetailDTO.getNo(), pageable);
 
         return new ResultList<>(successfulBids.getTotalPages(),
                 successfulBids.stream().map(s -> MyBuyDto.builder()
-                .productNo(s.getProduct().getProductNo())
-                .productThumbnail(s3Endpoint+s.getProduct().getProductThumbnail())
-                .bidPrice(s.getBid().getPrice())
-                .productName(s.getProduct().getProductName())
-                .successTime(s.getBid().getTime())
-                .productSellerName(s.getProduct().getMember().getMemberName())
-                .build()).collect(Collectors.toList())
+                        .productNo(s.getProductNo())
+                        .bidNo(s.getBidNo())
+                        .successTime(s.getSuccessTime())
+                        .productName(s.getProductName())
+                        .bidPrice(s.getBidPrice())
+                        .productThumbnail(s.getProductThumbnail())
+                        .successBidNo(s.getSuccessBidNo())
+                        .productTime(s.getProductTime())
+                        .productMemberName(s.getProductMemberName())
+                        .productMemberNo(s.getProductMemberNo())
+                        .build()).collect(Collectors.toList())
         );
     }
 }
