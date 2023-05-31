@@ -12,12 +12,9 @@
 		<router-link
 			class="successGo"
 			:to="{
-				path: '/successfulBid',
-				props: {
-					successBidNo: {
-						type: Number,
-						required: true,
-					},
+				name: 'SuccessfulBid',
+				params: {
+					successBidNo: item.successBidNo,
 				},
 			}"
 			>낙찰 바로가기, {{ item.successBidNo }}</router-link

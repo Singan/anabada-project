@@ -35,13 +35,14 @@
 			</div>
 		</div>
 
-		<button class="okayButton">확인</button>
+		<button class="okayButton">확인{{ successBidNo }}</button>
 	</div>
 </template>
 
 <script>
 	import axios from '@/axios';
 	export default {
+		name: 'SuccessfulBid',
 		props: {
 			successBidNo: {
 				type: Number,
