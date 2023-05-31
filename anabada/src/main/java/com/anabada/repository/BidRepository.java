@@ -41,9 +41,9 @@ public interface BidRepository extends JpaRepository<Bid, Long> {
             "    m.member_wish_addr memberAddr ," +
             "    m.member_no memberNo " +
             "from bid b " +
-            "inner join product p on b.product_no = p.product_no\n" +
-            "inner join member m on p.member_no = m.member_no\n" +
-            "where b.member_no = :memberNo;",nativeQuery = true)
+            "inner join product p on b.product_no = p.product_no " +
+            "inner join member m on p.member_no = m.member_no " +
+            "where b.member_no = :memberNo",nativeQuery = true)
     Page<MyBidHistory> findBidListByMemberNo(@Param("memberNo") Long memberNo, Pageable pageable);
 
     @Query(value = "SELECT " +
