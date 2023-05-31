@@ -56,27 +56,33 @@
 
 		<div class="line"></div>
 
-		<div class="prouductInfo">
-			<div class="productNamePrice">상품 이름 : {{ seller.productName }}</div>
-			<div class="productTime">등록 시간 : {{ seller.productTime }}</div>
-			<div class="productNamePrice">상품 등록 가격 : {{ seller.productPrice }}원</div>
-			<div class="productNamePrice" v-if="seller.productHighPrice">
-				현재 최고가 : {{ seller.productHighPrice }} 원
-			</div>
-			<div class="productNamePrice" v-if="seller.productHighPrice">
-				상품 낙찰까지 남은 시간 : {{ leftTimerView }}
+		<div class="productInfo">
+			<div class="productInfoBox1">
+				<div class="productTitle">상품 이름 : {{ seller.productName }}</div>
+				<div class="productRegisterPrice">등록 가격 : {{ seller.productPrice }}원</div>
+				<div class="productHighPrice" v-if="seller.productHighPrice">
+					현재 최고가 : {{ seller.productHighPrice }} 원
+				</div>
 			</div>
 
+			<div class="productInfoBox2">
+				<div class="productTime">등록 시간 : {{ seller.productTime }}</div>
+				<div class="productRemainTime" v-if="seller.productHighPrice">남은 시간 : {{ leftTimerView }}</div>
+			</div>
+		</div>
+
+		<div class="productInfoBox3">
 			<div class="productExplain">상품 설명 : {{ seller.productDetail }}</div>
 			<div class="productExplain">상품 사용기간 : {{ seller.productUseDate }}</div>
 		</div>
 
-		<div class="productStatus">
-			<a class="productText1">찜 0</a>
-			<a class="productText1">조회 {{ seller.productVisit }}</a>
+		<div class="productFooter">
+			<button class="auctionText" :class="{ clicked: isClicked }" @click="bidStart">경매 참여</button>
+			<div class="productStatus">
+				<a class="productText1">찜 0</a>
+				<a class="productText1">조회 {{ seller.productVisit }}</a>
+			</div>
 		</div>
-
-		<button class="auctionText" :class="{ clicked: isClicked }" @click="bidStart">경매 참여</button>
 
 		<div class="line"></div>
 		<BidList v-if="isClicked" :memberNo="seller.memberNo" :productName="seller.productName"></BidList>
@@ -205,13 +211,9 @@
 </script>
 
 <style scoped>
-	.prouductInfo > div {
-		padding-left: 60px;
-		width: fit-content;
-	}
 	.form {
 		background: #ffffff;
-		width: 700px;
+		width: 850px;
 		display: flex;
 		flex-direction: column;
 		margin: 100px auto 0;
@@ -221,6 +223,25 @@
 	.form > * {
 		margin-bottom: 20px;
 		padding: 5px;
+	}
+
+	.prouductInfo > div {
+		width: fit-content;
+	}
+
+	.productInfo {
+		display: flex;
+		flex-direction: row;
+		margin-left: 60px;
+		gap: 300px;
+	}
+
+	.productInfoBox1 {
+		margin-bottom: 100px;
+	}
+
+	.productInfoBox3 {
+		margin-left: 60px;
 	}
 
 	.productPicture {
@@ -242,7 +263,7 @@
 		justify-content: center;
 	}
 	.productPicture > * {
-		width: 700px;
+		width: 850px;
 		height: 100%;
 	}
 	.prev,
@@ -343,7 +364,7 @@
 	}
 
 	.productText1 {
-		color: #000000;
+		color: #868e96;
 		font: 14px 'Roboto', sans-serif;
 	}
 
@@ -368,30 +389,58 @@
 		border: none;
 	}
 
-	.productNamePrice {
+	.productTitle {
+		color: #000000;
+		font: 18px 'Roboto', sans-serif;
+		font-weight: bold;
+		margin-bottom: 10px;
+	}
+
+	.productRegisterPrice {
 		color: #000000;
 		font: 14px 'Roboto', sans-serif;
+		margin-bottom: 10px;
+	}
+
+	.productHighPrice {
+		color: #000000;
+		font: 16px 'Roboto', sans-serif;
 		font-weight: bold;
-		margin-bottom: 30px;
+		margin-bottom: 10px;
 	}
 
 	.productTime {
 		color: #000000;
-		font: 14px 'Roboto', sans-serif;
+		font: 12px 'Roboto', sans-serif;
 		opacity: 0.4;
-		margin-bottom: 30px;
+		margin-bottom: 10px;
+	}
+
+	.productRemainTime {
+		color: #000000;
+		font: 14px 'Roboto', sans-serif;
+		font-weight: bold;
+		margin-bottom: 10px;
 	}
 
 	.productExplain {
 		color: #000000;
 		font: 14px 'Roboto', sans-serif;
-		margin-bottom: 30px;
+		margin-bottom: 20px;
 		word-break: break-all;
+	}
+
+	.productFooter {
+		margin-top: 90px;
+		padding-left: 60px;
+		display: flex;
+		gap: 500px;
 	}
 
 	.productStatus {
 		display: flex;
-		gap: 50px;
+		gap: 40px;
+		align-items: center;
 	}
 
 	.box3 {
