@@ -71,6 +71,7 @@ const routes = [
 		path: '/successfulBid',
 		name: 'SuccessfulBid',
 		component: () => import('@/components/transaction/SuccessfulBid.vue'),
+		props: true,
 		beforeEnter: requireAuth(),
 	},
 

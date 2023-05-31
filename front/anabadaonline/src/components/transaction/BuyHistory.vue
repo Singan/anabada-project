@@ -2,13 +2,26 @@
 	<div class="productInfo" v-for="item in buyList" :key="item.successBidNo">
 		<img class="productPicture" :src="item.productThumbnail" />
 		<div class="productDetail">
-			<div class="detailPrice">상품명 : {{ item.productName }}</div>
+			<div class="detailPrice">상품명: {{ item.productName }}</div>
 			<div class="detailPrice">상품 판매자 : {{ item.productMemberName }}</div>
 
 			<div class="detailPrice">상품 등록 시간 : {{ item.productTime }}</div>
 			<div class="detailPrice">경매 낙찰 가격 : {{ item.bidPrice }}</div>
 			<div class="detailPrice">경매 낙찰 시간 : {{ item.successTime }}</div>
 		</div>
+		<router-link
+			class="successGo"
+			:to="{
+				path: '/successfulBid',
+				props: {
+					successBidNo: {
+						type: Number,
+						required: true,
+					},
+				},
+			}"
+			>낙찰 바로가기, {{ item.successBidNo }}</router-link
+		>
 	</div>
 </template>
 <script>
@@ -97,6 +110,7 @@
 		border-radius: 10px;
 		width: 160px;
 		height: 160px;
+		flex: 1;
 	}
 
 	.productDetail {
@@ -104,7 +118,8 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		flex: 1;
+		flex: 2;
+		width: fit-content;
 	}
 
 	.detailPrice {
@@ -115,5 +130,11 @@
 
 	.productInfo {
 		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.successGo {
+		flex: 1;
 	}
 </style>

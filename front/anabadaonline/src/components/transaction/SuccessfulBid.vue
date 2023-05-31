@@ -42,19 +42,18 @@
 <script>
 	import axios from '@/axios';
 	export default {
-		name: '',
-		components: {},
-		props: {},
+		props: {
+			successBidNo: {
+				type: Number,
+				required: true,
+			},
+		},
 		data() {
-			// quickfix to have components available to pass as props
-			return {
-				salesList: [],
-			};
+			return {};
 		},
-		methods: {
-			toggle(e) {},
+		mounted() {
+			console.log(this.successBidNo);
 		},
-		async created() {},
 	};
 </script>
 
