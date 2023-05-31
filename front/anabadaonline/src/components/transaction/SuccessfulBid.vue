@@ -40,17 +40,12 @@
 </template>
 
 <script>
-	import axios from '@/axios';
 	export default {
 		name: 'SuccessfulBid',
 		props: {
 			successBidNo: {
 				type: Number,
-				required: true,
 			},
-		},
-		data() {
-			return {};
 		},
 		mounted() {
 			console.log(this.successBidNo);

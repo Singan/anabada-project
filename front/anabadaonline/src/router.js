@@ -68,7 +68,7 @@ const routes = [
 	},
 
 	{
-		path: '/successfulBid',
+		path: '/successfulBid/:successBidNo',
 		name: 'SuccessfulBid',
 		component: () => import('@/components/transaction/SuccessfulBid.vue'),
 		props: true,
