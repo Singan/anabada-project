@@ -4,7 +4,6 @@ import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.request_dto.BidInsertDto;
 import com.anabada.dto.response_dto.BidInfoFindDto;
 import com.anabada.dto.response_dto.BidInsertResponseDto;
-import com.anabada.dto.response_dto.FindBiddingDetailDto;
 import com.anabada.dto.response_dto.ResultList;
 import com.anabada.entity.Bid;
 import com.anabada.entity.Member;
@@ -14,8 +13,6 @@ import com.anabada.repository.BidRepository;
 import com.anabada.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -79,13 +76,7 @@ public class BidService {
 
     }
 
-    // 입찰 내역
-    public ResultList<List<FindBiddingDetailDto>> findBiddingDetail(MemberDetailDTO memberDetailDTO, Pageable pageable) {
-        List<Bid> bidList = bidRepository.findBidListByMemberNo(memberDetailDTO.getNo());
-        List<FindBiddingDetailDto> biddingDetail =
-                bidList.stream().map(bid -> new FindBiddingDetailDto(bid, prefix)).collect(Collectors.toList());
-        return new ResultList<>(biddingDetail);
-    }
+
     //입찰 내역 중 최고값의 시간이 입력 후 10분이 지난 입찰 내역의 상품 번호
     public List<MaxBidProductNoInterface> productByMaxBidList(){
         return bidRepository.bidList();

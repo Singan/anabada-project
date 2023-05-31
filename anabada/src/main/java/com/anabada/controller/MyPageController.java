@@ -6,7 +6,6 @@ import com.anabada.dto.request_dto.PayDto;
 import com.anabada.dto.response_dto.*;
 import com.anabada.service.*;
 import io.swagger.v3.oas.annotations.Operation;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -54,8 +53,8 @@ public class MyPageController {
 
     @GetMapping("/bidDetail")
     @Operation(description = "내 입찰내역")
-    public ResultList<List<FindBiddingDetailDto>> findBiddingDetail(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO,Pageable pageable) {
-        return bidService.findBiddingDetail(memberDetailDTO, pageable);
+    public ResultList<List<MyBidDto>> findBiddingDetail(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO, Pageable pageable) {
+        return myPageService.findBiddingDetail(memberDetailDTO, pageable);
     }
 
     @GetMapping("/buys")

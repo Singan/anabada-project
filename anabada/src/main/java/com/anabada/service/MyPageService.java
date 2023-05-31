@@ -1,10 +1,12 @@
 package com.anabada.service;
 
 import com.anabada.dto.MemberDetailDTO;
+import com.anabada.dto.response_dto.MyBidDto;
 import com.anabada.dto.response_dto.MyBuyDto;
 import com.anabada.dto.response_dto.ResultList;
-import com.anabada.entity.SuccessfulBid;
+import com.anabada.entity.nativeQuery.MyBidHistory;
 import com.anabada.entity.nativeQuery.MyBuyListInterface;
+import com.anabada.repository.BidRepository;
 import com.anabada.repository.SuccessBidRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +21,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MyPageService {
     private final SuccessBidRepository successBidRepository;
+    private final BidRepository bidRepository;
 
     @Value("${s3.bucket.endpoint}")
     private String s3Endpoint;
@@ -40,5 +43,25 @@ public class MyPageService {
                         .productMemberNo(s.getProductMemberNo())
                         .build()).collect(Collectors.toList())
         );
+    }
+    // 입찰 내역
+    public ResultList<List<MyBidDto>> findBiddingDetail(MemberDetailDTO memberDetailDTO, Pageable pageable) {
+        Page<MyBidHistory> bidList = bidRepository.findBidListByMemberNo(memberDetailDTO.getNo(),pageable);
+        List<MyBidDto> biddingDetail =
+                bidList.stream().map(bid -> MyBidDto.builder()
+                        .bidNo(bid.getBidNo())
+                        .bidPrice(bid.getBidPrice())
+                        .bidTime(bid.getBidTime())
+                        .productNo(bid.getProductNo())
+                        .productMemberName(bid.getProductMemberName())
+                        .productTime(bid.getProductTime())
+                        .productName(bid.getProductName())
+                        .productPrice(bid.getProductPrice())
+                        .productSuccessIs(bid.getProductSuccessIs())
+                        .productThumbnail(bid.getProductThumbnail())
+                        .memberAddr(bid.getMemberAddr())
+                        .memberNo(bid.getMemberNo())
+                        .build()).collect(Collectors.toList());
+        return new ResultList<>(bidList.getTotalPages(),biddingDetail);
     }
 }

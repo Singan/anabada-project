@@ -4,6 +4,7 @@ import com.anabada.entity.Bid;
 import com.anabada.entity.Member;
 import com.anabada.entity.Product;
 import com.anabada.entity.nativeQuery.MaxBidProductNoInterface;
+import com.anabada.entity.nativeQuery.MyBidHistory;
 import org.hibernate.annotations.BatchSize;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,10 +27,24 @@ public interface BidRepository extends JpaRepository<Bid, Long> {
     Bid findBidByProductAndMember(Product product, Member member);
 
     // 입찰 내역
-    @Query("select b from Bid b " +
-            " join fetch b.product p " +
-            " join fetch p.member m where b.member.memberNo = :memberNo")
-    List<Bid> findBidListByMemberNo(@Param("memberNo") Long memberNo);
+    @Query(value = "select" +
+            "    b.bid_no bidNo," +
+            "    b.bid_price  bidPrice," +
+            "    b.bid_time bidTime," +
+            "    p.product_no productNo," +
+            "    m.member_name productMemberName," +
+            "    p.create_date_time productTime," +
+            "    p.product_name productName," +
+            "    p.product_price productPrice," +
+            "    p.product_is_bid_complete productSuccessIs," +
+            "    p.product_thumbnail productThumbnail," +
+            "    m.member_wish_addr memberAddr ," +
+            "    m.member_no memberNo " +
+            "from bid b " +
+            "inner join product p on b.product_no = p.product_no\n" +
+            "inner join member m on p.member_no = m.member_no\n" +
+            "where b.member_no = :memberNo;",nativeQuery = true)
+    Page<MyBidHistory> findBidListByMemberNo(@Param("memberNo") Long memberNo, Pageable pageable);
 
     @Query(value = "SELECT " +
             " p2.product_name as productName," +
