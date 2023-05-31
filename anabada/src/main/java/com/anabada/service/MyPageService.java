@@ -58,7 +58,7 @@ public class MyPageService {
                         .productName(bid.getProductName())
                         .productPrice(bid.getProductPrice())
                         .productSuccessIs(bid.getProductSuccessIs())
-                        .productThumbnail(bid.getProductThumbnail())
+                        .productThumbnail(s3Endpoint+bid.getProductThumbnail())
                         .memberAddr(bid.getMemberAddr())
                         .memberNo(bid.getMemberNo())
                         .build()).collect(Collectors.toList());
