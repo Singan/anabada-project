@@ -19,14 +19,23 @@
 						<div class="time_td">
 							<!--Time & Check-->
 							<div class="time">2016.09.29 17:54</div>
-							<div class="check">
-								<!-- <p></p> -->
-							</div>
+							<div class="check"></div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<iframe class="chatting" name="chatting">채팅창</iframe>
+			<div class="chatContainer">
+				<div class="oppoInfoBox">
+					<span class="oppoInfo">xxx님과의 채팅</span>
+				</div>
+				<div class="chattingMainBox"></div>
+				<div class="chatController">
+					<input class="chatInputBox" />
+					<div class="sendButton">
+						<img class="sendicon" src="@/assets/send.png" />
+					</div>
+				</div>
+			</div>
 		</div>
 	</body>
 </template>
@@ -43,26 +52,27 @@
 	};
 </script>
 <style scoped>
-	* {
-		margin: 0;
-		padding: 0;
-	}
-	body {
-		font-size: 12px;
-	}
 	.chattingPageContainer {
 		display: flex;
+		width: 1920px;
+		align-items: flex-start;
+		justify-content: center;
+
+		margin: auto;
 	}
 	.chat_list_wrap {
+		width: 500px;
 		list-style: none;
 		display: flex;
+		align-content: flex-start;
 		flex-direction: column;
-		align-items: flex-start;
+		margin-top: 12px;
 	}
 
 	.chatListContainer {
-		margin-left: 8rem;
-		width: 40rem;
+		display: flex;
+		flex-direction: column;
+		width: 470px;
 	}
 	.chat_list_wrap .header {
 		margin-top: 2em;
@@ -79,9 +89,11 @@
 
 	.list {
 		margin-top: 2em;
-		padding: 0 16px;
+		width: 450px;
+		padding: 0 10px;
 		display: flex;
 		border-bottom: 1px solid#e1e1e1;
+		justify-items: center;
 	}
 	.chat_list_wrap .list ul {
 		width: 100%;
@@ -93,9 +105,7 @@
 		padding-bottom: 2em;
 		border-bottom: 1px solid #e5e5e5;
 	}
-	.chat_list_wrap .list ul li table {
-		width: 100%;
-	}
+
 	.profile_td {
 		width: 50px;
 		padding-right: 11px;
@@ -113,29 +123,75 @@
 		color: inherit;
 	}
 	.time_td {
-		margin-left: 30em;
+		margin-left: 175px;
 		width: 90px;
 		text-align: center;
 	}
 	.chat_preview {
 		margin-bottom: 2em;
 	}
-	.chat_list_wrap .list ul li table td.time_td .time {
-		padding-bottom: 4px;
+
+	.chatContainer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
 	}
-	.chat_list_wrap .list ul li table td.time_td .check p {
-		width: 5px;
-		height: 5px;
-		margin: 0 auto;
-		-webkit-border-radius: 50%;
-		-moz-border-radius: 50%;
-		border-radius: 50%;
-		background: #e51c23;
+	.oppoInfoBox {
+		background: #ffffff;
+		width: 500px;
+		height: 60px;
+		box-shadow: 0px 5px 4px 0px rgba(209, 209, 209, 0.25);
+		text-align: center;
+		position: relative;
+		top: 40px;
 	}
-	.chatting {
-		margin-top: 2rem;
-		width: 0em;
-		height: 0em;
-		border: solid 0px #0075ff;
+
+	.oppoInfo {
+		color: #000000;
+		text-align: center;
+		font: 400 20px 'Roboto', sans-serif;
+		position: relative;
+		top: 20px;
+	}
+	.chattingMainBox {
+		background-color: white;
+		overflow: hidden;
+		width: 500px;
+		height: 500px;
+	}
+
+	.chatController {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		background-color: white;
+		width: 500px;
+		box-shadow: 0px -5px 4px 0px rgba(209, 209, 209, 0.25);
+		height: 80px;
+		text-align: center;
+	}
+
+	.chatInputBox {
+		background: #d9ecff;
+		border-radius: 5px;
+		width: 420px;
+		height: 40px;
+		margin-left: 10px;
+		position: relative;
+		border: none;
+	}
+	.sendButton {
+		background: #0075ff;
+		width: 40px;
+		height: 40px;
+		position: relative;
+		border-radius: 5px;
+		margin: 10px;
+	}
+	.sendicon {
+		width: 30px;
+		height: 30px;
+		margin: 5px;
 	}
 </style>
