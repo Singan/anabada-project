@@ -26,12 +26,6 @@
 	};
 </script>
 <style scoped>
-	.header {
-	}
-
-	.headerLine {
-	}
-
 	.chatBackground {
 		background: #f1f1f1;
 		width: 100%;
