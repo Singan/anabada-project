@@ -54,7 +54,7 @@
 <style scoped>
 	.chattingPageContainer {
 		display: flex;
-		width: 1920px;
+		width: 100%;
 		align-items: flex-start;
 		justify-content: center;
 
