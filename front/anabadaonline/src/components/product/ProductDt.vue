@@ -56,8 +56,11 @@
 
 		<div class="line"></div>
 
-		<div class="productHeader">
-			<div class="productTitle">상품 이름 : {{ seller.productName }}</div>
+		<div class="test">
+			<div class="productHeader">
+				<div class="productTitle">상품 이름 :{{ seller.productName }}</div>
+				<div class="productTime">{{ seller.productTime }}</div>
+			</div>
 			<div class="productStatus">
 				<a class="productText1">찜 0</a>
 				<a class="productText1">조회 {{ seller.productVisit }}</a>
@@ -65,14 +68,14 @@
 		</div>
 
 		<div class="productInfoBox">
-			<div class="productTime">등록 시간 : {{ seller.productTime }}</div>
 			<div class="productRemainTime" v-if="seller.productHighPrice">남은 시간 : {{ leftTimerView }}</div>
 			<div class="productRegisterPrice">등록 가격 : {{ seller.productPrice }}원</div>
 			<div class="productHighPrice" v-if="seller.productHighPrice">
 				현재 최고가 : {{ seller.productHighPrice }} 원
 			</div>
-			<div class="productExplain">상품 설명 : {{ seller.productDetail }}</div>
+
 			<div class="productExplain">상품 사용기간 : {{ seller.productUseDate }}</div>
+			<div class="productExplain">상품 설명 : {{ seller.productDetail }}</div>
 		</div>
 
 		<div class="productFooter">
@@ -220,16 +223,13 @@
 		padding: 5px;
 	}
 
-	.prouductInfo > div {
-		width: fit-content;
-	}
-
 	.productHeader {
 		display: flex;
 		flex-direction: row;
 		margin-left: 60px;
-		margin-bottom: 100px;
-		gap: 420px;
+		gap: 290px;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.productInfoBox {
@@ -286,7 +286,6 @@
 	}
 	.userInfo {
 		display: flex;
-
 		flex-direction: row;
 		margin-top: 30px;
 	}
@@ -299,7 +298,7 @@
 	}
 
 	.box2 {
-		margin-left: auto;
+		margin-left: 270px;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -404,7 +403,6 @@
 		color: #000000;
 		font: 12px 'Roboto', sans-serif;
 		opacity: 0.4;
-		margin-bottom: 10px;
 	}
 
 	.productRemainTime {
@@ -433,6 +431,8 @@
 		display: flex;
 		gap: 40px;
 		align-items: center;
+		margin-left: 708px;
+		margin-bottom: 80px;
 	}
 
 	.box3 {
