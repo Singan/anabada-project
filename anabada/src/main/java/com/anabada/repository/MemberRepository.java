@@ -20,7 +20,7 @@ public interface MemberRepository extends JpaRepository<Member,Long> {
 
     @Query("select m from Member m " +
             "left join fetch m.memberProductList p " +
-            "where m.memberId = :id and m.memberExist = false")
+            "where m.memberId = :id and m.memberExist = false and p.productIsBidComplete = false")
     Member findMemberByMemberId(@Param("id") String id);
 
 

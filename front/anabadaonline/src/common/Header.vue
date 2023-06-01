@@ -13,7 +13,6 @@
 			type="text"
 		/>
 
-		<button class="SearchButton" type="submit">검색하기</button>
 
 		<router-link to="/login" class="LoginBox" v-if="!isToken"> 로그인 </router-link>
 

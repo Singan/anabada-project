@@ -40,16 +40,19 @@
 </template>
 
 <script>
-	export default {
-		name: 'SuccessfulBid',
-		props: {
-			successBidNo: {
-				type: Number,
-			},
+import axios from '@/axios';
+export default {
+	name: 'SuccessfulBid',
+	props: {
+		successBidNo: {
+			type: Number,			},
 		},
-		mounted() {
-			console.log(this.successBidNo);
-		},
+	data(){
+		return{}
+	},
+	async created(){
+		const res = await axios.get("/success?successBidNo="+this.successBidNo);
+	}
 	};
 </script>
 

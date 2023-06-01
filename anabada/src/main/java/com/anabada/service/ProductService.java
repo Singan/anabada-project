@@ -56,7 +56,7 @@ public class ProductService {
         }
 
 
-        return new ProductInsertResDto(product.getProductNo(), product.getProductSocket().getProductSocketNo());
+        return new ProductInsertResDto(product.getProductNo(), product.getProductNo());
     }
 
     // product 세부 정보

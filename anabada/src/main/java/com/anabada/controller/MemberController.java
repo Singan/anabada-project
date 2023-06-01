@@ -9,21 +9,18 @@ import com.anabada.dto.response_dto.ShowUpdateMemberDto;
 import com.anabada.dto.response_dto.MemberInfoDto;
 import com.anabada.dto.response_dto.MemberUpdateFindDto;
 import com.anabada.service.MemberService;
-import com.anabada.service.SocketService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/member")
 public class MemberController {
     private final MemberService memberService;
-    private final SocketService socketService;
 
     @PostMapping
     @Operation(description = "회원가입")

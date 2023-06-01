@@ -30,14 +30,12 @@ public class ProductInsertDto {
     public Product getProduct(MemberDetailDTO principal,String thumbnail ){
         Member member = principal.getMember();
         Category category = Category.builder().categoryNo(categoryNo).build();
-        ProductSocket productSocket = new ProductSocket();
         Product product = Product.builder()
                 .productDetail(detail)
                 .productName(name)
                 .productUseDate(usingDate)
                 .productThumbnail(thumbnail)
                 .productIsBidComplete(false)
-                .productSocket(productSocket)
                 .localDateTime(LocalDateTime.now())
                 .member(member)
                 .productVisit(0L)
