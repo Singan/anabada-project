@@ -51,16 +51,16 @@ public class MemberService implements UserDetailsService {
 
     }
 
+    @Transactional
+
     public MemberInfoDto findByMemberNoWithSocketList(Long memberNo) {
         System.out.println("쿼리 실행 부분");
         MemberInfoInterface member = memberRepository.findMemberAndProductList(memberNo);
         System.out.println("쿼리 실행 부분---------------------------");
-        List<Long> productNoList = new ArrayList<>();
-//        System.out.println("왜 안와씨벌");
+//        List<String> productNoList = new ArrayList<>();
 //        if (member.getProductNoList() != null) {
-//            System.out.println("왜 안와씨벌");
 //            productNoList   = member.getProductNoList();
-//            for(Long a : productNoList){
+//            for(String a : productNoList){
 //                System.out.println(a);
 //            }
 //        }else{
@@ -69,7 +69,7 @@ public class MemberService implements UserDetailsService {
 
         MemberInfoDto memberInfoDto = MemberInfoDto
                 .builder()
-                .productSocketNoList(productNoList)
+                //.productSocketNoList(productNoList)
                 .image(s3EndPoint + member.getMemberImage())
                 .name(member.getMemberName())
                 .no(member.getMemberNo())
