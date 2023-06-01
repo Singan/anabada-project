@@ -44,11 +44,20 @@
 						나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
 						빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
 					</div>
+					<div class="bubble sender">
+						나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
+						빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
+					</div>
 					<div class="bubble receiver">안녕하세요~</div>
 					<div class="bubble sender">
 						나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
 						빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
 					</div>
+					<div class="bubble sender">
+						나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
+						빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
+					</div>
+					<div class="bubble sender">반갑다</div>
 				</div>
 				<div class="chatController">
 					<input class="chatInputBox" />
@@ -182,13 +191,12 @@
 	}
 	.chattingMainBox {
 		display: flex;
-		flex-direction: column-reverse;
+		flex-direction: column;
 		align-items: flex-end;
-		flex-wrap: wrap;
 		background-color: white;
 		width: 500px;
-		height: 500px;
-		overflow-y: scroll;
+		height: 550px;
+		overflow-y: auto;
 	}
 
 	.chatController {
@@ -226,7 +234,7 @@
 	}
 	.bubble {
 		display: inline-block;
-		max-width: 70%;
+		max-width: 75%;
 		margin-bottom: 10px;
 		padding: 10px 15px;
 		border-radius: 20px;
