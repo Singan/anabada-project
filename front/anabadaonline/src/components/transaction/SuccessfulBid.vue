@@ -35,7 +35,8 @@
 			</div>
 		</div>
 
-		<button class="okayButton">확인</button>
+		<button class="okayButton" @click="chat" v-if="status == '대기'">상대방과 채팅 시작하기</button>
+		<div v-if="status == '채팅'">현재 대화중입니다.</div>
 	</div>
 </template>
 
@@ -57,9 +58,18 @@
 				productThumbnail: '',
 				productUploadMember: '',
 				wishAddr: '',
+				status: '',
 			};
 		},
+		methods: {
+			async chat() {
+				await axios.put('/success/chat/start', {
+					successBidNo: this.successBidNo,
+				});
+			},
+		},
 		async created() {
+			console.log(this.successBidNo);
 			const res = await axios.get('/success?successBidNo=' + this.successBidNo).catch((error) => {
 				this.$swal({
 					title: '에러',
@@ -77,6 +87,7 @@
 			this.productThumbnail = res.data.productThumbnail;
 			this.productUploadMember = res.data.productUploadMember;
 			this.wishAddr = res.data.wishAddr;
+			this.status = res.data.status;
 		},
 	};
 </script>

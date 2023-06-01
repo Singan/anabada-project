@@ -3,10 +3,12 @@ package com.anabada.service;
 import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.response_dto.SuccessBidDto;
 import com.anabada.entity.SuccessfulBid;
+import com.anabada.etc.Status;
 import com.anabada.repository.SuccessBidRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,8 +26,12 @@ public class SuccessBidService {
                 successfulBid.getProduct().getMember().getMemberNo()!=memberNo){
             throw new RuntimeException("낙찰 또는 판매와 관련없는 회원은 해당 페이지에 접근할 수 없습니다.");
         }
-
-
         return new SuccessBidDto(successfulBid, s3EndPoint);
+    }
+
+    @Transactional
+    public void startChat(Long successBidNo){
+        System.out.println(successBidNo);
+        successBidRepository.updateSuccessfulBidByStatus(successBidNo, Status.채팅);
     }
 }

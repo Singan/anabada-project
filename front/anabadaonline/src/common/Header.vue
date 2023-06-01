@@ -3,7 +3,7 @@
 		<router-link class="Logo" to="/">아나바다</router-link>
 
 		<router-link to="/auction?category=1" class="AuctionButton"> 경매 </router-link>
-		<router-link to="/chatList" class="ChatButton"> 채팅 </router-link>
+		<router-link :to="{ name: '/chatList' }" class="ChatButton"> 채팅 </router-link>
 		<input
 			class="SearchBox"
 			v-model="keyword"
@@ -12,7 +12,6 @@
 			autocomplete="off"
 			type="text"
 		/>
-
 
 		<router-link to="/login" class="LoginBox" v-if="!isToken"> 로그인 </router-link>
 
@@ -82,7 +81,7 @@
 
 	.Header {
 		background: #ffffff;
-		width: 70%;
+		width: 70vw;
 		height: 115px;
 		display: flex;
 		justify-content: center;

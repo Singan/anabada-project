@@ -41,6 +41,11 @@
 	import axios from '@/axios.js';
 
 	export default {
+		props: {
+			isSocket: {
+				type: Boolean,
+			},
+		},
 		data() {
 			return {
 				productList: '',

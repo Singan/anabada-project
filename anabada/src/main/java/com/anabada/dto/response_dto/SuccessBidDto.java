@@ -16,7 +16,12 @@ public class SuccessBidDto {
     private String productThumbnail;
     private String productUploadMember;
     private String wishAddr;
-
+    private Long productNo;
+    private Long successBidNo;
+    private Long bidNo;
+    private Long buyerNo;
+    private Long sellerNo;
+    private String status;
     public SuccessBidDto(SuccessfulBid successfulBid, String prefix) {
         this.memberName = successfulBid.getBid().getMember().getMemberName();
         this.productPrice = successfulBid.getBid().getPrice();
@@ -25,6 +30,12 @@ public class SuccessBidDto {
         this.productThumbnail = prefix + successfulBid.getProduct().getProductThumbnail();
         this.productUploadMember = successfulBid.getProduct().getMember().getMemberName();
         this.wishAddr = successfulBid.getProduct().getMember().getMemberWishAddr();
+        this.successBidNo = successfulBid.getSuccessBidProductNo();
+        this.productNo = successfulBid.getProduct().getProductNo();
+        this.bidNo = successfulBid.getBid().getBidNo();
+        this.buyerNo = successfulBid.getBid().getBidNo();
+        this.sellerNo = successfulBid.getProduct().getProductNo();
+        this.status = successfulBid.getStatus().name();
     }
 
 }

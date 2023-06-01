@@ -5,8 +5,22 @@
 			<div class="logoName" @click="goMain">아나바다</div>
 		</div>
 		<form class="idPw">
-			<input type="text" v-model="id" style="font-size: 19px" class="input" placeholder="아이디" />
-			<input type="password" v-model="pw" style="font-size: 19px" class="input" placeholder="패스워드" />
+			<input
+				type="text"
+				v-model="id"
+				style="font-size: 19px"
+				class="input"
+				placeholder="아이디"
+				autocomplete="off"
+			/>
+			<input
+				type="password"
+				v-model="pw"
+				style="font-size: 19px"
+				class="input"
+				placeholder="패스워드"
+				autocomplete="new-password"
+			/>
 			<div class="login" @click="login">로그인</div>
 			<div class="joinBox">
 				<div class="idSearch">아이디 찾기</div>

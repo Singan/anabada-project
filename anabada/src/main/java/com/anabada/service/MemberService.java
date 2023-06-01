@@ -55,7 +55,6 @@ public class MemberService implements UserDetailsService {
     @Transactional
 
     public MemberInfoDto findByMemberNoWithSocketList(Long memberNo) {
-        System.out.println("쿼리 실행 부분");
         Member member = memberRepository.findMemberAndProductList(memberNo);
         List<Long> productNoList =  productRepository.findByMemberNo(memberNo);
 
@@ -67,7 +66,6 @@ public class MemberService implements UserDetailsService {
                 .name(member.getMemberName())
                 .no(member.getMemberNo())
                 .build();
-        System.out.println("여기까지");
         return memberInfoDto;
     }
 

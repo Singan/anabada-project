@@ -40,7 +40,7 @@
 						console.log(response.data.isValid);
 						if (response.data) {
 							axios
-								.delete('/member/member/exist')
+								.delete('/member/exist')
 								.then((response) => {
 									this.$token.remove();
 									this.isToken = this.$token.is();

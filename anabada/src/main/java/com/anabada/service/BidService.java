@@ -83,7 +83,6 @@ public class BidService {
     }
     @Transactional
     public void updateProductBidSuccess(List<Long> productNoList){
-        System.out.println("업데이트 비드 서비스 지점");
         bidRepository.updateProductSuccessBid(productNoList);
     }
 }

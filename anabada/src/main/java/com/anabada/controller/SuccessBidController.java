@@ -1,6 +1,7 @@
 package com.anabada.controller;
 
 import com.anabada.dto.MemberDetailDTO;
+import com.anabada.dto.request_dto.ChatStartDto;
 import com.anabada.dto.response_dto.SuccessBidDto;
 import com.anabada.service.SuccessBidService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -19,4 +20,5 @@ public class SuccessBidController {
     public SuccessBidDto successBidDto(@RequestParam Long successBidNo,@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
         return successBidService.successBidDto(successBidNo,memberDetailDTO);
     }
+
 }

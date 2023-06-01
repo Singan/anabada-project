@@ -9,7 +9,7 @@
 			<div class="detailPrice">경매 낙찰 가격 : {{ item.bidPrice }}</div>
 			<div class="detailPrice">경매 낙찰 시간 : {{ item.successTime }}</div>
 		</div>
-		<div class="successGo" @click="goSuccess(item.successBidNo)">낙찰 바로가기, {{ item.successBidNo }}</div>
+		<div class="successGo" @click="goSuccess(item.successBidNo)">낙찰 바로가기</div>
 	</div>
 </template>
 <script>
@@ -31,13 +31,8 @@
 			};
 		},
 		methods: {
-			goSuccess(a) {
-				this.$router.push({
-					name: 'SuccessfulBid',
-					params: {
-						successBidNo: a,
-					},
-				});
+			goSuccess(successBidNo) {
+				this.$router.push({ name: 'SuccessfulBid', params: { successBidNo } });
 			},
 			async getMyBuyList() {
 				const result = await axios.get(`/mypage/buys?page=${this.page}&size=${this.size}`);
