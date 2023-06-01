@@ -30,14 +30,12 @@ public class BidSuccessScheduler {
         List<Long> productNoList = bidProductNoList.stream().map(m -> m.getProductNo())
                 .collect(Collectors.toList());
         if(!productNoList.isEmpty()){
-            System.out.println("업데이트 비드 실행");
             bidService.updateProductBidSuccess(productNoList);
             List<SuccessfulBid> successfulBids = bidProductNoList.stream().map(bidProduct -> SuccessfulBid
                     .builder()
                     .bid(Bid.builder().bidNo(bidProduct.getBidNo()).build())
                     .product(Product.builder().productNo(bidProduct.getProductNo()).build())
                     .build()).collect(Collectors.toList());
-            System.out.println("세이브 실행");
             successBidRepository.saveAll(successfulBids);
         }
         for (MaxBidProductNoInterface bidAndProduct:bidProductNoList) {
