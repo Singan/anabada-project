@@ -138,7 +138,6 @@
 		background-color: #0075ff;
 		border-radius: 6px;
 		border: 1px solid #0075ff;
-		display: inline-block;
 		cursor: pointer;
 		color: #ffffff;
 		font-family: Arial;
