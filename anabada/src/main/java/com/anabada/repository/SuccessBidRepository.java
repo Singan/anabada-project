@@ -35,6 +35,7 @@ public interface SuccessBidRepository extends JpaRepository<SuccessfulBid,Long> 
 
 
     // 낙찰 내역 + 낙찰 상품 조회
-    @Query("select s from SuccessfulBid s join fetch s.product where s.successBidProductNo = :no")
+    @Query("select s from SuccessfulBid s join fetch s.product join fetch s.bid" +
+            " where s.successBidProductNo = :no")
     SuccessfulBid findSuccessfulBid(@Param("no") Long no);
 }

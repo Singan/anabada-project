@@ -17,8 +17,8 @@ public class SuccessBidDto {
     private String productUploadMember;
 //    private String wishAddr;
 
-    public SuccessBidDto(MemberDetailDTO memberDetailDTO, SuccessfulBid successfulBid, String prefix) {
-        this.memberName = memberDetailDTO.getUsername();
+    public SuccessBidDto(SuccessfulBid successfulBid, String prefix) {
+        this.memberName = successfulBid.getBid().getMember().getMemberName();
         this.productPrice = successfulBid.getProduct().getProductPrice();
         this.productName = successfulBid.getProduct().getProductName();
         this.productUseDate = successfulBid.getProduct().getProductUseDate();

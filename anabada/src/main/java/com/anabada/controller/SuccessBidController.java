@@ -14,7 +14,7 @@ public class SuccessBidController {
     private final SuccessBidService successBidService;
 
     @GetMapping
-    public SuccessBidDto successBidDto(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO, @RequestParam Long successBidNo) {
-        return successBidService.successBidDto(memberDetailDTO, successBidNo);
+    public SuccessBidDto successBidDto(@RequestParam Long successBidNo) {
+        return successBidService.successBidDto(successBidNo);
     }
 }
