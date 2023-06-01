@@ -2,6 +2,7 @@ package com.anabada.repository;
 
 
 import com.anabada.entity.Member;
+import com.anabada.entity.nativeQuery.MemberInfoInterface;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,10 +19,15 @@ public interface MemberRepository extends JpaRepository<Member,Long> {
 
     boolean existsMemberByMemberId(String id);
 
-    @Query("select m from Member m " +
-            "join fetch m.memberProductList p" +
-            " where m.memberNo = :memberNo and m.memberExist = false")
-    Member findMemberAndProductList(@Param("memberNo") Long memberNo);
+    @Query(value = "select" +
+            "    m.member_no memberNo," +
+            "    m.member_name memberName," +
+            "    m.member_image memberImage," +
+            "    p.product_no productNo " +
+            "from member m " +
+            "left join product p on p.member_no = p.product_no and p.product_is_bid_complete = false " +
+            "where m.member_no = :memberNo and m.member_exist = false", nativeQuery = true)
+    MemberInfoInterface findMemberAndProductList(@Param("memberNo") Long memberNo);
 
 
 }

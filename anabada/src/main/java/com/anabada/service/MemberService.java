@@ -7,6 +7,7 @@ import com.anabada.dto.request_dto.MemberUpdateDto;
 import com.anabada.dto.request_dto.MypageConfirmDto;
 import com.anabada.dto.response_dto.*;
 import com.anabada.entity.Member;
+import com.anabada.entity.nativeQuery.MemberInfoInterface;
 import com.anabada.etc.FileProcessor;
 import com.anabada.repository.MemberRepository;
 import com.anabada.config.token.JwtTokenProvider;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,9 +53,20 @@ public class MemberService implements UserDetailsService {
 
     public MemberInfoDto findByMemberNoWithSocketList(Long memberNo) {
         System.out.println("쿼리 실행 부분");
-        Member member = memberRepository.findMemberAndProductList(memberNo);
+        MemberInfoInterface member = memberRepository.findMemberAndProductList(memberNo);
         System.out.println("쿼리 실행 부분---------------------------");
-        MemberInfoDto memberInfoDto = new MemberInfoDto(member, s3EndPoint);
+        List<Long> productNoList = new ArrayList<>();
+        if(member.getProductNo()!=null){
+            productNoList.addAll(member.getProductNo());
+        }
+
+        MemberInfoDto memberInfoDto = MemberInfoDto
+                .builder()
+                .productSocketNoList(productNoList)
+                .image(s3EndPoint+member.getMemberImage())
+                .name(member.getMemberName())
+                .no(member.getMemberNo())
+                .build();
         System.out.println("쿼리 실행 부분 레이지로딩되나?");
         return memberInfoDto;
     }
