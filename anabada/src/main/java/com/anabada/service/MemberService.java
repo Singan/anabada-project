@@ -55,12 +55,17 @@ public class MemberService implements UserDetailsService {
         System.out.println("쿼리 실행 부분");
         MemberInfoInterface member = memberRepository.findMemberAndProductList(memberNo);
         System.out.println("쿼리 실행 부분---------------------------");
-        List<Long> productNoList;
-        if (member.getProductNoList() != null) {
-            productNoList   = member.getProductNoList();
-        }else{
-            productNoList= new ArrayList<>();
-        }
+        List<Long> productNoList = new ArrayList<>();
+//        System.out.println("왜 안와씨벌");
+//        if (member.getProductNoList() != null) {
+//            System.out.println("왜 안와씨벌");
+//            productNoList   = member.getProductNoList();
+//            for(Long a : productNoList){
+//                System.out.println(a);
+//            }
+//        }else{
+//            productNoList= new ArrayList<>();
+//        }
 
         MemberInfoDto memberInfoDto = MemberInfoDto
                 .builder()
