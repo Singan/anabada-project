@@ -47,7 +47,7 @@ public class MemberController {
 
     @GetMapping
     public MemberInfoDto memberInfo(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
-        MemberInfoDto member = memberService.findByMemberNoWithSocketList(memberDetailDTO.getUsername());
+        MemberInfoDto member = memberService.findByMemberNoWithSocketList(memberDetailDTO.getNo());
         return member;
     }
 

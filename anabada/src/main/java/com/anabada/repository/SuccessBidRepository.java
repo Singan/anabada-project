@@ -1,5 +1,6 @@
 package com.anabada.repository;
 
+import com.anabada.dto.response_dto.SuccessBidDto;
 import com.anabada.entity.SuccessfulBid;
 import com.anabada.entity.nativeQuery.MyBuyListInterface;
 import org.hibernate.annotations.BatchSize;
@@ -32,4 +33,8 @@ public interface SuccessBidRepository extends JpaRepository<SuccessfulBid,Long> 
             "where b.member_no = :memberNo",nativeQuery = true)
     Page<MyBuyListInterface> successfulBidList(@Param("memberNo") Long memberNo, Pageable pageable);
 
+
+    // 낙찰 내역 + 낙찰 상품 조회
+    @Query("select s from SuccessfulBid s join fetch s.product where s.successBidProductNo = :no")
+    SuccessfulBid findSuccessfulBid(@Param("no") Long no);
 }
