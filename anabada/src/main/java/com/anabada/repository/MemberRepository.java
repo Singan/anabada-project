@@ -19,9 +19,9 @@ public interface MemberRepository extends JpaRepository<Member,Long> {
     boolean existsMemberByMemberId(String id);
 
     @Query("select m from Member m " +
-            "left join fetch m.memberProductList p " +
-            "where m.memberId = :id and m.memberExist = false")
-    Member findMemberByMemberId(@Param("id") String id);
+            "left join Product p on p.member.memberNo = m.memberNo and p.productIsBidComplete = false " +
+            " where m.memberNo = :memberNo and m.memberExist = false")
+    Member findMemberByMemberNo(@Param("memberNo") Long memberNo);
 
 
 }

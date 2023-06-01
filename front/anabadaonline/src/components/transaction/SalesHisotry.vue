@@ -22,7 +22,7 @@
 		data() {
 			// quickfix to have components available to pass as props
 			return {
-				page: 4,
+				page: 0,
 				totalPage: 0,
 				size: 4,
 				salesList: [],

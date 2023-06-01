@@ -42,16 +42,12 @@ public class Product {
     @Column
     private LocalDateTime createDateTime;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "product_socket_no", nullable = false)
-    private ProductSocket productSocket;
+
     @Column(columnDefinition = "bigint default 0")
     private Long productVisit;
     @Column(nullable = false)
     private String productThumbnail;
 
-//    @OneToOne(fetch = FetchType.LAZY,mappedBy = "product" ,cascade = CascadeType.ALL)
-//    private CurrentBid currentBid;
 
     @Column(nullable = false)
     private Boolean productIsBidComplete;
@@ -64,7 +60,7 @@ public class Product {
     @Builder
     public Product(Long productNo, Member member, String productName, String productDetail, Integer productPrice,
                    String productUseDate, Category category, Long productVisit, List<ProductImage> productImageList,
-                   ProductSocket productSocket, String productThumbnail, boolean productIsBidComplete,
+                   String productThumbnail, boolean productIsBidComplete,
                    List<Bid> productBidList, LocalDateTime localDateTime) {
         this.productNo = productNo;
         this.member = member;
@@ -75,7 +71,6 @@ public class Product {
         this.category = category;
         this.productImageList = productImageList;
         this.createDateTime = localDateTime;
-        this.productSocket = productSocket;
         this.productVisit = productVisit;
         this.productThumbnail = productThumbnail;
         this.productIsBidComplete = productIsBidComplete;

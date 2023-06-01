@@ -37,8 +37,6 @@ public class Member {
     private String memberWishAddr;
     private String memberImage;
 
-    @OneToMany(mappedBy = "member")
-    private List<SocketRelation> memberSocketList;
 
     @OneToMany(mappedBy = "member")
     private List<Product> memberProductList;
@@ -54,7 +52,7 @@ public class Member {
                   String memberDetailAddr,
                   String memberAddr,
                   String memberWishAddr,
-                  String memberImage,List<SocketRelation> memberSocketList,
+                  String memberImage,
                   List<Product> memberProductList,
                   boolean memberExist
     ) {
@@ -68,14 +66,10 @@ public class Member {
         this.memberAddr = memberAddr;
         this.memberWishAddr = memberWishAddr;
         this.memberImage = memberImage;
-        this.memberSocketList = memberSocketList;
         this.memberProductList = memberProductList;
         this.memberExist = memberExist;
     }
-    public void addSocketList(SocketRelation socketRelation){
-        memberSocketList.add(socketRelation);
 
-    }
 
     // 비밀번호, 이미지, 주소 변경
     public void updateMember(MemberUpdateDto memberUpdateDto, String updateImagePath) {

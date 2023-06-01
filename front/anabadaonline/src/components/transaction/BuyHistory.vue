@@ -9,16 +9,15 @@
 			<div class="detailPrice">경매 낙찰 가격 : {{ item.bidPrice }}</div>
 			<div class="detailPrice">경매 낙찰 시간 : {{ item.successTime }}</div>
 		</div>
-		<router-link
+		<div
 			class="successGo"
 			:to="{
 				name: 'SuccessfulBid',
-				params: {
+				props: {
 					successBidNo: item.successBidNo,
 				},
 			}"
-			>낙찰 바로가기, {{ item.successBidNo }}</router-link
-		>
+			>낙찰 바로가기, {{ item.successBidNo }}</div>
 	</div>
 </template>
 <script>
