@@ -3,24 +3,24 @@
 		<div class="SuccessText1">축하합니다!</div>
 
 		<div class="SuccessText2">
-			<span style="color: #0075ff">"아이폰 14프로"</span> 상품이
+			<span style="color: #0075ff">"{{ productName }}"</span> 상품이
 			<span style="color: #0075ff">낙찰</span>
 			되었습니다!
 		</div>
 
-		<img class="productPicture" />
+		<img class="productPicture" :src="productThumbnail" />
 
 		<div class="detailInfo">
-			<div class="productInfo">상품명 : 아이폰 14프로</div>
-			<div class="productPrice">최종 낙찰가 : 1,200,000</div>
-			<div class="productInfo">상품 사용기간 : 0 ~ 4 주 사용</div>
-			<div class="productInfo">상품 거래지 : 경기도 성남시</div>
+			<div class="productInfo">상품명 : {{ productName }}</div>
+			<div class="productPrice">최종 낙찰가 : {{ productPrice }}</div>
+			<div class="productInfo">상품 사용기간 : {{ productUseDate }}</div>
+			<div class="productInfo">상품 거래지 : {{ wishAddr }}</div>
 		</div>
 
 		<div class="sellerBuyerBox">
 			<div class="sellerBuyerInfo">
 				<div class="sellerBuyer">상품 판매자</div>
-				<div class="sellerBuyerName">김세진</div>
+				<div class="sellerBuyerName">{{ productUploadMember }}</div>
 			</div>
 
 			<div class="processImage">
@@ -30,29 +30,54 @@
 			</div>
 
 			<div class="sellerBuyerInfo">
-				<div class="sellerBuyer">상품 등록자</div>
-				<div class="sellerBuyerName">이승민</div>
+				<div class="sellerBuyer">상품 구매자</div>
+				<div class="sellerBuyerName">{{ memberName }}</div>
 			</div>
 		</div>
 
-		<button class="okayButton">확인{{ successBidNo }}</button>
+		<button class="okayButton">확인</button>
 	</div>
 </template>
 
 <script>
-import axios from '@/axios';
-export default {
-	name: 'SuccessfulBid',
-	props: {
-		successBidNo: {
-			type: Number,			},
+	import axios from '@/axios';
+	export default {
+		name: 'SuccessfulBid',
+		props: {
+			successBidNo: {
+				type: Number,
+			},
 		},
-	data(){
-		return{}
-	},
-	async created(){
-		const res = await axios.get("/success?successBidNo="+this.successBidNo);
-	}
+		data() {
+			return {
+				memberName: '',
+				productPrice: '',
+				productName: '',
+				productUseDate: '',
+				productThumbnail: '',
+				productUploadMember: '',
+				wishAddr: '',
+			};
+		},
+		async created() {
+			const res = await axios.get('/success?successBidNo=' + this.successBidNo).catch((error) => {
+				this.$swal({
+					title: '에러',
+					icon: 'error',
+					text: error.response.data.message,
+				}).then(() => {
+					this.$router.push('/');
+				});
+			});
+
+			this.memberName = res.data.memberName;
+			this.productPrice = res.data.productPrice;
+			this.productName = res.data.productName;
+			this.productUseDate = res.data.productUseDate;
+			this.productThumbnail = res.data.productThumbnail;
+			this.productUploadMember = res.data.productUploadMember;
+			this.wishAddr = res.data.wishAddr;
+		},
 	};
 </script>
 

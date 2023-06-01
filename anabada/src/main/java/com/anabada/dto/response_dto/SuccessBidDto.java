@@ -19,7 +19,7 @@ public class SuccessBidDto {
 
     public SuccessBidDto(SuccessfulBid successfulBid, String prefix) {
         this.memberName = successfulBid.getBid().getMember().getMemberName();
-        this.productPrice = successfulBid.getProduct().getProductPrice();
+        this.productPrice = successfulBid.getBid().getPrice();
         this.productName = successfulBid.getProduct().getProductName();
         this.productUseDate = successfulBid.getProduct().getProductUseDate();
         this.productThumbnail = prefix + successfulBid.getProduct().getProductThumbnail();

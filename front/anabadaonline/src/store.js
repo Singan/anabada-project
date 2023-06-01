@@ -29,7 +29,7 @@ const store = createStore({
 				console.log('언서브 실행');
 				sub.unsubscribe();
 			});
-			state.mysub = '';
+			state.mysub = [];
 		},
 		addMysub(state, sub) {
 			state.mysub.push(sub);

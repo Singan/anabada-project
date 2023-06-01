@@ -9,17 +9,7 @@
 			<div class="detailPrice">경매 낙찰 가격 : {{ item.bidPrice }}</div>
 			<div class="detailPrice">경매 낙찰 시간 : {{ item.successTime }}</div>
 		</div>
-		<div
-			class="successGo"
-			:to="{
-				name: 'SuccessfulBid',
-				props: {
-					successBidNo: item.successBidNo,
-				},
-			}"
-		>
-			낙찰 바로가기, {{ item.successBidNo }}
-		</div>
+		<div class="successGo" @click="goSuccess(item.successBidNo)">낙찰 바로가기, {{ item.successBidNo }}</div>
 	</div>
 </template>
 <script>
@@ -41,6 +31,14 @@
 			};
 		},
 		methods: {
+			goSuccess(a) {
+				this.$router.push({
+					name: 'SuccessfulBid',
+					params: {
+						successBidNo: a,
+					},
+				});
+			},
 			async getMyBuyList() {
 				const result = await axios.get(`/mypage/buys?page=${this.page}&size=${this.size}`);
 				this.buyList.push(...result.data.list);
