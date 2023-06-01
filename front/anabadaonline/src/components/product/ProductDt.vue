@@ -56,32 +56,27 @@
 
 		<div class="line"></div>
 
-		<div class="productInfo">
-			<div class="productInfoBox1">
-				<div class="productTitle">상품 이름 : {{ seller.productName }}</div>
-				<div class="productRegisterPrice">등록 가격 : {{ seller.productPrice }}원</div>
-				<div class="productHighPrice" v-if="seller.productHighPrice">
-					현재 최고가 : {{ seller.productHighPrice }} 원
-				</div>
-			</div>
-
-			<div class="productInfoBox2">
-				<div class="productTime">등록 시간 : {{ seller.productTime }}</div>
-				<div class="productRemainTime" v-if="seller.productHighPrice">남은 시간 : {{ leftTimerView }}</div>
+		<div class="productHeader">
+			<div class="productTitle">상품 이름 : {{ seller.productName }}</div>
+			<div class="productStatus">
+				<a class="productText1">찜 0</a>
+				<a class="productText1">조회 {{ seller.productVisit }}</a>
 			</div>
 		</div>
 
-		<div class="productInfoBox3">
+		<div class="productInfoBox">
+			<div class="productTime">등록 시간 : {{ seller.productTime }}</div>
+			<div class="productRemainTime" v-if="seller.productHighPrice">남은 시간 : {{ leftTimerView }}</div>
+			<div class="productRegisterPrice">등록 가격 : {{ seller.productPrice }}원</div>
+			<div class="productHighPrice" v-if="seller.productHighPrice">
+				현재 최고가 : {{ seller.productHighPrice }} 원
+			</div>
 			<div class="productExplain">상품 설명 : {{ seller.productDetail }}</div>
 			<div class="productExplain">상품 사용기간 : {{ seller.productUseDate }}</div>
 		</div>
 
 		<div class="productFooter">
 			<button class="auctionText" :class="{ clicked: isClicked }" @click="bidStart">경매 참여</button>
-			<div class="productStatus">
-				<a class="productText1">찜 0</a>
-				<a class="productText1">조회 {{ seller.productVisit }}</a>
-			</div>
 		</div>
 
 		<div class="line"></div>
@@ -229,18 +224,15 @@
 		width: fit-content;
 	}
 
-	.productInfo {
+	.productHeader {
 		display: flex;
 		flex-direction: row;
 		margin-left: 60px;
-		gap: 300px;
-	}
-
-	.productInfoBox1 {
 		margin-bottom: 100px;
+		gap: 420px;
 	}
 
-	.productInfoBox3 {
+	.productInfoBox {
 		margin-left: 60px;
 	}
 
@@ -372,7 +364,7 @@
 		font: 14px 'Roboto', sans-serif;
 		background: #ffffff;
 		border-radius: 5px;
-		width: 150px;
+		width: 400px;
 		height: 30px;
 		text-align: center;
 		border: 2px solid #0075ff;
@@ -383,7 +375,7 @@
 		background: #0075ff;
 		color: #ffffff;
 		border-radius: 5px;
-		width: 150px;
+		width: 400px;
 		height: 30px;
 		text-align: center;
 		border: none;
@@ -393,7 +385,6 @@
 		color: #000000;
 		font: 18px 'Roboto', sans-serif;
 		font-weight: bold;
-		margin-bottom: 10px;
 	}
 
 	.productRegisterPrice {
@@ -426,7 +417,7 @@
 	.productExplain {
 		color: #000000;
 		font: 14px 'Roboto', sans-serif;
-		margin-bottom: 20px;
+		margin-bottom: 10px;
 		word-break: break-all;
 	}
 
@@ -434,7 +425,8 @@
 		margin-top: 90px;
 		padding-left: 60px;
 		display: flex;
-		gap: 500px;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.productStatus {
