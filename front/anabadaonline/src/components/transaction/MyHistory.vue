@@ -25,6 +25,7 @@
 				>입찰 내역</router-link
 			>
 		</div>
+		<div class="line"></div>
 
 		<div class="listReapeat">
 			<select class="sortList">
@@ -148,5 +149,13 @@
 	}
 	.productInfo {
 		display: flex;
+	}
+	.line {
+		border-style: solid;
+		border-color: #d9d9d9;
+		border-width: 2px 0 0 0;
+		width: 100%;
+		height: 0px;
+		margin-bottom: 5px;
 	}
 </style>
