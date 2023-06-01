@@ -17,7 +17,9 @@
 					successBidNo: item.successBidNo,
 				},
 			}"
-			>낙찰 바로가기, {{ item.successBidNo }}</div>
+		>
+			낙찰 바로가기, {{ item.successBidNo }}
+		</div>
 	</div>
 </template>
 <script>
@@ -131,6 +133,23 @@
 	}
 
 	.successGo {
-		flex: 1;
+		box-shadow: inset 0px 1px 0px 0px #bbdaf7;
+		background: linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+		background-color: #0075ff;
+		border-radius: 6px;
+		border: 1px solid #0075ff;
+		display: inline-block;
+		cursor: pointer;
+		color: #ffffff;
+		font-family: Arial;
+		font-size: 15px;
+		font-weight: bold;
+		padding: 6px 24px;
+		text-decoration: none;
+		text-shadow: 0px 1px 0px #0075ff;
+	}
+	.successGo:hover {
+		background: linear-gradient(to bottom, #0075ff 5%, #0075ff 100%);
+		background-color: #0075ff;
 	}
 </style>
