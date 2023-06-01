@@ -71,11 +71,11 @@
 		},
 		methods: {},
 	};
-	const chatContainer = document.getElementById('chat-container');
-	function scrollChatToBottom() {
-		chatContainer.scrollTop = chatContainer.scrollHeight;
-	} //채팅이 새로 왔을때 채팅창을 맨 밑으로 내리는 함수
-	scrollChatToBottom(); //채팅이 새로 왔을때 채팅창을 맨 밑으로 내리는 함수 호출
+	// const chatContainer = document.getElementById('chat-container');
+	// function scrollChatToBottom() {
+	// 	chatContainer.scrollTop = chatContainer.scrollHeight;
+	// } //채팅이 새로 왔을때 채팅창을 맨 밑으로 내리는 함수
+	// scrollChatToBottom(); //채팅이 새로 왔을때 채팅창을 맨 밑으로 내리는 함수 호출
 </script>
 <style scoped>
 	.chattingPageContainer {
