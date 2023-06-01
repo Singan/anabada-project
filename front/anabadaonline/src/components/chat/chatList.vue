@@ -78,7 +78,18 @@
 				myData: '',
 			};
 		},
-		methods: {},
+		mounted() {
+			this.scrollToBottom();
+		},
+		updated() {
+			this.scrollToBottom();
+		},
+		methods: {
+			scrollToBottom() {
+				var element = document.getElementById('chattingMainBox');
+				element.scrollTop = element.scrollHeight;
+			},
+		},
 	};
 	// const chatContainer = document.getElementById('chat-container');
 	// function scrollChatToBottom() {
