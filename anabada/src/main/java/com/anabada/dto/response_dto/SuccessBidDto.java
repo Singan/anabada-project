@@ -15,7 +15,7 @@ public class SuccessBidDto {
     private String productUseDate;
     private String productThumbnail;
     private String productUploadMember;
-//    private String wishAddr;
+    private String wishAddr;
 
     public SuccessBidDto(SuccessfulBid successfulBid, String prefix) {
         this.memberName = successfulBid.getBid().getMember().getMemberName();
@@ -24,6 +24,7 @@ public class SuccessBidDto {
         this.productUseDate = successfulBid.getProduct().getProductUseDate();
         this.productThumbnail = prefix + successfulBid.getProduct().getProductThumbnail();
         this.productUploadMember = successfulBid.getProduct().getMember().getMemberName();
+        this.wishAddr = successfulBid.getProduct().getMember().getMemberWishAddr();
     }
 
 }
