@@ -31,6 +31,7 @@
 				<option>가격순</option>
 				<option>거래순</option>
 			</select>
+
 			<BuyHistory v-if="check == 'buy'"></BuyHistory>
 			<BidHistory v-if="check == 'bid'"></BidHistory>
 			<SalesHisotry v-if="check == 'sales'"></SalesHisotry>
@@ -72,11 +73,10 @@
 <style scoped>
 	.form {
 		background: #ffffff;
-		width: 800px;
+		width: 850px;
 		display: flex;
 		flex-direction: column;
 		margin: 80px auto 0;
-		overflow: hidden;
 	}
 
 	.form > * {
@@ -133,7 +133,7 @@
 	}
 
 	.sortList {
-		margin-left: 600px;
+		margin-left: auto;
 		font-size: 16px;
 		border-style: solid;
 		text-align: center;
