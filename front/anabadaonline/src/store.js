@@ -25,10 +25,7 @@ const store = createStore({
 			state.image = '';
 			state.name = '';
 			state.no = '';
-			state.mysub.forEach((sub) => {
-				console.log('언서브 실행');
-				sub.unsubscribe();
-			});
+			socket.allUnsubscribe();
 			state.mysub = [];
 		},
 		addMysub(state, sub) {

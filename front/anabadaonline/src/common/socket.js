@@ -12,6 +12,7 @@ let socketResult = {
 	init() {
 		this.socket = new SockJS(url + '/ws');
 		this.stompClient = Stomp.over(this.socket);
+		this.stompClient.hasDebug = false;
 	},
 	connect() {
 		return new Promise((resolve, reject) => {
@@ -41,6 +42,9 @@ let socketResult = {
 				recevieFunc(result);
 			});
 		}
+	},
+	allUnsubscribe() {
+		this.stompClient.unsubscribe(this.stompClient.subscriptions);
 	},
 	connected() {
 		return this.stompClient.connected;

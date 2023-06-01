@@ -72,11 +72,11 @@
 					});
 				}
 			},
-			goProductDt(res) {},
 			logout() {
 				this.$token.remove();
-				this.isToken = this.$token.is();
 				this.$store.commit('removeMember');
+				this.isToken = this.$token.is();
+				console.log('로그아웃');
 			},
 		},
 
