@@ -17,8 +17,8 @@ public class SuccessBidService {
     @Value("${s3.bucket.endpoint}")
     private String s3EndPoint;
 
-    public SuccessBidDto successBidDto(MemberDetailDTO memberDetailDTO, Long successBidNo) {
+    public SuccessBidDto successBidDto(Long successBidNo) {
         SuccessfulBid successfulBid = successBidRepository.findSuccessfulBid(successBidNo);
-        return new SuccessBidDto(memberDetailDTO, successfulBid, s3EndPoint);
+        return new SuccessBidDto(successfulBid, s3EndPoint);
     }
 }
