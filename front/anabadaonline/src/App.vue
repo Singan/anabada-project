@@ -31,12 +31,18 @@
 				if (!res.complete) {
 					this.$swal({
 						position: 'bottom-end',
-						title: `새로운 입찰이 들어왔습니다!.`,
-						showConfirmButton: false,
+						title: `새로운 입찰이 들어왔습니다!`,
+						showConfirmButton: true,
 						backdrop: false,
 						text: `상품이름 : ${res.productName} 에 ${res.price} 원 으로 새로운 입찰이 들어왔습니다!`,
 						timer: 5000,
 						timerProgressBar: true,
+						confirmButtonColor: '#3085d6',
+						confirmButtonText: '상품 바로가기',
+					}).then((confirm) => {
+						if (confirm) {
+							this.$router.push('/productDt?productNo=' + res.productNo);
+						}
 					});
 				} else {
 					this.$swal({
