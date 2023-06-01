@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface MemberInfoInterface {
     Long getMemberNo();
-    List<Long> getProductNo();
+    List<Long> getProductNoList();
     String getMemberName();
     String getMemberImage();
 }
