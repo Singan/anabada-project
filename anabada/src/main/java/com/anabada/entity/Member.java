@@ -79,31 +79,13 @@ public class Member {
 
     // 비밀번호, 이미지, 주소 변경
     public void updateMember(MemberUpdateDto memberUpdateDto, String updateImagePath) {
-        this.memberPw = memberUpdateDto.getUpdatePw();
-        this.memberAddr = memberUpdateDto.getUpdateAddr();
-        this.memberDetailAddr = memberUpdateDto.getUpdateDetailAddr();
-        this.memberWishAddr = memberUpdateDto.getUpdateWishAddr();
+        updateMember(memberUpdateDto);
         this.memberImage = updateImagePath;
     }
 
     // 이미지만 빼고 변경
     public void updateMember(MemberUpdateDto memberUpdateDto) {
         this.memberPw = memberUpdateDto.getUpdatePw();
-        this.memberAddr = memberUpdateDto.getUpdateAddr();
-        this.memberDetailAddr = memberUpdateDto.getUpdateDetailAddr();
-        this.memberWishAddr = memberUpdateDto.getUpdateWishAddr();
-    }
-
-    // 이미지와 주소만 변경
-    public void updateMemberImageAddr(MemberUpdateDto memberUpdateDto, String updateImagePath) {
-        this.memberAddr = memberUpdateDto.getUpdateAddr();
-        this.memberDetailAddr = memberUpdateDto.getUpdateDetailAddr();
-        this.memberWishAddr = memberUpdateDto.getUpdateWishAddr();
-        this.memberImage = updateImagePath;
-    }
-
-    // 주소만 변경
-    public void updateMemberAddr(MemberUpdateDto memberUpdateDto) {
         this.memberAddr = memberUpdateDto.getUpdateAddr();
         this.memberDetailAddr = memberUpdateDto.getUpdateDetailAddr();
         this.memberWishAddr = memberUpdateDto.getUpdateWishAddr();
