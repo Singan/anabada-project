@@ -44,11 +44,20 @@
 						나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
 						빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
 					</div>
+					<div class="bubble sender">
+						나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
+						빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
+					</div>
 					<div class="bubble receiver">안녕하세요~</div>
 					<div class="bubble sender">
 						나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
 						빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
 					</div>
+					<div class="bubble sender">
+						나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
+						빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
+					</div>
+					<div class="bubble sender">반갑다</div>
 				</div>
 				<div class="chatController">
 					<input class="chatInputBox" />
@@ -69,13 +78,24 @@
 				myData: '',
 			};
 		},
-		methods: {},
+		mounted() {
+			this.scrollToBottom();
+		},
+		updated() {
+			this.scrollToBottom();
+		},
+		methods: {
+			scrollToBottom() {
+				var element = document.getElementById('chattingMainBox');
+				element.scrollTop = element.scrollHeight;
+			},
+		},
 	};
-	const chatContainer = document.getElementById('chat-container');
-	function scrollChatToBottom() {
-		chatContainer.scrollTop = chatContainer.scrollHeight;
-	} //채팅이 새로 왔을때 채팅창을 맨 밑으로 내리는 함수
-	scrollChatToBottom(); //채팅이 새로 왔을때 채팅창을 맨 밑으로 내리는 함수 호출
+	// const chatContainer = document.getElementById('chat-container');
+	// function scrollChatToBottom() {
+	// 	chatContainer.scrollTop = chatContainer.scrollHeight;
+	// } //채팅이 새로 왔을때 채팅창을 맨 밑으로 내리는 함수
+	// scrollChatToBottom(); //채팅이 새로 왔을때 채팅창을 맨 밑으로 내리는 함수 호출
 </script>
 <style scoped>
 	.chattingPageContainer {
@@ -182,13 +202,12 @@
 	}
 	.chattingMainBox {
 		display: flex;
-		flex-direction: column-reverse;
+		flex-direction: column;
 		align-items: flex-end;
-		flex-wrap: wrap;
 		background-color: white;
 		width: 500px;
-		height: 500px;
-		overflow-y: scroll;
+		height: 550px;
+		overflow-y: auto;
 	}
 
 	.chatController {
@@ -226,7 +245,7 @@
 	}
 	.bubble {
 		display: inline-block;
-		max-width: 70%;
+		max-width: 75%;
 		margin-bottom: 10px;
 		padding: 10px 15px;
 		border-radius: 20px;
