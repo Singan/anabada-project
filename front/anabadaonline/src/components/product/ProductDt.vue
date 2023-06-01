@@ -384,6 +384,7 @@
 		color: #000000;
 		font: 18px 'Roboto', sans-serif;
 		font-weight: bold;
+		width: 300px;
 	}
 
 	.productRegisterPrice {
@@ -431,6 +432,7 @@
 		display: flex;
 		gap: 40px;
 		align-items: center;
+		justify-content: center;
 		margin-left: 708px;
 		margin-bottom: 80px;
 	}
