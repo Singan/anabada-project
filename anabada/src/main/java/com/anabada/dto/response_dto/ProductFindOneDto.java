@@ -3,6 +3,7 @@ package com.anabada.dto.response_dto;
 import com.anabada.entity.Bid;
 import com.anabada.entity.Member;
 import com.anabada.entity.Product;
+import com.anabada.entity.ProductImage;
 import com.anabada.entity.nativeQuery.ProductFindOneInterface;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
@@ -33,7 +34,7 @@ public class ProductFindOneDto {
     private List<String> productImageList;
     private Integer productHighPrice;
     private LocalDateTime bidTime;
-    public ProductFindOneDto(ProductFindOneInterface product, String prefix) {
+    public ProductFindOneDto(ProductFindOneInterface product, List<ProductImage> piList, String prefix) {
         this.productNo = product.getProductNo();
         this.memberName = product.getMemberName();
         this.productName = product.getProductName();
@@ -44,9 +45,9 @@ public class ProductFindOneDto {
         this.memberAddr = product.getMemberAddr();
         this.productTime= product.getProductTime();
         this.memberNo = product.getMemberNo();
-        if(product.getProductImageList()!=null){
-            this.productImageList = product.getProductImageList().stream().map(productImage ->  {
-                return prefix+productImage;
+        if(piList!=null){
+            this.productImageList = piList.stream().map(productImage ->  {
+                return prefix+productImage.getImageAddr();
             }).collect(Collectors.toList());
         }else{
             productImageList = new ArrayList<>();

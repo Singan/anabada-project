@@ -20,7 +20,7 @@ public interface ProductFindOneInterface {
     Long getMemberNo();
 
 
-    List<String> getProductImageList();
+    //List<String> getProductImageList();
      Integer getProductHighPrice();
      //LocalDateTime getProductLeftTime();
 }
