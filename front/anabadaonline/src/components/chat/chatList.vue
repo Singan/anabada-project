@@ -28,7 +28,28 @@
 				<div class="oppoInfoBox">
 					<span class="oppoInfo">xxx님과의 채팅</span>
 				</div>
-				<div class="chattingMainBox"></div>
+				<div class="chattingMainBox">
+					<div class="bubble receiver">안녕하세요~</div>
+					<div class="bubble sender">
+						나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
+						빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
+					</div>
+					<div class="bubble receiver">안녕하세요~</div>
+					<div class="bubble sender">
+						나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
+						빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
+					</div>
+					<div class="bubble receiver">안녕하세요~</div>
+					<div class="bubble sender">
+						나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
+						빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
+					</div>
+					<div class="bubble receiver">안녕하세요~</div>
+					<div class="bubble sender">
+						나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
+						빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
+					</div>
+				</div>
 				<div class="chatController">
 					<input class="chatInputBox" />
 					<div class="sendButton">
@@ -50,6 +71,11 @@
 		},
 		methods: {},
 	};
+	const chatContainer = document.getElementById('chat-container');
+	function scrollChatToBottom() {
+		chatContainer.scrollTop = chatContainer.scrollHeight;
+	} //채팅이 새로 왔을때 채팅창을 맨 밑으로 내리는 함수
+	scrollChatToBottom(); //채팅이 새로 왔을때 채팅창을 맨 밑으로 내리는 함수 호출
 </script>
 <style scoped>
 	.chattingPageContainer {
@@ -57,7 +83,6 @@
 		width: 100%;
 		align-items: flex-start;
 		justify-content: center;
-
 		margin: auto;
 	}
 	.chat_list_wrap {
@@ -72,7 +97,7 @@
 	.chatListContainer {
 		display: flex;
 		flex-direction: column;
-		width: 470px;
+		width: 95%;
 	}
 	.chat_list_wrap .header {
 		margin-top: 2em;
@@ -152,13 +177,18 @@
 		text-align: center;
 		font: 400 20px 'Roboto', sans-serif;
 		position: relative;
+		margin-bottom: 50px;
 		top: 20px;
 	}
 	.chattingMainBox {
+		display: flex;
+		flex-direction: column-reverse;
+		align-items: flex-end;
+		flex-wrap: wrap;
 		background-color: white;
-		overflow: hidden;
 		width: 500px;
 		height: 500px;
+		overflow-y: scroll;
 	}
 
 	.chatController {
@@ -193,5 +223,23 @@
 		width: 30px;
 		height: 30px;
 		margin: 5px;
+	}
+	.bubble {
+		display: inline-block;
+		max-width: 70%;
+		margin-bottom: 10px;
+		padding: 10px 15px;
+		border-radius: 20px;
+		font-size: 14px;
+	}
+	.bubble.sender {
+		background-color: #eaeaea;
+		align-self: flex-end;
+		margin-right: 10px;
+	}
+	.bubble.receiver {
+		background-color: #d4e1f4;
+		align-self: flex-start;
+		margin-left: 10px;
 	}
 </style>
