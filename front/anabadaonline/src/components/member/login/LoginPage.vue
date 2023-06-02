@@ -1,7 +1,7 @@
 <template>
 	<div class="flexContainer">
 		<div class="logo">
-			<div class="logoImg"></div>
+			<img class="logoImg" src="@/assets/logo.jpg" />
 			<div class="logoName" @click="goMain">아나바다</div>
 		</div>
 		<form class="idPw">
@@ -100,10 +100,9 @@
 
 	.logoName {
 		color: #0075ff;
-		text-align: center;
 		font: 700 35px 'Roboto', sans-serif;
-		width: 244px;
 		height: 37px;
+		margin-left: 10px;
 	}
 
 	.logo {
@@ -119,8 +118,8 @@
 	.logoImg {
 		background: #d9d9d9;
 		border-radius: 50%;
-		width: 58.2px;
-		height: 100%;
+		width: 58px;
+		height: 50px;
 	}
 
 	.idBox {
