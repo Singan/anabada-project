@@ -244,6 +244,7 @@
 		border-radius: 5px;
 		width: 446px;
 		height: 52px;
+		cursor: pointer;
 	}
 
 	.login {

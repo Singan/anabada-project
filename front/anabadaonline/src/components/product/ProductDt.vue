@@ -35,7 +35,7 @@
 				<div class="mainDeal">판매자 주 거래지 : {{ seller.memberAddr }}</div>
 			</div>
 
-			<div class="box2">
+			<!-- <div class="box2">
 				<button class="starIcon" :class="{ filled: isfilled }" @click="starFill">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +51,7 @@
 					</svg>
 				</button>
 				<div class="jjim">찜하기</div>
-			</div>
+			</div> -->
 		</div>
 
 		<div class="line"></div>
@@ -321,6 +321,7 @@
 	.jjim {
 		color: #0075ff;
 		font: 22px 'Roboto', sans-serif;
+		cursor: pointer;
 	}
 
 	.userImage {
@@ -360,6 +361,7 @@
 		height: 30px;
 		text-align: center;
 		border: 2px solid #0075ff;
+		cursor: pointer;
 	}
 
 	.auctionText.clicked {
