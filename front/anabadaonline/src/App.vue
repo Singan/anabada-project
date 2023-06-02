@@ -28,6 +28,7 @@
 		},
 		methods: {
 			subscribe(res) {
+				console.log("리시브 알람")
 				if (!res.complete) {
 					this.$swal({
 						position: 'bottom-end',

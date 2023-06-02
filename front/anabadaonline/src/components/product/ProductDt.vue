@@ -196,9 +196,7 @@
 			this.sellerInfo();
 		},
 		mounted() {
-			if (this.isSocket) {
-				this.subscribe();
-			}
+
 		},
 		unmounted() {
 			console.log('디스트로이드');
