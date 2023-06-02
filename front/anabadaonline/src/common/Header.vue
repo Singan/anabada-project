@@ -2,7 +2,7 @@
 	<div class="Header">
 		<router-link class="Logo" to="/">아나바다</router-link>
 
-		<router-link to="/auction?category=1" class="AuctionButton"> 경매 </router-link>
+		<router-link to="/auction?category=1" class="AuctionButton button"> 경매 </router-link>
 		<router-link :to="{ name: '/chatList' }" class="ChatButton"> 채팅 </router-link>
 		<input
 			class="SearchBox"
@@ -13,15 +13,15 @@
 			type="text"
 		/>
 
-		<router-link to="/login" class="LoginBox" v-if="!isToken"> 로그인 </router-link>
-		<router-link to="/JoinMember" class="joinBox" v-if="!isToken"> 회원가입 </router-link>
+		<router-link to="/login" class="button login_btn" v-if="!isToken"> 로그인 </router-link>
+		<router-link to="/JoinMember" class="button" v-if="!isToken"> 회원가입 </router-link>
 
 		<template v-if="isToken">
 			<div class="userInfo">
 				<img class="userImage" :src="$store.getters.getMember.image" />
 				<router-link class="userName" to="/mypage">{{ $store.getters.getMember.name }}</router-link>
 			</div>
-			<div class="LogoutBox" @click="logout">로그아웃</div>
+			<div class="button" @click="logout">로그아웃</div>
 		</template>
 	</div>
 </template>
@@ -89,22 +89,13 @@
 		align-items: center;
 	}
 
-	.AuctionButton {
-		color: #00a5ff;
-		text-align: center;
-		font: 700 18px 'Roboto', sans-serif;
-		cursor: pointer;
-		width: 40px;
-		height: 20px;
-	}
-
 	.Logo {
 		color: #00a5ff;
 		text-align: center;
 		font: 700 24px 'Roboto', sans-serif;
 		cursor: pointer;
 		width: 110px;
-		height: 30px;
+		height: 40px;
 	}
 
 	.ChatButton {
@@ -113,7 +104,7 @@
 		font: 700 18px 'Roboto', sans-serif;
 		cursor: pointer;
 		width: 40px;
-		height: 20px;
+		height: 40px;
 	}
 
 	.SearchBox {
@@ -144,7 +135,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin-right: 30px;
+		overflow: hidden;
 	}
 
 	.userImage {
@@ -152,12 +143,12 @@
 		border-style: solid;
 		border-color: #000000;
 		border-width: 1px;
-		width: 40px;
-		height: 40px;
+		max-width: 40px;
+		max-height: 40px;
 	}
 
 	.userName {
-		font: 500 16px 'Roboto', sans-serif;
+		font: 500 18px 'Roboto', sans-serif;
 		margin-left: 10px;
 	}
 
@@ -166,40 +157,21 @@
 		height: 30px;
 	}
 
-	.LoginBox {
-		background: #00a5ff;
-		margin-left: 40px;
+	.button {
+		padding: 3px 20px;
 		border-radius: 5px;
-		width: 80px;
+		background: #00a5ff;
+		color: #ffffff;
+		cursor: pointer;
+		font: 700 18px 'Roboto', sans-serif;
 		height: 40px;
-		color: #ffffff;
-		text-align: center;
-		font: 700 18px 'Roboto', sans-serif;
-		line-height: 40px;
-		cursor: pointer;
+		width: fit-content;
+		box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
 	}
-	.joinBox {
-		background: #00a5ff;
-		border-radius: 5px;
-		margin-right: 100px;
-		width: 90px;
-		height: 40px;
-		color: #ffffff;
-		text-align: center;
-		font: 700 18px 'Roboto', sans-serif;
-		line-height: 40px;
-		cursor: pointer;
+	.button:active {
+		box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0);
+		transform: translateY(4px);
 	}
-	.LogoutBox {
-		background: #00a5ff;
-		margin-left: 35px;
-		border-radius: 5px;
-		padding: 5px 10px;
-		color: #ffffff;
-		text-align: center;
-		font: 700 18px 'Roboto', sans-serif;
-		line-height: 40px;
-		cursor: pointer;
-		box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+	.login_btn {
 	}
 </style>

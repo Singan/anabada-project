@@ -90,6 +90,7 @@
 					this.subscribe();
 				}
 			},
+			leftTime: function () {},
 		},
 		name: '',
 		components: { BidList },
@@ -106,8 +107,9 @@
 				testInput: 0,
 				imageCurrIndex: 0,
 				leftTimerView: '',
-				leftTime: '',
+				leftTime: null,
 				productSubscribe: '',
+				timerInterval: null,
 			};
 		},
 
@@ -116,6 +118,13 @@
 			async sellerInfo() {
 				const response = await axios.get('/product?productNo=' + this.productNo);
 				this.seller = response.data;
+				this.timeStart();
+			},
+			bidStart() {
+				this.isClicked = !this.isClicked;
+			},
+			timeStart() {
+				console.log('왜 다시시작안해');
 				console.log(this.seller.bidTime);
 				let bidTime = new Date(this.seller.bidTime);
 				bidTime.setMinutes(bidTime.getMinutes() + 10);
@@ -123,13 +132,9 @@
 				let date = new Date();
 				this.leftTime = this.leftTime - date;
 				if (this.leftTime >= 0) {
-					const ti = setInterval(this.timer, 1000);
+					this.timerInterval = setInterval(this.timer, 1000);
 				}
 			},
-			bidStart() {
-				this.isClicked = !this.isClicked;
-			},
-
 			starFill() {
 				this.isfilled = !this.isfilled;
 			},
@@ -142,12 +147,19 @@
 				this.leftTimerView = m + '분 ' + s + '초';
 				this.leftTime -= 1000;
 				if (this.leftTime <= 0) {
-					clearInterval(this.timer); // 타이머가 0 이하가 되었을 때 타이머를 멈추도록 함
+					clearInterval(this.timerInterval); // 타이머가 0 이하가 되었을 때 타이머를 멈추도록 함
+					this.$swal({
+						icon: 'info',
+						title: '경매가 종료되었습니다.',
+					});
 				}
 			},
 			recevieFunc(resObj) {
-				console.log(resObj.price);
 				this.seller.productHighPrice = resObj.price;
+				clearInterval(this.timerInterval);
+				this.seller.bidTime = new Date();
+
+				this.timeStart();
 			},
 
 			subscribe() {
@@ -338,17 +350,23 @@
 
 	.auctionText {
 		font: 14px 'Roboto', sans-serif;
-		background: #ffffff;
+		background: #f5e7e74d;
+		border: 1px #f5e7e74d solid;
 		border-radius: 5px;
 		width: 400px;
 		height: 30px;
 		text-align: center;
-		border: 2px solid #0075ff;
 		cursor: pointer;
+		box-shadow: 1px 1px 1px 1px rgba(0.5, 0.5, 0.5, 0.5);
 	}
-
+	.auctionText:active {
+		cursor: pointer;
+		transform: translateY(4px);
+	}
 	.auctionText.clicked {
 		font: 14px 'Roboto', sans-serif;
+		border: 1px #0075ff solid;
+
 		background: #0075ff;
 		color: #ffffff;
 		border-radius: 5px;
@@ -360,7 +378,7 @@
 
 	.productTitle {
 		color: #000000;
-		font: 18px 'Roboto', sans-serif;
+		font: 25px 'Roboto', sans-serif;
 		font-weight: bold;
 		width: 100%;
 	}
@@ -391,7 +409,7 @@
 
 	.productRemainTime {
 		color: #000000;
-		font: 14px 'Roboto', sans-serif;
+		font: 20px 'Roboto', sans-serif;
 		font-weight: bold;
 		margin-bottom: 10px;
 	}
@@ -405,7 +423,6 @@
 
 	.productFooter {
 		margin-top: 90px;
-		padding-left: 60px;
 		display: flex;
 		justify-content: center;
 		align-items: center;

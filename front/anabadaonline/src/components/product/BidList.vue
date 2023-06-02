@@ -1,12 +1,5 @@
 <template>
 	<div class="form1">
-		<div class="user" v-for="(bid, index) in bidList" :key="index">
-			<div class="ListImage"><img :src="bid.memberImage" /></div>
-			<div class="userName">{{ bid.memberName }}</div>
-			<div class="userPrice">{{ bid.price }}원</div>
-			<div class="bidTime">{{ bid.bidTime }}</div>
-		</div>
-
 		<div class="bidBox" v-if="$token.is()">
 			<input
 				class="textSize"
@@ -15,6 +8,12 @@
 				v-model="bidPrice"
 			/>
 			<button class="bid" type="button" @click="send">입찰</button>
+		</div>
+		<div class="user" v-for="(bid, index) in bidList" :key="index">
+			<div class="ListImage"><img :src="bid.memberImage" /></div>
+			<div class="userName">{{ bid.memberName }}</div>
+			<div class="userPrice">{{ bid.price }}원</div>
+			<div class="bidTime">{{ bid.bidTime }}</div>
 		</div>
 	</div>
 </template>
@@ -56,7 +55,7 @@
 			},
 
 			recevieFunc(resObj) {
-				this.bidList.push(resObj);
+				this.bidList.unshift(resObj);
 			},
 			send() {
 				const lastBid = this.bidList[this.bidList.length - 1];
@@ -69,6 +68,7 @@
 						memberImage: this.$store.getters.getMember.image,
 						productName: this.productName,
 					};
+					this.bidPrice = '';
 					this.socket.send(msgObj, '/bid');
 				} else {
 					alert('입찰 금액은 현재 최고 입찰금액보다 높아야 합니다.');
@@ -80,7 +80,6 @@
 		},
 		created() {
 			this.auctionList();
-			console.log(this.$token.is());
 
 			this.sub = this.socket.subscribe('/product/' + this.productNo, this.recevieFunc);
 		},
@@ -94,7 +93,6 @@
 		margin: 0;
 	}
 	.form1 {
-		justify-content: center;
 		overflow: scroll;
 		background: #ffffff;
 		border-radius: 5px;
@@ -162,6 +160,10 @@
 	.bidBox {
 		width: 440px;
 		margin-top: 25px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.textSize {
@@ -189,12 +191,17 @@
 		background: #0075ff;
 		border-radius: 5px;
 		text-align: center;
-		width: 440px;
+		width: 100px;
 		height: 30px;
 		color: #ffffff;
 		font: 400 18px 'Roboto', sans-serif;
 		border: none;
 		letter-spacing: 5px;
 		cursor: pointer;
+		box-shadow: 1px 1px 1px 1px rgba(0.5, 0.5, 0.5, 0.5);
+	}
+	.bid:active {
+		box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0);
+		transform: translateY(4px);
 	}
 </style>

@@ -72,9 +72,8 @@
 			console.log(this.successBidNo);
 			const res = await axios.get('/success?successBidNo=' + this.successBidNo).catch((error) => {
 				this.$swal({
-					title: '에러',
+					title: '다른사람의 낙찰페이지 또는 없는 번호입니다.',
 					icon: 'error',
-					text: error.response.data.message,
 				}).then(() => {
 					this.$router.push('/');
 				});
