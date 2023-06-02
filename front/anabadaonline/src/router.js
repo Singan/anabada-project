@@ -42,12 +42,6 @@ const routes = [
 		component: () => import('@/components/member/mypage/MemberExit.vue'),
 		beforeEnter: requireAuth(),
 	},
-	{
-		path: '/jjim',
-		name: 'Jjim',
-		component: () => import('@/components/member/mypage/Jjim.vue'),
-		beforeEnter: requireAuth(),
-	},
 
 	{
 		path: '/productDt',

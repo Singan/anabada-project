@@ -1,9 +1,11 @@
 <template>
 	<div class="flexContainer">
-		<div class="logo">
-			<div class="logoImg"></div>
-			<div class="logoName" @click="goMain">아나바다</div>
-		</div>
+		<router-link to="/">
+			<div class="logo">
+				<img class="logoImg" src="@/assets/logo.jpg" />
+				<div class="logoName" @click="goMain">아나바다</div>
+			</div>
+		</router-link>
 		<form class="idPw">
 			<input
 				type="text"
@@ -114,16 +116,15 @@
 
 	.logoName {
 		color: #0075ff;
-		text-align: center;
 		font: 700 35px 'Roboto', sans-serif;
-		width: 244px;
 		height: 37px;
+		margin-left: 10px;
 	}
 
 	.logo {
 		width: 100%;
 		height: 10%;
-		margin: 20px;
+		margin-bottom: 40px;
 		display: flex;
 		align-content: center;
 		justify-content: center;
@@ -133,8 +134,8 @@
 	.logoImg {
 		background: #d9d9d9;
 		border-radius: 50%;
-		width: 58.2px;
-		height: 100%;
+		width: 58px;
+		height: 50px;
 	}
 
 	.idBox {
@@ -243,6 +244,7 @@
 		border-radius: 5px;
 		width: 446px;
 		height: 52px;
+		cursor: pointer;
 	}
 
 	.login {

@@ -14,6 +14,7 @@
 		/>
 
 		<router-link to="/login" class="LoginBox" v-if="!isToken"> 로그인 </router-link>
+		<router-link to="/JoinMember" class="joinBox" v-if="!isToken"> 회원가입 </router-link>
 
 		<div v-if="isToken">
 			<div class="userInfo">
@@ -143,7 +144,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin-right: 10px;
+		margin-right: 30px;
 	}
 
 	.userImage {
@@ -167,9 +168,21 @@
 
 	.LoginBox {
 		background: #0075ff;
-		margin-left: 10px;
+		margin-left: 40px;
 		border-radius: 5px;
 		width: 80px;
+		height: 40px;
+		color: #ffffff;
+		text-align: center;
+		font: 700 18px 'Roboto', sans-serif;
+		line-height: 40px;
+		cursor: pointer;
+	}
+	.joinBox {
+		background: #0075ff;
+		border-radius: 5px;
+		margin-right: 100px;
+		width: 90px;
 		height: 40px;
 		color: #ffffff;
 		text-align: center;
