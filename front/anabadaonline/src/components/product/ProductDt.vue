@@ -7,7 +7,9 @@
 					marginLeft: `-${imageCurrIndex * 100}%`,
 				}"
 			>
-				<img :src="image" v-for="(image, index) in seller.productImageList" :key="index" />
+				<div v-for="(image, index) in seller.productImageList" :key="index" class="imageBox" >
+					<img :src="image" />
+				</div>
 			</div>
 		</div>
 		<button class="listButton" @click="goList">
@@ -247,9 +249,17 @@
 		align-items: center;
 		justify-content: center;
 	}
-	.productPicture > * {
+	.imageBox {
 		width: 850px;
 		height: 100%;
+		display: flex;
+    justify-content: center;
+    align-items: center;
+
+	}
+	.imageBox > * {
+		object-fit: cover;
+		height: 80%;
 	}
 	.prev,
 	.next {

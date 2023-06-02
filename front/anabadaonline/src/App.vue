@@ -90,9 +90,10 @@
 		async created() {
 			socket.init();
 			await socket.connect();
+			this.isSocket = socket.connected();
+
 			await this.login();
 			this.isLoad = true;
-			this.isSocket = socket.connected();
 		},
 	};
 </script>
@@ -117,5 +118,6 @@
 
 	a {
 		text-decoration: none;
+		color: black;
 	}
 </style>
