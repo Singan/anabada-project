@@ -45,6 +45,6 @@ public interface SuccessBidRepository extends JpaRepository<SuccessfulBid,Long> 
     @Modifying
     void updateSuccessfulBidByStatus(@Param("sno") Long no ,@Param("status") Status status);
 
-    @Query()
-    List<SuccessfulBid> findStatusChatMyList();
+//    @Query()
+//    List<SuccessfulBid> findStatusChatMyList();
 }
