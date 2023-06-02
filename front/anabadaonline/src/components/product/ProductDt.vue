@@ -195,9 +195,7 @@
 		created() {
 			this.sellerInfo();
 		},
-		mounted() {
-
-		},
+		mounted() {},
 		unmounted() {
 			console.log('디스트로이드');
 			console.log(this.productSubscribe);
@@ -223,10 +221,7 @@
 
 	.productHeader {
 		display: flex;
-		flex-direction: row;
 		margin-left: 60px;
-		gap: 290px;
-		justify-content: center;
 		align-items: center;
 	}
 
@@ -382,7 +377,7 @@
 		color: #000000;
 		font: 18px 'Roboto', sans-serif;
 		font-weight: bold;
-		width: 300px;
+		width: 100%;
 	}
 
 	.productRegisterPrice {
@@ -399,9 +394,14 @@
 	}
 
 	.productTime {
+		/* position: absolute;
+		top: 550px;
+		left: 700px; */
+		position: relative;
 		color: #000000;
 		font: 12px 'Roboto', sans-serif;
 		opacity: 0.4;
+		width: 200px;
 	}
 
 	.productRemainTime {
