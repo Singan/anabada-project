@@ -6,13 +6,13 @@ const token = {
 		return !!this.getToken();
 	},
 	setToken: (token) => {
-		cookies.set('token', token);
+		localStorage.setItem('token', token);
 	},
 	getToken: () => {
-		return cookies.get('token');
+		return localStorage.getItem('token');
 	},
 	remove: () => {
-		cookies.remove('token');
+		localStorage.removeItem('token');
 	},
 };
 

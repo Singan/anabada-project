@@ -55,7 +55,7 @@ public class MemberController {
     public ShowUpdateMemberDto memberIdNameImageDto(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
         return memberService.showMemberInfo(memberDetailDTO);
     }
-    @DeleteMapping("/member/exist")
+    @DeleteMapping("/exist")
     public void memberExist(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO){
         memberService.deleteMember(memberDetailDTO);
     }

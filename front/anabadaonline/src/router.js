@@ -37,12 +37,6 @@ const routes = [
 		component: () => import('@/components/auction/Auction.vue'),
 	},
 	{
-		path: '/chat',
-		name: 'Chat',
-		component: () => import('@/components/chat/chat.vue'),
-		beforeEnter: requireAuth(),
-	},
-	{
 		path: '/memberExit',
 		name: 'MemberExit',
 		component: () => import('@/components/member/mypage/MemberExit.vue'),
@@ -110,11 +104,6 @@ const routes = [
 	},
 
 	{
-		path: '/socket',
-		name: '/socket',
-		component: () => import('@/components/chat/socket.vue'),
-	},
-	{
 		path: '/BidList',
 		name: '/BidList',
 		component: () => import('@/components/product/BidList.vue'),
@@ -126,15 +115,9 @@ const routes = [
 		beforeEnter: requireAuth(),
 	},
 	{
-		path: '/chatList',
+		path: '/my/chatting',
 		name: '/chatList',
 		component: () => import('@/components/chat/chatList.vue'),
-		beforeEnter: requireAuth(),
-	},
-	{
-		path: '/chat',
-		name: '/chat',
-		component: () => import('@/components/chat/chat.vue'),
 		beforeEnter: requireAuth(),
 	},
 ];

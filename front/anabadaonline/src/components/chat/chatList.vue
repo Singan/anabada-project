@@ -1,73 +1,71 @@
 <template>
-	<body>
-		<div class="chattingPageContainer">
-			<div class="chat_list_wrap">
-				<div class="chatListContainer">
-					<div class="header">채팅 목록</div>
-					<div class="list">
-						<div class="profile_td">
-							<!--Img-->
-							<img :src="this.$store.getters.getMember.image" />
+	<div class="chattingPageContainer">
+		<div class="chat_list_wrap">
+			<div class="chatListContainer">
+				<div class="header">채팅 목록</div>
+				<div class="list">
+					<div class="profile_td">
+						<!--Img-->
+						<img :src="this.$store.getters.getMember.image" />
+					</div>
+					<div class="chat_td">
+						<!--Email & Preview-->
+						<div class="email">
+							<a class="emailText" target="chatting">kotkkio@gmail.com</a>
 						</div>
-						<div class="chat_td">
-							<!--Email & Preview-->
-							<div class="email">
-								<a class="emailText" target="chatting">kotkkio@gmail.com</a>
-							</div>
-							<div class="chat_preview">안녕하세요~</div>
-						</div>
-						<div class="time_td">
-							<!--Time & Check-->
-							<div class="time">2016.09.29 17:54</div>
-							<div class="check"></div>
-						</div>
+						<div class="chat_preview">안녕하세요~</div>
 					</div>
-				</div>
-			</div>
-			<div class="chatContainer">
-				<div class="oppoInfoBox">
-					<span class="oppoInfo">xxx님과의 채팅</span>
-				</div>
-				<div class="chattingMainBox">
-					<div class="bubble receiver">안녕하세요~</div>
-					<div class="bubble sender">
-						나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
-						빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
-					</div>
-					<div class="bubble receiver">안녕하세요~</div>
-					<div class="bubble sender">
-						나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
-						빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
-					</div>
-					<div class="bubble receiver">안녕하세요~</div>
-					<div class="bubble sender">
-						나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
-						빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
-					</div>
-					<div class="bubble sender">
-						나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
-						빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
-					</div>
-					<div class="bubble receiver">안녕하세요~</div>
-					<div class="bubble sender">
-						나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
-						빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
-					</div>
-					<div class="bubble sender">
-						나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
-						빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
-					</div>
-					<div class="bubble sender">반갑다</div>
-				</div>
-				<div class="chatController">
-					<input class="chatInputBox" />
-					<div class="sendButton">
-						<img class="sendicon" src="@/assets/send.png" />
+					<div class="time_td">
+						<!--Time & Check-->
+						<div class="time">2016.09.29 17:54</div>
+						<div class="check"></div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</body>
+		<div class="chatContainer">
+			<div class="oppoInfoBox">
+				<span class="oppoInfo">xxx님과의 채팅</span>
+			</div>
+			<div class="chattingMainBox">
+				<div class="bubble receiver">안녕하세요~</div>
+				<div class="bubble sender">
+					나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
+					빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
+				</div>
+				<div class="bubble receiver">안녕하세요~</div>
+				<div class="bubble sender">
+					나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
+					빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
+				</div>
+				<div class="bubble receiver">안녕하세요~</div>
+				<div class="bubble sender">
+					나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
+					빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
+				</div>
+				<div class="bubble sender">
+					나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
+					빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
+				</div>
+				<div class="bubble receiver">안녕하세요~</div>
+				<div class="bubble sender">
+					나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
+					빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
+				</div>
+				<div class="bubble sender">
+					나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
+					빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
+				</div>
+				<div class="bubble sender">반갑다</div>
+			</div>
+			<div class="chatController">
+				<input class="chatInputBox" />
+				<div class="sendButton">
+					<img class="sendicon" src="@/assets/send.png" />
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 <script>
 	import axios from '@/axios';
@@ -78,17 +76,10 @@
 				myData: '',
 			};
 		},
-		mounted() {
-			this.scrollToBottom();
-		},
-		updated() {
-			this.scrollToBottom();
-		},
+		mounted() {},
+		updated() {},
 		methods: {
-			scrollToBottom() {
-				var element = document.getElementById('chattingMainBox');
-				element.scrollTop = element.scrollHeight;
-			},
+			scrollToBottom() {},
 		},
 	};
 	// const chatContainer = document.getElementById('chat-container');
@@ -100,7 +91,6 @@
 <style scoped>
 	.chattingPageContainer {
 		display: flex;
-		width: 100%;
 		align-items: flex-start;
 		justify-content: center;
 		margin: auto;

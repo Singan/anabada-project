@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(indexes = @Index( name = "bid_price_index",columnList ="bid_price" ))
 public class Bid {//입찰내역

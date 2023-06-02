@@ -20,7 +20,6 @@ const options = {
 };
 app.config.globalProperties.$token = token;
 app.use(VueSweetalert2, options);
-app.use(token);
 app.use(router);
 app.use(store);
 //app.use(axios)

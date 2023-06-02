@@ -2,6 +2,10 @@ package com.anabada.controller;
 
 import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.MessageVo;
+import com.anabada.dto.request_dto.ChatStartDto;
+import com.anabada.entity.SuccessfulBid;
+import com.anabada.service.SuccessBidService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.messaging.MessageHeaders;
@@ -17,15 +21,18 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.http.HttpRequest;
 import java.security.Principal;
 
 @RequiredArgsConstructor
-@Controller
+@RestController
 public class ChatController {
     private final SimpMessagingTemplate simpMessagingTemplate;
+    private SuccessBidService successBidService;
 
     @MessageMapping("/receive")
     public void sendMessage(@Payload MessageVo chatMessage, Authentication authentication, StompHeaderAccessor accessor) {
@@ -41,10 +48,11 @@ public class ChatController {
 
     }
 
-    private MessageHeaders createHeaders(String sessionId) {
-        SimpMessageHeaderAccessor headerAccessor = SimpMessageHeaderAccessor.create();
-        headerAccessor.setSessionId(sessionId);
-        headerAccessor.setLeaveMutable(true);
-        return headerAccessor.getMessageHeaders();
+    @PutMapping("/chat/start")
+    @Operation(description ="채팅 시작")
+    public void chatStart(@RequestBody ChatStartDto chatStartDto ,
+                          @AuthenticationPrincipal MemberDetailDTO memberDetailDTO){
+        System.out.println("아아");
+        successBidService.startChat(chatStartDto.getSuccessBidNo());
     }
 }

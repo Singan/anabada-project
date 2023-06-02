@@ -34,7 +34,7 @@ public class ProductService {
     private final FileProcessor fileProcessor;
     @Value("${s3.bucket.endpoint}")
     private String s3EndPoint;
-    private final BidRepository bidRepository;
+
 
     @Transactional
     public ProductInsertResDto productSave(ProductInsertDto productInsertDto, MemberDetailDTO memberDetailDTO) {
@@ -67,7 +67,11 @@ public class ProductService {
 
         if (product != null) {
             productRepository.upProductVisit(productNo);
-            ProductFindOneDto productFindOneDto = new ProductFindOneDto(product, s3EndPoint);
+
+
+            List<ProductImage> piList = productImageRepository.findByProductNo(productNo);
+
+            ProductFindOneDto productFindOneDto = new ProductFindOneDto(product, piList,s3EndPoint);
             return productFindOneDto;
         }
         throw new RuntimeException("에러");
@@ -116,10 +120,5 @@ public class ProductService {
                         .build()
                 ).collect(Collectors.toList());
         return new ResultList<>(productList.getTotalPages(),productDtoList);
-    }
-
-    //
-    public void findBuyList(MemberDetailDTO memberDetailDTO){
-
     }
 }

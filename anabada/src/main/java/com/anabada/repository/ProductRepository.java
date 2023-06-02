@@ -1,5 +1,6 @@
 package com.anabada.repository;
 
+import com.anabada.entity.Member;
 import com.anabada.entity.Product;
 import com.anabada.entity.nativeQuery.ProductFindOneInterface;
 import com.anabada.entity.nativeQuery.SalesListSelectInterface;
@@ -20,13 +21,14 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
             value = "select p.product_no as productNo , p.product_name as productName,"+
                     "p.product_detail as productDetail , p.product_use_date as productUseDate,"+
                     "p.product_visit as productVisit , p.product_price as productPrice,"+
-                    "DATE_FORMAT(p.create_date_time,'%Y년% %m월 %d일 %h시 %i분 %s초') as productTime,"+
+                    "DATE_FORMAT(p.create_date_time,'%Y년% %m월 %d일 %h시 %i분') as productTime,"+
                     "m.member_name as memberName , m.member_addr as memberAddr,"+
-                    "pi.image_addr as productImageList, p.product_thumbnail as productThumbnail,"+
+                    //"pi.image_addr as productImageList, " +
+                    "p.product_thumbnail as productThumbnail,"+
                     "b.bid_time as bidTime ,"+
                     "b.bid_price as productHighPrice, m.member_no as memberNo from product p "+
                     "join member m on p.member_no = m.member_no "+
-                    "left join product_image pi on p.product_no = pi.product_no "+
+                    //"left join product_image pi on p.product_no = pi.product_no "+
                     "left join bid b on p.product_no = b.product_no "+
                     "where p.product_no = :productNo "+
                     "order by productHighPrice desc limit 1;")
@@ -45,8 +47,10 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     Page<Product> findProductByCategory(@Param("categoryNo") Long categoryNo, Pageable pageable); //상품 카테고리 조회
 
     // 판매 내역
-    @Query("select p from Product p where p.member.memberNo = :memberNo order by p.createDateTime desc")
-    List<Product> findByMemberNo(@Param("memberNo") Long memberNo);
+    @Query("select p.productNo from Product p " +
+            "where p.member.memberNo = :memberNo and p.productIsBidComplete = false " +
+            "order by p.createDateTime desc")
+    List<Long> findByMemberNo(@Param("memberNo") Long memberNo);
 
     @Query("select p.productIsBidComplete from Product p where p.productNo = :productNo")
     boolean readProductByProductIsBidComplete(@Param("productNo") Long productNo);
@@ -67,7 +71,5 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
             " left join member m on b.member_no = m.member_no" +
             " where p.member_no = :memberNo", nativeQuery = true) // 판매 내역 리스트 인데 사용할지 고민중
     Page<SalesListSelectInterface> findProductListWithBid(@Param("memberNo") Long memberNo,Pageable pageable);
-//
-//    Product findProductDetail();
 
 }

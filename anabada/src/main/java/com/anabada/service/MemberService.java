@@ -11,6 +11,7 @@ import com.anabada.entity.nativeQuery.MemberInfoInterface;
 import com.anabada.etc.FileProcessor;
 import com.anabada.repository.MemberRepository;
 import com.anabada.config.token.JwtTokenProvider;
+import com.anabada.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -36,7 +37,7 @@ public class MemberService implements UserDetailsService {
     private final FileProcessor fileProcessor;
     @Value("${s3.bucket.endpoint}")
     private String s3EndPoint;
-
+    private final ProductRepository productRepository;
     public boolean existsMemberByMemberId(String id) {
         return memberRepository.existsMemberByMemberId(id);
     }
@@ -54,27 +55,17 @@ public class MemberService implements UserDetailsService {
     @Transactional
 
     public MemberInfoDto findByMemberNoWithSocketList(Long memberNo) {
-        System.out.println("쿼리 실행 부분");
-        MemberInfoInterface member = memberRepository.findMemberAndProductList(memberNo);
-        System.out.println("쿼리 실행 부분---------------------------");
-//        List<String> productNoList = new ArrayList<>();
-//        if (member.getProductNoList() != null) {
-//            productNoList   = member.getProductNoList();
-//            for(String a : productNoList){
-//                System.out.println(a);
-//            }
-//        }else{
-//            productNoList= new ArrayList<>();
-//        }
+        Member member = memberRepository.findMemberAndProductList(memberNo);
+        List<Long> productNoList =  productRepository.findByMemberNo(memberNo);
+
 
         MemberInfoDto memberInfoDto = MemberInfoDto
                 .builder()
-                //.productSocketNoList(productNoList)
+                .productSocketNoList(productNoList)
                 .image(s3EndPoint + member.getMemberImage())
                 .name(member.getMemberName())
                 .no(member.getMemberNo())
                 .build();
-        System.out.println("쿼리 실행 부분 레이지로딩되나?");
         return memberInfoDto;
     }
 
