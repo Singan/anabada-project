@@ -16,13 +16,13 @@
 		<router-link to="/login" class="LoginBox" v-if="!isToken"> 로그인 </router-link>
 		<router-link to="/JoinMember" class="joinBox" v-if="!isToken"> 회원가입 </router-link>
 
-		<div v-if="isToken">
+		<template v-if="isToken">
 			<div class="userInfo">
 				<img class="userImage" :src="$store.getters.getMember.image" />
 				<router-link class="userName" to="/mypage">{{ $store.getters.getMember.name }}</router-link>
-				<div class="LogoutBox" @click="logout">로그아웃</div>
 			</div>
-		</div>
+			<div class="LogoutBox" @click="logout">로그아웃</div>
+		</template>
 	</div>
 </template>
 <script>
@@ -90,7 +90,7 @@
 	}
 
 	.AuctionButton {
-		color: #0075ff;
+		color: #00a5ff;
 		text-align: center;
 		font: 700 18px 'Roboto', sans-serif;
 		cursor: pointer;
@@ -99,7 +99,7 @@
 	}
 
 	.Logo {
-		color: #0075ff;
+		color: #00a5ff;
 		text-align: center;
 		font: 700 24px 'Roboto', sans-serif;
 		cursor: pointer;
@@ -167,7 +167,7 @@
 	}
 
 	.LoginBox {
-		background: #0075ff;
+		background: #00a5ff;
 		margin-left: 40px;
 		border-radius: 5px;
 		width: 80px;
@@ -179,7 +179,7 @@
 		cursor: pointer;
 	}
 	.joinBox {
-		background: #0075ff;
+		background: #00a5ff;
 		border-radius: 5px;
 		margin-right: 100px;
 		width: 90px;
@@ -191,15 +191,15 @@
 		cursor: pointer;
 	}
 	.LogoutBox {
-		background: #0075ff;
+		background: #00a5ff;
 		margin-left: 35px;
 		border-radius: 5px;
-		width: 80px;
-		height: 40px;
+		padding: 5px 10px;
 		color: #ffffff;
 		text-align: center;
 		font: 700 18px 'Roboto', sans-serif;
 		line-height: 40px;
 		cursor: pointer;
+		box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
 	}
 </style>

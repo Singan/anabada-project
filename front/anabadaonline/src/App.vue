@@ -1,6 +1,6 @@
 @@ -1,74 +1,23 @@
 <template>
-	<Header :isToken="isToken" @logout="logout"></Header>
+	<Header :isToken="isToken" @logout="logout" v-if="isLoad"></Header>
 	<router-view @logined="login" :isSocket="isSocket" v-if="isLoad" />
 </template>
 
@@ -28,7 +28,7 @@
 		},
 		methods: {
 			subscribe(res) {
-				console.log("리시브 알람")
+				console.log('리시브 알람');
 				if (!res.complete) {
 					this.$swal({
 						position: 'bottom-end',
@@ -58,7 +58,7 @@
 			},
 			async login() {
 				this.isToken = this.$token.is();
-
+				this.isLoad = false;
 				if (this.$token.is() && !this.$store.getters.getMember.no) {
 					const tokenVal = this.$token.getToken();
 					axios.defaults.headers.common['x-auth-token'] = tokenVal;
@@ -78,12 +78,12 @@
 						);
 					});
 				}
+				this.isLoad = true;
 			},
 			logout() {
 				this.$token.remove();
 				this.$store.commit('removeMember');
 				this.isToken = this.$token.is();
-				console.log('로그아웃');
 			},
 		},
 
@@ -91,7 +91,6 @@
 			socket.init();
 			await socket.connect();
 			this.isSocket = socket.connected();
-
 			await this.login();
 			this.isLoad = true;
 		},

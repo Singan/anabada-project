@@ -19,7 +19,7 @@ import java.util.List;
 @Repository
 public interface BidRepository extends JpaRepository<Bid, Long> {
 
-    @Query("select b from Bid b join fetch b.member where b.product = :product order by b.price asc")
+    @Query("select b from Bid b join fetch b.member where b.product = :product order by b.price desc")
     List<Bid> findBidListByProduct(@Param("product") Product product);
 
     Bid findFirstByProductOrderByTimeDesc(Product product);

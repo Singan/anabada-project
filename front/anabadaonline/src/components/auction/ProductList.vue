@@ -126,13 +126,15 @@
 
 	.productImg {
 		background: #d9d9d9;
-		border-radius: 20px;
-		width: 160px;
+		border-radius: 10px;
 		height: 160px;
-		max-width: 100%;
+		max-width: 160px;
 		max-height: 100%;
+		box-shadow: 0px 0px 1px 1px rgba(0.5, 0.5, 0.5, 0.5);
 	}
-
+	.productImg:active {
+		transform: translateY(1px);
+	}
 	.productName {
 		color: #000000;
 		text-align: center;

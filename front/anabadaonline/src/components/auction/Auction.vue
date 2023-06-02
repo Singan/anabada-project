@@ -57,16 +57,20 @@
 		justify-content: center;
 	}
 	.title {
-		background-color: skyblue;
-		border: 0.001px black solid;
+		background-color: #81f7f3;
 		width: 100%;
+		margin: 5px;
 		height: calc(100% - 1px);
 		justify-content: center;
 		align-items: center;
 		display: flex;
 		border-radius: 30px;
+		box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+	}
+	.title:active {
+		transform: translateY(4px);
 	}
 	.select {
-		background-color: greenyellow;
+		background-color: #bef781;
 	}
 </style>

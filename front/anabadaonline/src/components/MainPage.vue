@@ -22,7 +22,12 @@
 	<div class="Text2 content3Title">현재 경매 되고 있는 상품을 둘러보세요</div>
 
 	<div class="content3 productFlex">
-		<div class="productFlexItem" v-for="item in productList" :key="item.productNo">
+		<router-link
+			class="productFlexItem"
+			v-for="item in productList"
+			:key="item.productNo"
+			:to="'/productDt?productNo=' + item.productNo"
+		>
 			<img class="ProductImg1" :src="item.productImage" style="width: 320px; height: 240px" />
 
 			<div class="ProductNT1">{{ item.productName }}</div>
@@ -30,7 +35,7 @@
 			<div class="AddressT1">{{ item.wishAddr }}</div>
 
 			<div class="PriceT1">{{ item.price }} 원</div>
-		</div>
+		</router-link>
 	</div>
 </template>
 
@@ -65,22 +70,6 @@
 					this.productList = response.data.list;
 				});
 			},
-			// searchresultshow(keyword) {
-			// 	if (keyword !== '') {
-			// 		//검색어를 입력한 경우
-			// 		this.$router.push({
-			// 			name: 'SearchPage',
-			// 			params: {
-			// 				keyword: this.keyword,
-			// 				isResultShow: true,
-			// 			},
-			// 		});
-			// 		this.keyword = '';
-			// 		console.log('"', keyword, '"' + ' 검색');
-			// 	} else {
-			// 		alert('검색어를 입력해주세요!'); //검색어를 입력하지 않은 경우
-			// 	}
-			// },
 		},
 
 		created() {

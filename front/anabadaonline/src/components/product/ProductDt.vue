@@ -1,5 +1,7 @@
 <template>
 	<div class="form" :style="'height : ' + { isClicked } ? '2800px' : '1900x'">
+		<router-link to="/auction?categoryNo=1" class="listButton">목록으로 돌아가기</router-link>
+
 		<div class="imgBox">
 			<div
 				class="productPicture"
@@ -7,25 +9,11 @@
 					marginLeft: `-${imageCurrIndex * 100}%`,
 				}"
 			>
-				<div v-for="(image, index) in seller.productImageList" :key="index" class="imageBox" >
+				<div v-for="(image, index) in seller.productImageList" :key="index" class="imageBox">
 					<img :src="image" />
 				</div>
 			</div>
 		</div>
-		<button class="listButton" @click="goList">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="50"
-				height="50"
-				fill="currentColor"
-				class="bi bi-x"
-				viewBox="0 0 16 16"
-			>
-				<path
-					d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
-				/>
-			</svg>
-		</button>
 
 		<button class="prev" @click="prevSlide">&lt;</button>
 		<button class="next" @click="nextSlide">&gt;</button>
@@ -36,24 +24,6 @@
 				<div class="sellerName">판매자 이름 : {{ seller.memberName }}</div>
 				<div class="mainDeal">판매자 주 거래지 : {{ seller.memberAddr }}</div>
 			</div>
-
-			<!-- <div class="box2">
-				<button class="starIcon" :class="{ filled: isfilled }" @click="starFill">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="25"
-						height="25"
-						fill="currentColor"
-						class="bi bi-star-fill"
-						viewBox="0 0 16 16"
-					>
-						<path
-							d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-						/>
-					</svg>
-				</button>
-				<div class="jjim">찜하기</div>
-			</div> -->
 		</div>
 
 		<div class="line"></div>
@@ -195,6 +165,9 @@
 			},
 		},
 		created() {
+			if (this.isSocket) {
+				this.subscribe();
+			}
 			this.sellerInfo();
 		},
 		mounted() {},
@@ -253,13 +226,13 @@
 		width: 850px;
 		height: 100%;
 		display: flex;
-    justify-content: center;
-    align-items: center;
-
+		justify-content: center;
+		align-items: center;
 	}
 	.imageBox > * {
 		object-fit: cover;
-		height: 80%;
+		height: 100%;
+		max-width: 100%;
 	}
 	.prev,
 	.next {
@@ -279,13 +252,13 @@
 		left: -30px;
 	}
 
-	.listButton {
-		position: absolute;
+	.go_list {
 		background-color: transparent;
 		color: black;
 		border: none;
 		cursor: pointer;
 		outline: none;
+		margin: auto;
 	}
 	.userInfo {
 		display: flex;
