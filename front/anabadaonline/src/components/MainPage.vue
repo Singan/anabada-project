@@ -4,11 +4,7 @@
 			원하는 물품,<br />원하는 가격으로<br /><br />
 			<div class="Text4">중고 거래, 이제 경매에 직접 참여해서<br />원하는 가격으로 구매해보세요</div>
 		</div>
-		<div class="topImages">
-			<img src="@/assets/mainImage.png" />
-			<!-- <img class="rectangle-14" src="@/assets/samsung.jpg" />
-         <img class="rectangle-12" src="@/assets/iphone14.jpg" /> -->
-		</div>
+
 	</div>
 
 	<div class="Text2 content2TextFlex content2Title">내가 사는 지역에서 펼쳐지는 경매장</div>
@@ -123,7 +119,7 @@
 
 	.content1 {
 		background: #f1f8ff;
-		height: 600px;
+		height: 400px;
 	}
 
 	.content2 {
@@ -172,7 +168,7 @@
 		align-items: center;
 		position: absolute;
 		left: 15%;
-		top: 40%;
+		top: 30%;
 	}
 
 	.Text4 {
@@ -185,26 +181,10 @@
 
 	.topImages {
 		position: absolute;
-		width: 800px;
-		height: 450px;
-		right: 10%;
+		width: 300px;
+		margin-right: 300px;
 	}
 
-	.Illust2 {
-		background: #bdbdbd;
-		width: 500px;
-		height: 270px;
-
-		box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
-	}
-
-	.Illust1 {
-		background: #bdbdbd;
-		width: 500px;
-		height: 270px;
-
-		box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
-	}
 
 	.ProductNT1 {
 		color: #000000;
