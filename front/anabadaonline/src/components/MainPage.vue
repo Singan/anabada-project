@@ -4,7 +4,6 @@
 			원하는 물품,<br />원하는 가격으로<br /><br />
 			<div class="Text4">중고 거래, 이제 경매에 직접 참여해서<br />원하는 가격으로 구매해보세요</div>
 		</div>
-
 	</div>
 
 	<div class="Text2 content2TextFlex content2Title">내가 사는 지역에서 펼쳐지는 경매장</div>
