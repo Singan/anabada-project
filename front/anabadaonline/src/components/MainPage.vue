@@ -11,7 +11,9 @@
 		</div>
 	</div>
 
-	<div class="Text2 content2TextFlex content2Title">내가 사는 지역에서 펼쳐지는 경매장</div>
+	<div class="box1">
+		<div class="Text1">내가 사는 지역에서 펼쳐지는 경매장</div>
+	</div>
 	<div class="content2">
 		<div class="Illust2">
 			<img src="@/assets/change2.jpg" style="width: 100%; height: 100%" />
@@ -22,7 +24,7 @@
 		</div>
 	</div>
 
-	<div class="Text1 content3Title">현재 경매 되고 있는 상품을 둘러보세요</div>
+	<div class="Text2 content3Title">현재 경매 되고 있는 상품을 둘러보세요</div>
 
 	<div class="content3 productFlex">
 		<div class="productFlexItem" v-for="item in productList" :key="item.productNo">
@@ -104,11 +106,6 @@
 		margin-right: 30px;
 	}
 
-	.content2TextFlex {
-		display: flex;
-		flex-direction: column;
-	}
-
 	/* .productImgflexContainer {
       justify-content: flex-end;
       width: 100%;
@@ -132,12 +129,7 @@
 		display: flex;
 		justify-content: space-evenly;
 		height: 350px;
-	}
-
-	.content2Title {
-		background: #f3f4ff;
 		justify-content: center;
-		width: 100%;
 	}
 
 	.content3 {
@@ -150,19 +142,32 @@
 		width: 100%;
 	}
 
-	.Text1 {
+	.box1 {
 		color: #000000;
 		text-align: center;
 		font: 700 33px 'Roboto', sans-serif;
 		height: 100px;
 		line-height: 100px;
+		display: flex;
+		flex-direction: column;
+		background: #f3f4ff;
+		justify-content: center;
+		width: 100%;
+	}
+
+	.Text1 {
+		color: #000000;
+		text-align: center;
+		font: 700 33px 'Roboto', sans-serif;
+		margin-top: 80px;
 	}
 
 	.Text2 {
 		color: #000000;
 		text-align: center;
-		font: 700 35px 'Roboto', sans-serif;
+		font: 700 33px 'Roboto', sans-serif;
 		height: 100px;
+		line-height: 100px;
 	}
 
 	.Text3 {
@@ -191,17 +196,19 @@
 	}
 
 	.Illust2 {
+		/* margin-left: 50px; */
+		margin-top: 50px;
 		background: #bdbdbd;
 		width: 500px;
-		height: 270px;
-
+		height: 240px;
 		box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
 	}
 
 	.Illust1 {
+		margin-top: 50px;
 		background: #bdbdbd;
 		width: 500px;
-		height: 270px;
+		height: 240px;
 
 		box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
 	}
