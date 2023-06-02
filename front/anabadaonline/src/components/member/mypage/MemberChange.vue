@@ -137,13 +137,26 @@
 				form.append('updateDetailAddr', this.newDt);
 				form.append('updateWishAddr', this.newWish);
 				form.append('orginalPw', this.oldPw);
+				if (this.newPw != this.newPasswordConfirm) {
+					alert('새 비밀번호가 일치하지 않습니다!!');
+				}
+
 				if (this.productImages != null) {
 					console.log(this.productImages);
 					form.append('updateImage', this.productImages);
 				}
-				const response = await axios.put('/member/update', form, {
-					header: { 'Content-Type': 'multipart/form-data' },
-				});
+				const response = await axios
+					.put('/member/update', form, {
+						header: { 'Content-Type': 'multipart/form-data' },
+					})
+					.catch((error) => {
+						let message = error.response.data.message;
+						this.$swal({
+							icon: 'error',
+							title: '현재 비밀번호와 일치합니다.',
+							text: message,
+						});
+					});
 				this.$store.commit('setMember', response.data);
 			},
 			search() {

@@ -13,7 +13,7 @@
 						<div class="email">
 							<a class="emailText" target="chatting">kotkkio@gmail.com</a>
 						</div>
-						<div class="chat_preview">안녕하세요~</div>
+						<div class="chat_preview">95퍼 입니다.</div>
 					</div>
 					<div class="time_td">
 						<!--Time & Check-->
@@ -25,38 +25,15 @@
 		</div>
 		<div class="chatContainer">
 			<div class="oppoInfoBox">
-				<span class="oppoInfo">xxx님과의 채팅</span>
+				<span class="oppoInfo">모모랜드 연우님과의 채팅</span>
 			</div>
 			<div class="chattingMainBox">
 				<div class="bubble receiver">안녕하세요~</div>
-				<div class="bubble sender">
-					나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
-					빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
-				</div>
-				<div class="bubble receiver">안녕하세요~</div>
-				<div class="bubble sender">
-					나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
-					빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
-				</div>
-				<div class="bubble receiver">안녕하세요~</div>
-				<div class="bubble sender">
-					나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
-					빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
-				</div>
-				<div class="bubble sender">
-					나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
-					빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
-				</div>
-				<div class="bubble receiver">안녕하세요~</div>
-				<div class="bubble sender">
-					나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
-					빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
-				</div>
-				<div class="bubble sender">
-					나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는
-					빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~나는 빡빡이다~
-				</div>
-				<div class="bubble sender">반갑다</div>
+				<div class="bubble sender">안녕하세요~</div>
+				<div class="bubble receiver">아이폰 14pro 상품보고 연락드리는데요</div>
+				<div class="bubble receiver">배터리 성능상태가 어느정도 되나요?</div>
+				<div class="bubble sender">사용한지 얼마 안되서 상태가 정말 좋아요</div>
+				<div class="bubble sender">95퍼 입니다.</div>
 			</div>
 			<div class="chatController">
 				<input class="chatInputBox" />
@@ -195,6 +172,7 @@
 		flex-direction: column;
 		align-items: flex-end;
 		background-color: white;
+		margin-top: 60px;
 		width: 500px;
 		height: 550px;
 		overflow-y: auto;
@@ -236,7 +214,7 @@
 	.bubble {
 		display: inline-block;
 		max-width: 75%;
-		margin-bottom: 10px;
+		margin-top: 15px;
 		padding: 10px 15px;
 		border-radius: 20px;
 		font-size: 14px;
