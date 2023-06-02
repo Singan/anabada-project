@@ -122,7 +122,7 @@
 	.logo {
 		width: 100%;
 		height: 10%;
-		margin: 20px;
+		margin-bottom: 40px;
 		display: flex;
 		align-content: center;
 		justify-content: center;
