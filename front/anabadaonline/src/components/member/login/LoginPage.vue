@@ -1,9 +1,11 @@
 <template>
 	<div class="flexContainer">
-		<div class="logo">
-			<img class="logoImg" src="@/assets/logo.jpg" />
-			<div class="logoName" @click="goMain">아나바다</div>
-		</div>
+		<router-link to="/">
+			<div class="logo">
+				<img class="logoImg" src="@/assets/logo.jpg" />
+				<div class="logoName" @click="goMain">아나바다</div>
+			</div>
+		</router-link>
 		<form class="idPw">
 			<input
 				type="text"
