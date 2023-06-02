@@ -30,8 +30,8 @@ public class SuccessBidService {
     }
 
     @Transactional
-    public void startChat(Long successBidNo){
-        System.out.println(successBidNo);
+    public void startChat(Long successBidNo,MemberDetailDTO memberDetailDTO){
         successBidRepository.updateSuccessfulBidByStatus(successBidNo, Status.채팅);
+        successBidRepository.findSuccessfulBid(successBidNo);
     }
 }

@@ -21,6 +21,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,27 +33,19 @@ import java.security.Principal;
 @RestController
 public class ChatController {
     private final SimpMessagingTemplate simpMessagingTemplate;
-    private SuccessBidService successBidService;
+    private final SuccessBidService successBidService;
 
-    @MessageMapping("/receive")
-    public void sendMessage(@Payload MessageVo chatMessage, Authentication authentication, StompHeaderAccessor accessor) {
-        System.out.println("SendMessage");
 
-        MemberDetailDTO sender = (MemberDetailDTO) authentication.getPrincipal();
-        System.out.println("receiveMessage");
-        chatMessage.setMemberName(sender.getUserNickname());
-        chatMessage.setMemberNo(sender.getNo());
-        System.out.println(sender.getUserNickname());
-        simpMessagingTemplate.convertAndSend("/send",chatMessage); // 센드로 메시지를 쏴준다.
-        simpMessagingTemplate.convertAndSend("/send2",chatMessage);
-
-    }
 
     @PutMapping("/chat/start")
     @Operation(description ="채팅 시작")
     public void chatStart(@RequestBody ChatStartDto chatStartDto ,
                           @AuthenticationPrincipal MemberDetailDTO memberDetailDTO){
-        System.out.println("아아");
-        successBidService.startChat(chatStartDto.getSuccessBidNo());
+        successBidService.startChat(chatStartDto.getSuccessBidNo(),memberDetailDTO);
+    }
+    @GetMapping("/chat/list")
+    @Operation(description = "내 채팅 목록")
+    public void myChatList(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO){
+        successBidService.findStatusChat();
     }
 }

@@ -44,4 +44,7 @@ public interface SuccessBidRepository extends JpaRepository<SuccessfulBid,Long> 
     @Query("update SuccessfulBid s set s.status = :status where s.successBidProductNo = :sno")
     @Modifying
     void updateSuccessfulBidByStatus(@Param("sno") Long no ,@Param("status") Status status);
+
+    @Query()
+    List<SuccessfulBid> findStatusChatMyList();
 }
