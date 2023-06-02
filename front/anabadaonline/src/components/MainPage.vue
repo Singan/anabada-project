@@ -123,7 +123,7 @@
 		width: 100%;
 		display: flex;
 		justify-content: space-evenly;
-		height: 350px;
+		height: 26em;
 		justify-content: center;
 	}
 
