@@ -46,6 +46,6 @@ public class ChatController {
     @GetMapping("/chat/list")
     @Operation(description = "내 채팅 목록")
     public void myChatList(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO){
-        successBidService.findStatusChat();
+        //successBidService.findStatusChat();
     }
 }

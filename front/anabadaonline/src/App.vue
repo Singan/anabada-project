@@ -104,13 +104,12 @@
 	}
 
 	body {
-		/* width: 100%;
 		margin: 0px;
-		height: 100%;
-		padding: 0px; */
 	}
 
 	#app {
+		width: 100vw;
+		height: 100vh;
 	}
 
 	a {
