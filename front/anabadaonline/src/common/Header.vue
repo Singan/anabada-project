@@ -144,7 +144,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin-right: 10px;
+		margin-right: 30px;
 	}
 
 	.userImage {

@@ -137,6 +137,7 @@
 		background: #0075ff;
 		border-radius: 5px;
 		justify-content: center;
+		cursor: pointer;
 	}
 
 	.blueBox {
