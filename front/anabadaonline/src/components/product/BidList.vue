@@ -29,6 +29,7 @@
 			productName: {
 				type: String,
 			},
+			leftTime: {},
 		},
 		name: '',
 		components: {},
@@ -58,6 +59,13 @@
 				this.bidList.unshift(resObj);
 			},
 			send() {
+				if (this.leftTime == 0) {
+					this.$swal({
+						icon: 'info',
+						title: '경매가 끝난 상품입니다.',
+					});
+					return;
+				}
 				const lastBid = this.bidList[this.bidList.length - 1];
 				if (this.memberNo == this.$store.getters.getMember.no) {
 					alert('상품을 등록한 사람은 경매에 참여할 수 없습니다.');

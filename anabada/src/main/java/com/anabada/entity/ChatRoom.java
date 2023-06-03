@@ -1,9 +1,6 @@
 package com.anabada.entity;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -23,4 +20,10 @@ public class ChatRoom {
     @OneToMany(mappedBy = "chatRoom")
     private List<ChatMessage> chatMessageList = new ArrayList<>();
 
+    @Builder
+    public ChatRoom(Long chatRoomNo, SuccessfulBid successfulBid, List<ChatMessage> chatMessageList) {
+        this.chatRoomNo = chatRoomNo;
+        this.successfulBid = successfulBid;
+        this.chatMessageList = chatMessageList;
+    }
 }

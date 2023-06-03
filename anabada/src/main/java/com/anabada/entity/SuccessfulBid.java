@@ -1,16 +1,14 @@
 package com.anabada.entity;
 
 import com.anabada.etc.Status;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Setter
 public class SuccessfulBid {
 
     @Id

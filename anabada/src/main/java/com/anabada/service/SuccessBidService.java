@@ -2,6 +2,7 @@ package com.anabada.service;
 
 import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.response_dto.SuccessBidDto;
+import com.anabada.entity.ChatRoom;
 import com.anabada.entity.SuccessfulBid;
 import com.anabada.etc.Status;
 import com.anabada.repository.SuccessBidRepository;
@@ -31,7 +32,19 @@ public class SuccessBidService {
 
     @Transactional
     public void startChat(Long successBidNo,MemberDetailDTO memberDetailDTO){
-        successBidRepository.updateSuccessfulBidByStatus(successBidNo, Status.채팅);
-        successBidRepository.findSuccessfulBid(successBidNo);
+        SuccessfulBid s = successBidRepository.findSuccessfulBid(successBidNo);
+        if(s.getStatus() == Status.채팅){
+            return;
+        }
+        s.setStatus(Status.채팅);
+        ChatRoom chatRoom = ChatRoom.
+                builder().
+                successfulBid(s).
+                build();
+
+
+    }
+    public void findStatusChat(){
+
     }
 }

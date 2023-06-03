@@ -144,7 +144,7 @@
 		border-color: #000000;
 		border-width: 1px;
 		max-width: 40px;
-		max-height: 40px;
+		height: 40px;
 	}
 
 	.userName {

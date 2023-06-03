@@ -55,7 +55,12 @@
 		</div>
 
 		<div class="line"></div>
-		<BidList v-if="isClicked" :memberNo="seller.memberNo" :productName="seller.productName"></BidList>
+		<BidList
+			v-if="isClicked"
+			:memberNo="seller.memberNo"
+			:productName="seller.productName"
+			:leftTime="leftTime"
+		></BidList>
 
 		<div class="box3">
 			<div class="actionProduct">인기경매 상품</div>
@@ -101,7 +106,6 @@
 				temporaryData: '',
 				productNo: this.$route.query.productNo,
 				isClicked: false,
-				isfilled: false,
 				stompClient: '',
 				resultObj: {},
 				testInput: 0,
@@ -124,8 +128,6 @@
 				this.isClicked = !this.isClicked;
 			},
 			timeStart() {
-				console.log('왜 다시시작안해');
-				console.log(this.seller.bidTime);
 				let bidTime = new Date(this.seller.bidTime);
 				bidTime.setMinutes(bidTime.getMinutes() + 10);
 				this.leftTime = bidTime;
@@ -135,16 +137,8 @@
 					this.timerInterval = setInterval(this.timer, 1000);
 				}
 			},
-			starFill() {
-				this.isfilled = !this.isfilled;
-			},
-			// subscription.unsubscribe(headers);
 
 			timer() {
-				let s = Math.floor(this.leftTime / 1000);
-				let m = Math.floor(s / 60);
-				s = s - m * 60;
-				this.leftTimerView = m + '분 ' + s + '초';
 				this.leftTime -= 1000;
 				if (this.leftTime <= 0) {
 					clearInterval(this.timerInterval); // 타이머가 0 이하가 되었을 때 타이머를 멈추도록 함
@@ -153,6 +147,10 @@
 						title: '경매가 종료되었습니다.',
 					});
 				}
+				let s = Math.floor(this.leftTime / 1000);
+				let m = Math.floor(s / 60);
+				s = s - m * 60;
+				this.leftTimerView = m + '분 ' + s + '초';
 			},
 			recevieFunc(resObj) {
 				this.seller.productHighPrice = resObj.price;
