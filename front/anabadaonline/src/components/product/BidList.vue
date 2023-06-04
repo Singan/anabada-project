@@ -30,12 +30,17 @@
 				type: String,
 			},
 			leftTime: {},
+			isSocket: {
+				type: Boolean,
+			},
 		},
 		name: '',
 		components: {},
 		watch: {
 			isSocket: function (isSocket) {
-				if (isSocket) this.subscribe();
+				if (isSocket) {
+					this.sub = this.socket.subscribe('/product/' + this.productNo, this.recevieFunc);
+				}
 			},
 		},
 		data() {
@@ -88,8 +93,10 @@
 		},
 		created() {
 			this.auctionList();
-
-			this.sub = this.socket.subscribe('/product/' + this.productNo, this.recevieFunc);
+			console.log(this.isSocket);
+			if (this.isSocket) {
+				this.sub = this.socket.subscribe('/product/' + this.productNo, this.recevieFunc);
+			}
 		},
 	};
 </script>

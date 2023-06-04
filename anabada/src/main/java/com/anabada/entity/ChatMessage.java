@@ -1,6 +1,7 @@
 package com.anabada.entity;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -24,5 +25,11 @@ public class ChatMessage {
     private String message;
 
     private LocalDateTime createDateTime;
-
+    @Builder
+    public ChatMessage(Long chatMessageNo, ChatRoom chatRoom, String message, LocalDateTime createDateTime) {
+        this.chatMessageNo = chatMessageNo;
+        this.chatRoom = chatRoom;
+        this.message = message;
+        this.createDateTime = createDateTime;
+    }
 }

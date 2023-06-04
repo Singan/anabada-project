@@ -27,7 +27,8 @@ public class Member {
     private String memberName;
     @Column(name = "member_birth")
     private LocalDate memberBirth;
-    @Column(name = "member_money" ,columnDefinition = "int default 0")
+    @Column(name = "member_money" ,nullable = false)
+    @ColumnDefault("0")
     private Integer memberMoney;
 
 

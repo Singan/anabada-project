@@ -69,18 +69,13 @@ public class JwtTokenProvider{
             return false;
         try {
             Claims claims = getClaimsFormToken(token);
-
-
             return true;
         } catch (ExpiredJwtException exception) {
-            log.error("Token Expired");
-            return false;
+            throw new JwtException("토큰 만료");
         } catch (JwtException exception) {
-            log.error("Token Tampered");
-            return false;
+            throw new JwtException("Token Tampered");
         } catch (NullPointerException exception) {
-            log.error("Token is null");
-            return false;
+            throw new JwtException("토큰이 존재하지 않습니다.");
         }
     }
 

@@ -67,7 +67,7 @@
 
 				// 추가 데이터 로딩
 				if (this.page < this.totalCountPage) {
-					this.productSalesList();
+					this.getMyBuyList();
 				}
 
 				// 로딩 상태 변경

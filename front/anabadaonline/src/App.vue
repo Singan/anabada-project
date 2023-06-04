@@ -90,6 +90,7 @@
 		async created() {
 			socket.init();
 			await socket.connect();
+			console.log('소켓 연결');
 			this.isSocket = socket.connected();
 			await this.login();
 			this.isLoad = true;

@@ -31,7 +31,6 @@ let socketResult = {
 	},
 	send(msgObj, pubUrl) {
 		if (this.stompClient && this.stompClient.connected) {
-			console.log(this.headers);
 			this.stompClient.send(pubUrl, JSON.stringify(msgObj), this.headers);
 		}
 	},
@@ -44,8 +43,8 @@ let socketResult = {
 		}
 	},
 	allUnsubscribe() {
-		const subscription = this.stompClient.subscriptions
-		for(let sub in subscription){
+		const subscription = this.stompClient.subscriptions;
+		for (let sub in subscription) {
 			this.stompClient.unsubscribe(sub);
 		}
 	},

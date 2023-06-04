@@ -60,6 +60,7 @@
 			:memberNo="seller.memberNo"
 			:productName="seller.productName"
 			:leftTime="leftTime"
+			:isSocket="isSocket"
 		></BidList>
 
 		<div class="box3">

@@ -43,7 +43,7 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         registry.setApplicationDestinationPrefixes(""); // publish
 
-        registry.enableSimpleBroker("/send","/product"); // subscribe
+        registry.enableSimpleBroker("/send","/product","/chat"); // subscribe
     }
 
 
