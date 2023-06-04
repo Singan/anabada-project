@@ -21,9 +21,7 @@ public class ChatMessage {
     @JoinColumn(nullable = false,name = "chat_room_no")
     private ChatRoom chatRoom ;
 
-    @ManyToOne
-    @JoinColumn(name = "member_no",nullable = false)
-    private Member member;
+    private String message;
 
     private LocalDateTime createDateTime;
 

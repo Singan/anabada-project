@@ -30,7 +30,7 @@
 		data() {
 			return {
 				productList: [],
-				size: 8,
+				size: 12,
 				page: 0,
 				totalCountPage: 0,
 				loading: false, // 데이터 로딩 상태 추가

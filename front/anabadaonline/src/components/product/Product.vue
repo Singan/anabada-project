@@ -101,6 +101,7 @@
 				price: '',
 				selectCategory: '',
 				productImages: null,
+				isChk: false,
 			};
 		},
 
@@ -112,7 +113,11 @@
 				});
 			},
 
-			productRegister() {
+			async productRegister() {
+				if (this.isChk) {
+					this.isChk = true;
+					return;
+				}
 				let form = new FormData();
 				form.append('name', this.name);
 				form.append('price', this.price);
@@ -126,18 +131,20 @@
 					}
 				}
 
-				axios
+				const response = await axios
 					.post('/product', form, {
 						header: {
 							'Content-Type': 'multipart/form-data',
 						},
 					})
-					.then((response) => {
-						this.$router.push('./ProductDt?productNo=' + response.data.productNo);
-					})
 					.catch((error) => {
-						alert(error.response.data.message);
+						this.isChk = false;
+						this.$swal({
+							icon: 'error',
+							title: '상품 등록에 실패하였습니다.',
+						});
 					});
+				this.$router.push('./ProductDt?productNo=' + response.data.productNo);
 			},
 
 			onInputImage(e) {

@@ -3,7 +3,9 @@ package com.anabada.controller;
 import com.anabada.dto.MemberDetailDTO;
 import com.anabada.dto.MessageVo;
 import com.anabada.dto.request_dto.ChatStartDto;
+import com.anabada.dto.response_dto.ChatRoomDto;
 import com.anabada.entity.SuccessfulBid;
+import com.anabada.service.ChatService;
 import com.anabada.service.SuccessBidService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -28,13 +30,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.net.http.HttpRequest;
 import java.security.Principal;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
 public class ChatController {
-    private final SimpMessagingTemplate simpMessagingTemplate;
     private final SuccessBidService successBidService;
-
+    private final ChatService chatService;
 
 
     @PutMapping("/chat/start")
@@ -45,7 +47,7 @@ public class ChatController {
     }
     @GetMapping("/chat/list")
     @Operation(description = "내 채팅 목록")
-    public void myChatList(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO){
-        successBidService.findStatusChat();
+    public List<ChatRoomDto> myChatList(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO){
+        return chatService.findStatusChat(memberDetailDTO);
     }
 }

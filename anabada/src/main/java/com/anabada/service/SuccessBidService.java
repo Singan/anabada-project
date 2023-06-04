@@ -1,17 +1,22 @@
 package com.anabada.service;
 
 import com.anabada.dto.MemberDetailDTO;
+import com.anabada.dto.response_dto.ChatRoomDto;
 import com.anabada.dto.response_dto.SuccessBidDto;
 import com.anabada.entity.ChatRoom;
 import com.anabada.entity.SuccessfulBid;
+import com.anabada.entity.nativeQuery.ChatRoomInterface;
 import com.anabada.etc.Status;
+import com.anabada.repository.ChatRoomRepository;
 import com.anabada.repository.SuccessBidRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +24,7 @@ public class SuccessBidService {
     private final SuccessBidRepository successBidRepository;
     @Value("${s3.bucket.endpoint}")
     private String s3EndPoint;
-
+    private final ChatRoomRepository chatRoomRepository;
     public SuccessBidDto successBidDto(Long successBidNo,MemberDetailDTO memberDetailDTO) {
         Long memberNo = memberDetailDTO.getNo();
         SuccessfulBid successfulBid = successBidRepository.findSuccessfulBid(successBidNo);
@@ -37,14 +42,18 @@ public class SuccessBidService {
             return;
         }
         s.setStatus(Status.채팅);
-        ChatRoom chatRoom = ChatRoom.
+        ChatRoom chatRoom1 = ChatRoom.
                 builder().
                 successfulBid(s).
+                member(s.getBid().getMember()).
                 build();
-
-
+        ChatRoom chatRoom2 = ChatRoom.
+                builder().
+                successfulBid(s).
+                member(s.getProduct().getMember()).
+                build();
+        ChatRoom[] c = {chatRoom2,chatRoom1};
+        chatRoomRepository.saveAll(Arrays.asList(c));
     }
-    public void findStatusChat(){
 
-    }
 }

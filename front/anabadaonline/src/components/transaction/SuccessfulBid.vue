@@ -63,7 +63,8 @@
 		},
 		methods: {
 			async chat() {
-				await axios.put('/success/chat/start', {
+				this.status = '채팅';
+				await axios.put('/chat/start', {
 					successBidNo: this.successBidNo,
 				});
 			},
