@@ -42,8 +42,17 @@ public class ChatService {
         return chatRoomDtos;
     }
 
-    public List<ChatMessage> findChatMessageList(Long successNo) {
-        return null;
+    public List<ChatMessageResDto> findChatMessageList(Long successNo) {
+        List<ChatMessageResDto> chatMessageDtos = chatMessageRepository.findChatRoomMessage(successNo)
+                .stream().map(chat -> new ChatMessageResDto(
+                        chat.getChatRoom().getMember().getMemberImage(),
+                        chat.getChatRoom().getMember().getMemberImage(),
+                        chat.getChatRoom().getMember().getMemberNo(),
+                        chat.getMessage(),
+                        chat.getCreateDateTime(),
+                        chat.getChatRoom().getSuccessfulBid().getSuccessBidProductNo()
+                )).collect(Collectors.toList());
+        return chatMessageDtos;
     }
 
     public ChatMessageResDto receiveMessage(MemberDetailDTO memberDetailDTO, ChatMessageDto chatMessageDto) {

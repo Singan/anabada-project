@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @AllArgsConstructor
-
+@Setter
 public class ChatMessageResDto {
     private String memberName;
     private String memberImage;

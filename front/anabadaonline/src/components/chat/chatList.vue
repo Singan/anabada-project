@@ -3,12 +3,7 @@
 		<div class="chat_list_wrap">
 			<div class="chatListContainer">
 				<div class="header">채팅 목록</div>
-				<div
-					class="list"
-					v-for="chat in chatList"
-					:key="chat.successNo"
-					@click="(isClick = true), (memberName = chat.memberName), (successNo = chat.successNo)"
-				>
+				<div class="list" v-for="chat in chatList" :key="chat.successNo" @click="chatMessageList(chat)">
 					<div class="profile_td">
 						<img :src="chat.memberImage" />
 					</div>
@@ -31,12 +26,13 @@
 					<span class="oppoInfo">{{ memberName }}님과의 채팅</span>
 				</div>
 				<div class="chattingMainBox">
-					<div class="bubble receiver">안녕하세요~</div>
-					<div class="bubble sender">안녕하세요~</div>
-					<div class="bubble receiver">아이폰 14pro 상품보고 연락드리는데요</div>
-					<div class="bubble receiver">배터리 성능상태가 어느정도 되나요?</div>
-					<div class="bubble sender">사용한지 얼마 안되서 상태가 정말 좋아요</div>
-					<div class="bubble sender">95퍼 입니다.</div>
+					<div
+						class="bubble"
+						:class="[message.memberNo == $store.getters.getMember.memberNo ? 'receiver' : '', 'sender']"
+						v-for="message in messageList"
+					>
+						{{ message.message }}
+					</div>
 				</div>
 				<div class="chatController">
 					<input class="chatInputBox" v-model="message" />
@@ -76,6 +72,7 @@
 				successNo: '',
 				message: '',
 				subList: [],
+				messageList: [],
 			};
 		},
 		mounted() {
@@ -93,6 +90,15 @@
 					this.sub();
 				}
 			},
+			async chatMessageList(chat) {
+				console.log('데이터 가져오기');
+				this.isClick = true;
+				this.memberName = chat.memberName;
+				this.successNo = chat.successNo;
+				const res = await axios.get('/chat/content?successNo=' + chat.successNo);
+				this.messageList = res.data;
+				console.log(this.messageList);
+			},
 			async sub() {
 				this.chatList.forEach((chat) => {
 					this.subList.push(this.socket.subscribe('/chat/' + chat.successNo, this.recevieFunc));
@@ -109,8 +115,9 @@
 				this.socket.send(obj, '/chat');
 			},
 			recevieFunc(res) {
-				console.log('으음?');
-				console.log(res);
+				if (this.successNo == res.successNo) {
+					this.messageList.push(res);
+				}
 			},
 		},
 	};
