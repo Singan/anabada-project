@@ -11,10 +11,10 @@
 						<div class="email">
 							<a class="emailText" target="chatting">{{ chat.memberName }}</a>
 						</div>
-						<div class="chat_preview" v-if="chat.lastMessage != null">{{ chat.lastMessage }}</div>
+						<div class="chat_preview">{{ chat.productName }}</div>
 					</div>
-					<div class="time_td" v-if="chat.lastMessage != null">
-						<div class="time">{{ chat.lastMessageTime }}</div>
+					<div class="time_td">
+						<div class="time">{{ chat.bidPrice }} 원</div>
 						<div class="check"></div>
 					</div>
 				</div>
@@ -28,7 +28,7 @@
 				<div class="chattingMainBox">
 					<div
 						class="bubble"
-						:class="[message.memberNo == $store.getters.getMember.memberNo ? 'receiver' : '', 'sender']"
+						:class="[message.memberNo == $store.getters.getMember.no ? 'sender' : 'receiver']"
 						v-for="message in messageList"
 					>
 						{{ message.message }}
@@ -86,12 +86,10 @@
 				console.log(this.isSocket);
 				console.log(this.socket);
 				if (this.isSocket) {
-					console.log('소켓 서브스크라이브');
 					this.sub();
 				}
 			},
 			async chatMessageList(chat) {
-				console.log('데이터 가져오기');
 				this.isClick = true;
 				this.memberName = chat.memberName;
 				this.successNo = chat.successNo;
@@ -110,7 +108,7 @@
 					successNo: this.successNo,
 					memberName: this.$store.getters.getMember.name,
 					memberImage: this.$store.getters.getMember.image,
-					memberNo: this.$store.getters.getMember.memberNo,
+					memberNo: this.$store.getters.getMember.no,
 				};
 				this.socket.send(obj, '/chat');
 			},

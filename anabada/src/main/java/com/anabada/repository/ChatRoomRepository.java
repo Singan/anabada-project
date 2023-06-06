@@ -22,10 +22,15 @@ public interface ChatRoomRepository extends JpaRepository<ChatRoom, Long> {
             "c1.member_no memberNo," +
             "c1.success_no successNo," +
             "m.member_name memberName," +
-            "m.member_image memberImage" +
+            "m.member_image memberImage," +
+            "b.bid_price bidPrice," +
+            "p.product_name productName" +
             " from chat_room c1 " +
             "join (select c2.* from chat_room c2 where c2.member_no =:memberNo) c2 " +
-            "on c1.success_no = c2.success_no and c1.member_no not in(c2.member_no)" +
+            "on c1.success_no = c2.success_no and c1.member_no not in(c2.member_no) " +
+            "join successful_bid s on c1.success_no= s.success_bid_product_no " +
+            "join product p on s.product_no = p.product_no " +
+            "join bid b on s.bid_no = b.bid_no " +
             "join member m on c1.member_no = m.member_no" , nativeQuery = true)
     List<ChatRoomInterface> findChatRoomByMember(@Param("memberNo") Long memberNo);
 

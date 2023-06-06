@@ -13,7 +13,8 @@ public interface ChatMessageRepository extends JpaRepository<ChatMessage , Long>
     @Query("select cm from ChatMessage cm " +
             "join fetch cm.chatRoom cr " +
             "join fetch cr.member " +
-            "where cr.successfulBid.successBidProductNo = :successNo ")
+            "where cr.successfulBid.successBidProductNo = :successNo " +
+            "order by cm.createDateTime asc")
     List<ChatMessage> findChatRoomMessage(@Param("successNo") Long successNo);
 
 }

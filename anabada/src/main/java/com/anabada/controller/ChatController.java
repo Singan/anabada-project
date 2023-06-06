@@ -61,7 +61,6 @@ public class ChatController {
         simpMessagingTemplate.convertAndSend("/chat/"+chatMessageDto.getSuccessNo(),ch);
 
 
-        System.out.println("/chat/"+chatMessageDto.getSuccessNo());
     }
     @GetMapping("/chat/content")
     @Operation(description = "채팅방 채팅 목록")

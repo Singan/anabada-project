@@ -37,6 +37,8 @@ public class ChatService {
                         .successNo(chatRoom.getSuccessNo())
                         .memberName(chatRoom.getMemberName())
                         .memberImage(prefix + chatRoom.getMemberImage())
+                        .bidPrice(chatRoom.getBidPrice())
+                        .productName(chatRoom.getProductName())
                         .build()
         ).collect(Collectors.toList());
         return chatRoomDtos;
