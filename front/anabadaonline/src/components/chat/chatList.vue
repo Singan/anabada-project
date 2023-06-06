@@ -15,7 +15,6 @@
 					</div>
 					<div class="time_td">
 						<div class="time">{{ chat.bidPrice }} 원</div>
-						<div class="check"></div>
 					</div>
 				</div>
 			</div>
@@ -25,7 +24,7 @@
 				<div class="oppoInfoBox">
 					<span class="oppoInfo">{{ memberName }}님과의 채팅</span>
 				</div>
-				<div class="chattingMainBox">
+				<div class="chattingMainBox" ref="messages">
 					<div
 						class="bubble"
 						:class="[message.memberNo == $store.getters.getMember.no ? 'sender' : 'receiver']"
@@ -54,6 +53,18 @@
 					console.log('와치');
 					this.sub();
 				}
+			},
+			messageList: {
+				// 배열 내부를 검사하여, 알려준다.
+				deep: true,
+
+				handler() {
+					this.$nextTick(() => {
+						let messages = this.$refs.messages;
+
+						messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+					});
+				},
 			},
 		},
 		props: {
@@ -95,7 +106,6 @@
 				this.successNo = chat.successNo;
 				const res = await axios.get('/chat/content?successNo=' + chat.successNo);
 				this.messageList = res.data;
-				console.log(this.messageList);
 			},
 			async sub() {
 				this.chatList.forEach((chat) => {

@@ -21,7 +21,7 @@ public class ChatMessage {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false,name = "chat_room_no")
     private ChatRoom chatRoom ;
-
+    @Column(columnDefinition = "LONGTEXT")
     private String message;
 
     private LocalDateTime createDateTime;
