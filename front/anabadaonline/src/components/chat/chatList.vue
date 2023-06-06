@@ -27,14 +27,14 @@
 				<div class="chattingMainBox" ref="messages">
 					<div
 						class="bubble"
-						:class="[message.memberNo == $store.getters.getMember.no ? 'sender' : 'receiver']"
 						v-for="message in messageList"
+						:class="[message.memberNo != $store.getters.getMember.no ? 'receiver' : 'sender']"
 					>
 						{{ message.message }}
 					</div>
 				</div>
 				<div class="chatController">
-					<input class="chatInputBox" v-model="message" />
+					<textarea class="chatInputBox" v-model="message"></textarea>
 					<div class="sendButton" @click="send">
 						<img class="sendicon" src="@/assets/send.png" />
 					</div>
@@ -84,6 +84,7 @@
 				message: '',
 				subList: [],
 				messageList: [],
+				selectChat: '',
 			};
 		},
 		mounted() {
@@ -94,8 +95,7 @@
 			async getMyChatList() {
 				const response = await axios.get('/chat/list');
 				this.chatList = response.data;
-				console.log(this.isSocket);
-				console.log(this.socket);
+
 				if (this.isSocket) {
 					this.sub();
 				}
@@ -104,6 +104,7 @@
 				this.isClick = true;
 				this.memberName = chat.memberName;
 				this.successNo = chat.successNo;
+				this.selectChat = chat;
 				const res = await axios.get('/chat/content?successNo=' + chat.successNo);
 				this.messageList = res.data;
 			},
@@ -113,6 +114,9 @@
 				});
 			},
 			send() {
+				if (this.message == '' || this.message == null) {
+					return;
+				}
 				let obj = {
 					message: this.message,
 					successNo: this.successNo,
@@ -121,6 +125,7 @@
 					memberNo: this.$store.getters.getMember.no,
 				};
 				this.socket.send(obj, '/chat');
+				this.message = '';
 			},
 			recevieFunc(res) {
 				if (this.successNo == res.successNo) {
@@ -136,6 +141,9 @@
 	// scrollChatToBottom(); //채팅이 새로 왔을때 채팅창을 맨 밑으로 내리는 함수 호출
 </script>
 <style scoped>
+	.receiverImage {
+		max-width: 40px;
+	}
 	.chattingPageContainer {
 		display: flex;
 		align-items: flex-start;
@@ -176,6 +184,7 @@
 		display: flex;
 		border-bottom: 1px solid#e1e1e1;
 		justify-items: center;
+		cursor: pointer;
 	}
 	.chat_list_wrap .list ul {
 		width: 100%;
@@ -211,6 +220,9 @@
 	}
 	.chat_preview {
 		margin-bottom: 2em;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 	.chatContainer {
 		display: flex;
@@ -245,6 +257,7 @@
 		width: 500px;
 		height: 550px;
 		overflow-y: auto;
+		overflow-x: hidden;
 	}
 
 	.chatController {
@@ -274,6 +287,11 @@
 		position: relative;
 		border-radius: 5px;
 		margin: 10px;
+		box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+	}
+	.sendButton:active {
+		box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+		transform: translateY(4px);
 	}
 	.sendicon {
 		width: 30px;
@@ -281,12 +299,14 @@
 		margin: 5px;
 	}
 	.bubble {
-		display: inline-block;
 		max-width: 75%;
 		margin-top: 15px;
 		padding: 10px 15px;
 		border-radius: 20px;
 		font-size: 14px;
+		width: max-content;
+		word-break: break-all;
+		white-space: pre-wrap;
 	}
 	.bubble.sender {
 		background-color: #eaeaea;
