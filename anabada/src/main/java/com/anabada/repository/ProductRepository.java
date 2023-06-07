@@ -38,7 +38,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     @Query("update Product p set p.productVisit=p.productVisit+1 where p.productNo = :productNo")
     void upProductVisit(@Param("productNo") Long productNo);
 
-    @Query("select distinct p from Product p join fetch p.member ")
+    @Query("select distinct p from Product p join fetch p.member where p.productIsBidComplete = false ")
     @BatchSize(size = 3)
     List<Product> findByProductAndMember(Pageable pageable); //메인에 나가는 목록 조회 조정할 예정
 
