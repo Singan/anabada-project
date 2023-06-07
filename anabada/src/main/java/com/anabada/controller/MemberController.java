@@ -29,7 +29,7 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public LoginResultDto memberLogin(@RequestBody @Valid MemberLoginDto memberLoginDto) {
+    public LoginResultDto memberLogin(@RequestBody  MemberLoginDto memberLoginDto) {
         return memberService.memberLogin(memberLoginDto);
     }
 

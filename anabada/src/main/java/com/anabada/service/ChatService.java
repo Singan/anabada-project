@@ -48,7 +48,7 @@ public class ChatService {
         List<ChatMessageResDto> chatMessageDtos = chatMessageRepository.findChatRoomMessage(successNo)
                 .stream().map(chat -> new ChatMessageResDto(
                         chat.getChatRoom().getMember().getMemberImage(),
-                        chat.getChatRoom().getMember().getMemberImage(),
+                        prefix+chat.getChatRoom().getMember().getMemberImage(),
                         chat.getChatRoom().getMember().getMemberNo(),
                         chat.getMessage(),
                         chat.getCreateDateTime(),
@@ -69,6 +69,7 @@ public class ChatService {
                 .createDateTime(now)
                 .build();
         chatMessageRepository.save(ch);
+        chatMessageDto.setMemberImage(prefix+chatMessageDto.getMemberImage());
         return new ChatMessageResDto(chatMessageDto,now, memberDetailDTO.getNo());
     }
 }

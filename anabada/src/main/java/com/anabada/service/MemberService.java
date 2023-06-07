@@ -92,9 +92,12 @@ public class MemberService implements UserDetailsService {
     }
 
     public LoginResultDto memberLogin(MemberLoginDto memberLoginDto) {
+        if(memberLoginDto.getId()==null || memberLoginDto.getPw() == null){
+            throw new RuntimeException("아이디 또는 비밀번호가 일치하지 않습니다.");
+        }
         Member member = findByMemberId(memberLoginDto.getId());
         if (!passwordEncoder.matches(memberLoginDto.getPw(), member.getMemberPw())) {
-            throw new RuntimeException("없는 회원입니다.");
+            throw new RuntimeException("아이디 또는 비밀번호가 일치하지 않습니다.");
         }
 
         LoginResultDto loginResultDto = LoginResultDto.builder()

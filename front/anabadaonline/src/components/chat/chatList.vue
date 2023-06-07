@@ -25,13 +25,19 @@
 					<span class="oppoInfo">{{ memberName }}님과의 채팅</span>
 				</div>
 				<div class="chattingMainBox" ref="messages">
-					<div
-						class="bubble"
-						v-for="message in messageList"
-						:class="[message.memberNo != $store.getters.getMember.no ? 'receiver' : 'sender']"
-					>
-						{{ message.message }}
-					</div>
+					<template v-for="message in messageList">
+						<!-- <img
+							:src="message.memberImage"
+							v-if="message.memberNo != $store.getters.getMember.no"
+							class="recevierImage"
+						/> -->
+						<div
+							class="bubble"
+							:class="[message.memberNo != $store.getters.getMember.no ? 'receiver' : 'sender']"
+						>
+							{{ message.message }}
+						</div>
+					</template>
 				</div>
 				<div class="chatController">
 					<textarea class="chatInputBox" v-model="message"></textarea>
@@ -251,7 +257,6 @@
 	.chattingMainBox {
 		display: flex;
 		flex-direction: column;
-		align-items: flex-end;
 		background-color: white;
 		margin-top: 60px;
 		width: 500px;
@@ -300,6 +305,7 @@
 	}
 	.bubble {
 		max-width: 75%;
+		display: inline;
 		margin-top: 15px;
 		padding: 10px 15px;
 		border-radius: 20px;
@@ -317,5 +323,8 @@
 		background-color: #d4e1f4;
 		align-self: flex-start;
 		margin-left: 10px;
+	}
+	.recevierImage {
+		width: 40px;
 	}
 </style>
