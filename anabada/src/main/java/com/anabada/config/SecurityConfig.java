@@ -62,8 +62,6 @@ public class SecurityConfig   {
      */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        log.debug("[+] WebSecurityConfig Start !!! ");
-
         http
                 // [STEP1] 서버에 인증정보를 저장하지 않기에 csrf를 사용하지 않는다.
                 .csrf().disable()
@@ -92,73 +90,4 @@ public class SecurityConfig   {
         // [STEP7] 최종 구성한 값을 사용함.
         return http.build();
     }
-
-
-    /**
-     * 3. authenticate 의 인증 메서드를 제공하는 매니져로'Provider'의 인터페이스를 의미합니다.
-     * - 과정: CustomAuthenticationFilter → AuthenticationManager(interface) → CustomAuthenticationProvider(implements)
-     *
-     * @return AuthenticationManager
-     */
-//    @Bean
-//    public AuthenticationManager authenticationManager() {
-//        return new ProviderManager(customAuthenticationProvider());
-//    }
-
-    /**
-     * 4. '인증' 제공자로 사용자의 이름과 비밀번호가 요구됩니다.
-     * - 과정: CustomAuthenticationFilter → AuthenticationManager(interface) → CustomAuthenticationProvider(implements)
-     *
-     * @return CustomAuthenticationProvider
-     */
-//    @Bean
-//    public CustomAuthenticationProvider customAuthenticationProvider() {
-//        return new CustomAuthenticationProvider(bCryptPasswordEncoder());
-//    }
-
-    /**
-     * 5. 비밀번호를 암호화하기 위한 BCrypt 인코딩을 통하여 비밀번호에 대한 암호화를 수행합니다.
-     *
-     * @return BCryptPasswordEncoder
-     */
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-
-    /**
-     * 6. 커스텀을 수행한 '인증' 필터로 접근 URL, 데이터 전달방식(form) 등 인증 과정 및 인증 후 처리에 대한 설정을 구성하는 메서드입니다.
-     *
-     * @return CustomAuthenticationFilter
-     */
-//    @Bean
-//    public CustomAuthenticationFilter customAuthenticationFilter() {
-//        CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManager());
-//        customAuthenticationFilter.setFilterProcessesUrl("/api/v1/user/login");     // 접근 URL
-//        customAuthenticationFilter.setAuthenticationSuccessHandler(customLoginSuccessHandler());    // '인증' 성공 시 해당 핸들러로 처리를 전가한다.
-//        customAuthenticationFilter.setAuthenticationFailureHandler(customLoginFailureHandler());    // '인증' 실패 시 해당 핸들러로 처리를 전가한다.
-//        customAuthenticationFilter.afterPropertiesSet();
-//        return customAuthenticationFilter;
-//    }
-
-    /**
-     * 7. Spring Security 기반의 사용자의 정보가 맞을 경우 수행이 되며 결과값을 리턴해주는 Handler
-     *
-     * @return CustomLoginSuccessHandler
-     */
-//    @Bean
-//    public CustomAuthSuccessHandler customLoginSuccessHandler() {
-//        return new CustomAuthSuccessHandler();
-//    }
-
-    /**
-     * 8. Spring Security 기반의 사용자의 정보가 맞지 않을 경우 수행이 되며 결과값을 리턴해주는 Handler
-     *
-     * @return CustomAuthFailureHandler
-     */
-//    @Bean
-//    public CustomAuthFailureHandler customLoginFailureHandler() {
-//        return new CustomAuthFailureHandler();
-//    }
-
 }

@@ -61,9 +61,10 @@
 			:productName="seller.productName"
 			:leftTime="leftTime"
 			:isSocket="isSocket"
+			:productPrice="seller.productPrice"
 		></BidList>
 
-		<div class="box3">
+		<!-- <div class="box3">
 			<div class="actionProduct">인기경매 상품</div>
 			<a class="others">다른 상품 보러가기</a>
 		</div>
@@ -74,7 +75,7 @@
 				<div class="productPrice">가격</div>
 				<div class="productRegion">지역</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </template>
 

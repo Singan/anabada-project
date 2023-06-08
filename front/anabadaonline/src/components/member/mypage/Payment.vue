@@ -122,7 +122,6 @@
 			getMypage() {
 				axios.get('mypage').then((res) => {
 					this.myData = res.data;
-					console.log(this.myData);
 				});
 			},
 			setMoney1() {
