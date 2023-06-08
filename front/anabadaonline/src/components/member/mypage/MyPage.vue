@@ -3,20 +3,20 @@
 		<div class="mypageHeader">
 			<img class="userImage" :src="this.$store.getters.getMember.image" />
 			<div class="userNameProfile">
-				<div class="userName">
-					{{ myData.memberName }}
+				<div class="showMoney">
+					<div class="userName">
+						{{ myData.memberName }}
+					</div>
+					<span class="moneyText">머니</span>
+					<span class="anaMoney">{{ myData.memberMoney }}</span>
 				</div>
-				<img src="@/assets/profileButton.png" alt="profileButton" class="showProfileButton" />
+				<!-- <button class="showProfileButton">프로필 보기</button> -->
 			</div>
 
 			<div class="moneyInfoBox">
 				<!-- span 태그 a 태그로 변경하기 -->
 				<span class="anaMoneyText">내 아나머니</span>
 				<button class="anaMoneyChargeButton" @click="goPayment">충전</button>
-				<div class="showMoney">
-					<span class="moneyText">머니</span>
-					<span class="anaMoney">{{ myData.memberMoney }}</span>
-				</div>
 			</div>
 		</div>
 
@@ -159,10 +159,13 @@
 	}
 
 	.showProfileButton {
+		background: #00a5ff;
 		width: 120px;
 		height: 40px;
-		margin-top: 10px;
-		text-align: center;
+		border-radius: 10px;
+		color: white;
+		border: none;
+		position: relative;
 		cursor: pointer;
 	}
 
@@ -170,7 +173,7 @@
 		background: #ffffff;
 		border-radius: 0px 20px 0px 20px;
 		border-style: solid;
-		border-color: #0075ff;
+		border-color: #00a5ff;
 		border-width: 1.5px;
 		width: 350px;
 		height: 120px;
@@ -189,7 +192,7 @@
 	}
 
 	.anaMoneyChargeButton {
-		background: #0075ff;
+		background: #00a5ff;
 		width: 70px;
 		height: 30px;
 		border-radius: 10px;
@@ -202,10 +205,10 @@
 	}
 
 	.showMoney {
-		background: #0075ff;
+		background: #00a5ff;
 		width: 165px;
 		height: 60px;
-		left: 150px;
+		/* left: 150px; */
 		border-radius: 10px;
 		position: relative;
 	}
