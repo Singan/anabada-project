@@ -19,7 +19,7 @@
 		</div>
 	</div>
 
-	<div class="Text2 content3Title">현재 경매 되고 있는 상품을 둘러보세요</div>
+	<div class="Text2">현재 경매 되고 있는 상품을 둘러보세요</div>
 
 	<div class="content3 productFlex">
 		<router-link
@@ -122,11 +122,6 @@
 		height: 400px;
 	}
 
-	.content3Title {
-		background: #f6efff;
-		width: 100%;
-	}
-
 	.box1 {
 		color: #000000;
 		text-align: center;
@@ -153,6 +148,8 @@
 		font: 700 33px 'Roboto', sans-serif;
 		height: 100px;
 		line-height: 100px;
+		background: #f6efff;
+		width: 100%;
 	}
 
 	.Text3 {
@@ -181,7 +178,7 @@
 
 	.Illust2 {
 		/* margin-left: 50px; */
-		margin-top: 50px;
+		margin-top: 65px;
 		background: #bdbdbd;
 		width: 500px;
 		height: 240px;
@@ -189,7 +186,7 @@
 	}
 	.Illust1 {
 		/* margin-left: 50px; */
-		margin-top: 50px;
+		margin-top: 65px;
 		background: #bdbdbd;
 		width: 500px;
 		height: 240px;
