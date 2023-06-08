@@ -64,18 +64,23 @@
 			:productPrice="seller.productPrice"
 		></BidList>
 
-		<!-- <div class="box3">
-			<div class="actionProduct">인기경매 상품</div>
-			<a class="others">다른 상품 보러가기</a>
+
+		<div>
+			<router-link
+				class="productFlexItem"
+				v-for="item in productList"
+				:key="item.productNo"
+				:to="'/productDt?productNo=' + item.productNo"
+			>
+				<img class="productImage" :src="item.productImage" />
+
+				<div class="productName">{{ item.productName }}</div>
+
+				<div class="productRegion">{{ item.wishAddr }}</div>
+
+				<div class="productPrice">{{ item.price }} 원</div>
+			</router-link>
 		</div>
-		<div class="box4">
-			<div class="product1">
-				<div class="productImage"></div>
-				<div class="productName">상품 이름</div>
-				<div class="productPrice">가격</div>
-				<div class="productRegion">지역</div>
-			</div>
-		</div> -->
 	</div>
 </template>
 
@@ -116,6 +121,7 @@
 				leftTime: null,
 				productSubscribe: '',
 				timerInterval: null,
+				productList: '',
 			};
 		},
 
@@ -175,12 +181,21 @@
 			goList() {
 				this.$router.push('./auction');
 			},
+			product() {
+				axios.get('/product/main').then((response) => {
+					this.productList = response.data.list;
+				});
+			},
+			refresh() {
+				location.reload();
+			},
 		},
 		created() {
 			if (this.isSocket) {
 				this.subscribe();
 			}
 			this.sellerInfo();
+			this.product();
 		},
 		mounted() {},
 		unmounted() {
@@ -458,6 +473,7 @@
 
 	.box4 {
 		display: flex;
+		width: 850px;
 		flex-direction: row;
 		gap: 60px;
 		justify-content: center;
