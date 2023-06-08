@@ -7,15 +7,17 @@
 					<div class="profile_td">
 						<img :src="chat.memberImage" />
 					</div>
+
 					<div class="chat_td">
 						<div class="email">
 							<a class="emailText" target="chatting">{{ chat.memberName }}</a>
 						</div>
 						<div class="chat_preview">{{ chat.productName }}</div>
 					</div>
-					<div class="time_td">
-						<div class="time">{{ chat.bidPrice }} 원</div>
-					</div>
+
+					<div class="productImage"></div>
+
+					<!-- <div class="time">{{ chat.bidPrice }} 원</div> -->
 				</div>
 			</div>
 		</div>
@@ -24,6 +26,14 @@
 				<div class="oppoInfoBox">
 					<span class="oppoInfo">{{ memberName }}님과의 채팅</span>
 				</div>
+				<div class="oppoInfoBox2">
+					<div class="productImage2"></div>
+					<div class="box1">
+						<div class="productName">상품이름 들어갈자리</div>
+						<div class="price">35000000원</div>
+					</div>
+				</div>
+
 				<div class="chattingMainBox" ref="messages">
 					<template v-for="message in messageList">
 						<!-- <img
@@ -191,6 +201,7 @@
 		border-bottom: 1px solid#e1e1e1;
 		justify-items: center;
 		cursor: pointer;
+		align-items: center;
 	}
 	.chat_list_wrap .list ul {
 		width: 100%;
@@ -211,16 +222,18 @@
 		width: 50px;
 		height: auto;
 	}
+
 	.chat_td .email {
+		margin-top: 1rem;
 		font-size: 12px;
 		font-weight: bold;
 		cursor: pointer;
+		margin-bottom: 0.5rem;
 	}
 	.emailText {
 		color: inherit;
 	}
 	.time_td {
-		margin-left: 175px;
 		width: 90px;
 		text-align: center;
 	}
@@ -244,6 +257,19 @@
 		text-align: center;
 		position: relative;
 		top: 40px;
+	}
+	.oppoInfoBox2 {
+		display: flex;
+		align-items: center;
+		flex-direction: row;
+		background: #ffffff;
+		width: 500px;
+		height: 60px;
+		box-shadow: 0px 5px 4px 0px rgba(209, 209, 209, 0.25);
+
+		position: relative;
+		top: 40px;
+		border-top: 1px solid #eeeeee;
 	}
 
 	.oppoInfo {
@@ -315,16 +341,37 @@
 		white-space: pre-wrap;
 	}
 	.bubble.sender {
-		background-color: #eaeaea;
+		background-color: #d4e1f4;
 		align-self: flex-end;
 		margin-right: 10px;
 	}
 	.bubble.receiver {
-		background-color: #d4e1f4;
+		background-color: #eaeaea;
 		align-self: flex-start;
 		margin-left: 10px;
 	}
 	.recevierImage {
 		width: 40px;
+	}
+
+	.productImage {
+		margin-left: auto;
+		background-color: #000000;
+		width: 40px;
+		height: 40px;
+		border-radius: 4px;
+	}
+	.productImage2 {
+		background-color: #000000;
+		width: 40px;
+		height: 40px;
+		border-radius: 4px;
+		margin-left: 20px;
+	}
+
+	.box1 {
+		margin-left: 1.5rem;
+		display: flex;
+		flex-direction: column;
 	}
 </style>
