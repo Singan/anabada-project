@@ -152,7 +152,7 @@
 	.Text5 {
 		color: #000000;
 		text-align: center;
-		font: 700 33px 'Roboto', sans-serif;
+		font: 700 34px 'Roboto', sans-serif;
 		margin-top: 5rem;
 	}
 
@@ -239,5 +239,9 @@
 		height: 26rem;
 		border-radius: 25px;
 		box-shadow: 10px 0px 12px rgba(0, 0, 0, 0.08);
+	}
+
+	.productImg1 {
+		background-color: transparent;
 	}
 </style>
