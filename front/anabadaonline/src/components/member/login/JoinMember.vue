@@ -1,7 +1,7 @@
 <template>
 	<div class="flexContainer">
 		<form @submit.prevent="submitForm">
-			<div class="text">본인 정보를 입력해 주세요</div>
+			<!-- <div class="text">본인 정보를 입력해 주세요</div> -->
 			<div class="id">
 				<label for="id">아이디</label>
 				<input type="text" id="id" v-model="id" />

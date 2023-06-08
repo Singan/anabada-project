@@ -65,7 +65,7 @@
 			},
 
 			product() {
-				axios.get('/product/main').then((response) => {
+				axios.get('/product/main?size=10').then((response) => {
 					this.productList = response.data.list;
 				});
 			},
