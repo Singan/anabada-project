@@ -114,8 +114,7 @@
 		width: 100vw;
 	}
 
-	a {
+	body a {
 		text-decoration: none;
-		color: black;
 	}
 </style>

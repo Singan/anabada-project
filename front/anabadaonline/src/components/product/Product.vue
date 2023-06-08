@@ -1,89 +1,91 @@
 <template>
-	<form @submit.prevent="productRegister" class="form">
-		<div class="title">상품 등록하기</div>
+	<div class="wrapper">
+		<form @submit.prevent="productRegister" class="form">
+			<div class="title">상품 등록하기</div>
 
-		<div class="imagePreView">
-			<img id="img" />
-		</div>
-		<label class="productSelect" style="background-color: skyblue" for="productImages">
-			이미지 등록
-			<input
-				id="productImages"
-				type="file"
-				@change="onInputImage"
-				accept="image/*"
-				multiple="multiple"
-				style="width: 0px; height: 0px"
-			/>
-		</label>
+			<div class="imagePreView">
+				<img id="img" />
+			</div>
+			<label class="productSelect" style="background-color: skyblue" for="productImages">
+				이미지 등록
+				<input
+					id="productImages"
+					type="file"
+					@change="onInputImage"
+					accept="image/*"
+					multiple="multiple"
+					style="width: 0px; height: 0px"
+				/>
+			</label>
 
-		<div class="commonText">상품명</div>
+			<div class="commonText">상품명</div>
 
-		<div class="nameText rectangle-23" id="name">
-			<input
-				class="textSize"
-				v-model="name"
-				type="text"
-				placeholder="상품명을 입력해주세요"
-				style="border: none; outline: none"
-			/>
-		</div>
+			<div class="nameText rectangle-23" id="name">
+				<input
+					class="textSize"
+					v-model="name"
+					type="text"
+					placeholder="상품명을 입력해주세요"
+					style="border: none; outline: none"
+				/>
+			</div>
 
-		<div class="commonText">경매 시작 가격</div>
-		<div class="priceText" id="price">
-			<input
-				class="textSize"
-				v-model="price"
-				type="number"
-				placeholder="경매 시작 가격을 입력해주세요( , 없이 숫자만 입력)"
-				style="border: none; outline: none"
-			/>
-		</div>
+			<div class="commonText">경매 시작 가격</div>
+			<div class="priceText" id="price">
+				<input
+					class="textSize"
+					v-model="price"
+					type="number"
+					placeholder="경매 시작 가격을 입력해주세요( , 없이 숫자만 입력)"
+					style="border: none; outline: none"
+				/>
+			</div>
 
-		<div class="commonText">상품 카테고리</div>
+			<div class="commonText">상품 카테고리</div>
 
-		<div class="category">
-			<select v-model="selectCategory" class="categorySelect">
-				<option v-for="item in categoryList" :key="item.categoryNo" :value="item.categoryNo">
-					{{ item.categoryName }}
-				</option>
-			</select>
-		</div>
+			<div class="category">
+				<select v-model="selectCategory" class="categorySelect">
+					<option v-for="item in categoryList" :key="item.categoryNo" :value="item.categoryNo">
+						{{ item.categoryName }}
+					</option>
+				</select>
+			</div>
 
-		<div class="commonText">상품 설명</div>
+			<div class="commonText">상품 설명</div>
 
-		<div class="rectangle-233">
-			<textarea
-				class="form-control"
-				id="detail"
-				placeholder="상품 설명을 입력하세요"
-				v-model="detail"
-				rows="7"
-				cols="50"
-				style="border: none; outline: none"
-			></textarea>
-		</div>
-		<div class="usingDate commonText">상품 사용기간 <br /></div>
-		<div class="commonText">사용기간 : {{ usingDate }}</div>
+			<div class="rectangle-233">
+				<textarea
+					class="form-control"
+					id="detail"
+					placeholder="상품 설명을 입력하세요"
+					v-model="detail"
+					rows="7"
+					cols="50"
+					style="border: none; outline: none"
+				></textarea>
+			</div>
+			<div class="usingDate commonText">상품 사용기간 <br /></div>
+			<div class="commonText">사용기간 : {{ usingDate }}</div>
 
-		<div class="radioSelect">
-			<input type="radio" id="one" value="미사용" v-model="usingDate" checked />
-			<label for="one">미사용</label>
+			<div class="radioSelect">
+				<input type="radio" id="one" value="미사용" v-model="usingDate" checked />
+				<label for="one">미사용</label>
 
-			<input type="radio" id="two" value="0 ~ 4주" v-model="usingDate" />
-			<label for="two">0 ~ 4주</label>
+				<input type="radio" id="two" value="0 ~ 4주" v-model="usingDate" />
+				<label for="two">0 ~ 4주</label>
 
-			<input type="radio" id="three" value="4 ~ 8주" v-model="usingDate" />
-			<label for="three">4 ~ 8주</label>
+				<input type="radio" id="three" value="4 ~ 8주" v-model="usingDate" />
+				<label for="three">4 ~ 8주</label>
 
-			<input type="radio" id="four" value="8주 이상" v-model="usingDate" />
-			<label for="four">8주 이상</label>
-		</div>
-		<label class="submit">
-			등록하기
-			<button class="_18px3" style="display: none">등록하기</button>
-		</label>
-	</form>
+				<input type="radio" id="four" value="8주 이상" v-model="usingDate" />
+				<label for="four">8주 이상</label>
+			</div>
+			<label class="submit">
+				등록하기
+				<button class="_18px3" style="display: none">등록하기</button>
+			</label>
+		</form>
+	</div>
 </template>
 <script>
 	import axios from '@/axios.js';
@@ -172,6 +174,9 @@
 	};
 </script>
 <style scoped>
+	.wrapper {
+		background-color: #d9d9d9;
+	}
 	.form-control {
 		margin: 5px 0px 0px 30px;
 	}

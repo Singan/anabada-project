@@ -2,7 +2,7 @@
 	<div class="Header">
 		<router-link class="Logo" to="/">아나바다</router-link>
 
-		<router-link to="/auction?category=1" class="AuctionButton button"> 경매 </router-link>
+		<router-link to="/auction?category=1" class="btn btn-info button"> 경매 </router-link>
 		<router-link :to="{ name: '/chatList' }" class="ChatButton"> 채팅 </router-link>
 
 		<input
@@ -22,7 +22,7 @@
 				<img class="userImage" :src="$store.getters.getMember.image" />
 				<router-link class="userName" to="/mypage">{{ $store.getters.getMember.name }}</router-link>
 			</div>
-			<div class="button" @click="logout">로그아웃</div>
+			<div class="btn btn-info button" @click="logout">로그아웃</div>
 		</template>
 	</div>
 </template>
@@ -72,7 +72,7 @@
 		},
 	};
 </script>
-<style scoped>
+<style scoped lang="scss">
 	.Header,
 	.Header > * {
 		display: flex;
@@ -91,7 +91,7 @@
 	}
 
 	.Logo {
-		color: #00a5ff;
+		color: $primary-color;
 		text-align: center;
 		font: 700 24px 'Roboto', sans-serif;
 		cursor: pointer;
@@ -115,7 +115,7 @@
 		padding: 10px;
 		line-height: 40px;
 		cursor: pointer;
-		border-color: #00a5ff;
+		border-color: $primary-color;
 	}
 
 	.SearchButton {
@@ -163,15 +163,13 @@
 	}
 
 	.button {
-		padding: 3px 20px;
 		border-radius: 5px;
-		background: #00a5ff;
+		background: $primary-color;
 		color: #ffffff;
 		cursor: pointer;
 		font: 700 18px 'Roboto', sans-serif;
-		height: 25px;
-		width: fit-content;
 		box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+		border-color: $primary-color;
 	}
 	.button:active {
 		box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0);
