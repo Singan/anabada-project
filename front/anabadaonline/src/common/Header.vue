@@ -4,6 +4,7 @@
 
 		<router-link to="/auction?category=1" class="AuctionButton button"> 경매 </router-link>
 		<router-link :to="{ name: '/chatList' }" class="ChatButton"> 채팅 </router-link>
+
 		<input
 			class="SearchBox"
 			v-model="keyword"
@@ -108,13 +109,13 @@
 	}
 
 	.SearchBox {
-		background: #d9ecff;
 		border-radius: 5px;
 		width: 450px;
 		height: 25px;
 		padding: 10px;
 		line-height: 40px;
 		cursor: pointer;
+		border-color: #00a5ff;
 	}
 
 	.SearchButton {

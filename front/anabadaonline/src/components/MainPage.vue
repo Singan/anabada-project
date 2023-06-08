@@ -107,8 +107,9 @@
 	}
 
 	.box1 {
-		display: flex;
-		flex-direction: row;
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		grid-gap: 10px;
 	}
 
 	.Text1 {
