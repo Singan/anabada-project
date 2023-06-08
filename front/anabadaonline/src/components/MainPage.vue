@@ -1,43 +1,46 @@
 <template>
-	<div class="content1 flexContainer">
-		<div class="Text3">
-			원하는 물품,<br />원하는 가격으로<br /><br />
-			<div class="Text4">중고 거래, 이제 경매에 직접 참여해서<br />원하는 가격으로 구매해보세요</div>
-		</div>
-		<div class="productImage"></div>
-	</div>
-
-	<div class="box1">
-		<div class="Text1">내가 사는 지역에서 펼쳐지는 경매장</div>
-	</div>
-	<div class="content2">
-		<div class="Illust2">
-			<img src="@/assets/change2.jpg" style="width: 100%; height: 100%" />
+	<div form>
+		<div class="content1">
+			<div class="Text3">
+				원하는 물품,<br />원하는 가격으로<br /><br />
+				<div class="Text4">중고 거래, 이제 경매에 직접 참여해서<br />원하는 가격으로 구매해보세요</div>
+			</div>
+			<div class="productImage"></div>
+			<div class="productImage2"></div>
 		</div>
 
-		<div class="Illust1">
-			<img src="@/assets/change.png" style="width: 100%; height: 100%" />
+		<div class="box1">
+			<div class="Text1">내가 사는 지역에서 펼쳐지는 경매장</div>
 		</div>
-	</div>
+		<div class="content2">
+			<div class="Illust2">
+				<img src="@/assets/chatList.jpg" style="width: 100%; height: 100%" />
+			</div>
 
-	<div class="box2">
-		<div class="Text2">현재 경매 되고 있는 상품을 둘러보세요</div>
-	</div>
-	<div class="content3">
-		<router-link
-			class="productFlexItem"
-			v-for="item in productList"
-			:key="item.productNo"
-			:to="'/productDt?productNo=' + item.productNo"
-		>
-			<img class="ProductImg1" :src="item.productImage" style="width: 320px; height: 240px" />
+			<div class="Illust1">
+				<img src="@/assets/change.png" style="width: 100%; height: 100%" />
+			</div>
+		</div>
 
-			<div class="ProductNT1">{{ item.productName }}</div>
+		<div class="box2">
+			<div class="Text2">현재 경매 되고 있는 상품을 둘러보세요</div>
+		</div>
+		<div class="content3">
+			<router-link
+				class="productFlexItem"
+				v-for="item in productList"
+				:key="item.productNo"
+				:to="'/productDt?productNo=' + item.productNo"
+			>
+				<img class="ProductImg1" :src="item.productImage" style="width: 320px; height: 240px" />
 
-			<div class="AddressT1">{{ item.wishAddr }}</div>
+				<div class="ProductNT1">{{ item.productName }}</div>
 
-			<div class="PriceT1">{{ item.price }} 원</div>
-		</router-link>
+				<div class="AddressT1">{{ item.wishAddr }}</div>
+
+				<div class="PriceT1">{{ item.price }} 원</div>
+			</router-link>
+		</div>
 	</div>
 </template>
 
@@ -95,7 +98,6 @@
 
 	.content1 {
 		background: #f1f8ff;
-		height: 400px;
 		position: relative;
 		width: 100%;
 		height: 70vh;
@@ -106,14 +108,14 @@
 		width: 100%;
 		display: flex;
 		justify-content: space-evenly;
-		height: 26em;
+		height: 70vh;
 		justify-content: center;
 		gap: 200px;
 	}
 
 	.content3 {
 		background: #f6efff;
-		height: 26em;
+		height: 70vh;
 		display: flex;
 		width: 100%;
 		justify-content: center;
@@ -164,7 +166,7 @@
 		font: 700 48px 'Roboto', sans-serif;
 		align-items: center;
 		position: absolute;
-		left: 15%;
+		left: 12%;
 		top: 30%;
 	}
 
@@ -229,16 +231,28 @@
 
 	.productImage {
 		margin-left: 50rem;
-		color: #000000;
-		text-align: left;
-		font: 700 48px 'Roboto', sans-serif;
+		position: absolute;
+		left: 10%;
+		top: 15%;
+		background: #ffffff;
+		width: 32rem;
+		height: 16rem;
+		border-radius: 25px;
+		box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.08);
+		/* border: 2px solid #111111; */
+	}
+
+	.productImage2 {
+		margin-left: 50rem;
 		align-items: center;
 		position: absolute;
-		left: 15%;
-		top: 20%;
+		left: 18%;
+		top: 45%;
 		background: #ffffff;
-		border-radius: 10px;
-		width: 16rem;
-		height: 25rem;
+		width: 32rem;
+		height: 16rem;
+		border-radius: 25px;
+		box-shadow: 5px 10px 12px rgba(0, 0, 0, 0.08);
+		/* border: 2px solid #111111; */
 	}
 </style>

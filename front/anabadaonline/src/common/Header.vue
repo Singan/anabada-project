@@ -111,7 +111,7 @@
 		background: #d9ecff;
 		border-radius: 5px;
 		width: 450px;
-		height: 40px;
+		height: 25px;
 		padding: 10px;
 		line-height: 40px;
 		cursor: pointer;
@@ -129,6 +129,10 @@
 		text-align: center;
 		font: 700 18px 'Roboto', sans-serif;
 		cursor: pointer;
+	}
+
+	.AuctionButton {
+		height: 25px;
 	}
 
 	.userInfo {
@@ -164,7 +168,7 @@
 		color: #ffffff;
 		cursor: pointer;
 		font: 700 18px 'Roboto', sans-serif;
-		height: 40px;
+		height: 25px;
 		width: fit-content;
 		box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
 	}
