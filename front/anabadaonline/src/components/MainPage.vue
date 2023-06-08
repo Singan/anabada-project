@@ -114,6 +114,7 @@
 		justify-content: space-evenly;
 		height: 26em;
 		justify-content: center;
+		gap: 200px;
 	}
 
 	.content3 {
