@@ -4,6 +4,7 @@
 			원하는 물품,<br />원하는 가격으로<br /><br />
 			<div class="Text4">중고 거래, 이제 경매에 직접 참여해서<br />원하는 가격으로 구매해보세요</div>
 		</div>
+		<div class="productImage"></div>
 	</div>
 
 	<div class="box1">
@@ -19,9 +20,10 @@
 		</div>
 	</div>
 
-	<div class="Text2 content3Title">현재 경매 되고 있는 상품을 둘러보세요</div>
-
-	<div class="content3 productFlex">
+	<div class="box2">
+		<div class="Text2">현재 경매 되고 있는 상품을 둘러보세요</div>
+	</div>
+	<div class="content3">
 		<router-link
 			class="productFlexItem"
 			v-for="item in productList"
@@ -79,32 +81,24 @@
 </script>
 
 <style scoped>
-	.productFlex {
-		display: flex;
-		width: 100%;
-		justify-content: center;
-		align-items: center;
-	}
-
 	.productFlexItem {
 		margin-right: 30px;
+		margin-top: 30px;
 	}
 
 	/* .productImgflexContainer {
-      justify-content: flex-end;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-   } */
-
-	.flexContainer {
-		position: relative;
-		width: 100%;
-	}
+	     justify-content: flex-end;
+	     width: 100%;
+	     display: flex;
+	     flex-direction: column;
+	  } */
 
 	.content1 {
 		background: #f1f8ff;
 		height: 400px;
+		position: relative;
+		width: 100%;
+		height: 70vh;
 	}
 
 	.content2 {
@@ -114,20 +108,19 @@
 		justify-content: space-evenly;
 		height: 26em;
 		justify-content: center;
+		gap: 200px;
 	}
 
 	.content3 {
 		background: #f6efff;
-		height: 400px;
-	}
-
-	.content3Title {
-		background: #f6efff;
+		height: 26em;
+		display: flex;
 		width: 100%;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.box1 {
-		color: #000000;
 		text-align: center;
 		font: 700 33px 'Roboto', sans-serif;
 		height: 100px;
@@ -135,6 +128,17 @@
 		display: flex;
 		flex-direction: column;
 		background: #f3f4ff;
+		justify-content: center;
+		width: 100%;
+	}
+
+	.box2 {
+		background: #f6efff;
+		text-align: center;
+		height: 100px;
+		line-height: 100px;
+		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		width: 100%;
 	}
@@ -150,14 +154,14 @@
 		color: #000000;
 		text-align: center;
 		font: 700 33px 'Roboto', sans-serif;
-		height: 100px;
-		line-height: 100px;
+		margin-top: 80px;
 	}
 
 	.Text3 {
+		margin-left: 10rem;
 		color: #000000;
 		text-align: left;
-		font: 700 35px 'Roboto', sans-serif;
+		font: 700 48px 'Roboto', sans-serif;
 		align-items: center;
 		position: absolute;
 		left: 15%;
@@ -167,7 +171,7 @@
 	.Text4 {
 		color: #000000;
 		text-align: left;
-		font: 400 16px 'Roboto', sans-serif;
+		font: 400 18px 'Roboto', sans-serif;
 		align-items: center;
 		justify-content: flex-start;
 	}
@@ -180,7 +184,7 @@
 
 	.Illust2 {
 		/* margin-left: 50px; */
-		margin-top: 50px;
+		margin-top: 65px;
 		background: #bdbdbd;
 		width: 500px;
 		height: 240px;
@@ -188,7 +192,7 @@
 	}
 	.Illust1 {
 		/* margin-left: 50px; */
-		margin-top: 50px;
+		margin-top: 65px;
 		background: #bdbdbd;
 		width: 500px;
 		height: 240px;
@@ -221,5 +225,20 @@
 
 		align-items: center;
 		justify-content: flex-start;
+	}
+
+	.productImage {
+		margin-left: 50rem;
+		color: #000000;
+		text-align: left;
+		font: 700 48px 'Roboto', sans-serif;
+		align-items: center;
+		position: absolute;
+		left: 15%;
+		top: 20%;
+		background: #ffffff;
+		border-radius: 10px;
+		width: 16rem;
+		height: 25rem;
 	}
 </style>

@@ -61,13 +61,11 @@
 			:productName="seller.productName"
 			:leftTime="leftTime"
 			:isSocket="isSocket"
+			:productPrice="seller.productPrice"
 		></BidList>
 
-		<div class="box3">
-			<div class="actionProduct">인기경매 상품</div>
-			<router-link to="./auction?categoryNo=1" class="others">다른 상품 보러가기</router-link>
-		</div>
-		<div class="box4">
+
+		<div>
 			<router-link
 				class="productFlexItem"
 				v-for="item in productList"

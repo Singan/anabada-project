@@ -129,8 +129,6 @@
 		border-radius: 10px;
 		height: 160px;
 		max-width: 160px;
-		max-height: 100%;
-		box-shadow: 0px 0px 1px 1px rgba(0.5, 0.5, 0.5, 0.5);
 	}
 	.productImg:active {
 		transform: translateY(1px);
@@ -146,7 +144,7 @@
 		color: #000000;
 		text-align: center;
 		font: 600 16px 'Roboto', sans-serif;
-
 		width: 100%;
+		margin-top: 10px;
 	}
 </style>
