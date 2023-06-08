@@ -70,7 +70,8 @@
 				class="productFlexItem"
 				v-for="item in productList"
 				:key="item.productNo"
-				:to="'/productDt?productNo=' + item.productNo"
+				:to="'/ProductDt?productNo=' + item.productNo"
+				exact
 			>
 				<img class="productImage" :src="item.productImage" />
 
@@ -186,8 +187,10 @@
 					this.productList = response.data.list;
 				});
 			},
-			refresh() {
-				location.reload();
+			refresh(productNo) {
+				this.$router.push(`/productDt?productNo=${productNo}`);
+				console.log(productNo);
+				this.$forceUpdate();
 			},
 		},
 		created() {
@@ -456,18 +459,18 @@
 		gap: 280px;
 		display: flex;
 		flex-direction: row;
-		gap: 400px;
+		gap: 600px;
 		justify-content: center;
 	}
 
 	.others {
 		color: #0075ff;
-		font: 12px 'Roboto', sans-serif;
+		font: 15px 'Roboto', sans-serif;
 	}
 
 	.actionProduct {
 		color: #000000;
-		font: 14px 'Roboto', sans-serif;
+		font: 16px 'Roboto', sans-serif;
 		font-weight: bold;
 	}
 
