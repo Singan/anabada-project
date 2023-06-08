@@ -24,8 +24,8 @@ public class MemberController {
 
     @PostMapping
     @Operation(description = "회원가입")
-    public Long memberJoin(@Valid MemberJoinDto memberJoinDto) {
-        return memberService.memberJoin(memberJoinDto);
+    public void memberJoin(@Valid MemberJoinDto memberJoinDto) {
+        memberService.memberJoin(memberJoinDto);
     }
 
     @PostMapping("/login")

@@ -7,5 +7,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public class ProductInsertResDto {
     private Long productNo;
-    private Long socketNo;
+
 }

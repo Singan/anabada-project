@@ -91,6 +91,7 @@
 					})
 					.catch((error) => {
 						let message = error.response.data.message;
+						console.log(error.response);
 						this.$swal({
 							icon: 'error',
 							title: '회원가입을 실패하였습니다.',

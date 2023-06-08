@@ -143,7 +143,9 @@
 							icon: 'error',
 							title: '상품 등록에 실패하였습니다.',
 						});
+						return;
 					});
+				this.$emit('addSub', response.data.productNo);
 				this.$router.push('./ProductDt?productNo=' + response.data.productNo);
 			},
 
