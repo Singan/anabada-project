@@ -1,40 +1,45 @@
 <template>
 	<div class="flexContainer">
-		<form @submit.prevent="submitForm">
-			<!-- <div class="text">본인 정보를 입력해 주세요</div> -->
-			<div class="id">
-				<label for="id">아이디</label>
-				<input type="text" id="id" v-model="id" />
+		<h1 class="anabadaLogo"></h1>
+		<form class="formSection" @submit.prevent="submitForm">
+			<div class="formList1">
+				<div class="form_item id">
+					<!-- <label for="id"></label> -->
+					<input type="text" class="input" maxlength="15" placeholder="아이디" v-model="id" />
+				</div>
+				<div class="form_item pw">
+					<!-- <label for="pw">비밀번호</label> -->
+					<input type="password" class="input" v-model="pw" maxlength="20" placeholder="비밀번호" />
+				</div>
 			</div>
-			<div class="pw">
-				<label for="pw">비밀번호</label>
-				<input type="password" id="pw" v-model="pw" />
+			<div class="formList2">
+				<div class="form_item name">
+					<!-- <label for="name">이름</label> -->
+					<input type="text" class="input" v-model="name" maxlength="10" placeholder="이름" />
+				</div>
+				<div class="form_item birth">
+					<label for="birth">생년월일</label>
+					<input type="date" id="birth" v-model="birth" />
+				</div>
 			</div>
-			<div class="name">
-				<label for="name">이름</label>
-				<input type="text" id="name" v-model="name" />
+			<div class="formList3">
+				<div class="form_item addr">
+					<!-- <label for="addr">주소</label> -->
+					<input type="text" class="input" v-model="addr" placeholder="주소" readonly />
+					<div class="post">
+						<button type="button" @click="search()">주소 찾기</button>
+					</div>
+				</div>
+				<div class="form_item detailaddr">
+					<!-- <label for="detailaddr">상세주소</label> -->
+					<input type="text" id="detailaddr" class="input" v-model="detailaddr" placeholder="상세주소" />
+				</div>
+				<div class="form_item wishaddr">
+					<!-- <label for="wishaddr">거래희망지</label> -->
+					<input type="text" id="wishaddr" class="input" v-model="Wishaddr" placeholder="거래희망지" />
+				</div>
 			</div>
-			<div class="birth">
-				<label for="birth">생년월일</label>
-				<input type="date" id="birth" v-model="birth" />
-			</div>
-			<div class="post">
-				<!-- <label for="addr" class="postcodeText">우편번호</label>
-				<input type="text" id="post" v-model="addr" readonly /> -->
-				<button type="button" @click="search()">주소 찾기</button>
-			</div>
-			<div class="addr">
-				<label for="addr">주소</label>
-				<input type="text" id="addr" v-model="addr" readonly />
-			</div>
-			<div class="detailaddr">
-				<label for="detailaddr">상세주소</label>
-				<input type="text" id="detailaddr" v-model="detailaddr" />
-			</div>
-			<div class="wishaddr">
-				<label for="wishaddr">거래희망지</label>
-				<input type="text" id="wishaddr" v-model="Wishaddr" />
-			</div>
+
 			<div class="image">
 				<label for="image" class="imageText">프로필 이미지</label>
 				<input id="image" type="file" @change="onInputImage" />
@@ -152,11 +157,66 @@
 
 	.flexContainer {
 		display: flex;
-		width: 788px;
-		height: 1040px;
 		flex-direction: column;
+		position: relative;
+		height: 100%;
+		width: 500px;
+		margin: 0 auto;
+	}
+
+	.anabadaLogo {
+		padding: 25px 120px 25px 20px;
+	}
+
+	.formSection {
+		margin-right: 20px;
+		margin-left: 20px;
+		padding-right: 0;
+		padding-left: 0;
+	}
+
+	.form_item {
+		display: flex;
 		align-items: center;
-		margin: auto;
+		position: relative;
+		box-sizing: border-box;
+		max-width: 100%;
+		min-height: 50px;
+		padding: 0 10px 0 45px;
+	}
+
+	.input {
+		flex: 1 1 auto;
+		box-sizing: border-box;
+		width: 100%;
+		font-size: 16px;
+		line-height: 22px;
+		color: #222;
+		border: none;
+	}
+
+	.formList1 {
+		margin-bottom: 20px;
+		padding-top: 2px;
+		border: 0.5px solid #dfdfdf;
+		border-radius: 6px;
+		display: block;
+	}
+
+	.formList2 {
+		margin-bottom: 20px;
+		padding-top: 2px;
+		border: 0.5px solid #dfdfdf;
+		border-radius: 6px;
+		display: block;
+	}
+
+	.formList3 {
+		margin-bottom: 20px;
+		padding-top: 2px;
+		border: 0.5px solid #dfdfdf;
+		border-radius: 6px;
+		display: block;
 	}
 
 	.text {
@@ -172,74 +232,32 @@
 
 	.id {
 		color: #000000;
-		text-align: left;
 		font: 600 16px 'Roboto', sans-serif;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-	}
-
-	#id {
-		font: 400 16px 'Roboto', sans-serif;
-		border-right: 0;
-		border-top: 0;
-		border-left: 0;
-		padding-top: 15px;
+		border-bottom: 0.5px solid #dfdfdf;
 	}
 
 	.pw {
 		color: #000000;
-		text-align: left;
 		font: 600 16px 'Roboto', sans-serif;
 		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		margin-top: 50px;
-	}
-
-	#pw {
-		font: 400 16px 'Roboto', sans-serif;
-		border-right: 0;
-		border-top: 0;
-		border-left: 0;
-		padding-top: 15px;
+		align-items: center;
 	}
 
 	.name {
 		color: #000000;
-		text-align: left;
 		font: 600 16px 'Roboto', sans-serif;
-		margin-top: 15px;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		margin-top: 50px;
-	}
-
-	#name {
-		font: 400 16px 'Roboto', sans-serif;
-		border-right: 0;
-		border-top: 0;
-		border-left: 0;
-		padding-top: 15px;
+		border-bottom: 0.5px solid #dfdfdf;
 	}
 
 	.birth {
 		color: #000000;
-		text-align: left;
 		font: 600 16px 'Roboto', sans-serif;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		margin-top: 50px;
 	}
 
 	.post {
 		color: #000000;
-		text-align: left;
-		font: 600 16px 'Roboto', sans-serif;
-		display: flex;
-		margin-top: 50px;
+		flex: none;
+		padding-right: 4px;
 	}
 
 	.postcodeText {
@@ -253,51 +271,16 @@
 
 	.addr {
 		color: #000000;
-		text-align: left;
-		font: 600 16px 'Roboto', sans-serif;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		margin-top: 20px;
-	}
-
-	#addr {
-		width: 500px;
-		font: 400 16px 'Roboto', sans-serif;
-		border-right: 0;
-		border-top: 0;
-		border-left: 0;
-		cursor: default;
-		padding-top: 10px;
+		border-bottom: 0.5px solid #dfdfdf;
 	}
 
 	.detailaddr {
 		color: #000000;
-		text-align: left;
-		font: 600 16px 'Roboto', sans-serif;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		margin-top: 50px;
-	}
-
-	#detailaddr {
-		width: 500px;
-		font: 400 16px 'Roboto', sans-serif;
-		border-right: 0;
-		border-top: 0;
-		border-left: 0;
-		padding-top: 10px;
+		border-bottom: 0.5px solid #dfdfdf;
 	}
 
 	.wishaddr {
 		color: #000000;
-		text-align: left;
-		font: 600 16px 'Roboto', sans-serif;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		margin-top: 50px;
 	}
 
 	#wishaddr {
