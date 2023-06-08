@@ -83,7 +83,7 @@
 	.Header {
 		background: #ffffff;
 		width: 70vw;
-		height: 115px;
+		height: 4em;
 		display: flex;
 		justify-content: center;
 		align-items: center;
