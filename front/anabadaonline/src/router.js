@@ -114,6 +114,12 @@ const routes = [
 		component: () => import('@/components/chat/chatList.vue'),
 		beforeEnter: requireAuth(),
 	},
+
+	{
+		path: '/ChatList2',
+		name: '/chatList2',
+		component: () => import('@/components/chat/chatList2.vue'),
+	},
 	{
 		path: '/:pathMatch(.*)*',
 		name: 'notfound',
