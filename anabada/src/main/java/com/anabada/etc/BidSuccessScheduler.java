@@ -22,28 +22,22 @@ public class BidSuccessScheduler {
     private final BidService bidService;
     private final SuccessBidRepository successBidRepository;
     private final SimpMessagingTemplate simpMessagingTemplate;
-
-    @Scheduled(fixedDelay = 10000)//1000에 1초
+    private final BidManagement bidManagement;
+    @Scheduled(fixedDelay = 1000)//1000에 1초
     @Transactional
     public void bidSuccess() {
-        List<MaxBidProductNoInterface> bidProductNoList = bidService.productByMaxBidList();
-        List<Long> productNoList = bidProductNoList.stream().map(m -> m.getProductNo())
-                .collect(Collectors.toList());
-        if (!productNoList.isEmpty()) {
+        List<SuccessfulBid> successfulBids  = bidManagement.checkSuccessBidHashMap();
+        if (!successfulBids.isEmpty()) {
+            List<Long> productNoList = successfulBids.stream().map(successfulBid -> successfulBid.getProduct().
+                    getProductNo()).collect(Collectors.toList());
             bidService.updateProductBidSuccess(productNoList);
-            List<SuccessfulBid> successfulBids = bidProductNoList.stream().map(bidProduct -> SuccessfulBid
-                    .builder()
-                    .bid(Bid.builder().bidNo(bidProduct.getBidNo()).build())
-                    .status(Status.대기)
-                    .product(Product.builder().productNo(bidProduct.getProductNo()).build())
-                    .build()).collect(Collectors.toList());
             successBidRepository.saveAll(successfulBids);
         }
-        for (MaxBidProductNoInterface bidAndProduct : bidProductNoList) {
-            simpMessagingTemplate.convertAndSend("/product/myProduct/" + bidAndProduct.getProductNo(),
+        for (SuccessfulBid bidAndProduct : successfulBids) {
+            simpMessagingTemplate.convertAndSend("/product/myProduct/" + bidAndProduct.getProduct().getProductNo(),
                     new SuccessBidToastDto(
-                            bidAndProduct.getProductNo(),
-                            bidAndProduct.getProductName(),
+                            bidAndProduct.getProduct().getProductNo(),
+                            bidAndProduct.getProduct().getProductName(),
                             "등록하신 상품이 낙찰되었습니다. 상품명 : ", true
                     ));
         }
