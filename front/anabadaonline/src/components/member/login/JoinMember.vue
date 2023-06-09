@@ -1,7 +1,15 @@
 <template>
 	<div class="flexContainer">
 		<h1 class="anabadaLogo"></h1>
-		<form class="formSection" @submit.prevent="submitForm">
+		<form class="formSection needs-validation" novalidate @submit.prevent="submitForm">
+			<!-- <div class="image">
+				<label for="image" class="imageText">프로필 이미지</label>
+				<input id="image" class="form-control form-control-sm" type="file" @change="onInputImage" />
+			</div> -->
+			<div class="mb-3">
+				<label for="formFileSm" class="form-label imageText">프로필 이미지 선택</label>
+				<input class="form-control form-control-sm" id="formFileSm" type="file" />
+			</div>
 			<div class="formList1">
 				<div class="form_item id">
 					<!-- <label for="id"></label> -->
@@ -10,6 +18,7 @@
 				<div class="form_item pw">
 					<!-- <label for="pw">비밀번호</label> -->
 					<input type="password" class="input" v-model="pw" maxlength="20" placeholder="비밀번호" />
+					<div class="invalid-feedback">비밀번호를 다시 입력하세요</div>
 				</div>
 			</div>
 			<div class="formList2">
@@ -18,8 +27,8 @@
 					<input type="text" class="input" v-model="name" maxlength="10" placeholder="이름" />
 				</div>
 				<div class="form_item birth">
-					<label for="birth">생년월일</label>
-					<input type="date" id="birth" v-model="birth" />
+					<!-- <label for="birth">생년월일</label> -->
+					<input type="text" class="input" id="birth" placeholder="생년월일" maxlength="8" v-model="birth" />
 				</div>
 			</div>
 			<div class="formList3">
@@ -27,7 +36,7 @@
 					<!-- <label for="addr">주소</label> -->
 					<input type="text" class="input" v-model="addr" placeholder="주소" readonly />
 					<div class="post">
-						<button type="button" @click="search()">주소 찾기</button>
+						<button type="button" class="btn btn-light btn-sm" @click="search()">주소 찾기</button>
 					</div>
 				</div>
 				<div class="form_item detailaddr">
@@ -40,13 +49,9 @@
 				</div>
 			</div>
 
-			<div class="image">
-				<label for="image" class="imageText">프로필 이미지</label>
-				<input id="image" type="file" @change="onInputImage" />
-			</div>
 			<div class="imageContainer">
-				<button type="submit" class="join">회원가입</button>
-				<button class="cancel" @click="goLogin">취소하기</button>
+				<button type="submit" class="join btn btn-primary">회원가입</button>
+				<button class="cancel btn btn-danger" @click="goLogin">취소하기</button>
 			</div>
 		</form>
 	</div>
@@ -88,6 +93,10 @@
 					})
 					.then((response) => {
 						if (response.status == 200) {
+							this.$swal({
+								icon: 'success',
+								title: '회원가입에 성공했습니다!',
+							});
 							// 로그인 하면 토큰 발급
 							this.$router.push('./login');
 						} else {
@@ -198,6 +207,7 @@
 	.formList1 {
 		margin-bottom: 20px;
 		padding-top: 2px;
+		margin-top: 20px;
 		border: 0.5px solid #dfdfdf;
 		border-radius: 6px;
 		display: block;
@@ -304,6 +314,7 @@
 
 	.imageText {
 		margin-right: 10px;
+		color: #6c757d;
 	}
 
 	.imageContainer {
@@ -311,30 +322,31 @@
 	}
 
 	.join {
-		width: 6.5rem;
-		height: 50px;
-		background-color: #0075ff;
-		border-radius: 5px;
-		margin: 0 auto;
-		color: white;
-		cursor: pointer;
-		border: none;
 		margin-top: 50px;
 		margin-right: 20px;
 		text-align: center;
 	}
 
-	.cancel {
-		width: 6.5rem;
-		height: 50px;
-		background-color: #e20303;
-		border-radius: 5px;
-		margin: 0 auto;
-		color: white;
-		cursor: pointer;
+	.btn-primary {
+		background-color: #00a5ff;
 		border: none;
+	}
+	.btn-primary:hover {
+		background-color: #0087cf;
+	}
+
+	.cancel {
 		margin-top: 50px;
 		margin-left: 20px;
 		text-align: center;
+	}
+
+	.btn-danger {
+		background-color: rgb(255, 80, 80);
+		border: none;
+	}
+	.btn-danger:hover {
+		background-color: rgb(224, 54, 54);
+		border: none;
 	}
 </style>
