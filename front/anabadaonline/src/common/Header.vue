@@ -50,10 +50,6 @@
 			</div>
 		</div>
 	</nav>
-	<!-- <div class="Header">
-
-
-	</div> -->
 </template>
 <script>
 	import axios from 'axios';

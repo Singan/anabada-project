@@ -1,23 +1,23 @@
 <template>
-	<div class="wrapper">
+	<div class="wrapper .container-fluid">
 		<form @submit.prevent="productRegister" class="form">
 			<div class="title">상품 등록하기</div>
 
 			<div class="imagePreView">
-				<img id="img" />
+				<img id="img" class="img-fluid" />
 			</div>
-			<label class="productSelect" style="background-color: skyblue" for="productImages">
-				이미지 등록
+
+			<div class="input-group justify-content-center">
+				<label class="input-group-text" for="inputGroupFile01"> 이미지 등록 </label>
 				<input
-					id="productImages"
 					type="file"
+					id="inputGroupFile01"
 					@change="onInputImage"
 					accept="image/*"
 					multiple="multiple"
 					style="width: 0px; height: 0px"
 				/>
-			</label>
-
+			</div>
 			<div class="commonText">상품명</div>
 
 			<div class="nameText rectangle-23" id="name">
@@ -153,16 +153,11 @@
 
 			onInputImage(e) {
 				this.productImages = e.target.files;
-				console.log(this.productImages);
-
 				//이미지 미리보기
 				const image = document.getElementById('img');
 				const reader = new FileReader();
 				reader.onload = (e) => {
 					image.src = e.target.result;
-					image.width = 120;
-					image.height = 120;
-					document.querySelector('.imagePreView').style.backgroundColor = 'white';
 				};
 				reader.readAsDataURL(this.productImages.item(0));
 			},
@@ -182,7 +177,6 @@
 	}
 
 	.form {
-		width: 100%;
 		background: #ffffff;
 		width: 700px;
 		height: 1100px;
@@ -326,7 +320,6 @@
 
 	.imagePreView {
 		background: #d9d9d9;
-		width: 120px;
-		height: 120px;
+		width: 200px;
 	}
 </style>
