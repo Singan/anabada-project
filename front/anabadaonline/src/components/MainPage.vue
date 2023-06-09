@@ -35,6 +35,7 @@
 
 					<div class="AddressT1">{{ item.wishAddr }}</div>
 				</router-link>
+				<div class="moreProduct"><router-link to="/auction?category=1">더 많은 상품 보러가기</router-link></div>
 			</div>
 		</div>
 	</div>
@@ -101,7 +102,7 @@
 
 	.content3 {
 		background: #fbf7f2;
-		height: 90vh;
+		height: 100vh;
 		display: flex;
 		flex-direction: column;
 		width: 100%;
@@ -170,7 +171,7 @@
 		text-align: left;
 		font: 400 16px 'Roboto', sans-serif;
 		align-items: center;
-		margin-bottom: 8px;
+		margin-bottom: 5px;
 	}
 
 	.AddressT1 {
@@ -246,5 +247,18 @@
 
 	.productImg1 {
 		background-color: transparent;
+	}
+
+	.moreProduct {
+		cursor: pointer;
+		font-weight: bold;
+		font-size: 1.3rem;
+		line-height: 1.5;
+		text-decoration: underline;
+		color: #212529;
+		margin-top: 3rem;
+		margin-left: 1rem;
+		grid-column: 3;
+		grid-row: 3;
 	}
 </style>
