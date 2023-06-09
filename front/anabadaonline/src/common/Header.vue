@@ -1,30 +1,59 @@
 <template>
-	<div class="Header">
-		<router-link class="Logo" to="/">아나바다</router-link>
-
-		<router-link to="/auction?category=1" class="btn btn-info button"> 경매 </router-link>
-		<router-link :to="{ name: '/chatList' }" class="ChatButton"> 채팅 </router-link>
-
-		<input
-			class="SearchBox"
-			v-model="keyword"
-			@keyup.enter="searchresultshow(keyword)"
-			placeholder="검색어를 입력해주세요"
-			autocomplete="off"
-			type="text"
-		/>
-
-		<router-link to="/login" class="button login_btn" v-if="!isToken"> 로그인 </router-link>
-		<router-link to="/JoinMember" class="button" v-if="!isToken"> 회원가입 </router-link>
-
-		<template v-if="isToken">
-			<div class="userInfo">
-				<img class="userImage" :src="$store.getters.getMember.image" />
-				<router-link class="userName" to="/mypage">{{ $store.getters.getMember.name }}</router-link>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<router-link class="navbar-brand Logo" to="/">아나바다</router-link>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+				<ul class="navbar-nav mb-2 mb-lg-0">
+					<li class="nav-item">
+						<router-link class="nav-link active" to="/" aria-current="page">Home</router-link>
+					</li>
+					<li class="nav-item">
+						<router-link to="/auction?category=1" class="nav-link active"> 경매 </router-link>
+					</li>
+					<li class="nav-item">
+						<router-link :to="{ name: '/chatList' }" class="nav-link active"> 채팅 </router-link>
+					</li>
+					<li class="nav-item">
+						<router-link to="/login" class="nav-link active" v-if="!isToken"> 로그인 </router-link>
+					</li>
+					<li class="nav-item">
+						<router-link to="/JoinMember" class="nav-link active" v-if="!isToken"> 회원가입 </router-link>
+					</li>
+					<template v-if="isToken">
+						<li class="nav-item">
+							<div class="userInfo">
+								<img class="userImage" :src="$store.getters.getMember.image" />
+								<router-link class="nav-link active" to="/mypage">{{
+									$store.getters.getMember.name
+								}}</router-link>
+							</div>
+						</li>
+						<li class="nav-item">
+							<div class="nav-link active" @click="logout">로그아웃</div>
+						</li>
+					</template>
+				</ul>
+				<form class="d-flex">
+					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+				</form>
 			</div>
-			<div class="btn btn-info button" @click="logout">로그아웃</div>
-		</template>
-	</div>
+		</div>
+	</nav>
+	<!-- <div class="Header">
+
+
+	</div> -->
 </template>
 <script>
 	import axios from 'axios';
@@ -174,7 +203,5 @@
 	.button:active {
 		box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0);
 		transform: translateY(4px);
-	}
-	.login_btn {
 	}
 </style>
