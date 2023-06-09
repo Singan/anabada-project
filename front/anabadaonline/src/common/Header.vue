@@ -1,16 +1,8 @@
 <template>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<div class="container-fluid">
+		<div class="container-fluid g-0">
 			<router-link class="navbar-brand Logo" to="/">아나바다</router-link>
-			<button
-				class="navbar-toggler"
-				type="button"
-				data-bs-toggle="collapse"
-				data-bs-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent"
-				aria-expanded="false"
-				aria-label="Toggle navigation"
-			>
+			<button class="navbar-toggler" type="button">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
@@ -19,16 +11,18 @@
 						<router-link class="nav-link active" to="/" aria-current="page">홈</router-link>
 					</li>
 					<li class="nav-item">
-						<router-link to="/auction?category=1" class="nav-link active"> 경매 </router-link>
+						<router-link to="/auction?category=1" class="btn btn-info button"> 경매 </router-link>
 					</li>
 					<li class="nav-item">
 						<router-link :to="{ name: '/chatList' }" class="nav-link active"> 채팅 </router-link>
 					</li>
 					<li class="nav-item">
-						<router-link to="/login" class="nav-link active" v-if="!isToken"> 로그인 </router-link>
+						<router-link to="/login" class="btn btn-info button" v-if="!isToken"> 로그인 </router-link>
 					</li>
 					<li class="nav-item">
-						<router-link to="/JoinMember" class="nav-link active" v-if="!isToken"> 회원가입 </router-link>
+						<router-link to="/JoinMember" class="btn btn-info button" v-if="!isToken">
+							회원가입
+						</router-link>
 					</li>
 					<template v-if="isToken">
 						<li class="nav-item">
@@ -195,6 +189,7 @@
 		font: 700 18px 'Roboto', sans-serif;
 		box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
 		border-color: $primary-color;
+		margin-left: 5px;
 	}
 	.button:active {
 		box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0);
