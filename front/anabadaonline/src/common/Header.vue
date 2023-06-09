@@ -16,7 +16,7 @@
 			<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 				<ul class="navbar-nav mb-2 mb-lg-0">
 					<li class="nav-item">
-						<router-link class="nav-link active" to="/" aria-current="page">Home</router-link>
+						<router-link class="nav-link active" to="/" aria-current="page">홈</router-link>
 					</li>
 					<li class="nav-item">
 						<router-link to="/auction?category=1" class="nav-link active"> 경매 </router-link>
