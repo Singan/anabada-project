@@ -1,12 +1,12 @@
 <template>
 	<div class="productFlex">
-		<div class="card flexItem" style="width: 18rem;" v-for="item in productList" :key="item.productNo">
+		<div class="card flexItem" style="width: 18rem" v-for="item in productList" :key="item.productNo">
 			<router-link :to="'/ProductDt?productNo=' + item.productNo">
 				<img class="card-img-top productImg" :src="item.productImage" />
 			</router-link>
-  			<div class="card-body">
+			<div class="card-body">
 				<h5 class="card-title">{{ item.productName }}</h5>
-				<div class="price card-text">등록 가격 : {{ item.productPrice }} 원</div>  			
+				<div class="price card-text">등록 가격 : {{ item.productPrice }} 원</div>
 			</div>
 		</div>
 		<!-- <div class="flexItem" v-for="item in productList" :key="item.productNo">
@@ -135,8 +135,8 @@
 
 	.productImg {
 		background: #d9d9d9;
-		height: 300px;
-		max-width: 300px;
+		height: 200px;
+		max-width: 200px;
 	}
 	.productImg:active {
 		transform: translateY(1px);

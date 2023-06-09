@@ -29,15 +29,23 @@
 			/>
 
 			<div class="commonText">경매 시작 가격</div>
-			<div class="priceText" id="price">
+			<input
+				type="number"
+				class="form-control"
+				placeholder="경매 시작 가격을 입력해주세요( , 없이 숫자만 입력)"
+				aria-describedby="basic-addon1"
+				v-model="price"
+			/>
+			<!-- <div class="priceText" id="price">
 				<input
 					class="textSize"
-					v-model="price"
 					type="number"
 					placeholder="경매 시작 가격을 입력해주세요( , 없이 숫자만 입력)"
 					style="border: none; outline: none"
+                    v-model="price"
+
 				/>
-			</div>
+			</div> -->
 
 			<div class="commonText">상품 카테고리</div>
 
@@ -168,7 +176,7 @@
 </script>
 <style scoped>
 	.wrapper {
-		background-color: #d9d9d9;
+		background-color: #f8f9fa;
 	}
 	.form-control {
 		width: 50%;
