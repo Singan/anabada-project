@@ -7,10 +7,9 @@ import store from './store';
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import token from './common/token';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue-3/dist/bootstrap-vue-3.css';
-import BootstrapVue3 from 'bootstrap-vue-3';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/scss/bootstrap.scss';
+import 'bootstrap';
 const router = createRouter({
 	history: createWebHistory(),
 	routes,
@@ -23,7 +22,6 @@ const options = {
 };
 app.config.globalProperties.$token = token;
 app.use(VueSweetalert2, options);
-app.use(BootstrapVue3);
 app.use(router);
 app.use(store);
 //app.use(axios)

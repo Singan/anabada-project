@@ -1,37 +1,56 @@
 <template>
-	<b-container fluid class="g-0">
-		<b-nav>
-			<b-nav-item><router-link class="navbar-brand Logo" to="/">아나바다</router-link></b-nav-item>
-			<b-nav-item active>
-				<router-link class="nav-link active" to="/" aria-current="page">홈</router-link>
-			</b-nav-item>
-			<b-nav-item>
-				<router-link to="/auction?category=1" class="nav-link active"> 경매 </router-link>
-			</b-nav-item>
-			<b-nav-item>
-				<router-link :to="{ name: '/chatList' }" class="nav-link active"> 채팅 </router-link>
-			</b-nav-item>
-			<b-nav-item>
-				<router-link to="/login" class="nav-link active" v-if="!isToken"> 로그인 </router-link>
-			</b-nav-item>
-
-			<b-nav-item>
-				<router-link to="/JoinMember" class="nav-link active" v-if="!isToken"> 회원가입 </router-link>
-			</b-nav-item>
-			<b-nav-item v-if="isToken">
-				<div class="userInfo">
-					<img class="userImage" :src="$store.getters.getMember.image" />
-					<router-link class="nav-link active" to="/mypage">{{ $store.getters.getMember.name }}</router-link>
-				</div></b-nav-item
-			>
-			<b-nav-item v-if="isToken"> <div class="nav-link active" @click="logout">로그아웃</div> </b-nav-item>
-
-			<!-- <form class="d-flex">
-					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-				</form>
-			 -->
-		</b-nav>
-	</b-container>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<router-link class="navbar-brand Logo" to="/">아나바다</router-link>
+		<button
+			class="navbar-toggler"
+			type="button"
+			data-bs-toggle="collapse"
+			data-bs-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent"
+			aria-expanded="false"
+			aria-label="Toggle navigation"
+		>
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-grow-1 justify-content-center align-items-center g-2">
+				<li class="nav-item ml-auto">
+					<router-link class="nav-link active" to="/" aria-current="page">홈</router-link>
+				</li>
+				<li class="nav-item">
+					<router-link to="/auction?category=1" class="nav-link active"> 경매 </router-link>
+				</li>
+				<li class="nav-item">
+					<router-link :to="{ name: '/chatList' }" class="nav-link active"> 채팅 </router-link>
+				</li>
+				<li class="nav-item" v-if="!isToken">
+					<router-link to="/login" class="nav-link active"> 로그인 </router-link>
+				</li>
+				<li class="nav-item" v-if="!isToken">
+					<router-link to="/JoinMember" class="nav-link active"> 회원가입 </router-link>
+				</li>
+				<template v-if="isToken">
+					<li class="nav-item">
+						<router-link to="/Product" class="nav-link active"> 상품등록 </router-link>
+					</li>
+					<li class="nav-item">
+						<div class="userInfo">
+							<img class="userImage" :src="$store.getters.getMember.image" />
+							<router-link class="nav-link active" to="/mypage">{{
+								$store.getters.getMember.name
+							}}</router-link>
+						</div>
+					</li>
+					<li class="nav-item">
+						<div class="nav-link active" @click="logout">로그아웃</div>
+					</li>
+				</template>
+			</ul>
+			<form class="d-flex">
+				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+			</form>
+		</div>
+	</nav>
 </template>
 <script>
 	import axios from 'axios';
@@ -50,6 +69,9 @@
 		},
 
 		methods: {
+			goHome() {
+				this.$router.push('/');
+			},
 			searchresultshow(keyword) {
 				if (keyword !== '') {
 					//검색어를 입력한 경우
