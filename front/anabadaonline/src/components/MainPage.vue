@@ -1,5 +1,5 @@
 <template>
-	<div class="container-fluid">
+	<div class="container-fluid g-0">
 		<div class="content1">
 			<div class="Text1">
 				원하는 물품<br />원하는 가격으로<br /><br />

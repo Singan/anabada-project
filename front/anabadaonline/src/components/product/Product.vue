@@ -19,16 +19,14 @@
 				/>
 			</div>
 			<div class="commonText">상품명</div>
-
-			<div class="nameText rectangle-23" id="name">
-				<input
-					class="textSize"
-					v-model="name"
-					type="text"
-					placeholder="상품명을 입력해주세요"
-					style="border: none; outline: none"
-				/>
-			</div>
+			<input
+				type="text"
+				class="form-control"
+				placeholder="상품명을 입력해주세요"
+				aria-label="Username"
+				aria-describedby="basic-addon1"
+				v-model="name"
+			/>
 
 			<div class="commonText">경매 시작 가격</div>
 			<div class="priceText" id="price">
@@ -173,7 +171,7 @@
 		background-color: #d9d9d9;
 	}
 	.form-control {
-		margin: 5px 0px 0px 30px;
+		width: 50%;
 	}
 
 	.form {
