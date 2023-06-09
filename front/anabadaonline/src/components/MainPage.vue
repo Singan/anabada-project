@@ -1,40 +1,41 @@
 <template>
-	<!-- <div class="container-fluid"> -->
-	<div class="content1">
-		<div class="Text1">
-			원하는 물품<br />원하는 가격으로<br /><br />
-			<div class="Text2">중고 거래, 이제 경매에 직접 참여해서<br />원하는 가격으로 구매해보세요</div>
+	<div class="container-fluid">
+		<div class="content1">
+			<div class="Text1">
+				원하는 물품<br />원하는 가격으로<br /><br />
+				<div class="Text2">중고 거래, 이제 경매에 직접 참여해서<br />원하는 가격으로 구매해보세요</div>
+			</div>
+			<div class="productImage"></div>
+			<div class="productImage2"></div>
 		</div>
-		<div class="productImage"></div>
-		<div class="productImage2"></div>
-	</div>
 
-	<div class="content2">
-		<div class="Text3">
-			우리 동네에서 <br />펼쳐지는 경매장<br /><br />
-			<div class="Text4">내가 사는 지역에서 이루어지는 거래를 지금 경험해보세요</div>
+		<div class="content2">
+			<div class="Text3">
+				우리 동네에서 <br />펼쳐지는 경매장<br /><br />
+				<div class="Text4">내가 사는 지역에서 이루어지는 거래를 지금 경험해보세요</div>
+			</div>
+			<div class="productImage3"></div>
+			<div class="productImage4"></div>
 		</div>
-		<div class="productImage3"></div>
-		<div class="productImage4"></div>
-	</div>
 
-	<div class="content3">
-		<div class="Text5">현재 경매 되고 있는 상품을 둘러보세요</div>
-		<div class="box1">
-			<router-link
-				class="productFlexItem"
-				v-for="item in productList"
-				:key="item.productNo"
-				:to="'/productDt?productNo=' + item.productNo"
-			>
-				<img class="ProductImg1" :src="item.productImage" style="width: 200px; height: 200px" />
+		<div class="content3">
+			<div class="Text5">현재 경매 되고 있는 상품을 둘러보세요</div>
+			<div class="box1">
+				<router-link
+					class="productFlexItem"
+					v-for="item in productList"
+					:key="item.productNo"
+					:to="'/productDt?productNo=' + item.productNo"
+				>
+					<img class="ProductImg1" :src="item.productImage" style="width: 200px; height: 200px" />
 
-				<div class="ProductNT1">{{ item.productName }}</div>
+					<div class="ProductNT1">{{ item.productName }}</div>
 
-				<div class="PriceT1">{{ item.price }} 원</div>
+					<div class="PriceT1">{{ item.price }} 원</div>
 
-				<div class="AddressT1">{{ item.wishAddr }}</div>
-			</router-link>
+					<div class="AddressT1">{{ item.wishAddr }}</div>
+				</router-link>
+			</div>
 		</div>
 	</div>
 </template>
