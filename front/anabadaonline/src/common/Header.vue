@@ -13,7 +13,7 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-grow-1 justify-content-center align-items-center g-2">
+			<ul class="navbar-nav flex-grow-1 justify-content-center align-items-center g-4">
 				<li class="nav-item ml-auto">
 					<router-link class="nav-link active" to="/" aria-current="page">홈</router-link>
 				</li>
@@ -33,7 +33,7 @@
 					<li class="nav-item">
 						<router-link to="/Product" class="nav-link active"> 상품등록 </router-link>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item flex-2">
 						<div class="userInfo">
 							<img class="userImage" :src="$store.getters.getMember.image" />
 							<router-link class="nav-link active" to="/mypage">{{

@@ -134,9 +134,10 @@
 	}
 
 	.productImg {
+		object-fit: cover;
 		background: #d9d9d9;
-		height: 200px;
-		max-width: 200px;
+		width: 300px;
+		max-height: 300px;
 	}
 	.productImg:active {
 		transform: translateY(1px);

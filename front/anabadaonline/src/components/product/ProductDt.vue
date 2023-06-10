@@ -112,12 +112,11 @@
 				productNo: this.$route.query.productNo,
 				isClicked: false,
 				stompClient: '',
-				resultObj: {},
 				testInput: 0,
 				imageCurrIndex: 0,
 				leftTimerView: '',
 				leftTime: null,
-				productSubscribe: '',
+				productSubscribe: null,
 				timerInterval: null,
 				productList: '',
 			};
@@ -139,7 +138,7 @@
 				this.leftTime = bidTime;
 				let date = new Date();
 				this.leftTime = this.leftTime - date;
-				if (this.leftTime >= 0) {
+				if (this.leftTime > 0) {
 					this.timerInterval = setInterval(this.timer, 1000);
 				}
 			},
@@ -152,6 +151,7 @@
 						icon: 'info',
 						title: '경매가 종료되었습니다.',
 					});
+					return;
 				}
 				let s = Math.floor(this.leftTime / 1000);
 				let m = Math.floor(s / 60);
@@ -199,9 +199,9 @@
 		},
 		mounted() {},
 		unmounted() {
-			console.log('디스트로이드');
-			console.log(this.productSubscribe);
-			this.productSubscribe.unsubscribe();
+			if (this.productSubscribe != null) {
+				this.productSubscribe.unsubscribe();
+			}
 		},
 	};
 </script>
