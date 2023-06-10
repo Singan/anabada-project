@@ -1,10 +1,16 @@
 <template>
-	<div class="wrapper .container-fluid">
-		<form @submit.prevent="productRegister" class="form">
+	<div class="wrapper container-fluid h-100 overflow-auto">
+		<form
+			@submit.prevent="productRegister"
+			class="container-sm d-flex flex-column align-items-center justify-content-between overflow-auto h-100"
+		>
 			<div class="title">상품 등록하기</div>
 
-			<div class="imagePreView">
-				<img id="img" class="img-fluid" />
+			<div
+				class="imagePreView d-flex align-items-center justify-content-center"
+				style="background-color: transparent"
+			>
+				<img id="img" class="img-fluid mx-auto" />
 			</div>
 
 			<div class="input-group justify-content-center">
@@ -36,55 +42,44 @@
 				aria-describedby="basic-addon1"
 				v-model="price"
 			/>
-			<!-- <div class="priceText" id="price">
-				<input
-					class="textSize"
-					type="number"
-					placeholder="경매 시작 가격을 입력해주세요( , 없이 숫자만 입력)"
-					style="border: none; outline: none"
-                    v-model="price"
-
-				/>
-			</div> -->
-
 			<div class="commonText">상품 카테고리</div>
 
-			<div class="category">
-				<select v-model="selectCategory" class="categorySelect">
-					<option v-for="item in categoryList" :key="item.categoryNo" :value="item.categoryNo">
-						{{ item.categoryName }}
-					</option>
-				</select>
-			</div>
+			<select class="form-select w-50" multiple aria-label="select example" v-model="selectCategory">
+				<option v-for="item in categoryList" :key="item.categoryNo" :value="item.categoryNo">
+					{{ item.categoryName }}
+				</option>
+			</select>
 
 			<div class="commonText">상품 설명</div>
 
-			<div class="rectangle-233">
-				<textarea
-					class="form-control"
-					id="detail"
-					placeholder="상품 설명을 입력하세요"
-					v-model="detail"
-					rows="7"
-					cols="50"
-					style="border: none; outline: none"
-				></textarea>
-			</div>
+			<textarea
+				class="form-control border"
+				id="detail"
+				placeholder="상품 설명을 입력하세요"
+				v-model="detail"
+				rows="7"
+				cols="50"
+				style="border: none; outline: none"
+			></textarea>
 			<div class="usingDate commonText">상품 사용기간 <br /></div>
 			<div class="commonText">사용기간 : {{ usingDate }}</div>
-
-			<div class="radioSelect">
-				<input type="radio" id="one" value="미사용" v-model="usingDate" checked />
-				<label for="one">미사용</label>
-
-				<input type="radio" id="two" value="0 ~ 4주" v-model="usingDate" />
-				<label for="two">0 ~ 4주</label>
-
-				<input type="radio" id="three" value="4 ~ 8주" v-model="usingDate" />
-				<label for="three">4 ~ 8주</label>
-
-				<input type="radio" id="four" value="8주 이상" v-model="usingDate" />
-				<label for="four">8주 이상</label>
+			<div>
+				<div class="form-check form-check-inline">
+					<input type="radio" id="one" value="미사용" class="form-check-input" v-model="usingDate" checked />
+					<label for="one" class="form-check-label">미사용</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input type="radio" id="two" value="0 ~ 4주" class="form-check-input" v-model="usingDate" />
+					<label for="two" class="form-check-label">0 ~ 4주</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input type="radio" id="three" value="4 ~ 8주" v-model="usingDate" class="form-check-input" />
+					<label for="three" class="form-check-label">4 ~ 8주</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input type="radio" id="four" value="8주 이상" v-model="usingDate" class="form-check-input" />
+					<label for="four" class="form-check-label">8주 이상</label>
+				</div>
 			</div>
 			<label class="submit">
 				등록하기
@@ -138,23 +133,23 @@
 						form.append('productImages', this.productImages[i]);
 					}
 				}
-
-				const response = await axios
-					.post('/product', form, {
+				try {
+					const response = await axios.post('/product', form, {
 						header: {
 							'Content-Type': 'multipart/form-data',
 						},
-					})
-					.catch((error) => {
-						this.isChk = false;
-						this.$swal({
-							icon: 'error',
-							title: '상품 등록에 실패하였습니다.',
-						});
-						return;
 					});
-				this.$emit('addSub', response.data.productNo);
-				this.$router.push('./ProductDt?productNo=' + response.data.productNo);
+					this.$emit('addSub', response.data.productNo);
+					this.$router.push('./ProductDt?productNo=' + response.data.productNo);
+				} catch (err) {
+					this.isChk = false;
+					console.log(err);
+					this.$swal({
+						icon: 'error',
+						title: '상품 등록에 실패하였습니다.',
+					});
+					return;
+				}
 			},
 
 			onInputImage(e) {
@@ -175,13 +170,21 @@
 	};
 </script>
 <style scoped>
+	.img-fluid {
+		max-width: 100%;
+		max-height: 100%;
+	}
 	.wrapper {
+		height: 100%;
 		background-color: #f8f9fa;
 	}
 	.form-control {
 		width: 50%;
 	}
-
+	.container-sm {
+		background-color: white;
+		height: 100%;
+	}
 	.form {
 		background: #ffffff;
 		width: 700px;
@@ -326,6 +329,7 @@
 
 	.imagePreView {
 		background: #d9d9d9;
-		width: 200px;
+		width: 400px;
+		max-height: 400px;
 	}
 </style>

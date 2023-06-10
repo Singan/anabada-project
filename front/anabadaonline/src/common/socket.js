@@ -45,6 +45,7 @@ let socketResult = {
 	allUnsubscribe() {
 		const subscription = this.stompClient.subscriptions;
 		for (let sub in subscription) {
+			console.log(sub);
 			this.stompClient.unsubscribe(sub);
 		}
 	},

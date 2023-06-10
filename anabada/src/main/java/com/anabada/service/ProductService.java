@@ -39,7 +39,7 @@ public class ProductService {
     @Transactional
     public ProductInsertResDto productSave(ProductInsertDto productInsertDto, MemberDetailDTO memberDetailDTO) {
         List<MultipartFile> multipartFiles = productInsertDto.getProductImages();
-        if (multipartFiles.isEmpty()) {
+        if (multipartFiles==null||multipartFiles.isEmpty()) {
             throw new RuntimeException("하나이상의 사진을 등록해야 합니다.");
         }
         String thumbnail = fileProcessor.fileSave(multipartFiles.get(0), "product");

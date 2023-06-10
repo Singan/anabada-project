@@ -1,6 +1,6 @@
 <template>
 	<div class="form1">
-		<div class="bidBox" v-if="$token.is()">
+		<div class="bidBox" v-if="$token.is() && memberNo != $store.getters.getMember.no">
 			<input
 				class="textSize"
 				type="number"
@@ -15,6 +15,7 @@
 			<div class="userPrice">{{ bid.price }}원</div>
 			<div class="bidTime">{{ bid.bidTime }}</div>
 		</div>
+		<div v-if="bidList.length <= 0">현재 등록된 경매가 없습니다. 입찰하셔서 낙찰의 주인공이 되보세요!</div>
 	</div>
 </template>
 
@@ -33,9 +34,9 @@
 			isSocket: {
 				type: Boolean,
 			},
-			productPrice:{
-				type:Number
-			}
+			productPrice: {
+				type: Number,
+			},
 		},
 		name: '',
 		components: {},
@@ -74,9 +75,10 @@
 					});
 					return;
 				}
+
 				const lastBid = this.bidList[this.bidList.length - 1];
-				console.log("프로덕트프라이스 , ",this.productPrice)
-				if (this.productPrice>this.bidPrice) {
+				console.log('프로덕트프라이스 , ', this.productPrice);
+				if (this.productPrice > this.bidPrice) {
 					this.$swal({
 						icon: 'info',
 						title: '등록가격보다 낮은 금액은 입력할 수 없습니다.',
