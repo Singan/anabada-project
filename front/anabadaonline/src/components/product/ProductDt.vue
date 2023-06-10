@@ -64,13 +64,13 @@
 			:productPrice="seller.productPrice"
 		></BidList>
 
+		<div class="box4"></div>
 		<div>
 			<router-link
-				class="productFlexItem"
+				class="productFlexIt"
 				v-for="item in productList"
 				:key="item.productNo"
 				:to="'/ProductDt?productNo=' + item.productNo"
-				exact
 			>
 				<img class="productImage" :src="item.productImage" />
 
