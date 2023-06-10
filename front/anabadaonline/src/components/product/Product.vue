@@ -1,6 +1,7 @@
 <template>
 	<div class="wrapper container-fluid h-100 overflow-auto">
 		<form
+			ref="form"
 			@submit.prevent="productRegister"
 			class="container-sm d-flex flex-column align-items-center justify-content-between overflow-auto h-100"
 		>
@@ -10,7 +11,7 @@
 				class="imagePreView d-flex align-items-center justify-content-center"
 				style="background-color: transparent"
 			>
-				<img id="img" class="img-fluid mx-auto" />
+				<img id="img" class="img-fluid mx-auto" required />
 			</div>
 
 			<div class="input-group justify-content-center">
@@ -32,6 +33,7 @@
 				aria-label="Username"
 				aria-describedby="basic-addon1"
 				v-model="name"
+				required
 			/>
 
 			<div class="commonText">경매 시작 가격</div>
@@ -41,10 +43,11 @@
 				placeholder="경매 시작 가격을 입력해주세요( , 없이 숫자만 입력)"
 				aria-describedby="basic-addon1"
 				v-model="price"
+				required
 			/>
 			<div class="commonText">상품 카테고리</div>
 
-			<select class="form-select w-50" multiple aria-label="select example" v-model="selectCategory">
+			<select class="form-select w-50" aria-label="select example" v-model="selectCategory" required>
 				<option v-for="item in categoryList" :key="item.categoryNo" :value="item.categoryNo">
 					{{ item.categoryName }}
 				</option>
@@ -121,6 +124,9 @@
 					this.isChk = true;
 					return;
 				}
+				if (!this.regex()) {
+					return;
+				}
 				let form = new FormData();
 				form.append('name', this.name);
 				form.append('price', this.price);
@@ -128,10 +134,8 @@
 				form.append('detail', this.detail);
 				form.append('price', this.price);
 				form.append('categoryNo', this.selectCategory);
-				if (this.productImages) {
-					for (let i = 0; i < this.productImages.length; i++) {
-						form.append('productImages', this.productImages[i]);
-					}
+				for (let i = 0; i < this.productImages.length; i++) {
+					form.append('productImages', this.productImages[i]);
 				}
 				try {
 					const response = await axios.post('/product', form, {
@@ -161,6 +165,18 @@
 					image.src = e.target.result;
 				};
 				reader.readAsDataURL(this.productImages.item(0));
+			},
+			regex() {
+				if (this.$refs.form.checkValidity()) {
+					console.log('오나?');
+				}
+				if (!this.productImages) {
+					this.$swal({
+						icon: 'error',
+						title: '이미지는 하나 이상 등록해야 합니다.',
+					});
+					return false;
+				}
 			},
 		},
 
