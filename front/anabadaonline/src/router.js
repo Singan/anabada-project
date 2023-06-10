@@ -46,6 +46,7 @@ const routes = [
 	{
 		path: '/productDt',
 		name: 'ProductDt',
+		props: (route) => ({ productNo: route.query.productNo }),
 		component: () => import('@/components/product/ProductDt.vue'),
 	},
 	{

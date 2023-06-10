@@ -1,5 +1,29 @@
 <template>
-	<div class="titleBox">
+	<div class="dropdown d-flex justify-content-center align-items-center" style="height: 200px">
+		<button
+			class="btn btn-outline-info dropdown-toggle"
+			type="button"
+			id="categoryDropdown"
+			data-bs-toggle="dropdown"
+			aria-expanded="false"
+		>
+			{{ selectedCategory }}
+		</button>
+		<ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+			<li v-for="item in categoryList">
+				<router-link
+					:key="item.categoryNo"
+					:value="item.categoryNo"
+					:to="{ path: '/auction', query: { category: item.categoryNo } }"
+					class="dropdown-item"
+					@click="selectedCategory = item.categoryName"
+				>
+					{{ item.categoryName }}
+				</router-link>
+			</li>
+		</ul>
+	</div>
+	<!-- <div class="titleBox">
 		<router-link
 			v-for="item in categoryList"
 			:key="item.categoryNo"
@@ -10,7 +34,7 @@
 		>
 			{{ item.categoryName }}
 		</router-link>
-	</div>
+	</div> -->
 	<ProductList :categoryNo="categoryNo"></ProductList>
 </template>
 <script>
@@ -22,7 +46,8 @@
 		props: {},
 		data() {
 			return {
-				categoryList: '',
+				categoryList: [],
+				selectedCategory: '의류',
 			};
 		},
 		computed: {
@@ -35,6 +60,10 @@
 				console.log('getCategory');
 				axios.get('/category').then((response) => {
 					this.categoryList = response.data;
+					const selectedCategory = this.categoryList.find(
+						(item) => item.categoryNo === Number(this.categoryNo),
+					);
+					this.selectedCategory = selectedCategory ? selectedCategory.categoryName : '';
 				});
 			},
 		},

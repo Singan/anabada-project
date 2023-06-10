@@ -63,15 +63,19 @@
 		></BidList>
 		<div>추천 상품</div>
 		<div class="box4">
-			<div v-for="item in productList" :key="item.productNo">
-				<img class="productImage" :src="item.productImage" @click="refresh(item.productNo)" />
+			<router-link
+				v-for="item in productList"
+				:key="item.productNo"
+				:to="'/productDt?productNo=' + item.productNo"
+			>
+				<img class="productImage" :src="item.productImage" />
 
 				<div class="productName">{{ item.productName }}</div>
 
 				<div class="productRegion">{{ item.wishAddr }}</div>
 
 				<div class="productPrice">{{ item.price }} 원</div>
-			</div>
+			</router-link>
 		</div>
 	</div>
 </template>
@@ -87,6 +91,9 @@
 				type: Boolean,
 				required: false,
 			},
+			productNo: {
+				type: Number,
+			},
 		},
 		watch: {
 			isSocket: function (isSocket) {
@@ -95,9 +102,8 @@
 				}
 			},
 			leftTime: function () {},
-			$route: function (r) {
+			productNo: function (r) {
 				this.sellerInfo();
-				this.productNo = r.query.productNo;
 			},
 		},
 		name: '',
@@ -107,7 +113,6 @@
 			return {
 				seller: '',
 				temporaryData: '',
-				productNo: this.$route.query.productNo,
 				isClicked: false,
 				stompClient: '',
 				testInput: 0,
@@ -125,7 +130,6 @@
 		methods: {
 			async sellerInfo() {
 				const response = await axios.get('/product?productNo=' + this.productNo);
-				console.log(this.productNo);
 				this.seller = response.data;
 				this.productPrice = response.data.productPrice;
 				this.timeStart();
@@ -135,12 +139,10 @@
 			},
 			timeStart() {
 				this.leftTime = new Date(this.seller.bidTime);
-
 				this.leftTime.setMinutes(this.leftTime.getMinutes() + 10);
 				let date = new Date();
+				date.setMilliseconds(0);
 				this.leftTime = this.leftTime - date;
-				console.log(this.seller.bidTime);
-				console.log(this.leftTime);
 				if (this.leftTime > 0) {
 					this.timerInterval = setInterval(this.timer, 1000);
 				} else {
@@ -190,8 +192,7 @@
 				});
 			},
 			refresh(productNo) {
-				this.$router.replace(`/productDt?productNo=${productNo}`);
-				console.log(productNo);
+				this.$router.push(`/productDt?productNo=${productNo}`);
 			},
 		},
 		created() {

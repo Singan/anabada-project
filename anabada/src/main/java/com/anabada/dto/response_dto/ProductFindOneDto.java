@@ -57,7 +57,7 @@ public class ProductFindOneDto {
         Integer highPrice = product.getProductHighPrice();
         if(highPrice != null) {
             this.productHighPrice = highPrice;
-            this.bidTime = product.getBidTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
+            this.bidTime = product.getBidTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         }
 
     }

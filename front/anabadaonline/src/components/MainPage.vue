@@ -102,7 +102,6 @@
 
 	.content3 {
 		background: #fbf7f2;
-		height: 100vh;
 		display: flex;
 		flex-direction: column;
 		width: 100%;
@@ -158,12 +157,6 @@
 		text-align: center;
 		font: 700 34px 'Roboto', sans-serif;
 		margin-top: 5rem;
-	}
-
-	.topImages {
-		position: absolute;
-		width: 300px;
-		margin-right: 300px;
 	}
 
 	.ProductNT1 {

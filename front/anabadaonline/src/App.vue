@@ -113,6 +113,8 @@
 	#app {
 		width: 100vw;
 		height: 100vh;
+		/* overflow-x: auto;
+		white-space: nowrap; */
 	}
 
 	body a {

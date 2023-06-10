@@ -4,6 +4,7 @@ import com.anabada.entity.Bid;
 import com.anabada.entity.Member;
 import com.anabada.entity.Product;
 import com.anabada.entity.SuccessfulBid;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -15,7 +16,9 @@ public class SalesListSelectDto {
     private Integer bidPrice;
     private String productThumbnail;
     private Long productNo;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createDateTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime bidTime;
     private String memberName;
     private Long memberNo;
