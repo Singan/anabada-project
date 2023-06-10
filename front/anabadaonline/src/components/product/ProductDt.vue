@@ -191,9 +191,6 @@
 					this.productList = response.data.list;
 				});
 			},
-			refresh(productNo) {
-				this.$router.push(`/productDt?productNo=${productNo}`);
-			},
 		},
 		created() {
 			if (this.isSocket) {
