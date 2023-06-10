@@ -63,14 +63,12 @@
 			:isSocket="isSocket"
 			:productPrice="seller.productPrice"
 		></BidList>
-
-		<div class="box4"></div>
-		<div>
+		<div>추천 상품</div>
+		<div class="box4">
 			<router-link
-				class="productFlexIt"
 				v-for="item in productList"
 				:key="item.productNo"
-				:to="'/ProductDt?productNo=' + item.productNo"
+				:to="'/productDt?productNo=' + item.productNo"
 			>
 				<img class="productImage" :src="item.productImage" />
 
@@ -241,7 +239,9 @@
 		width: fit-content;
 		display: flex;
 	}
-
+	.anotherButton {
+		justify-items: flex-end;
+	}
 	.imgBox {
 		height: 400px;
 		overflow: hidden;
