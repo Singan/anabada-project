@@ -6,7 +6,7 @@
 			</router-link>
 			<div class="card-body">
 				<h5 class="card-title">{{ item.productName }}</h5>
-				<div class="price card-text">등록 가격 : {{ item.productPrice }} 원</div>
+				<div class="price card-text">등록 가격 : {{ item.productPrice.toLocaleString() }} 원</div>
 			</div>
 		</div>
 		<!-- <div class="flexItem" v-for="item in productList" :key="item.productNo">
