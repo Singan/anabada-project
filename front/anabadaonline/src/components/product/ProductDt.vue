@@ -181,7 +181,7 @@
 				});
 			},
 			refresh(productNo) {
-				this.$router.replace(`/productDt?productNo=${productNo}`);
+				this.$router.push(`/productDt?productNo=${productNo}`);
 				console.log(productNo);
 			},
 		},
