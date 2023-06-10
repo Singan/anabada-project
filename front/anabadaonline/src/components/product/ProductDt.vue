@@ -65,19 +65,15 @@
 		></BidList>
 		<div>추천 상품</div>
 		<div class="box4">
-			<router-link
-				v-for="item in productList"
-				:key="item.productNo"
-				:to="'/productDt?productNo=' + item.productNo"
-			>
-				<img class="productImage" :src="item.productImage" />
+			<div v-for="item in productList" :key="item.productNo">
+				<img class="productImage" :src="item.productImage" @click="refresh(item.productNo)" />
 
 				<div class="productName">{{ item.productName }}</div>
 
 				<div class="productRegion">{{ item.wishAddr }}</div>
 
 				<div class="productPrice">{{ item.price }} 원</div>
-			</router-link>
+			</div>
 		</div>
 	</div>
 </template>
@@ -185,9 +181,8 @@
 				});
 			},
 			refresh(productNo) {
-				this.$router.push(`/productDt?productNo=${productNo}`);
+				this.$router.replace(`/productDt?productNo=${productNo}`);
 				console.log(productNo);
-				this.$forceUpdate();
 			},
 		},
 		created() {
