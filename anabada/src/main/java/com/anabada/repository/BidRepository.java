@@ -46,15 +46,17 @@ public interface BidRepository extends JpaRepository<Bid, Long> {
     @Query(value = "SELECT " +
             " p2.product_name as productName," +
             "b1.product_no as productNo," +
+            " b1.bid_time as bidTime, " +
             " b1.bid_no as bidNo FROM bid b1" +
             " INNER JOIN(SELECT b.product_no, MAX(b.bid_price) AS bid_price FROM bid b" +
             " GROUP BY b.product_no) b2 ON b1.product_no = b2.product_no AND b1.bid_price = b2.bid_price " +
             " INNER JOIN product p2 ON b1.product_no = p2.product_no" +
-            " WHERE b1.bid_time <= NOW() - INTERVAL 10 MINUTE AND p2.product_is_bid_complete = false;", nativeQuery = true)
+            " where p2.product_is_bid_complete = false;", nativeQuery = true)
     List<MaxBidProductNoInterface> bidList();
 
     @Query("UPDATE Product SET productIsBidComplete = true WHERE productNo IN :productNoList")
     @Modifying
     void updateProductSuccessBid(@Param("productNoList") List<Long> productNoList);
+
 
 }

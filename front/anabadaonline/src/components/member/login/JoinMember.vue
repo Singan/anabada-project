@@ -1,47 +1,57 @@
 <template>
 	<div class="flexContainer">
-		<form @submit.prevent="submitForm">
-			<div class="text">본인 정보를 입력해 주세요</div>
-			<div class="id">
-				<label for="id">아이디</label>
-				<input type="text" id="id" v-model="id" />
-			</div>
-			<div class="pw">
-				<label for="pw">비밀번호</label>
-				<input type="password" id="pw" v-model="pw" />
-			</div>
-			<div class="name">
-				<label for="name">이름</label>
-				<input type="text" id="name" v-model="name" />
-			</div>
-			<div class="birth">
-				<label for="birth">생년월일</label>
-				<input type="date" id="birth" v-model="birth" />
-			</div>
-			<div class="post">
-				<!-- <label for="addr" class="postcodeText">우편번호</label>
-				<input type="text" id="post" v-model="addr" readonly /> -->
-				<button type="button" @click="search()">주소 찾기</button>
-			</div>
-			<div class="addr">
-				<label for="addr">주소</label>
-				<input type="text" id="addr" v-model="addr" readonly />
-			</div>
-			<div class="detailaddr">
-				<label for="detailaddr">상세주소</label>
-				<input type="text" id="detailaddr" v-model="detailaddr" />
-			</div>
-			<div class="wishaddr">
-				<label for="wishaddr">거래희망지</label>
-				<input type="text" id="wishaddr" v-model="Wishaddr" />
-			</div>
-			<div class="image">
+		<h1 class="anabadaLogo"></h1>
+		<form class="formSection needs-validation" novalidate @submit.prevent="submitForm">
+			<!-- <div class="image">
 				<label for="image" class="imageText">프로필 이미지</label>
-				<input id="image" type="file" @change="onInputImage" />
+				<input id="image" class="form-control form-control-sm" type="file" @change="onInputImage" />
+			</div> -->
+			<div class="mb-3">
+				<label for="formFileSm" class="form-label imageText">프로필 이미지 선택</label>
+				<input class="form-control form-control-sm" id="formFileSm" type="file" />
 			</div>
+			<div class="formList1">
+				<div class="form_item id">
+					<!-- <label for="id"></label> -->
+					<input type="text" class="input" maxlength="15" placeholder="아이디" v-model="id" />
+				</div>
+				<div class="form_item pw">
+					<!-- <label for="pw">비밀번호</label> -->
+					<input type="password" class="input" v-model="pw" maxlength="20" placeholder="비밀번호" />
+					<div class="invalid-feedback">비밀번호를 다시 입력하세요</div>
+				</div>
+			</div>
+			<div class="formList2">
+				<div class="form_item name">
+					<!-- <label for="name">이름</label> -->
+					<input type="text" class="input" v-model="name" maxlength="10" placeholder="이름" />
+				</div>
+				<div class="form_item birth">
+					<!-- <label for="birth">생년월일</label> -->
+					<input type="text" class="input" id="birth" placeholder="생년월일" maxlength="8" v-model="birth" />
+				</div>
+			</div>
+			<div class="formList3">
+				<div class="form_item addr">
+					<!-- <label for="addr">주소</label> -->
+					<input type="text" class="input" v-model="addr" placeholder="주소" readonly />
+					<div class="post">
+						<button type="button" class="btn btn-light btn-sm" @click="search()">주소 찾기</button>
+					</div>
+				</div>
+				<div class="form_item detailaddr">
+					<!-- <label for="detailaddr">상세주소</label> -->
+					<input type="text" id="detailaddr" class="input" v-model="detailaddr" placeholder="상세주소" />
+				</div>
+				<div class="form_item wishaddr">
+					<!-- <label for="wishaddr">거래희망지</label> -->
+					<input type="text" id="wishaddr" class="input" v-model="Wishaddr" placeholder="거래희망지" />
+				</div>
+			</div>
+
 			<div class="imageContainer">
-				<button type="submit" class="join">회원가입</button>
-				<button class="cancel" @click="goLogin">취소하기</button>
+				<button type="submit" class="join btn btn-primary">회원가입</button>
+				<button class="cancel btn btn-danger" @click="goLogin">취소하기</button>
 			</div>
 		</form>
 	</div>
@@ -83,6 +93,10 @@
 					})
 					.then((response) => {
 						if (response.status == 200) {
+							this.$swal({
+								icon: 'success',
+								title: '회원가입에 성공했습니다!',
+							});
 							// 로그인 하면 토큰 발급
 							this.$router.push('./login');
 						} else {
@@ -91,6 +105,7 @@
 					})
 					.catch((error) => {
 						let message = error.response.data.message;
+						console.log(error.response);
 						this.$swal({
 							icon: 'error',
 							title: '회원가입을 실패하였습니다.',
@@ -151,11 +166,67 @@
 
 	.flexContainer {
 		display: flex;
-		width: 788px;
-		height: 1040px;
 		flex-direction: column;
+		position: relative;
+		height: 100%;
+		width: 500px;
+		margin: 0 auto;
+	}
+
+	.anabadaLogo {
+		padding: 25px 120px 25px 20px;
+	}
+
+	.formSection {
+		margin-right: 20px;
+		margin-left: 20px;
+		padding-right: 0;
+		padding-left: 0;
+	}
+
+	.form_item {
+		display: flex;
 		align-items: center;
-		margin: auto;
+		position: relative;
+		box-sizing: border-box;
+		max-width: 100%;
+		min-height: 50px;
+		padding: 0 10px 0 45px;
+	}
+
+	.input {
+		flex: 1 1 auto;
+		box-sizing: border-box;
+		width: 100%;
+		font-size: 16px;
+		line-height: 22px;
+		color: #222;
+		border: none;
+	}
+
+	.formList1 {
+		margin-bottom: 20px;
+		padding-top: 2px;
+		margin-top: 20px;
+		border: 0.5px solid #dfdfdf;
+		border-radius: 6px;
+		display: block;
+	}
+
+	.formList2 {
+		margin-bottom: 20px;
+		padding-top: 2px;
+		border: 0.5px solid #dfdfdf;
+		border-radius: 6px;
+		display: block;
+	}
+
+	.formList3 {
+		margin-bottom: 20px;
+		padding-top: 2px;
+		border: 0.5px solid #dfdfdf;
+		border-radius: 6px;
+		display: block;
 	}
 
 	.text {
@@ -171,74 +242,32 @@
 
 	.id {
 		color: #000000;
-		text-align: left;
 		font: 600 16px 'Roboto', sans-serif;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-	}
-
-	#id {
-		font: 400 16px 'Roboto', sans-serif;
-		border-right: 0;
-		border-top: 0;
-		border-left: 0;
-		padding-top: 15px;
+		border-bottom: 0.5px solid #dfdfdf;
 	}
 
 	.pw {
 		color: #000000;
-		text-align: left;
 		font: 600 16px 'Roboto', sans-serif;
 		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		margin-top: 50px;
-	}
-
-	#pw {
-		font: 400 16px 'Roboto', sans-serif;
-		border-right: 0;
-		border-top: 0;
-		border-left: 0;
-		padding-top: 15px;
+		align-items: center;
 	}
 
 	.name {
 		color: #000000;
-		text-align: left;
 		font: 600 16px 'Roboto', sans-serif;
-		margin-top: 15px;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		margin-top: 50px;
-	}
-
-	#name {
-		font: 400 16px 'Roboto', sans-serif;
-		border-right: 0;
-		border-top: 0;
-		border-left: 0;
-		padding-top: 15px;
+		border-bottom: 0.5px solid #dfdfdf;
 	}
 
 	.birth {
 		color: #000000;
-		text-align: left;
 		font: 600 16px 'Roboto', sans-serif;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		margin-top: 50px;
 	}
 
 	.post {
 		color: #000000;
-		text-align: left;
-		font: 600 16px 'Roboto', sans-serif;
-		display: flex;
-		margin-top: 50px;
+		flex: none;
+		padding-right: 4px;
 	}
 
 	.postcodeText {
@@ -252,51 +281,16 @@
 
 	.addr {
 		color: #000000;
-		text-align: left;
-		font: 600 16px 'Roboto', sans-serif;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		margin-top: 20px;
-	}
-
-	#addr {
-		width: 500px;
-		font: 400 16px 'Roboto', sans-serif;
-		border-right: 0;
-		border-top: 0;
-		border-left: 0;
-		cursor: default;
-		padding-top: 10px;
+		border-bottom: 0.5px solid #dfdfdf;
 	}
 
 	.detailaddr {
 		color: #000000;
-		text-align: left;
-		font: 600 16px 'Roboto', sans-serif;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		margin-top: 50px;
-	}
-
-	#detailaddr {
-		width: 500px;
-		font: 400 16px 'Roboto', sans-serif;
-		border-right: 0;
-		border-top: 0;
-		border-left: 0;
-		padding-top: 10px;
+		border-bottom: 0.5px solid #dfdfdf;
 	}
 
 	.wishaddr {
 		color: #000000;
-		text-align: left;
-		font: 600 16px 'Roboto', sans-serif;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		margin-top: 50px;
 	}
 
 	#wishaddr {
@@ -320,6 +314,7 @@
 
 	.imageText {
 		margin-right: 10px;
+		color: #6c757d;
 	}
 
 	.imageContainer {
@@ -327,30 +322,31 @@
 	}
 
 	.join {
-		width: 6.5rem;
-		height: 50px;
-		background-color: #0075ff;
-		border-radius: 5px;
-		margin: 0 auto;
-		color: white;
-		cursor: pointer;
-		border: none;
 		margin-top: 50px;
 		margin-right: 20px;
 		text-align: center;
 	}
 
-	.cancel {
-		width: 6.5rem;
-		height: 50px;
-		background-color: #e20303;
-		border-radius: 5px;
-		margin: 0 auto;
-		color: white;
-		cursor: pointer;
+	.btn-primary {
+		background-color: #00a5ff;
 		border: none;
+	}
+	.btn-primary:hover {
+		background-color: #0087cf;
+	}
+
+	.cancel {
 		margin-top: 50px;
 		margin-left: 20px;
 		text-align: center;
+	}
+
+	.btn-danger {
+		background-color: rgb(255, 80, 80);
+		border: none;
+	}
+	.btn-danger:hover {
+		background-color: rgb(224, 54, 54);
+		border: none;
 	}
 </style>

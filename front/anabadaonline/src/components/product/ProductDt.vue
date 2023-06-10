@@ -64,7 +64,8 @@
 			:productPrice="seller.productPrice"
 		></BidList>
 
-		<div class="box4">
+		<div class="box4"></div>
+		<div>
 			<router-link
 				class="productFlexIt"
 				v-for="item in productList"
@@ -181,7 +182,7 @@
 				this.$router.push('./auction');
 			},
 			product() {
-				axios.get('/product/main').then((response) => {
+				axios.get('/product/main?size=4').then((response) => {
 					this.productList = response.data.list;
 				});
 			},
@@ -233,7 +234,7 @@
 	}
 
 	.productPicture {
-		background: #d9d9d9;
+		/* background: #d9d9d9; */
 		border-radius: 20px;
 		height: 100%;
 		transition: margin-left 1s;

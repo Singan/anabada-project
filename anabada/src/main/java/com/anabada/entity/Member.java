@@ -26,7 +26,7 @@ public class Member {
     @Column(name = "member_name", nullable = false)
     private String memberName;
     @Column(name = "member_birth")
-    private LocalDate memberBirth;
+    private String memberBirth;
     @Column(name = "member_money" ,nullable = false)
     @ColumnDefault("0")
     private Integer memberMoney;
@@ -48,7 +48,7 @@ public class Member {
     public Member(Long memberNo, String memberName,
                   String memberId,
                   String memberPw,
-                  LocalDate memberBirth,
+                  String memberBirth,
                   Integer memberMoney,
                   String memberDetailAddr,
                   String memberAddr,

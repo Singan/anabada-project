@@ -14,9 +14,7 @@ import java.time.LocalDate;
 public class MemberJoinDto extends MemberLoginDto{
     @NotEmpty(message = "이름을 입력해주세요")
     private String name;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Past
-    private LocalDate birth;
+    private String birth;
     private String detailAddr;
     @NotEmpty(message = "기본 주소지를 입력해주세요")
     private String addr;

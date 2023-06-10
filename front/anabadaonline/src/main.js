@@ -7,7 +7,9 @@ import store from './store';
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import token from './common/token';
-//import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/scss/bootstrap.scss';
+import 'bootstrap';
 const router = createRouter({
 	history: createWebHistory(),
 	routes,

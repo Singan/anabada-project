@@ -1,6 +1,15 @@
 <template>
 	<div class="productFlex">
-		<div class="flexItem" v-for="item in productList" :key="item.productNo">
+		<div class="card flexItem" style="width: 18rem" v-for="item in productList" :key="item.productNo">
+			<router-link :to="'/ProductDt?productNo=' + item.productNo">
+				<img class="card-img-top productImg" :src="item.productImage" />
+			</router-link>
+			<div class="card-body">
+				<h5 class="card-title">{{ item.productName }}</h5>
+				<div class="price card-text">등록 가격 : {{ item.productPrice }} 원</div>
+			</div>
+		</div>
+		<!-- <div class="flexItem" v-for="item in productList" :key="item.productNo">
 			<router-link :to="'/ProductDt?productNo=' + item.productNo">
 				<img class="productImg" :src="item.productImage" />
 			</router-link>
@@ -8,7 +17,7 @@
 			<div class="productName">{{ item.productName }}</div>
 
 			<div class="price">등록 가격 : {{ item.productPrice }} 원</div>
-		</div>
+		</div> -->
 	</div>
 </template>
 <script>
@@ -30,7 +39,7 @@
 		data() {
 			return {
 				productList: [],
-				size: 12,
+				size: 6,
 				page: 0,
 				totalCountPage: 0,
 				loading: false, // 데이터 로딩 상태 추가
@@ -112,7 +121,7 @@
 		/* row의 간격을 10px로 */
 		column-gap: 20px;
 		/* column의 간격을 20px로 */
-		grid-template-columns: 1fr 1fr 1fr 1fr;
+		grid-template-columns: 1fr 1fr 1fr;
 		grid-template-rows: auto;
 		overflow: auto;
 	}
@@ -126,9 +135,8 @@
 
 	.productImg {
 		background: #d9d9d9;
-		border-radius: 10px;
-		height: 160px;
-		max-width: 160px;
+		height: 200px;
+		max-width: 200px;
 	}
 	.productImg:active {
 		transform: translateY(1px);

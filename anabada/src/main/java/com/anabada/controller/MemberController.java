@@ -11,10 +11,17 @@ import com.anabada.dto.response_dto.MemberUpdateFindDto;
 import com.anabada.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,12 +31,18 @@ public class MemberController {
 
     @PostMapping
     @Operation(description = "회원가입")
-    public Long memberJoin(@Valid MemberJoinDto memberJoinDto) {
-        return memberService.memberJoin(memberJoinDto);
+    public ResponseEntity memberJoin(@Valid MemberJoinDto memberJoinDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            Set<String> list = bindingResult.getFieldErrors().stream().map(fieldError ->
+                    fieldError.getField()).collect(Collectors.toSet());
+            return new ResponseEntity<>(list, HttpStatus.BAD_REQUEST);
+        }
+        memberService.memberJoin(memberJoinDto);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @PostMapping("/login")
-    public LoginResultDto memberLogin(@RequestBody  MemberLoginDto memberLoginDto) {
+    public LoginResultDto memberLogin(@RequestBody MemberLoginDto memberLoginDto) {
         return memberService.memberLogin(memberLoginDto);
     }
 
@@ -55,8 +68,9 @@ public class MemberController {
     public ShowUpdateMemberDto memberIdNameImageDto(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
         return memberService.showMemberInfo(memberDetailDTO);
     }
+
     @DeleteMapping("/exist")
-    public void memberExist(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO){
+    public void memberExist(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
         memberService.deleteMember(memberDetailDTO);
     }
 }

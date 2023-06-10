@@ -1,7 +1,7 @@
 @@ -1,74 +1,23 @@
 <template>
 	<Header :isToken="isToken" @logout="logout" v-if="isLoad"></Header>
-	<router-view @logined="login" :isSocket="isSocket" v-if="isLoad" />
+	<router-view @logined="login" :isSocket="isSocket" v-if="isLoad" :addSub="addProduct" />
 </template>
 
 <script>
@@ -56,6 +56,9 @@
 					});
 				}
 			},
+			addProduct(socketId) {
+				this.$store.commit('addMysub', socket.subscribe('/product/myProduct/' + socketId, this.subscribe));
+			},
 			async login() {
 				this.isToken = this.$token.is();
 				this.isLoad = false;
@@ -90,7 +93,6 @@
 		async created() {
 			socket.init();
 			await socket.connect();
-			console.log('소켓 연결');
 			this.isSocket = socket.connected();
 			await this.login();
 			this.isLoad = true;
@@ -112,8 +114,7 @@
 		width: 100vw;
 	}
 
-	a {
+	body a {
 		text-decoration: none;
-		color: black;
 	}
 </style>

@@ -1,89 +1,97 @@
 <template>
-	<form @submit.prevent="productRegister" class="form">
-		<div class="title">상품 등록하기</div>
+	<div class="wrapper .container-fluid">
+		<form @submit.prevent="productRegister" class="form">
+			<div class="title">상품 등록하기</div>
 
-		<div class="imagePreView">
-			<img id="img" />
-		</div>
-		<label class="productSelect" style="background-color: skyblue" for="productImages">
-			이미지 등록
+			<div class="imagePreView">
+				<img id="img" class="img-fluid" />
+			</div>
+
+			<div class="input-group justify-content-center">
+				<label class="input-group-text" for="inputGroupFile01"> 이미지 등록 </label>
+				<input
+					type="file"
+					id="inputGroupFile01"
+					@change="onInputImage"
+					accept="image/*"
+					multiple="multiple"
+					style="width: 0px; height: 0px"
+				/>
+			</div>
+			<div class="commonText">상품명</div>
 			<input
-				id="productImages"
-				type="file"
-				@change="onInputImage"
-				accept="image/*"
-				multiple="multiple"
-				style="width: 0px; height: 0px"
-			/>
-		</label>
-
-		<div class="commonText">상품명</div>
-
-		<div class="nameText rectangle-23" id="name">
-			<input
-				class="textSize"
-				v-model="name"
 				type="text"
-				placeholder="상품명을 입력해주세요"
-				style="border: none; outline: none"
-			/>
-		</div>
-
-		<div class="commonText">경매 시작 가격</div>
-		<div class="priceText" id="price">
-			<input
-				class="textSize"
-				v-model="price"
-				type="number"
-				placeholder="경매 시작 가격을 입력해주세요( , 없이 숫자만 입력)"
-				style="border: none; outline: none"
-			/>
-		</div>
-
-		<div class="commonText">상품 카테고리</div>
-
-		<div class="category">
-			<select v-model="selectCategory" class="categorySelect">
-				<option v-for="item in categoryList" :key="item.categoryNo" :value="item.categoryNo">
-					{{ item.categoryName }}
-				</option>
-			</select>
-		</div>
-
-		<div class="commonText">상품 설명</div>
-
-		<div class="rectangle-233">
-			<textarea
 				class="form-control"
-				id="detail"
-				placeholder="상품 설명을 입력하세요"
-				v-model="detail"
-				rows="7"
-				cols="50"
-				style="border: none; outline: none"
-			></textarea>
-		</div>
-		<div class="usingDate commonText">상품 사용기간 <br /></div>
-		<div class="commonText">사용기간 : {{ usingDate }}</div>
+				placeholder="상품명을 입력해주세요"
+				aria-label="Username"
+				aria-describedby="basic-addon1"
+				v-model="name"
+			/>
 
-		<div class="radioSelect">
-			<input type="radio" id="one" value="미사용" v-model="usingDate" checked />
-			<label for="one">미사용</label>
+			<div class="commonText">경매 시작 가격</div>
+			<input
+				type="number"
+				class="form-control"
+				placeholder="경매 시작 가격을 입력해주세요( , 없이 숫자만 입력)"
+				aria-describedby="basic-addon1"
+				v-model="price"
+			/>
+			<!-- <div class="priceText" id="price">
+				<input
+					class="textSize"
+					type="number"
+					placeholder="경매 시작 가격을 입력해주세요( , 없이 숫자만 입력)"
+					style="border: none; outline: none"
+                    v-model="price"
 
-			<input type="radio" id="two" value="0 ~ 4주" v-model="usingDate" />
-			<label for="two">0 ~ 4주</label>
+				/>
+			</div> -->
 
-			<input type="radio" id="three" value="4 ~ 8주" v-model="usingDate" />
-			<label for="three">4 ~ 8주</label>
+			<div class="commonText">상품 카테고리</div>
 
-			<input type="radio" id="four" value="8주 이상" v-model="usingDate" />
-			<label for="four">8주 이상</label>
-		</div>
-		<label class="submit">
-			등록하기
-			<button class="_18px3" style="display: none">등록하기</button>
-		</label>
-	</form>
+			<div class="category">
+				<select v-model="selectCategory" class="categorySelect">
+					<option v-for="item in categoryList" :key="item.categoryNo" :value="item.categoryNo">
+						{{ item.categoryName }}
+					</option>
+				</select>
+			</div>
+
+			<div class="commonText">상품 설명</div>
+
+			<div class="rectangle-233">
+				<textarea
+					class="form-control"
+					id="detail"
+					placeholder="상품 설명을 입력하세요"
+					v-model="detail"
+					rows="7"
+					cols="50"
+					style="border: none; outline: none"
+				></textarea>
+			</div>
+			<div class="usingDate commonText">상품 사용기간 <br /></div>
+			<div class="commonText">사용기간 : {{ usingDate }}</div>
+
+			<div class="radioSelect">
+				<input type="radio" id="one" value="미사용" v-model="usingDate" checked />
+				<label for="one">미사용</label>
+
+				<input type="radio" id="two" value="0 ~ 4주" v-model="usingDate" />
+				<label for="two">0 ~ 4주</label>
+
+				<input type="radio" id="three" value="4 ~ 8주" v-model="usingDate" />
+				<label for="three">4 ~ 8주</label>
+
+				<input type="radio" id="four" value="8주 이상" v-model="usingDate" />
+				<label for="four">8주 이상</label>
+			</div>
+			<label class="submit">
+				등록하기
+				<button class="_18px3" style="display: none">등록하기</button>
+			</label>
+		</form>
+	</div>
 </template>
 <script>
 	import axios from '@/axios.js';
@@ -143,22 +151,19 @@
 							icon: 'error',
 							title: '상품 등록에 실패하였습니다.',
 						});
+						return;
 					});
+				this.$emit('addSub', response.data.productNo);
 				this.$router.push('./ProductDt?productNo=' + response.data.productNo);
 			},
 
 			onInputImage(e) {
 				this.productImages = e.target.files;
-				console.log(this.productImages);
-
 				//이미지 미리보기
 				const image = document.getElementById('img');
 				const reader = new FileReader();
 				reader.onload = (e) => {
 					image.src = e.target.result;
-					image.width = 120;
-					image.height = 120;
-					document.querySelector('.imagePreView').style.backgroundColor = 'white';
 				};
 				reader.readAsDataURL(this.productImages.item(0));
 			},
@@ -170,12 +175,14 @@
 	};
 </script>
 <style scoped>
+	.wrapper {
+		background-color: #f8f9fa;
+	}
 	.form-control {
-		margin: 5px 0px 0px 30px;
+		width: 50%;
 	}
 
 	.form {
-		width: 100%;
 		background: #ffffff;
 		width: 700px;
 		height: 1100px;
@@ -319,7 +326,6 @@
 
 	.imagePreView {
 		background: #d9d9d9;
-		width: 120px;
-		height: 120px;
+		width: 200px;
 	}
 </style>
