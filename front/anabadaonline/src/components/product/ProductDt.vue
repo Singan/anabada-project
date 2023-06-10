@@ -129,13 +129,14 @@
 				this.isClicked = !this.isClicked;
 			},
 			timeStart() {
-				let bidTime = new Date(this.seller.bidTime);
-				bidTime.setMinutes(bidTime.getMinutes() + 10);
-				this.leftTime = bidTime;
+				this.leftTime = new Date(this.seller.bidTime);
+				this.leftTime.setMinutes(this.leftTime.getMinutes() + 10);
 				let date = new Date();
 				this.leftTime = this.leftTime - date;
 				if (this.leftTime > 0) {
 					this.timerInterval = setInterval(this.timer, 1000);
+				} else {
+					this.leftTimerView = '경매가 종료되었습니다.';
 				}
 			},
 
@@ -158,7 +159,6 @@
 				this.seller.productHighPrice = resObj.price;
 				clearInterval(this.timerInterval);
 				this.seller.bidTime = new Date();
-
 				this.timeStart();
 			},
 
