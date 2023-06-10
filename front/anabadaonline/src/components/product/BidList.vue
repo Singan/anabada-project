@@ -12,7 +12,7 @@
 		<div class="user" v-for="(bid, index) in bidList" :key="index">
 			<div class="ListImage"><img :src="bid.memberImage" /></div>
 			<div class="userName">{{ bid.memberName }}</div>
-			<div class="userPrice">{{ bid.price }}원</div>
+			<div class="userPrice">{{ bid.price.toLocaleString() }}원</div>
 			<div class="bidTime">{{ bid.bidTime }}</div>
 		</div>
 		<div v-if="bidList.length <= 0">현재 등록된 경매가 없습니다. 입찰하셔서 낙찰의 주인공이 되보세요!</div>

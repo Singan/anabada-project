@@ -12,6 +12,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,7 +34,7 @@ public class ProductFindOneDto {
     private String productTime;
     private List<String> productImageList;
     private Integer productHighPrice;
-    private LocalDateTime bidTime;
+    private String bidTime;
     public ProductFindOneDto(ProductFindOneInterface product, List<ProductImage> piList, String prefix) {
         this.productNo = product.getProductNo();
         this.memberName = product.getMemberName();
@@ -56,7 +57,7 @@ public class ProductFindOneDto {
         Integer highPrice = product.getProductHighPrice();
         if(highPrice != null) {
             this.productHighPrice = highPrice;
-            this.bidTime = product.getBidTime();
+            this.bidTime = product.getBidTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
         }
 
     }

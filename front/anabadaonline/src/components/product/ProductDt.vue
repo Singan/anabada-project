@@ -14,10 +14,8 @@
 				</div>
 			</div>
 		</div>
-
 		<button class="prev" @click="prevSlide">&lt;</button>
 		<button class="next" @click="nextSlide">&gt;</button>
-
 		<div class="userInfo">
 			<img class="userImage" src="@/assets/userImage.jpg" />
 			<div class="box1">
@@ -41,9 +39,9 @@
 
 		<div class="productInfoBox">
 			<div class="productRemainTime" v-if="seller.productHighPrice">남은 시간 : {{ leftTimerView }}</div>
-			<div class="productRegisterPrice">등록 가격 : {{ seller.productPrice }}원</div>
+			<div class="productRegisterPrice">등록 가격 : {{ productPrice.toLocaleString() }}원</div>
 			<div class="productHighPrice" v-if="seller.productHighPrice">
-				현재 최고가 : {{ seller.productHighPrice }} 원
+				현재 최고가 : {{ seller.productHighPrice.toLocaleString() }} 원
 			</div>
 
 			<div class="productExplain">상품 사용기간 : {{ seller.productUseDate }}</div>
@@ -101,6 +99,10 @@
 				}
 			},
 			leftTime: function () {},
+			$route: function (r) {
+				this.sellerInfo();
+				this.productNo = r.query.productNo;
+			},
 		},
 		name: '',
 		components: { BidList },
@@ -119,6 +121,7 @@
 				productSubscribe: null,
 				timerInterval: null,
 				productList: '',
+				productPrice: 0,
 			};
 		},
 
@@ -126,7 +129,9 @@
 		methods: {
 			async sellerInfo() {
 				const response = await axios.get('/product?productNo=' + this.productNo);
+				console.log(this.productNo);
 				this.seller = response.data;
+				this.productPrice = response.data.productPrice;
 				this.timeStart();
 			},
 			bidStart() {
@@ -134,9 +139,12 @@
 			},
 			timeStart() {
 				this.leftTime = new Date(this.seller.bidTime);
+
 				this.leftTime.setMinutes(this.leftTime.getMinutes() + 10);
 				let date = new Date();
 				this.leftTime = this.leftTime - date;
+				console.log(this.seller.bidTime);
+				console.log(this.leftTime);
 				if (this.leftTime > 0) {
 					this.timerInterval = setInterval(this.timer, 1000);
 				} else {
@@ -152,6 +160,7 @@
 						icon: 'info',
 						title: '경매가 종료되었습니다.',
 					});
+					this.leftTimerView = '경매가 종료되었습니다.';
 					return;
 				}
 				let s = Math.floor(this.leftTime / 1000);
@@ -187,7 +196,6 @@
 			refresh(productNo) {
 				this.$router.push(`/productDt?productNo=${productNo}`);
 				console.log(productNo);
-				this.$forceUpdate();
 			},
 		},
 		created() {
