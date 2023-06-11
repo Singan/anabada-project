@@ -29,7 +29,7 @@
 				<div class="chatBox"><img src="@/assets/chatBubble.jpg" /></div>
 			</div>
 
-			<div class="chatContent" v-if="isClick">
+			<div class="chatContent justify-content-end" v-if="isClick">
 				<div class="userName2">XX님 과의 채팅</div>
 				<div class="productBox">
 					<div class="productImage2"><img src="@/assets/userImage.jpg" /></div>
@@ -40,7 +40,7 @@
 				</div>
 
 				<!-- 채팅 -->
-				<div class="chatting">
+				<div class="chatting flex-column flex-grow-1">
 					<div class="receiver">XX님이 보낸 메시지</div>
 					<div class="sender">내가 보내는 메세지</div>
 				</div>
