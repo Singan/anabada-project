@@ -10,26 +10,44 @@
 						<!--대화상대 이미지 들어갈자리-->
 					</div>
 					<div class="userInfo">
-						<div class="userName">유저이름 들어갈자리</div>
+						<div class="userInfoBox1">
+							<div class="userName">유저이름 들어갈자리</div>
+							<div class="region">지역 들어갈 자리</div>
+						</div>
 						<div class="productName">상품이름 들어갈 자리</div>
 					</div>
-					<div class="region">경기 성남시</div>
+
 					<div class="productImage">
 						<img src="@/assets/userImage.jpg" />
 						<!--상품 이미지 들어갈자리-->
 					</div>
 				</div>
 			</div>
-
+			<!-- -------------여기부터 채팅내용 들어갈 자리---------------->
 			<div class="chatContent">
 				<div class="chatBox"><img src="@/assets/chatBubble.jpg" /></div>
+			</div>
+			<div class="chatContent2" v-if="showConversation">
+				<div class="userName2">XX님과의 채팅</div>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	export default {};
+	export default {
+		data() {
+			return {
+				showConversation: false,
+			};
+		},
+
+		methods: {
+			showchatContent2() {
+				this.showConversation = true;
+			},
+		},
+	};
 </script>
 
 <style scoped>
@@ -57,14 +75,19 @@
 		flex-direction: column;
 	}
 
+	.chatContent2 {
+		display: flex;
+		flex-direction: column;
+	}
+
 	.listHeader {
 		font-size: 16px;
 		font-weight: bold;
 		background: #ffffff;
 		color: black;
 		font-family: 'Roboto', sans-serif;
-		height: 64px;
-		width: 270px;
+		height: 78px;
+		width: 330px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -86,13 +109,12 @@
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		height: 64px;
-		width: 270px;
+		height: 78px;
+		width: 330px;
 		background-color: #ffffff;
 		border: 1.5px solid #eaebee;
 		border-top: none;
 		cursor: pointer;
-		justify-content: space-between;
 	}
 
 	.userImage img {
@@ -136,11 +158,25 @@
 	}
 
 	.productImage {
-		margin-left: 38px;
+		margin-left: auto;
 	}
 
 	.region {
-		font-size: 13px;
+		margin-left: 10px;
+		font-size: 12px;
 		letter-spacing: -0.02em;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		color: #878b93;
+	}
+
+	.userInfoBox1 {
+		display: flex;
+		flex-direction: row;
+	}
+
+	.userName2 {
+		font-size: 18px;
 	}
 </style>
