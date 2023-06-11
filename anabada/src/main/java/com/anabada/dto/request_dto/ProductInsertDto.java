@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.NotBlank;
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,13 +19,15 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 public class ProductInsertDto {
-
+    @NotBlank
     private String name;
+    @NotBlank
     private String usingDate;
 
     private String detail;
+    @NotBlank
     private Integer price;
-
+    @NotBlank
     private Long categoryNo;
     private List<MultipartFile> productImages;
     public Product getProduct(MemberDetailDTO principal,String thumbnail ){

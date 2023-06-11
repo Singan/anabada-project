@@ -10,7 +10,7 @@
 		</div>
 
 		<div class="content2">
-			<div class="Text3">
+			<div class="Text3 display-4">
 				우리 동네에서 <br />펼쳐지는 경매장<br /><br />
 				<div class="Text4">내가 사는 지역에서 이루어지는 거래를 지금 경험해보세요</div>
 			</div>

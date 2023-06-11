@@ -116,14 +116,16 @@
 		grid-template-rows: auto;
 		overflow: auto;
 	}
+	@media (max-width: 576px) {
+		.productFlex {
+			display: flex;
+			flex-wrap: wrap;
+		}
 
-	.flexItem {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
+		.flexItem {
+			flex-basis: 100%;
+		}
 	}
-
 	.productImg {
 		background: #d9d9d9;
 		width: 100%;
