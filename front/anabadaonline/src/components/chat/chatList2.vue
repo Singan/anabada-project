@@ -4,10 +4,10 @@
 			<div class="chatList">
 				<div class="listHeader">채팅 목록</div>
 
-				<div class="chatTarget">
+				<div class="chatTarget" @click="isClick = true">
 					<div class="userImage">
-						<img src="@/assets/userImage.jpg" />
 						<!--대화상대 이미지 들어갈자리-->
+						<img src="@/assets/userImage.jpg" />
 					</div>
 					<div class="userInfo">
 						<div class="userInfoBox1">
@@ -18,13 +18,18 @@
 					</div>
 
 					<div class="productImage">
-						<img src="@/assets/userImage.jpg" />
 						<!--상품 이미지 들어갈자리-->
+						<img src="@/assets/userImage.jpg" />
 					</div>
 				</div>
 			</div>
-			<!-- -------------여기부터 채팅내용 들어갈 자리---------------->
-			<div class="chatContent">
+			<!-- -------------여기부터 채팅관련 들어갈 자리---------------->
+
+			<div v-if="!isClick" class="chatContent2">
+				<div class="chatBox"><img src="@/assets/chatBubble.jpg" /></div>
+			</div>
+
+			<div class="chatContent" v-if="isClick">
 				<div class="userName2">XX님 과의 채팅</div>
 				<div class="productBox">
 					<div class="productImage2"><img src="@/assets/userImage.jpg" /></div>
@@ -33,14 +38,31 @@
 						<div class="productPrice">상품 가격</div>
 					</div>
 				</div>
-				<div class="chatBox"><img src="@/assets/chatBubble.jpg" /></div>
+
+				<!-- 채팅 -->
+				<div class="chatting">
+					<div class="receiver">XX님이 보낸 메시지</div>
+					<div class="sender">내가 보내는 메세지</div>
+				</div>
+
+				<!-- 채팅 내용 입력창 + 보내기 버튼 -->
+				<div class="chatControll">
+					<textarea class="chatInput"> </textarea>
+					<button class="sendButton">전송</button>
+				</div>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	export default {};
+	export default {
+		data() {
+			return {
+				isClick: false,
+			};
+		},
+	};
 </script>
 
 <style scoped>
@@ -69,6 +91,17 @@
 		width: 50rem;
 		height: 60rem;
 		background-color: #ffffff;
+		border: 1.5px solid #eaebee;
+		border-top: none;
+		border-left: none;
+	}
+	.chatContent2 {
+		display: flex;
+		flex-direction: column;
+		width: 50rem;
+		height: 60rem;
+		background-color: #ffffff;
+		border: 1.5px solid #eaebee;
 	}
 
 	.listHeader {
@@ -90,6 +123,8 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		width: 50rem;
+		height: 60rem;
 	}
 
 	.chatTarget {
@@ -181,6 +216,7 @@
 		align-items: center;
 		border: 1.5px solid #eaebee;
 		justify-content: center;
+		font-size: 20px;
 	}
 
 	.productBox {
@@ -207,5 +243,66 @@
 		font-size: 16px;
 		letter-spacing: -0.02em;
 		font-weight: bold;
+	}
+
+	.chatting {
+		display: flex;
+		flex-direction: column;
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
+
+	.receiver {
+		background-color: #eaeaea;
+		align-self: flex-start;
+		margin-left: 10px;
+		margin-top: 15px;
+		font-size: 18px;
+		padding: 10px 14px;
+		border-radius: 2px 20px 20px;
+	}
+
+	.sender {
+		background-color: #d4e1f4;
+		align-self: flex-end;
+		margin-right: 15px;
+		font-size: 18px;
+		border-radius: 20px 2px 20px 20px;
+		padding: 10px 14px;
+		color: white;
+		font-weight: 500;
+	}
+
+	.chatControll {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		border-radius: 8px;
+		height: 125px;
+		border: 1px solid;
+		margin: 16px;
+	}
+
+	.chatInput {
+		margin: 12px 12px 0px;
+		border-radius: 5px;
+		width: 95%;
+		height: 60%;
+		outline: none;
+		border: none;
+	}
+
+	.sendButton {
+		border-radius: 4px;
+		width: 300px;
+		height: 32px;
+		line-height: 150%;
+		font-weight: 600;
+		font-size: 22px;
+		background-color: #d4e1f4;
+		cursor: pointer;
+		border: none;
+		color: white;
+		margin-bottom: 8px;
 	}
 </style>
