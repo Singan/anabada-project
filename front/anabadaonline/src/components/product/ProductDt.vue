@@ -1,7 +1,9 @@
 <template>
 	<div class="form overflow-auto">
-		<router-link to="/auction?categoryNo=1" class="listButton">목록으로 돌아가기</router-link>
-		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+		<router-link to="/auction?categoryNo=1" class="listButton">
+			<button type="button" class="btn-close" aria-label="Close"></button>
+		</router-link>
+		<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
 			<div class="carousel-indicators">
 				<button
 					type="button"
@@ -24,7 +26,6 @@
 					<img class="d-block w-100" :src="image" />
 				</div>
 			</div>
-			<button class="prev" @click="prevSlide">&lt;</button>
 			<button
 				class="carousel-control-prev"
 				type="button"
@@ -240,7 +241,7 @@
 <style scoped>
 	.carousel-control-prev-icon,
 	.carousel-control-next-icon {
-		background-color: black;
+		filter: invert(100%);
 	}
 
 	.form {

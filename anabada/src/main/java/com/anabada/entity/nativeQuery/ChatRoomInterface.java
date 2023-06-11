@@ -20,4 +20,6 @@ public interface ChatRoomInterface {
     Integer getBidPrice();
 
     String getProductName();
+    String getMemberWishAddr();
+    String getProductThumbnail();
 }

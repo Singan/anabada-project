@@ -4,22 +4,21 @@
 			<div class="chatList">
 				<div class="listHeader">채팅 목록</div>
 
-				<div class="chatTarget" @click="isClick = true">
+				<div class="chatTarget" @click="chatMessageList(chat)" v-for="chat in chatList" :key="chat.successNo">
 					<div class="userImage">
-						<!--대화상대 이미지 들어갈자리-->
-						<img src="@/assets/userImage.jpg" />
+						<img :src="chat.memberImage" />
 					</div>
 					<div class="userInfo">
 						<div class="userInfoBox1">
-							<div class="userName">유저이름 들어갈자리</div>
-							<div class="region">지역 들어갈 자리</div>
+							<div class="userName">{{ chat.memberName }}</div>
+							<div class="region">{{ chat.memberWishAddr }}</div>
 						</div>
-						<div class="productName">상품이름 들어갈 자리</div>
+						<div class="productName">{{ chat.productName }}</div>
 					</div>
 
 					<div class="productImage">
 						<!--상품 이미지 들어갈자리-->
-						<img src="@/assets/userImage.jpg" />
+						<img :src="chat.productThumbnail" />
 					</div>
 				</div>
 			</div>
@@ -30,25 +29,35 @@
 			</div>
 
 			<div class="chatContent justify-content-end" v-if="isClick">
-				<div class="userName2">XX님 과의 채팅</div>
+				<div class="userName2">
+					{{ selectChat.memberName }}님과의 채팅
+					<button type="button" class="btn-close" aria-label="Close" @click="isClick = false"></button>
+				</div>
 				<div class="productBox">
-					<div class="productImage2"><img src="@/assets/userImage.jpg" /></div>
+					<div class="productImage2"><img :src="selectChat.productThumbnail" /></div>
 					<div class="productBox2">
-						<div class="productName2">상품 이름</div>
-						<div class="productPrice">상품 가격</div>
+						<div class="productName2">상품명 : {{ selectChat.productName }}</div>
+						<div class="productPrice">낙찰 가격 : {{ selectChat.bidPrice }}원</div>
 					</div>
 				</div>
 
 				<!-- 채팅 -->
-				<div class="chatting flex-column flex-grow-1">
-					<div class="receiver">XX님이 보낸 메시지</div>
-					<div class="sender">내가 보내는 메세지</div>
+				<div class="chatting flex-grow-1" ref="messages">
+					<div
+						class="msg"
+						:class="[message.memberNo != $store.getters.getMember.no ? 'receiver' : 'sender']"
+						v-for="message in messageList"
+					>
+						{{ message.message }}
+					</div>
 				</div>
 
 				<!-- 채팅 내용 입력창 + 보내기 버튼 -->
 				<div class="chatControll">
-					<textarea class="chatInput"> </textarea>
-					<button class="sendButton">전송</button>
+					<textarea class="chatInput" v-model="message"> </textarea>
+				</div>
+				<div class="container-fluid d-flex justify-content-center">
+					<button class="sendButton" @click="send">전송</button>
 				</div>
 			</div>
 		</div>
@@ -56,11 +65,93 @@
 </template>
 
 <script>
+	import axios from '@/axios';
 	export default {
+		inject: ['socket'],
+		watch: {
+			isSocket: function (isSocket) {
+				if (isSocket) {
+					console.log('와치');
+					this.sub();
+				}
+			},
+			messageList: {
+				// 배열 내부를 검사하여, 알려준다.
+				deep: true,
+
+				handler() {
+					this.$nextTick(() => {
+						let messages = this.$refs.messages;
+						messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+					});
+				},
+			},
+		},
+		props: {
+			isSocket: {
+				type: Boolean,
+			},
+		},
 		data() {
+			// quickfix to have components available to pass as props
 			return {
+				myData: '',
+				chatList: [],
 				isClick: false,
+				memberName: '',
+				memberNo: '',
+				successNo: '',
+				message: '',
+				subList: [],
+				messageList: [],
+				selectChat: '',
 			};
+		},
+		mounted() {
+			this.getMyChatList();
+		},
+		updated() {},
+		methods: {
+			async getMyChatList() {
+				const response = await axios.get('/chat/list');
+				this.chatList = response.data;
+
+				if (this.isSocket) {
+					this.sub();
+				}
+			},
+			async chatMessageList(chat) {
+				this.isClick = true;
+				this.memberName = chat.memberName;
+				this.successNo = chat.successNo;
+				this.selectChat = chat;
+				const res = await axios.get('/chat/content?successNo=' + chat.successNo);
+				this.messageList = res.data;
+			},
+			async sub() {
+				this.chatList.forEach((chat) => {
+					this.subList.push(this.socket.subscribe('/chat/' + chat.successNo, this.recevieFunc));
+				});
+			},
+			send() {
+				if (this.message == '' || this.message == null) {
+					return;
+				}
+				let obj = {
+					message: this.message,
+					successNo: this.successNo,
+					memberName: this.$store.getters.getMember.name,
+					memberImage: this.$store.getters.getMember.image,
+					memberNo: this.$store.getters.getMember.no,
+				};
+				this.socket.send(obj, '/chat');
+				this.message = '';
+			},
+			recevieFunc(res) {
+				if (this.successNo == res.successNo) {
+					this.messageList.push(res);
+				}
+			},
 		},
 	};
 </script>
@@ -75,9 +166,7 @@
 	.flexContainer {
 		display: flex;
 		flex-direction: row;
-		overflow: hidden;
 		width: 100%;
-		height: 60rem;
 		justify-content: center;
 	}
 
@@ -210,7 +299,7 @@
 	}
 
 	.userName2 {
-		height: 78px;
+		min-height: 78px;
 		width: 100%;
 		display: flex;
 		align-items: center;
@@ -220,7 +309,7 @@
 	}
 
 	.productBox {
-		height: 78px;
+		min-height: 78px;
 		width: 100%;
 		display: flex;
 		justify-content: center;
@@ -269,7 +358,7 @@
 		font-size: 18px;
 		border-radius: 20px 2px 20px 20px;
 		padding: 10px 14px;
-		color: white;
+		color: black;
 		font-weight: 500;
 	}
 
@@ -278,8 +367,9 @@
 		flex-direction: column;
 		align-items: center;
 		border-radius: 8px;
-		height: 125px;
+		min-height: 125px;
 		border: 1px solid;
+		overflow: auto;
 		margin: 16px;
 	}
 
@@ -287,8 +377,10 @@
 		margin: 12px 12px 0px;
 		border-radius: 5px;
 		width: 95%;
-		height: 60%;
+		height: 100%;
+		overflow-y: auto;
 		outline: none;
+
 		border: none;
 	}
 
@@ -304,5 +396,11 @@
 		border: none;
 		color: white;
 		margin-bottom: 8px;
+	}
+	.msg {
+		/* width: max-content; */
+		word-break: break-all;
+		white-space: pre-wrap;
+		max-width: 75%;
 	}
 </style>

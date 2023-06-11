@@ -17,5 +17,6 @@ public class ChatRoomDto {
     private String lastMessageTime;
     private String productName;
     private Integer bidPrice;
-
+    private String memberWishAddr;
+    private String productThumbnail;
 }

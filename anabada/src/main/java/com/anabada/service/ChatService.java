@@ -39,6 +39,8 @@ public class ChatService {
                         .memberImage(prefix + chatRoom.getMemberImage())
                         .bidPrice(chatRoom.getBidPrice())
                         .productName(chatRoom.getProductName())
+                        .productThumbnail(prefix+chatRoom.getProductThumbnail())
+                        .memberWishAddr(chatRoom.getMemberWishAddr())
                         .build()
         ).collect(Collectors.toList());
         return chatRoomDtos;

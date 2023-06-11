@@ -24,7 +24,9 @@ public interface ChatRoomRepository extends JpaRepository<ChatRoom, Long> {
             "m.member_name memberName," +
             "m.member_image memberImage," +
             "b.bid_price bidPrice," +
-            "p.product_name productName" +
+            "p.product_name productName," +
+            "m.member_wish_addr memberWishAddr," +
+            "p.product_thumbnail productThumbnail " +
             " from chat_room c1 " +
             "join (select c2.* from chat_room c2 where c2.member_no =:memberNo) c2 " +
             "on c1.success_no = c2.success_no and c1.member_no not in(c2.member_no) " +
