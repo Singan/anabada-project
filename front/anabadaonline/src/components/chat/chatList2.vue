@@ -25,29 +25,22 @@
 			</div>
 			<!-- -------------여기부터 채팅내용 들어갈 자리---------------->
 			<div class="chatContent">
+				<div class="userName2">XX님 과의 채팅</div>
+				<div class="productBox">
+					<div class="productImage2"><img src="@/assets/userImage.jpg" /></div>
+					<div class="productBox2">
+						<div class="productName2">상품 이름</div>
+						<div class="productPrice">상품 가격</div>
+					</div>
+				</div>
 				<div class="chatBox"><img src="@/assets/chatBubble.jpg" /></div>
-			</div>
-			<div class="chatContent2" v-if="showConversation">
-				<div class="userName2">XX님과의 채팅</div>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				showConversation: false,
-			};
-		},
-
-		methods: {
-			showchatContent2() {
-				this.showConversation = true;
-			},
-		},
-	};
+	export default {};
 </script>
 
 <style scoped>
@@ -73,15 +66,13 @@
 	.chatContent {
 		display: flex;
 		flex-direction: column;
-	}
-
-	.chatContent2 {
-		display: flex;
-		flex-direction: column;
+		width: 50rem;
+		height: 60rem;
+		background-color: #ffffff;
 	}
 
 	.listHeader {
-		font-size: 16px;
+		font-size: 20px;
 		font-weight: bold;
 		background: #ffffff;
 		color: black;
@@ -95,10 +86,6 @@
 	}
 
 	.chatBox {
-		width: 50rem;
-		height: 60rem;
-		background-color: #ffffff;
-		border: 1.5px solid #eaebee;
 		border-bottom: none;
 		display: flex;
 		align-items: center;
@@ -133,6 +120,21 @@
 		border-radius: 4px;
 	}
 
+	.productImage2 img {
+		width: 40px;
+		height: 40px;
+		background-color: #ffffff;
+		border: 1px solid #dcdee3;
+		border-radius: 4px;
+	}
+
+	.productImage {
+		margin-left: auto;
+	}
+
+	.productImage2 {
+	}
+
 	.userInfo {
 		display: flex;
 		flex-direction: column;
@@ -157,10 +159,6 @@
 		overflow: hidden;
 	}
 
-	.productImage {
-		margin-left: auto;
-	}
-
 	.region {
 		margin-left: 10px;
 		font-size: 12px;
@@ -177,6 +175,37 @@
 	}
 
 	.userName2 {
-		font-size: 18px;
+		height: 78px;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		border: 1.5px solid #eaebee;
+		justify-content: center;
+	}
+
+	.productBox {
+		height: 78px;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: row;
+		border: 1.5px solid #eaebee;
+		border-top: none;
+	}
+
+	.productBox2 {
+		margin-left: 36px;
+	}
+
+	.productName2 {
+		font-size: 16px;
+		letter-spacing: -0.02em;
+	}
+
+	.productPrice {
+		font-size: 16px;
+		letter-spacing: -0.02em;
+		font-weight: bold;
 	}
 </style>
