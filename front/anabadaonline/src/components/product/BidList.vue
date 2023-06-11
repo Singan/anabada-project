@@ -122,6 +122,7 @@
 		border-radius: 5px;
 		width: 100%;
 		height: 900px;
+		overflow: hidden;
 		display: flex;
 		flex-direction: column;
 		align-items: center;

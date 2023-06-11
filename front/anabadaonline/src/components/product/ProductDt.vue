@@ -1,21 +1,50 @@
 <template>
-	<div class="form" :style="'height : ' + { isClicked } ? '2800px' : '1900x'">
+	<div class="form overflow-auto">
 		<router-link to="/auction?categoryNo=1" class="listButton">목록으로 돌아가기</router-link>
-
-		<div class="imgBox">
-			<div
-				class="productPicture"
-				:style="{
-					marginLeft: `-${imageCurrIndex * 100}%`,
-				}"
-			>
-				<div v-for="(image, index) in seller.productImageList" :key="index" class="imageBox">
-					<img :src="image" />
+		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+			<div class="carousel-indicators">
+				<button
+					type="button"
+					data-bs-target="#carouselExampleIndicators"
+					:data-bs-slide-to="index"
+					:class="{ active: index == 0 }"
+					aria-current="true"
+					:aria-label="'Slide' + index"
+					v-for="(image, index) in seller.productImageList"
+				></button>
+			</div>
+			<div class="carousel-inner">
+				<div
+					class="carousel-item w-100"
+					style="max-height: 400px"
+					v-for="(image, index) in seller.productImageList"
+					:key="index"
+					:class="{ active: index == 0 }"
+				>
+					<img class="d-block w-100" :src="image" />
 				</div>
 			</div>
+			<button class="prev" @click="prevSlide">&lt;</button>
+			<button
+				class="carousel-control-prev"
+				type="button"
+				data-bs-target="#carouselExampleDark"
+				data-bs-slide="prev"
+			>
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button
+				class="carousel-control-next"
+				type="button"
+				data-bs-target="#carouselExampleDark"
+				data-bs-slide="next"
+			>
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
 		</div>
-		<button class="prev" @click="prevSlide">&lt;</button>
-		<button class="next" @click="nextSlide">&gt;</button>
+
 		<div class="userInfo">
 			<img class="userImage" src="@/assets/userImage.jpg" />
 			<div class="box1">
@@ -121,7 +150,7 @@
 				leftTime: null,
 				productSubscribe: null,
 				timerInterval: null,
-				productList: '',
+				productList: [],
 				productPrice: 0,
 			};
 		},
@@ -209,6 +238,11 @@
 </script>
 
 <style scoped>
+	.carousel-control-prev-icon,
+	.carousel-control-next-icon {
+		background-color: black;
+	}
+
 	.form {
 		background: #ffffff;
 		width: 850px;
@@ -222,7 +256,16 @@
 		margin-bottom: 20px;
 		padding: 5px;
 	}
-
+	@media (max-width: 768px) {
+		.form {
+			background: #ffffff;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			margin: 100px auto 0;
+			position: relative;
+		}
+	}
 	.productHeader {
 		display: flex;
 		margin-left: 60px;
@@ -451,9 +494,7 @@
 		display: flex;
 		gap: 40px;
 		align-items: center;
-		justify-content: center;
-		margin-left: 708px;
-		margin-bottom: 80px;
+		justify-content: flex-end;
 	}
 
 	.box3 {
