@@ -3,7 +3,7 @@
 		<form
 			ref="form"
 			@submit.prevent="productRegister"
-			class="container-sm d-flex flex-column align-items-center justify-content-between overflow-auto h-100"
+			class="container-sm d-flex flex-column align-items-center justify-content-between overflow-auto"
 		>
 			<div class="title">상품 등록하기</div>
 
