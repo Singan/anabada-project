@@ -23,4 +23,5 @@ public interface ProductFindOneInterface {
     //List<String> getProductImageList();
      Integer getProductHighPrice();
      //LocalDateTime getProductLeftTime();
+    String getMemberImage();
 }

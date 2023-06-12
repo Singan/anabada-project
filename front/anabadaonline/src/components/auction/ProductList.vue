@@ -128,9 +128,8 @@
 	}
 	.productImg {
 		background: #d9d9d9;
-		width: 100%;
 		height: 300px;
-		object-fit: cover;
+		object-fit: contain;
 	}
 	.productImg:active {
 		transform: translateY(1px);

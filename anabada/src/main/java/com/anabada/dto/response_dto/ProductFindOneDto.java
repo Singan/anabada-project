@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
-@Setter
 public class ProductFindOneDto {
 
     private Long productNo;
@@ -35,6 +34,7 @@ public class ProductFindOneDto {
     private List<String> productImageList;
     private Integer productHighPrice;
     private String bidTime;
+    private String memberImage;
     public ProductFindOneDto(ProductFindOneInterface product, List<ProductImage> piList, String prefix) {
         this.productNo = product.getProductNo();
         this.memberName = product.getMemberName();
@@ -46,6 +46,7 @@ public class ProductFindOneDto {
         this.memberAddr = product.getMemberAddr();
         this.productTime= product.getProductTime();
         this.memberNo = product.getMemberNo();
+        this.memberImage = prefix + product.getMemberImage();
         if(piList!=null){
             this.productImageList = piList.stream().map(productImage ->  {
                 return prefix+productImage.getImageAddr();

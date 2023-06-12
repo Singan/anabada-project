@@ -23,7 +23,7 @@
 					:key="index"
 					:class="{ active: index == 0 }"
 				>
-					<img class="d-block w-100" :src="image" />
+					<img class="d-block productImage" :src="image" />
 				</div>
 			</div>
 			<button
@@ -47,7 +47,7 @@
 		</div>
 
 		<div class="userInfo">
-			<img class="userImage" src="@/assets/userImage.jpg" />
+			<img class="userImage" :src="seller.memberImage" />
 			<div class="box1">
 				<div class="sellerName">판매자 이름 : {{ seller.memberName }}</div>
 				<div class="mainDeal">판매자 주 거래지 : {{ seller.memberAddr }}</div>
@@ -533,10 +533,12 @@
 	}
 
 	.productImage {
-		background: #d9d9d9;
 		border-radius: 20px;
-		width: 160px;
-		height: 160px;
+		height: auto;
+		max-height: 100%;
+		max-width: 100%;
+		object-fit: contain; /* 이미지를 비율을 유지하며 부모 요소 내에 맞추기 */
+		margin: auto;
 	}
 
 	.productName {

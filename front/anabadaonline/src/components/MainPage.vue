@@ -216,7 +216,7 @@
 
 	.productImage3 {
 		margin-left: 15rem;
-		position: absolute;
+		position: relative;
 		left: 12%;
 		top: 15%;
 		background: #ffffff;
@@ -236,6 +236,75 @@
 		height: 26rem;
 		border-radius: 25px;
 		box-shadow: 10px 0px 12px rgba(0, 0, 0, 0.08);
+	}
+	@media (max-width: 768px) {
+		.content1,
+		.content2 .content3 {
+			height: auto;
+			overflow: auto;
+			min-height: 70vh;
+		}
+		.productImage {
+			display: inline-block;
+			margin: auto;
+			position: relative;
+			top: auto;
+		}
+		.productImage2 {
+			display: inline-block;
+			margin-left: 5px;
+			position: absolute;
+			left: 0;
+		}
+		.box1 {
+			display: flex;
+			flex-direction: column; /* 변경: 세로로 정렬 */
+			gap: 10px; /* 변경: grid-gap 대신 gap 사용 */
+		}
+		.Text1 {
+			margin-left: 10vw; /* 변경: 뷰포트 너비의 10%로 설정 */
+			color: #000000;
+			text-align: center;
+			font: 700 4vw 'Roboto', sans-serif; /* 변경: 뷰포트 너비에 상대적인 폰트 크기로 설정 */
+			display: block; /* 변경: flexbox 레이아웃 사용 */
+			justify-content: center; /* 변경: 가로 중앙 정렬 */
+			align-items: center; /* 변경: 세로 중앙 정렬 */
+			position: relative; /* 변경: 절대 위치 해제 */
+			left: auto; /* 변경: 왼쪽 위치 초기화 */
+			top: auto; /* 변경: 위쪽 위치 초기화 */
+		}
+		.content1 {
+			overflow-y: auto;
+		}
+		.Text2 {
+			color: #000000;
+			text-align: center;
+			font: 400 18px 'Roboto', sans-serif;
+			align-items: center;
+			display: block;
+		}
+		.productImage3 {
+			position: relative;
+			margin-left: 0;
+			left: auto;
+			top: auto;
+			display: inline-block;
+		}
+
+		.productImage4 {
+			position: relative;
+			left: auto;
+			top: auto;
+			display: inline-block;
+			margin-left: auto;
+		}
+		.Text3 {
+			position: relative;
+			margin-left: 0;
+			left: auto;
+			top: auto;
+			text-align: center;
+		}
 	}
 
 	.productImg1 {
