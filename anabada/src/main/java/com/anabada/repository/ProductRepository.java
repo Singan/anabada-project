@@ -23,8 +23,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
                     "p.product_visit as productVisit , p.product_price as productPrice,"+
                     "DATE_FORMAT(p.create_date_time,'%Y년% %m월 %d일 %h시 %i분') as productTime,"+
                     "m.member_name as memberName , m.member_addr as memberAddr," +
-                    " m.member_image as memberImage"+
-                    //"pi.image_addr as productImageList, " +
+                    " m.member_image as memberImage,"+
                     "p.product_thumbnail as productThumbnail,"+
                     "b.bid_time as bidTime ,"+
                     "b.bid_price as productHighPrice, m.member_no as memberNo from product p "+
