@@ -1,42 +1,56 @@
 <template>
-	<div class="paymentContainer">
+	<div class="container">
 		<div class="paymentHeaderContainer">
 			<div class="paymentHeader">
-				<span class="titleInfo">충전할 금액 선택</span>
-				<br />
-				<span class="won"
-					><input
-						maxlength="11"
-						type="text"
-						id="addMoney"
-						class="moneyInputBox"
-						placeholder="원하는 금액 선택"
-						v-model="addMoney"
-						readonly
-					/>원</span
-				>
+				<p class="titleInfo">충전할 금액 선택</p>
+				<div class="money_wrap">
+					<span class="won">
+						<input
+							maxlength="11"
+							type="text"
+							id="addMoney"
+							class="moneyInputBox"
+							placeholder="원하는 금액
+					선택"
+							v-model="addMoney"
+							readonly
+						/>머니
+					</span>
+				</div>
 			</div>
 		</div>
 		<div class="paymentMiddleContainer">
 			<div class="paymentMiddle">
 				<table class="moneySelectTable">
 					<tr class="trTop">
-						<td @click="setMoney1">10,000원</td>
-						<td @click="setMoney2">50,000원</td>
-						<td @click="setMoney3">100,000원</td>
+						<td @click="setMoney1">
+							<button class="btn btn-outline-primary">5,000원</button>
+						</td>
+						<td @click="setMoney2">
+							<button class="btn btn-outline-primary">10,000원</button>
+						</td>
+						<td @click="setMoney3">
+							<button class="btn btn-outline-primary">50,000원</button>
+						</td>
 					</tr>
 					<tr>
-						<td @click="setMoney4">500,000원</td>
-						<td @click="setMoney5">1,000,000원</td>
-						<td @click="setMoney6">10,000,000원</td>
+						<td @click="setMoney4">
+							<button class="btn btn-outline-primary">100,000원</button>
+						</td>
+						<td @click="setMoney5">
+							<button class="btn btn-outline-primary">500,000원</button>
+						</td>
+						<td @click="setMoney6">
+							<button class="btn btn-outline-primary">1,000,000원</button>
+						</td>
 					</tr>
 				</table>
 			</div>
 		</div>
 		<div class="paymentBottomContianer">
 			<div class="paymentBottom">
-				<button class="chargeButton" @click="payForm">충전 하기</button>
-				<button class="exitButton" onclick="history.go(-1)">취소 하기</button>
+				<button class="btn btn-primary" @click="payForm">충전 하기</button>
+				<button class="btn btn-danger" onclick="history.go(-1)">취소 하기</button>
 			</div>
 		</div>
 	</div>
@@ -49,7 +63,7 @@
 	export default {
 		data() {
 			return {
-				addMoney: 10000,
+				addMoney: 5000,
 			};
 		},
 		methods: {
@@ -125,22 +139,22 @@
 				});
 			},
 			setMoney1() {
-				this.addMoney += 10000;
+				this.addMoney = 5000;
 			},
 			setMoney2() {
-				this.addMoney += 50000;
+				this.addMoney = 10000;
 			},
 			setMoney3() {
-				this.addMoney += 100000;
+				this.addMoney = 50000;
 			},
 			setMoney4() {
-				this.addMoney += 500000;
+				this.addMoney = 100000;
 			},
 			setMoney5() {
-				this.addMoney += 1000000;
+				this.addMoney = 500000;
 			},
 			setMoney6() {
-				this.addMoney += 10000000;
+				this.addMoney = 1000000;
 			},
 		},
 		mounted() {
@@ -151,6 +165,12 @@
 </script>
 
 <style scoped>
+	.header {
+		width: 780px;
+		margin: 0;
+		padding: 0;
+	}
+
 	input:focus {
 		outline: none;
 	}
@@ -164,16 +184,13 @@
 	}
 
 	td {
-		border: 2px solid white;
-		border-collapse: collapse;
-		background-color: rgb(250, 250, 250);
 		font: 600 18px 'Roboto', sans-serif;
-		cursor: pointer;
+		letter-spacing: -0.8px;
 	}
 	.paymentHeaderContainer {
 		display: flex;
 		justify-content: center;
-		margin-top: 40px;
+		height: 100%;
 	}
 
 	.paymentHeader {
@@ -181,30 +198,34 @@
 	}
 
 	.titleInfo {
-		color: black;
+		color: #00a5ff;
 		font: 600 24px 'Roboto', sans-serif;
+		letter-spacing: -0.8px;
 		margin-top: 40px;
-		margin-bottom: 40px;
 	}
 
 	.won {
-		color: #0075ff;
+		color: #00a5ff;
 		font: 700 20px 'Roboto', sans-serif;
+		letter-spacing: -0.8px;
+		padding: 0px 0px 0px 200px;
+	}
+
+	.money_wrap {
+		padding: 5px 50px;
 		text-align: right;
-		margin: 0 auto;
+		border-bottom: 3px solid #009aee;
 	}
 
 	.moneyInputBox {
-		margin-top: 30px;
-		margin-right: 10px;
-		width: 666px;
-		height: 40px;
-		border-top: none;
-		border-left: none;
-		border-right: none;
-		border-bottom: 1px solid black;
-		color: #0075ff;
+		width: 150px;
+		margin-top: 20px;
+		padding-right: 10px;
+		/* margin-right: 10px; */
+		border: none;
+		color: #00a5ff;
 		font: 700 28px 'Roboto', sans-serif;
+		letter-spacing: -0.8px;
 		text-align: right;
 	}
 
@@ -212,12 +233,27 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin-top: 100px;
+		margin-top: 80px;
 	}
 
 	.paymentMiddle {
 		width: 700px;
 		text-align: center;
+	}
+
+	.btn-outline-primary {
+		color: #00a5ff;
+		border: 1px solid #00a5ff;
+		letter-spacing: -0.8px;
+		width: 140px;
+		height: 80px;
+		font-size: 18px;
+	}
+
+	.btn-outline-primary:hover {
+		color: #fff;
+		background-color: #00a5ff;
+		border: 1px solid #00a5ff;
 	}
 
 	.paymentBottomContianer {
@@ -232,26 +268,25 @@
 		text-align: center;
 	}
 
-	.chargeButton {
-		width: 600px;
+	.btn-primary {
+		width: 500px;
 		height: 40px;
-		border: none;
-		border-radius: 10px 10px 10px 10px;
-		font: 600 18px 'Roboto', sans-serif;
-		background-color: #0075ff;
-		color: white;
-		cursor: pointer;
+		font: 500 16px 'Roboto', sans-serif;
+		letter-spacing: -0.8px;
 	}
 
-	.exitButton {
-		margin-top: 10px;
-		width: 600px;
-		height: 40px;
-		border: none;
-		border-radius: 10px 10px 10px 10px;
-		font: 600 18px 'Roboto', sans-serif;
+	.btn-danger {
 		background-color: #ff4545;
-		color: white;
-		cursor: pointer;
+		font: 500 16px 'Roboto', sans-serif;
+		margin-top: 10px;
+		width: 500px;
+		height: 40px;
+	}
+	.btn-danger:hover {
+		background-color: #dc3545;
+		font: 500 16px 'Roboto', sans-serif;
+		margin-top: 10px;
+		width: 500px;
+		height: 40px;
 	}
 </style>
