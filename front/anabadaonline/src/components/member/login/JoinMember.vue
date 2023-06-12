@@ -10,7 +10,7 @@
 		>
 			<div class="mb-3">
 				<label for="formFileSm" class="form-label imageText">프로필 이미지 선택</label>
-				<input class="form-control form-control-sm" id="formFileSm" type="file" />
+				<input class="form-control form-control-sm" id="formFileSm" type="file" @change="onInputImage" />
 			</div>
 			<div class="formList1">
 				<div class="form_item id">
@@ -41,11 +41,9 @@
 			</div>
 			<div class="formList2">
 				<div class="form_item name">
-					<!-- <label for="name">이름</label> -->
 					<input type="text" class="input" v-model="name" maxlength="10" placeholder="이름" />
 				</div>
 				<div class="form_item birth">
-					<!-- <label for="birth">생년월일</label> -->
 					<input type="text" class="input" id="birth" placeholder="생년월일" maxlength="8" v-model="birth" />
 				</div>
 			</div>
@@ -53,12 +51,12 @@
 				<div class="form_item addr">
 					<!-- <label for="addr">주소</label> -->
 					<input type="text" class="input" v-model="addr" placeholder="주소" required readonly />
+
 					<div class="post">
 						<button type="button" class="btn btn-light btn-sm" @click="search()">주소 찾기</button>
 					</div>
 				</div>
 				<div class="form_item detailaddr">
-					<!-- <label for="detailaddr">상세주소</label> -->
 					<input type="text" id="detailaddr" class="input" v-model="detailaddr" placeholder="상세주소" />
 				</div>
 				<div class="form_item wishaddr">
@@ -241,7 +239,7 @@
 		margin-bottom: 20px;
 		padding-top: 2px;
 		margin-top: 20px;
-		border: 0.5px solid #dfdfdf;
+		border: 0.5px solid #00a5ff;
 		border-radius: 6px;
 		display: block;
 	}
@@ -249,7 +247,7 @@
 	.formList2 {
 		margin-bottom: 20px;
 		padding-top: 2px;
-		border: 0.5px solid #dfdfdf;
+		border: 0.5px solid #00a5ff;
 		border-radius: 6px;
 		display: block;
 	}
@@ -257,7 +255,7 @@
 	.formList3 {
 		margin-bottom: 20px;
 		padding-top: 2px;
-		border: 0.5px solid #dfdfdf;
+		border: 0.5px solid #00a5ff;
 		border-radius: 6px;
 		display: block;
 	}
@@ -276,7 +274,7 @@
 	.id {
 		color: #000000;
 		font: 600 16px 'Roboto', sans-serif;
-		border-bottom: 0.5px solid #dfdfdf;
+		border-bottom: 0.5px solid #00a5ff;
 	}
 
 	.pw {
@@ -289,7 +287,7 @@
 	.name {
 		color: #000000;
 		font: 600 16px 'Roboto', sans-serif;
-		border-bottom: 0.5px solid #dfdfdf;
+		border-bottom: 0.5px solid #00a5ff;
 	}
 
 	.birth {
@@ -314,12 +312,12 @@
 
 	.addr {
 		color: #000000;
-		border-bottom: 0.5px solid #dfdfdf;
+		border-bottom: 0.5px solid #00a5ff;
 	}
 
 	.detailaddr {
 		color: #000000;
-		border-bottom: 0.5px solid #dfdfdf;
+		border-bottom: 0.5px solid #00a5ff;
 	}
 
 	.wishaddr {
