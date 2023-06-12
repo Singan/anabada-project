@@ -354,6 +354,7 @@
 
 	.sender {
 		background-color: #d4e1f4;
+		margin-top: 15px;
 		align-self: flex-end;
 		margin-right: 15px;
 		font-size: 18px;

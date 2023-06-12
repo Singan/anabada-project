@@ -1,32 +1,16 @@
 <template>
-	<div class="changeHeader">
-		<div class="changeContainer">
-			<div class="change">
+	<div class="backColor">
+		<div class="changeHeader">
+			<div class="changeContainer">
 				<div class="changeHeaderText">회원 정보 수정</div>
 			</div>
-		</div>
 
-		<div class="changeIdAndName">
-			<div class="change">
-				<div class="changeId">아이디</div>
-				<div class="idBox" readonly>
-					<span class="id">{{ myData.memberId }}</span>
-				</div>
-
-				<div class="changeName">이름</div>
-				<div class="nameBox" readonly>
-					<span class="name">{{ myData.memberName }}</span>
-				</div>
-			</div>
-		</div>
-
-		<form id="form">
 			<div class="changeImg">
-				<div class="change">
+				<div class="imageBox">
 					<div class="changeImgText">프로필 이미지 변경</div>
 					<img id="img" :src="this.myData.memberImage" />
 					<label class="imageChangeSelect" for="productImages">
-						이미지 등록
+						이미지 수정
 						<input
 							id="productImages"
 							type="file"
@@ -39,58 +23,74 @@
 				</div>
 			</div>
 
-			<div class="changePwAndPwCheck">
+			<div class="changeIdAndName">
 				<div class="change">
-					<div class="changePw">비밀번호 변경</div>
+					<div class="changeId">아이디</div>
+					<div class="idBox" readonly>
+						<span class="id">{{ myData.memberId }}</span>
+					</div>
 
-					<input
-						id="newPassword"
-						type="password"
-						class="pwBox"
-						placeholder="새 비밀번호를 입력하세요"
-						v-model="newPw"
-					/>
-					<input
-						id="newPasswordConfirm"
-						type="password"
-						class="pwBox"
-						v-model="newPasswordConfirm"
-						placeholder="비밀번호 확인"
-					/>
+					<div class="changeName">이름</div>
+					<div class="nameBox" readonly>
+						<span class="name">{{ myData.memberName }}</span>
+					</div>
 				</div>
 			</div>
 
-			<div class="changeAddr">
-				<div class="change">
-					<div class="changeAddrText">주소 변경</div>
-				</div>
-			</div>
-			<div class="changeAddrContainer">
-				<input class="addrBox" readonly v-model="newAddr" />
-				<button class="findAddrButton" type="button" @click="search()">주소 찾기</button>
-			</div>
+			<form id="form">
+				<div class="changePwAndPwCheck">
+					<div class="change">
+						<div class="changePw">비밀번호 변경</div>
 
-			<div class="changeAddr">
-				<div class="change">
-					<div class="changeAddrText">상세 주소 변경</div>
-					<input id="newDt" class="addrDetailBox" v-model="newDt" />
+						<input
+							id="newPassword"
+							type="password"
+							class="pwBox"
+							placeholder="새 비밀번호를 입력하세요"
+							v-model="newPw"
+						/>
+						<input
+							id="newPasswordConfirm"
+							type="password"
+							class="pwBox"
+							v-model="newPasswordConfirm"
+							placeholder="비밀번호 확인"
+						/>
+					</div>
 				</div>
-			</div>
 
-			<div class="changeWishAddr">
-				<div class="change">
-					<div class="changeAddrText">거래 희망지 변경</div>
-					<input id="newWish" class="addrDetailBox" v-model="newWish" />
+				<div class="changeAddr">
+					<div class="change">
+						<div class="changeAddrText">주소 변경</div>
+					</div>
 				</div>
-			</div>
+				<div class="changeAddrContainer">
+					<input class="addrBox" readonly v-model="newAddr" />
+					<button class="findAddrButton" type="button" @click="search()">주소 찾기</button>
+				</div>
 
-			<div class="yesAndNoButton">
-				<div class="change">
-					<button type="button" class="checkButton" @click="submitForm">수정하기</button>
-					<div class="noButton" :onclick="$router.back">취소하기</div>
+				<div class="changeAddr">
+					<div class="change">
+						<div class="changeAddrText">상세 주소 변경</div>
+						<input id="newDt" class="addrDetailBox" v-model="newDt" />
+					</div>
 				</div>
-			</div>
-		</form>
+
+				<div class="changeWishAddr">
+					<div class="change">
+						<div class="changeAddrText">거래 희망지 변경</div>
+						<input id="newWish" class="addrDetailBox" v-model="newWish" />
+					</div>
+				</div>
+
+				<div class="yesAndNoButton">
+					<div class="change">
+						<button type="button" class="checkButton" @click="submitForm">수정하기</button>
+						<div class="noButton" :onclick="$router.back">취소하기</div>
+					</div>
+				</div>
+			</form>
+		</div>
 	</div>
 </template>
 <script>
@@ -209,6 +209,12 @@
 	};
 </script>
 <style scoped>
+	.backColor {
+		background-color: #f8f9fa;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 	.changeContainer {
 		display: flex;
 		justify-content: center;
@@ -217,6 +223,12 @@
 
 	.change {
 		width: 700px;
+	}
+
+	.imageBox {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 
 	.changeIdAndName {
@@ -234,6 +246,8 @@
 	.changeHeader {
 		display: flex;
 		flex-direction: column;
+		background: white;
+		width: 60rem;
 	}
 	.changeId .changeName .changePw .changeAddrText .changeImgText {
 		color: #000000;
@@ -288,13 +302,16 @@
 	.imageChangeSelect {
 		background: #0075ff;
 		border-radius: 5px;
-		width: 70px;
+		width: 120px;
 		height: 40px;
 		border: none;
 		color: white;
 		cursor: pointer;
-		text-align: center;
 		cursor: pointer;
+		margin-top: 20px;
+		justify-content: center;
+		align-items: center;
+		display: flex;
 	}
 
 	.changePwAndPwCheck {
@@ -321,7 +338,7 @@
 		border-width: 1.5px;
 		height: 40px;
 		width: 600px;
-		margin-right: 25px;
+		margin-right: 15px;
 	}
 
 	.addrDetailBox {
@@ -362,11 +379,12 @@
 	.findAddrButton {
 		background: #0075ff;
 		border-radius: 5px;
-		width: 70px;
+		width: 80px;
 		height: 40px;
 		border: none;
 		color: white;
 		cursor: pointer;
+		font-size: 14px;
 	}
 
 	.checkButton {
