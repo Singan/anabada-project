@@ -25,11 +25,11 @@ public class SalesListSelectDto {
     private Integer productPrice;
     private Boolean isBidComplete;
     private String productName;
-
+    private Long successNo;
     @Builder
 
     public SalesListSelectDto(Integer bidPrice, String productThumbnail, Long productNo, LocalDateTime createDateTime,
-                              LocalDateTime bidTime, String memberName, Long memberNo, Integer productPrice, Boolean isBidComplete,String productName) {
+                              LocalDateTime bidTime, String memberName, Long memberNo, Integer productPrice, Boolean isBidComplete,String productName,Long successNo) {
         this.bidPrice = bidPrice;
         this.productThumbnail = productThumbnail;
         this.productNo = productNo;
@@ -40,5 +40,6 @@ public class SalesListSelectDto {
         this.productPrice = productPrice;
         this.isBidComplete = isBidComplete;
         this.productName = productName;
+        this.successNo = successNo;
     }
 }

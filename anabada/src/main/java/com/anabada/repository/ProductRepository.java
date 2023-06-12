@@ -64,7 +64,8 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
             "p.create_date_time  as createDateTime," +
             "b.bid_time          as bidTime," +
             "m.member_name       as memberName," +
-            "m.member_no         as memberNo" +
+            "m.member_no         as memberNo," +
+            "sb.success_bid_product_no as successNo" +
             " from product p" +
             " left join successful_bid sb on p.product_no = sb.product_no" +
             " left join bid b on sb.bid_no = b.bid_no" +

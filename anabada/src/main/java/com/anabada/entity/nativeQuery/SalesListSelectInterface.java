@@ -23,4 +23,5 @@ public interface SalesListSelectInterface {
 
     Boolean getProductIsBidComplete();
     String getProductName();
+    Long getSuccessNo();
 }

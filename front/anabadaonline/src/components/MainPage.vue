@@ -216,7 +216,7 @@
 
 	.productImage3 {
 		margin-left: 15rem;
-		position: relative;
+		position: absolute;
 		left: 12%;
 		top: 15%;
 		background: #ffffff;

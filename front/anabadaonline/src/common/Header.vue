@@ -1,6 +1,6 @@
 <template>
-	<div class="container-fluid">
-		<nav class="navbar navbar-expand-md navbar-light bg-light">
+	<div class="w-100">
+		<nav class="navbar navbar-expand-md navbar-light bg-light w-100">
 			<router-link class="navbar-brand Logo" to="/">아나바다</router-link>
 			<button
 				class="navbar-toggler"
@@ -31,12 +31,14 @@
 			</div>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav flex-grow-1 justify-content-end align-items-center g-4">
-					<li class="nav-item btn btn-outline-info" v-if="!isToken">
-						<router-link to="/login" class="nav-link active"> 로그인 </router-link>
-					</li>
-					<li class="nav-item btn btn-outline-info" v-if="!isToken">
-						<router-link to="/JoinMember" class="nav-link active"> 회원가입 </router-link>
-					</li>
+					<router-link to="/login" class="nav-link active">
+						<li class="nav-item btn btn-outline-info" v-if="!isToken">로그인</li></router-link
+					>
+
+					<router-link to="/JoinMember" class="nav-link active">
+						<li class="nav-item btn btn-outline-info" v-if="!isToken">회원가입</li></router-link
+					>
+
 					<template v-if="isToken">
 						<li class="nav-item">
 							<div class="userInfo">
