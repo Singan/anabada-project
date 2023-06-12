@@ -13,11 +13,17 @@
 			<div class="formList1">
 				<div class="form_item id">
 					<!-- <label for="id"></label> -->
-					<input type="text" class="input" maxlength="15" placeholder="아이디" v-model="id" />
+					<input type="text" class="input" maxlength="15" :placeholder="idPlaceholder" v-model="id" />
 				</div>
 				<div class="form_item pw">
 					<!-- <label for="pw">비밀번호</label> -->
-					<input type="password" class="input" v-model="pw" maxlength="20" placeholder="비밀번호" />
+					<input
+						type="password"
+						class="input"
+						v-model="pw"
+						maxlength="20"
+						placeholder="비밀번호(8~15자 대소문자 특수문자 포함)"
+					/>
 					<div class="invalid-feedback">비밀번호를 다시 입력하세요</div>
 				</div>
 			</div>
@@ -45,7 +51,13 @@
 				</div>
 				<div class="form_item wishaddr">
 					<!-- <label for="wishaddr">거래희망지</label> -->
-					<input type="text" id="wishaddr" class="input" v-model="Wishaddr" placeholder="거래희망지" />
+					<input
+						type="text"
+						id="wishaddr"
+						class="input"
+						v-model="Wishaddr"
+						placeholder="거래희망지 필수입니다."
+					/>
 				</div>
 			</div>
 
@@ -71,6 +83,8 @@
 				addr: '',
 				Wishaddr: '',
 				image: null,
+				idPlaceholder: '아이디',
+				pwPlaceholder: '비밀번호(8~15자 대소문자 특수문자 포함)',
 			};
 		},
 		methods: {
@@ -106,11 +120,14 @@
 					.catch((error) => {
 						let message = error.response.data.message;
 						console.log(error.response);
-						this.$swal({
-							icon: 'error',
-							title: '회원가입을 실패하였습니다.',
-							text: message,
-						});
+						if (error.status == 400) {
+						} else {
+							this.$swal({
+								icon: 'error',
+								title: '회원가입을 실패하였습니다.',
+								text: message,
+							});
+						}
 					});
 			},
 			onInputImage(e) {

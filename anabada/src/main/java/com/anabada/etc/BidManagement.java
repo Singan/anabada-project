@@ -47,7 +47,7 @@ public class BidManagement {
             Duration duration = Duration.between(bidTime, now);
             long minutesPassed = duration.toMinutes();
             if (minutesPassed >= 10) {
-                SuccessfulBid s = SuccessfulBid.builder().product(product).bid(bid).build();
+                SuccessfulBid s = SuccessfulBid.builder().product(product).bid(bid).status(Status.대기).build();
                 successfulBids.add(s);
                 biddingHashMap.remove(product);
             }

@@ -33,8 +33,8 @@ public class MemberController {
     @Operation(description = "회원가입")
     public ResponseEntity memberJoin(@Valid MemberJoinDto memberJoinDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            Set<String> list = bindingResult.getFieldErrors().stream().map(fieldError ->
-                    fieldError.getField()).collect(Collectors.toSet());
+            List<String> list = bindingResult.getFieldErrors().stream().map(fieldError ->
+                    fieldError.getDefaultMessage()).collect(Collectors.toList());
             return new ResponseEntity<>(list, HttpStatus.BAD_REQUEST);
         }
         memberService.memberJoin(memberJoinDto);

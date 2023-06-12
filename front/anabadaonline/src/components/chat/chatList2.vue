@@ -161,6 +161,7 @@
 		background-color: #f2f3f6;
 		width: 100%;
 		height: 100%;
+		overflow: auto;
 	}
 
 	.flexContainer {
