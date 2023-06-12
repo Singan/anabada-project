@@ -297,8 +297,10 @@
 	}
 
 	.main_logo {
+		position: relative;
 		width: 30px;
 		height: 30px;
+		bottom: 3px;
 		cursor: pointer;
 	}
 
