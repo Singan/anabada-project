@@ -49,7 +49,7 @@
 							</div>
 						</li>
 						<li class="nav-item">
-							<div class="nav-link active" @click="logout">로그아웃</div>
+							<div class="nav-link active" @click="logout" style="cursor: pointer">로그아웃</div>
 						</li>
 					</template>
 				</ul>

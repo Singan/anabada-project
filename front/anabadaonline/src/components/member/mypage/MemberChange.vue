@@ -210,7 +210,7 @@
 </script>
 <style scoped>
 	.backColor {
-		background-color: #f8f9fa;
+		background-color: #f2f3f6;
 		display: flex;
 		justify-content: center;
 		align-items: center;
