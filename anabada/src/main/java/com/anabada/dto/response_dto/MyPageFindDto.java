@@ -16,11 +16,17 @@ import java.time.LocalDate;
 public class MyPageFindDto {
 
     private String memberName;
+    private String memberId;
+    private String memberFullAddr;
+    private String memberWishAddr;
     private Integer memberMoney;
     private String memberImage;
 
     public MyPageFindDto (Member member,String prefix) {
         this.memberName = member.getMemberName();
+        this.memberId = member.getMemberId();
+        this.memberFullAddr = member.getMemberAddr() + " " + member.getMemberDetailAddr();
+        this.memberWishAddr = member.getMemberWishAddr();
         this.memberMoney = member.getMemberMoney();
         this.memberImage = prefix+member.getMemberImage();
     }
