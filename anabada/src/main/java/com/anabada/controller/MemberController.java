@@ -9,6 +9,7 @@ import com.anabada.dto.response_dto.ShowUpdateMemberDto;
 import com.anabada.dto.response_dto.MemberInfoDto;
 import com.anabada.dto.response_dto.MemberUpdateFindDto;
 import com.anabada.service.MemberService;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -33,6 +34,7 @@ public class MemberController {
     @Operation(description = "회원가입")
     public ResponseEntity memberJoin(@Valid MemberJoinDto memberJoinDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
+            JsonMapper jsonMapper = new JsonMapper();
             List<String> list = bindingResult.getFieldErrors().stream().map(fieldError ->
                     fieldError.getDefaultMessage()).collect(Collectors.toList());
             return new ResponseEntity<>(list, HttpStatus.BAD_REQUEST);

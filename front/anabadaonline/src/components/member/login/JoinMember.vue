@@ -1,30 +1,42 @@
 <template>
 	<div class="flexContainer">
 		<h1 class="anabadaLogo"></h1>
-		<form class="formSection needs-validation" novalidate @submit.prevent="submitForm">
-			<!-- <div class="image">
-				<label for="image" class="imageText">프로필 이미지</label>
-				<input id="image" class="form-control form-control-sm" type="file" @change="onInputImage" />
-			</div> -->
+		<form
+			class="formSection needs-validation"
+			novalidate
+			@submit.prevent="submitForm"
+			ref="form"
+			@submit="validateForm"
+		>
 			<div class="mb-3">
 				<label for="formFileSm" class="form-label imageText">프로필 이미지 선택</label>
 				<input class="form-control form-control-sm" id="formFileSm" type="file" />
 			</div>
 			<div class="formList1">
 				<div class="form_item id">
-					<!-- <label for="id"></label> -->
-					<input type="text" class="input" maxlength="15" :placeholder="idPlaceholder" v-model="id" />
+					<input
+						type="text"
+						class="input"
+						maxlength="15"
+						:placeholder="idPlaceholder"
+						v-model="id"
+						required
+					/>
+					<div class="invalid-feedback">아이디는 4글자 이상의 대소문자 영어,숫자만 입력 가능합니다.</div>
 				</div>
 				<div class="form_item pw">
-					<!-- <label for="pw">비밀번호</label> -->
 					<input
 						type="password"
 						class="input"
 						v-model="pw"
 						maxlength="20"
 						placeholder="비밀번호(8~15자 대소문자 특수문자 포함)"
+						required
 					/>
-					<div class="invalid-feedback">비밀번호를 다시 입력하세요</div>
+					<div class="invalid-feedback">
+						비밀번호는 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 8자 ~ 20자의 비밀번호여야
+						합니다.
+					</div>
 				</div>
 			</div>
 			<div class="formList2">
@@ -40,7 +52,7 @@
 			<div class="formList3">
 				<div class="form_item addr">
 					<!-- <label for="addr">주소</label> -->
-					<input type="text" class="input" v-model="addr" placeholder="주소" readonly />
+					<input type="text" class="input" v-model="addr" placeholder="주소" required readonly />
 					<div class="post">
 						<button type="button" class="btn btn-light btn-sm" @click="search()">주소 찾기</button>
 					</div>
@@ -56,8 +68,10 @@
 						id="wishaddr"
 						class="input"
 						v-model="Wishaddr"
-						placeholder="거래희망지 필수입니다."
+						placeholder="거래희망지"
+						required
 					/>
+					<div class="invalid-feedback">거래 희망지는 필수 입력입니다.</div>
 				</div>
 			</div>
 
@@ -136,21 +150,23 @@
 			goLogin() {
 				this.$router.push('./login');
 			},
+			validateForm(event) {
+				const form = event.target;
+
+				if (!form.checkValidity()) {
+					event.preventDefault();
+					event.stopPropagation();
+				}
+
+				form.classList.add('was-validated');
+			},
 
 			search() {
-				//@click을 사용할 때 함수는 이렇게 작성해야 한다.
 				new window.daum.Postcode({
 					oncomplete: (data) => {
-						//function이 아니라 => 로 바꿔야한다.
-						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-						// 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
 						var roadAddr = data.roadAddress; // 도로명 주소 변수
 						var extraRoadAddr = ''; // 참고 항목 변수
 
-						// 법정동명이 있을 경우 추가한다. (법정리는 제외)
-						// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
 						if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
 							extraRoadAddr += data.bname;
 						}
