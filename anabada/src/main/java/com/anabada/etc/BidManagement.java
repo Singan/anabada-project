@@ -18,6 +18,8 @@ import java.util.Set;
 
 @Component
 public class BidManagement {
+    private final HashMap<Product, Bid> biddingHashMap;
+    private final BidRepository bidRepository;
     public BidManagement(BidRepository bidRepository) {
         this.biddingHashMap = new HashMap<>();
         this.bidRepository = bidRepository;
@@ -28,8 +30,7 @@ public class BidManagement {
             biddingHashMap.put(product,b);
         }
     }
-    private final HashMap<Product, Bid> biddingHashMap;
-    private final BidRepository bidRepository;
+
 
 
     public void updateHaspMap(Product productNo, Bid newBid){

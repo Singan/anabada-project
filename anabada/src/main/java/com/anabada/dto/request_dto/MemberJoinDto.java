@@ -32,6 +32,7 @@ public class MemberJoinDto extends MemberLoginDto{
                 .memberAddr(this.addr)
                 .memberDetailAddr(this.detailAddr)
                 .memberImage(this.profileImagePath)
+                .memberMoney(0)
                 .memberExist(false)
                 .memberWishAddr(this.wishAddr).build();
     }

@@ -125,19 +125,24 @@
 							});
 							// 로그인 하면 토큰 발급
 							this.$router.push('./login');
-						} else {
-							alert('잘못된 정보입니다.');
 						}
 					})
 					.catch((error) => {
 						let message = error.response.data.message;
-						console.log(error.response);
-						if (error.status == 400) {
+						if (error.response.status == 400) {
+							console.log(error.response);
+						} else if (error.status == 500) {
+							this.$swal({
+								icon: 'error',
+								title: '중복된 회원입니다.',
+								text: message,
+							});
 						} else {
+							console.log('???');
+							console.log(error.response);
 							this.$swal({
 								icon: 'error',
 								title: '회원가입을 실패하였습니다.',
-								text: message,
 							});
 						}
 					});
