@@ -218,6 +218,9 @@
 		border: none;
 		color: #000000;
 		letter-spacing: -0.8px;
+		font-size: 1.1rem;
+		position: relative;
+		bottom: 3px;
 	}
 
 	.btn-outline-info:hover {
