@@ -239,7 +239,7 @@
 	}
 
 	.changeHeaderText {
-		color: #0075ff;
+		color: #00a5ff;
 		font: 700 28px 'Roboto', sans-serif;
 		margin-top: 40px;
 	}
@@ -258,7 +258,7 @@
 		background: #e1e1e1;
 		border-radius: 5px;
 		border-style: solid;
-		border-color: #0075ff;
+		border-color: #00a5ff;
 		border-width: 1.5px;
 		height: 40px;
 		margin-bottom: 20px;
@@ -276,7 +276,7 @@
 		background: #e1e1e1;
 		border-radius: 5px;
 		border-style: solid;
-		border-color: #0075ff;
+		border-color: #00a5ff;
 		border-width: 1.5px;
 		height: 40px;
 	}
@@ -300,7 +300,7 @@
 	}
 
 	.imageChangeSelect {
-		background: #0075ff;
+		background: #00a5ff;
 		border-radius: 5px;
 		width: 120px;
 		height: 40px;
@@ -324,7 +324,7 @@
 	.pwBox {
 		border-radius: 5px;
 		border-style: solid;
-		border-color: #0075ff;
+		border-color: #00a5ff;
 		border-width: 1.5px;
 		height: 40px;
 		width: 693px;
@@ -334,7 +334,7 @@
 	.addrBox {
 		border-radius: 5px;
 		border-style: solid;
-		border-color: #0075ff;
+		border-color: #00a5ff;
 		border-width: 1.5px;
 		height: 40px;
 		width: 600px;
@@ -344,7 +344,7 @@
 	.addrDetailBox {
 		border-radius: 5px;
 		border-style: solid;
-		border-color: #0075ff;
+		border-color: #00a5ff;
 		border-width: 1.5px;
 		height: 40px;
 		width: 693px;
@@ -377,7 +377,7 @@
 	}
 
 	.findAddrButton {
-		background: #0075ff;
+		background: #00a5ff;
 		border-radius: 5px;
 		width: 80px;
 		height: 40px;
@@ -390,7 +390,7 @@
 	.checkButton {
 		border-radius: 5px;
 		border-style: solid;
-		background-color: #0075ff;
+		background-color: #00a5ff;
 		border-width: 1.5px;
 		width: 700px;
 		height: 40px;
@@ -404,7 +404,7 @@
 	.noButton {
 		border-radius: 5px;
 		border-style: solid;
-		background-color: #ff4545;
+		background-color: #fb7575;
 		border-width: 1.5px;
 		width: 700px;
 		height: 40px;
