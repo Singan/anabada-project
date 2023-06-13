@@ -116,6 +116,9 @@
 		grid-template-rows: auto;
 		overflow: auto;
 	}
+	.card-title {
+		text-align: center;
+	}
 	@media (max-width: 768px) {
 		.productFlex {
 			display: flex;

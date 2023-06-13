@@ -16,7 +16,7 @@ public class ChatMessageResDto {
     private String memberImage;
     private Long memberNo;
     private String message;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime createDateTime;
     private Long successNo;
 

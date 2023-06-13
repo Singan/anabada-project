@@ -145,19 +145,18 @@
 					console.log(this.productImages);
 					form.append('updateImage', this.productImages);
 				}
-				const response = await axios
-					.put('/member/update', form, {
+				try {
+					const response = await axios.put('/member/update', form, {
 						header: { 'Content-Type': 'multipart/form-data' },
-					})
-					.catch((error) => {
-						let message = error.response.data.message;
-						this.$swal({
-							icon: 'error',
-							title: '현재 비밀번호와 일치합니다.',
-							text: message,
-						});
 					});
-				this.$store.commit('setMember', response.data);
+					this.$store.commit('setMember', response.data);
+				} catch (error) {
+					let message = error.response.data.message;
+					this.$swal({
+						icon: 'error',
+						title: message,
+					});
+				}
 			},
 			search() {
 				//@click을 사용할 때 함수는 이렇게 작성해야 한다.

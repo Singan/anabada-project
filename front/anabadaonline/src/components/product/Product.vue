@@ -1,9 +1,9 @@
 <template>
-	<div class="wrapper container-fluid h-100 overflow-auto">
+	<div class="wrapper container-fluid overflow-auto">
 		<form
 			ref="form"
 			@submit.prevent="productRegister"
-			class="container-sm d-flex flex-column align-items-center justify-content-between overflow-auto"
+			class="container-sm d-flex flex-column align-items-center justify-content-between"
 		>
 			<div class="title">상품 등록하기</div>
 
@@ -188,8 +188,10 @@
 </script>
 <style scoped>
 	.img-fluid {
-		max-width: 100%;
-		max-height: 100%;
+		width: 400px;
+		max-height: 400px;
+		height: auto;
+		object-fit: contain;
 	}
 	.wrapper {
 		height: 100%;
@@ -200,30 +202,17 @@
 	}
 	.container-sm {
 		background-color: white;
-		height: 100%;
+		min-height: 100%;
+		overflow: auto;
 	}
-	.form {
-		background: #ffffff;
-		width: 700px;
-		height: 1100px;
-		display: flex;
-		flex-direction: column;
-		margin: 0 auto;
-		justify-content: center;
-		align-items: center;
-		border: #000000;
-		overflow: hidden;
-	}
-
-	.form > * {
+	form > * {
 		margin-bottom: 20px;
 		padding: 5px;
 	}
 
 	.title {
 		color: #00a5ff;
-		text-align: left;
-		font: 700 28px 'Roboto', sans-serif;
+		font: 500 2em 'Roboto', sans-serif;
 		margin-top: 20px;
 	}
 
@@ -313,40 +302,27 @@
 		text-align: center;
 	}
 
-	.rectangle-233 {
-		border-radius: 5px;
-		border-style: solid;
-		border-color: #0075ff;
-		border-width: 1.5px;
-		width: 470px;
-		height: 121px;
-	}
-
-	.detail {
-		color: #797979;
-		text-align: left;
-		font: 300 12px 'Roboto', sans-serif;
-	}
-
 	.commonText {
 		font-size: 18px;
 		color: #00a5ff;
 	}
 
 	.submit {
-		background: #0075ff;
+		background: #00a5ff;
 		border-radius: 5px;
-		width: 470px;
-		height: 40px;
+		width: 30%;
 		text-align: center;
-		line-height: 40px;
 		color: #ffffff;
-		font-size: 15;
+		font-size: 1.2rem;
+		cursor: pointer;
+		margin-bottom: 30px;
+	}
+	.submit:active {
+		box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0);
+		transform: translateY(4px);
 	}
 
 	.imagePreView {
 		background: #d9d9d9;
-		width: 400px;
-		max-height: 400px;
 	}
 </style>
