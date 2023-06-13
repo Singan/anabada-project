@@ -109,7 +109,7 @@
 	}
 
 	.blue {
-		color: #0075ff;
+		color: #00a5ff;
 	}
 
 	.productPicture {
