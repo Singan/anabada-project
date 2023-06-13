@@ -216,8 +216,13 @@
 
 	.btn-outline-info {
 		border: none;
+		color: #000000;
+		letter-spacing: -0.8px;
 	}
 
 	.btn-outline-info:hover {
+		background-color: #f8f9fa;
+		color: $primary-color;
+		letter-spacing: -0.8px;
 	}
 </style>
