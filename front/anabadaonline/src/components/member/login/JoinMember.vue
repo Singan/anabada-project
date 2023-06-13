@@ -70,7 +70,7 @@
 						placeholder="거래희망지"
 						required
 					/>
-					<div class="invalid-feedback">거래 희망지는 필수 입력입니다.</div>
+					<div class="text-red">거래 희망지는 필수 입력입니다.</div>
 				</div>
 			</div>
 
