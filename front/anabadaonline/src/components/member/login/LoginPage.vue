@@ -58,6 +58,14 @@
 						id: this.id,
 						pw: this.pw,
 					})
+					.then((response) => {
+						if (response.status == 200) {
+							this.$token.setToken(`${response.data.accessToken}`);
+							axios.defaults.headers.common['x-auth-token'] = this.$token.getToken();
+							this.$emit('logined');
+							this.$router.push('./');
+						}
+					})
 					.catch((error) => {
 						let message = error.response.data.message;
 						(this.id = ''), (this.pw = '');
@@ -66,14 +74,6 @@
 							title: '로그인을 실패하였습니다.',
 							text: message,
 						});
-					})
-					.then((response) => {
-						if (response.status == 200) {
-							this.$token.setToken(`${response.data.accessToken}`);
-							axios.defaults.headers.common['x-auth-token'] = this.$token.getToken();
-							this.$emit('logined');
-							this.$router.push('./');
-						}
 					});
 			},
 		},
