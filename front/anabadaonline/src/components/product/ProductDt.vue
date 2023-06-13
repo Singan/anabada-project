@@ -19,7 +19,7 @@
 				<div class="carousel-inner">
 					<div
 						class="carousel-item w-100"
-						style="max-height: 400px"
+						style="max-height: 400px; max-width: 400px"
 						v-for="(image, index) in seller.productImageList"
 						:key="index"
 						:class="{ active: index == 0 }"
@@ -92,22 +92,23 @@
 				:isSocket="isSocket"
 				:productPrice="seller.productPrice"
 			></BidList>
-			<div>추천 상품</div>
-			<div class=""></div>
-			<div class="box4">
-				<router-link
-					v-for="item in productList"
-					:key="item.productNo"
-					:to="'/productDt?productNo=' + item.productNo"
-				>
-					<img class="productImage" :src="item.productImage" />
+			<div class="recommend">추천 상품</div>
+			<div class="box6">
+				<div class="box4">
+					<router-link
+						v-for="item in productList"
+						:key="item.productNo"
+						:to="'/productDt?productNo=' + item.productNo"
+					>
+						<img class="productImage" :src="item.productImage" />
 
-					<div class="productName">{{ item.productName }}</div>
+						<div class="productName">{{ item.productName }}</div>
 
-					<div class="productRegion">{{ item.wishAddr }}</div>
+						<div class="productRegion">{{ item.wishAddr }}</div>
 
-					<div class="productPrice">{{ item.price }} 원</div>
-				</router-link>
+						<div class="productPrice">{{ item.price }} 원</div>
+					</router-link>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -244,7 +245,7 @@
 <style scoped>
 	.carousel-control-prev-icon,
 	.carousel-control-next-icon {
-		filter: invert(100%);
+		/* filter: invert(100%); */
 	}
 
 	.backColor {
@@ -437,9 +438,9 @@
 	}
 	.auctionText.clicked {
 		font: 14px 'Roboto', sans-serif;
-		border: 1px #0075ff solid;
+		border: 1px #00a5ff solid;
 
-		background: #0075ff;
+		background: #00a5ff;
 		color: #ffffff;
 		border-radius: 5px;
 		width: 400px;
@@ -539,6 +540,16 @@
 		flex-direction: row;
 		gap: 60px;
 		justify-content: center;
+	}
+
+	.box6 {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.recommend {
+		margin-left: 60px;
 	}
 
 	.productImage {
