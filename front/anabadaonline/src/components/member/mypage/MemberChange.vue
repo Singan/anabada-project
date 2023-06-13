@@ -390,7 +390,7 @@
 	.checkButton {
 		border-radius: 5px;
 		border-style: solid;
-		background-color: #00a5ff;
+		background-color: #0a58ca;
 		border-width: 1.5px;
 		width: 700px;
 		height: 40px;
@@ -404,7 +404,7 @@
 	.noButton {
 		border-radius: 5px;
 		border-style: solid;
-		background-color: #fb7575;
+		background-color: #ff4545;
 		border-width: 1.5px;
 		width: 700px;
 		height: 40px;
