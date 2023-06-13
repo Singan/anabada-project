@@ -404,7 +404,7 @@
 	.noButton {
 		border-radius: 5px;
 		border-style: solid;
-		background-color: #ff4545;
+		background-color: #ffa4a4;
 		border-width: 1.5px;
 		width: 700px;
 		height: 40px;
