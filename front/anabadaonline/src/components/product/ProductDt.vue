@@ -93,6 +93,7 @@
 				:productPrice="seller.productPrice"
 			></BidList>
 			<div>추천 상품</div>
+			<div class=""></div>
 			<div class="box4">
 				<router-link
 					v-for="item in productList"
