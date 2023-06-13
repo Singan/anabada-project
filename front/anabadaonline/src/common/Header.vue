@@ -16,16 +16,16 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav flex-grow-1 justify-content-start align-items-center g-4">
 					<router-link class="nav-link active" to="/" aria-current="page">
-						<li class="nav-item ml-auto btn btn-outline-info text-primary">홈</li>
+						<li class="nav-item ml-auto btn text-primary">홈</li>
 					</router-link>
 					<router-link to="/auction?category=1" class="nav-link nav-item">
-						<li class="btn btn-outline-info">경매</li>
+						<li class="btn">경매</li>
 					</router-link>
 					<router-link :to="{ name: '/chatList' }" class="nav-link active nav-item">
-						<li class="nav-item btn btn-outline-info">채팅</li></router-link
+						<li class="nav-item btn">채팅</li></router-link
 					>
 					<router-link to="/Product" class="nav-link active"
-						><li class="nav-item btn btn-outline-info" v-if="isToken">상품등록</li></router-link
+						><li class="nav-item btn" v-if="isToken">상품등록</li></router-link
 					>
 				</ul>
 			</div>
