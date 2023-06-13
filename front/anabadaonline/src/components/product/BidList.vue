@@ -196,7 +196,7 @@
 		font: 18px 'Roboto', sans-serif;
 		border-radius: 5px;
 		border-style: solid;
-		border-color: #0075ff;
+		border-color: #00a5ff;
 		border-width: 1px;
 		width: 430px;
 		height: 50px;
@@ -213,7 +213,7 @@
 
 	.bid {
 		margin-top: 15px;
-		background: #0075ff;
+		background: #00a5ff;
 		border-radius: 5px;
 		text-align: center;
 		width: 100px;

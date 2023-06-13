@@ -19,7 +19,7 @@
 				<div class="carousel-inner">
 					<div
 						class="carousel-item w-100"
-						style="max-height: 400px"
+						style="max-height: 400px; max-width: 400px"
 						v-for="(image, index) in seller.productImageList"
 						:key="index"
 						:class="{ active: index == 0 }"
@@ -245,7 +245,7 @@
 <style scoped>
 	.carousel-control-prev-icon,
 	.carousel-control-next-icon {
-		filter: invert(100%);
+		/* filter: invert(100%); */
 	}
 
 	.backColor {
@@ -438,9 +438,9 @@
 	}
 	.auctionText.clicked {
 		font: 14px 'Roboto', sans-serif;
-		border: 1px #0075ff solid;
+		border: 1px #00a5ff solid;
 
-		background: #0075ff;
+		background: #00a5ff;
 		color: #ffffff;
 		border-radius: 5px;
 		width: 400px;
