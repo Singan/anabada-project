@@ -32,11 +32,11 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav flex-grow-1 justify-content-end align-items-center g-4">
 					<router-link to="/login" class="nav-link active">
-						<li class="nav-item btn btn-outline-info" v-if="!isToken">로그인</li></router-link
+						<li class="nav-item btn" v-if="!isToken">로그인</li></router-link
 					>
 
 					<router-link to="/JoinMember" class="nav-link active">
-						<li class="nav-item btn btn-outline-info" v-if="!isToken">회원가입</li></router-link
+						<li class="nav-item btn" v-if="!isToken">회원가입</li></router-link
 					>
 
 					<template v-if="isToken">
@@ -214,7 +214,7 @@
 		transform: translateY(4px);
 	}
 
-	.btn-outline-info {
+	.btn {
 		border: none;
 		color: #000000;
 		letter-spacing: -0.8px;
