@@ -99,8 +99,9 @@
 	.productPicture {
 		background: #d9d9d9;
 		border-radius: 10px;
-		width: 160px;
-		height: 160px;
+		height: 100%;
+		max-width: 160px;
+		max-height: 160px;
 		flex: 1;
 	}
 
