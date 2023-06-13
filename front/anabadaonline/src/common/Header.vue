@@ -213,4 +213,11 @@
 		box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0);
 		transform: translateY(4px);
 	}
+
+	.btn-outline-info {
+		border: none;
+	}
+
+	.btn-outline-info:hover {
+	}
 </style>

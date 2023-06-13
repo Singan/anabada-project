@@ -222,11 +222,13 @@
 		background-color: #fff;
 		border: none;
 		margin: 0;
+		float: right;
 	}
 
 	.btn-primary:hover {
 		background-color: #eeeeee;
 		border: none;
+		float: right;
 	}
 
 	.main {
