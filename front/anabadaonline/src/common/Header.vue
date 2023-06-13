@@ -16,27 +16,27 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav flex-grow-1 justify-content-start align-items-center g-4">
 					<router-link class="nav-link active" to="/" aria-current="page">
-						<li class="nav-item ml-auto btn text-primary">홈</li>
+						<li class="nav-item ml-auto btn btn-outline-info text-primary">홈</li>
 					</router-link>
 					<router-link to="/auction?category=1" class="nav-link nav-item">
-						<li class="btn">경매</li>
+						<li class="btn btn-outline-info">경매</li>
 					</router-link>
 					<router-link :to="{ name: '/chatList' }" class="nav-link active nav-item">
-						<li class="nav-item btn">채팅</li></router-link
+						<li class="nav-item btn btn-outline-info">채팅</li></router-link
 					>
 					<router-link to="/Product" class="nav-link active"
-						><li class="nav-item btn" v-if="isToken">상품등록</li></router-link
+						><li class="nav-item btn btn-outline-info" v-if="isToken">상품등록</li></router-link
 					>
 				</ul>
 			</div>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav flex-grow-1 justify-content-end align-items-center g-4">
 					<router-link to="/login" class="nav-link active">
-						<li class="nav-item btn" v-if="!isToken">로그인</li></router-link
+						<li class="nav-item btn btn-outline-info" v-if="!isToken">로그인</li></router-link
 					>
 
 					<router-link to="/JoinMember" class="nav-link active">
-						<li class="nav-item btn" v-if="!isToken">회원가입</li></router-link
+						<li class="nav-item btn btn-outline-info" v-if="!isToken">회원가입</li></router-link
 					>
 
 					<template v-if="isToken">
@@ -214,18 +214,22 @@
 		transform: translateY(4px);
 	}
 
-	.btn {
+	.btn-outline-info {
 		border: none;
 		color: #000000;
 		letter-spacing: -0.8px;
 		font-size: 1.1rem;
 		position: relative;
-		bottom: 3px;
 	}
 
 	.btn-outline-info:hover {
 		background-color: #f8f9fa;
 		color: $primary-color;
 		letter-spacing: -0.8px;
+	}
+
+	.btn-outline-info:active {
+		background-color: #f8f9fa;
+		color: $primary-color;
 	}
 </style>
