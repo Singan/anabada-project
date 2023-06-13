@@ -45,7 +45,7 @@ public class MyPageController {
     @Operation(description = "내 판매내역")
     public ResultList<List<SalesListSelectDto>> findSales(
             @AuthenticationPrincipal MemberDetailDTO memberDetailDTO,
-            @PageableDefault(sort = "productPrice",direction = Sort.Direction.DESC) Pageable pageable
+            @PageableDefault(sort = "createDateTime",direction = Sort.Direction.DESC) Pageable pageable
 
     ) {
         return productService.findSales(memberDetailDTO,pageable);
