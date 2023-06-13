@@ -50,18 +50,17 @@
 			</div>
 			<div class="formList3">
 				<div class="form_item addr">
-					<!-- <label for="addr">주소</label> -->
 					<input type="text" class="input" v-model="addr" placeholder="주소" required readonly />
 
 					<div class="post">
 						<button type="button" class="btn btn-light btn-sm" @click="search()">주소 찾기</button>
 					</div>
 				</div>
+
 				<div class="form_item detailaddr">
 					<input type="text" id="detailaddr" class="input" v-model="detailaddr" placeholder="상세주소" />
 				</div>
 				<div class="form_item wishaddr">
-					<!-- <label for="wishaddr">거래희망지</label> -->
 					<input
 						type="text"
 						id="wishaddr"
@@ -70,7 +69,7 @@
 						placeholder="거래희망지"
 						required
 					/>
-					<div class="text-red">거래 희망지는 필수 입력입니다.</div>
+					<div class="invalid-feedback">거래 희망지는 필수 입력입니다.</div>
 				</div>
 			</div>
 

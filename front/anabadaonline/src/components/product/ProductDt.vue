@@ -1,111 +1,114 @@
 <template>
-	<div class="form overflow-auto">
-		<router-link to="/auction?categoryNo=1" class="listButton">
-			<button type="button" class="btn-close" aria-label="Close"></button>
-		</router-link>
-		<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-			<div class="carousel-indicators">
+	<div class="backColor">
+		<div class="form overflow-auto">
+			<router-link to="/auction?categoryNo=1" class="listButton">
+				<button type="button" class="btn-close" aria-label="Close"></button>
+			</router-link>
+			<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+				<div class="carousel-indicators">
+					<button
+						type="button"
+						data-bs-target="#carouselExampleIndicators"
+						:data-bs-slide-to="index"
+						:class="{ active: index == 0 }"
+						aria-current="true"
+						:aria-label="'Slide' + index"
+						v-for="(image, index) in seller.productImageList"
+					></button>
+				</div>
+				<div class="carousel-inner">
+					<div
+						class="carousel-item w-100"
+						style="max-height: 400px"
+						v-for="(image, index) in seller.productImageList"
+						:key="index"
+						:class="{ active: index == 0 }"
+					>
+						<img class="d-block productImage" :src="image" />
+					</div>
+				</div>
 				<button
+					class="carousel-control-prev"
 					type="button"
-					data-bs-target="#carouselExampleIndicators"
-					:data-bs-slide-to="index"
-					:class="{ active: index == 0 }"
-					aria-current="true"
-					:aria-label="'Slide' + index"
-					v-for="(image, index) in seller.productImageList"
-				></button>
-			</div>
-			<div class="carousel-inner">
-				<div
-					class="carousel-item w-100"
-					style="max-height: 400px"
-					v-for="(image, index) in seller.productImageList"
-					:key="index"
-					:class="{ active: index == 0 }"
+					data-bs-target="#carouselExampleDark"
+					data-bs-slide="prev"
 				>
-					<img class="d-block productImage" :src="image" />
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button
+					class="carousel-control-next"
+					type="button"
+					data-bs-target="#carouselExampleDark"
+					data-bs-slide="next"
+				>
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+
+			<div class="userInfo">
+				<img class="userImage" :src="seller.memberImage" />
+				<div class="box1">
+					<div class="sellerName">판매자 이름 : {{ seller.memberName }}</div>
+					<div class="mainDeal">판매자 주 거래지 : {{ seller.memberAddr }}</div>
 				</div>
 			</div>
-			<button
-				class="carousel-control-prev"
-				type="button"
-				data-bs-target="#carouselExampleDark"
-				data-bs-slide="prev"
-			>
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button
-				class="carousel-control-next"
-				type="button"
-				data-bs-target="#carouselExampleDark"
-				data-bs-slide="next"
-			>
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
-		</div>
 
-		<div class="userInfo">
-			<img class="userImage" :src="seller.memberImage" />
-			<div class="box1">
-				<div class="sellerName">판매자 이름 : {{ seller.memberName }}</div>
-				<div class="mainDeal">판매자 주 거래지 : {{ seller.memberAddr }}</div>
-			</div>
-		</div>
+			<div class="line"></div>
 
-		<div class="line"></div>
-
-		<div class="test">
-			<div class="productHeader">
-				<div class="productTitle">상품 이름 :{{ seller.productName }}</div>
-				<div class="productTime">{{ seller.productTime }}</div>
-			</div>
-			<div class="productStatus">
-				<a class="productText1">찜 0</a>
-				<a class="productText1">조회 {{ seller.productVisit }}</a>
-			</div>
-		</div>
-
-		<div class="productInfoBox">
-			<div class="productRemainTime" v-if="seller.productHighPrice">남은 시간 : {{ leftTimerView }}</div>
-			<div class="productRegisterPrice">등록 가격 : {{ productPrice.toLocaleString() }}원</div>
-			<div class="productHighPrice" v-if="seller.productHighPrice">
-				현재 최고가 : {{ seller.productHighPrice.toLocaleString() }} 원
+			<div class="test">
+				<div class="productHeader">
+					<div class="productTitle">상품 이름 :{{ seller.productName }}</div>
+					<div class="productTime">{{ seller.productTime }}</div>
+				</div>
+				<div class="productStatus">
+					<a class="productText1">찜 0</a>
+					<a class="productText1">조회 {{ seller.productVisit }}</a>
+				</div>
 			</div>
 
-			<div class="productExplain">상품 사용기간 : {{ seller.productUseDate }}</div>
-			<div class="productExplain">상품 설명 : {{ seller.productDetail }}</div>
-		</div>
+			<div class="productInfoBox">
+				<div class="productRemainTime" v-if="seller.productHighPrice">남은 시간 : {{ leftTimerView }}</div>
+				<div class="productRegisterPrice">등록 가격 : {{ productPrice.toLocaleString() }}원</div>
+				<div class="productHighPrice" v-if="seller.productHighPrice">
+					현재 최고가 : {{ seller.productHighPrice.toLocaleString() }} 원
+				</div>
 
-		<div class="productFooter">
-			<button class="auctionText" :class="{ clicked: isClicked }" @click="bidStart">경매 참여</button>
-		</div>
+				<div class="productExplain">상품 사용기간 : {{ seller.productUseDate }}</div>
+				<div class="productExplain">상품 설명 : {{ seller.productDetail }}</div>
+			</div>
 
-		<div class="line"></div>
-		<BidList
-			v-if="isClicked"
-			:memberNo="seller.memberNo"
-			:productName="seller.productName"
-			:leftTime="leftTime"
-			:isSocket="isSocket"
-			:productPrice="seller.productPrice"
-		></BidList>
-		<div>추천 상품</div>
-		<div class="box4">
-			<router-link
-				v-for="item in productList"
-				:key="item.productNo"
-				:to="'/productDt?productNo=' + item.productNo"
-			>
-				<img class="productImage" :src="item.productImage" />
+			<div class="productFooter">
+				<button class="auctionText" :class="{ clicked: isClicked }" @click="bidStart">경매 참여</button>
+			</div>
 
-				<div class="productName">{{ item.productName }}</div>
+			<div class="line"></div>
+			<BidList
+				v-if="isClicked"
+				:memberNo="seller.memberNo"
+				:productName="seller.productName"
+				:leftTime="leftTime"
+				:isSocket="isSocket"
+				:productPrice="seller.productPrice"
+			></BidList>
+			<div>추천 상품</div>
+			<div class=""></div>
+			<div class="box4">
+				<router-link
+					v-for="item in productList"
+					:key="item.productNo"
+					:to="'/productDt?productNo=' + item.productNo"
+				>
+					<img class="productImage" :src="item.productImage" />
 
-				<div class="productRegion">{{ item.wishAddr }}</div>
+					<div class="productName">{{ item.productName }}</div>
 
-				<div class="productPrice">{{ item.price }} 원</div>
-			</router-link>
+					<div class="productRegion">{{ item.wishAddr }}</div>
+
+					<div class="productPrice">{{ item.price }} 원</div>
+				</router-link>
+			</div>
 		</div>
 	</div>
 </template>
@@ -244,12 +247,18 @@
 		filter: invert(100%);
 	}
 
+	.backColor {
+		background: #f2f3f6;
+		display: flex;
+		justify-content: center;
+	}
+
 	.form {
 		background: #ffffff;
-		width: 850px;
+		width: 950px;
 		display: flex;
 		flex-direction: column;
-		margin: 100px auto 0;
+		/* margin: 100px auto 0; */
 		position: relative;
 	}
 
