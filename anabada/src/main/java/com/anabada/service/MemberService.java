@@ -160,7 +160,7 @@ public class MemberService implements UserDetailsService {
                     memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
                     String updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage(), "member");  // 변경된 이미지파일
                     member.updateMember(memberUpdateDto, updateImagePath);
-                    return new MemberUpdateFindDto(updateImagePath, s3EndPoint);
+                    return new MemberUpdateFindDto(member, s3EndPoint);
                 } else {
                     memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
                     member.updateMember(memberUpdateDto);

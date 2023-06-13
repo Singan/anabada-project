@@ -149,9 +149,18 @@
 					const response = await axios.put('/member/update', form, {
 						header: { 'Content-Type': 'multipart/form-data' },
 					});
-					this.$store.commit('setMember', response.data);
+					if (response.status == 200) {
+						this.$swal({
+							icon: 'success',
+							title: '회원정보가 수정되었습니다.!',
+						});
+						this.$store.commit('setMember', response.data);
+						this.$router.push('/mypage');
+					}
 				} catch (error) {
+					console.log(error);
 					let message = error.response.data.message;
+
 					this.$swal({
 						icon: 'error',
 						title: message,

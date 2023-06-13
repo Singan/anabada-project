@@ -11,7 +11,5 @@ public class MemberUpdateFindDto {
         this.image = prefix+member.getMemberImage();
     }
 
-    public MemberUpdateFindDto(String updatePath, String prefix) {
-        this.image = prefix + updatePath;
-    }
+
 }
