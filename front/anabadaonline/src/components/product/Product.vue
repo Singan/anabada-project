@@ -193,7 +193,7 @@
 	}
 	.wrapper {
 		height: 100%;
-		background-color: #f8f9fa;
+		background-color: #f2f3f6;
 	}
 	.form-control {
 		width: 50%;
