@@ -115,7 +115,7 @@
 	}
 
 	.logoName {
-		color: #0075ff;
+		color: #00a5ff;
 		font: 700 35px 'Roboto', sans-serif;
 		height: 37px;
 		margin-left: 10px;
@@ -211,7 +211,7 @@
 	}
 
 	.join {
-		color: #0075ff;
+		color: #00a5ff;
 		text-align: center;
 		font: 700 13px 'Roboto', sans-serif;
 
@@ -240,7 +240,7 @@
 		color: #ffffff;
 		line-height: 52px;
 		align-items: center;
-		background: #0075ff;
+		background: #00a5ff;
 		border-radius: 5px;
 		width: 446px;
 		height: 52px;
@@ -253,7 +253,7 @@
 		color: #ffffff;
 		line-height: 52px;
 		align-items: center;
-		background: #0075ff;
+		background: #00a5ff;
 		border-radius: 5px;
 		width: 446px;
 		height: 52px;
