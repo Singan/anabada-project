@@ -92,22 +92,23 @@
 				:isSocket="isSocket"
 				:productPrice="seller.productPrice"
 			></BidList>
-			<div>추천 상품</div>
-			<div class=""></div>
-			<div class="box4">
-				<router-link
-					v-for="item in productList"
-					:key="item.productNo"
-					:to="'/productDt?productNo=' + item.productNo"
-				>
-					<img class="productImage" :src="item.productImage" />
+			<div class="recommend">추천 상품</div>
+			<div class="box6">
+				<div class="box4">
+					<router-link
+						v-for="item in productList"
+						:key="item.productNo"
+						:to="'/productDt?productNo=' + item.productNo"
+					>
+						<img class="productImage" :src="item.productImage" />
 
-					<div class="productName">{{ item.productName }}</div>
+						<div class="productName">{{ item.productName }}</div>
 
-					<div class="productRegion">{{ item.wishAddr }}</div>
+						<div class="productRegion">{{ item.wishAddr }}</div>
 
-					<div class="productPrice">{{ item.price }} 원</div>
-				</router-link>
+						<div class="productPrice">{{ item.price }} 원</div>
+					</router-link>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -539,6 +540,16 @@
 		flex-direction: row;
 		gap: 60px;
 		justify-content: center;
+	}
+
+	.box6 {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.recommend {
+		margin-left: 60px;
 	}
 
 	.productImage {
