@@ -247,13 +247,15 @@
 		.productImage {
 			display: inline-block;
 			margin: auto;
+			margin-left: 0px;
 			position: relative;
+			left: 0;
 			top: auto;
 		}
 		.productImage2 {
 			display: inline-block;
-			margin-left: 5px;
-			position: absolute;
+			margin-left: 0px;
+			position: relative;
 			left: 0;
 		}
 		.box1 {
@@ -261,7 +263,8 @@
 			flex-direction: column; /* 변경: 세로로 정렬 */
 			gap: 10px; /* 변경: grid-gap 대신 gap 사용 */
 		}
-		.Text1 {
+		.Text1,
+		.Text3 {
 			margin-left: 10vw; /* 변경: 뷰포트 너비의 10%로 설정 */
 			color: #000000;
 			text-align: center;
