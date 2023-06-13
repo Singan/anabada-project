@@ -19,7 +19,7 @@
 				<div class="carousel-inner">
 					<div
 						class="carousel-item w-100"
-						style="max-height: 400px; max-width: 400px"
+						style="max-height: 400px"
 						v-for="(image, index) in seller.productImageList"
 						:key="index"
 						:class="{ active: index == 0 }"
@@ -245,7 +245,7 @@
 <style scoped>
 	.carousel-control-prev-icon,
 	.carousel-control-next-icon {
-		/* filter: invert(100%); */
+		filter: invert(100%);
 	}
 
 	.backColor {
