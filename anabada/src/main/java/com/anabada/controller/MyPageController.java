@@ -45,7 +45,7 @@ public class MyPageController {
     @Operation(description = "내 판매내역")
     public ResultList<List<SalesListSelectDto>> findSales(
             @AuthenticationPrincipal MemberDetailDTO memberDetailDTO,
-            @PageableDefault(sort = "createDateTime",direction = Sort.Direction.DESC) Pageable pageable
+            @PageableDefault(sort = "create_date_time",direction = Sort.Direction.DESC) Pageable pageable
 
     ) {
         return productService.findSales(memberDetailDTO,pageable);
@@ -53,13 +53,17 @@ public class MyPageController {
 
     @GetMapping("/bidDetail")
     @Operation(description = "내 입찰내역")
-    public ResultList<List<MyBidDto>> findBiddingDetail(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO, Pageable pageable) {
+    public ResultList<List<MyBidDto>> findBiddingDetail(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO,
+                                                        @PageableDefault(sort = "bid_time",direction = Sort.Direction.DESC)
+                                                        Pageable pageable) {
         return myPageService.findBiddingDetail(memberDetailDTO, pageable);
     }
 
     @GetMapping("/buys")
     @Operation(description = "내 구매내역")
-    public ResultList<List<MyBuyDto>> findBuyList(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO,Pageable pageable) {
+    public ResultList<List<MyBuyDto>> findBuyList(@AuthenticationPrincipal MemberDetailDTO memberDetailDTO,
+                                                  @PageableDefault(sort = "successTime",direction = Sort.Direction.DESC)
+                                                  Pageable pageable) {
         return myPageService.myBuyList(memberDetailDTO,pageable);
     }
 }
