@@ -88,10 +88,9 @@
 
 	.content1 {
 		background: #f1f8ff;
-		display: flex;
+		position: relative;
 		width: 100%;
 		height: 70vh;
-		flex-direction: row;
 	}
 
 	.content2 {
@@ -116,15 +115,14 @@
 	}
 
 	.Text1 {
-		display: flex;
-		flex-direction: column;
-		margin-top: 10rem;
-		margin-left: 30rem;
+		margin-left: 10rem;
 		color: #000000;
 		text-align: left;
 		font: 700 48px 'Roboto', sans-serif;
 		align-items: center;
-		width: 50%;
+		position: absolute;
+		left: 12%;
+		top: 30%;
 	}
 
 	.Text2 {
