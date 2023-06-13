@@ -34,7 +34,7 @@
 						required
 					/>
 					<div class="invalid-feedback">
-						비밀번호는 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 8자 ~ 20자의 비밀번호여야
+						비밀번호는 영문 소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 8자 ~ 20자의 비밀번호여야
 						합니다.
 					</div>
 				</div>
@@ -45,7 +45,16 @@
 					<div class="invalid-feedback">이름은 필수 입력값입니다.</div>
 				</div>
 				<div class="form_item birth">
-					<input type="text" class="input" id="birth" placeholder="생년월일" maxlength="8" v-model="birth" />
+					<input
+						type="text"
+						class="input"
+						id="birth"
+						placeholder="생년월일(8자리)"
+						maxlength="8"
+						minlength="8"
+						required
+						v-model="birth"
+					/>
 				</div>
 			</div>
 			<div class="formList3">
@@ -135,6 +144,7 @@
 								this.id = '';
 							}
 							if (errorObject.pw != null) {
+								console.log(errorObject);
 								this.pw = '';
 							}
 
