@@ -88,9 +88,10 @@
 
 	.content1 {
 		background: #f1f8ff;
-		position: relative;
+		display: flex;
 		width: 100%;
 		height: 70vh;
+		flex-direction: row;
 	}
 
 	.content2 {
@@ -115,14 +116,15 @@
 	}
 
 	.Text1 {
-		margin-left: 10rem;
+		display: flex;
+		flex-direction: column;
+		margin-top: 10rem;
+		margin-left: 30rem;
 		color: #000000;
 		text-align: left;
 		font: 700 48px 'Roboto', sans-serif;
 		align-items: center;
-		position: absolute;
-		left: 12%;
-		top: 30%;
+		width: 50%;
 	}
 
 	.Text2 {
@@ -188,9 +190,9 @@
 	}
 
 	.productImage {
-		margin-left: 50rem;
+		/* margin-left: 50rem; */
 		position: absolute;
-		left: 10%;
+		left: 52%;
 		top: 15%;
 		background: #ffffff;
 		width: 32rem;
@@ -201,10 +203,10 @@
 	}
 
 	.productImage2 {
-		margin-left: 50rem;
+		/* margin-left: 50rem; */
 		align-items: center;
 		position: absolute;
-		left: 18%;
+		left: 58%;
 		top: 45%;
 		background: #ffffff;
 		width: 32rem;
