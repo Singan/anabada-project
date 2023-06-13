@@ -221,7 +221,7 @@
 	}
 
 	.title {
-		color: #0075ff;
+		color: #00a5ff;
 		text-align: left;
 		font: 700 28px 'Roboto', sans-serif;
 		margin-top: 20px;
@@ -330,7 +330,7 @@
 
 	.commonText {
 		font-size: 18px;
-		color: blue;
+		color: #00a5ff;
 	}
 
 	.submit {
