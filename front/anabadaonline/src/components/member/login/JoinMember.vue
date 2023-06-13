@@ -41,7 +41,8 @@
 			</div>
 			<div class="formList2">
 				<div class="form_item name">
-					<input type="text" class="input" v-model="name" maxlength="10" placeholder="이름" />
+					<input type="text" class="input" v-model="name" maxlength="10" placeholder="이름" required />
+					<div class="invalid-feedback">이름은 필수 입력값입니다.</div>
 				</div>
 				<div class="form_item birth">
 					<input type="text" class="input" id="birth" placeholder="생년월일" maxlength="8" v-model="birth" />
@@ -69,7 +70,7 @@
 						placeholder="거래희망지"
 						required
 					/>
-					<div class="invalid-feedback">거래 희망지는 필수 입력입니다.</div>
+					<div class="text-red">거래 희망지는 필수 입력입니다.</div>
 				</div>
 			</div>
 
@@ -130,16 +131,31 @@
 					.catch((error) => {
 						let message = error.response.data.message;
 						if (error.response.status == 400) {
+							let errorObject = error.response.data;
+							if (errorObject.id != null) {
+								this.id = '';
+							}
+							if (errorObject.pw != null) {
+								this.pw = '';
+							}
+
+							if (errorObject.name != null) {
+								this.name = '';
+							}
+							if (errorObject.Wishaddr != null) {
+								this.Wishaddr = '';
+							}
+							if (errorObject.addr != null) {
+								this.addr = '';
+							}
+						} else if (error.response.status == 500) {
 							console.log(error.response);
-						} else if (error.status == 500) {
 							this.$swal({
 								icon: 'error',
 								title: '중복된 회원입니다.',
 								text: message,
 							});
 						} else {
-							console.log('???');
-							console.log(error.response);
 							this.$swal({
 								icon: 'error',
 								title: '회원가입을 실패하였습니다.',
