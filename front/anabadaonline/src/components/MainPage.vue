@@ -229,6 +229,7 @@
 		height: 16rem;
 		border-radius: 25px;
 		box-shadow: 5px 10px 12px rgba(0, 0, 0, 0.08);
+		overflow: hidden;
 		/* border: 2px solid #111111; */
 	}
 
@@ -242,6 +243,7 @@
 		height: 26rem;
 		border-radius: 25px;
 		box-shadow: 10px 0px 12px rgba(0, 0, 0, 0.08);
+		overflow: hidden;
 	}
 
 	.productImage4 {
@@ -254,6 +256,7 @@
 		height: 26rem;
 		border-radius: 25px;
 		box-shadow: 10px 0px 12px rgba(0, 0, 0, 0.08);
+		overflow: hidden;
 	}
 	@media (max-width: 768px) {
 		.content1,
