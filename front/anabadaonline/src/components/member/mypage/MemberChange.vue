@@ -152,7 +152,7 @@
 					if (response.status == 200) {
 						this.$swal({
 							icon: 'success',
-							title: '회원정보가 수정되었습니다.!',
+							title: '회원정보가 수정되었습니다!',
 						});
 						this.$store.commit('setMember', response.data);
 						this.$router.push('/mypage');
