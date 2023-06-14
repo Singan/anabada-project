@@ -317,6 +317,10 @@
 		cursor: pointer;
 		margin-bottom: 30px;
 	}
+
+	.submit:hover {
+		background: #008edb;
+	}
 	.submit:active {
 		box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0);
 		transform: translateY(4px);
@@ -324,5 +328,14 @@
 
 	.imagePreView {
 		background: #d9d9d9;
+	}
+
+	.input-group-text {
+		border-radius: 0;
+	}
+
+	.input-group-text:hover {
+		background-color: #eef1f3;
+		cursor: pointer;
 	}
 </style>
