@@ -11,10 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Component
 public class BidManagement {
@@ -41,7 +38,9 @@ public class BidManagement {
 
     public List<SuccessfulBid> checkSuccessBidHashMap(){
         List<SuccessfulBid> successfulBids= new ArrayList<>();
-        for (Product product:biddingHashMap.keySet()){
+        Iterator<Product> mapKey = biddingHashMap.keySet().iterator();
+        while (mapKey.hasNext()){
+            Product product = mapKey.next();
             Bid bid = biddingHashMap.get(product);
             LocalDateTime now = LocalDateTime.now();
             LocalDateTime bidTime = bid.getTime();
