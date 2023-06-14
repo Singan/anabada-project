@@ -22,7 +22,7 @@
 				<img src="@/assets/mainImage03.png" alt="메인 사진 3" style="width: 256px; height: 416px" />
 			</div>
 			<div class="productImage4">
-				<img src="@/assets/mainImage04.png" alt="메인 사진 3" style="width: 256px; height: 416px" />
+				<img src="@/assets/chat.png" alt="메인 사진 3" style="width: 256px; height: 416px" />
 			</div>
 		</div>
 
