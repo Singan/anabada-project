@@ -15,7 +15,7 @@
 			</div>
 
 			<div class="input-group justify-content-center">
-				<label class="input-group-text" for="inputGroupFile01"> 이미지 등록 </label>
+				<label class="input-group-text" for="inputGroupFile01" style="border-radius: 0"> 이미지 등록 </label>
 				<input
 					type="file"
 					id="inputGroupFile01"

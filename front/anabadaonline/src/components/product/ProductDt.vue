@@ -423,14 +423,14 @@
 
 	.auctionText {
 		font: 14px 'Roboto', sans-serif;
-		background: #f5e7e74d;
+		background: #f7f7f7;
 		border: 1px #f5e7e74d solid;
 		border-radius: 5px;
 		width: 400px;
 		height: 30px;
 		text-align: center;
 		cursor: pointer;
-		box-shadow: 1px 1px 1px 1px rgba(0.5, 0.5, 0.5, 0.5);
+		box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(1, 1, 1, 0.5);
 	}
 	.auctionText:active {
 		cursor: pointer;
