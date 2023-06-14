@@ -49,8 +49,7 @@ public class BidManagement {
             if (minutesPassed >= 10) {
                 SuccessfulBid s = SuccessfulBid.builder().product(product).bid(bid).status(Status.대기).build();
                 successfulBids.add(s);
-                biddingHashMap.remove(product);
-            }
+                mapKey.remove();            }
         }
         return successfulBids;
     }
