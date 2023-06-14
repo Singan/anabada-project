@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -79,6 +80,12 @@ public class Product {
     @Override
     public boolean equals(Object obj) {
         Product otherProduct = (Product) obj;
-        return productNo.equals(otherProduct.productNo);
+        return this.productNo==otherProduct.productNo;
+    }
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productNo);
     }
 }
