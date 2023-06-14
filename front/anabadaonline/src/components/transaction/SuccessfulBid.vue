@@ -3,8 +3,8 @@
 		<div class="SuccessText1">축하합니다!</div>
 
 		<div class="SuccessText2">
-			<span style="color: #0075ff">"{{ productName }}"</span> 상품이
-			<span style="color: #0075ff">낙찰</span>
+			<span style="color: #00a5ff">"{{ productName }}"</span> 상품이
+			<span style="color: #00a5ff">낙찰</span>
 			되었습니다!
 		</div>
 
@@ -12,7 +12,7 @@
 
 		<div class="detailInfo">
 			<div class="productInfo">상품명 : {{ productName }}</div>
-			<div class="productPrice">최종 낙찰가 : {{ productPrice }}</div>
+			<div class="productPrice">최종 낙찰가 : {{ productPrice.toLocaleString() }}</div>
 			<div class="productInfo">상품 사용기간 : {{ productUseDate }}</div>
 			<div class="productInfo">상품 거래지 : {{ wishAddr }}</div>
 		</div>
@@ -35,7 +35,9 @@
 			</div>
 		</div>
 
-		<button class="okayButton" @click="chat" v-if="status == '대기'">상대방과 채팅 시작하기</button>
+		<button class="btn btn-primary" @click="chat" style="width: 26rem" v-if="status == '대기'">
+			상대방과 채팅 시작하기
+		</button>
 		<div v-if="status == '채팅'">현재 대화중입니다.</div>
 	</div>
 </template>
