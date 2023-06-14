@@ -19,7 +19,6 @@
 				<div class="carousel-inner">
 					<div
 						class="carousel-item w-100"
-						style="max-height: 400px"
 						v-for="(image, index) in seller.productImageList"
 						:key="index"
 						:class="{ active: index == 0 }"
@@ -554,8 +553,8 @@
 
 	.productImage {
 		border-radius: 20px;
-		height: auto;
-		max-height: 100%;
+		height: 400px;
+		width: auto;
 		max-width: 100%;
 		object-fit: contain; /* 이미지를 비율을 유지하며 부모 요소 내에 맞추기 */
 		margin: auto;

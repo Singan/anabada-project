@@ -44,11 +44,17 @@
 				<!-- 채팅 -->
 				<div class="chatting flex-grow-1" ref="messages">
 					<div
-						class="msg"
+						class="message"
 						:class="[message.memberNo != $store.getters.getMember.no ? 'receiver' : 'sender']"
 						v-for="message in messageList"
 					>
-						{{ message.message }}
+						<span class="timestamp" v-if="message.memberNo == $store.getters.getMember.no">{{
+							message.createDateTime
+						}}</span>
+						<span class="msg">{{ message.message }}</span>
+						<span class="timestamp" v-if="message.memberNo != $store.getters.getMember.no">{{
+							message.createDateTime
+						}}</span>
 					</div>
 				</div>
 
@@ -163,7 +169,8 @@
 		height: 100%;
 		overflow: auto;
 	}
-
+	.message_wrap {
+	}
 	.flexContainer {
 		display: flex;
 		flex-direction: row;
@@ -343,27 +350,31 @@
 	}
 
 	.receiver {
-		background-color: #eaeaea;
-		align-self: flex-start;
+		justify-content: flex-start;
 		margin-left: 10px;
 		margin-top: 15px;
+	}
+	.receiver > .msg {
+		background-color: #eaeaea;
+
 		font-size: 18px;
 		padding: 10px 14px;
 		border-radius: 2px 20px 20px;
 	}
-
 	.sender {
-		background-color: #d4e1f4;
 		margin-top: 15px;
-		align-self: flex-end;
-		margin-right: 15px;
+		justify-content: flex-end;
+		color: black;
+	}
+	.sender > .msg {
 		font-size: 18px;
 		border-radius: 20px 2px 20px 20px;
 		padding: 10px 14px;
-		color: black;
-		font-weight: 500;
-	}
+		margin-right: 15px;
 
+		font-weight: 500;
+		background-color: #d4e1f4;
+	}
 	.chatControll {
 		display: flex;
 		flex-direction: column;
@@ -404,5 +415,41 @@
 		word-break: break-all;
 		white-space: pre-wrap;
 		max-width: 75%;
+		display: inline-block;
+	}
+	.chatting {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.message_wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.message {
+		display: flex;
+		padding: 5px;
+		margin-bottom: 10px;
+		max-width: 100%;
+		border-radius: 5px;
+	}
+
+	.timestamp {
+		font-size: 12px;
+		color: #999999;
+		margin-top: 5px;
+		align-self: flex-end;
+	}
+	.sender .timestamp {
+		text-align: left;
+	}
+
+	.receiver .timestamp {
+		text-align: left;
+	}
+	.sender > .msg {
+		text-align: left;
 	}
 </style>

@@ -160,11 +160,11 @@ public class MemberService implements UserDetailsService {
                     memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
                     String updateImagePath = fileProcessor.fileSave(memberUpdateDto.getUpdateImage(), "member");  // 변경된 이미지파일
                     member.updateMember(memberUpdateDto, updateImagePath);
-                    return new MemberUpdateFindDto(member, updateImagePath);
+                    return new MemberUpdateFindDto(member, s3EndPoint);
                 } else {
                     memberUpdateDto.setUpdatePw(passwordEncoder.encode(memberUpdateDto.getUpdatePw()));
                     member.updateMember(memberUpdateDto);
-                    return new MemberUpdateFindDto(member, member.getMemberImage());
+                    return new MemberUpdateFindDto(member, s3EndPoint);
                 }
             } else {
                 throw new RuntimeException("비밀번호가 같은지 확인해주세요");

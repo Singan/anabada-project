@@ -269,6 +269,7 @@
 	}
 
 	.btn-primary {
+		background-color: #0081ea;
 		width: 500px;
 		height: 40px;
 		font: 500 16px 'Roboto', sans-serif;
@@ -276,7 +277,8 @@
 	}
 
 	.btn-danger {
-		background-color: #ff4545;
+		background-color: #ff5a00;
+		/* background-color: #ff4545; */
 		font: 500 16px 'Roboto', sans-serif;
 		margin-top: 10px;
 		width: 500px;

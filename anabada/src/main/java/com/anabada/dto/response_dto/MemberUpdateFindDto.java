@@ -10,4 +10,6 @@ public class MemberUpdateFindDto {
     public MemberUpdateFindDto(Member member,String prefix) {
         this.image = prefix+member.getMemberImage();
     }
+
+
 }
