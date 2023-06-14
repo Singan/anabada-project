@@ -214,6 +214,7 @@
 		height: 16rem;
 		border-radius: 25px;
 		box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.08);
+		overflow: hidden;
 		/* border: 2px solid #111111; */
 	}
 
