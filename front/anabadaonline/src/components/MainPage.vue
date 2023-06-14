@@ -82,10 +82,19 @@
 
 <style scoped>
 	.productFlexItem {
+		max-width: 200px;
 		margin-top: 3rem;
 		margin-left: 1rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 	}
-
+	.productFlexItem > * {
+		text-overflow: ellipsis;
+		margin-bottom: 3px;
+		white-space: nowrap;
+		overflow: hidden;
+	}
 	.content1 {
 		background: #f1f8ff;
 		position: relative;
@@ -262,6 +271,7 @@
 			display: flex;
 			flex-direction: column; /* 변경: 세로로 정렬 */
 			gap: 10px; /* 변경: grid-gap 대신 gap 사용 */
+			margin: auto;
 		}
 		.Text1,
 		.Text3 {
