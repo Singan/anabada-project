@@ -91,9 +91,9 @@
 	}
 	.productFlexItem > * {
 		text-overflow: ellipsis;
-		margin-bottom: 3px;
 		white-space: nowrap;
 		overflow: hidden;
+		margin-bottom: 3px;
 	}
 	.content1 {
 		background: #f1f8ff;
