@@ -5,8 +5,12 @@
 				원하는 물품<br />원하는 가격으로<br /><br />
 				<div class="Text2">중고 거래, 이제 경매에 직접 참여해서<br />원하는 가격으로 구매해보세요</div>
 			</div>
-			<div class="productImage"></div>
-			<div class="productImage2"></div>
+			<div class="productImage">
+				<img src="@/assets/mainImage01.png" alt="메인 사진 1" style="width: 512px; height: 256px" />
+			</div>
+			<div class="productImage2">
+				<img src="@/assets/mainImage02.png" alt="메인 사진 2" style="width: 512px; height: 256px" />
+			</div>
 		</div>
 
 		<div class="content2">
@@ -14,8 +18,12 @@
 				우리 동네에서 <br />펼쳐지는 경매장<br /><br />
 				<div class="Text4">내가 사는 지역에서 이루어지는 거래를 지금 경험해보세요</div>
 			</div>
-			<div class="productImage3"></div>
-			<div class="productImage4"></div>
+			<div class="productImage3">
+				<img src="@/assets/mainImage03.png" alt="메인 사진 3" style="width: 256px; height: 416px" />
+			</div>
+			<div class="productImage4">
+				<img src="@/assets/mainImage04.png" alt="메인 사진 3" style="width: 256px; height: 416px" />
+			</div>
 		</div>
 
 		<div class="content3">
