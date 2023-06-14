@@ -96,10 +96,8 @@
 	.productPicture {
 		background: #d9d9d9;
 		border-radius: 10px;
-		height: 100%;
-		width: 100%;
 		max-width: 160px;
-		max-height: 160px;
+		height: 160px;
 		flex: 1;
 	}
 
@@ -116,6 +114,11 @@
 		color: #000000;
 		font: 700 16px 'Roboto', sans-serif;
 		margin-bottom: 5px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		max-width: 450px;
+		flex: 2;
 	}
 
 	.productInfo {
@@ -127,9 +130,9 @@
 	.successGo {
 		box-shadow: inset 0px 1px 0px 0px #bbdaf7;
 		background: linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
-		background-color: #0075ff;
+		background-color: #00a5ff;
 		border-radius: 6px;
-		border: 1px solid #0075ff;
+		border: 1px solid #00a5ff;
 		cursor: pointer;
 		color: #ffffff;
 		font-family: Arial;
@@ -137,10 +140,11 @@
 		font-weight: bold;
 		padding: 6px 24px;
 		text-decoration: none;
-		text-shadow: 0px 1px 0px #0075ff;
+		min-width: 145px;
+		text-shadow: 0px 1px 0px #00a5ff;
 	}
 	.successGo:hover {
-		background: linear-gradient(to bottom, #0075ff 5%, #0075ff 100%);
-		background-color: #0075ff;
+		background: linear-gradient(to bottom, #00a5ff 5%, #00a5ff 100%);
+		background-color: #00a5ff;
 	}
 </style>
