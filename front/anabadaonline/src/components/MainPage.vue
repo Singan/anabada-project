@@ -6,10 +6,10 @@
 				<div class="Text2">중고 거래, 이제 경매에 직접 참여해서<br />원하는 가격으로 구매해보세요</div>
 			</div>
 			<div class="productImage">
-				<img src="@/assets/mainImage01.png" alt="메인 사진 1" style="width: 512px; height: 256px" />
+				<img src="@/assets/mainImage01.png" alt="메인 사진 1" class="pig" />
 			</div>
 			<div class="productImage2">
-				<img src="@/assets/mainImage02.png" alt="메인 사진 2" style="width: 512px; height: 256px" />
+				<img src="@/assets/mainImage02.png" alt="메인 사진 2" class="pig" />
 			</div>
 		</div>
 
@@ -19,10 +19,10 @@
 				<div class="Text4">내가 사는 지역에서 이루어지는 거래를 지금 경험해보세요</div>
 			</div>
 			<div class="productImage3">
-				<img src="@/assets/mainImage03.png" alt="메인 사진 3" style="width: 256px; height: 416px" />
+				<img src="@/assets/mainImage03.png" alt="메인 사진 3" class="pig2" />
 			</div>
 			<div class="productImage4">
-				<img src="@/assets/chat.png" alt="메인 사진 3" style="width: 256px; height: 416px" />
+				<img src="@/assets/chat.png" alt="메인 사진 3" class="pig2" />
 			</div>
 		</div>
 
@@ -89,6 +89,14 @@
 </script>
 
 <style scoped>
+	.pig {
+		width: 512px;
+		height: 256px;
+	}
+	.pig2 {
+		width: 256px;
+		height: 416px;
+	}
 	.productFlexItem {
 		max-width: 200px;
 		margin-top: 3rem;
@@ -132,13 +140,12 @@
 	}
 
 	.Text1 {
-		margin-left: 10rem;
+		margin-left: 23%;
 		color: #000000;
 		text-align: left;
 		font: 700 48px 'Roboto', sans-serif;
 		align-items: center;
 		position: absolute;
-		left: 12%;
 		top: 30%;
 	}
 
@@ -222,7 +229,7 @@
 		/* margin-left: 50rem; */
 		align-items: center;
 		position: absolute;
-		left: 58%;
+		margin-left: 58%;
 		top: 45%;
 		background: #ffffff;
 		width: 32rem;
@@ -266,18 +273,33 @@
 			min-height: 70vh;
 		}
 		.productImage {
-			display: inline-block;
+			display: block;
 			margin: auto;
-			margin-left: 0px;
+			margin-left: auto;
 			position: relative;
-			left: 0;
-			top: auto;
+			left: auto;
+			top: 20px;
+			width: 384px;
+			height: 50%;
+		}
+		.pig {
+			width: 100%;
+			height: 100%;
+		}
+
+		.pig2 {
+			width: 100%;
+			height: 100%;
 		}
 		.productImage2 {
-			display: inline-block;
-			margin-left: 0px;
+			display: block;
+			margin: auto;
+			margin-left: auto;
 			position: relative;
-			left: 0;
+			left: auto;
+			top: 40px;
+			width: 384px;
+			height: 50%;
 		}
 		.box1 {
 			display: flex;
@@ -287,7 +309,6 @@
 		}
 		.Text1,
 		.Text3 {
-			margin-left: 10vw; /* 변경: 뷰포트 너비의 10%로 설정 */
 			color: #000000;
 			text-align: center;
 			font: 700 4vw 'Roboto', sans-serif; /* 변경: 뷰포트 너비에 상대적인 폰트 크기로 설정 */
@@ -297,9 +318,21 @@
 			position: relative; /* 변경: 절대 위치 해제 */
 			left: auto; /* 변경: 왼쪽 위치 초기화 */
 			top: auto; /* 변경: 위쪽 위치 초기화 */
+			margin-left: 0%;
+			top: 5px;
 		}
 		.content1 {
 			overflow-y: auto;
+		}
+		.Text4,
+		.Text2 {
+			text-align: center;
+			display: block; /* 변경: flexbox 레이아웃 사용 */
+			justify-content: center; /* 변경: 가로 중앙 정렬 */
+			align-items: center; /* 변경: 세로 중앙 정렬 */
+			position: relative; /* 변경: 절대 위치 해제 */
+			left: auto; /* 변경: 왼쪽 위치 초기화 */
+			top: auto; /* 변경: 위쪽 위치 초기화 */
 		}
 		.Text2 {
 			color: #000000;
@@ -309,19 +342,25 @@
 			display: block;
 		}
 		.productImage3 {
-			position: relative;
-			margin-left: 0;
+			display: block;
+			margin-left: 25%;
 			left: auto;
-			top: auto;
-			display: inline-block;
+			position: absolute;
+			width: 204px;
+			height: 332px;
+			top: 180px;
 		}
 
 		.productImage4 {
-			position: relative;
-			left: auto;
-			top: auto;
 			display: inline-block;
+			margin: auto;
 			margin-left: auto;
+			position: absolute;
+			margin-left: 25%;
+			left: 150px;
+			top: 320px;
+			width: 204px;
+			height: 332px;
 		}
 		.Text3 {
 			position: relative;
