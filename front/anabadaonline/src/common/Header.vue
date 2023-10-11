@@ -1,7 +1,7 @@
 <template>
 	<div class="w-100">
 		<nav class="navbar navbar-expand-md navbar-light bg-light w-100">
-			<router-link class="navbar-brand Logo" to="/">아나바다</router-link>
+			<router-link class="navbar-brand Logo custom-ml" to="/">아나바다</router-link>
 			<button
 				class="navbar-toggler"
 				type="button"
@@ -14,7 +14,7 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav flex-grow-1 justify-content-start align-items-center g-4">
+				<ul class="navbar-nav justify-content-start align-items-center g-4">
 					<router-link class="nav-link active" to="/" aria-current="page">
 						<li class="nav-item ml-auto btn btn-outline-info text-primary">홈</li>
 					</router-link>
@@ -24,12 +24,12 @@
 					<router-link :to="{ name: '/chatList' }" class="nav-link active nav-item">
 						<li class="nav-item btn btn-outline-info">채팅</li></router-link
 					>
-					<router-link to="/Product" class="nav-link active"
-						><li class="nav-item btn btn-outline-info" v-if="isToken">상품등록</li></router-link
+					<router-link to="/Product" class="nav-link active" v-if="isToken"
+						><li class="nav-item btn btn-outline-info">상품등록</li></router-link
 					>
 				</ul>
 			</div>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<div class="collapse navbar-collapse custom-mr" id="navbarSupportedContent">
 				<ul class="navbar-nav flex-grow-1 justify-content-end align-items-center g-4">
 					<router-link to="/login" class="nav-link active">
 						<li class="nav-item btn btn-outline-info" v-if="!isToken">로그인</li></router-link
@@ -126,7 +126,9 @@
 		justify-content: center;
 		align-items: center;
 	}
-
+	.custom-ml {
+		margin-left: 23%;
+	}
 	.Logo {
 		color: $primary-color;
 		text-align: center;
@@ -144,7 +146,9 @@
 		width: 40px;
 		height: 40px;
 	}
-
+	.custom-mr {
+		margin-right: 10%;
+	}
 	.SearchBox {
 		border-radius: 5px;
 		width: 450px;
@@ -231,5 +235,10 @@
 	.btn-outline-info:active {
 		background-color: #f8f9fa;
 		color: $primary-color;
+	}
+	@media (max-width: 768px) {
+		.custom-mr {
+			margin-right: 0%;
+		}
 	}
 </style>
