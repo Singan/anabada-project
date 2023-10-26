@@ -77,6 +77,7 @@ public class Product {
         this.productIsBidComplete = productIsBidComplete;
         this.productBidList = productBidList;
     }
+
     @Override
     public boolean equals(Object obj) {
         Product otherProduct = (Product) obj;

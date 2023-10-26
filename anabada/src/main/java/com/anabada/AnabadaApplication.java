@@ -11,6 +11,7 @@ import org.springframework.web.filter.HiddenHttpMethodFilter;
 public class AnabadaApplication {
 	static {
 		System.setProperty("com.amazonaws.sdk.disableEc2Metadata", "true");
+
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(AnabadaApplication.class, args);

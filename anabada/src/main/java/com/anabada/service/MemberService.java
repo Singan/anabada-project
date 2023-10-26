@@ -126,6 +126,7 @@ public class MemberService implements UserDetailsService {
     public boolean confirmPassword(MemberDetailDTO memberDetailDTO, MypageConfirmDto mypageConfirmDto) {
         Member member = memberRepository.findByMemberIdAndMemberExistFalse(memberDetailDTO.getUsername());
         String confirmPw = mypageConfirmDto.getConfirmPassword();
+        
         if (passwordEncoder.matches(confirmPw, member.getMemberPw())) {
             return true;
         } else {
