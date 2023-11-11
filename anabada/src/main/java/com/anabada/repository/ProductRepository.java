@@ -39,7 +39,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     void upProductVisit(@Param("productNo") Long productNo);
 
     @Query("select distinct p from Product p join fetch p.member where p.productIsBidComplete = false order by p.productVisit desc")
-    List<Product> findByProductAndMember(Pageable pageable); //메인에 나가는 목록 조회 조정할 예정
+    List<Product> findByProductAndMember(Pageable pageable); //메인에 나가는 목록 조회
 
     @Query("select  p from Product p " +
             "where p.category.categoryNo = :categoryNo and p.productIsBidComplete = false")
@@ -69,7 +69,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
             " left join successful_bid sb on p.product_no = sb.product_no" +
             " left join bid b on sb.bid_no = b.bid_no" +
             " left join member m on b.member_no = m.member_no" +
-            " where p.member_no = :memberNo", nativeQuery = true) // 판매 내역 리스트 인데 사용할지 고민중
+            " where p.member_no = :memberNo", nativeQuery = true) // 판매 내역 리스트
     Page<SalesListSelectInterface> findProductListWithBid(@Param("memberNo") Long memberNo,Pageable pageable);
 
 }
