@@ -2,6 +2,7 @@ package com.anabada.dto.request_dto;
 
 import com.anabada.dto.MemberDetailDTO;
 import com.anabada.entity.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -30,6 +31,8 @@ public class ProductInsertDto {
     @NotBlank
     private Long categoryNo;
     private List<MultipartFile> productImages;
+
+    @JsonIgnore
     public Product getProduct(MemberDetailDTO principal,String thumbnail ){
         Member member = principal.getMember();
         Category category = Category.builder().categoryNo(categoryNo).build();

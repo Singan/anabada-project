@@ -20,5 +20,4 @@ public class SuccessBidController {
     public SuccessBidDto successBidDto(@RequestParam Long successBidNo,@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
         return successBidService.successBidDto(successBidNo,memberDetailDTO);
     }
-
 }

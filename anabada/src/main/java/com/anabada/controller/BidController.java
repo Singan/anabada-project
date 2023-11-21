@@ -30,12 +30,9 @@ public class BidController {
     @Operation(description = "입찰 정보 등록")
     public void bidInsert(@Payload BidInsertDto bidInsertDto, Authentication authentication) {
         MemberDetailDTO memberDetailDTO = (MemberDetailDTO) authentication.getPrincipal();
-
         BidInsertResponseDto bidRes = bidService.bidSave(bidInsertDto, memberDetailDTO);
-
         simpMessagingTemplate.convertAndSend(
                 "/product/" + bidInsertDto.getProductNo(), bidRes);
-
         simpMessagingTemplate.convertAndSend(
                 "/product/myProduct/" + bidInsertDto.getProductNo(), bidRes);
     }
