@@ -1,6 +1,7 @@
 package com.anabada.dto.request_dto;
 
 import com.anabada.entity.Member;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,6 +24,8 @@ public class MemberJoinDto extends MemberLoginDto{
     private String wishAddr;
     private MultipartFile image;
     private String profileImagePath;
+
+    @JsonIgnore
     public Member getMember(){
         return Member.builder()
                 .memberId(this.id)
