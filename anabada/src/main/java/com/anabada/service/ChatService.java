@@ -1,7 +1,7 @@
 package com.anabada.service;
 
 import com.anabada.dto.MemberDetailDTO;
-import com.anabada.dto.request_dto.ChatMessageDto;
+import com.anabada.dto.request_dto.ChatReqMessageDto;
 import com.anabada.dto.response_dto.ChatMessageResDto;
 import com.anabada.dto.response_dto.ChatRoomDto;
 import com.anabada.entity.ChatMessage;
@@ -13,7 +13,6 @@ import com.anabada.repository.ChatMessageRepository;
 import com.anabada.repository.ChatRoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -59,19 +58,19 @@ public class ChatService {
         return chatMessageDtos;
     }
 
-    public ChatMessageResDto receiveMessage(MemberDetailDTO memberDetailDTO, ChatMessageDto chatMessageDto) {
+    public ChatMessageResDto receiveMessage(MemberDetailDTO memberDetailDTO, ChatReqMessageDto chatReqMessageDto) {
         Member member = Member.builder().memberNo(memberDetailDTO.getNo()).build();
-        SuccessfulBid successfulBid = SuccessfulBid.builder().successBidProductNo(chatMessageDto.getSuccessNo()).build();
+        SuccessfulBid successfulBid = SuccessfulBid.builder().successBidProductNo(chatReqMessageDto.getSuccessNo()).build();
         ChatRoom chatRoom = chatRoomRepository.findChatRoomBySuccessfulBidAndMember(successfulBid, member);
         LocalDateTime now = LocalDateTime.now();
         ChatMessage ch = ChatMessage
                 .builder()
                 .chatRoom(chatRoom)
-                .message(chatMessageDto.getMessage())
+                .message(chatReqMessageDto.getMessage())
                 .createDateTime(now)
                 .build();
         chatMessageRepository.save(ch);
-        chatMessageDto.setMemberImage(prefix+chatMessageDto.getMemberImage());
-        return new ChatMessageResDto(chatMessageDto,now, memberDetailDTO.getNo());
+        chatReqMessageDto.setMemberImage(prefix+ chatReqMessageDto.getMemberImage());
+        return new ChatMessageResDto(chatReqMessageDto,now, memberDetailDTO.getNo());
     }
 }

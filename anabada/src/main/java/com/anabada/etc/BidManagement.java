@@ -30,9 +30,8 @@ public class BidManagement {
 
 
 
-    public void updateHaspMap(Product productNo, Bid newBid){
+    public synchronized  void updateHaspMap(Product productNo, Bid newBid){
         biddingHashMap.put(productNo,newBid);
-
     }
 
 

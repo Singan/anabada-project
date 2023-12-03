@@ -1,23 +1,13 @@
 package com.anabada.config.token;
 
-import com.anabada.dto.MemberDetailDTO;
-import com.anabada.dto.request_dto.MemberLoginDto;
 import com.anabada.entity.Member;
-import com.anabada.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import io.jsonwebtoken.*;
 
 import javax.crypto.spec.SecretKeySpec;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.DatatypeConverter;
-import java.io.IOException;
 import java.security.Key;
 import java.util.*;
 
@@ -33,7 +23,7 @@ public class JwtTokenProvider{
      * @param member : 사용자 정보
      * @return String : 토큰
      */
-    public String generateJwtToken(Member member) {
+    public String generateJwtToken(final Member member) {
         // 사용자 시퀀스를 기준으로 JWT 토큰을 발급하여 반환해줍니다.
         JwtBuilder builder = Jwts.builder()
                 .setHeader(createHeader())                              // Header 구성
@@ -42,20 +32,6 @@ public class JwtTokenProvider{
                 .signWith(SignatureAlgorithm.HS256, createSignature())  // Signature 구성
                 .setExpiration(createExpiredDate());                    // Expired Date 구성
         return builder.compact();
-    }
-
-    /**
-     * 토큰을 기반으로 사용자 정보를 반환 해주는 메서드
-     *
-     * @param token String : 토큰
-     * @return String : 사용자 정보
-     */
-    public String parseTokenToUserInfo(String token) {
-        return Jwts.parser()
-                .setSigningKey(secretKey)
-                .parseClaimsJws(token)
-                .getBody()
-                .getSubject();
     }
 
     /**
@@ -69,7 +45,10 @@ public class JwtTokenProvider{
             return false;
         try {
             Claims claims = getClaimsFormToken(token);
-            return true;
+            if(null!=claims){
+                return true;
+            }
+            return false;
         } catch (ExpiredJwtException exception) {
             throw new JwtException("토큰 만료");
         } catch (JwtException exception) {
@@ -85,7 +64,7 @@ public class JwtTokenProvider{
      * @param header 헤더
      * @return String
      */
-    public String getTokenFromHeader(String header) {
+    public String getTokenFromHeader(final String header) {
         return header.split(".")[1];
     }
 
@@ -122,7 +101,7 @@ public class JwtTokenProvider{
      * @param Member 사용자 정보
      * @return Map<String, Object>
      */
-    private Map<String, Object> createClaims(Member Member) {
+    private Map<String, Object> createClaims(final Member Member) {
         // 공개 클레임에 사용자의 이름과 이메일을 설정하여 정보를 조회할 수 있다.
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId", Member.getMemberId());
@@ -147,7 +126,7 @@ public class JwtTokenProvider{
      * @param token : 토큰
      * @return Claims : Claims
      */
-    private Claims getClaimsFormToken(String token) {
+    private Claims getClaimsFormToken(final String token) {
         return Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(secretKey))
                 .parseClaimsJws(token).getBody();
     }
@@ -158,7 +137,7 @@ public class JwtTokenProvider{
      * @param token : 토큰
      * @return String : 사용자 아이디
      */
-    public Member getUserIdFromToken(String token) {
+    public Member getTokenConverterMember(final String token) {
         Claims claims = getClaimsFormToken(token);
         String id = claims.get("userId").toString();
         Long no = Long.parseLong(claims.get("userNo").toString());

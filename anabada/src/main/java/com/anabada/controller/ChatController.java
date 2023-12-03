@@ -1,36 +1,21 @@
 package com.anabada.controller;
 
 import com.anabada.dto.MemberDetailDTO;
-import com.anabada.dto.MessageVo;
-import com.anabada.dto.request_dto.BidInsertDto;
-import com.anabada.dto.request_dto.ChatMessageDto;
+import com.anabada.dto.request_dto.ChatReqMessageDto;
 import com.anabada.dto.request_dto.ChatStartDto;
 import com.anabada.dto.response_dto.ChatMessageResDto;
 import com.anabada.dto.response_dto.ChatRoomDto;
-import com.anabada.entity.ChatMessage;
-import com.anabada.entity.SuccessfulBid;
 import com.anabada.service.ChatService;
 import com.anabada.service.SuccessBidService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.web.servlet.server.Session;
-import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
-import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.http.HttpRequest;
-import java.security.Principal;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -54,11 +39,11 @@ public class ChatController {
     }
 
     @MessageMapping("/chat")
-    public void receiveMessage(@Payload ChatMessageDto chatMessageDto, Authentication authentication){
+    public void receiveMessage(@Payload ChatReqMessageDto chatReqMessageDto, Authentication authentication){
         MemberDetailDTO memberDetailDTO = (MemberDetailDTO) authentication.getPrincipal();
 
-        ChatMessageResDto ch = chatService.receiveMessage(memberDetailDTO,chatMessageDto);
-        simpMessagingTemplate.convertAndSend("/chat/"+chatMessageDto.getSuccessNo(),ch);
+        ChatMessageResDto ch = chatService.receiveMessage(memberDetailDTO, chatReqMessageDto);
+        simpMessagingTemplate.convertAndSend("/chat/"+ chatReqMessageDto.getSuccessNo(),ch);
 
 
     }

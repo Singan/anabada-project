@@ -1,6 +1,6 @@
 package com.anabada.dto.response_dto;
 
-import com.anabada.dto.request_dto.ChatMessageDto;
+import com.anabada.dto.request_dto.ChatReqMessageDto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,12 +20,12 @@ public class ChatMessageResDto {
     private LocalDateTime createDateTime;
     private Long successNo;
 
-    public ChatMessageResDto(ChatMessageDto chatMessageDto, LocalDateTime now,Long memberNo) {
-        this.memberName = chatMessageDto.getMemberName();
-        this.memberImage = chatMessageDto.getMemberImage();
+    public ChatMessageResDto(ChatReqMessageDto chatReqMessageDto, LocalDateTime now, Long memberNo) {
+        this.memberName = chatReqMessageDto.getMemberName();
+        this.memberImage = chatReqMessageDto.getMemberImage();
         this.memberNo = memberNo;
-        this.message = chatMessageDto.getMessage();
+        this.message = chatReqMessageDto.getMessage();
         this.createDateTime = now;
-        this.successNo = chatMessageDto.getSuccessNo();
+        this.successNo = chatReqMessageDto.getSuccessNo();
     }
 }
