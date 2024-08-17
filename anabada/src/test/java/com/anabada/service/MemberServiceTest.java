@@ -58,7 +58,5 @@ class MemberServiceTest {
         memberLoginDto.setPw(pw);
         LoginResultDto t = memberService.memberLogin(memberLoginDto);
 
-
-        System.out.println(jwtTokenProvider.isValidToken(t.getAccessToken()));
     }
 }

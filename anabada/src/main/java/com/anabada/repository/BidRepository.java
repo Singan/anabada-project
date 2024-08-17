@@ -45,7 +45,7 @@ public interface BidRepository extends JpaRepository<Bid, Long> {
 
     @Query(value = "SELECT " +
             " p2.product_name as productName," +
-            "b1.product_no as productNo," +
+            " b1.product_no as productNo," +
             " b1.bid_time as bidTime, " +
             " b1.bid_no as bidNo FROM bid b1" +
             " INNER JOIN(SELECT b.product_no, MAX(b.bid_price) AS bid_price FROM bid b" +
