@@ -17,9 +17,7 @@ public class ProductImage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productImageNo;
 
-    // 복합키 설정 미룸
-//    @EmbeddedId
-//    private ProductImagePk productImagePk;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_no")

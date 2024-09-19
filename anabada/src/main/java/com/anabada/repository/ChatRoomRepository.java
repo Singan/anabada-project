@@ -14,9 +14,6 @@ import java.util.Optional;
 public interface ChatRoomRepository extends JpaRepository<ChatRoom, Long> {
 
 
-    //    @Query(value = "select * from chat_room c1 " +
-//            "join (select c2.* from chat_room c2 where c2.member_no =:memberNo) c2" +
-//            " on c1.success_no = c2.success_no and c1.member_no not c2.member_no ",nativeQuery = true)
     @Query(value = "select " +
             "c1.chat_room_no chatRoomNo, " +
             "c1.member_no memberNo," +
