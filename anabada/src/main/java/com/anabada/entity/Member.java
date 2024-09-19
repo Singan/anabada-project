@@ -43,7 +43,7 @@ public class Member {
     private List<Product> memberProductList;
 
     @Column(name="member_exist")
-    private boolean memberExist;
+    private Boolean memberExist;
     @Builder
     public Member(Long memberNo, String memberName,
                   String memberId,

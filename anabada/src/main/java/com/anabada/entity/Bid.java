@@ -28,7 +28,9 @@ public class Bid {//입찰내역
     @Column(name = "bid_time", nullable = false)
     private LocalDateTime time;
 
-
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     @Builder
     public Bid(Long bidNo, Product product, Member member, Integer price, LocalDateTime time) {

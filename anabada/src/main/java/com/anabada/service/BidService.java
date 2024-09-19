@@ -30,7 +30,7 @@ public class BidService {
     @Value("${s3.bucket.endpoint}")
     private String prefix;
     private final ProductRepository productRepository;
-    private final BidManagement bidManagement;
+    private final BidManagement bidManagement; // 현재 경매중인 상품의 최신 입찰 정보
     @Transactional
     public BidInsertResponseDto bidSave(BidInsertDto bidInsertDto, MemberDetailDTO memberDetailDTO) {
         Member member = memberDetailDTO.getMember();
@@ -44,12 +44,12 @@ public class BidService {
 
         Bid currBid = bidRepository.findFirstByProductOrderByTimeDesc(p);
         if (currBid == null) {
-            bidRepository.save(insertBid);// 먼저 현재 진행중인 입찰이 있나 체크 없다면 이후 조건을 체크하지않고 넘어가기 위함
+            bidRepository.save(insertBid);// 먼저 현재 진행중인 입찰이 있나 체크 없다면 그대로 현재 진행중인 입찰로 등록
             bidManagement.updateHaspMap(p,insertBid);
         } else {
             if (insertBid.getPrice() <= currBid.getPrice()) {
                 throw new RuntimeException("새로운 입찰은 현재 입찰가보다 작을 수 없습니다.");
-                // 만약 현재 진행중인 입찰이 있다면 등록 가격을 비교,사실상 비정상적인 API 호출을 막기위한 검증
+                // 만약 현재 진행중인 입찰이 있다면 등록 가격을 비교,비정상적인 API 호출을 막기위한 검증
             } else {
                 bidRepository.save(insertBid);
                 bidManagement.updateHaspMap(p,insertBid);
@@ -82,9 +82,9 @@ public class BidService {
 
 
     //입찰 내역 중 최고값의 시간이 입력 후 10분이 지난 입찰 내역의 상품 번호
-    public List<MaxBidProductNoInterface> productByMaxBidList(){
-        return bidRepository.bidList();
-    }
+//    public List<MaxBidProductNoInterface> productByMaxBidList(){
+//        return bidRepository.bidList();
+//    }
     @Transactional
     public void updateProductBidSuccess(List<Long> productNoList){
         bidRepository.updateProductSuccessBid(productNoList);

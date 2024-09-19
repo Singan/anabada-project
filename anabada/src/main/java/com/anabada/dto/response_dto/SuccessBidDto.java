@@ -25,16 +25,16 @@ public class SuccessBidDto {
     public SuccessBidDto(SuccessfulBid successfulBid, String prefix) {
         this.memberName = successfulBid.getBid().getMember().getMemberName();
         this.productPrice = successfulBid.getBid().getPrice();
-        this.productName = successfulBid.getProduct().getProductName();
-        this.productUseDate = successfulBid.getProduct().getProductUseDate();
-        this.productThumbnail = prefix + successfulBid.getProduct().getProductThumbnail();
-        this.productUploadMember = successfulBid.getProduct().getMember().getMemberName();
-        this.wishAddr = successfulBid.getProduct().getMember().getMemberWishAddr();
+        this.productName = successfulBid.getBid().getProduct().getProductName();
+        this.productUseDate = successfulBid.getBid().getProduct().getProductUseDate();
+        this.productThumbnail = prefix + successfulBid.getBid().getProduct().getProductThumbnail();
+        this.productUploadMember = successfulBid.getBid().getProduct().getMember().getMemberName();
+        this.wishAddr = successfulBid.getBid().getProduct().getMember().getMemberWishAddr();
         this.successBidNo = successfulBid.getSuccessBidProductNo();
-        this.productNo = successfulBid.getProduct().getProductNo();
+        this.productNo = successfulBid.getBid().getProduct().getProductNo();
         this.bidNo = successfulBid.getBid().getBidNo();
         this.buyerNo = successfulBid.getBid().getBidNo();
-        this.sellerNo = successfulBid.getProduct().getProductNo();
+        this.sellerNo = successfulBid.getBid().getProduct().getProductNo();
         this.status = successfulBid.getStatus().name();
     }
 

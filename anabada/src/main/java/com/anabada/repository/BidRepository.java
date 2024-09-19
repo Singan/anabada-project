@@ -52,7 +52,8 @@ public interface BidRepository extends JpaRepository<Bid, Long> {
             " GROUP BY b.product_no) b2 ON b1.product_no = b2.product_no AND b1.bid_price = b2.bid_price " +
             " INNER JOIN product p2 ON b1.product_no = p2.product_no" +
             " where p2.product_is_bid_complete = false;", nativeQuery = true)
-    List<MaxBidProductNoInterface> bidList();
+    List<MaxBidProductNoInterface> bidList(); // 서버를 실행했을 때 현재 경매중인 상품의 최신 입찰정보를 서버에 가져오는 쿼리
+
 
     @Query("UPDATE Product SET productIsBidComplete = true WHERE productNo IN :productNoList")
     @Modifying

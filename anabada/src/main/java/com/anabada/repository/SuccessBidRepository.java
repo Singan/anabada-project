@@ -7,6 +7,7 @@ import com.anabada.etc.Status;
 import org.hibernate.annotations.BatchSize;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -36,18 +37,13 @@ public interface SuccessBidRepository extends JpaRepository<SuccessfulBid,Long> 
     Page<MyBuyListInterface> successfulBidList(@Param("memberNo") Long memberNo, Pageable pageable);
 
 
-    // 낙찰 내역 + 낙찰 상품 조회
-    @Query("select s from SuccessfulBid s join fetch s.product join fetch s.bid" +
-            " where s.successBidProductNo = :no")
+    // 낙찰 상품 조회
+    @Query("select s from SuccessfulBid s where s.successBidProductNo = :no")
+    @EntityGraph(attributePaths = {"bid","bid.product"})
     SuccessfulBid findSuccessfulBid(@Param("no") Long no);
 
     @Query("update SuccessfulBid s set s.status = :status where s.successBidProductNo = :sno")
     @Modifying
     void updateSuccessfulBidByStatus(@Param("sno") Long no ,@Param("status") Status status);
 
-    @Query("select s from SuccessfulBid s " +
-            " join fetch s.bid b" +
-            " join fetch s.product p" +
-            " where b.member.memberNo =:memberNo or p.member.memberNo=:memberNo")
-    List<SuccessfulBid> findSuccessfulBidByStatusChat();
 }

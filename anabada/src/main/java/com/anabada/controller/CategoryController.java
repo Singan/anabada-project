@@ -20,9 +20,4 @@ public class CategoryController {
     public List<CategoryFindDto> categoryFindDto() {
         return categoryService.getCategoryList();
     }
-
-    @GetMapping("/insert")
-    public void categoryInsert() {
-        categoryService.categorySave();
-    }
 }

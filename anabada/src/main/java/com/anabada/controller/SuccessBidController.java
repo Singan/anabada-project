@@ -18,6 +18,6 @@ public class SuccessBidController {
     @GetMapping
     @Operation(description = "낙찰 결과")
     public SuccessBidDto successBidDto(@RequestParam Long successBidNo,@AuthenticationPrincipal MemberDetailDTO memberDetailDTO) {
-        return successBidService.successBidDto(successBidNo,memberDetailDTO);
+         return successBidService.successBidDto(successBidNo,memberDetailDTO);
     }
 }

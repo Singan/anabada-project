@@ -42,12 +42,13 @@ public class BidManagement {
         while (mapKey.hasNext()){
             Product product = mapKey.next();
             Bid bid = biddingHashMap.get(product);
+            bid.setProduct(product);
             LocalDateTime now = LocalDateTime.now();
             LocalDateTime bidTime = bid.getTime();
             Duration duration = Duration.between(bidTime, now);
             long minutesPassed = duration.toMinutes();
             if (minutesPassed >= 10) {
-                SuccessfulBid s = SuccessfulBid.builder().product(product).bid(bid).status(Status.대기).build();
+                SuccessfulBid s = SuccessfulBid.builder().bid(bid).status(Status.대기).build();
                 successfulBids.add(s);
                 mapKey.remove();            }
         }
